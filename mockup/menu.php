@@ -21,7 +21,7 @@
                     </p>
                 </li>
                 <li class="active"><a href="index.php">Home</a></li>
-                <li class=""><a href="#">Submissões</a></li>
+                <li class=""><a href="submissoes.php">Submissões</a></li>
                 
                 <!-- <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>

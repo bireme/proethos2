@@ -17,9 +17,10 @@ fieldset {
 .submission-meta img {
     width: 60px;
 }
-.submission-meta .label {
+.submission-meta .label, .see-submission .block .label {
     color: #333;
     text-transform: uppercase;
+    padding: 1px;
 }
 .submission-meta .block {
     margin-bottom: 30px;
@@ -28,7 +29,7 @@ fieldset {
     margin: 0;
     font-weight: bold;
 }
-.new-submission-content h2 {
+.new-submission-content h2.sub-header, .submissions h2.sub-header, .see-submission h2.sub-header {
     padding: 0;
     font-size: 21px;
     line-height: inherit;
@@ -43,4 +44,26 @@ fieldset {
 }
 .error {
     color: #ff0000;
+}
+.search-button {
+    margin-top: 25px;
+}
+#pagination {
+    text-align: center;
+}
+.pagination li a {
+    margin: 0 2px;
+}
+.see-submission .block .row {
+    margin-bottom: 15px;
+}
+.see-submission .block .row:first-child {
+    margin-bottom: 0;
+}
+.see-submission h3 {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 5px;
 }
