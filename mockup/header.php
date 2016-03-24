@@ -13,7 +13,7 @@
     
     <!-- CSS –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/lumen/bootstrap.min.css" rel="stylesheet" integrity="sha384-mvYjhBJXQ9VlNETV/xXShy849GsBHnKzVVudnMOcWUVM/6Nd2ksj8VNng5f8ylyX" crossorigin="anonymous">
-    <!-- <link href="https://almsaeedstudio.com/themes/AdminLTE/dist/css/AdminLTE.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
     <link href="static/css/style.css" rel="stylesheet">
     
     <!-- FAVICON –––––––––––––––––––––––––––––––––––––––––––––––––– -->
