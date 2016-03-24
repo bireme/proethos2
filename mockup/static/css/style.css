@@ -1,0 +1,32 @@
+fieldset {
+    /*border: 1px solid #ccc;*/
+}
+.center {
+    text-align: center;
+}
+.main-content {
+    margin-top: 30px;
+}
+.new-submission-tab-content {
+    margin: 20px 0;
+}
+.new-submission-tab-content img {
+    width: 150px;
+    float: left;
+}
+.submission-meta {
+    float: left;
+    padding-left: 10px;
+    padding-bottom: 30px;
+}
+.submission-meta .label {
+    color: #333;
+    text-transform: uppercase;
+}
+.submission-meta .block {
+    margin-bottom: 30px;
+}
+.submission-meta h2, .submission-meta h3 {
+    margin: 0;
+    font-weight: bold;
+}
