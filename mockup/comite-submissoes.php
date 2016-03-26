@@ -74,9 +74,17 @@
                                 <td>22/04/2016</td>
                                 <td>Pendente</td> 
                                 <td>
-                                    <a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
-                                    <a href='ver-submissao.php' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
-                                    <a href='#' class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a>
+                                    <a href='comite-em-analise.php' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
+                                </td> 
+                            </tr>
+                            <tr>
+                                <th>PAHO.0001.02</th>
+                                <td>Título da Submissão</td> 
+                                <td><span class='label label-default'>Ensaio Clínico</span></td> 
+                                <td>22/04/2016</td>
+                                <td>Pendente</td> 
+                                <td>
+                                    <a href='comite-em-analise.php' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
                                 </td> 
                             </tr>
                             <tr>
@@ -86,21 +94,7 @@
                                 <td>22/04/2016</td>
                                 <td>Pendente</td> 
                                 <td>
-                                    <a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
-                                    <a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
-                                    <a href='#' class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a>
-                                </td> 
-                            </tr>
-                            <tr>
-                                <th>PAHO.0001.02</th>
-                                <td>Título da Submissão</td> 
-                                <td><span class='label label-default'>Investigação</span></td> 
-                                <td>22/04/2016</td>
-                                <td>Pendente</td> 
-                                <td>
-                                    <a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
-                                    <a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
-                                    <a href='#' class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a>
+                                    <a href='comite-em-analise.php' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
                                 </td> 
                             </tr>
                         </tbody>

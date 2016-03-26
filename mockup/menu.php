@@ -23,18 +23,31 @@
                 <li class="active"><a href="index.php">Home</a></li>
                 <li class=""><a href="submissoes.php">Submissões</a></li>
                 
-                <!-- <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Comitê <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
+                        <li><a href="comite-submissoes.php">Submissões</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
+                        <!-- <li><a href="#">Alterar Protocolos Manualmente</a></li> -->
+                        <li><a href="comite-relatores.php">Relatores</a></li>
+                        <li><a href="comite-perguntas-frequentes.php">Perguntas Frequentes</a></li>
+                        <!-- <li role="separator" class="divider"></li> -->
+                        <li><a href="comite-reunioes.php">Reuniões</a></li>
                     </ul>
-                </li> -->
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Relatórios <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Indicadores</a></li>
+                        <li><a href="#">Monitoramento de Protocolos</a></li>
+                        <li><a href="#">Listagem de Investigadores</a></li>
+                        <li><a href="#">Membros do Comitê</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Reuniões</a></li>
+                    </ul>
+                </li>
+
             </ul>
 
             <!-- <form class="navbar-form navbar-left" role="search">

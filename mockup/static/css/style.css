@@ -1,6 +1,9 @@
 fieldset {
     /*border: 1px solid #ccc;*/
 }
+table:not(.table-bordered)>thead>tr>th, .table:not(.table-bordered)>thead>tr>th, table:not(.table-bordered)>tbody>tr>th, .table:not(.table-bordered)>tbody>tr>th, table:not(.table-bordered)>tfoot>tr>th, .table:not(.table-bordered)>tfoot>tr>th, table:not(.table-bordered)>thead>tr>td, .table:not(.table-bordered)>thead>tr>td, table:not(.table-bordered)>tbody>tr>td, .table:not(.table-bordered)>tbody>tr>td, table:not(.table-bordered)>tfoot>tr>td, .table:not(.table-bordered)>tfoot>tr>td {
+    border-color: #eee;
+}
 .center {
     text-align: center;
 }
@@ -17,7 +20,7 @@ fieldset {
 .submission-meta img {
     width: 60px;
 }
-.submission-meta .label, .see-submission .block .label {
+.submission-meta .label, .see-submission .block.meta .label {
     color: #333;
     text-transform: uppercase;
     padding: 1px;
@@ -58,7 +61,7 @@ fieldset {
     margin-bottom: 15px;
 }
 .see-submission .block .row:first-child {
-    margin-bottom: 0;
+    /*margin-bottom: 0;*/
 }
 .see-submission h3 {
     padding: 0;
@@ -66,4 +69,19 @@ fieldset {
     font-size: 18px;
     border-top: 1px solid #e5e5e5;
     padding-top: 5px;
+}
+.meta .titulo {
+    font-weight: bold;
+}
+.block.action {
+    /*background-color: #efefef;*/
+}
+h5 {
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 12pt;
+    padding-bottom: 5px;
+    margin-top: 15px;
+}
+.sortable > * {
+    cursor: move;
 }
