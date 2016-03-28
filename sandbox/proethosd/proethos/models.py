@@ -101,6 +101,7 @@ class MeetingUser(models.Model):
 
 class Protocol(models.Model):
 
+    owner = models.ForeignKey(Role)
     status = models.ForeignKey(ProtocolStatus)
     protocol_id = models.CharField(max_length=255)
 
@@ -110,8 +111,8 @@ class Submission(models.Model):
     updated = models.DateTimeField('updated in', auto_now_add=True)
     protocol = models.ForeignKey(Protocol)
     owner = models.ForeignKey(Role)
-    valued = models.BooleanField(default=False) 
-    accepted = models.BooleanField(default=False) # so pode virar true se o valued estiver true
+    evalued = models.BooleanField(default=False) 
+    accepted = models.BooleanField(default=False) # so pode virar true se o evalued estiver true
     current = models.BooleanField(default=False) # se estiver setado, é a submissão padrão
     
     clinical_trials = models.BooleanField('clinical trials', default=False)
