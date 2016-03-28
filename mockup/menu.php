@@ -31,7 +31,6 @@
                         <!-- <li><a href="#">Alterar Protocolos Manualmente</a></li> -->
                         <li><a href="comite-relatores.php">Relatores</a></li>
                         <li><a href="comite-perguntas-frequentes.php">Perguntas Frequentes</a></li>
-                        <!-- <li role="separator" class="divider"></li> -->
                         <li><a href="comite-reunioes.php">Reuniões</a></li>
                     </ul>
                 </li>
@@ -48,15 +47,12 @@
                     </ul>
                 </li>
 
+                <li class=""><a href="faq.php">FAQ</a></li>
+                <li class=""><a href="documentos.php">Documentos</a></li>
+                <li class=""><a href="contato.php">Contato</a></li>
+
             </ul>
 
-            <!-- <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form> -->
-            
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -74,7 +70,7 @@
                         <i class='glyphicon glyphicon-user'></i> <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Seu Perfil</a></li>
+                        <li><a href="#" data-toggle='modal' data-target='#modal-edit-personal-information'>Seu Perfil</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Logout</a></li>
                     </ul>    
@@ -83,3 +79,89 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
+<!-- Modal Seu Perfil -->
+<div class="modal fade" id="modal-edit-personal-information" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Suas Informações Pessoais</h4>
+            </div>
+            <div class="modal-body">
+                <form class='form'>
+                    <div class='row'>
+                        <div class='col-md-12'>
+                            <div class="form-group">
+                                <label for="">Nome Completo:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type='text' class='form-control'>
+                            </div>
+                        </div>
+                    </div>
+                            
+                    <div class='row'>
+                        <div class='col-md-6'>
+                            <div class="form-group">
+                                <label for="">E-mail:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type='text' class='form-control'>
+                            </div>
+                        </div>
+
+                        <div class='col-md-6'>
+                            <div class="form-group">
+                                <label for="">E-mail alternativo:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type='text' class='form-control'>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class='row'>
+                        <div class='col-md-6'>
+                            <div class="form-group">
+                                <label for="">Senha:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type='text' class='form-control'>
+                            </div>
+                        </div>
+
+                        <div class='col-md-6'>
+                            <div class="form-group">
+                                <label for="">Senha:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type='text' class='form-control'>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class='col-md-12'>
+                            <div class="form-group">
+                                <label for="">Endereço:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="4" class='form-control'></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class='col-md-12'>
+                            <div class="form-group">
+                                <label for="">Instituição:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type='text' class='form-control'>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

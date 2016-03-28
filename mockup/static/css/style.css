@@ -32,7 +32,11 @@ table:not(.table-bordered)>thead>tr>th, .table:not(.table-bordered)>thead>tr>th,
     margin: 0;
     font-weight: bold;
 }
-.new-submission-content h2.sub-header, .submissions h2.sub-header, .see-submission h2.sub-header {
+.new-submission-content h2.sub-header, 
+.submissions h2.sub-header, 
+.see-submission h2.sub-header, 
+.download-docs h2.sub-header, 
+.faq h2.sub-header {
     padding: 0;
     font-size: 21px;
     line-height: inherit;
@@ -84,4 +88,14 @@ h5 {
 }
 .sortable > * {
     cursor: move;
+}
+.faq .content {
+    margin-top: 20px;
+    line-height: 18pt;
+}
+.download-docs h3 {
+    font-size: 14pt;
+    /*border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 5px;*/
+    margin-bottom: 15px;
 }
