@@ -1,13 +1,13 @@
 <?php
 
-namespace Proethos2\ModelBundle\Controller;
+namespace Proethos2\CoreBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Proethos2\ModelBundle\Entity\Submission;
+use Proethos2\CoreBundle\Entity\Submission;
 
 /**
  * Submission controller.
