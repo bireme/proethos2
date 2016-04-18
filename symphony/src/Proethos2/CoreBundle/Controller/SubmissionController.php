@@ -28,11 +28,12 @@ class SubmissionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('Proethos2ModelBundle:Submission')->findAll();
+        $submissions = $em->getRepository('Proethos2ModelBundle:Submission')->findAllInOrder();
 
         return array(
-            'entities' => $entities,
+            'submissions' => $submissions,
         );
+
     }
 
     /**
@@ -46,14 +47,14 @@ class SubmissionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('Proethos2ModelBundle:Submission')->find($id);
+        $submission = $em->getRepository('Proethos2ModelBundle:Submission')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Submission entity.');
+        if (!$submission) {
+            throw $this->createNotFoundException('Unable to find submission.');
         }
 
         return array(
-            'entity'      => $entity,
+            'submission' => $submission,
         );
     }
 }
