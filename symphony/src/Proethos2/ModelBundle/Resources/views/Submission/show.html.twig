@@ -1,0 +1,34 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Submission</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Publictitle</th>
+                <td>{{ entity.publicTitle }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ entity.created }}</td>
+            </tr>
+            <tr>
+                <th>Updated</th>
+                <td>{{ entity.updated }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('crud_submission') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

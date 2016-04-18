@@ -1,5 +1,10 @@
-proethos2_core:
-    resource: "@Proethos2CoreBundle/Controller/"
+# proethos2_core:
+#     resource: "@Proethos2CoreBundle/Controller/"
+#     type:     annotation
+#     prefix:   /
+
+proethos2_model:
+    resource: "@Proethos2ModelBundle/Controller/"
     type:     annotation
     prefix:   /
 
