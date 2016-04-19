@@ -1,7 +1,15 @@
 security:
+    encoders:
+        Proethos2\ModelBundle\Entity\User:
+            algorithm: bcrypt
+
     providers:
-        in_memory:
-            memory: ~
+        our_db_provider:
+            entity:
+                class: Proethos2ModelBundle:User
+                property: username
+                # if you're using multiple entity managers
+                # manager_name: customer
 
     firewalls:
         dev:
@@ -9,4 +17,6 @@ security:
             security: false
 
         default:
-            anonymous: ~
+            pattern:    ^/
+            http_basic: ~
+            provider: our_db_provider

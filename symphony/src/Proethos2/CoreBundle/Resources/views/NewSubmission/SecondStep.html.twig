@@ -13,7 +13,211 @@
         {% include 'Proethos2CoreBundle:NewSubmission:meta.html.twig' %}
 
         <div class='new-submission-tab-content'>
-        
-        </div>
+            <form class='form' method='POST' action='{{ path("submission_new_second_step", {submission_id: submission.id}) }}'>
 
+                <input type='hidden' name='submission_id' value='{{ submission.id }}'>
+                
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h2 class='sub-header'>{% trans %}Team{% endtrans %}</h2>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <table class='table table-hover table-condensed' id='table-team'>
+                                
+                                <thead>
+                                    <tr>
+                                        <th width="50%">{% trans %}Name{% endtrans %}</th>
+                                        <th>{% trans %}E-mail{% endtrans %}</th>
+                                        <th>{% trans %}Country{% endtrans %}</th>
+                                        <th>{% trans %}Main?{% endtrans %}</th>
+                                        <th>{% trans %}Actions{% endtrans %}</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    <tr>
+                                        <td>{{ submission.owner.name }}</td> 
+                                        <td><a href='{{ submission.owner.email }}'>{{ submission.owner.email }}</a></td> 
+                                        <td>{{ submission.owner.country }}</td> 
+                                        <td><label class='label label-success'>{% trans %}Yes{% endtrans %}</label></td> 
+                                        <td>-</td> 
+                                    </tr>
+                                    {% for team_user in submission.team %}
+                                        <tr>
+                                            <td>
+                                                <input type='hidden' name='team_user[]' value='{{ team_user.id }}'>
+                                                {{ team_user.name }}
+                                            </td> 
+                                            <td><a href='{{ team_user.email }}'>{{ team_user.email }}</a></td> 
+                                            <td>{{ team_user.country }}</td> 
+                                            <td><label class='label label-success'>{% trans %}No{% endtrans %}</label></td> 
+                                            <td>-</td> 
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-investigator">
+                                {% trans %}New Investigator{% endtrans %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h2 class='sub-header'>{% trans %}Abstract and Keywords{% endtrans %}</h2>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-abstract">{% trans %}Abstract{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea class="form-control" name='abstract' id='textarea-abstract'></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="input-keywords">{% trans %}Keywords{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type="text" class="form-control" placeholder="" id='input-keywords' name='keywords'>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h2 class='sub-header'>{% trans %}Introduction{% endtrans %}</h2>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-introduction">{% trans %}Introduction{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="6" class="form-control" name='introduction' id='textarea-introduction'></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-justify">{% trans %}Justify{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="3" class="form-control" name='justify' id='textarea-justify'></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-goals">{% trans %}Goals{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="3" class="form-control" name='goals' id='textarea-goals'></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='submission-button-controls'>
+                    <button type='submit' class='btn btn-primary'>{% trans %}Save and next{% endtrans %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Novo Investigador -->
+    <div class="modal fade" id="modal-new-investigator" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form class='form' id='form-team'>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}New Investigator{% endtrans %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">{% trans %}E-mail{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='email' class='form-control' name='team-email'>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="">{% trans %}Name{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='text' class='form-control' name='team-name' readonly="">
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                        <button type="submit" id='team-submit' class="btn btn-primary disabled" data-dismiss="modal">{% trans %}Save{% endtrans %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+
+            $team = {};
+
+            $("#form-team input[name='team-email']").keyup(function() {
+
+                email = $(this).val();
+                $.post("{{ path('api_get_user_by_email') }}", {email: email}, function(data){
+                    if(!$.isEmptyObject(data)) {
+
+                        user = data[0];
+                        $team[user['id']] = {name: user['name'], email: user['email'], country: user['country']};
+                        
+                        $("#form-team input[name='team-name']").val(user['name']);
+                        $("#team-submit").removeClass('disabled');
+
+                    } else {
+
+                        $("#form-team input[name='team-name']").val("");
+                        $("#team-submit").addClass('disabled');
+                        $team = {};
+                    }
+                });
+            });
+
+            $("#team-submit").click(function(e){
+                e.preventDefault();
+
+                for(id in $team) {
+                    user = $team[id];
+                    
+                    string =  "<tr>"
+                    string += "<td><input type='hidden' name='team_user[]' value='"+ id +"'>"+ user['name'] +"</td>"
+                    string += "<td><a href='mailto:"+ user['email'] +"'>"+ user['email'] +"</a></td>"
+                    string += "<td>"+ user['country'] +"</td>"
+                    string += "<td><label class='label label-default'>Não</label></td>"
+                    string += "<td><a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></td>"
+                    string += "</tr>";
+
+                    $("#table-team tbody").append(string);
+                }
+            });
+        });
+    </script>
 {% endblock %}

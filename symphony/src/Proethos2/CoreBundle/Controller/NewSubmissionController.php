@@ -27,6 +27,8 @@ class NewSubmissionController extends Controller
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
 
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -41,6 +43,7 @@ class NewSubmissionController extends Controller
             }
 
             $protocol = new Protocol();
+            $protocol->setOwner($user);
             $em->persist($protocol);
             $em->flush();
 
@@ -50,6 +53,7 @@ class NewSubmissionController extends Controller
             $submission->setCientificTitle($post_data['cientific_title']);
             $submission->setTitleAcronyms($post_data['title_acronyms']);
             $submission->setProtocol($protocol);
+            $submission->setOwner($user);
             
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
@@ -73,10 +77,12 @@ class NewSubmissionController extends Controller
         $session = $request->getSession();
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
-        $reposirory = $em->getRepository('Proethos2ModelBundle:Submission');
+        
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
 
         // getting the current submission
-        $submission = $reposirory->find($submission_id);
+        $submission = $submission_repository->find($submission_id);
 
         if (!$submission) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
@@ -87,14 +93,27 @@ class NewSubmissionController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
-            // checking required files
-            $required_fields = array('cientific_title', 'public_title', 'is_clinical_trial');
-            foreach($required_fields as $field) {
-                if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+
+            // // checking required files
+            // $required_fields = array('cientific_title', 'public_title', 'is_clinical_trial');
+            // foreach($required_fields as $field) {
+            //     if(!isset($post_data[$field]) or empty($post_data[$field])) {
+            //         $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+            //     }
+            // }
+
+            if(isset($post_data['team_user'])) {
+                foreach($post_data['team_user'] as $team_user) {
+                    $team_user = $user_repository->find($team_user);
+
+                    $submission->addTeam($team_user);
                 }
             }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($submission);
+            $em->flush();
+
         }
         
         return array(

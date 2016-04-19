@@ -24,6 +24,15 @@ class Protocol extends Base
     private $id;
 
     /** 
+     * @var User
+     * 
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="users") 
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false) 
+     * @Assert\NotBlank 
+     */ 
+    private $owner;
+
+    /** 
      * @var ArrayCollection 
      * 
      * @ORM\OneToMany(targetEntity="Submission", mappedBy="protocol", cascade={"remove"}) 
@@ -90,5 +99,29 @@ class Protocol extends Base
     public function __toString() 
     { 
         return $this->getId(); 
+    }
+
+    /**
+     * Set owner
+     *
+     * @param \Proethos2\ModelBundle\Entity\User $owner
+     *
+     * @return Protocol
+     */
+    public function setOwner(\Proethos2\ModelBundle\Entity\User $owner)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return \Proethos2\ModelBundle\Entity\User
+     */
+    public function getOwner()
+    {
+        return $this->owner;
     }
 }

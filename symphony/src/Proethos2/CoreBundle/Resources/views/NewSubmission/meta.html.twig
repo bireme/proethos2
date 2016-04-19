@@ -35,21 +35,21 @@
             <div class='col-md-2'>
                 <div class='block'>
                     <div class='label'>{% trans %}First Author{% endtrans %}</div>
-                    <h3>Moacir Moda</h3>
+                    <h3>{{ submission.owner }}</h3>
                 </div>
             </div>
 
             <div class='col-md-2'>
                 <div class='block'>
-                    <div class='label'>Tipo Principal</div>
+                    <div class='label'>{% trans %}Main Type{% endtrans %}</div>
                     <h3>-</h3>
                 </div>
             </div>
 
             <div class='col-md-2'>
                 <div class='block'>
-                    <div class='label'>Atualizado em</div>
-                    <h3>05/04/2016</h3>
+                    <div class='label'>{% trans %}Updated At{% endtrans %}</div>
+                    <h3>{{ submission.updated|date('d/m/Y') }}</h3>
                 </div>
             </div>         
         {% endif %}

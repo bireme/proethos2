@@ -4,7 +4,7 @@ namespace Proethos2\ModelBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Submission
@@ -62,6 +62,27 @@ class Submission extends Base
      * @Assert\NotBlank 
      */ 
     private $protocol;
+
+    /** 
+     * @var User
+     * 
+     * @ORM\ManyToOne(targetEntity="User") 
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false) 
+     * @Assert\NotBlank 
+     */ 
+    private $owner;
+
+    /**
+     * @var Team
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="users")
+     * @ORM\JoinTable(name="submission_user")
+     */
+    private $team;
+
+    public function __construct() 
+    {
+        $this->team = new ArrayCollection(); 
+    }
 
     /**
      * Get id
@@ -191,5 +212,63 @@ class Submission extends Base
     public function getIsClinicalTrial()
     {
         return $this->is_clinical_trial;
+    }
+
+    /**
+     * Set owner
+     *
+     * @param \Proethos2\ModelBundle\Entity\User $owner
+     *
+     * @return Submission
+     */
+    public function setOwner(\Proethos2\ModelBundle\Entity\User $owner)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return \Proethos2\ModelBundle\Entity\User
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * Add team
+     *
+     * @param \Proethos2\ModelBundle\Entity\User $team
+     *
+     * @return Submission
+     */
+    public function addTeam(\Proethos2\ModelBundle\Entity\User $team)
+    {
+        $this->team[] = $team;
+
+        return $this;
+    }
+
+    /**
+     * Remove team
+     *
+     * @param \Proethos2\ModelBundle\Entity\User $team
+     */
+    public function removeTeam(\Proethos2\ModelBundle\Entity\User $team)
+    {
+        $this->team->removeElement($team);
+    }
+
+    /**
+     * Get team
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTeam()
+    {
+        return $this->team;
     }
 }
