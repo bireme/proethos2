@@ -1,0 +1,57 @@
+<div class='row'>
+    <div class='col-md-12'>
+        <ul class="nav nav-tabs" id='new-submission-tab'>
+            <li role="presentation">
+                <a href="javascript:void(0)" title="{% trans %}First Information{% endtrans %}">
+                    {% trans %}First Information{% endtrans %}
+                </a>
+            </li>
+            <li role="presentation" {% if app.request.get('_route') == "submission_new_second_step" %}class='active'{% endif %}>
+                <a href="{{ path('submission_new_second_step', {'submission_id': submission.id }) }}" title="{% trans %}About Project{% endtrans %}">{% trans %}About Project{% endtrans %}</a>
+            </li>
+            <li role="presentation"><a href="#">Estudo clínico</a></li>
+            <li role="presentation"><a href="#">Cronograma e Orçamento</a></li>
+            <li role="presentation"><a href="#">Referências</a></li>
+            <li role="presentation"><a href="#">Arquivos anexados</a></li>
+            <li role="presentation"><a href="#">Revisão</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class='new-submission-tab-content'>
+    <div class='row submission-meta'>                
+        {% if app.request.get('_route') != "submission_new_first_step" %}
+            <div class='col-md-1'>
+                <img src='{{ asset("bundles/proethos2core/img/icon-submission.png") }}'>
+            </div>
+
+            <div class='col-md-5'>
+                <div class='block'>
+                    <div class='label'>{% trans %}Project Title{% endtrans %}</div>
+                    <h2>{{ submission.publicTitle }}</h2>
+                </div>
+            </div>
+
+            <div class='col-md-2'>
+                <div class='block'>
+                    <div class='label'>{% trans %}First Author{% endtrans %}</div>
+                    <h3>Moacir Moda</h3>
+                </div>
+            </div>
+
+            <div class='col-md-2'>
+                <div class='block'>
+                    <div class='label'>Tipo Principal</div>
+                    <h3>-</h3>
+                </div>
+            </div>
+
+            <div class='col-md-2'>
+                <div class='block'>
+                    <div class='label'>Atualizado em</div>
+                    <h3>05/04/2016</h3>
+                </div>
+            </div>         
+        {% endif %}
+    </div>
+</div>
