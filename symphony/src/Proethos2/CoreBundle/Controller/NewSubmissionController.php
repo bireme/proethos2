@@ -36,7 +36,7 @@ class NewSubmissionController extends Controller
             // checking required files
             foreach(array('cientific_title', 'public_title', 'is_clinical_trial') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $trans->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
                 }
             }
 
@@ -55,10 +55,51 @@ class NewSubmissionController extends Controller
             $em->persist($submission);
             $em->flush();
 
-            $session->getFlashBag()->add('success', $trans->trans("Submission started with success."));
+            $session->getFlashBag()->add('success', $translator->trans("Submission started with success."));
+            return $this->redirectToRoute('submission_new_second_step', array('submission_id' => $submission->getId()), 301);
         }
         
         return array();    
+    }
+
+    /**
+     * @Route("/submission/new/{submission_id}/second", name="submission_new_second_step")
+     * @Template()
+     */
+    public function SecondStepAction($submission_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+        $reposirory = $em->getRepository('Proethos2ModelBundle:Submission');
+
+        // getting the current submission
+        $submission = $reposirory->find($submission_id);
+
+        if (!$submission) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required files
+            $required_fields = array('cientific_title', 'public_title', 'is_clinical_trial');
+            foreach($required_fields as $field) {
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                }
+            }
+        }
+        
+        return array(
+            'submission' => $submission,
+        );    
     }
 
 }
