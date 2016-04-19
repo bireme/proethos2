@@ -14,18 +14,6 @@ class IndexController extends Controller
      */
     public function indexAction()
     {
-        return array(
-                // ...
-            );    }
-
-    /**
-     * @Route("/show")
-     * @Template()
-     */
-    public function showAction()
-    {
-        return array(
-                // ...
-            );    }
-
+        return array();    
+    }
 }

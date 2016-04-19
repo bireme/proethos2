@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Submission
  *
  * @ORM\Table(name="submission")
- * @ORM\Entity(repositoryClass="Tableless\ModelBundle\Repository\PostRepository")
+ * @ORM\Entity(repositoryClass="Proethos2\ModelBundle\Repository\SubmissionRepository")
  */
 class Submission extends Base
 {
