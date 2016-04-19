@@ -27,8 +27,32 @@ class Submission extends Base
      * @var string
      *
      * @ORM\Column(name="public_title", type="string", length=255)
+     * @Assert\NotBlank 
      */
     private $publicTitle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cientific_title", type="string", length=255)
+     * @Assert\NotBlank 
+     */
+    private $cientificTitle;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title_acronyms", type="string", length=255)
+     */
+    private $titleAcronyms;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_clinical_trial", type="boolean")
+     * @Assert\NotBlank 
+     */
+    private $is_clinical_trial;
 
     /** 
      * @var Protocol
@@ -37,7 +61,7 @@ class Submission extends Base
      * @ORM\JoinColumn(name="protocol_id", referencedColumnName="id", nullable=false) 
      * @Assert\NotBlank 
      */ 
-    private $author;
+    private $protocol;
 
     /**
      * Get id
@@ -74,26 +98,98 @@ class Submission extends Base
     }
 
     /**
-     * Set author
+     * Set protocol
      *
-     * @param \Proethos2\ModelBundle\Entity\Protocol $author
+     * @param \Proethos2\ModelBundle\Entity\Protocol $protocol
      *
      * @return Submission
      */
-    public function setAuthor(\Proethos2\ModelBundle\Entity\Protocol $author)
+    public function setProtocol(\Proethos2\ModelBundle\Entity\Protocol $protocol)
     {
-        $this->author = $author;
+        $this->protocol = $protocol;
 
         return $this;
     }
 
     /**
-     * Get author
+     * Get protocol
      *
      * @return \Proethos2\ModelBundle\Entity\Protocol
      */
-    public function getAuthor()
+    public function getProtocol()
     {
-        return $this->author;
+        return $this->protocol;
+    }
+
+    /**
+     * Set cientificTitle
+     *
+     * @param string $cientificTitle
+     *
+     * @return Submission
+     */
+    public function setCientificTitle($cientificTitle)
+    {
+        $this->cientificTitle = $cientificTitle;
+
+        return $this;
+    }
+
+    /**
+     * Get cientificTitle
+     *
+     * @return string
+     */
+    public function getCientificTitle()
+    {
+        return $this->cientificTitle;
+    }
+
+    /**
+     * Set titleAcronyms
+     *
+     * @param string $titleAcronyms
+     *
+     * @return Submission
+     */
+    public function setTitleAcronyms($titleAcronyms)
+    {
+        $this->titleAcronyms = $titleAcronyms;
+
+        return $this;
+    }
+
+    /**
+     * Get titleAcronyms
+     *
+     * @return string
+     */
+    public function getTitleAcronyms()
+    {
+        return $this->titleAcronyms;
+    }
+
+    /**
+     * Set isClinicalTrial
+     *
+     * @param string $isClinicalTrial
+     *
+     * @return Submission
+     */
+    public function setIsClinicalTrial($isClinicalTrial)
+    {
+        $this->is_clinical_trial = $isClinicalTrial;
+
+        return $this;
+    }
+
+    /**
+     * Get isClinicalTrial
+     *
+     * @return string
+     */
+    public function getIsClinicalTrial()
+    {
+        return $this->is_clinical_trial;
     }
 }

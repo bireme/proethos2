@@ -1,0 +1,110 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}New submission{% endtrans %}{% endblock %}
+
+{% block content %}
+    <div class="container-fluid main-content">
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">{% trans %}New submission{% endtrans %}</h1>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-md-12'>
+                <ul class="nav nav-tabs" id='new-submission-tab'>
+                    <li role="presentation" {% if app.request.get('_route') == "submission_new_first_step" %}class='active'{% endif %}>
+                        <a href="#">{% trans %}First Information{% endtrans %}</a>
+                    </li>
+                    <li role="presentation"><a href="#">Sobre o projeto</a></li>
+                    <li role="presentation"><a href="#">Estudo clínico</a></li>
+                    <li role="presentation"><a href="#">Cronograma e Orçamento</a></li>
+                    <li role="presentation"><a href="#">Referências</a></li>
+                    <li role="presentation"><a href="#">Arquivos anexados</a></li>
+                    <li role="presentation"><a href="#">Revisão</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id='new-submission-tab-content' class='new-submission-tab-content'>
+            
+            <div class='row submission-meta'>                
+                <!-- <div class='col-md-1'>
+                    <img src='{{ asset("bundles/proethos2core/img/icon-submission.png") }}'>
+                </div>
+
+                <div class='col-md-5'>
+                    <div class='block'>
+                        <div class='label'>Título do Projeto</div>
+                        <h2>Projeto de Exemplo do Proethos 2.0</h2>
+                    </div>
+                </div>
+
+                <div class='col-md-2'>
+                    <div class='block'>
+                        <div class='label'>Autor Principal do Projeto</div>
+                        <h3>Moacir Moda</h3>
+                    </div>
+                </div>
+
+                <div class='col-md-2'>
+                    <div class='block'>
+                        <div class='label'>Tipo Principal</div>
+                        <h3>-</h3>
+                    </div>
+                </div>
+
+                <div class='col-md-2'>
+                    <div class='block'>
+                        <div class='label'>Atualizado em</div>
+                        <h3>05/04/2016</h3>
+                    </div>
+                </div>   -->       
+            </div>
+
+            <div class='row'>
+                <div class='col-md-12'>
+                    <form class='form' method='POST' action='{{ path("submission_new_first_step") }}'>
+                        <fieldset>
+                            <legend>{% trans %}Clinical Trial{% endtrans %}</legend>
+                            <div class="form-group">
+                                <label for="">{% trans %}Clinical Trial{% endtrans %}?</label>
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <div class="radio">
+                                    <label><input type="radio" name="is_clinical_trial" id="radio_clinical_trial_yes" value="yes"> {% trans %}Yes{% endtrans %}</label>
+                                    <label><input type="radio" name="is_clinical_trial" id="radio_clinical_trial_no" value="no" checked> {% trans %}No{% endtrans %}</label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>{% trans %}Project Title{% endtrans %}</legend>
+                            
+                            <div class="form-group">
+                                <label for="input_cientific_title">{% trans %}Cientific Title{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type="text" class="form-control" name='cientific_title' id='input_cientific_title' required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input_public_title">{% trans %}Public title{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type="text" class="form-control" name='public_title' id='input_public_title' required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input_title_acronyms">{% trans %}Title Acronyms{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type="text" class="form-control" name='title_acronyms' id='input_title_acronyms'>
+                            </div>
+                        </fieldset>
+
+                        <div class='submission-button-controls'>
+                            <button type='submit' class='btn btn-primary'>{% trans %}Save and next{% endtrans %}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
