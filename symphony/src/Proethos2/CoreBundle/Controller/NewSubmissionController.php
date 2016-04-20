@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 use Proethos2\ModelBundle\Entity\Submission;
+use Proethos2\ModelBundle\Entity\SubmissionCountry;
 use Proethos2\ModelBundle\Entity\Protocol;
 
 
@@ -149,6 +150,7 @@ class NewSubmissionController extends Controller
 
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        $submission_country_repository = $em->getRepository('Proethos2ModelBundle:SubmissionCountry');
 
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
@@ -185,6 +187,40 @@ class NewSubmissionController extends Controller
             $submission->setRecruitmentInitDate(new \DateTime($post_data['recruitment-init-date']));
             $submission->setRecruitmentStatus($post_data['recruitment-status']);
 
+            // removing all team to readd
+            foreach($submission->getCountry() as $country) {
+                $submission->removeCountry($country);
+            }
+
+            if(isset($post_data['country'])) {
+                foreach($post_data['country'] as $key => $country) {
+
+                    // check if exists
+                    $submission_country = $submission_country_repository->findOneBy(array(
+                        'submission' => $submission, 
+                        'country' => $country['country'],
+                    ));
+
+                    // if not exists, create the new submission_country
+                    if(!$submission_country) {
+                        $submission_country = new SubmissionCountry();
+                        $submission_country->setSubmission($submission);
+                        $submission_country->setCountry($country['country']);
+                        $submission_country->setParticipants($country['participants']);
+
+                    } else {
+                        $submission_country->setParticipants($country['participants']);
+                    }
+
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($submission_country);
+                    $em->flush();
+
+                    // add in submission
+                    $submission->addCountry($submission_country);
+                }
+            }
+
             $submission->setInterventions($post_data['interventions']);
             
             $submission->setPrimaryOutcome($post_data['primary-outcome']);
@@ -199,12 +235,7 @@ class NewSubmissionController extends Controller
             $em->flush();
 
             $session->getFlashBag()->add('success', $translator->trans("Second step saved with sucess."));
-            
-            // print "<pre>";
-            // var_dump($post_data);
-            // print "\n\n\n\n";
-            // var_dump(array_keys($post_data));
-            // die;
+
         }
 
         return array(

@@ -147,7 +147,7 @@
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <table class='table table-hover table-condensed'>
+                            <table class='table table-hover table-condensed' id='table-country'>
                                 
                                 <thead>
                                     <tr>
@@ -158,19 +158,19 @@
                                 </thead>
                                 
                                 <tbody>
+                                    {% for country in submission.country %}
                                     <tr>
-                                       <td>Brasil</td> 
-                                       <td><label class='label label-default'>14</label></td> 
-                                       <td><a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></td> 
+                                        <input type='hidden' name='country[{{ loop.index0 }}][country]' value='{{ country.country }}'>
+                                        <input type='hidden' name='country[{{ loop.index0 }}][participants]' value='{{ country.participants }}'>
+
+                                        <td>{{ country.country }}</td> 
+                                        <td><label class='label label-default'>{{ country.participants }}</label></td> 
+                                        <td><a href='#' class='btn btn-default btn-xs button-remove-country'><i class='glyphicon glyphicon-trash'></i></a></td> 
                                     </tr>
-                                    <tr>
-                                       <td>Chile</td> 
-                                       <td><label class='label label-default'>10</label></td> 
-                                       <td><a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></td> 
-                                    </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
-                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-country">Novo País</a>
+                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-country">{% trans %}New Country{% endtrans %}</a>
                         </div>
                     </div>
 
@@ -266,35 +266,41 @@
         </div>
     </div>
 
-    <!-- Modal Novo Investigador -->
-    <div class="modal fade" id="modal-new-investigator" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <!-- Modal Novo País -->
+    <div class="modal fade" id="modal-new-country" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form class='form' id='form-team'>
+            <form class='form' id='form-country'>
+                <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">{% trans %}New Investigator{% endtrans %}</h4>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}New Country{% endtrans %}</h4>
                     </div>
                     <div class="modal-body">
+                            
                         <div class="form-group">
-                            <label for="">{% trans %}E-mail{% endtrans %}:</label> 
+                            <label for="">{% trans %}Country{% endtrans %}:</label> 
                             <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <input type='email' class='form-control' name='team-email'>
+                            <select class='form-control selectpicker' data-live-search="true" name='country' id='select-country-country'>
+                                <option></option>
+                                <option>BR</option>
+                                <option>AR</option>
+                                <option>US</option>
+                            </select>
                         </div>
-                        
+
                         <div class="form-group">
-                            <label for="">{% trans %}Name{% endtrans %}:</label> 
+                            <label for="">{% trans %}Participants{% endtrans %}:</label> 
                             <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <input type='text' class='form-control' name='team-name' readonly="">
+                            <input type='number' class='form-control' min="1" name='participants' id='input-country-participants'>
                         </div>
+                            
                     </div>
-                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
-                        <button type="submit" id='team-submit' class="btn btn-primary disabled" data-dismiss="modal">{% trans %}Save{% endtrans %}</button>
+                        <button type="button" id='submit-country-form' class="btn btn-primary" data-dismiss="modal">{% trans %}Save{% endtrans %}</button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 {% endblock %}
@@ -303,52 +309,33 @@
     <script>
         $(function(){
 
-            $team = {};
+            $total_countries = {{ submission.country|length }};
 
-            $("#form-team input[name='team-email']").keyup(function() {
-
-                email = $(this).val();
-                $.post("{{ path('api_get_user_by_email') }}", {email: email}, function(data){
-                    if(!$.isEmptyObject(data)) {
-
-                        user = data[0];
-                        $team[user['id']] = {name: user['name'], email: user['email'], country: user['country']};
-                        
-                        $("#form-team input[name='team-name']").val(user['name']);
-                        $("#team-submit").removeClass('disabled');
-
-                    } else {
-
-                        $("#form-team input[name='team-name']").val("");
-                        $("#team-submit").addClass('disabled');
-                        $team = {};
-                    }
-                });
-            });
-
-            $("#team-submit").click(function(e){
+            // modal country submit action
+            $("#submit-country-form").click(function(e){
                 e.preventDefault();
 
-                for(id in $team) {
-                    user = $team[id];
-                    
-                    string =  "<tr>"
-                    string += "<td><input type='hidden' name='team_user[]' value='"+ id +"'>"+ user['name'] +"</td>"
-                    string += "<td><a href='mailto:"+ user['email'] +"'>"+ user['email'] +"</a></td>"
-                    string += "<td>"+ user['country'] +"</td>"
-                    string += "<td><label class='label label-default'>Não</label></td>"
-                    string += "<td><a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></td>"
-                    string += "</tr>";
 
-                    $("#table-team tbody").append(string);
-                }
+                $country = $("#select-country-country");
+                $participants = $("#input-country-participants");
+                    
+                string =  "<tr>"
+                string +=    "<input type='hidden' name='country["+ $total_countries +"][country]' value='"+ $country.val() +"'>"
+                string +=    "<input type='hidden' name='country["+ $total_countries +"][participants]' value='"+ $participants.val() +"'>"
+                string +=    "<td>"+ $country.val() +"</td>"
+                string +=    "<td><label class='label label-default'>"+ $participants.val() +"</label></td>"
+                string +=    "<td><a href='#' class='btn btn-default btn-xs button-remove-country'><i class='glyphicon glyphicon-trash'></i></a></td>"
+                string += "</tr>"
+
+                $("#table-country tbody").append(string);
+                $total_countries += 1;
             });
 
-            $(".button-remove-team").click(function(e){
+            // button trash action
+            $("#table-country").on("click", ".button-remove-country", function(e){
                 e.preventDefault();
 
                 parent = $(this).parents('tr');
-                console.log(parent);
                 parent.remove();
             });
         });

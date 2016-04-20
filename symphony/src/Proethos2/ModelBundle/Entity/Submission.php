@@ -155,11 +155,6 @@ class Submission extends Base
      */
     private $maximum_age;
     
-    public function __construct() 
-    {
-        $this->team = new ArrayCollection(); 
-    }
-
     /**
      * @var text
      *
@@ -174,6 +169,12 @@ class Submission extends Base
      */
     private $recruitment_status;
     
+    /**
+     * @var SubmissionCountry
+     * @ORM\OneToMany(targetEntity="SubmissionCountry", mappedBy="submission")
+     * @ORM\JoinTable(name="submission_country")
+     */
+    private $country;
     
     /**
      * @var text
@@ -231,6 +232,11 @@ class Submission extends Base
      */
     private $ethical_considerations;
     
+    public function __construct() 
+    {
+        $this->team = new ArrayCollection(); 
+    }
+
     /**
      * Get id
      *
@@ -921,5 +927,39 @@ class Submission extends Base
     public function getEthicalConsiderations()
     {
         return $this->ethical_considerations;
+    }
+
+    /**
+     * Add country
+     *
+     * @param \Proethos2\ModelBundle\Entity\SubmissionCountry $country
+     *
+     * @return Submission
+     */
+    public function addCountry(\Proethos2\ModelBundle\Entity\SubmissionCountry $country)
+    {
+        $this->country[] = $country;
+
+        return $this;
+    }
+
+    /**
+     * Remove country
+     *
+     * @param \Proethos2\ModelBundle\Entity\SubmissionCountry $country
+     */
+    public function removeCountry(\Proethos2\ModelBundle\Entity\SubmissionCountry $country)
+    {
+        $this->country->removeElement($country);
+    }
+
+    /**
+     * Get country
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 }
