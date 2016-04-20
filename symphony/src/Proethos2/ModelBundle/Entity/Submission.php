@@ -190,6 +190,13 @@ class Submission extends Base
     private $recruitment_init_date;
     
     /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $interventions;
+    
+    /**
      * Get id
      *
      * @return integer
@@ -735,5 +742,29 @@ class Submission extends Base
     public function getRecruitmentInitDate()
     {
         return $this->recruitment_init_date;
+    }
+
+    /**
+     * Set interventions
+     *
+     * @param string $interventions
+     *
+     * @return Submission
+     */
+    public function setInterventions($interventions)
+    {
+        $this->interventions = $interventions;
+
+        return $this;
+    }
+
+    /**
+     * Get interventions
+     *
+     * @return string
+     */
+    public function getInterventions()
+    {
+        return $this->interventions;
     }
 }

@@ -43,8 +43,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class='block'>
+                <div class='block'>
                     <div class='row'>
                         <div class="col-md-12">
                             <h2 class='sub-header'>{% trans %}General description{% endtrans %}</h2>
@@ -135,9 +136,53 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
 
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h2 class='sub-header'>{% trans %}Recruitment Countries{% endtrans %}:</h2>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <table class='table table-hover table-condensed'>
+                                
+                                <thead>
+                                    <tr>
+                                        <th width="50%">{% trans %}Countrỳ{% endtrans %}</th>
+                                        <th>{% trans %}Total of participants{% endtrans %}</th>
+                                        <th>{% trans %}Actions{% endtrans %}</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    <tr>
+                                       <td>Brasil</td> 
+                                       <td><label class='label label-default'>14</label></td> 
+                                       <td><a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></td> 
+                                    </tr>
+                                    <tr>
+                                       <td>Chile</td> 
+                                       <td><label class='label label-default'>10</label></td> 
+                                       <td><a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></td> 
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-country">Novo País</a>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-interventions">{% trans %}Interventions{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="4" class="form-control" id='textarea-interventions' name='interventions' required>{{ submission.interventions }}</textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class='submission-button-controls'>
