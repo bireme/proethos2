@@ -98,7 +98,7 @@
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <table class='table table-hover table-condensed'>
+                            <table class='table table-hover table-condensed' id="table-task">
                                 
                                 <thead>
                                     <tr>
@@ -110,18 +110,18 @@
                                 </thead>
                                 
                                 <tbody>
-                                    <tr>
-                                       <td>Preparação</td> 
-                                       <td>15/04/2016</td> 
-                                       <td>15/05/2016</td> 
-                                       <td><a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></td> 
-                                    </tr>
-                                    <tr>
-                                       <td>Execução</td> 
-                                       <td>16/05/2016</td> 
-                                       <td>15/06/2016</td> 
-                                       <td><a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></td> 
-                                    </tr>
+                                    {% for task in submission.schedule %}
+                                        <tr>
+                                            <input type='hidden' name='schedule[{{ loop.index0 }}][description]' value='{{ task.description }}'>
+                                            <input type='hidden' name='schedule[{{ loop.index0 }}][init]' value='{{ task.init|date("Y-m-d") }}'>
+                                            <input type='hidden' name='schedule[{{ loop.index0 }}][end]' value='{{ task.end|date("Y-m-d") }}'>
+                                            
+                                            <td>{{ task.description }}</td> 
+                                            <td>{{ task.init|date("d/m/Y") }}</td> 
+                                            <td>{{ task.end|date("d/m/Y") }}</td> 
+                                            <td><a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></td> 
+                                        </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                             <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-task">Nova Tarefa</a>
@@ -176,11 +176,49 @@
         </div>
     </div>
 
-    
+    <!-- Modal Nova Tarefa -->
+    <div class="modal fade" id="modal-new-task" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <form class='form' id='form-task'>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}New task{% endtrans %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="input-task-description">{% trans %}Description{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='text' class='form-control' id='input-task-description' name='task-description' required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-task-init">{% trans %}Init{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type="date" class='form-control' required="required" maxlength="10" id="input-task-init" name="task-init" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-task-end">{% trans %}End{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type="date" class='form-control' required="required" maxlength="10" id="input-task-end" name="task-end" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary" id="submit-task-form" data-dismiss="modal">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block script %}
     <script>
+
+        // scripts to manage cost modal
         $(function(){
 
             $total_budget = {{ submission.budget|length }};
@@ -217,6 +255,47 @@
 
             // button trash action
             $("#table-cost").on("click", ".button-remove-cost", function(e){
+                e.preventDefault();
+
+                parent = $(this).parents('tr');
+                parent.remove();
+            });
+        });
+
+        // scripts to manage task modal
+        $(function(){
+
+            var $total_task = {{ submission.schedule|length }};
+
+            // modal task submit action
+            $("#submit-task-form").click(function(e){
+                e.preventDefault();
+
+                var $description = $("#input-task-description").val();
+                var $init = $("#input-task-init").val();
+                var $end = $("#input-task-end").val();
+
+                if(!$description || !$init || !$end) {
+                    return
+                }
+                
+                string =  "<tr>"
+                string +=    "<input type='hidden' name='schedule["+ $total_task +"][description]' value='"+ $description +"'>"
+                string +=    "<input type='hidden' name='schedule["+ $total_task +"][init]' value='"+ $init +"'>"
+                string +=    "<input type='hidden' name='schedule["+ $total_task +"][end]' value='"+ $end +"'>"
+                
+                string +=    "<td>"+ $description +"</td> "
+                string +=    "<td>"+ $init +"</td> "
+                string +=    "<td>"+ $end +"</td> "
+                string +=    "<td><a href='#' class='btn btn-default btn-xs button-remove-task'><i class='glyphicon glyphicon-trash'></i></a></td> "
+                string += "</tr>"
+
+                $("#table-task tbody").append(string);
+                $total_task += 1;
+            });
+
+            // button trash action
+            $("#table-task").on("click", ".button-remove-task", function(e){
                 e.preventDefault();
 
                 parent = $(this).parents('tr');

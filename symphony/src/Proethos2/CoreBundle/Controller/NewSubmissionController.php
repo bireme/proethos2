@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Proethos2\ModelBundle\Entity\Submission;
 use Proethos2\ModelBundle\Entity\SubmissionCountry;
 use Proethos2\ModelBundle\Entity\SubmissionCost;
+use Proethos2\ModelBundle\Entity\SubmissionTask;
 use Proethos2\ModelBundle\Entity\Protocol;
 
 
@@ -258,6 +259,7 @@ class NewSubmissionController extends Controller
 
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         $submission_cost_repository = $em->getRepository('Proethos2ModelBundle:SubmissionCost');
+        $submission_task_repository = $em->getRepository('Proethos2ModelBundle:SubmissionTask');
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
 
         // getting the current submission
@@ -320,10 +322,47 @@ class NewSubmissionController extends Controller
             $submission->setPrimarySponsor($post_data['primary-sponsor']);
             $submission->setSecondarySponsor($post_data['secondary-sponsor']);
 
+            // removing all schedule to readd
+            foreach($submission->getSchedule() as $schedule) {
+                $submission->removeSchedule($schedule);
+            }
+
+            if(isset($post_data['schedule'])) {
+                foreach($post_data['schedule'] as $key => $task) {
+
+                    // check if exists
+                    $submission_task = $submission_task_repository->findOneBy(array(
+                        'submission' => $submission, 
+                        'description' => $task['description'],
+                        'init' => new \DateTime($task['init']),
+                        'end' => new \DateTime($task['end']),
+                    ));
+
+                    // if not exists, create the new submission_task
+                    if(!$submission_task) {
+                        $submission_task = new SubmissionTask();
+                        $submission_task->setSubmission($submission);
+                        $submission_task->setDescription($task['description']);
+                        $submission_task->setInit(new \DateTime($task['init']));
+                        $submission_task->setEnd(new \DateTime($task['end']));
+                    }
+
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($submission_task);
+                    $em->flush();
+
+                    // add in submission
+                    $submission->addSchedule($submission_task);
+                }
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
             $em->flush();
             
+            // print '<pre>';
+            // var_dump($post_data);die;
+
             $session->getFlashBag()->add('success', $translator->trans("Third step saved with sucess."));
         }
 

@@ -260,6 +260,13 @@ class Submission extends Base
      */
     private $secondary_sponsor;
     
+    /**
+     * @var SubmissionTask
+     * @ORM\OneToMany(targetEntity="SubmissionTask", mappedBy="submission")
+     * @ORM\JoinTable(name="submission_task")
+     */
+    private $schedule;
+
     public function __construct() 
     {
         $this->team = new ArrayCollection(); 
@@ -1095,5 +1102,39 @@ class Submission extends Base
     public function getBudget()
     {
         return $this->budget;
+    }
+
+    /**
+     * Add schedule
+     *
+     * @param \Proethos2\ModelBundle\Entity\SubmissionTask $schedule
+     *
+     * @return Submission
+     */
+    public function addSchedule(\Proethos2\ModelBundle\Entity\SubmissionTask $schedule)
+    {
+        $this->schedule[] = $schedule;
+
+        return $this;
+    }
+
+    /**
+     * Remove schedule
+     *
+     * @param \Proethos2\ModelBundle\Entity\SubmissionTask $schedule
+     */
+    public function removeSchedule(\Proethos2\ModelBundle\Entity\SubmissionTask $schedule)
+    {
+        $this->schedule->removeElement($schedule);
+    }
+
+    /**
+     * Get schedule
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSchedule()
+    {
+        return $this->schedule;
     }
 }
