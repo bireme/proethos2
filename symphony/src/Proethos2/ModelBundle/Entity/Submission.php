@@ -197,6 +197,41 @@ class Submission extends Base
     private $interventions;
     
     /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $primary_outcome;
+    
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $secondary_outcome;
+    
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $general_procedures;
+    
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $analysis_plan;
+    
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $ethical_considerations;
+    
+    /**
      * Get id
      *
      * @return integer
@@ -766,5 +801,125 @@ class Submission extends Base
     public function getInterventions()
     {
         return $this->interventions;
+    }
+
+    /**
+     * Set primaryOutcome
+     *
+     * @param string $primaryOutcome
+     *
+     * @return Submission
+     */
+    public function setPrimaryOutcome($primaryOutcome)
+    {
+        $this->primary_outcome = $primaryOutcome;
+
+        return $this;
+    }
+
+    /**
+     * Get primaryOutcome
+     *
+     * @return string
+     */
+    public function getPrimaryOutcome()
+    {
+        return $this->primary_outcome;
+    }
+
+    /**
+     * Set secondaryOutcome
+     *
+     * @param string $secondaryOutcome
+     *
+     * @return Submission
+     */
+    public function setSecondaryOutcome($secondaryOutcome)
+    {
+        $this->secondary_outcome = $secondaryOutcome;
+
+        return $this;
+    }
+
+    /**
+     * Get secondaryOutcome
+     *
+     * @return string
+     */
+    public function getSecondaryOutcome()
+    {
+        return $this->secondary_outcome;
+    }
+
+    /**
+     * Set generalProcedures
+     *
+     * @param string $generalProcedures
+     *
+     * @return Submission
+     */
+    public function setGeneralProcedures($generalProcedures)
+    {
+        $this->general_procedures = $generalProcedures;
+
+        return $this;
+    }
+
+    /**
+     * Get generalProcedures
+     *
+     * @return string
+     */
+    public function getGeneralProcedures()
+    {
+        return $this->general_procedures;
+    }
+
+    /**
+     * Set analysisPlan
+     *
+     * @param string $analysisPlan
+     *
+     * @return Submission
+     */
+    public function setAnalysisPlan($analysisPlan)
+    {
+        $this->analysis_plan = $analysisPlan;
+
+        return $this;
+    }
+
+    /**
+     * Get analysisPlan
+     *
+     * @return string
+     */
+    public function getAnalysisPlan()
+    {
+        return $this->analysis_plan;
+    }
+
+    /**
+     * Set ethicalConsiderations
+     *
+     * @param string $ethicalConsiderations
+     *
+     * @return Submission
+     */
+    public function setEthicalConsiderations($ethicalConsiderations)
+    {
+        $this->ethical_considerations = $ethicalConsiderations;
+
+        return $this;
+    }
+
+    /**
+     * Get ethicalConsiderations
+     *
+     * @return string
+     */
+    public function getEthicalConsiderations()
+    {
+        return $this->ethical_considerations;
     }
 }

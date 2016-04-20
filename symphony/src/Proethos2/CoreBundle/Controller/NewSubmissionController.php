@@ -166,7 +166,7 @@ class NewSubmissionController extends Controller
 
             // checking required files
             $required_fields = array('study-design', 'gender', 'sample-size', 'minimum-age', 'maximum-age', 'inclusion-criteria', 
-                'exclusion-criteria', 'recruitment-init-date', 'recruitment-status', 'interventions');
+                'exclusion-criteria', 'recruitment-init-date', 'recruitment-status', 'interventions', 'primary-outcome');
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
@@ -184,7 +184,15 @@ class NewSubmissionController extends Controller
             $submission->setExclusionCriteria($post_data['exclusion-criteria']);
             $submission->setRecruitmentInitDate(new \DateTime($post_data['recruitment-init-date']));
             $submission->setRecruitmentStatus($post_data['recruitment-status']);
+
             $submission->setInterventions($post_data['interventions']);
+            
+            $submission->setPrimaryOutcome($post_data['primary-outcome']);
+            $submission->setSecondaryOutcome($post_data['secondary-outcome']);
+
+            $submission->setGeneralProcedures($post_data['general-procedures']);
+            $submission->setAnalysisPlan($post_data['analysis-plan']);
+            $submission->setEthicalConsiderations($post_data['ethical-considerations']);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);

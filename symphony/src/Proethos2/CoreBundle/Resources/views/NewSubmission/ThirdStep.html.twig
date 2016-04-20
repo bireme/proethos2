@@ -185,6 +185,80 @@
                     </div>
                 </div>
 
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h2 class='sub-header'>{% trans %}Outcomes{% endtrans %}</h2>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-primary-outcome">{% trans %}Primary outcomes{% endtrans %}</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="4" class="form-control" id='textarea-primary-outcome' name='primary-outcome'>{{ submission.primaryOutcome }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-secondary-outcome">{% trans %}Secondary outcomes{% endtrans %}</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="4" class="form-control" id='textarea-secondary-outcome' name='secondary-outcome'>{{ submission.secondaryOutcome }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h2 class='sub-header'>{% trans %}Methodology{% endtrans %}</h2>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-general-procedures">{% trans %}General Procedures{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="4" class="form-control" id='textarea-general-procedures' name='general-procedures'>{{ submission.generalProcedures }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-analysis-plan">{% trans %}Analysis Plan{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="4" class="form-control" id='textarea-analysis-plan' name='analysis-plan'>{{ submission.analysisPlan }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h2 class='sub-header'>{% trans %}Ethical Considerations{% endtrans %}:</h2>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-ethical-considerations">{% trans %}Ethical Considerations{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="4" class="form-control" id='textarea-ethical-considerations' name='ethical-considerations'>{{ submission.ethicalConsiderations }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class='submission-button-controls'>
                     <button type='submit' class='btn btn-primary'>{% trans %}Save and next{% endtrans %}</button>
                 </div>
