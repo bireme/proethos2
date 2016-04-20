@@ -23,6 +23,24 @@ class Submission extends Base
      */
     private $id;
 
+    /** 
+     * @var Protocol
+     * 
+     * @ORM\ManyToOne(targetEntity="Protocol", inversedBy="submissions") 
+     * @ORM\JoinColumn(name="protocol_id", referencedColumnName="id", nullable=false) 
+     * @Assert\NotBlank 
+     */ 
+    private $protocol;
+
+    /** 
+     * @var User
+     * 
+     * @ORM\ManyToOne(targetEntity="User") 
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false) 
+     * @Assert\NotBlank 
+     */ 
+    private $owner;
+    
     /**
      * @var string
      *
@@ -54,24 +72,6 @@ class Submission extends Base
      */
     private $is_clinical_trial;
 
-    /** 
-     * @var Protocol
-     * 
-     * @ORM\ManyToOne(targetEntity="Protocol", inversedBy="submissions") 
-     * @ORM\JoinColumn(name="protocol_id", referencedColumnName="id", nullable=false) 
-     * @Assert\NotBlank 
-     */ 
-    private $protocol;
-
-    /** 
-     * @var User
-     * 
-     * @ORM\ManyToOne(targetEntity="User") 
-     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false) 
-     * @Assert\NotBlank 
-     */ 
-    private $owner;
-
     /**
      * @var Team
      * @ORM\ManyToMany(targetEntity="User", inversedBy="users")
@@ -79,6 +79,41 @@ class Submission extends Base
      */
     private $team;
 
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=false)
+     */
+    private $abstract;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $keywords;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=false)
+     */
+    private $introduction;
+    
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=false)
+     */
+    private $justification;
+    
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=false)
+     */
+    private $goals;
+    
     public function __construct() 
     {
         $this->team = new ArrayCollection(); 
@@ -270,5 +305,125 @@ class Submission extends Base
     public function getTeam()
     {
         return $this->team;
+    }
+
+    /**
+     * Set abstract
+     *
+     * @param string $abstract
+     *
+     * @return Submission
+     */
+    public function setAbstract($abstract)
+    {
+        $this->abstract = $abstract;
+
+        return $this;
+    }
+
+    /**
+     * Get abstract
+     *
+     * @return string
+     */
+    public function getAbstract()
+    {
+        return $this->abstract;
+    }
+
+    /**
+     * Set keywords
+     *
+     * @param string $keywords
+     *
+     * @return Submission
+     */
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $keywords;
+
+        return $this;
+    }
+
+    /**
+     * Get keywords
+     *
+     * @return string
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    /**
+     * Set introduction
+     *
+     * @param string $introduction
+     *
+     * @return Submission
+     */
+    public function setIntroduction($introduction)
+    {
+        $this->introduction = $introduction;
+
+        return $this;
+    }
+
+    /**
+     * Get introduction
+     *
+     * @return string
+     */
+    public function getIntroduction()
+    {
+        return $this->introduction;
+    }
+
+    /**
+     * Set justification
+     *
+     * @param string $justification
+     *
+     * @return Submission
+     */
+    public function setJustification($justification)
+    {
+        $this->justification = $justification;
+
+        return $this;
+    }
+
+    /**
+     * Get justification
+     *
+     * @return string
+     */
+    public function getJustification()
+    {
+        return $this->justification;
+    }
+
+    /**
+     * Set goals
+     *
+     * @param string $goals
+     *
+     * @return Submission
+     */
+    public function setGoals($goals)
+    {
+        $this->goals = $goals;
+
+        return $this;
+    }
+
+    /**
+     * Get goals
+     *
+     * @return string
+     */
+    public function getGoals()
+    {
+        return $this->goals;
     }
 }

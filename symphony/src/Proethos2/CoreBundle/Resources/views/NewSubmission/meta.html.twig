@@ -9,7 +9,9 @@
             <li role="presentation" {% if app.request.get('_route') == "submission_new_second_step" %}class='active'{% endif %}>
                 <a href="{{ path('submission_new_second_step', {'submission_id': submission.id }) }}" title="{% trans %}About Project{% endtrans %}">{% trans %}About Project{% endtrans %}</a>
             </li>
-            <li role="presentation"><a href="#">Estudo clínico</a></li>
+            <li role="presentation" {% if app.request.get('_route') == "submission_new_third_step" %}class='active'{% endif %}>
+                <a href="{{ path('submission_new_third_step', {'submission_id': submission.id }) }}" title='{% trans %}Clinic study{% endtrans %}'>{% trans %}Clinic study{% endtrans %}</a>
+            </li>
             <li role="presentation"><a href="#">Cronograma e Orçamento</a></li>
             <li role="presentation"><a href="#">Referências</a></li>
             <li role="presentation"><a href="#">Arquivos anexados</a></li>

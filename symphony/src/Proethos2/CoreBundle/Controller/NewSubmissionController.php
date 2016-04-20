@@ -94,31 +94,77 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
-            // // checking required files
-            // $required_fields = array('cientific_title', 'public_title', 'is_clinical_trial');
-            // foreach($required_fields as $field) {
-            //     if(!isset($post_data[$field]) or empty($post_data[$field])) {
-            //         $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
-            //     }
-            // }
+            // checking required files
+            $required_fields = array('abstract', 'keywords', 'introduction', 'justify', 'goals');
+            foreach($required_fields as $field) {
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                }
+            }
+            
+            // removing all team to readd
+            foreach($submission->getTeam() as $team_user) {
+                $submission->removeTeam($team_user);
+            }
 
+            // readd
             if(isset($post_data['team_user'])) {
                 foreach($post_data['team_user'] as $team_user) {
                     $team_user = $user_repository->find($team_user);
-
                     $submission->addTeam($team_user);
                 }
             }
 
+            // adding fields to model
+            $submission->setAbstract($post_data['abstract']);
+            $submission->setKeywords($post_data['keywords']);
+            $submission->setIntroduction($post_data['introduction']);
+            $submission->setJustification($post_data['justify']);
+            $submission->setGoals($post_data['goals']);
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
             $em->flush();
 
+            $session->getFlashBag()->add('success', $translator->trans("Second step saved with sucess."));
+            return $this->redirectToRoute('submission_new_third_step', array('submission_id' => $submission->getId()), 301);
         }
         
         return array(
             'submission' => $submission,
         );    
+    }
+
+    /**
+     * @Route("/submission/new/{submission_id}/third", name="submission_new_third_step")
+     * @Template()
+     */
+    public function ThirdStepAction($submission_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+
+        // getting the current submission
+        $submission = $submission_repository->find($submission_id);
+
+        if (!$submission) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+        }
+
+        return array(
+            'submission' => $submission,
+        ); 
     }
 
 }

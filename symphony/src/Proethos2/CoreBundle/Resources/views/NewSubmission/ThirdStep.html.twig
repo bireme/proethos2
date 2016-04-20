@@ -1,0 +1,114 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}New submission{% endtrans %}{% endblock %}
+
+{% block content %}
+    <div class="container-fluid main-content">
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">{% trans %}New submission{% endtrans %}</h1>
+            </div>
+        </div>
+
+        {% include 'Proethos2CoreBundle:NewSubmission:meta.html.twig' %}
+
+        <div class='new-submission-tab-content'>
+            <form class='form' method='POST' action='{{ path("submission_new_third_step", {submission_id: submission.id}) }}'>
+
+                <input type='hidden' name='submission_id' value='{{ submission.id }}'>
+
+                <div class='submission-button-controls'>
+                    <button type='submit' class='btn btn-primary'>{% trans %}Save and next{% endtrans %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Novo Investigador -->
+    <div class="modal fade" id="modal-new-investigator" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form class='form' id='form-team'>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}New Investigator{% endtrans %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">{% trans %}E-mail{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='email' class='form-control' name='team-email'>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="">{% trans %}Name{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='text' class='form-control' name='team-name' readonly="">
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                        <button type="submit" id='team-submit' class="btn btn-primary disabled" data-dismiss="modal">{% trans %}Save{% endtrans %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+
+            $team = {};
+
+            $("#form-team input[name='team-email']").keyup(function() {
+
+                email = $(this).val();
+                $.post("{{ path('api_get_user_by_email') }}", {email: email}, function(data){
+                    if(!$.isEmptyObject(data)) {
+
+                        user = data[0];
+                        $team[user['id']] = {name: user['name'], email: user['email'], country: user['country']};
+                        
+                        $("#form-team input[name='team-name']").val(user['name']);
+                        $("#team-submit").removeClass('disabled');
+
+                    } else {
+
+                        $("#form-team input[name='team-name']").val("");
+                        $("#team-submit").addClass('disabled');
+                        $team = {};
+                    }
+                });
+            });
+
+            $("#team-submit").click(function(e){
+                e.preventDefault();
+
+                for(id in $team) {
+                    user = $team[id];
+                    
+                    string =  "<tr>"
+                    string += "<td><input type='hidden' name='team_user[]' value='"+ id +"'>"+ user['name'] +"</td>"
+                    string += "<td><a href='mailto:"+ user['email'] +"'>"+ user['email'] +"</a></td>"
+                    string += "<td>"+ user['country'] +"</td>"
+                    string += "<td><label class='label label-default'>Não</label></td>"
+                    string += "<td><a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></td>"
+                    string += "</tr>";
+
+                    $("#table-team tbody").append(string);
+                }
+            });
+
+            $(".button-remove-team").click(function(e){
+                e.preventDefault();
+
+                parent = $(this).parents('tr');
+                console.log(parent);
+                parent.remove();
+            });
+        });
+    </script>
+{% endblock %}
