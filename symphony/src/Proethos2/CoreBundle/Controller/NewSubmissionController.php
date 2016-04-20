@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 use Proethos2\ModelBundle\Entity\Submission;
 use Proethos2\ModelBundle\Entity\SubmissionCountry;
+use Proethos2\ModelBundle\Entity\SubmissionCost;
 use Proethos2\ModelBundle\Entity\Protocol;
 
 
@@ -234,8 +235,8 @@ class NewSubmissionController extends Controller
             $em->persist($submission);
             $em->flush();
 
-            $session->getFlashBag()->add('success', $translator->trans("Second step saved with sucess."));
-
+            $session->getFlashBag()->add('success', $translator->trans("Third step saved with sucess."));
+            return $this->redirectToRoute('submission_new_fourth_step', array('submission_id' => $submission->getId()), 301);
         }
 
         return array(
@@ -243,4 +244,91 @@ class NewSubmissionController extends Controller
         ); 
     }
 
+    /**
+     * @Route("/submission/new/{submission_id}/fourth", name="submission_new_fourth_step")
+     * @Template()
+     */
+    public function FourthStepAction($submission_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $submission_cost_repository = $em->getRepository('Proethos2ModelBundle:SubmissionCost');
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+
+        // getting the current submission
+        $submission = $submission_repository->find($submission_id);
+
+        if (!$submission) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+
+            // checking required files
+            $required_fields = array('funding-source', 'primary-sponsor');
+            foreach($required_fields as $field) {
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                }
+            }
+
+            // removing all team to readd
+            foreach($submission->getBudget() as $budget) {
+                $submission->removeBudget($budget);
+            }
+
+            if(isset($post_data['budget'])) {
+                foreach($post_data['budget'] as $key => $cost) {
+
+                    // check if exists
+                    $submission_cost = $submission_cost_repository->findOneBy(array(
+                        'submission' => $submission, 
+                        'description' => $cost['description'],
+                        'quantity' => $cost['quantity'],
+                        'unit_cost' => $cost['unit_cost'],
+                    ));
+
+                    // if not exists, create the new submission_cost
+                    if(!$submission_cost) {
+                        $submission_cost = new SubmissionCost();
+                        $submission_cost->setSubmission($submission);
+                        $submission_cost->setDescription($cost['description']);
+                        $submission_cost->setQuantity($cost['quantity']);
+                        $submission_cost->setUnitCost($cost['unit_cost']);
+                    }
+
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($submission_cost);
+                    $em->flush();
+
+                    // add in submission
+                    $submission->addBudget($submission_cost);
+                }
+            }
+
+            $submission->setFundingSource($post_data['funding-source']);
+            $submission->setPrimarySponsor($post_data['primary-sponsor']);
+            $submission->setSecondarySponsor($post_data['secondary-sponsor']);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($submission);
+            $em->flush();
+            
+            $session->getFlashBag()->add('success', $translator->trans("Third step saved with sucess."));
+        }
+
+        return array(
+            'submission' => $submission,
+        ); 
+    }
 }

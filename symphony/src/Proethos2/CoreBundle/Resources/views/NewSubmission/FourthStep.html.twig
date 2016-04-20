@@ -1,0 +1,227 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}New submission{% endtrans %}{% endblock %}
+
+{% block content %}
+    <div class="container-fluid main-content">
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">{% trans %}New submission{% endtrans %}</h1>
+            </div>
+        </div>
+
+        {% include 'Proethos2CoreBundle:NewSubmission:meta.html.twig' %}
+
+        <div class='new-submission-tab-content'>
+            <form class='form' method='POST' action='{{ path("submission_new_fourth_step", {submission_id: submission.id}) }}'>
+
+                <input type='hidden' name='submission_id' value='{{ submission.id }}'>
+
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h2 class='sub-header'>{% trans %}Bugdet{% endtrans %}</h2>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <table class='table table-hover table-condensed' id="table-cost">
+                                
+                                <thead>
+                                    <tr>
+                                        <th width="50%">{% trans %}Cost description{% endtrans %}</th>
+                                        <th>{% trans %}Unit cost{% endtrans %}</th>
+                                        <th>{% trans %}Quantity{% endtrans %}</th>
+                                        <th>{% trans %}Total{% endtrans %}</th>
+                                        <th>{% trans %}Actions{% endtrans %}</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    {% for cost in submission.budget %}
+                                        <tr>
+                                            <input type='hidden' name='budget[{{ loop.index0 }}][description]' value='{{ cost.description }}'>
+                                            <input type='hidden' name='budget[{{ loop.index0 }}][quantity]' value='{{ cost.quantity }}'>
+                                            <input type='hidden' name='budget[{{ loop.index0 }}][unit_cost]' value='{{ cost.unitCost }}'>
+
+                                            <td>{{ cost.description }}</td> 
+                                            <td><label class='label label-default'>U$ {{ cost.unitCost }}</label></td> 
+                                            <td><label class='label label-default'>{{ cost.quantity }}</label></td> 
+                                            <td><label class='label label-primary'>U$ {{ cost.quantity * cost.unitCost }}</label></td> 
+                                            <td><a href='#' class='btn btn-default btn-xs button-remove-cost'><i class='glyphicon glyphicon-trash'></i></a></td> 
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-expend">Nova Despesa</a>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-funding-source">{% trans %}Funding source{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="4" class="form-control" id='textarea-funding-source' name='funding-source' required>{{ submission.fundingSource }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-primary-sponsor">{% trans %}Primary Sponsor{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="4" class="form-control" id='textarea-primary-sponsor' name='primary-sponsor' required>{{ submission.primarySponsor }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-secondary-sponsor">{% trans %}Secondary Sponsor{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="4" class="form-control" id='textarea-secondary-sponsor' name='secondary-sponsor'>{{ submission.secondarySponsor }}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h2 class='sub-header'>{% trans %}Schedule{% endtrans %}:</h2>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <table class='table table-hover table-condensed'>
+                                
+                                <thead>
+                                    <tr>
+                                        <th width="50%">{% trans %}Activity{% endtrans %}</th>
+                                        <th>{% trans %}Start{% endtrans %}</th>
+                                        <th>{% trans %}End{% endtrans %}</th>
+                                        <th>{% trans %}Actions{% endtrans %}</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    <tr>
+                                       <td>Preparação</td> 
+                                       <td>15/04/2016</td> 
+                                       <td>15/05/2016</td> 
+                                       <td><a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></td> 
+                                    </tr>
+                                    <tr>
+                                       <td>Execução</td> 
+                                       <td>16/05/2016</td> 
+                                       <td>15/06/2016</td> 
+                                       <td><a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></td> 
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-task">Nova Tarefa</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='submission-button-controls'>
+                    <button type='submit' class='btn btn-primary'>{% trans %}Save and next{% endtrans %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Nova Despesa -->
+    <div class="modal fade" id="modal-new-expend" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <form class='form' id='form-cost'>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}New Cost{% endtrans %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class="form-group">
+                            <label for="input-cost-description">{% trans %}Description{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='text' class='form-control' id='input-cost-description' name='cost-description' required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-cost-quantity">{% trans %}Quantity{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='number' class='form-control' min="1" id='input-cost-quantity' name='cost-quantity' required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-cost-unit-cost">{% trans %}Unit cost{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type="text" class='form-control mask-money' required="required" id='input-cost-unit-cost' name="cost-unit-cost" />
+                        </div>
+
+                    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        <button type="submit" id="submit-cost-form" class="btn btn-primary" data-dismiss="modal">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+
+            $total_budget = {{ submission.budget|length }};
+
+            // modal cost submit action
+            $("#submit-cost-form").click(function(e){
+                e.preventDefault();
+
+                var $description = $("#input-cost-description").val();
+                var $quantity = $("#input-cost-quantity").val();
+                var $unit_cost = $("#input-cost-unit-cost").val();
+
+                if(!$description || !$quantity || !$unit_cost) {
+                    return
+                }
+
+                var $total = parseFloat(parseInt($quantity) * parseFloat($unit_cost));
+
+                string =  "<tr>"
+                string +=    "<input type='hidden' name='budget["+ $total_budget +"][description]' value='"+ $description +"'>"
+                string +=    "<input type='hidden' name='budget["+ $total_budget +"][quantity]' value='"+ $quantity +"'>"
+                string +=    "<input type='hidden' name='budget["+ $total_budget +"][unit_cost]' value='"+ $unit_cost +"'>"
+                
+                string +=    "<td>"+ $description +"</td> "
+                string +=    "<td><label class='label label-default'>U$ "+ $unit_cost +"</label></td> "
+                string +=    "<td><label class='label label-default'>"+ $quantity +"</label></td> "
+                string +=    "<td><label class='label label-primary'>U$ "+ $total +"</label></td> "
+                string +=    "<td><a href='#' class='btn btn-default btn-xs button-remove-cost'><i class='glyphicon glyphicon-trash'></i></a></td> "
+                string += "</tr>"
+
+                $("#table-cost tbody").append(string);
+                $total_budget += 1;
+            });
+
+            // button trash action
+            $("#table-cost").on("click", ".button-remove-cost", function(e){
+                e.preventDefault();
+
+                parent = $(this).parents('tr');
+                parent.remove();
+            });
+        });
+    </script>
+{% endblock %}

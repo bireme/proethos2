@@ -232,6 +232,34 @@ class Submission extends Base
      */
     private $ethical_considerations;
     
+    /**
+     * @var SubmissionCost
+     * @ORM\OneToMany(targetEntity="SubmissionCost", mappedBy="submission")
+     * @ORM\JoinTable(name="submission_cost")
+     */
+    private $budget;
+    
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $funding_source;
+    
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $primary_sponsor;
+    
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $secondary_sponsor;
+    
     public function __construct() 
     {
         $this->team = new ArrayCollection(); 
@@ -961,5 +989,111 @@ class Submission extends Base
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Set fundingSource
+     *
+     * @param string $fundingSource
+     *
+     * @return Submission
+     */
+    public function setFundingSource($fundingSource)
+    {
+        $this->funding_source = $fundingSource;
+
+        return $this;
+    }
+
+    /**
+     * Get fundingSource
+     *
+     * @return string
+     */
+    public function getFundingSource()
+    {
+        return $this->funding_source;
+    }
+
+    /**
+     * Set primarySponsor
+     *
+     * @param string $primarySponsor
+     *
+     * @return Submission
+     */
+    public function setPrimarySponsor($primarySponsor)
+    {
+        $this->primary_sponsor = $primarySponsor;
+
+        return $this;
+    }
+
+    /**
+     * Get primarySponsor
+     *
+     * @return string
+     */
+    public function getPrimarySponsor()
+    {
+        return $this->primary_sponsor;
+    }
+
+    /**
+     * Set secondarySponsor
+     *
+     * @param string $secondarySponsor
+     *
+     * @return Submission
+     */
+    public function setSecondarySponsor($secondarySponsor)
+    {
+        $this->secondary_sponsor = $secondarySponsor;
+
+        return $this;
+    }
+
+    /**
+     * Get secondarySponsor
+     *
+     * @return string
+     */
+    public function getSecondarySponsor()
+    {
+        return $this->secondary_sponsor;
+    }
+
+    /**
+     * Add budget
+     *
+     * @param \Proethos2\ModelBundle\Entity\SubmissionCost $budget
+     *
+     * @return Submission
+     */
+    public function addBudget(\Proethos2\ModelBundle\Entity\SubmissionCost $budget)
+    {
+        $this->budget[] = $budget;
+
+        return $this;
+    }
+
+    /**
+     * Remove budget
+     *
+     * @param \Proethos2\ModelBundle\Entity\SubmissionCost $budget
+     */
+    public function removeBudget(\Proethos2\ModelBundle\Entity\SubmissionCost $budget)
+    {
+        $this->budget->removeElement($budget);
+    }
+
+    /**
+     * Get budget
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBudget()
+    {
+        return $this->budget;
     }
 }
