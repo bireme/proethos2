@@ -275,7 +275,6 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
-
             // checking required files
             $required_fields = array('funding-source', 'primary-sponsor');
             foreach($required_fields as $field) {
@@ -360,10 +359,68 @@ class NewSubmissionController extends Controller
             $em->persist($submission);
             $em->flush();
             
+            $session->getFlashBag()->add('success', $translator->trans("Fourth step saved with sucess."));
+            return $this->redirectToRoute('submission_new_fifth_step', array('submission_id' => $submission->getId()), 301);
+        }
+
+        return array(
+            'submission' => $submission,
+        ); 
+    }
+
+    /**
+     * @Route("/submission/new/{submission_id}/fifth", name="submission_new_fifth_step")
+     * @Template()
+     */
+    public function FifthStepAction($submission_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        $submission_country_repository = $em->getRepository('Proethos2ModelBundle:SubmissionCountry');
+
+        // getting the current submission
+        $submission = $submission_repository->find($submission_id);
+
+        if (!$submission) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
             // print '<pre>';
             // var_dump($post_data);die;
+            
+            // checking required files
+            $required_fields = array('bibliography', 'scientific-contact', 'prior-ethical-approval');
+            foreach($required_fields as $field) {
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                }
+            }
+    
+            $submission->setBibliography($post_data['bibliography']);        
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($submission);
+            $em->flush();
 
-            $session->getFlashBag()->add('success', $translator->trans("Third step saved with sucess."));
+            $submission->setScientificContact($post_data['scientific-contact']);                   
+            $submission->setPriorEthicalApproval(($post_data['prior-ethical-approval'] == 'Y') ? true : false);                   
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($submission);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Fifth step saved with sucess."));
         }
 
         return array(

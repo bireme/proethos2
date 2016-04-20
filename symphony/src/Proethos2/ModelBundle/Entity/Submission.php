@@ -267,6 +267,27 @@ class Submission extends Base
      */
     private $schedule;
 
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $bibliography;
+    
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $scientific_contact;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $prior_ethical_approval;
+
     public function __construct() 
     {
         $this->team = new ArrayCollection(); 
@@ -1136,5 +1157,77 @@ class Submission extends Base
     public function getSchedule()
     {
         return $this->schedule;
+    }
+
+    /**
+     * Set bibliography
+     *
+     * @param string $bibliography
+     *
+     * @return Submission
+     */
+    public function setBibliography($bibliography)
+    {
+        $this->bibliography = $bibliography;
+
+        return $this;
+    }
+
+    /**
+     * Get bibliography
+     *
+     * @return string
+     */
+    public function getBibliography()
+    {
+        return $this->bibliography;
+    }
+
+    /**
+     * Set scientificContact
+     *
+     * @param string $scientificContact
+     *
+     * @return Submission
+     */
+    public function setScientificContact($scientificContact)
+    {
+        $this->scientific_contact = $scientificContact;
+
+        return $this;
+    }
+
+    /**
+     * Get scientificContact
+     *
+     * @return string
+     */
+    public function getScientificContact()
+    {
+        return $this->scientific_contact;
+    }
+
+    /**
+     * Set priorEthicalApproval
+     *
+     * @param boolean $priorEthicalApproval
+     *
+     * @return Submission
+     */
+    public function setPriorEthicalApproval($priorEthicalApproval)
+    {
+        $this->prior_ethical_approval = $priorEthicalApproval;
+
+        return $this;
+    }
+
+    /**
+     * Get priorEthicalApproval
+     *
+     * @return boolean
+     */
+    public function getPriorEthicalApproval()
+    {
+        return $this->prior_ethical_approval;
     }
 }

@@ -1,0 +1,93 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}New submission{% endtrans %}{% endblock %}
+
+{% block content %}
+    <div class="container-fluid main-content">
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">{% trans %}New submission{% endtrans %}</h1>
+            </div>
+        </div>
+
+        {% include 'Proethos2CoreBundle:NewSubmission:meta.html.twig' %}
+
+        <div class='new-submission-tab-content'>
+            <form class='form' method='POST' action='{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}'>
+
+                <input type='hidden' name='submission_id' value='{{ submission.id }}'>
+
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h2 class='sub-header'>{% trans %}References{% endtrans %}</h2>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-bibliography">{% trans %}Bibliography{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="5" class="form-control" id='textarea-bibliography' name='bibliography' required>{{ submission.bibliography }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h2 class='sub-header'>{% trans %}Contacts{% endtrans %}:</h2>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-scientific-contact">{% trans %}Scientific Contact{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="5" class="form-control" id='textarea-scientific-contact' name='scientific-contact' required>{{ submission.scientificContact }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h2 class='sub-header'>{% trans %}Prior Ethical Approval{% endtrans %}</h2>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">{% trans %}Prior Ethical Approval{% endtrans %}:</label> 
+                                <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <div class='radio'>
+                                    <label><input type='radio' name='prior-ethical-approval' id='radio-prior-ethical-approval-yes' value='Y'> Sim</label>
+                                </div>
+                                <div class='radio'>
+                                    <label><input type='radio' name='prior-ethical-approval' id="radio-prior-ethical-approval-no" value='N' checked> Não</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='submission-button-controls'>
+                    <button type='submit' class='btn btn-primary'>{% trans %}Save and next{% endtrans %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+
+        
+    </script>
+{% endblock %}

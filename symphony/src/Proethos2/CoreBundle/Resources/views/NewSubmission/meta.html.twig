@@ -12,10 +12,12 @@
             <li role="presentation" {% if app.request.get('_route') == "submission_new_third_step" %}class='active'{% endif %}>
                 <a href="{{ path('submission_new_third_step', {'submission_id': submission.id }) }}" title='{% trans %}Clinic study{% endtrans %}'>{% trans %}Clinic study{% endtrans %}</a>
             </li>
-            <li role="presentation"{% if app.request.get('_route') == "submission_new_fourth_step" %}class='active'{% endif %}>
+            <li role="presentation" {% if app.request.get('_route') == "submission_new_fourth_step" %}class='active'{% endif %}>
                 <a href="{{ path('submission_new_fourth_step', {'submission_id': submission.id }) }}" title='{% trans %}Additional Information{% endtrans %}'>{% trans %}Additional Information{% endtrans %}</a> 
             </li>
-            <li role="presentation"><a href="#">Referências</a></li>
+            <li role="presentation" {% if app.request.get('_route') == "submission_new_fifth_step" %}class='active'{% endif %}>
+                <a href="{{ path('submission_new_fifth_step', {'submission_id': submission.id }) }}" title='{% trans %}Bibliography{% endtrans %}'>{% trans %}Bibliography{% endtrans %}</a>
+            </li>
             <li role="presentation"><a href="#">Arquivos anexados</a></li>
             <li role="presentation"><a href="#">Revisão</a></li>
         </ul>
