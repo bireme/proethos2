@@ -27,7 +27,7 @@ class Submission extends Base
      * @var Protocol
      * 
      * @ORM\ManyToOne(targetEntity="Protocol", inversedBy="submissions") 
-     * @ORM\JoinColumn(name="protocol_id", referencedColumnName="id", nullable=false) 
+     * @ORM\JoinColumn(name="protocol_id", referencedColumnName="id", nullable=true) 
      * @Assert\NotBlank 
      */ 
     private $protocol;
@@ -36,7 +36,7 @@ class Submission extends Base
      * @var User
      * 
      * @ORM\ManyToOne(targetEntity="User") 
-     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false) 
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=true) 
      * @Assert\NotBlank 
      */ 
     private $owner;
@@ -82,43 +82,113 @@ class Submission extends Base
     /**
      * @var text
      *
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $abstract;
     
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $keywords;
 
     /**
      * @var text
      *
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $introduction;
     
     /**
      * @var text
      *
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $justification;
     
     /**
      * @var text
      *
-     * @ORM\Column(type="text", nullable=false)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $goals;
+    
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $study_design;
+    
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $health_condition;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=1, nullable=true)
+     */
+    private $gender;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $sample_size;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $minimum_age;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $maximum_age;
     
     public function __construct() 
     {
         $this->team = new ArrayCollection(); 
     }
 
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $inclusion_criteria;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=1, nullable=true)
+     */
+    private $recruitment_status;
+    
+    
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $exclusion_criteria;
+    
+    /**
+     * @var date
+     *
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $recruitment_init_date;
+    
     /**
      * Get id
      *
@@ -425,5 +495,245 @@ class Submission extends Base
     public function getGoals()
     {
         return $this->goals;
+    }
+
+    /**
+     * Set studyDesign
+     *
+     * @param string $studyDesign
+     *
+     * @return Submission
+     */
+    public function setStudyDesign($studyDesign)
+    {
+        $this->study_design = $studyDesign;
+
+        return $this;
+    }
+
+    /**
+     * Get studyDesign
+     *
+     * @return string
+     */
+    public function getStudyDesign()
+    {
+        return $this->study_design;
+    }
+
+    /**
+     * Set healthCondition
+     *
+     * @param string $healthCondition
+     *
+     * @return Submission
+     */
+    public function setHealthCondition($healthCondition)
+    {
+        $this->health_condition = $healthCondition;
+
+        return $this;
+    }
+
+    /**
+     * Get healthCondition
+     *
+     * @return string
+     */
+    public function getHealthCondition()
+    {
+        return $this->health_condition;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param string $gender
+     *
+     * @return Submission
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * Set sampleSize
+     *
+     * @param integer $sampleSize
+     *
+     * @return Submission
+     */
+    public function setSampleSize($sampleSize)
+    {
+        $this->sample_size = $sampleSize;
+
+        return $this;
+    }
+
+    /**
+     * Get sampleSize
+     *
+     * @return integer
+     */
+    public function getSampleSize()
+    {
+        return $this->sample_size;
+    }
+
+    /**
+     * Set minimumAge
+     *
+     * @param integer $minimumAge
+     *
+     * @return Submission
+     */
+    public function setMinimumAge($minimumAge)
+    {
+        $this->minimum_age = $minimumAge;
+
+        return $this;
+    }
+
+    /**
+     * Get minimumAge
+     *
+     * @return integer
+     */
+    public function getMinimumAge()
+    {
+        return $this->minimum_age;
+    }
+
+    /**
+     * Set maximumAge
+     *
+     * @param integer $maximumAge
+     *
+     * @return Submission
+     */
+    public function setMaximumAge($maximumAge)
+    {
+        $this->maximum_age = $maximumAge;
+
+        return $this;
+    }
+
+    /**
+     * Get maximumAge
+     *
+     * @return integer
+     */
+    public function getMaximumAge()
+    {
+        return $this->maximum_age;
+    }
+
+    /**
+     * Set inclusionCriteria
+     *
+     * @param string $inclusionCriteria
+     *
+     * @return Submission
+     */
+    public function setInclusionCriteria($inclusionCriteria)
+    {
+        $this->inclusion_criteria = $inclusionCriteria;
+
+        return $this;
+    }
+
+    /**
+     * Get inclusionCriteria
+     *
+     * @return string
+     */
+    public function getInclusionCriteria()
+    {
+        return $this->inclusion_criteria;
+    }
+
+    /**
+     * Set recruitmentStatus
+     *
+     * @param string $recruitmentStatus
+     *
+     * @return Submission
+     */
+    public function setRecruitmentStatus($recruitmentStatus)
+    {
+        $this->recruitment_status = $recruitmentStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get recruitmentStatus
+     *
+     * @return string
+     */
+    public function getRecruitmentStatus()
+    {
+        return $this->recruitment_status;
+    }
+
+    /**
+     * Set exclusionCriteria
+     *
+     * @param string $exclusionCriteria
+     *
+     * @return Submission
+     */
+    public function setExclusionCriteria($exclusionCriteria)
+    {
+        $this->exclusion_criteria = $exclusionCriteria;
+
+        return $this;
+    }
+
+    /**
+     * Get exclusionCriteria
+     *
+     * @return string
+     */
+    public function getExclusionCriteria()
+    {
+        return $this->exclusion_criteria;
+    }
+
+    /**
+     * Set recruitmentInitDate
+     *
+     * @param \DateTime $recruitmentInitDate
+     *
+     * @return Submission
+     */
+    public function setRecruitmentInitDate($recruitmentInitDate)
+    {
+        $this->recruitment_init_date = $recruitmentInitDate;
+
+        return $this;
+    }
+
+    /**
+     * Get recruitmentInitDate
+     *
+     * @return \DateTime
+     */
+    public function getRecruitmentInitDate()
+    {
+        return $this->recruitment_init_date;
     }
 }

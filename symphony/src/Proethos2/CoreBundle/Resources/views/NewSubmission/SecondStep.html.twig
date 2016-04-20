@@ -80,7 +80,7 @@
                             <div class="form-group">
                                 <label for="textarea-abstract">{% trans %}Abstract{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea class="form-control" name='abstract' id='textarea-abstract'>{{ submission.abstract }}</textarea>
+                                <textarea class="form-control" name='abstract' id='textarea-abstract' required>{{ submission.abstract }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                             <div class="form-group">
                                 <label for="input-keywords">{% trans %}Keywords{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <input type="text" class="form-control" placeholder="" id='input-keywords' name='keywords' value='{{ submission.keywords }}'>
+                                <input type="text" class="form-control" placeholder="" id='input-keywords' name='keywords' value='{{ submission.keywords }}' required>
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                             <div class="form-group">
                                 <label for="textarea-introduction">{% trans %}Introduction{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="6" class="form-control" name='introduction' id='textarea-introduction'>{{ submission.introduction }}</textarea>
+                                <textarea rows="6" class="form-control" name='introduction' id='textarea-introduction' required>{{ submission.introduction }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                             <div class="form-group">
                                 <label for="textarea-justify">{% trans %}Justify{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="3" class="form-control" name='justify' id='textarea-justify'>{{ submission.justification }}</textarea>
+                                <textarea rows="3" class="form-control" name='justify' id='textarea-justify' required>{{ submission.justification }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                             <div class="form-group">
                                 <label for="textarea-goals">{% trans %}Goals{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="3" class="form-control" name='goals' id='textarea-goals'>{{ submission.goals }}</textarea>
+                                <textarea rows="3" class="form-control" name='goals' id='textarea-goals' required>{{ submission.goals }}</textarea>
                             </div>
                         </div>
                     </div>

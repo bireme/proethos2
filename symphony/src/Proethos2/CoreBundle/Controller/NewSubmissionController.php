@@ -160,6 +160,42 @@ class NewSubmissionController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            // getting post data
+            $post_data = $request->request->all();
+
+
+            // checking required files
+            $required_fields = array('study-design', 'gender', 'sample-size', 'minimum-age', 'maximum-age', 'inclusion-criteria', 
+                'exclusion-criteria', 'recruitment-init-date', 'recruitment-status');
+            foreach($required_fields as $field) {
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                }
+            }
+
+            // adding fields to model
+            $submission->setStudyDesign($post_data['study-design']);
+            $submission->setHealthCondition($post_data['health-condition']);
+            $submission->setGender($post_data['gender']);
+            $submission->setSampleSize($post_data['sample-size']);
+            $submission->setMinimumAge($post_data['minimum-age']);
+            $submission->setMaximumAge($post_data['maximum-age']);
+            $submission->setInclusionCriteria($post_data['inclusion-criteria']);
+            $submission->setExclusionCriteria($post_data['exclusion-criteria']);
+            $submission->setRecruitmentInitDate(new \DateTime($post_data['recruitment-init-date']));
+            $submission->setRecruitmentStatus($post_data['recruitment-status']);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($submission);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Second step saved with sucess."));
+            
+            // print "<pre>";
+            // var_dump($post_data);
+            // print "\n\n\n\n";
+            // var_dump(array_keys($post_data));
+            // die;
         }
 
         return array(
