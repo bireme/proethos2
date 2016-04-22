@@ -57,7 +57,11 @@ class User extends Base implements UserInterface, \Serializable
      */
     protected $country;
 
-
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank()
+     */
+    protected $institution;
 
     public function __toString()
     {
@@ -253,5 +257,29 @@ class User extends Base implements UserInterface, \Serializable
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Set institution
+     *
+     * @param string $institution
+     *
+     * @return User
+     */
+    public function setInstitution($institution)
+    {
+        $this->institution = $institution;
+
+        return $this;
+    }
+
+    /**
+     * Get institution
+     *
+     * @return string
+     */
+    public function getInstitution()
+    {
+        return $this->institution;
     }
 }

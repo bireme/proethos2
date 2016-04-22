@@ -15,6 +15,7 @@ use Proethos2\ModelBundle\Entity\SubmissionCost;
 use Proethos2\ModelBundle\Entity\SubmissionTask;
 use Proethos2\ModelBundle\Entity\SubmissionUpload;
 use Proethos2\ModelBundle\Entity\Protocol;
+use Proethos2\ModelBundle\Entity\ProtocolHistory;
 
 
 
@@ -720,8 +721,21 @@ class NewSubmissionController extends Controller
 
                     $protocol = $submission->getProtocol();
                     $protocol->setStatus("S");
+                    $protocol->setDateInformed(new \DateTime());
                     $em->persist($protocol);
                     $em->flush();
+
+                    $protocol_history = new ProtocolHistory();
+                    $protocol_history->setProtocol($protocol);
+
+                    $protocol_history->setMessage($translator->trans("First submission of protocol."));
+                    if(count($protocol->getSubmission()) > 1) {
+                        $protocol_history->setMessage($translator->trans(count($protocol->getSubmission()) . " update in protocol."));
+                    }
+
+                    $em->persist($protocol_history);
+                    $em->flush();
+
 
                     $session->getFlashBag()->add('success', $translator->trans("Protocol submitted with sucess!"));
                     return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);

@@ -39,6 +39,20 @@ class Protocol extends Base
      */ 
     private $submission;
 
+    /** 
+     * @var ArrayCollection 
+     * 
+     * @ORM\OneToMany(targetEntity="ProtocolHistory", mappedBy="protocol", cascade={"remove"}) 
+     */ 
+    private $history;
+
+    /** 
+     * @var ArrayCollection 
+     * 
+     * @ORM\OneToMany(targetEntity="ProtocolComment", mappedBy="protocol", cascade={"remove"}) 
+     */ 
+    private $comment;
+
     /**
      * @ORM\Column(type="string", length=1)
      * @Assert\NotBlank 
@@ -50,6 +64,11 @@ class Protocol extends Base
      * @ORM\JoinColumn(name="main_submission_id", referencedColumnName="id", nullable=true) 
      */ 
     private $main_submission;
+
+    /** 
+     * @ORM\Column(name="date_informed", type="datetime", nullable=true) 
+     */ 
+    private $date_informed; 
 
     /** 
      * Constructor 
@@ -183,5 +202,97 @@ class Protocol extends Base
     public function getMainSubmission()
     {
         return $this->main_submission;
+    }
+
+    /**
+     * Set dateInformed
+     *
+     * @param \DateTime $dateInformed
+     *
+     * @return Protocol
+     */
+    public function setDateInformed($dateInformed)
+    {
+        $this->date_informed = $dateInformed;
+
+        return $this;
+    }
+
+    /**
+     * Get dateInformed
+     *
+     * @return \DateTime
+     */
+    public function getDateInformed()
+    {
+        return $this->date_informed;
+    }
+
+    /**
+     * Add history
+     *
+     * @param \Proethos2\ModelBundle\Entity\ProtocolHistory $history
+     *
+     * @return Protocol
+     */
+    public function addHistory(\Proethos2\ModelBundle\Entity\ProtocolHistory $history)
+    {
+        $this->history[] = $history;
+
+        return $this;
+    }
+
+    /**
+     * Remove history
+     *
+     * @param \Proethos2\ModelBundle\Entity\ProtocolHistory $history
+     */
+    public function removeHistory(\Proethos2\ModelBundle\Entity\ProtocolHistory $history)
+    {
+        $this->history->removeElement($history);
+    }
+
+    /**
+     * Get history
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getHistory()
+    {
+        return $this->history;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \Proethos2\ModelBundle\Entity\ProtocolComment $comment
+     *
+     * @return Protocol
+     */
+    public function addComment(\Proethos2\ModelBundle\Entity\ProtocolComment $comment)
+    {
+        $this->comment[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \Proethos2\ModelBundle\Entity\ProtocolComment $comment
+     */
+    public function removeComment(\Proethos2\ModelBundle\Entity\ProtocolComment $comment)
+    {
+        $this->comment->removeElement($comment);
+    }
+
+    /**
+     * Get comment
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComment()
+    {
+        return $this->comment;
     }
 }
