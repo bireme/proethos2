@@ -21,7 +21,9 @@
             <li role="presentation" {% if app.request.get('_route') == "submission_new_sixth_step" %}class='active'{% endif %}>
                 <a href="{{ path('submission_new_sixth_step', {'submission_id': submission.id }) }}" title='{% trans %}Attached Files{% endtrans %}'>{% trans %}Attached Files{% endtrans %}</a>
             </li>
-            <li role="presentation"><a href="#">Revisão</a></li>
+            <li role="presentation" {% if app.request.get('_route') == "submission_new_seventh_step" %}class='active'{% endif %}>
+                <a href="{{ path('submission_new_seventh_step', {'submission_id': submission.id }) }}" title='{% trans %}Revision{% endtrans %}'>{% trans %}Revision{% endtrans %}</a>
+            </li>
         </ul>
     </div>
 </div>

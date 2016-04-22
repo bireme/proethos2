@@ -49,6 +49,7 @@ class NewSubmissionController extends Controller
 
             $protocol = new Protocol();
             $protocol->setOwner($user);
+            $protocol->setStatus('D');
             $em->persist($protocol);
             $em->flush();
 
@@ -62,6 +63,10 @@ class NewSubmissionController extends Controller
             
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
+            $em->flush();
+
+            $protocol->setMainSubmission($submission);
+            $em->persist($protocol);
             $em->flush();
 
             $session->getFlashBag()->add('success', $translator->trans("Submission started with success."));
@@ -90,7 +95,7 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission) {
+        if (!$submission or $submission->getProtocol()->getStatus() != "D") {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
@@ -160,7 +165,7 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission) {
+        if (!$submission or $submission->getProtocol()->getStatus() != "D") {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
@@ -267,7 +272,7 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission) {
+        if (!$submission or $submission->getProtocol()->getStatus() != "D") {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
@@ -389,7 +394,7 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission) {
+        if (!$submission or $submission->getProtocol()->getStatus() != "D") {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
@@ -453,7 +458,7 @@ class NewSubmissionController extends Controller
         $upload_types = $upload_type_repository->findAll();
         $output['upload_types'] = $upload_types;
 
-        if (!$submission) {
+        if (!$submission or $submission->getProtocol()->getStatus() != "D") {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
@@ -474,6 +479,7 @@ class NewSubmissionController extends Controller
                 $upload_type = $upload_type_repository->find($post_data['new-atachment-type']);
                 if (!$upload_type) {
                     throw $this->createNotFoundException($translator->trans('No upload type found'));
+                    return $output;                
                 }
                 
                 $submission_upload = new SubmissionUpload();
@@ -506,7 +512,228 @@ class NewSubmissionController extends Controller
                     return $this->redirectToRoute('submission_new_sixth_step', array('submission_id' => $submission->getId()), 301);
                 }
             }
+ 
+            return $this->redirectToRoute('submission_new_seventh_step', array('submission_id' => $submission->getId()), 301);
         }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/submission/new/{submission_id}/seventh", name="submission_new_seventh_step")
+     * @Template()
+     */
+    public function SeventhStepAction($submission_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        
+        // getting the current submission
+        $submission = $submission_repository->find($submission_id);
+        $output['submission'] = $submission;
+
+        if (!$submission or $submission->getProtocol()->getStatus() != "D") {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
+        }
+
+        // Revisions
+        $revisions = array(); 
+        $final_status = true;
+
+        $text = $translator->trans('Team') . " (" . count($submission->getTeam())+1 . " " . $translator->trans('member(s)') . ")";
+        $item = array('text' => $text, 'status' => true);
+        $revisions[] = $item;
+
+        $text = $translator->trans('Files Submited') . " (" . count($submission->getAttachments()) . " " . $translator->trans('files(s)') . ")";
+        $item = array('text' => $text, 'status' => true);
+        if(count($submission->getAttachments()) == 0) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+        
+        $text = $translator->trans('Abstract');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getAbstract())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+        
+        $text = $translator->trans('Keywords');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getKeywords())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+        
+        $text = $translator->trans('Introduction');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getIntroduction())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+        
+        $text = $translator->trans('Justification');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getJustification())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+        
+        $text = $translator->trans('Goals');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getGoals())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+        
+        $text = $translator->trans('Study Design');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getStudyDesign())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+        
+        $text = $translator->trans('Gender');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getGender())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
+        $text = $translator->trans('Minimum Age');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getMinimumAge())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
+        $text = $translator->trans('MAximum Age');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getMaximumAge())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
+        $text = $translator->trans('Inclusion Criteria');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getInclusionCriteria())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
+        $text = $translator->trans('Exclusion Criteria');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getExclusionCriteria())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
+        $text = $translator->trans('Inicial recruitment estimation date');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getRecruitmentInitDate())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
+        $text = $translator->trans('Interventions');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getInterventions())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
+        $text = $translator->trans('Primary Outcome');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getPrimaryOutcome())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
+        $text = $translator->trans('Funding Source');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getFundingSource())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
+        $text = $translator->trans('Primary Sponsor');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getPrimarySponsor())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
+        $text = $translator->trans('Bibliography');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getBibliography())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+        
+        $text = $translator->trans('Scientific Contact');
+        $item = array('text' => $text, 'status' => true);
+        if(empty($submission->getScientificContact())) {
+            $item = array('text' => $text, 'status' => false);
+            $final_status = false;
+        }
+        $revisions[] = $item;
+
+        $text = $translator->trans('Prior Ethical Approval');
+        $item = array('text' => $text, 'status' => true);
+        $revisions[] = $item;
+
+        $output['revisions'] = $revisions;
+        $output['final_status'] = $final_status;
+        
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            if($final_status) {
+
+                if($post_data['accept-terms'] == 'on') {
+
+                    $protocol = $submission->getProtocol();
+                    $protocol->setStatus("S");
+                    $em->persist($protocol);
+                    $em->flush();
+
+                    $session->getFlashBag()->add('success', $translator->trans("Protocol submitted with sucess!"));
+                    return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
+
+                } else {
+                    $session->getFlashBag()->add('error', $translator->trans("You must to accept the terms and conditions."));
+                }
+            } else {
+                $session->getFlashBag()->add('error', $translator->trans('You have revision pendencies.'));
+            }
+        }
+
         return $output;
     }
 }

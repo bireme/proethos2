@@ -1,0 +1,93 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}New submission{% endtrans %}{% endblock %}
+
+{% block content %}
+    <div class="container-fluid main-content">
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">{% trans %}New submission{% endtrans %}</h1>
+            </div>
+        </div>
+
+        {% include 'Proethos2CoreBundle:NewSubmission:meta.html.twig' %}
+
+        <div class='new-submission-tab-content'>
+            <form class='form' method='POST' action='{{ path("submission_new_seventh_step", {submission_id: submission.id}) }}'>
+
+                <input type='hidden' name='submission_id' value='{{ submission.id }}'>
+                <input type='hidden' name='accept-terms' value="off">
+
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h2 class='sub-header'>{% trans %}Revision{% endtrans %}:</h2>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <table class='table table-hover table-condensed table-bordered'>
+                                
+                                <thead>
+                                    <tr>
+                                        <th class='center'>{% trans %}Field{% endtrans %}</th>
+                                        <th class='center'>{% trans %}Check{% endtrans %}</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    {% for revision in revisions %}
+                                        <tr class='{% if not revision.status %}error{% endif %}'>
+                                            <td>{{ revision.text }}</td>
+                                            {% if revision.status %}
+                                                <td class='center'><i class='glyphicon glyphicon-ok'></i></td>
+                                            {% else %}
+                                                <td class='center'><i class='glyphicon glyphicon-remove'></i></td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='block'>
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <h2 class='sub-header'>{% trans %}Terms and conditions{% endtrans %}:</h2>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label for='input-accept-terms'>
+                                        <input type='checkbox' name='accept-terms' id='input-accept-terms'>
+                                        {% trans %}I agree with terms and conditions{% endtrans %}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+
+                <div class='submission-button-controls'>
+                    <a href='#' class='btn btn-default' target='_blank'>{% trans %}Create PDF{% endtrans %}</a>
+                    <button type='submit' class='btn btn-primary {% if not final_status %}disabled{% endif %}'>{% trans %}Save and finish{% endtrans %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+            
+        });    
+    </script>
+{% endblock %}

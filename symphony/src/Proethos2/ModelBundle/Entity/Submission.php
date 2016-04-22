@@ -295,11 +295,6 @@ class Submission extends Base
      */
     private $attachments;
 
-    public function __construct() 
-    {
-        $this->team = new ArrayCollection(); 
-    }
-
     /**
      * Get id
      *

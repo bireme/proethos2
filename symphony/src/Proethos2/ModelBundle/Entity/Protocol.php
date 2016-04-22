@@ -39,6 +39,18 @@ class Protocol extends Base
      */ 
     private $submission;
 
+    /**
+     * @ORM\Column(type="string", length=1)
+     * @Assert\NotBlank 
+     */
+    private $status;
+
+    /** 
+     * @ORM\ManyToOne(targetEntity="Submission") 
+     * @ORM\JoinColumn(name="main_submission_id", referencedColumnName="id", nullable=true) 
+     */ 
+    private $main_submission;
+
     /** 
      * Constructor 
      */ 
@@ -123,5 +135,53 @@ class Protocol extends Base
     public function getOwner()
     {
         return $this->owner;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return Protocol
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set mainSubmission
+     *
+     * @param \Proethos2\ModelBundle\Entity\Submission $mainSubmission
+     *
+     * @return Protocol
+     */
+    public function setMainSubmission(\Proethos2\ModelBundle\Entity\Submission $mainSubmission = null)
+    {
+        $this->main_submission = $mainSubmission;
+
+        return $this;
+    }
+
+    /**
+     * Get mainSubmission
+     *
+     * @return \Proethos2\ModelBundle\Entity\Submission
+     */
+    public function getMainSubmission()
+    {
+        return $this->main_submission;
     }
 }
