@@ -11,3 +11,5 @@
 /bin/
 /composer.phar
 *~
+
+/src/Proethos2/CoreBundle/Resources/public/uploads/*

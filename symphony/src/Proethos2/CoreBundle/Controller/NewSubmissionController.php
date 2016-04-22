@@ -13,6 +13,7 @@ use Proethos2\ModelBundle\Entity\Submission;
 use Proethos2\ModelBundle\Entity\SubmissionCountry;
 use Proethos2\ModelBundle\Entity\SubmissionCost;
 use Proethos2\ModelBundle\Entity\SubmissionTask;
+use Proethos2\ModelBundle\Entity\SubmissionUpload;
 use Proethos2\ModelBundle\Entity\Protocol;
 
 
@@ -42,6 +43,7 @@ class NewSubmissionController extends Controller
             foreach(array('cientific_title', 'public_title', 'is_clinical_trial') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return array();
                 }
             }
 
@@ -86,6 +88,7 @@ class NewSubmissionController extends Controller
 
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
+        $output['submission'] = $submission;
 
         if (!$submission) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
@@ -102,6 +105,7 @@ class NewSubmissionController extends Controller
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
                 }
             }
             
@@ -133,9 +137,7 @@ class NewSubmissionController extends Controller
             return $this->redirectToRoute('submission_new_third_step', array('submission_id' => $submission->getId()), 301);
         }
         
-        return array(
-            'submission' => $submission,
-        );    
+        return $output;
     }
 
     /**
@@ -156,6 +158,7 @@ class NewSubmissionController extends Controller
 
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
+        $output['submission'] = $submission;
 
         if (!$submission) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
@@ -167,13 +170,13 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
-
             // checking required files
             $required_fields = array('study-design', 'gender', 'sample-size', 'minimum-age', 'maximum-age', 'inclusion-criteria', 
                 'exclusion-criteria', 'recruitment-init-date', 'recruitment-status', 'interventions', 'primary-outcome');
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
                 }
             }
 
@@ -240,9 +243,7 @@ class NewSubmissionController extends Controller
             return $this->redirectToRoute('submission_new_fourth_step', array('submission_id' => $submission->getId()), 301);
         }
 
-        return array(
-            'submission' => $submission,
-        ); 
+        return $output;
     }
 
     /**
@@ -264,6 +265,7 @@ class NewSubmissionController extends Controller
 
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
+        $output['submission'] = $submission;
 
         if (!$submission) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
@@ -280,6 +282,7 @@ class NewSubmissionController extends Controller
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
                 }
             }
 
@@ -363,9 +366,7 @@ class NewSubmissionController extends Controller
             return $this->redirectToRoute('submission_new_fifth_step', array('submission_id' => $submission->getId()), 301);
         }
 
-        return array(
-            'submission' => $submission,
-        ); 
+        return $output;
     }
 
     /**
@@ -386,6 +387,7 @@ class NewSubmissionController extends Controller
 
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
+        $output['submission'] = $submission;
 
         if (!$submission) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
@@ -405,6 +407,7 @@ class NewSubmissionController extends Controller
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
                 }
             }
     
@@ -421,10 +424,89 @@ class NewSubmissionController extends Controller
             $em->flush();
 
             $session->getFlashBag()->add('success', $translator->trans("Fifth step saved with sucess."));
+            return $this->redirectToRoute('submission_new_sixth_step', array('submission_id' => $submission->getId()), 301);
         }
 
-        return array(
-            'submission' => $submission,
-        ); 
+        return $output;
+    }
+
+    /**
+     * @Route("/submission/new/{submission_id}/sixth", name="submission_new_sixth_step")
+     * @Template()
+     */
+    public function SixtyStepAction($submission_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $upload_type_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
+        $submission_upload_repository = $em->getRepository('Proethos2ModelBundle:SubmissionUpload');
+        
+        // getting the current submission
+        $submission = $submission_repository->find($submission_id);
+        $output['submission'] = $submission;
+
+        $upload_types = $upload_type_repository->findAll();
+        $output['upload_types'] = $upload_types;
+
+        if (!$submission) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            $file = $request->files->get('new-atachment-file');
+            if(!empty($file)) {
+                
+                if(!isset($post_data['new-atachment-type']) or empty($post_data['new-atachment-type'])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field 'new-atachment-type' is required."));
+                    return $output;                
+                }
+                
+                $upload_type = $upload_type_repository->find($post_data['new-atachment-type']);
+                if (!$upload_type) {
+                    throw $this->createNotFoundException($translator->trans('No upload type found'));
+                }
+                
+                $submission_upload = new SubmissionUpload();
+                $submission_upload->setSubmission($submission);
+                $submission_upload->setUploadType($upload_type);
+                $submission_upload->setFile($file);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($submission_upload);
+                $em->flush();
+
+                $submission->addAttachment($submission_upload);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($submission);
+                $em->flush();
+                
+                $session->getFlashBag()->add('success', $translator->trans("File uploaded with sucess."));
+                return $this->redirectToRoute('submission_new_sixth_step', array('submission_id' => $submission->getId()), 301);
+                
+            }
+
+            if(isset($post_data['delete-attachment-id']) and !empty($post_data['delete-attachment-id'])) {
+
+                $submission_upload = $submission_upload_repository->find($post_data['delete-attachment-id']);
+                if($submission_upload) {
+                    
+                    $em->remove($submission_upload);
+                    $em->flush();
+                    $session->getFlashBag()->add('success', $translator->trans("File removed with sucess."));
+                    return $this->redirectToRoute('submission_new_sixth_step', array('submission_id' => $submission->getId()), 301);
+                }
+            }
+        }
+        return $output;
     }
 }

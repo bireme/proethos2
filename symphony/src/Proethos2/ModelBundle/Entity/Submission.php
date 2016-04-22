@@ -288,6 +288,13 @@ class Submission extends Base
      */
     private $prior_ethical_approval;
 
+    /**
+     * @var SubmissionUpload
+     * @ORM\OneToMany(targetEntity="SubmissionUpload", mappedBy="submission")
+     * @ORM\JoinTable(name="submission_upload")
+     */
+    private $attachments;
+
     public function __construct() 
     {
         $this->team = new ArrayCollection(); 
@@ -1229,5 +1236,39 @@ class Submission extends Base
     public function getPriorEthicalApproval()
     {
         return $this->prior_ethical_approval;
+    }
+
+    /**
+     * Add attachment
+     *
+     * @param \Proethos2\ModelBundle\Entity\SubmissionUpload $attachment
+     *
+     * @return Submission
+     */
+    public function addAttachment(\Proethos2\ModelBundle\Entity\SubmissionUpload $attachment)
+    {
+        $this->attachments[] = $attachment;
+
+        return $this;
+    }
+
+    /**
+     * Remove attachment
+     *
+     * @param \Proethos2\ModelBundle\Entity\SubmissionUpload $attachment
+     */
+    public function removeAttachment(\Proethos2\ModelBundle\Entity\SubmissionUpload $attachment)
+    {
+        $this->attachments->removeElement($attachment);
+    }
+
+    /**
+     * Get attachments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAttachments()
+    {
+        return $this->attachments;
     }
 }
