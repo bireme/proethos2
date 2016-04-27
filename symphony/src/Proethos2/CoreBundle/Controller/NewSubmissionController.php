@@ -162,6 +162,7 @@ class NewSubmissionController extends Controller
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
         $submission_country_repository = $em->getRepository('Proethos2ModelBundle:SubmissionCountry');
         $gender_repository = $em->getRepository('Proethos2ModelBundle:Gender');
+        $recruitment_status_repository = $em->getRepository('Proethos2ModelBundle:RecruitmentStatus');
 
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
@@ -170,6 +171,10 @@ class NewSubmissionController extends Controller
         // getting gender list
         $genders = $gender_repository->findAll();
         $output['genders'] = $genders;
+
+        // getting recruitment_statuses list
+        $recruitment_statuses = $recruitment_status_repository->findAll();
+        $output['recruitment_statuses'] = $recruitment_statuses;
 
         if (!$submission or $submission->getProtocol()->getStatus() != "D") {
             throw $this->createNotFoundException($translator->trans('No submission found'));
@@ -200,11 +205,14 @@ class NewSubmissionController extends Controller
             $submission->setInclusionCriteria($post_data['inclusion-criteria']);
             $submission->setExclusionCriteria($post_data['exclusion-criteria']);
             $submission->setRecruitmentInitDate(new \DateTime($post_data['recruitment-init-date']));
-            $submission->setRecruitmentStatus($post_data['recruitment-status']);
 
             // gender
             $selected_gender = $gender_repository->find($post_data['gender']);
-            $submission->setGender($selected_gender);            
+            $submission->setGender($selected_gender);
+
+            // recruitment status
+            $selected_recruitment_status = $recruitment_status_repository->find($post_data['recruitment-status']);
+            $submission->setRecruitmentStatus($selected_recruitment_status);
 
             // removing all team to readd
             foreach($submission->getCountry() as $country) {

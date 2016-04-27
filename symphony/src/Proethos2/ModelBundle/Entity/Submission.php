@@ -163,11 +163,12 @@ class Submission extends Base
      */
     private $inclusion_criteria;
     
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=1, nullable=true)
-     */
+    /** 
+     * @var RecruitmentStatus
+     * 
+     * @ORM\ManyToOne(targetEntity="RecruitmentStatus") 
+     * @ORM\JoinColumn(name="recruitment_status_id", referencedColumnName="id") 
+     */ 
     private $recruitment_status;
     
     /**
@@ -749,30 +750,6 @@ class Submission extends Base
     }
 
     /**
-     * Set recruitmentStatus
-     *
-     * @param string $recruitmentStatus
-     *
-     * @return Submission
-     */
-    public function setRecruitmentStatus($recruitmentStatus)
-    {
-        $this->recruitment_status = $recruitmentStatus;
-
-        return $this;
-    }
-
-    /**
-     * Get recruitmentStatus
-     *
-     * @return string
-     */
-    public function getRecruitmentStatus()
-    {
-        return $this->recruitment_status;
-    }
-
-    /**
      * Set exclusionCriteria
      *
      * @param string $exclusionCriteria
@@ -1266,5 +1243,29 @@ class Submission extends Base
     public function getGender()
     {
         return $this->gender;
+    }
+
+    /**
+     * Set recruitmentStatus
+     *
+     * @param \Proethos2\ModelBundle\Entity\RecruitmentStatus $recruitmentStatus
+     *
+     * @return Submission
+     */
+    public function setRecruitmentStatus(\Proethos2\ModelBundle\Entity\RecruitmentStatus $recruitmentStatus = null)
+    {
+        $this->recruitment_status = $recruitmentStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get recruitmentStatus
+     *
+     * @return \Proethos2\ModelBundle\Entity\RecruitmentStatus
+     */
+    public function getRecruitmentStatus()
+    {
+        return $this->recruitment_status;
     }
 }

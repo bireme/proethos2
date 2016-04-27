@@ -62,9 +62,6 @@
                                     {% for gender in genders %}
                                         <option value="{{ gender.id }}" {% if submission.gender == gender %}selected{% endif %}>{{ gender.name }}</option>
                                     {% endfor %}
-                                    <!-- <option value="M" {% if submission.gender == "M" %}selected{% endif %}>{% trans %}Male{% endtrans %}</option>
-                                    <option value="F" {% if submission.gender == "F" %}selected{% endif %}>{% trans %}Female{% endtrans %}</option>
-                                    <option value="B" {% if submission.gender == "B" %}selected{% endif %}>{% trans %}Both{% endtrans %}</option> -->
                                 </select>
                             </div>
                         </div>
@@ -130,11 +127,14 @@
                                 <label for="select-recruitment-status">{% trans %}Recruitment Status{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <select class='form-control' id='select-recruitment-status' name='recruitment-status'>
-                                    <option value="P" {% if submission.recruitmentStatus == "P" %}selected{% endif %}>{% trans %}Pending{% endtrans %}</option>
-                                    <option value="R" {% if submission.recruitmentStatus == "R" %}selected{% endif %}>{% trans %}Recruiting{% endtrans %}</option>
+                                    <option value="">-</option>
+                                    {% for status in recruitment_statuses %}
+                                        <option value="{{ status.id }}" {% if status == submission.recruitmentStatus %}selected{% endif %}>{{ status.name }}</option>
+                                    {% endfor %}
+                                    <!-- <option value="R" {% if submission.recruitmentStatus == "R" %}selected{% endif %}>{% trans %}Recruiting{% endtrans %}</option>
                                     <option value="S" {% if submission.recruitmentStatus == "S" %}selected{% endif %}>{% trans %}Suspended{% endtrans %}</option>
                                     <option value="C" {% if submission.recruitmentStatus == "C" %}selected{% endif %}>{% trans %}Completed{% endtrans %}</option>
-                                    <option value="O" {% if submission.recruitmentStatus == "O" %}selected{% endif %}>{% trans %}Other{% endtrans %}</option>
+                                    <option value="O" {% if submission.recruitmentStatus == "O" %}selected{% endif %}>{% trans %}Other{% endtrans %}</option> -->
                                 </select>
                             </div>
                         </div>
