@@ -770,10 +770,6 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('Prior Ethical Approval');
-        $item = array('text' => $text, 'status' => true);
-        $revisions[] = $item;
-
         $output['revisions'] = $revisions;
         $output['final_status'] = $final_status;
         
