@@ -218,7 +218,7 @@ class NewSubmissionController extends Controller
             // removing all team to readd
             foreach($submission->getCountry() as $country) {
                 $submission->removeCountry($country);
-                $em->remove($schedule);
+                $em->remove($country);
                 $em->flush();
             }
 
@@ -817,5 +817,51 @@ class NewSubmissionController extends Controller
         }
 
         return $output;
+    }
+
+    /**
+     * @Route("/submission/new/{submission_id}/pdf", name="submission_view_in_html")
+     * @Template()
+     */
+    public function showPdfAction($submission_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        
+        // getting the current submission
+        $submission = $submission_repository->find($submission_id);
+        $output['submission'] = $submission;
+
+        if (!$submission or $submission->getProtocol()->getStatus() != "D") {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
+        }
+
+        $html = $this->renderView(
+            'Proethos2CoreBundle:NewSubmission:showPdf.html.twig',
+            $output
+        );
+
+        $pdf = $this->get('knp_snappy.pdf');
+
+        // setting margins
+        $pdf->getInternalGenerator()->setOption('margin-top', '50px');
+        $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
+        $pdf->getInternalGenerator()->setOption('margin-left', '20px');
+        $pdf->getInternalGenerator()->setOption('margin-right', '20px');
+
+        // print '<pre>';
+        // var_dump($pdf);
+        return new Response(
+            $pdf->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf'
+            )
+        );
     }
 }
