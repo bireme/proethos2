@@ -75,7 +75,7 @@
                 </div>                
 
                 <div class='submission-button-controls'>
-                    <a href='#' class='btn btn-default' target='_blank'>{% trans %}Create PDF{% endtrans %}</a>
+                    <a href='{{ path("submission_generate_pdf", {submission_id: submission.id}) }}' class='btn btn-default' target='_blank'>{% trans %}Create PDF{% endtrans %}</a>
                     <button type='submit' class='btn btn-primary {% if not final_status %}disabled{% endif %}'>{% trans %}Save and finish{% endtrans %}</button>
                 </div>
             </form>

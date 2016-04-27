@@ -820,7 +820,7 @@ class NewSubmissionController extends Controller
     }
 
     /**
-     * @Route("/submission/new/{submission_id}/pdf", name="submission_view_in_html")
+     * @Route("/submission/new/{submission_id}/pdf", name="submission_generate_pdf")
      * @Template()
      */
     public function showPdfAction($submission_id)
