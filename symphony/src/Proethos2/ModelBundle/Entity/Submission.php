@@ -318,6 +318,9 @@ class Submission extends Base
         $this->clinical_trial = new ArrayCollection();
         $this->schedule = new ArrayCollection();
         $this->attachments = new ArrayCollection();
+
+        // call Grandpa's constructor
+        parent::__construct();
     }
 
     /**
