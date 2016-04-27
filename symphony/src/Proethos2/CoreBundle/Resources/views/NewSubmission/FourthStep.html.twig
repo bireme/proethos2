@@ -112,7 +112,7 @@
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="textarea-funding-source">{% trans %}Funding source{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" id='textarea-funding-source' name='funding-source' required>{{ submission.fundingSource }}</textarea>
@@ -122,7 +122,7 @@
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="textarea-primary-sponsor">{% trans %}Primary Sponsor{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" id='textarea-primary-sponsor' name='primary-sponsor' required>{{ submission.primarySponsor }}</textarea>

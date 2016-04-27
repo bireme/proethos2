@@ -26,7 +26,7 @@
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="textarea-study-design">{% trans %}Study design{% endtrans %}</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" name='study-design' id='textarea-study-design' required>{{ submission.studyDesign }}</textarea>
@@ -67,7 +67,7 @@
                         </div>
                         
                         <div class="col-md-3">
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="input-sample-size">{% trans %}Target sample size{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="number" class="form-control" placeholder="" min="1" value="{{ submission.sampleSize }}" id='input-sample-size' name='sample-size' required>
@@ -75,7 +75,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="input-minimum-age">{% trans %}Minimum Age{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="number" class="form-control" placeholder="" min="0" value="{{ submission.minimumAge }}" name='minimum-age' id='input-minimum-age' required>
@@ -83,7 +83,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="input-maximum-age">{% trans %}Maximum Age{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="number" class="form-control" placeholder="" min="0" value="{{ submission.maximumAge }}" name='maximum-age' id='input-maximum-age' required>
@@ -93,7 +93,7 @@
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="textarea-inclusion-criteria">{% trans %}Inclusion criteria{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="5" class="form-control" id='textarea-inclusion-criteria' name='inclusion-criteria' required>{{ submission.inclusionCriteria }}</textarea>
@@ -103,7 +103,7 @@
                     
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="textarea-exclusion-criteria">{% trans %}Exclusion criteria{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="5" class="form-control" id='textarea-exclusion-criteria' name='exclusion-criteria' required>{{ submission.exclusionCriteria }}</textarea>
@@ -113,7 +113,7 @@
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="input-recruitment-init-date">{% trans %}Estimated date of initial recruitment{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type='date' class='form-control' id='input-recruitment-init-date' name='recruitment-init-date' value='{{ submission.recruitmentInitDate|date("Y-m-d") }}' required>
@@ -179,7 +179,7 @@
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="textarea-interventions">{% trans %}Interventions{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" id='textarea-interventions' name='interventions' required>{{ submission.interventions }}</textarea>
