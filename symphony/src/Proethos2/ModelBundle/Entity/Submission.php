@@ -240,7 +240,21 @@ class Submission extends Base
      * @ORM\JoinTable(name="submission_cost")
      */
     private $budget;
+
+    /**
+     * @var SubmissionClinicalTrial
+     * @ORM\OneToMany(targetEntity="SubmissionClinicalTrial", mappedBy="submission")
+     * @ORM\JoinTable(name="submission_clinical_trial")
+     */
+    private $clinical_trial;
     
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $clinical_trial_secondary;
+
     /**
      * @var text
      *
@@ -296,6 +310,15 @@ class Submission extends Base
      * @ORM\JoinTable(name="submission_upload")
      */
     private $attachments;
+
+    public function __construct() {
+
+        $this->country = new ArrayCollection();
+        $this->budget = new ArrayCollection();
+        $this->clinical_trial = new ArrayCollection();
+        $this->schedule = new ArrayCollection();
+        $this->attachments = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -1267,5 +1290,63 @@ class Submission extends Base
     public function getRecruitmentStatus()
     {
         return $this->recruitment_status;
+    }
+
+    /**
+     * Add clinicalTrial
+     *
+     * @param \Proethos2\ModelBundle\Entity\SubmissionClinicalTrial $clinicalTrial
+     *
+     * @return Submission
+     */
+    public function addClinicalTrial(\Proethos2\ModelBundle\Entity\SubmissionClinicalTrial $clinicalTrial)
+    {
+        $this->clinical_trial[] = $clinicalTrial;
+
+        return $this;
+    }
+
+    /**
+     * Remove clinicalTrial
+     *
+     * @param \Proethos2\ModelBundle\Entity\SubmissionClinicalTrial $clinicalTrial
+     */
+    public function removeClinicalTrial(\Proethos2\ModelBundle\Entity\SubmissionClinicalTrial $clinicalTrial)
+    {
+        $this->clinical_trial->removeElement($clinicalTrial);
+    }
+
+    /**
+     * Get clinicalTrial
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getClinicalTrial()
+    {
+        return $this->clinical_trial;
+    }
+
+    /**
+     * Set clinicalTrialSecondary
+     *
+     * @param string $clinicalTrialSecondary
+     *
+     * @return Submission
+     */
+    public function setClinicalTrialSecondary($clinicalTrialSecondary)
+    {
+        $this->clinical_trial_secondary = $clinicalTrialSecondary;
+
+        return $this;
+    }
+
+    /**
+     * Get clinicalTrialSecondary
+     *
+     * @return string
+     */
+    public function getClinicalTrialSecondary()
+    {
+        return $this->clinical_trial_secondary;
     }
 }

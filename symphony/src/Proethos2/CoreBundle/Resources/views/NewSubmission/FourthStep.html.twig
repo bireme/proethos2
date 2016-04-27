@@ -17,6 +17,58 @@
 
                 <input type='hidden' name='submission_id' value='{{ submission.id }}'>
 
+                {% if submission.isClinicalTrial %}
+                    <div class='block'>
+                        <div class='row'>
+                            <div class="col-md-12">
+                                <h2 class='sub-header'>{% trans %}Clinical Trial{% endtrans %}</h2>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class="col-md-12">
+                                <table class='table table-hover table-condensed' id="table-clinical-trial">
+                                    
+                                    <thead>
+                                        <tr>
+                                            <th width="50%">{% trans %}Registry Name{% endtrans %}</th>
+                                            <th>{% trans %}Registry Number{% endtrans %}</th>
+                                            <th>{% trans %}Date{% endtrans %}</th>
+                                            <th>{% trans %}Actions{% endtrans %}</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        {% for trial in submission.clinicalTrial %}
+                                            <tr>
+                                                <input type='hidden' name='clinical-trial[{{ loop.index0 }}][name-id]' value='{{ trial.name.id }}'>
+                                                <input type='hidden' name='clinical-trial[{{ loop.index0 }}][number]' value='{{ trial.number }}'>
+                                                <input type='hidden' name='clinical-trial[{{ loop.index0 }}][date]' value='{% if trial.date %}{{ trial.date|date("Y-m-d") }}{% endif %}'>
+
+                                                <td>{{ trial.name }}</td> 
+                                                <td>{{ trial.number }}</td> 
+                                                <td>{% if trial.date %}{{ trial.date|date("d/m/Y") }}{% else %}-{% endif %}</td> 
+                                                <td><a href='#' class='btn btn-default btn-xs button-remove-clinical-trial'><i class='glyphicon glyphicon-trash'></i></a></td> 
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-clinical-trial">{% trans %}New Clinical Trial Registry{% endtrans %}</a>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="textarea-clinical-trial-second">{% trans %}Secondary Registry{% endtrans %}:</label> 
+                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <textarea rows="4" class="form-control" id='textarea-clinical-trial-second' name='clinical-trial-second'>{{ submission.clinicalTrialSecondary }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
                 <div class='block'>
                     <div class='row'>
                         <div class="col-md-12">
@@ -212,6 +264,53 @@
             </form>
         </div>
     </div>
+    
+    <!-- Modal Novo Ensaio CLínico -->
+    <div class="modal fade" id="modal-new-clinical-trial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <form class='form' id='form-clinical-trial'>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}New Clinical Trial Registry{% endtrans %}</h4>
+                    </div>
+                    
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="input-clinical-trial-name">{% trans %}Name{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <select class='form-control' id='input-clinical-trial-name' name='clinical-trial-name' required>
+                                <option value="">-</option>
+                                {% for name in clinical_trial_names %}
+                                    <option value="{{ name.id }}">{{ name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-clinical-trial-number">{% trans %}Number{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type="number" class='form-control' id='input-clinical-trial-number' name='clinical-trial-number' min="0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-clinical-trial-date">{% trans %}Date{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type="date" class='form-control' id='input-clinical-trial-date' name='clinical-trial-date'>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary" id="submit-clinical-trial-form" data-dismiss="modal">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 
 {% endblock %}
 
@@ -302,5 +401,49 @@
                 parent.remove();
             });
         });
+
+        // scripts to manage clinical trial modal
+        $(function(){
+
+            var $total_clinical_trial = {{ submission.clinicalTrial|length }};
+
+            // modal clinical-trial submit action
+            $("#submit-clinical-trial-form").click(function(e){
+                e.preventDefault();
+
+                var $name_id = $("#input-clinical-trial-name").val();
+                var $name = $("#input-clinical-trial-name option:selected").text();
+                var $number = $("#input-clinical-trial-number").val();
+                var $date = $("#input-clinical-trial-date").val();
+
+                if(!$name_id || !$number) {
+                    return
+                }
+
+                string =  "<tr>"
+                string +=    "<input type='hidden' name='clinical-trial["+ $total_clinical_trial +"][name-id]' value='"+ $name_id +"'>"
+                string +=    "<input type='hidden' name='clinical-trial["+ $total_clinical_trial +"][number]' value='"+ $number +"'>"
+                string +=    "<input type='hidden' name='clinical-trial["+ $total_clinical_trial +"][date]' value='"+ $date +"'>"
+                
+                string +=    "<td>"+ $name +"</td> "
+                string +=    "<td>"+ $number +"</td> "
+                string +=    "<td>"+ $date +"</td> "
+                string +=    "<td><a href='#' class='btn btn-default btn-xs button-remove-clinical-trial'><i class='glyphicon glyphicon-trash'></i></a></td> "
+                string += "</tr>"
+
+                $("#table-clinical-trial tbody").append(string);
+                $total_clinical_trial += 1;
+            });
+
+            // button trash action
+            $("#table-clinical-trial").on("click", ".button-remove-clinical-trial", function(e){
+                e.preventDefault();
+
+                parent = $(this).parents('tr');
+                parent.remove();
+            });
+        });
+
+        
     </script>
 {% endblock %}

@@ -16,6 +16,7 @@ use Proethos2\ModelBundle\Entity\SubmissionTask;
 use Proethos2\ModelBundle\Entity\SubmissionUpload;
 use Proethos2\ModelBundle\Entity\Protocol;
 use Proethos2\ModelBundle\Entity\ProtocolHistory;
+use Proethos2\ModelBundle\Entity\SubmissionClinicalTrial;
 
 
 
@@ -217,6 +218,8 @@ class NewSubmissionController extends Controller
             // removing all team to readd
             foreach($submission->getCountry() as $country) {
                 $submission->removeCountry($country);
+                $em->remove($schedule);
+                $em->flush();
             }
 
             if(isset($post_data['country'])) {
@@ -284,10 +287,15 @@ class NewSubmissionController extends Controller
         $submission_cost_repository = $em->getRepository('Proethos2ModelBundle:SubmissionCost');
         $submission_task_repository = $em->getRepository('Proethos2ModelBundle:SubmissionTask');
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        $submission_clinical_trial_repository = $em->getRepository('Proethos2ModelBundle:SubmissionClinicalTrial');
+        $clinical_trial_name_repository = $em->getRepository('Proethos2ModelBundle:ClinicalTrialName');
 
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
+
+        $clinical_trial_names = $clinical_trial_name_repository->findAll();
+        $output['clinical_trial_names'] = $clinical_trial_names;
 
         if (!$submission or $submission->getProtocol()->getStatus() != "D") {
             throw $this->createNotFoundException($translator->trans('No submission found'));
@@ -308,9 +316,53 @@ class NewSubmissionController extends Controller
                 }
             }
 
+            // removing all clinical_trial to rewrite
+            foreach($submission->getClinicalTrial() as $trial) {
+                $submission->removeClinicalTrial($trial);
+                $em->remove($trial);
+                $em->flush();
+            }
+
+
+            if(isset($post_data['clinical-trial'])) {
+
+                foreach($post_data['clinical-trial'] as $key => $trial_data) {
+
+                    $trial_name = $clinical_trial_name_repository->find($trial_data['name-id']);
+                    $date = NULL;
+                    if (!empty($trial_data['date'])) {
+                        $date = new \DateTime($trial_data['date']);
+                    }
+                    
+                    // check if exists
+                    $trial = $submission_clinical_trial_repository->findOneBy(array(
+                        'submission' => $submission, 
+                        'name' => $trial_name,
+                        'date' => $date,
+                        'number' => $trial_data['number'],
+                    ));
+
+                    if(!$trial) {
+                        $trial = new SubmissionClinicalTrial();
+                        $trial->setSubmission($submission);
+                        $trial->setName($trial_name);
+                        $trial->setNumber($trial_data['number']);
+                        $trial->setDate($date);
+                    }
+                    
+                    $em->persist($trial);
+                    $em->flush();
+
+                    // add in submission
+                    $submission->addClinicalTrial($trial);
+                }
+            }
+
             // removing all team to readd
             foreach($submission->getBudget() as $budget) {
                 $submission->removeBudget($budget);
+                $em->remove($budget);
+                $em->flush();
             }
 
             if(isset($post_data['budget'])) {
@@ -333,7 +385,6 @@ class NewSubmissionController extends Controller
                         $submission_cost->setUnitCost($cost['unit_cost']);
                     }
 
-                    $em = $this->getDoctrine()->getManager();
                     $em->persist($submission_cost);
                     $em->flush();
 
@@ -342,6 +393,7 @@ class NewSubmissionController extends Controller
                 }
             }
 
+            $submission->setClinicalTrialSecondary($post_data['clinical-trial-second']);
             $submission->setFundingSource($post_data['funding-source']);
             $submission->setPrimarySponsor($post_data['primary-sponsor']);
             $submission->setSecondarySponsor($post_data['secondary-sponsor']);
@@ -349,6 +401,8 @@ class NewSubmissionController extends Controller
             // removing all schedule to readd
             foreach($submission->getSchedule() as $schedule) {
                 $submission->removeSchedule($schedule);
+                $em->remove($schedule);
+                $em->flush();
             }
 
             if(isset($post_data['schedule'])) {
@@ -371,7 +425,6 @@ class NewSubmissionController extends Controller
                         $submission_task->setEnd(new \DateTime($task['end']));
                     }
 
-                    $em = $this->getDoctrine()->getManager();
                     $em->persist($submission_task);
                     $em->flush();
 
@@ -380,7 +433,6 @@ class NewSubmissionController extends Controller
                 }
             }
 
-            $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
             $em->flush();
             
