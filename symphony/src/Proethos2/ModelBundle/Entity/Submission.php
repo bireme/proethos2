@@ -128,11 +128,12 @@ class Submission extends Base
      */
     private $health_condition;
     
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=1, nullable=true)
-     */
+    /** 
+     * @var Gender
+     * 
+     * @ORM\ManyToOne(targetEntity="Gender") 
+     * @ORM\JoinColumn(name="gender_id", referencedColumnName="id") 
+     */ 
     private $gender;
     /**
      * @var integer
@@ -649,30 +650,6 @@ class Submission extends Base
     public function getHealthCondition()
     {
         return $this->health_condition;
-    }
-
-    /**
-     * Set gender
-     *
-     * @param string $gender
-     *
-     * @return Submission
-     */
-    public function setGender($gender)
-    {
-        $this->gender = $gender;
-
-        return $this;
-    }
-
-    /**
-     * Get gender
-     *
-     * @return string
-     */
-    public function getGender()
-    {
-        return $this->gender;
     }
 
     /**
@@ -1265,5 +1242,29 @@ class Submission extends Base
     public function getAttachments()
     {
         return $this->attachments;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param \Proethos2\ModelBundle\Entity\Gender $gender
+     *
+     * @return Submission
+     */
+    public function setGender(\Proethos2\ModelBundle\Entity\Gender $gender = null)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return \Proethos2\ModelBundle\Entity\Gender
+     */
+    public function getGender()
+    {
+        return $this->gender;
     }
 }

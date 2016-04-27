@@ -58,10 +58,13 @@
                                 <label for="select-gender">{% trans %}Gender{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <select class='form-control' id='select-gender' name='gender'>
-                                    <option value="N" {% if submission.gender == "N" %}selected{% endif %}>{% trans %}N/A{% endtrans %}</option>
-                                    <option value="M" {% if submission.gender == "M" %}selected{% endif %}>{% trans %}Male{% endtrans %}</option>
+                                    <option value="">-</option>
+                                    {% for gender in genders %}
+                                        <option value="{{ gender.id }}" {% if submission.gender == gender %}selected{% endif %}>{{ gender.name }}</option>
+                                    {% endfor %}
+                                    <!-- <option value="M" {% if submission.gender == "M" %}selected{% endif %}>{% trans %}Male{% endtrans %}</option>
                                     <option value="F" {% if submission.gender == "F" %}selected{% endif %}>{% trans %}Female{% endtrans %}</option>
-                                    <option value="B" {% if submission.gender == "B" %}selected{% endif %}>{% trans %}Both{% endtrans %}</option>
+                                    <option value="B" {% if submission.gender == "B" %}selected{% endif %}>{% trans %}Both{% endtrans %}</option> -->
                                 </select>
                             </div>
                         </div>
