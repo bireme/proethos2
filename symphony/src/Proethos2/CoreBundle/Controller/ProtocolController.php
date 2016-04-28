@@ -146,6 +146,8 @@ class ProtocolController extends Controller
                     $em->persist($protocol_history);
                     $em->flush();
 
+                    $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
+                    return $this->redirectToRoute('protocol_initial_committee_screening', array('protocol_id' => $protocol->getId()), 301);
                 }
 
                 if($post_data['send-to'] == "ethical-revision") {
@@ -169,6 +171,82 @@ class ProtocolController extends Controller
                 $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
                 return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
             }
+        }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/protocol/{protocol_id}/initial-committee-screening", name="protocol_initial_committee_screening")
+     * @Template()
+     */
+    public function initCommitteeScreeningAction($protocol_id)
+    {
+        
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        
+        // getting the current submission
+        $protocol = $protocol_repository->find($protocol_id);
+        $submission = $protocol->getMainSubmission();
+        $output['protocol'] = $protocol;
+
+        if (!$protocol or $protocol->getStatus() != "I") {
+            throw $this->createNotFoundException($translator->trans('No protocol found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            // setting the Committee Screening
+            $protocol->setCommitteeScreening($post_data['committee-screening']);
+            
+            if($post_data['send-to'] == "ethical-revision") {
+
+                // setting the Rejected status
+                $protocol->setStatus("E");
+                    
+                // setting protocool history
+                $protocol_history = new ProtocolHistory();
+                $protocol_history->setProtocol($protocol);
+                $protocol_history->setMessage($translator->trans("Protocol was accepted."));
+                $em->persist($protocol_history);
+                $em->flush();
+
+                $em->persist($protocol);
+                $em->flush();
+                
+                $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
+                return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
+            }
+
+            if($post_data['send-to'] == "excempt") {
+
+                // setting the Rejected status
+                $protocol->setStatus("F");
+                    
+                // setting protocool history
+                $protocol_history = new ProtocolHistory();
+                $protocol_history->setProtocol($protocol);
+                $protocol_history->setMessage($translator->trans("Protocol was setted as excempt."));
+                $em->persist($protocol_history);
+                $em->flush();
+
+                $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
+                return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
+            }
+            
         }
 
         return $output;

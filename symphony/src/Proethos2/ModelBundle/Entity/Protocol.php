@@ -78,6 +78,13 @@ class Protocol extends Base
      */
     private $reject_reason;
 
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $committee_screening;
+
     /** 
      * @ORM\Column(name="date_informed", type="datetime", nullable=true) 
      */ 
@@ -372,5 +379,29 @@ class Protocol extends Base
     public function getCode()
     {
         return $this->code;
+    }
+
+    /**
+     * Set committeeScreening
+     *
+     * @param string $committeeScreening
+     *
+     * @return Protocol
+     */
+    public function setCommitteeScreening($committeeScreening)
+    {
+        $this->committee_screening = $committeeScreening;
+
+        return $this;
+    }
+
+    /**
+     * Get committeeScreening
+     *
+     * @return string
+     */
+    public function getCommitteeScreening()
+    {
+        return $this->committee_screening;
     }
 }

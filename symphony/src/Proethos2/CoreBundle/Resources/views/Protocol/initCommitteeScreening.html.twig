@@ -1,0 +1,67 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}Actions Protocol{% endtrans %}{% endblock %}
+
+{% block content %}
+    
+    <div class="container-fluid main-content see-submission">
+
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">{% trans %}Initial committee screening{% endtrans %}</h1>
+            </div>
+        </div>
+        
+        {% include 'Proethos2CoreBundle:Protocol:meta.html.twig' %}
+
+        <!-- action -->
+        <form method="POST" id='form-action'>
+            <input type="hidden" id="input-send-to" name="send-to" value="">
+            
+            <div class='block action'>
+                <a name='action'></a>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <h2 class='sub-header'>{% trans %}Initial committee screening{% endtrans %}:</h2>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group" id='group-reject-submission'>
+                            <label for="textarea-committee-screening">{% trans %}Committee Screening{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <textarea class="form-control" id="textarea-committee-screening" name='committee-screening'></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='submission-button-controls col-md-12'>
+                    <button type="submit" class='btn btn-success' id='button-excempt-protocol'>{% trans %}Set protocol as excempt{% endtrans %}</button>
+                    <button type="submit" class='btn btn-primary' id='button-ethical-revision'>{% trans %}Send to Ethical Revisision{% endtrans %}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+            $("body").on("click", "#button-excempt-protocol", function(e){
+                $("#input-send-to").val('excempt');
+                $("#form-action").submit();
+            });
+            
+            $("body").on("click", "#button-ethical-revision", function(e){
+                $("#input-send-to").val('ethical-revision');
+                $("#form-action").submit();
+            });
+            
+        });
+    </script>
+{% endblock %}
