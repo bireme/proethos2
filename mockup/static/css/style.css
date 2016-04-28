@@ -99,3 +99,10 @@ h5 {
     padding-bottom: 5px;*/
     margin-bottom: 15px;
 }
+.required label {
+    font-weight: bold;
+    color: #ff0000;
+}
+.required label:after {
+    /*content:"*";*/
+}
