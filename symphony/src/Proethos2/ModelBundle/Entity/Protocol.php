@@ -197,6 +197,19 @@ class Protocol extends Base
         return $this->status;
     }
 
+    public function getStatusLabel()
+    {
+        switch ($this->status) {
+            case 'D': return "Draft"; break;
+            case 'S': return "Submitted"; break;
+            case 'R': return "Rejected"; break;
+            case 'I': return "Waiting Initial Avaliation"; break;
+            case 'E': return "Waiting Committee"; break;
+            
+        }
+        return $this->status;
+    }
+
     /**
      * Set mainSubmission
      *

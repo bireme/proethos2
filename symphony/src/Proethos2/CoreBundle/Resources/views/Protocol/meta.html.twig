@@ -1,30 +1,31 @@
-<div class='row'>
-    <div class='col-md-12'>
-        <ul class="nav nav-tabs" id='tab-comite'>
-            <li {% if app.request.get('_route') == "protocol_analyse_protocol" %}class='active'{% endif %}>
-                <a href="{% if app.request.get('_route') == "protocol_analyse_protocol" %}{{ path('protocol_analyse_protocol', {'protocol_id': protocol.id}) }}{% endif %}#action">
-                    {% trans %}Analyse{% endtrans %}
-                </a>
-            </li>
-            <li>
-                <a href="<?= $link; ?>#action">Avaliação do Comitê</a>
-            </li>
-            <li>
-                <a href="<?= $link; ?>#action">Pesquisa do Comitê</a>
-            </li>
-            <li>
-                <a href="<?= $link; ?>#action">Agendado para Reunião</a>
-            </li>
-            <li>
-                <a href="<?= $link; ?>#action">Análise Finalizada</a>
-            </li>
-            <li>
-                <a href="<?= $link; ?>#action">Pesquisa em andamento</a>
-            </li>
-            
-        </ul>
+{% if app.request.get("_route") != "protocol_see_protocol" %}
+    <div class='row'>
+        <div class='col-md-12'>
+            <ul class="nav nav-tabs" id='tab-comite'>
+                <li {% if app.request.get('_route') == "protocol_analyse_protocol" %}class='active'{% endif %}>
+                    <a href="#action">{% trans %}Analyse{% endtrans %}</a>
+                </li>
+                <li>
+                    <a href="#">Avaliação do Comitê</a>
+                </li>
+                <li>
+                    <a href="#">Pesquisa do Comitê</a>
+                </li>
+                <li>
+                    <a href="#">Agendado para Reunião</a>
+                </li>
+                <li>
+                    <a href="#">Análise Finalizada</a>
+                </li>
+                <li>
+                    <a href="#">Pesquisa em andamento</a>
+                </li>
+                
+            </ul>
+        </div>
     </div>
-</div>
+{% endif %}
+
 
 <div class='block meta'>
     
@@ -40,22 +41,22 @@
     <div class='row'>
         <div class='col-md-2'>
             <div class='label'>{% trans %}Idetification{% endtrans %}</div>
-            <h3>-</h3>
+            <h3>{{ '%06d'|format(protocol.id) }}</h3>
         </div>
         
         <div class='col-md-2'>
             <div class='label'>{% trans %}Protocol{% endtrans %}</div>
-            <h3>{{ protocol.id }}</h3>
+            <h3>{{ protocol.code }}</h3>
         </div>
         
         <div class='col-md-4'>
             <div class='label'>{% trans %}Protocol Type{% endtrans %}</div>
-            <h3>-</h3>
+            <h3>{% if protocol.mainSubmission.isClinicalTrial %}Clinical Trial{% else %}Protocol{% endif %}</h3>
         </div>
 
         <div class='col-md-4'>
             <div class='label'>{% trans %}Status{% endtrans %}</div>
-            <h3>{{ protocol.status }}</h3>
+            <h3>{{ protocol.statusLabel }}</h3>
         </div>
         
     </div>
