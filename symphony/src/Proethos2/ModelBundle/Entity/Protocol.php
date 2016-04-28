@@ -23,6 +23,12 @@ class Protocol extends Base
      */
     private $id;
 
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     * @Assert\NotBlank 
+     */
+    private $code;
+
     /** 
      * @var User
      * 
@@ -65,10 +71,17 @@ class Protocol extends Base
      */ 
     private $main_submission;
 
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $reject_reason;
+
     /** 
      * @ORM\Column(name="date_informed", type="datetime", nullable=true) 
      */ 
-    private $date_informed; 
+    private $date_informed;
 
     /** 
      * Constructor 
@@ -128,8 +141,12 @@ class Protocol extends Base
      * @return string 
      */ 
     public function __toString() 
-    { 
-        return $this->getId(); 
+    {   
+        if($this->getCode()) {
+
+            return (string) $this->getCode(); 
+        }
+        return (string) $this->getId();
     }
 
     /**
@@ -294,5 +311,53 @@ class Protocol extends Base
     public function getComment()
     {
         return $this->comment;
+    }
+
+    /**
+     * Set rejectReason
+     *
+     * @param string $rejectReason
+     *
+     * @return Protocol
+     */
+    public function setRejectReason($rejectReason)
+    {
+        $this->reject_reason = $rejectReason;
+
+        return $this;
+    }
+
+    /**
+     * Get rejectReason
+     *
+     * @return string
+     */
+    public function getRejectReason()
+    {
+        return $this->reject_reason;
+    }
+
+    /**
+     * Set code
+     *
+     * @param string $code
+     *
+     * @return Protocol
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 }

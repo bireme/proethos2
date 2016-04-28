@@ -97,7 +97,7 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission or $submission->getProtocol()->getStatus() != "D") {
+        if (!$submission or $submission->getIsSended()) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
@@ -196,7 +196,7 @@ class NewSubmissionController extends Controller
         $recruitment_statuses = $recruitment_status_repository->findAll();
         $output['recruitment_statuses'] = $recruitment_statuses;
 
-        if (!$submission or $submission->getProtocol()->getStatus() != "D") {
+        if (!$submission or $submission->getIsSended()) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
@@ -316,7 +316,7 @@ class NewSubmissionController extends Controller
         $clinical_trial_names = $clinical_trial_name_repository->findAll();
         $output['clinical_trial_names'] = $clinical_trial_names;
 
-        if (!$submission or $submission->getProtocol()->getStatus() != "D") {
+        if (!$submission or $submission->getIsSended()) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
@@ -482,7 +482,7 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission or $submission->getProtocol()->getStatus() != "D") {
+        if (!$submission or $submission->getIsSended()) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
@@ -546,7 +546,7 @@ class NewSubmissionController extends Controller
         $upload_types = $upload_type_repository->findAll();
         $output['upload_types'] = $upload_types;
 
-        if (!$submission or $submission->getProtocol()->getStatus() != "D") {
+        if (!$submission or $submission->getIsSended()) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
@@ -625,7 +625,7 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission or $submission->getProtocol()->getStatus() != "D") {
+        if (!$submission or $submission->getIsSended()) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
@@ -808,14 +808,14 @@ class NewSubmissionController extends Controller
                     $em->persist($protocol);
                     $em->flush();
 
+                    $submission->setIsSended(true);
+                    $em->persist($submission);
+                    $em->flush();
+
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
 
-                    $protocol_history->setMessage($translator->trans("First submission of protocol."));
-                    if(count($protocol->getSubmission()) > 1) {
-                        $protocol_history->setMessage($translator->trans(count($protocol->getSubmission()) . " update in protocol."));
-                    }
-
+                    $protocol_history->setMessage($translator->trans("Submission of protocol."));
                     $em->persist($protocol_history);
                     $em->flush();
 
@@ -852,7 +852,7 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission or $submission->getProtocol()->getStatus() != "D") {
+        if (!$submission or $submission->getIsSended()) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 

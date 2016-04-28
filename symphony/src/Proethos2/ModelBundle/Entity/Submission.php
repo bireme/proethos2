@@ -73,6 +73,14 @@ class Submission extends Base
     private $is_clinical_trial;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_sended", type="boolean")
+     * @Assert\NotBlank 
+     */
+    private $is_sended = false;
+
+    /**
      * @var Team
      * @ORM\ManyToMany(targetEntity="User", inversedBy="users")
      * @ORM\JoinTable(name="submission_user")
@@ -173,7 +181,7 @@ class Submission extends Base
     
     /**
      * @var SubmissionCountry
-     * @ORM\OneToMany(targetEntity="SubmissionCountry", mappedBy="submission")
+     * @ORM\OneToMany(targetEntity="SubmissionCountry", mappedBy="submission", cascade={"persist"})
      * @ORM\JoinTable(name="submission_country")
      */
     private $country;
@@ -236,14 +244,14 @@ class Submission extends Base
     
     /**
      * @var SubmissionCost
-     * @ORM\OneToMany(targetEntity="SubmissionCost", mappedBy="submission")
+     * @ORM\OneToMany(targetEntity="SubmissionCost", mappedBy="submission", cascade={"persist"})
      * @ORM\JoinTable(name="submission_cost")
      */
     private $budget;
 
     /**
      * @var SubmissionClinicalTrial
-     * @ORM\OneToMany(targetEntity="SubmissionClinicalTrial", mappedBy="submission")
+     * @ORM\OneToMany(targetEntity="SubmissionClinicalTrial", mappedBy="submission", cascade={"persist"})
      * @ORM\JoinTable(name="submission_clinical_trial")
      */
     private $clinical_trial;
@@ -278,7 +286,7 @@ class Submission extends Base
     
     /**
      * @var SubmissionTask
-     * @ORM\OneToMany(targetEntity="SubmissionTask", mappedBy="submission")
+     * @ORM\OneToMany(targetEntity="SubmissionTask", mappedBy="submission", cascade={"persist"})
      * @ORM\JoinTable(name="submission_task")
      */
     private $schedule;
@@ -306,7 +314,7 @@ class Submission extends Base
 
     /**
      * @var SubmissionUpload
-     * @ORM\OneToMany(targetEntity="SubmissionUpload", mappedBy="submission")
+     * @ORM\OneToMany(targetEntity="SubmissionUpload", mappedBy="submission", cascade={"persist"})
      * @ORM\JoinTable(name="submission_upload")
      */
     private $attachments;
@@ -321,6 +329,26 @@ class Submission extends Base
 
         // call Grandpa's constructor
         parent::__construct();
+    }
+
+
+    public function __clone() {
+        
+        $this->setCreated(new \Datetime());
+        $this->setUpdated(new \Datetime());
+        $this->setIsSended(false);
+
+        foreach(array('country', 'budget', 'clinical_trial', 'schedule', 'attachments') as $attribute) {
+            
+            $mClone = new ArrayCollection();
+            foreach ($this->$attribute as $item) {
+                $itemClone = clone $item;
+                $itemClone->setSubmission($this);
+                $mClone->add($itemClone);
+            }
+            
+            $this->$attribute = $mClone;
+        }
     }
 
     /**
@@ -1351,5 +1379,29 @@ class Submission extends Base
     public function getClinicalTrialSecondary()
     {
         return $this->clinical_trial_secondary;
+    }
+
+    /**
+     * Set isSended
+     *
+     * @param boolean $isSended
+     *
+     * @return Submission
+     */
+    public function setIsSended($isSended)
+    {
+        $this->is_sended = $isSended;
+
+        return $this;
+    }
+
+    /**
+     * Get isSended
+     *
+     * @return boolean
+     */
+    public function getIsSended()
+    {
+        return $this->is_sended;
     }
 }

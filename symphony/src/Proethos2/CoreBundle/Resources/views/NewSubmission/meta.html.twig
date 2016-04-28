@@ -1,3 +1,14 @@
+{% if submission.protocol.status == "R" %}
+    <div class='row'>
+        <div class='col-md-12'>
+            <div class='alert alert-warning'>
+                <h4>{% trans %}Reason that this protocol was rejected{% endtrans %}</h4>
+                {{ submission.protocol.rejectReason }}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
 <div class='row'>
     <div class='col-md-12'>
         <ul class="nav nav-tabs" id='new-submission-tab'>

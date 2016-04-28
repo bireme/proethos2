@@ -79,5 +79,5 @@ knp_snappy:
         options:    []
 
 parameters:
-    comitee.name:   "Pan American Health Organization"
-    comitee.prefix: "PAHO"
+    committee.name:   "Pan American Health Organization"
+    committee.prefix: "PAHO"
