@@ -5,8 +5,8 @@
                 <li {% if app.request.get('_route') == "protocol_analyse_protocol" %}class='active'{% endif %}>
                     <a href="#action">{% trans %}Analyse{% endtrans %}</a>
                 </li>
-                <li>
-                    <a href="#">Avaliação do Comitê</a>
+                <li {% if app.request.get('_route') == "protocol_initial_committee_screening" %}class='active'{% endif %}>
+                    <a href="#">{% trans %}Initial committee screening{% endtrans %}</a>
                 </li>
                 <li>
                     <a href="#">Pesquisa do Comitê</a>
