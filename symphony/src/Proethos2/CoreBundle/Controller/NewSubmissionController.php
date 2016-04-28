@@ -104,8 +104,10 @@ class NewSubmissionController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+
             // getting post data
             $post_data = $request->request->all();
+
 
             // checking required files
             $required_fields = array('abstract', 'keywords', 'introduction', 'justify', 'goals');
@@ -129,6 +131,18 @@ class NewSubmissionController extends Controller
                 }
             }
 
+            // new owner
+            if(isset($post_data['team-new-owner'])) {
+                $new_owner = $user_repository->find($team_user);
+                if($new_owner) {
+                    $old_owner = $submission->getOwner();
+                    $submission->setOwner($new_owner);
+
+                    $submission->removeTeam($new_owner);
+                    $submission->addTeam($old_owner);
+                }
+            }
+
             // adding fields to model
             $submission->setAbstract($post_data['abstract']);
             $submission->setKeywords($post_data['keywords']);
@@ -139,6 +153,11 @@ class NewSubmissionController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
             $em->flush();
+            
+            // if is a post to set a new owner, returns to the same page
+            if(isset($post_data['team-new-owner'])) {
+                return $this->redirectToRoute('submission_new_second_step', array('submission_id' => $submission->getId()), 301);
+            }
 
             $session->getFlashBag()->add('success', $translator->trans("Second step saved with sucess."));
             return $this->redirectToRoute('submission_new_third_step', array('submission_id' => $submission->getId()), 301);

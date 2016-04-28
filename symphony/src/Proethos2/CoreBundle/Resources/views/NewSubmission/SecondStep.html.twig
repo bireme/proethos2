@@ -13,7 +13,7 @@
         {% include 'Proethos2CoreBundle:NewSubmission:meta.html.twig' %}
 
         <div class='new-submission-tab-content'>
-            <form class='form' method='POST' action='{{ path("submission_new_second_step", {submission_id: submission.id}) }}'>
+            <form class='form' method='POST' id='form-second' action='{{ path("submission_new_second_step", {submission_id: submission.id}) }}'>
 
                 <input type='hidden' name='submission_id' value='{{ submission.id }}'>
                 
@@ -47,7 +47,7 @@
                                         <td>-</td> 
                                     </tr>
                                     {% for team_user in submission.team %}
-                                        <tr>
+                                        <tr data-id="{{ team_user.id }}">
                                             <td>
                                                 <input type='hidden' name='team_user[]' value='{{ team_user.id }}'>
                                                 {{ team_user.name }}
@@ -55,7 +55,14 @@
                                             <td><a href='{{ team_user.email }}'>{{ team_user.email }}</a></td> 
                                             <td>{{ team_user.country }}</td> 
                                             <td><label class='label label-default'>{% trans %}No{% endtrans %}</label></td> 
-                                            <td><a href='#' class='btn btn-default btn-xs button-remove-team'><i class='glyphicon glyphicon-trash'></i></a></td> 
+                                            <td>
+                                                <a href='#' class='btn btn-default btn-xs button-make-owner' data-toggle="tooltip" data-placement="top" title="{% trans %}Make this investigator owner of this sumibssion.{% endtrans %}">
+                                                    <i class='glyphicon glyphicon-star'></i>
+                                                </a>
+                                                <a href='#' class='btn btn-default btn-xs button-remove-team' data-toggle="tooltip" data-placement="top" title="{% trans %}Remove this investigator.{% endtrans %}">
+                                                    <i class='glyphicon glyphicon-trash'></i>
+                                                </a>
+                                            </td> 
                                         </tr>
                                     {% endfor %}
                                 </tbody>
@@ -179,7 +186,6 @@
         $(function(){
 
             $team = {};
-
             $("#form-team input[name='team-email']").keyup(function() {
 
                 email = $(this).val();
@@ -223,8 +229,23 @@
                 e.preventDefault();
 
                 parent = $(this).parents('tr');
-                console.log(parent);
                 parent.remove();
+            });
+        });
+    
+        // making investigator owner
+        $(function(){
+            $("#table-team").on("click", ".button-make-owner", function(e){
+                e.preventDefault();
+
+                parent = $(this).parents('tr');
+                id = parent.data('id');
+
+                form = $("#form-second");
+                input = "<input type='hidden' name='team-new-owner' value='"+ id +"'>";
+                form.prepend(input);
+                
+                form.submit();
             });
         });
     </script>
