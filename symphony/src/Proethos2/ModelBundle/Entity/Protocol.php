@@ -98,6 +98,11 @@ class Protocol extends Base
     private $date_informed;
 
     /** 
+     * @ORM\Column(name="updated_in", type="datetime", nullable=true) 
+     */ 
+    private $updated_in;
+
+    /** 
      * @var ProtocolRevision
      *
      * @ORM\OneToMany(targetEntity="ProtocolRevision", mappedBy="protocol", cascade={"remove"}) 
@@ -475,5 +480,29 @@ class Protocol extends Base
     public function getRevision()
     {
         return $this->revision;
+    }
+
+    /**
+     * Set updatedIn
+     *
+     * @param \DateTime $updatedIn
+     *
+     * @return Protocol
+     */
+    public function setUpdatedIn($updatedIn)
+    {
+        $this->updated_in = $updatedIn;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedIn
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedIn()
+    {
+        return $this->updated_in;
     }
 }
