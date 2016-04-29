@@ -345,6 +345,8 @@ class NewSubmissionController extends Controller
 
             if(isset($post_data['clinical-trial'])) {
 
+                $submission->setClinicalTrialSecondary($post_data['clinical-trial-second']);
+
                 foreach($post_data['clinical-trial'] as $key => $trial_data) {
 
                     $trial_name = $clinical_trial_name_repository->find($trial_data['name-id']);
@@ -412,7 +414,6 @@ class NewSubmissionController extends Controller
                 }
             }
 
-            $submission->setClinicalTrialSecondary($post_data['clinical-trial-second']);
             $submission->setFundingSource($post_data['funding-source']);
             $submission->setPrimarySponsor($post_data['primary-sponsor']);
             $submission->setSecondarySponsor($post_data['secondary-sponsor']);
@@ -802,6 +803,31 @@ class NewSubmissionController extends Controller
 
                 if($post_data['accept-terms'] == 'on') {
 
+                    // gerando um novo pdf
+                    $html = $this->renderView(
+                        'Proethos2CoreBundle:NewSubmission:showPdf.html.twig',
+                        $output
+                    );
+
+                    $pdf = $this->get('knp_snappy.pdf');
+
+                    // setting margins
+                    $pdf->getInternalGenerator()->setOption('margin-top', '50px');
+                    $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
+                    $pdf->getInternalGenerator()->setOption('margin-left', '20px');
+                    $pdf->getInternalGenerator()->setOption('margin-right', '20px');
+                    
+                    // adding pdf to tmp file
+                    $filepath = "/tmp/" . date("Y-m-d") . "-submission.pdf";
+                    file_put_contents($filepath, $pdf->getOutputFromHtml($html));
+
+                    // send tmp file to upload class and save
+                    $pdfFile = new SubmissionUpload();
+                    $pdfFile->setSubmission($submission);
+                    $pdfFile->setSimpleFile($filepath);
+                    $em->persist($pdfFile);
+                    $em->flush();
+
                     $protocol = $submission->getProtocol();
                     $protocol->setStatus("S");
                     $protocol->setDateInformed(new \DateTime());
@@ -869,8 +895,6 @@ class NewSubmissionController extends Controller
         $pdf->getInternalGenerator()->setOption('margin-left', '20px');
         $pdf->getInternalGenerator()->setOption('margin-right', '20px');
 
-        // print '<pre>';
-        // var_dump($pdf);
         return new Response(
             $pdf->getOutputFromHtml($html),
             200,

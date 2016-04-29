@@ -48,31 +48,6 @@ class SubmissionUpload extends Base
      */
     private $filepath;
 
-    public function setFile($file) {
-        
-        $slugify = new Slugify();
-        // echo $slugify->slugify('Hello World!'); // hello-world
-
-        $upload_directory = __DIR__.'/../../../../uploads';
-        $submission_upload_directory = $upload_directory . "/" . str_pad($this->getSubmission()->getId(), 5, '0', STR_PAD_LEFT);
-
-        if(!is_dir($submission_upload_directory)) {
-            mkdir($submission_upload_directory);
-        }
-
-        $filename_without_extension = str_replace("." . $file->getClientOriginalExtension(), "", $file->getClientOriginalName());
-        $filename = $slugify->slugify($filename_without_extension) . "." . $file->getClientOriginalExtension();
-        $filepath = $submission_upload_directory . "/" . $filename;
-        $file = $file->move($submission_upload_directory, $filename);
-
-        $this->setFilename($filename);
-        $this->setFilepath($filepath);
-
-        return $this;
-    }
-
-    
-
     /**
      * Get id
      *
@@ -177,5 +152,49 @@ class SubmissionUpload extends Base
     public function getUploadType()
     {
         return $this->upload_type;
+    }
+
+    public function getSubmissionDirectory() {
+        
+        $upload_directory = __DIR__.'/../../../../uploads';
+        $submission_upload_directory = $upload_directory . "/" . str_pad($this->getSubmission()->getId(), 5, '0', STR_PAD_LEFT);        
+        
+        if(!is_dir($submission_upload_directory)) {
+            mkdir($submission_upload_directory);
+        }
+
+        return $submission_upload_directory;
+    }
+    
+    public function setFile($file) {
+        
+        $slugify = new Slugify();
+        $submission_upload_directory = $this->getSubmissionDirectory();
+
+        $filename_without_extension = str_replace("." . $file->getClientOriginalExtension(), "", $file->getClientOriginalName());
+        $filename = $slugify->slugify($filename_without_extension) . "." . $file->getClientOriginalExtension();
+        $filepath = $submission_upload_directory . "/" . $filename;
+        $file = $file->move($submission_upload_directory, $filename);
+
+        $this->setFilename($filename);
+        $this->setFilepath($filepath);
+
+        return $this;
+    }
+
+    public function setSimpleFile($filepath) {
+
+        $slugify = new Slugify();
+        $submission_upload_directory = $this->getSubmissionDirectory();
+
+        $pathinfo = pathinfo($filepath);
+        $new_filepath = $submission_upload_directory . "/" . $pathinfo['basename'];
+        $file = copy($filepath, $new_filepath);
+
+        $this->setFilename($pathinfo['basename']);
+        $this->setFilepath($new_filepath);
+
+        return $this;
+
     }
 }
