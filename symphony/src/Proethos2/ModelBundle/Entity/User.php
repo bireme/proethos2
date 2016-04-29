@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * User
@@ -22,6 +23,12 @@ class User extends Base implements UserInterface, \Serializable
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
+     * @ORM\JoinTable(name="user_role")
+     */
+    private $proethos2_roles;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -70,6 +77,7 @@ class User extends Base implements UserInterface, \Serializable
 
     public function __construct()
     {
+        $this->proethos2_roles = new ArrayCollection();
         $this->isActive = true;
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid(null, true));
@@ -281,5 +289,39 @@ class User extends Base implements UserInterface, \Serializable
     public function getInstitution()
     {
         return $this->institution;
+    }
+
+    /**
+     * Add proethos2Role
+     *
+     * @param \Proethos2\ModelBundle\Entity\Role $proethos2Role
+     *
+     * @return User
+     */
+    public function addProethos2Role(\Proethos2\ModelBundle\Entity\Role $proethos2Role)
+    {
+        $this->proethos2_roles[] = $proethos2Role;
+
+        return $this;
+    }
+
+    /**
+     * Remove proethos2Role
+     *
+     * @param \Proethos2\ModelBundle\Entity\Role $proethos2Role
+     */
+    public function removeProethos2Role(\Proethos2\ModelBundle\Entity\Role $proethos2Role)
+    {
+        $this->proethos2_roles->removeElement($proethos2Role);
+    }
+
+    /**
+     * Get proethos2Roles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProethos2Roles()
+    {
+        return $this->proethos2_roles;
     }
 }

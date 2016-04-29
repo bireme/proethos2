@@ -1,0 +1,213 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}Actions Protocol{% endtrans %}{% endblock %}
+
+{% block content %}
+    
+    <div class="container-fluid main-content see-submission">
+
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">{% trans %}Initial committee review{% endtrans %}</h1>
+            </div>
+        </div>
+        
+        {% include 'Proethos2CoreBundle:Protocol:meta.html.twig' %}
+
+        <!-- action -->
+        <form method="POST" id='form-action'>
+            <input type="hidden" id="input-send-to" name="send-to" value="">
+            
+            <div class='block action'>
+                <a name='action'></a>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <h2 class='sub-header'>{% trans %}Choose relators{% endtrans %}:</h2>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group" id='niec-manual'>
+                            <label for="input-opinion-required">{% trans %}Opinions Required{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='number' class="form-control" id='input-opinion-required' name="opinion-required" min="0" value="{{ protocol.opinionRequired }}" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class="col-md-12">
+                    <h2 class='sub-header'>{% trans %}Relators{% endtrans %}:</h2>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class="col-md-12">
+                    <table class='table table-hover table-condensed'>
+                        
+                        <thead>
+                            <tr>
+                                <th width="30%">{% trans %}Name{% endtrans %}</th>
+                                <th>{% trans %}Institution{% endtrans %}</th>
+                                <th>{% trans %}E-mail{% endtrans %}</th>
+                                <th>{% trans %}Country{% endtrans %}</th>
+                                <th>{% trans %}Recruitment Date{% endtrans %}</th>
+                                <th>{% trans %}Status{% endtrans %}</th>
+                                <th>{% trans %}Actions{% endtrans %}</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            {% for revision in protocol.revision %}
+                                <tr>
+                                    <td>{{ revision.member.name }}</td> 
+                                    <td>{{ revision.member.institution }}</td> 
+                                    <td><a href='{{ revision.member.email }}'>{{ revision.member.email }}</a></td> 
+                                    <td>{{ revision.member.country }}</td> 
+                                    <td>{{ revision.created|date("d/m/Y") }}</td> 
+                                    <td>
+                                        {% if revision.answered %}
+                                            <span class='label label-default'>{% trans %}Assigned{% endtrans %}</span>
+                                        {% else %}
+                                            <span class='label label-success'>{% trans %}Disponible{% endtrans %}</span>
+                                        {% endif %}
+                                    </td> 
+                                    <td>
+                                        <a href='#' data-toggle='modal' data-target='#modal-parecer-relator' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
+                                        <a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a>
+                                    </td> 
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-select-members-of-commitee">{% trans %}Select Members Of Committee{% endtrans %}</a>
+                    <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-select-members-ad-hoc">{% trans %}Select Members Ad-Hoc{% endtrans %}</a>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='submission-button-controls col-md-12'>
+                    <button type="submit" class='btn btn-primary' id='button-'>{% trans %}Save and wait revisions{% endtrans %}</button>
+                    <button type="submit" class='btn btn-primary' id='button-' disabled>{% trans %}Save and send to meeting{% endtrans %}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal Select Relator -->
+    <div class="modal fade" id="modal-select-members-of-commitee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <form class='form' method="POST">
+                <input type="hidden" name="type-of-members" value="members-of-committee">
+                
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}Select Members Of Committee{% endtrans %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class='table table-hover table-condensed'>
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    <th width="30%">{% trans %}Name{% endtrans %}</th>
+                                    <th>{% trans %}Institution{% endtrans %}</th>
+                                    <th>{% trans %}E-mail{% endtrans %}</th>
+                                    <th>{% trans %}Country{% endtrans %}</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                {% for member in users %}
+                                    {% if role_member_of_committee in member.proethos2Roles %}
+                                        <tr>
+                                            <td><input type='checkbox' name="select-members-of-committee[]" value="{{ member.id }}"></td>
+                                            <td>{{ member.name }}</td> 
+                                            <td>{{ member.institution }}</td> 
+                                            <td><a href='{{ member.email }}'>{{ member.email }}</a></td> 
+                                            <td>{{ member.country }}</td> 
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                        <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Select Relator -->
+    <div class="modal fade" id="modal-select-members-ad-hoc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <form class='form' method="POST">
+                <input type="hidden" name="type-of-members" value="members-ad-hoc">
+                
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}Select Members Ad-Hoc{% endtrans %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class='table table-hover table-condensed'>
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    <th width="30%">{% trans %}Name{% endtrans %}</th>
+                                    <th>{% trans %}Institution{% endtrans %}</th>
+                                    <th>{% trans %}E-mail{% endtrans %}</th>
+                                    <th>{% trans %}Country{% endtrans %}</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                {% for member in users %}
+                                    {% if role_member_of_committee in member.proethos2Roles %}
+                                        <tr>
+                                            <td><input type='checkbox' name="select-members-of-committee[]" value="{{ member.id }}"></td>
+                                            <td>{{ member.name }}</td> 
+                                            <td>{{ member.institution }}</td> 
+                                            <td><a href='{{ member.email }}'>{{ member.email }}</a></td> 
+                                            <td>{{ member.country }}</td> 
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                        <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+            // $("body").on("click", "#button-excempt-protocol", function(e){
+            //     $("#input-send-to").val('excempt');
+            //     $("#form-action").submit();
+            // });
+            
+            // $("body").on("click", "#button-ethical-revision", function(e){
+            //     $("#input-send-to").val('ethical-revision');
+            //     $("#form-action").submit();
+            // });
+            
+        });
+    </script>
+{% endblock %}

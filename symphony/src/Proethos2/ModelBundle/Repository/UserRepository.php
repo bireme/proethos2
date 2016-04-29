@@ -9,13 +9,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
-    private function getQueryBuilder()
-    {
-        $em = $this->getEntityManager();
-     
-        $queryBuilder = $em->getRepository('Proethos2ModelBundle:User')
-        ->createQueryBuilder('p');
-     
-        return $queryBuilder;
-    }
+    // public function getPosts($id) {
+        
+    //     $em = $this->getEntityManager()->getConfiguration();
+    //     $qb = $em->getRepository->createQueryBuilder('p');
+    //     $qb->join('p.platform', 'f')
+    //        ->where($qb->expr()->eq('f.id', $id));
+    //     return $qb;
+    // }
 }

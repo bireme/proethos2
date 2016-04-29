@@ -5,9 +5,11 @@ namespace Proethos2\CoreBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Proethos2\ModelBundle\Entity\ProtocolComment;
 use Proethos2\ModelBundle\Entity\ProtocolHistory;
+use Proethos2\ModelBundle\Entity\ProtocolRevision;
 use Proethos2\ModelBundle\Entity\Submission;
 
 class ProtocolController extends Controller
@@ -247,6 +249,89 @@ class ProtocolController extends Controller
                 return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
             }
             
+        }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/protocol/{protocol_id}/initial-committee-review", name="protocol_initial_committee_review")
+     * @Template()
+     */
+    public function initCommitteeReviewAction($protocol_id)
+    {
+        
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
+        $protocol_revision_repository = $em->getRepository('Proethos2ModelBundle:ProtocolRevision');
+        
+        // getting the current submission
+        $protocol = $protocol_repository->find($protocol_id);
+        $submission = $protocol->getMainSubmission();
+        $output['protocol'] = $protocol;
+
+        // gettings relators members
+        $role_member_of_committee = $role_repository->findOneBy(array('slug' => 'member-of-committee'));
+        $role_member_ad_hoc = $role_repository->findOneBy(array('slug' => 'member-ad-hoc'));
+        
+        $output['role_member_of_committee'] = $role_member_of_committee;
+        $output['role_member_ad_hoc'] = $role_member_ad_hoc;
+        
+        $users = $user_repository->findAll();
+        $output['users'] = $users;
+
+        if (!$protocol or $protocol->getStatus() != "E") {
+            throw $this->createNotFoundException($translator->trans('No protocol found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            if(isset($post_data['opinion-required']) and !empty($post_data['opinion-required'])) {
+                
+                $protocol->setOpinionRequired($post_data['opinion-required']);
+
+                $em->persist($protocol);
+                $em->flush();
+            }
+
+            if(isset($post_data['type-of-members'])) {
+
+                foreach(array("select-members-of-committee", "select-members-ad-hoc") as $input_name) {
+                    if(isset($post_data[$input_name])) {
+                        foreach($post_data['select-members-of-committee'] as $member) {
+                            $member = $user_repository->findOneById($member);
+
+                            $revision = $protocol_revision_repository->findOneBy(array('member' => $member, "protocol" => $protocol));
+                            if(!$revision) {
+                                $revision = new ProtocolRevision();
+                                $revision->setMember($member);
+                                $revision->setProtocol($protocol);
+                            }
+
+                            $em->persist($revision);
+                            $em->flush();
+
+                        }
+                    }
+                }
+
+                $session->getFlashBag()->add('success', $translator->trans("Member added with with success!"));
+                return $this->redirectToRoute('protocol_initial_committee_review', array('protocol_id' => $protocol->getId()), 301);
+
+            }
         }
 
         return $output;

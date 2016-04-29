@@ -85,10 +85,24 @@ class Protocol extends Base
      */
     private $committee_screening;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $opinion_required = 0;
+
     /** 
      * @ORM\Column(name="date_informed", type="datetime", nullable=true) 
      */ 
     private $date_informed;
+
+    /** 
+     * @var ProtocolRevision
+     *
+     * @ORM\OneToMany(targetEntity="ProtocolRevision", mappedBy="protocol", cascade={"remove"}) 
+     */ 
+    private $revision;
 
     /** 
      * Constructor 
@@ -403,5 +417,63 @@ class Protocol extends Base
     public function getCommitteeScreening()
     {
         return $this->committee_screening;
+    }
+
+    /**
+     * Set opinionRequired
+     *
+     * @param integer $opinionRequired
+     *
+     * @return Protocol
+     */
+    public function setOpinionRequired($opinionRequired)
+    {
+        $this->opinion_required = $opinionRequired;
+
+        return $this;
+    }
+
+    /**
+     * Get opinionRequired
+     *
+     * @return integer
+     */
+    public function getOpinionRequired()
+    {
+        return $this->opinion_required;
+    }
+
+    /**
+     * Add revision
+     *
+     * @param \Proethos2\ModelBundle\Entity\ProtocolRevision $revision
+     *
+     * @return Protocol
+     */
+    public function addRevision(\Proethos2\ModelBundle\Entity\ProtocolRevision $revision)
+    {
+        $this->revision[] = $revision;
+
+        return $this;
+    }
+
+    /**
+     * Remove revision
+     *
+     * @param \Proethos2\ModelBundle\Entity\ProtocolRevision $revision
+     */
+    public function removeRevision(\Proethos2\ModelBundle\Entity\ProtocolRevision $revision)
+    {
+        $this->revision->removeElement($revision);
+    }
+
+    /**
+     * Get revision
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRevision()
+    {
+        return $this->revision;
     }
 }

@@ -1,4 +1,4 @@
-{% if app.request.get("_route") != "protocol_see_protocol" %}
+{% if app.request.get("_route") != "protocol_show_protocol" %}
     <div class='row'>
         <div class='col-md-12'>
             <ul class="nav nav-tabs" id='tab-comite'>
@@ -8,8 +8,8 @@
                 <li {% if app.request.get('_route') == "protocol_initial_committee_screening" %}class='active'{% endif %}>
                     <a href="#">{% trans %}Initial committee screening{% endtrans %}</a>
                 </li>
-                <li>
-                    <a href="#">Pesquisa do Comitê</a>
+                <li {% if app.request.get('_route') == "protocol_initial_committee_review" %}class='active'{% endif %}>
+                    <a href="#">{% trans %}Initial committee review{% endtrans %}</a>
                 </li>
                 <li>
                     <a href="#">Agendado para Reunião</a>
