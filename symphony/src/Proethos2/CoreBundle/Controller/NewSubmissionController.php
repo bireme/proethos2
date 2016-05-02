@@ -804,37 +804,41 @@ class NewSubmissionController extends Controller
                 if($post_data['accept-terms'] == 'on') {
 
                     // gerando um novo pdf
-                    $html = $this->renderView(
-                        'Proethos2CoreBundle:NewSubmission:showPdf.html.twig',
-                        $output
-                    );
+                    try {
+                        $html = $this->renderView(
+                            'Proethos2CoreBundle:NewSubmission:showPdf.html.twig',
+                            $output
+                        );
 
-                    $pdf = $this->get('knp_snappy.pdf');
+                        $pdf = $this->get('knp_snappy.pdf');
 
-                    // setting margins
-                    $pdf->getInternalGenerator()->setOption('margin-top', '50px');
-                    $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
-                    $pdf->getInternalGenerator()->setOption('margin-left', '20px');
-                    $pdf->getInternalGenerator()->setOption('margin-right', '20px');
-                    
-                    // adding pdf to tmp file
-                    $filepath = "/tmp/" . date("Y-m-d") . "-submission.pdf";
-                    file_put_contents($filepath, $pdf->getOutputFromHtml($html));
+                        // setting margins
+                        $pdf->getInternalGenerator()->setOption('margin-top', '50px');
+                        $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
+                        $pdf->getInternalGenerator()->setOption('margin-left', '20px');
+                        $pdf->getInternalGenerator()->setOption('margin-right', '20px');
+                        
+                        // adding pdf to tmp file
+                        $filepath = "/tmp/" . date("Y-m-d") . "-submission.pdf";
+                        file_put_contents($filepath, $pdf->getOutputFromHtml($html));
 
-                    // send tmp file to upload class and save
-                    $pdfFile = new SubmissionUpload();
-                    $pdfFile->setSubmission($submission);
-                    $pdfFile->setSimpleFile($filepath);
-                    $em->persist($pdfFile);
-                    $em->flush();
+                        // send tmp file to upload class and save
+                        $pdfFile = new SubmissionUpload();
+                        $pdfFile->setSubmission($submission);
+                        $pdfFile->setSimpleFile($filepath);
+                        $em->persist($pdfFile);
+                        $em->flush();
 
-                    // updating protocol and setting status
-                    $protocol = $submission->getProtocol();
-                    $protocol->setStatus("S");
-                    $protocol->setDateInformed(new \DateTime());
-                    $protocol->setUpdatedIn(new \DateTime());
-                    $em->persist($protocol);
-                    $em->flush();
+                        // updating protocol and setting status
+                        $protocol = $submission->getProtocol();
+                        $protocol->setStatus("S");
+                        $protocol->setDateInformed(new \DateTime());
+                        $protocol->setUpdatedIn(new \DateTime());
+                        $em->persist($protocol);
+                        $em->flush();
+                    } catch(Exception $e) {
+                        
+                    }
 
                     $submission->setIsSended(true);
                     $em->persist($submission);
