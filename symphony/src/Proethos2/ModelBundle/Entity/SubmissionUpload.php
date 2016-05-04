@@ -197,4 +197,9 @@ class SubmissionUpload extends Base
         return $this;
 
     }
+
+    public function getUri() {
+
+        return "/uploads/" . str_pad($this->getSubmission()->getId(), 5, '0', STR_PAD_LEFT) . "/" . $this->getFilename();
+    }
 }
