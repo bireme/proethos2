@@ -418,4 +418,28 @@ class ProtocolController extends Controller
 
         return $output;
     }
+
+    /**
+     * @Route("/protocol/{protocol_id}/initial-committee-review/show-review/{protocol_revision_id}", name="protocol_initial_committee_review_show_review")
+     * @Template()
+     */
+    public function showReviewAction($protocol_id, $protocol_revision_id)
+    {
+        
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        $protocol_revision_repository = $em->getRepository('Proethos2ModelBundle:ProtocolRevision');
+        
+        // getting the current submission
+        $protocol_revision = $protocol_revision_repository->find($protocol_revision_id);
+        $output['protocol_revision'] = $protocol_revision;
+
+        return $output;
+    }
 }

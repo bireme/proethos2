@@ -68,15 +68,14 @@
                                     <td>{{ revision.member.country }}</td> 
                                     <td>{{ revision.created|date("d/m/Y") }}</td> 
                                     <td>
-                                        {% if revision.answered %}
-                                            <span class='label label-default'>{% trans %}Assigned{% endtrans %}</span>
-                                        {% else %}
-                                            <span class='label label-success'>{% trans %}Disponible{% endtrans %}</span>
-                                        {% endif %}
+                                        {% if revision.answered and not revision.isFinalRevision %}<span class='label label-primary'>{% trans %}Answered{% endtrans %}</span>{% endif %}
+                                        {% if revision.isFinalRevision %}<span class='label label-success'>{% trans %}Final Revision{% endtrans %}</span>{% endif %}
+                                        {% if not revision.answered %}<span class='label label-default'>{% trans %}Assigned{% endtrans %}</span>{% endif %}
+                                        
                                     </td> 
                                     <td>
-                                        <a href='#' data-toggle='modal' data-target='#modal-parecer-relator' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
-                                        <a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a>
+                                        <a href='{{ path("protocol_initial_committee_review_show_review", {protocol_id: protocol.id, protocol_revision_id: revision.id }) }}' data-toggle='modal' data-target='#modal-parecer-relator' class='btn btn-default btn-xs {% if not revision.decision %}disabled{% endif %}'><i class='glyphicon glyphicon-eye-open'></i></a>
+                                        <a href='#' class='btn btn-default btn-xs disabled'><i class='glyphicon glyphicon-trash'></i></a>
                                     </td> 
                                 </tr>
                             {% endfor %}
@@ -190,6 +189,13 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Modal Visualizar Parecer do Relator -->
+    <div class="modal fade" id="modal-parecer-relator" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content"></div>
         </div>
     </div>
 
