@@ -1,0 +1,137 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}Actions Protocol{% endtrans %}{% endblock %}
+
+{% block content %}
+    
+    <div class="container-fluid main-content see-submission">
+
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">{% trans %}Initial committee review{% endtrans %}</h1>
+            </div>
+        </div>
+        
+        {% include 'Proethos2CoreBundle:Protocol:meta.html.twig' %}
+
+        <!-- action -->
+        <form method="POST" id='form-action'>
+            <input type="hidden" id="input-is-final-revision" name="is-final-revision" value="false">
+
+            <div class='block action'>
+                <a name='action'></a>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <h2 class='sub-header'>{% trans %}Relator Review{% endtrans %}:</h2>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group required">
+                            <label for="input-decision">{% trans %}Decision{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='text' class="form-control" id='input-decision' name="decision" value="{{ protocol_revision.decision }}" required>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="textarea-social-value">{% trans %}Social Value{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <textarea class="form-control" id='textarea-social-value' name="social-value">{{ protocol_revision.socialValue }}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="textarea-scientific-validity">{% trans %}Scientific Validity{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <textarea class="form-control" id='textarea-scientific-validity' name="scientific-validity">{{ protocol_revision.scientificValidity }}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="textarea-fair-participant-selection">{% trans %}Fair participant selection{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <textarea class="form-control" id='textarea-fair-participant-selection' name="fair-participant-selection">{{ protocol_revision.fairParticipantSelection }}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="textarea-favorable-balance">{% trans %}Favorable balance of benefits and risks{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <textarea class="form-control" id='textarea-favorable-balance' name="favorable-balance">{{ protocol_revision.favorableBalance }}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="textarea-informed-consent">{% trans %}Informed Consent{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <textarea class="form-control" id='textarea-informed-consent' name="informed-consent">{{ protocol_revision.informedConsent }}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="textarea-respect-for-participants">{% trans %}Respect for participants{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <textarea class="form-control" id='textarea-respect-for-participants' name="respect-for-participants">{{ protocol_revision.respectForParticipants }}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="textarea-other-comments">{% trans %}Other Comments{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <textarea class="form-control" id='textarea-other-comments' name="other-comments">{{ protocol_revision.otherComments }}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group required">
+                            <label for="input-sugestions">{% trans %}Sugestions{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='text' class="form-control" id='input-sugestions' name="sugestions" value="{{ protocol_revision.sugestions }}" required>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class='row'>
+                <div class='submission-button-controls col-md-12'>
+                    <button type="submit" class='btn btn-primary' id='button-save' {% if protocol_revision.isFinalRevision %}disabled{% endif %}>{% trans %}Save{% endtrans %}</button>
+                    <button type="button" class='btn btn-primary' id='button-save-and-finish' {% if not protocol_revision.decision or protocol_revision.isFinalRevision %}disabled{% endif %}>
+                        {% trans %}Save and mark as final revision{% endtrans %}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+            $("body").on("click", "#button-save-and-finish", function(e){
+                $("#input-is-final-revision").val('true');
+                $("#form-action").submit();
+            });
+        });
+    </script>
+{% endblock %}
