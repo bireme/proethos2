@@ -12,7 +12,7 @@ use Proethos2\ModelBundle\Entity\Meeting;
 class CRUDController extends Controller
 {
     /**
-     * @Route("/committee/meeting", name="crud_committee_meeting")
+     * @Route("/committee/meeting", name="crud_committee_meeting_list")
      * @Template()
      */
     public function listMeetingAction()
@@ -57,11 +57,63 @@ class CRUDController extends Controller
                 $em->flush();
 
                 $session->getFlashBag()->add('success', $translator->trans("Meeting created with success."));
-                return $this->redirectToRoute('crud_committee_meeting', array(), 301);
+                return $this->redirectToRoute('crud_committee_meeting_list', array(), 301);
             }
 
         }
 
         return $output;
     }
+
+    /**
+     * @Route("/committee/meeting/{meeting_id}", name="crud_committee_meeting_update")
+     * @Template()
+     */
+    public function updateMeetingAction($meeting_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
+
+        // getting the current meeting
+        $meeting = $meeting_repository->find($meeting_id);
+        $output['meeting'] = $meeting;
+
+        if (!$meeting) {
+            throw $this->createNotFoundException($translator->trans('No meeting found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required files
+            foreach(array('new-meeting-date', 'new-meeting-subject', 'new-meeting-content') as $field) {
+                
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $meeting->setDate(new \DateTime($post_data['new-meeting-date']));
+            $meeting->setSubject($post_data['new-meeting-subject']);
+            $meeting->setContent($post_data['new-meeting-content']);
+
+            $em->persist($meeting);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Meeting updated with success."));
+            return $this->redirectToRoute('crud_committee_meeting_list', array(), 301);
+        }
+
+        return $output;
+    }
+
 }

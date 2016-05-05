@@ -1,0 +1,43 @@
+<form class='form' method="POST" id='form-new-meeting' action="{{ path('crud_committee_meeting_update', {meeting_id: meeting.id} ) }}">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{% trans %}Update Meeting{% endtrans %}</h4>
+    </div>
+    <div class="modal-body">
+        
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <label for="input-new-meeting-date">{% trans %}Date{% endtrans %}:</label> 
+                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <input type='date' class='form-control' id="input-new-meeting-date" name="new-meeting-date" value="{{ meeting.date|date("Y-m-d") }}" required>
+                </div>
+            </div>
+        </div>
+        
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <label for="input-new-meeting-subject">{% trans %}Subject{% endtrans %}:</label> 
+                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <input type='text' class='form-control' id="input-new-meeting-subject" name='new-meeting-subject' value="{{ meeting.subject }}" required>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <label for="textarea-new-meeting-content">{% trans %}Content{% endtrans %}:</label> 
+                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <textarea rows="5" class='form-control' id="textarea-new-meeting-content" name="new-meeting-content" required>{{ meeting.content }}</textarea>
+                </div>
+            </div>
+        </div>                        
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+        <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
+    </div>
+</form>

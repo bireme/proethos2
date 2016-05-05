@@ -54,7 +54,7 @@
                                     <td>{{ meeting.date|date("d/m/Y") }}</td> 
                                     <td>{{ meeting.subject }}</td> 
                                     <td>
-                                        <a href='#' data-toggle='modal' data-target='#modal-new-meeting' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
+                                        <a href='{{ path("crud_committee_meeting_update", {meeting_id: meeting.id} ) }}' data-toggle='modal' data-target='#modal-update-meeting' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
                                         <a href='#' class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a>
                                     </td> 
                                 </tr>
@@ -136,6 +136,14 @@
             </div>
         </div>
     </div>
+    
+    <!-- Modal Update Meeting -->
+    <div class="modal fade" id="modal-update-meeting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
 
 {% endblock %}
 
