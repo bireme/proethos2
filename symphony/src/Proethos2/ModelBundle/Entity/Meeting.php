@@ -119,4 +119,8 @@ class Meeting extends Base
     {
         return $this->content;
     }
+
+    public function __toString() {
+        return $this->getDate() . " - " . $this->getSubject();
+    }
 }

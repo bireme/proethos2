@@ -273,6 +273,7 @@ class ProtocolController extends Controller
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
         $protocol_revision_repository = $em->getRepository('Proethos2ModelBundle:ProtocolRevision');
+        $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
         
         // getting the current submission
         $protocol = $protocol_repository->find($protocol_id);
@@ -286,8 +287,19 @@ class ProtocolController extends Controller
         $output['role_member_of_committee'] = $role_member_of_committee;
         $output['role_member_ad_hoc'] = $role_member_ad_hoc;
         
+        // getting users
         $users = $user_repository->findAll();
         $output['users'] = $users;
+
+        // gettings meetings
+        $meetings = $meeting_repository->findAll();
+        $output['meetings'] = $meetings;
+
+        // getting total of revision with final revision from this protocol
+        $final_revisions = $protocol_revision_repository->findBy(array("protocol" => $protocol, "is_final_revision" => true));
+        $total_final_revisions = count($final_revisions);
+        $output['total_final_revisions'] = $total_final_revisions;
+
 
         if (!$protocol or $protocol->getStatus() != "E") {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
@@ -328,9 +340,28 @@ class ProtocolController extends Controller
                     }
                 }
 
-                $session->getFlashBag()->add('success', $translator->trans("Member added with with success!"));
+                $session->getFlashBag()->add('success', $translator->trans("Members added with success!"));
                 return $this->redirectToRoute('protocol_initial_committee_review', array('protocol_id' => $protocol->getId()), 301);
+            }
+            if(isset($post_data['meeting'])) {
 
+                // checking required fields
+                if(!isset($post_data['meeting']) or empty($post_data['meeting'])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field 'meeting' is required."));
+                    return $output;
+                }
+                
+                $meeting = $meeting_repository->find($post_data['meeting']);
+                $protocol->setMeeting($meeting);
+
+                // setting the Scheduled status
+                $protocol->setStatus("H");
+
+                $em->persist($protocol);
+                $em->flush();
+
+                $session->getFlashBag()->add('success', $translator->trans("Meeting assigned with success!"));
+                return $this->redirectToRoute('protocol_initial_committee_review', array('protocol_id' => $protocol->getId()), 301);
             }
         }
 

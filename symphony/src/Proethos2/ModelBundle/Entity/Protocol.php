@@ -110,6 +110,12 @@ class Protocol extends Base
     private $revision;
 
     /** 
+     * @ORM\ManyToOne(targetEntity="Meeting", inversedBy="protocols") 
+     * @ORM\JoinColumn(name="meeting_id", referencedColumnName="id", nullable=true) 
+     */ 
+    private $meeting;
+
+    /** 
      * Constructor 
      */ 
     public function __construct() 
@@ -504,5 +510,29 @@ class Protocol extends Base
     public function getUpdatedIn()
     {
         return $this->updated_in;
+    }
+
+    /**
+     * Set meeting
+     *
+     * @param \Proethos2\ModelBundle\Entity\Meeting $meeting
+     *
+     * @return Protocol
+     */
+    public function setMeeting(\Proethos2\ModelBundle\Entity\Meeting $meeting = null)
+    {
+        $this->meeting = $meeting;
+
+        return $this;
+    }
+
+    /**
+     * Get meeting
+     *
+     * @return \Proethos2\ModelBundle\Entity\Meeting
+     */
+    public function getMeeting()
+    {
+        return $this->meeting;
     }
 }
