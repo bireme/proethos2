@@ -64,7 +64,7 @@ class CRUDController extends Controller
 
         return $output;
     }
-
+    
     /**
      * @Route("/committee/meeting/{meeting_id}", name="crud_committee_meeting_update")
      * @Template()
@@ -116,4 +116,49 @@ class CRUDController extends Controller
         return $output;
     }
 
+    /**
+     * @Route("/committee/meeting/{meeting_id}/delete", name="crud_committee_meeting_delete")
+     * @Template()
+     */
+    public function deleteMeetingAction($meeting_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
+
+        // getting the current meeting
+        $meeting = $meeting_repository->find($meeting_id);
+        $output['meeting'] = $meeting;
+
+        if (!$meeting) {
+            throw $this->createNotFoundException($translator->trans('No meeting found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required files
+            foreach(array('meeting-delete') as $field) {
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $em->remove($meeting);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Meeting deleted with success."));
+            return $this->redirectToRoute('crud_committee_meeting_list', array(), 301);
+        }
+
+        return $output;
+    }
 }
