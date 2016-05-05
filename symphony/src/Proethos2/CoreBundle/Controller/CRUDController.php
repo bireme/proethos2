@@ -26,8 +26,19 @@ class CRUDController extends Controller
         $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
 
         $meetings = $meeting_repository->findAll();
-        $output['meetings'] = $meetings;
         
+        // serach parameter
+        $search_query = $request->query->get('q');
+        if($search_query) {
+            $meetings = $meeting_repository->createQueryBuilder('m')
+               ->where('m.subject LIKE :query')
+               ->setParameter('query', "%". $search_query ."%")
+               ->getQuery()
+               ->getResult();
+        }
+        
+        $output['meetings'] = $meetings;
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
