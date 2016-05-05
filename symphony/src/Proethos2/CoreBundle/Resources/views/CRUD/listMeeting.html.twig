@@ -1,0 +1,151 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}Mettings{% endtrans %}{% endblock %}
+
+{% block content %}
+    
+    <div class="container-fluid main-content see-submission">
+
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">
+                    {% trans %}Meetings{% endtrans %}
+                    <a href='#' class='btn btn-primary' data-toggle='modal' data-target='#modal-new-meeting'>{% trans %}New Meeting{% endtrans %}</a>
+                </h1>
+            </div>
+        </div>
+        
+        <div class='block'>
+            <form class='form'>
+                <div class='row'>
+                    <div class="col-md-11">
+                        <div class="form-group" id='form-filter'>
+                            <label for="input-filter-q">{% trans %}Search for a meeting subject{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='text' class='form-control' id='input-filter-q' name='q'>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 search-button">
+                        <div class="form-group">
+                            <button class='btn btn-primary'>{% trans %}Search{% endtrans %}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+            
+        <div class='block'>
+            <div class='row'>
+                <div class="col-md-12">
+                    <table class='table table-hover table-condensed'>
+                        
+                        <thead>
+                            <tr>
+                                <th width="10%">{% trans %}Date{% endtrans %}</th>
+                                <th width="85%">{% trans %}Subject{% endtrans %}</th>
+                                <th>{% trans %}Actions{% endtrans %}</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            {% for meeting in meetings %}
+                                <tr>
+                                    <td>{{ meeting.date|date("d/m/Y") }}</td> 
+                                    <td>{{ meeting.subject }}</td> 
+                                    <td>
+                                        <a href='#' data-toggle='modal' data-target='#modal-new-meeting' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
+                                        <a href='#' class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a>
+                                    </td> 
+                                </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- <div class='row'>
+                <div class='col-md-12' id="pagination">
+                    <ul class="pagination">
+                        <li><a href="#">«</a></li>
+                        <li><a href="#">‹</a></li>
+                        
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li class='active'><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        
+                        <li><a href="#">›</a></li>
+                        <li><a href="#">»</a></li>
+                    </ul>
+                </div>
+            </div> -->
+        </div>
+
+    </div>
+
+    <!-- Modal New Meeting -->
+    <div class="modal fade" id="modal-new-meeting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <form class='form' method="POST" id='form-new-meeting'>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}New Meeting{% endtrans %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class='row'>
+                            <div class='col-md-12'>
+                                <div class="form-group">
+                                    <label for="input-new-meeting-date">{% trans %}Date{% endtrans %}:</label> 
+                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <input type='date' class='form-control' id="input-new-meeting-date" name="new-meeting-date" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class='row'>
+                            <div class='col-md-12'>
+                                <div class="form-group">
+                                    <label for="input-new-meeting-subject">{% trans %}Subject{% endtrans %}:</label> 
+                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <input type='text' class='form-control' id="input-new-meeting-subject" name='new-meeting-subject' required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='col-md-12'>
+                                <div class="form-group">
+                                    <label for="textarea-new-meeting-content">{% trans %}Content{% endtrans %}:</label> 
+                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <textarea rows="5" class='form-control' id="textarea-new-meeting-content" name="new-meeting-content" required></textarea>
+                                </div>
+                            </div>
+                        </div>                        
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                        <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+            
+           
+        });
+
+        
+    </script>
+{% endblock %}
