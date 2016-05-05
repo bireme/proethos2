@@ -67,7 +67,7 @@ class Protocol extends Base
 
     /** 
      * @ORM\ManyToOne(targetEntity="Submission") 
-     * @ORM\JoinColumn(name="main_submission_id", referencedColumnName="id", nullable=true) 
+     * @ORM\JoinColumn(name="main_submission_id", referencedColumnName="id", nullable=true, onDelete="SET NULL") 
      */ 
     private $main_submission;
 

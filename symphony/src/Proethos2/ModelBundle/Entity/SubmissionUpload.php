@@ -26,7 +26,7 @@ class SubmissionUpload extends Base
 
     /** 
      * @ORM\ManyToOne(targetEntity="Submission") 
-     * @ORM\JoinColumn(name="submission_id", referencedColumnName="id", nullable=true) 
+     * @ORM\JoinColumn(name="submission_id", referencedColumnName="id", nullable=true, onDelete="CASCADE") 
      * @Assert\NotBlank 
      */ 
     private $submission;

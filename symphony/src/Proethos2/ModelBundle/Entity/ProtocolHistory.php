@@ -30,7 +30,7 @@ class ProtocolHistory extends Base
 
     /** 
      * @ORM\ManyToOne(targetEntity="Protocol", inversedBy="submissions") 
-     * @ORM\JoinColumn(name="protocol_id", referencedColumnName="id", nullable=true) 
+     * @ORM\JoinColumn(name="protocol_id", referencedColumnName="id", nullable=true, onDelete="CASCADE") 
      * @Assert\NotBlank 
      */ 
     private $protocol;

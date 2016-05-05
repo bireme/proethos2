@@ -638,13 +638,13 @@ class NewSubmissionController extends Controller
         $item = array('text' => $text, 'status' => true);
         $revisions[] = $item;
 
-        $text = $translator->trans('Files Submited') . " (" . count($submission->getAttachments()) . " " . $translator->trans('files(s)') . ")";
-        $item = array('text' => $text, 'status' => true);
-        if(count($submission->getAttachments()) == 0) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
+        // $text = $translator->trans('Files Submited') . " (" . count($submission->getAttachments()) . " " . $translator->trans('files(s)') . ")";
+        // $item = array('text' => $text, 'status' => true);
+        // if(count($submission->getAttachments()) == 0) {
+        //     $item = array('text' => $text, 'status' => false);
+        //     $final_status = false;
+        // }
+        // $revisions[] = $item;
         
         $text = $translator->trans('Abstract');
         $item = array('text' => $text, 'status' => true);
