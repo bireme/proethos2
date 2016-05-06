@@ -64,6 +64,12 @@
         $('body').on('hidden.bs.modal', '.modal', function () {
             $(this).removeData('bs.modal');
         });
+        
+        $(function(){
+            $(".submit-on-change").change(function(){
+                $(this).parents('form').submit();
+            });
+        });
     </script>
     {% block script %}{% endblock %}
 </body> 

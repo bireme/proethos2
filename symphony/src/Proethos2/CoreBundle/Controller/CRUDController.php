@@ -171,4 +171,53 @@ class CRUDController extends Controller
 
         return $output;
     }
+
+    /**
+     * @Route("/committee/protocol", name="crud_committee_protocol_list")
+     * @Template()
+     */
+    public function listCommitteeProtocolAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
+
+        $criteria = new \Doctrine\Common\Collections\Criteria();
+
+        // Add a not equals parameter to your criteria
+        $criteria->where($criteria->expr()->neq('status', 'D'));
+
+        // Find all from the repository matching your criteria
+        $protocols = $protocol_repository->matching($criteria);
+        
+        // serach  and status parameter
+        $status_array = array('S', 'R', 'I', 'E', 'H');
+        $search_query = $request->query->get('q');
+        $status_query = $request->query->get('status');
+        
+        if(!empty($status_query))
+            $status_array = array($status_query);
+
+        $query = $protocol_repository->createQueryBuilder('p')->join('p.main_submission', 's')
+           ->where("s.publicTitle LIKE :query AND p.status IN (:status)")
+           ->setParameter('query', "%". $search_query ."%")
+           ->setParameter('status', $status_array);
+
+        $protocols = $query->getQuery()->getResult();
+        $output['protocols'] = $protocols;
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+        }
+
+        return $output;
+    }
 }

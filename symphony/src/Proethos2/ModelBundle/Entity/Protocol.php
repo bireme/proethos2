@@ -237,6 +237,7 @@ class Protocol extends Base
             case 'R': return "Rejected"; break;
             case 'I': return "Waiting Initial Avaliation"; break;
             case 'E': return "Waiting Committee"; break;
+            case 'H': return "Scheduled"; break;
             
         }
         return $this->status;
