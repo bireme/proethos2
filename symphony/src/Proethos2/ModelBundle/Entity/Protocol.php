@@ -489,6 +489,16 @@ class Protocol extends Base
         return $this->revision;
     }
 
+    public function getRevisionUsers() {
+
+        $users = array();
+        foreach($this->getRevision() as $revision) {
+            $users[] = $revision->getMember();
+        }
+
+        return $users;
+    }
+
     /**
      * Set updatedIn
      *
