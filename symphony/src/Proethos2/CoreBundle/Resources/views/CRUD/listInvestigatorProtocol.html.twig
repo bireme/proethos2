@@ -9,7 +9,7 @@
         <div class="row">
             <div class='col-md-12'>
                 <h1 class="page-header">
-                    {% trans %}Submitted Protocols{% endtrans %}
+                    {% trans %}Your Protocols{% endtrans %}
                 </h1>
             </div>
         </div>
@@ -33,6 +33,7 @@
                             <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <select class='form-control selectpicker submit-on-change' id="select-filter-status" name="status" data-live-search="true">
                                 <option value="" {% if app.request.get('status') == "" %}selected{% endif %}>{% trans %}All{% endtrans %}</option>
+                                <option value="S" {% if app.request.get('status') == "D" %}selected{% endif %}>{% trans %}Draft{% endtrans %}</option>
                                 <option value="S" {% if app.request.get('status') == "S" %}selected{% endif %}>{% trans %}Submitted{% endtrans %}</option>
                                 <option value="R" {% if app.request.get('status') == "R" %}selected{% endif %}>{% trans %}Rejected{% endtrans %}</option>
                                 <option value="I" {% if app.request.get('status') == "I" %}selected{% endif %}>{% trans %}Waiting Initial Avaliation{% endtrans %}</option>
@@ -83,11 +84,7 @@
                                     <td>{{ protocol.statusLabel }}</td> 
                                     <td>
                                         <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See protocol{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
-                                        {% if protocol.status == "S" %}<a href='{{ path("protocol_analyse_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Analyse protocol{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
-                                        {% if protocol.status == "I" %}<a href='{{ path("protocol_initial_committee_screening", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Analyse protocol{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
-                                        {% if protocol.status == "E" %}<a href='{{ path("protocol_initial_committee_review", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Analyse protocol{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
-                                        {% if protocol.status == "E" and app.user in protocol.revisionUsers %}<a href='{{ path("protocol_initial_committee_review_revisor", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Send protocol revision{% endtrans %}"><i class='glyphicon glyphicon-list-alt'></i></a>{% endif %}
-
+                                        <a href='{{ path("submission_new_second_step", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-default btn-xs {% if protocol.status not in ["R","D"] %}disabled{% endif %}' data-toggle="tooltip" data-placement="top" title="{% trans %}Edit submission{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>
                                     </td> 
                                 </tr>
                             {% endfor %}

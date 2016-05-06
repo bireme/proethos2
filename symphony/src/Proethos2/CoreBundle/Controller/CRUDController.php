@@ -220,4 +220,51 @@ class CRUDController extends Controller
 
         return $output;
     }
+
+    /**
+     * @Route("/investigator/protocol", name="crud_investigator_protocol_list")
+     * @Template()
+     */
+    public function listInvestigatorProtocolAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
+
+        // Find all from the repository matching your criteria
+        $protocols = $protocol_repository->findBy(array("owner" => $user));
+        
+        // serach  and status parameter
+        $status_array = array('S', 'R', 'I', 'E', 'H', 'D');
+        $search_query = $request->query->get('q');
+        $status_query = $request->query->get('status');
+        
+        if(!empty($status_query))
+            $status_array = array($status_query);
+
+        $query = $protocol_repository->createQueryBuilder('p')->join('p.main_submission', 's')
+           ->where("s.publicTitle LIKE :query AND p.status IN (:status) AND s.owner = :owner")
+           ->setParameter('query', "%". $search_query ."%")
+           ->setParameter('status', $status_array)
+           ->setParameter('owner', $user);
+
+        $protocols = $query->getQuery()->getResult();
+        $output['protocols'] = $protocols;
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+        }
+
+        return $output;
+    }
 }
