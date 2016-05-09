@@ -38,12 +38,12 @@
                     <form class='form' method='POST' action='{{ path("submission_new_first_step") }}'>
                         <fieldset>
                             <legend>{% trans %}Clinical Trial{% endtrans %}</legend>
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="">{% trans %}Clinical Trial{% endtrans %}?</label>
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <div class="radio">
-                                    <label><input type="radio" name="is_clinical_trial" id="radio_clinical_trial_yes" value="yes"> {% trans %}Yes{% endtrans %}</label>
-                                    <label><input type="radio" name="is_clinical_trial" id="radio_clinical_trial_no" value="no" checked> {% trans %}No{% endtrans %}</label>
+                                    <label><input type="radio" name="is_clinical_trial" id="radio_clinical_trial_yes" value="yes" required> {% trans %}Yes{% endtrans %}</label>
+                                    <label><input type="radio" name="is_clinical_trial" id="radio_clinical_trial_no" value="no" required> {% trans %}No{% endtrans %}</label>
                                 </div>
                             </div>
                         </fieldset>

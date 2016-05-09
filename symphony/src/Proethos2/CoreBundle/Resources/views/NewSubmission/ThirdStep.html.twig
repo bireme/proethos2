@@ -54,10 +54,10 @@
 
                     <div class='row'>
                         <div class="col-md-3">
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="select-gender">{% trans %}Gender{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <select class='form-control' id='select-gender' name='gender'>
+                                <select class='form-control' id='select-gender' name='gender' required>
                                     <option value="">-</option>
                                     {% for gender in genders %}
                                         <option value="{{ gender.id }}" {% if submission.gender == gender %}selected{% endif %}>{{ gender.name }}</option>
@@ -123,10 +123,10 @@
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="select-recruitment-status">{% trans %}Recruitment Status{% endtrans %}:</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <select class='form-control' id='select-recruitment-status' name='recruitment-status'>
+                                <select class='form-control' id='select-recruitment-status' name='recruitment-status' required>
                                     <option value="">-</option>
                                     {% for status in recruitment_statuses %}
                                         <option value="{{ status.id }}" {% if status == submission.recruitmentStatus %}selected{% endif %}>{{ status.name }}</option>
@@ -197,10 +197,10 @@
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="textarea-primary-outcome">{% trans %}Primary outcomes{% endtrans %}</label> 
                                 <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="4" class="form-control" id='textarea-primary-outcome' name='primary-outcome'>{{ submission.primaryOutcome }}</textarea>
+                                <textarea rows="4" class="form-control" id='textarea-primary-outcome' name='primary-outcome' required>{{ submission.primaryOutcome }}</textarea>
                             </div>
                         </div>
                     </div>
