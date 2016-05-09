@@ -829,16 +829,20 @@ class NewSubmissionController extends Controller
                         $em->persist($pdfFile);
                         $em->flush();
 
-                        // updating protocol and setting status
-                        $protocol = $submission->getProtocol();
-                        $protocol->setStatus("S");
-                        $protocol->setDateInformed(new \DateTime());
-                        $protocol->setUpdatedIn(new \DateTime());
-                        $em->persist($protocol);
-                        $em->flush();
-                    } catch(Exception $e) {
+                    } catch(\RuntimeException $e) {
                         
+                        
+                    } finally {
+
                     }
+
+                    // updating protocol and setting status
+                    $protocol = $submission->getProtocol();
+                    $protocol->setStatus("S");
+                    $protocol->setDateInformed(new \DateTime());
+                    $protocol->setUpdatedIn(new \DateTime());
+                    $em->persist($protocol);
+                    $em->flush();
 
                     $submission->setIsSended(true);
                     $em->persist($submission);
