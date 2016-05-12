@@ -111,7 +111,7 @@ class Protocol extends Base
 
     /** 
      * @ORM\ManyToOne(targetEntity="Meeting", inversedBy="protocols") 
-     * @ORM\JoinColumn(name="meeting_id", referencedColumnName="id", nullable=true) 
+     * @ORM\JoinColumn(name="meeting_id", referencedColumnName="id", nullable=true, onDelete="SET NULL") 
      */ 
     private $meeting;
 
