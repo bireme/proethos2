@@ -231,7 +231,7 @@ class ProtocolController extends Controller
                 $em->flush();
                 
                 $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
-                return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
+                return $this->redirectToRoute('protocol_initial_committee_review', array('protocol_id' => $protocol->getId()), 301);
             }
 
             if($post_data['send-to'] == "excempt") {
