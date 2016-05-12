@@ -273,7 +273,7 @@ class CRUDController extends Controller
      * @Route("/committee/faq", name="crud_committee_faq_list")
      * @Template()
      */
-    public function listFaqAction()
+    public function listCommitteeFaqAction()
     {
         $output = array();
         $request = $this->getRequest();
@@ -333,7 +333,7 @@ class CRUDController extends Controller
      * @Route("/committee/faq/{faq_id}", name="crud_committee_faq_update")
      * @Template()
      */
-    public function updateFaqAction($faq_id)
+    public function updateCommitteeFaqAction($faq_id)
     {
         $output = array();
         $request = $this->getRequest();
@@ -387,7 +387,7 @@ class CRUDController extends Controller
      * @Route("/committee/faq/{faq_id}/delete", name="crud_committee_faq_delete")
      * @Template()
      */
-    public function deleteFaqAction($faq_id)
+    public function deleteCommitteeFaqAction($faq_id)
     {
         $output = array();
         $request = $this->getRequest();
