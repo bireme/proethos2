@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Proethos2\ModelBundle\Entity\Meeting;
+use Proethos2\ModelBundle\Entity\Faq;
 
 
 class CRUDController extends Controller
@@ -263,6 +264,66 @@ class CRUDController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
+        }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/committee/faq", name="crud_committee_faq_list")
+     * @Template()
+     */
+    public function listFaqAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $faq_repository = $em->getRepository('Proethos2ModelBundle:Faq');
+
+        $faqs = $faq_repository->findAll();
+        
+        // serach parameter
+        $search_query = $request->query->get('q');
+        if($search_query) {
+            $faqs = $faq_repository->createQueryBuilder('m')
+               ->where('m.question LIKE :query')
+               ->setParameter('query', "%". $search_query ."%")
+               ->getQuery()
+               ->getResult();
+        }
+        
+        $output['faqs'] = $faqs;
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            // checking required fields
+            foreach(array('new-question', 'new-question-answer') as $field) {   
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $question = new Faq();
+            $question->setQuestion($post_data['new-question']);
+            $question->setAnswer($post_data['new-question-answer']);
+
+            if($post_data['new-question-status'] == "true") {
+                $question->setStatus(true);
+            }
+
+            $em->persist($question);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Question created with success."));
+            return $this->redirectToRoute('crud_committee_faq_list', array(), 301);
         }
 
         return $output;

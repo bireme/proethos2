@@ -126,12 +126,17 @@ class CRUDControllerTest extends WebTestCase
 
     public function testListInvestigatorProtocolGET()
     {   
-        // getting last id
-        $last_meeting = end($this->meeting_repository->findAll());
-        $this->meeting_id = $last_meeting->getId();
-
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('crud_investigator_protocol_list', array(), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+    
+    public function listFaqGET()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_faq_list', array(), false);
         
         $client->request('GET', $route);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
