@@ -1,0 +1,46 @@
+<form class='form' method="POST" id='form-new-question' action='{{ path("crud_committee_faq_update", {faq_id: question.id}) }}'>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{% trans %}New Question{% endtrans %}</h4>
+    </div>
+    <div class="modal-body">
+        
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <label for="input-new-question">{% trans %}Question{% endtrans %}:</label> 
+                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <input type='text' class='form-control' id="input-new-question" name="new-question" required value="{{ question.question }}">
+                </div>
+            </div>
+        </div>
+        
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <label for="input-new-question-answer">{% trans %}Answer{% endtrans %}:</label> 
+                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <textarea class='form-control' id="input-new-question-answer" name='new-question-answer' required>{{ question.answer }}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label for="input-new-question-status">
+                            <input type="checkbox" id='input-new-question-status' name='new-question-status' value="true" {% if question.status %}checked{% endif %}> {% trans %}Active?{% endtrans %}
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+        <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
+    </div>
+</form>

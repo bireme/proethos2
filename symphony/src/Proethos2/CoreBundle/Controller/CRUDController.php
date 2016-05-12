@@ -270,6 +270,60 @@ class CRUDController extends Controller
     }
 
     /**
+     * @Route("/committee/faq/{faq_id}", name="crud_committee_faq_update")
+     * @Template()
+     */
+    public function updateFaqAction($faq_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $faq_repository = $em->getRepository('Proethos2ModelBundle:Faq');
+
+        // getting the current faq
+        $question = $faq_repository->find($faq_id);
+        $output['question'] = $question;
+        
+        if (!$question) {
+            throw $this->createNotFoundException($translator->trans('No faq found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            // checking required fields
+            foreach(array('new-question', 'new-question-answer') as $field) {   
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $question->setQuestion($post_data['new-question']);
+            $question->setAnswer($post_data['new-question-answer']);
+
+            $question->setStatus(false);
+            if(isset($post_data['new-question-status'])) {
+                $question->setStatus(true);
+            }
+
+            $em->persist($question);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Question updated with success."));
+            return $this->redirectToRoute('crud_committee_faq_list', array(), 301);
+        }
+
+        return $output;
+    }
+
+    /**
      * @Route("/committee/faq", name="crud_committee_faq_list")
      * @Template()
      */
@@ -315,7 +369,7 @@ class CRUDController extends Controller
             $question->setQuestion($post_data['new-question']);
             $question->setAnswer($post_data['new-question-answer']);
 
-            if($post_data['new-question-status'] == "true") {
+            if(isset($post_data['new-question-status'])) {
                 $question->setStatus(true);
             }
 
@@ -328,4 +382,6 @@ class CRUDController extends Controller
 
         return $output;
     }
+
+
 }
