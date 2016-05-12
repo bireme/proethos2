@@ -161,7 +161,13 @@
                         <div class="form-group">
                             <label for="">{% trans %}E-mail{% endtrans %}:</label> 
                             <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <input type='email' class='form-control' name='team-email'>
+                            <!-- <input type='email' class='form-control' name='team-email'> -->
+                            <select class='form-control select2' id='select-team-email' name='team-email'>
+                                <option value="">-</option>
+                                {% for user in users %}
+                                    <option value="{{ user.id }}||{{ user.name }}||{{ user.country }}">{{ user.email }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                         
                         <div class="form-group">
@@ -186,25 +192,28 @@
         $(function(){
 
             $team = {};
-            $("#form-team input[name='team-email']").keyup(function() {
+            $("#select-team-email").change(function() {
 
-                email = $(this).val();
-                $.post("{{ path('api_get_user_by_email') }}", {email: email}, function(data){
-                    if(!$.isEmptyObject(data)) {
+                user = $("#select-team-email option:selected").val();
+                email = $("#select-team-email option:selected").text();
+                if(user.length > 0) {
 
-                        user = data[0];
-                        $team[user['id']] = {name: user['name'], email: user['email'], country: user['country']};
-                        
-                        $("#form-team input[name='team-name']").val(user['name']);
-                        $("#team-submit").removeClass('disabled');
+                    user = user.split("||");
 
-                    } else {
+                    id = parseInt(user[0]);
+                    name = user[1];
+                    country = user[2];
 
-                        $("#form-team input[name='team-name']").val("");
-                        $("#team-submit").addClass('disabled');
-                        $team = {};
-                    }
-                });
+                    $team[id] = {name: name, email: email, country: country};
+                    
+                    $("#form-team input[name='team-name']").val(name);
+                    $("#team-submit").removeClass('disabled');
+
+                    console.log(id);
+                    console.log(name);
+                    console.log(email);
+                    console.log(country);
+                }
             });
 
             $("#team-submit").click(function(e){
@@ -222,6 +231,7 @@
                     string += "</tr>";
 
                     $("#table-team tbody").append(string);
+                    $team = {};
                 }
             });
 

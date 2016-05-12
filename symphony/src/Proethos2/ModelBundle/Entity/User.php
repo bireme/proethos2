@@ -22,7 +22,7 @@ class User extends Base implements UserInterface, \Serializable
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
@@ -35,7 +35,7 @@ class User extends Base implements UserInterface, \Serializable
      * @Assert\NotBlank()
      * @Assert\Email()
      */
-    protected $email;
+    private $email;
 
     /**
      * @ORM\Column(type="string", length=64)
@@ -56,19 +56,19 @@ class User extends Base implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
-    protected $name;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=2)
      * @Assert\NotBlank()
      */
-    protected $country;
+    private $country;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank()
      */
-    protected $institution;
+    private $institution;
 
     public function __toString()
     {

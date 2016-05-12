@@ -17,16 +17,16 @@ use Proethos2\ModelBundle\Entity\User;
 class AjaxController extends Controller
 {
     /**
-     * @Route("/api/users/get/", name="api_get_user_by_email")
+     * @Route("/api/users/get/", name="api_get_user_by_id")
      * @Template()
      */
-    public function getUserByEmailAction()
+    public function getUserByIdAction()
     {
 
         $data = array();
 
         $request = $this->getRequest();
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $encoders = array(new JsonEncoder());
         $normalizers = array(new GetSetMethodNormalizer());
         $serializer = new Serializer($normalizers, $encoders);
 
@@ -38,10 +38,11 @@ class AjaxController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $user_repository = $em->getRepository('Proethos2ModelBundle:User');
-            $data = $user_repository->findByEmail($post_data['email']);
+            $data = $user_repository->find($post_data['id']);
         }
 
         $jsonContent = $serializer->serialize($data, 'json');
+        var_dump($jsonContent);
         $response = new JsonResponse();
         $response->setContent($jsonContent);
 

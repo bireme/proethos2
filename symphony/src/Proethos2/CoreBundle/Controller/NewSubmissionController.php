@@ -101,6 +101,9 @@ class NewSubmissionController extends Controller
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
+        $users = $user_repository->findAll();
+        $output['users'] = $users;
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
