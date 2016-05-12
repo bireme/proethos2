@@ -1,0 +1,18 @@
+<form class='form' method="POST" id='form-delete-meeting' action="{{ path('crud_committee_faq_delete', {faq_id: question.id} ) }}">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{% trans %}Delete Question{% endtrans %}</h4>
+    </div>
+    <div class="modal-body">
+        <input type="hidden" name="question-delete" value="true">
+
+        <div class='row'>
+            <div class='col-md-12'>{% trans %}Are you sure?{% endtrans %}</div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+        <button type="submit" class="btn btn-danger">{% trans %}Delete{% endtrans %}</button>
+    </div>
+</form>

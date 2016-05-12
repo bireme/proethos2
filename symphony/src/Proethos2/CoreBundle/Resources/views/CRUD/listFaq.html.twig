@@ -61,7 +61,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ path("crud_committee_faq_update", {faq_id: question.id}) }}" data-toggle="modal" data-target="#modal-update-question" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
-                                        <a href="#" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
+                                        <a href="{{ path('crud_committee_faq_delete', {faq_id: question.id} ) }}" data-toggle="modal" data-target="#modal-delete-question" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}

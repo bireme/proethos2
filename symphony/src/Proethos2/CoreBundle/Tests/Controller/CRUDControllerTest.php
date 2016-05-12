@@ -168,7 +168,7 @@ class CRUDControllerTest extends WebTestCase
         $this->faq_id = $last_question->getId();
 
         $client = $this->client;
-        $route = $client->getContainer()->get('router')->generate('crud_committee_faq_list', array("faq_id" => $this->faq_id), false);
+        $route = $client->getContainer()->get('router')->generate('crud_committee_faq_update', array("faq_id" => $this->faq_id), false);
         
         $client->request('GET', $route);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
@@ -181,12 +181,40 @@ class CRUDControllerTest extends WebTestCase
         $this->faq_id = $last_question->getId();
 
         $client = $this->client;
-        $route = $client->getContainer()->get('router')->generate('crud_committee_faq_list', array("faq_id" => $this->faq_id), false);
+        $route = $client->getContainer()->get('router')->generate('crud_committee_faq_update', array("faq_id" => $this->faq_id), false);
 
         $client->request('POST', $route, array(
             'new-question' => "Teste de questão?", 
             'new-question-answer' => "Resposta", 
             'new-question-status' => "true",             
+        ));
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }
+    
+    public function testDeleteFaqGET()
+    {   
+        // getting last id
+        $last_question = end($this->faq_repository->findAll());
+        $this->faq_id = $last_question->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_faq_delete', array("faq_id" => $this->faq_id), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testDeleteFaqPOST()
+    {   
+        // getting last id
+        $last_question = end($this->faq_repository->findAll());
+        $this->faq_id = $last_question->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_faq_delete', array("faq_id" => $this->faq_id), false);
+
+        $client->request('POST', $route, array(
+            'question-delete' => "true", 
         ));
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
