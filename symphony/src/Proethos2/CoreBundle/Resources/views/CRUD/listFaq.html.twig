@@ -1,0 +1,41 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}Frequently Asked Questions{% endtrans %}{% endblock %}
+
+{% block content %}
+    
+    <div class="container-fluid main-content see-submission">
+
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">{% trans %}Frequently Asked Questions{% endtrans %}</h1>
+            </div>
+        </div>
+
+        {% for question in questions %}
+            <div class='block'>
+                <div class='row question'>
+                    <div class="col-md-12">
+                        <h2 class='sub-header'>{{ question.question }}</h2>
+                    </div>
+                </div>    
+
+                <div class='row answer'>
+                    <div class="col-md-12 content"><p>{{ question.answer}}</p></div>
+                </div>    
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+            // $('.answer').hide();
+            $(".question").click(function(){
+                $(this).next('.answer').slideToggle('fast');
+            });
+        });
+    </script>
+{% endblock %}

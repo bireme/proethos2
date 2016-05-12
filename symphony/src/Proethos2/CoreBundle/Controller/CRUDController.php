@@ -428,4 +428,24 @@ class CRUDController extends Controller
 
         return $output;
     }
+
+    /**
+     * @Route("/faq", name="crud_faq_list")
+     * @Template()
+     */
+    public function listFaqAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $faq_repository = $em->getRepository('Proethos2ModelBundle:Faq');
+
+        $questions = $faq_repository->findAll();
+        $output['questions'] = $questions;
+
+        return $output;
+    }
 }

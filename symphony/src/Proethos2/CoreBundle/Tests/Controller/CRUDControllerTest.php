@@ -219,5 +219,12 @@ class CRUDControllerTest extends WebTestCase
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
 
-
+    public function testFaqGET()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_faq_list', array(), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
 }
