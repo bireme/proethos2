@@ -11,6 +11,7 @@ class CRUDControllerTest extends WebTestCase
 {
     var $meeting_id = NULL;
     var $meeting_repository;
+    var $faq_repository;
     var $client;
 
     public function setUp()
@@ -20,6 +21,7 @@ class CRUDControllerTest extends WebTestCase
         $this->_em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
 
         $this->meeting_repository = $this->_em->getRepository('Proethos2ModelBundle:Meeting');
+        $this->faq_repository = $this->_em->getRepository('Proethos2ModelBundle:Faq');
         
         $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'admin',
@@ -133,13 +135,60 @@ class CRUDControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
     
-    public function listFaqGET()
+    public function testListFaqGET()
     {   
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('crud_committee_faq_list', array(), false);
         
         $client->request('GET', $route);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testListFaqPOST()
+    {   
+        // getting last id
+        $last_question = end($this->faq_repository->findAll());
+        $this->faq_id = $last_question->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_faq_list', array(), false);
+
+        $client->request('POST', $route, array(
+            'new-question' => "Teste de questão?", 
+            'new-question-answer' => "Resposta", 
+            'new-question-status' => "true",             
+        ));
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }
+
+    public function testUpdateFaqGET()
+    {   
+        // getting last id
+        $last_question = end($this->faq_repository->findAll());
+        $this->faq_id = $last_question->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_faq_list', array("faq_id" => $this->faq_id), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testUpdateFaqPOST()
+    {   
+        // getting last id
+        $last_question = end($this->faq_repository->findAll());
+        $this->faq_id = $last_question->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_faq_list', array("faq_id" => $this->faq_id), false);
+
+        $client->request('POST', $route, array(
+            'new-question' => "Teste de questão?", 
+            'new-question-answer' => "Resposta", 
+            'new-question-status' => "true",             
+        ));
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
 
 
