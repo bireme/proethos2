@@ -29,6 +29,11 @@ class UploadType extends Base
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $slug;    
+
+    /**
      * @var UploadTypeExtension
      * @ORM\ManyToMany(targetEntity="UploadTypeExtension", inversedBy="extensions")
      * @ORM\JoinTable(name="upload_type_upload_type_extension")
@@ -105,5 +110,29 @@ class UploadType extends Base
     public function getExtensions()
     {
         return $this->extensions;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return UploadType
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

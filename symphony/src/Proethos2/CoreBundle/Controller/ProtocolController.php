@@ -11,6 +11,7 @@ use Proethos2\ModelBundle\Entity\ProtocolComment;
 use Proethos2\ModelBundle\Entity\ProtocolHistory;
 use Proethos2\ModelBundle\Entity\ProtocolRevision;
 use Proethos2\ModelBundle\Entity\Submission;
+use Proethos2\ModelBundle\Entity\SubmissionUpload;
 
 class ProtocolController extends Controller
 {
@@ -361,7 +362,7 @@ class ProtocolController extends Controller
                 $em->flush();
 
                 $session->getFlashBag()->add('success', $translator->trans("Meeting assigned with success!"));
-                return $this->redirectToRoute('protocol_initial_committee_review', array('protocol_id' => $protocol->getId()), 301);
+                return $this->redirectToRoute('protocol_end_review', array('protocol_id' => $protocol->getId()), 301);
             }
         }
 
@@ -470,6 +471,82 @@ class ProtocolController extends Controller
         // getting the current submission
         $protocol_revision = $protocol_revision_repository->find($protocol_revision_id);
         $output['protocol_revision'] = $protocol_revision;
+
+        return $output;
+    }
+
+    /**
+     * @Route("/protocol/{protocol_id}/end-review", name="protocol_end_review")
+     * @Template()
+     */
+    public function endReviewAction($protocol_id)
+    {
+        
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
+        $upload_type_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
+        
+        // getting the current submission
+        $protocol = $protocol_repository->find($protocol_id);
+        $submission = $protocol->getMainSubmission();
+        $output['protocol'] = $protocol;
+
+        if (!$protocol or $protocol->getStatus() != "H") {
+            throw $this->createNotFoundException($translator->trans('No protocol found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required files
+            $required_fields = array('final-decision');
+            foreach($required_fields as $field) {
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $file = $request->files->get('draft-opinion');
+            if(empty($file)) {
+                $session->getFlashBag()->add('error', $translator->trans("You need to upload a draft opinion."));
+                return $output;
+            }
+
+            // setting the Scheduled status
+            $protocol->setStatus($post_data['final-decision']);
+
+            // getting the upload type
+            $upload_type = $upload_type_repository->findOneBy(array("slug" => "draft-opinion"));
+
+            // adding the file uploaded
+            $submission_upload = new SubmissionUpload();
+            $submission_upload->setSubmission($protocol->getMainSubmission());
+            $submission_upload->setUploadType($upload_type);
+            $submission_upload->setFile($file);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($submission_upload);
+            $em->flush();
+
+            $protocol->getMainSubmission()->addAttachment($submission_upload);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($protocol->getMainSubmission());
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Protocol was finished with success!"));
+            return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);            
+        }
 
         return $output;
     }

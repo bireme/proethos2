@@ -238,7 +238,11 @@ class Protocol extends Base
             case 'I': return "Waiting Initial Avaliation"; break;
             case 'E': return "Waiting Committee"; break;
             case 'H': return "Scheduled"; break;
-            
+            case 'F': return "Excempted"; break;
+            case 'A': return "Approved"; break;
+            case 'N': return "Not approved"; break;
+            case 'C': return "Conditional Approval"; break;
+            case 'X': return "Expedite Approval"; break;
         }
         return $this->status;
     }

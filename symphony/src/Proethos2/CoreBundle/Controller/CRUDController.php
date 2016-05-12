@@ -195,7 +195,7 @@ class CRUDController extends Controller
         $protocols = $protocol_repository->matching($criteria);
         
         // serach  and status parameter
-        $status_array = array('S', 'R', 'I', 'E', 'H');
+        $status_array = array('S', 'R', 'I', 'E', 'H', "F", "A", "N", "C", "X");
         $search_query = $request->query->get('q');
         $status_query = $request->query->get('status');
         

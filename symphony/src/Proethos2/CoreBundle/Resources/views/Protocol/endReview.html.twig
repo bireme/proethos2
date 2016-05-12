@@ -1,0 +1,82 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}Actions Protocol{% endtrans %}{% endblock %}
+
+{% block content %}
+    
+    <div class="container-fluid main-content see-submission">
+
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">{% trans %}End Review{% endtrans %}</h1>
+            </div>
+        </div>
+        
+        {% include 'Proethos2CoreBundle:Protocol:meta.html.twig' %}
+
+        <!-- action -->
+        <form method="POST" id='form-action' enctype="multipart/form-data" action="">
+            
+            <div class='block'>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <h2 class='sub-header'>Draft Opinion:</h2>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="file-draft-opinion">Enviar draft opinion:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='file' class='form-control' id='file-draft-opinion' name="draft-opinion" required>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+
+            <div class='block'>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <h2 class='sub-header'>Final decision:</h2>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="select-final-decision">Final decision:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <select class="form-control select2" id="select-final-decision" name="final-decision" required>
+                                <option value="">-</option>
+                                <option value="A">{% trans %}Approved{% endtrans %}</option>
+                                <option value="N">{% trans %}Not approved{% endtrans %}</option>
+                                <option value="C">{% trans %}Condicional approval{% endtrans %}</option>
+                                <option value="X">{% trans %}Expedite approval{% endtrans %}</option>
+                                <option value="F">{% trans %}Excempt{% endtrans %}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+
+
+
+            <div class='row'>
+                <div class='submission-button-controls col-md-12'>
+                    <button type="submit" class='btn btn-primary' id='button-excempt-protocol'>{% trans %}Save decision and finish process{% endtrans %}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+            
+        });
+    </script>
+{% endblock %}
