@@ -15,6 +15,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/lumen/bootstrap.min.css" rel="stylesheet" integrity="sha384-mvYjhBJXQ9VlNETV/xXShy849GsBHnKzVVudnMOcWUVM/6Nd2ksj8VNng5f8ylyX" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <link href="{{ asset('bundles/proethos2core/css/style.css') }}" rel="stylesheet">
     
     <!-- FAVICON –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -31,6 +32,7 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
     <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="{{ asset('bundles/proethos2core/js/script.js') }}"></script>
 </head>
  
@@ -38,8 +40,9 @@
     {% block body %}
 
         {% include 'menu.html.twig' %}
-        
+
         {% block content %}{% endblock %}
+
     {% endblock %}
 
     <!-- Modal HELP -->
@@ -69,6 +72,15 @@
             $(".submit-on-change").change(function(){
                 $(this).parents('form').submit();
             });
+
+            {% for flash_message in app.session.flashBag.get('success') %}
+                toastr.success('{{ flash_message }}');
+            {% endfor %}
+            
+            {% for flash_message in app.session.flashBag.get('error') %}
+                toastr.error('{{ flash_message }}');
+            {% endfor %}
+
         });
     </script>
     {% block script %}{% endblock %}
