@@ -127,6 +127,35 @@ class CRUDController extends Controller
         return $output;
     }
 
+     /**
+     * @Route("/committee/meeting/{meeting_id}/show", name="crud_committee_meeting_show")
+     * @Template()
+     */
+    public function showMeetingAction($meeting_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
+        $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
+
+        // getting the current meeting
+        $meeting = $meeting_repository->find($meeting_id);
+        $output['meeting'] = $meeting;
+
+        if (!$meeting) {
+            throw $this->createNotFoundException($translator->trans('No meeting found'));
+        }
+
+        $protocols = $protocol_repository->findBy(array('meeting' => $meeting));
+        $output['protocols'] = $protocols;
+
+        return $output;
+    }
+
     /**
      * @Route("/committee/meeting/{meeting_id}/delete", name="crud_committee_meeting_delete")
      * @Template()

@@ -53,6 +53,19 @@ class CRUDControllerTest extends WebTestCase
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
 
+    public function testShowMeetingGET()
+    {   
+        // getting last id
+        $last_meeting = end($this->meeting_repository->findAll());
+        $this->meeting_id = $last_meeting->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_meeting_show', array("meeting_id" => $this->meeting_id), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
     public function testUpdateMeetingGET()
     {   
         // getting last id
