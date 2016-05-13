@@ -32,7 +32,7 @@
                         <li role="separator" class="divider"></li>
                         <li><a href="{{ path('crud_committee_faq_list') }}">{% trans %}Update FAQ{% endtrans %}</a></li>
                         <li><a href="comite-relatores.php">Relatores</a></li>
-                        <li><a href="{{ path('crud_committee_meeting_list') }}">Reuniões</a></li>
+                        <li><a href="{{ path('crud_committee_meeting_list') }}">{% trans %}Meetings{% endtrans %}</a></li>
                     </ul>
                 </li>
                 
@@ -60,9 +60,9 @@
                         <i class='glyphicon glyphicon-flag'></i> <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class='active'><a href="#">Português</a></li>
-                        <li><a href="#">English</a></li>
-                        <li><a href="#">Español</a></li>
+                        <li class='active'><a href="#">{% trans %}Portuguese{% endtrans %}</a></li>
+                        <li><a href="#">{% trans %}English{% endtrans %}</a></li>
+                        <li><a href="#">{% trans %}Spanish{% endtrans %}</a></li>
                     </ul>    
                 </li>
 
