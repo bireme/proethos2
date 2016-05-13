@@ -91,12 +91,12 @@
         
         <div class='col-md-3'>
             <div class='label'>{% trans %}Revised in{% endtrans %}</div>
-            <h3>-</h3>
+            <h3>{% if protocol.revisedIn %}{{ protocol.revisedIn|date("d/m/Y") }}{% else %}-{% endif %}</h3>
         </div>
 
         <div class='col-md-3'>
             <div class='label'>{% trans %}Decision in{% endtrans %}</div>
-            <h3>-</h3>
+            <h3>{% if protocol.decisionIn %}{{ protocol.decisionIn|date("d/m/Y") }}{% else %}-{% endif %}</h3>
         </div>
 
     </div>    

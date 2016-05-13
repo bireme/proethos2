@@ -103,6 +103,16 @@ class Protocol extends Base
     private $updated_in;
 
     /** 
+     * @ORM\Column(type="datetime", nullable=true) 
+     */ 
+    private $revised_in;
+
+    /** 
+     * @ORM\Column(type="datetime", nullable=true) 
+     */ 
+    private $decision_in;
+
+    /** 
      * @var ProtocolRevision
      *
      * @ORM\OneToMany(targetEntity="ProtocolRevision", mappedBy="protocol", cascade={"remove"}) 
@@ -549,5 +559,53 @@ class Protocol extends Base
     public function getMeeting()
     {
         return $this->meeting;
+    }
+
+    /**
+     * Set decisionIn
+     *
+     * @param \DateTime $decisionIn
+     *
+     * @return Protocol
+     */
+    public function setDecisionIn($decisionIn)
+    {
+        $this->decision_in = $decisionIn;
+
+        return $this;
+    }
+
+    /**
+     * Get decisionIn
+     *
+     * @return \DateTime
+     */
+    public function getDecisionIn()
+    {
+        return $this->decision_in;
+    }
+
+    /**
+     * Set revisedIn
+     *
+     * @param \DateTime $revisedIn
+     *
+     * @return Protocol
+     */
+    public function setRevisedIn($revisedIn)
+    {
+        $this->revised_in = $revisedIn;
+
+        return $this;
+    }
+
+    /**
+     * Get revisedIn
+     *
+     * @return \DateTime
+     */
+    public function getRevisedIn()
+    {
+        return $this->revised_in;
     }
 }

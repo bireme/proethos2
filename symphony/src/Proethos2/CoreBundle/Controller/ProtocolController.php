@@ -358,6 +358,7 @@ class ProtocolController extends Controller
 
                 // setting the Scheduled status
                 $protocol->setStatus("H");
+                $protocol->setRevisedIn(new \DateTime());
 
                 $em->persist($protocol);
                 $em->flush();
@@ -543,6 +544,10 @@ class ProtocolController extends Controller
             $protocol->getMainSubmission()->addAttachment($submission_upload);
             $em = $this->getDoctrine()->getManager();
             $em->persist($protocol->getMainSubmission());
+            $em->flush();
+
+            $protocol->setDecisionIn(new \DateTime());
+            $em->persist($protocol);
             $em->flush();
 
             $session->getFlashBag()->add('success', $translator->trans("Protocol was finished with success!"));
