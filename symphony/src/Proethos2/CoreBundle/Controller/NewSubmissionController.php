@@ -848,7 +848,8 @@ class NewSubmissionController extends Controller
 
                     } catch(\RuntimeException $e) {
                         
-                        
+                        $session->getFlashBag()->add('error', $translator->trans('Problems to generate PDF. Please contact the administrator.'));
+                        return $output;
                     }
 
                     // updating protocol and setting status
