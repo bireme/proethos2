@@ -61,6 +61,8 @@ class NewSubmissionController extends Controller
             $submission->setCientificTitle($post_data['cientific_title']);
             $submission->setTitleAcronyms($post_data['title_acronyms']);
             $submission->setProtocol($protocol);
+            $submission->setNumber(1);
+
             $submission->setOwner($user);
             
             $em = $this->getDoctrine()->getManager();
@@ -576,14 +578,12 @@ class NewSubmissionController extends Controller
                     return $output;                
                 }
 
-                $submission_number = count($submission->getProtocol()->getSubmission());
-                
                 $submission_upload = new SubmissionUpload();
                 $submission_upload->setSubmission($submission);
                 $submission_upload->setUploadType($upload_type);
                 $submission_upload->setUser($user);
                 $submission_upload->setFile($file);
-                $submission_upload->setSubmissionNumber($submission_number);
+                $submission_upload->setSubmissionNumber($submission->getNumber());
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($submission_upload);
@@ -842,7 +842,7 @@ class NewSubmissionController extends Controller
                         $pdfFile->setSubmission($submission);
                         $pdfFile->setSimpleFile($filepath);
                         $pdfFile->setUser($user);
-                        $pdfFile->setSubmissionNumber($submission_number);
+                        $pdfFile->setSubmissionNumber($submission->getNumber());
                         $em->persist($pdfFile);
                         $em->flush();
 

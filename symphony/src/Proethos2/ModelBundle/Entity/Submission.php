@@ -42,6 +42,12 @@ class Submission extends Base
     private $owner;
     
     /**
+     * @ORM\Column(name="number", type="integer")
+     * @Assert\NotBlank 
+     */
+    private $number;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="public_title", type="string", length=255)
@@ -1403,5 +1409,29 @@ class Submission extends Base
     public function getIsSended()
     {
         return $this->is_sended;
+    }
+
+    /**
+     * Set number
+     *
+     * @param integer $number
+     *
+     * @return Submission
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    /**
+     * Get number
+     *
+     * @return integer
+     */
+    public function getNumber()
+    {
+        return $this->number;
     }
 }

@@ -104,6 +104,7 @@ class ProtocolController extends Controller
 
                 // cloning submission
                 $new_submission = clone $submission;
+                $new_submission->setNumber($submission->getNumber() + 1);
                 $em->persist($new_submission);
                 $em->flush();
                 
