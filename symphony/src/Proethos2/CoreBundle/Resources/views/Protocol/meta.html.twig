@@ -201,6 +201,8 @@
                 <thead>
                     <tr>
                         <th>{% trans %}Type{% endtrans %}</th>
+                        <th>{% trans %}Original Submission{% endtrans %}</th>
+                        <th>{% trans %}Submitted by{% endtrans %}</th>
                         <th>{% trans %}Filename{% endtrans %}</th>
                         <th>{% trans %}Datetime{% endtrans %}</th>
                         <th>{% trans %}Actions{% endtrans %}</th>
@@ -211,6 +213,8 @@
                     {% for file in protocol.mainSubmission.attachments %}
                         <tr>
                             <td>{{ file.uploadType }}</td>
+                            <td>{{ file.submissionNumber }}</td> 
+                            <td>{{ file.user }}</td> 
                             <td>{{ file.filename }}</td> 
                             <td>{{ file.created|date("d/m/Y H:i") }}</td> 
                             <td>

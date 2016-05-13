@@ -36,7 +36,7 @@ class ProtocolController extends Controller
         $submission = $protocol->getMainSubmission();
         $output['protocol'] = $protocol;
 
-        if (!$protocol or $protocol->getStatus() == "D") {
+        if (!$protocol) {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
 

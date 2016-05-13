@@ -539,6 +539,8 @@ class NewSubmissionController extends Controller
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
 
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         $upload_type_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
         $submission_upload_repository = $em->getRepository('Proethos2ModelBundle:SubmissionUpload');
@@ -573,11 +575,15 @@ class NewSubmissionController extends Controller
                     throw $this->createNotFoundException($translator->trans('No upload type found'));
                     return $output;                
                 }
+
+                $submission_number = count($submission->getProtocol()->getSubmission());
                 
                 $submission_upload = new SubmissionUpload();
                 $submission_upload->setSubmission($submission);
                 $submission_upload->setUploadType($upload_type);
+                $submission_upload->setUser($user);
                 $submission_upload->setFile($file);
+                $submission_upload->setSubmissionNumber($submission_number);
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($submission_upload);
@@ -622,6 +628,8 @@ class NewSubmissionController extends Controller
         $session = $request->getSession();
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         
@@ -825,18 +833,22 @@ class NewSubmissionController extends Controller
                         $filepath = "/tmp/" . date("Y-m-d") . "-submission.pdf";
                         file_put_contents($filepath, $pdf->getOutputFromHtml($html));
 
+
+                        $submission_number = count($submission->getProtocol()->getSubmission());
+                        
+
                         // send tmp file to upload class and save
                         $pdfFile = new SubmissionUpload();
                         $pdfFile->setSubmission($submission);
                         $pdfFile->setSimpleFile($filepath);
+                        $pdfFile->setUser($user);
+                        $pdfFile->setSubmissionNumber($submission_number);
                         $em->persist($pdfFile);
                         $em->flush();
 
                     } catch(\RuntimeException $e) {
                         
                         
-                    } finally {
-
                     }
 
                     // updating protocol and setting status

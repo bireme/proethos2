@@ -25,6 +25,13 @@ class SubmissionUpload extends Base
     private $id;
 
     /** 
+     * @ORM\ManyToOne(targetEntity="User") 
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true, onDelete="SET NULL") 
+     * @Assert\NotBlank 
+     */ 
+    private $user;
+
+    /** 
      * @ORM\ManyToOne(targetEntity="Submission") 
      * @ORM\JoinColumn(name="submission_id", referencedColumnName="id", nullable=true, onDelete="CASCADE") 
      * @Assert\NotBlank 
@@ -47,6 +54,13 @@ class SubmissionUpload extends Base
      * @ORM\Column(type="string", length=1023)
      */
     private $filepath;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $submission_number;
+
+
 
     /**
      * Get id
@@ -201,5 +215,53 @@ class SubmissionUpload extends Base
     public function getUri() {
 
         return "/uploads/" . str_pad($this->getSubmission()->getId(), 5, '0', STR_PAD_LEFT) . "/" . $this->getFilename();
+    }
+
+    /**
+     * Set submissionNumber
+     *
+     * @param integer $submissionNumber
+     *
+     * @return SubmissionUpload
+     */
+    public function setSubmissionNumber($submissionNumber)
+    {
+        $this->submission_number = $submissionNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get submissionNumber
+     *
+     * @return integer
+     */
+    public function getSubmissionNumber()
+    {
+        return $this->submission_number;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Proethos2\ModelBundle\Entity\User $user
+     *
+     * @return SubmissionUpload
+     */
+    public function setUser(\Proethos2\ModelBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Proethos2\ModelBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
