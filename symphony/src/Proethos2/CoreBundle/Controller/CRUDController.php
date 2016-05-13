@@ -216,14 +216,6 @@ class CRUDController extends Controller
 
         $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
 
-        $criteria = new \Doctrine\Common\Collections\Criteria();
-
-        // Add a not equals parameter to your criteria
-        $criteria->where($criteria->expr()->neq('status', 'D'));
-
-        // Find all from the repository matching your criteria
-        $protocols = $protocol_repository->matching($criteria);
-        
         // serach  and status parameter
         $status_array = array('S', 'R', 'I', 'E', 'H', "F", "A", "N", "C", "X");
         $search_query = $request->query->get('q');
@@ -234,6 +226,7 @@ class CRUDController extends Controller
 
         $query = $protocol_repository->createQueryBuilder('p')->join('p.main_submission', 's')
            ->where("s.publicTitle LIKE :query AND p.status IN (:status)")
+           ->orderBy("p.created", 'DESC')
            ->setParameter('query', "%". $search_query ."%")
            ->setParameter('status', $status_array);
 
@@ -267,9 +260,6 @@ class CRUDController extends Controller
 
         $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
 
-        // Find all from the repository matching your criteria
-        $protocols = $protocol_repository->findBy(array("owner" => $user));
-        
         // serach  and status parameter
         $status_array = array('S', 'R', 'I', 'E', 'H', 'D');
         $search_query = $request->query->get('q');
@@ -280,6 +270,7 @@ class CRUDController extends Controller
 
         $query = $protocol_repository->createQueryBuilder('p')->join('p.main_submission', 's')
            ->where("s.publicTitle LIKE :query AND p.status IN (:status) AND s.owner = :owner")
+           ->orderBy("p.created", 'DESC')
            ->setParameter('query', "%". $search_query ."%")
            ->setParameter('status', $status_array)
            ->setParameter('owner', $user);
