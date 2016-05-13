@@ -10,9 +10,12 @@ use Doctrine\ORM\EntityRepository;
 class CRUDControllerTest extends WebTestCase
 {
     var $meeting_id = NULL;
+    var $protocol_repository;
+    var $submission_repository;
     var $meeting_repository;
     var $faq_repository;
     var $client;
+    var $_em;
 
     public function setUp()
     {
@@ -22,6 +25,8 @@ class CRUDControllerTest extends WebTestCase
 
         $this->meeting_repository = $this->_em->getRepository('Proethos2ModelBundle:Meeting');
         $this->faq_repository = $this->_em->getRepository('Proethos2ModelBundle:Faq');
+        $this->submission_repository = $this->_em->getRepository('Proethos2ModelBundle:Submission');
+        $this->protocol_repository = $this->_em->getRepository('Proethos2ModelBundle:Protocol');
         
         $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'admin',
@@ -29,16 +34,6 @@ class CRUDControllerTest extends WebTestCase
         ));
     }
 
-    public function testListMeetingGET()
-    {
-        $client = $this->client;
-        $route = $client->getContainer()->get('router')->generate('crud_committee_meeting_list', array(), false);
-        
-        $client->request('GET', $route);
-        
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-    
     public function testListMeetingPOST()
     {
         $client = $this->client;
@@ -51,6 +46,16 @@ class CRUDControllerTest extends WebTestCase
         ));
 
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }
+
+    public function testListMeetingGET()
+    {
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_meeting_list', array(), false);
+        
+        $client->request('GET', $route);
+        
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function testShowMeetingGET()
@@ -128,10 +133,6 @@ class CRUDControllerTest extends WebTestCase
 
     public function testListCommitteeProtocolGET()
     {   
-        // getting last id
-        $last_meeting = end($this->meeting_repository->findAll());
-        $this->meeting_id = $last_meeting->getId();
-
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('crud_committee_protocol_list', array(), false);
         
@@ -146,17 +147,15 @@ class CRUDControllerTest extends WebTestCase
         
         $client->request('GET', $route);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+        // getting last id
+        $last_submission = end($this->submission_repository->findAll());
+        $submission_id = $last_submission->getId();
+
+        $this->_em->remove($last_submission->getProtocol());
+        $this->_em->flush();
     }
     
-    public function testListFaqGET()
-    {   
-        $client = $this->client;
-        $route = $client->getContainer()->get('router')->generate('crud_committee_faq_list', array(), false);
-        
-        $client->request('GET', $route);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-
     public function testListFaqPOST()
     {   
         // getting last id
@@ -172,6 +171,15 @@ class CRUDControllerTest extends WebTestCase
             'new-question-status' => "true",             
         ));
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }
+
+    public function testListFaqGET()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_faq_list', array(), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function testUpdateFaqGET()
@@ -203,6 +211,15 @@ class CRUDControllerTest extends WebTestCase
         ));
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
+
+    public function testFaqGET()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_faq_list', array(), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
     
     public function testDeleteFaqGET()
     {   
@@ -230,14 +247,5 @@ class CRUDControllerTest extends WebTestCase
             'question-delete' => "true", 
         ));
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
-    }
-
-    public function testFaqGET()
-    {   
-        $client = $this->client;
-        $route = $client->getContainer()->get('router')->generate('crud_faq_list', array(), false);
-        
-        $client->request('GET', $route);
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 }

@@ -36,7 +36,7 @@ class Submission extends Base
      * @var User
      * 
      * @ORM\ManyToOne(targetEntity="User") 
-     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=true) 
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=true, onDelete="SET NULL") 
      * @Assert\NotBlank 
      */ 
     private $owner;

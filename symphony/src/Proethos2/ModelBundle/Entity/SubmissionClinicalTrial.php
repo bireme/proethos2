@@ -35,7 +35,7 @@ class SubmissionClinicalTrial extends Base
      * @var Submission
      * 
      * @ORM\ManyToOne(targetEntity="Submission", inversedBy="clinical_trial") 
-     * @ORM\JoinColumn(name="submission_id", referencedColumnName="id", nullable=false) 
+     * @ORM\JoinColumn(name="submission_id", referencedColumnName="id", nullable=false, onDelete="CASCADE") 
      * @Assert\NotBlank 
      */ 
     private $submission;

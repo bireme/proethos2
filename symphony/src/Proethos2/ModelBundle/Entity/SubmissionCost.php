@@ -27,7 +27,7 @@ class SubmissionCost extends Base
      * @var Submission
      * 
      * @ORM\ManyToOne(targetEntity="Submission") 
-     * @ORM\JoinColumn(name="submission_id", referencedColumnName="id", nullable=false) 
+     * @ORM\JoinColumn(name="submission_id", referencedColumnName="id", nullable=false, onDelete="CASCADE") 
      * @Assert\NotBlank 
      */ 
     private $submission;

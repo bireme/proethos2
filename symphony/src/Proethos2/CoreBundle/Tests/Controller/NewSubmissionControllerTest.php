@@ -271,8 +271,5 @@ class NewSubmissionControllerTest extends WebTestCase
         ));
 
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
-
-        $this->_em->remove($last_submission->getProtocol());
-        $this->_em->flush();
     }
 }

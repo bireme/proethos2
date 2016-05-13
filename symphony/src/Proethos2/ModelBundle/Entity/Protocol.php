@@ -33,7 +33,7 @@ class Protocol extends Base
      * @var User
      * 
      * @ORM\ManyToOne(targetEntity="User", inversedBy="users") 
-     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false) 
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false, onDelete="CASCADE") 
      * @Assert\NotBlank 
      */ 
     private $owner;

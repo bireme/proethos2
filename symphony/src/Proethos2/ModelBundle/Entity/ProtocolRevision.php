@@ -22,7 +22,7 @@ class ProtocolRevision extends Base
     private $id;
 
     /** 
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="members", cascade={"remove"}) 
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="members") 
      */ 
     private $member;
 
@@ -33,7 +33,7 @@ class ProtocolRevision extends Base
 
     /**
      * @ORM\ManyToOne(targetEntity="Protocol", inversedBy="revision")
-     * @ORM\JoinColumn(name="protocol_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="protocol_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $protocol;
 

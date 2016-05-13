@@ -27,7 +27,7 @@ class SubmissionCountry extends Base
      * @var Submission
      * 
      * @ORM\ManyToOne(targetEntity="Submission", cascade={"persist"}) 
-     * @ORM\JoinColumn(name="submission_id", referencedColumnName="id", nullable=false) 
+     * @ORM\JoinColumn(name="submission_id", referencedColumnName="id", nullable=false, onDelete="cascade") 
      * @Assert\NotBlank 
      */ 
     private $submission;

@@ -30,13 +30,13 @@ class ProtocolComment extends Base
 
     /** 
      * @ORM\ManyToOne(targetEntity="Protocol") 
-     * @ORM\JoinColumn(name="protocol_id", referencedColumnName="id") 
+     * @ORM\JoinColumn(name="protocol_id", referencedColumnName="id", onDelete="CASCADE") 
      */ 
     private $protocol;
 
     /** 
      * @ORM\ManyToOne(targetEntity="User") 
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id") 
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE") 
      */ 
     private $owner;
 
