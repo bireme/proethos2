@@ -3,6 +3,7 @@
 namespace Proethos2\CoreBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -246,6 +247,41 @@ class CRUDControllerTest extends WebTestCase
         $client->request('POST', $route, array(
             'question-delete' => "true", 
         ));
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }
+
+    public function testListCommitteeDocumentGET()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_document_list', array(), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testListCommitteeDocumentPOST()
+    {   
+        // getting last id
+        $last_question = end($this->faq_repository->findAll());
+        $this->faq_id = $last_question->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_document_list', array(), false);
+
+        $file = tempnam(sys_get_temp_dir(), 'upl'); // create file
+        imagepng(imagecreatetruecolor(10, 10), $file); // create and write image/png to it
+        $image = new UploadedFile(
+            $file,
+            'new_image.png'
+        );
+        
+        $client->request('POST', $route, array(
+            'title' => "Teste de Documento", 
+            'description' => "Descrição do documento", 
+            'role' => 2, 
+            'status' => true, 
+        ), array('file' => $image, ));
+
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
 }

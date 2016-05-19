@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Proethos2\ModelBundle\Entity\Meeting;
 use Proethos2\ModelBundle\Entity\Faq;
+use Proethos2\ModelBundle\Entity\Document;
 
 
 class CRUDController extends Controller
@@ -56,8 +57,6 @@ class CRUDController extends Controller
                         return $output;
                     }
                 }
-
-                // var_dump($post_data);die;
 
                 $meeting = new Meeting();
                 $meeting->setDate(new \DateTime($post_data['new-meeting-date']));
@@ -465,6 +464,81 @@ class CRUDController extends Controller
 
         $questions = $faq_repository->findAll();
         $output['questions'] = $questions;
+
+        return $output;
+    }
+
+    /**
+     * @Route("/committee/documents", name="crud_committee_document_list")
+     * @Template()
+     */
+    public function listCommitteeDocumentAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $document_repository = $em->getRepository('Proethos2ModelBundle:Document');
+        $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
+
+        $documents = $document_repository->findAll();
+        
+        // serach parameter
+        $search_query = $request->query->get('q');
+        if($search_query) {
+            $documents = $document_repository->createQueryBuilder('m')
+               ->where('m.title LIKE :query')
+               ->setParameter('query', "%". $search_query ."%")
+               ->getQuery()
+               ->getResult();
+        }
+        
+        $output['documents'] = $documents;
+        
+        $roles = $role_repository->findAll();
+        $output['roles'] = $roles;
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            $file = $request->files->get('file');
+
+
+            if(empty($file)) {
+                $session->getFlashBag()->add('error', $translator->trans("Field 'file' is required."));
+                return $output;
+            }
+
+            // checking required fields
+            foreach(array('title',) as $field) {   
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $role = $role_repository->find($post_data['role']);
+
+            $document = new Document();
+            $document->setTitle($post_data['title']);
+            $document->setDescription($post_data['description']);
+            $document->setRole($role);
+            $document->setFile($file);
+
+            if(isset($post_data['status'])) {
+                $document->setStatus(true);
+            }
+
+            $em->persist($document);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Question created with success."));
+            return $this->redirectToRoute('crud_committee_document_list', array(), 301);
+        }
 
         return $output;
     }
