@@ -87,6 +87,11 @@ class Document extends Base
         return $this;
     }
 
+    public function getUri() {
+
+        return "/uploads/documents/" . $this->getFilename();
+    }
+
 
     /**
      * Get id

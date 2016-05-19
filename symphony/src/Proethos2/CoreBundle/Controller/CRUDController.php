@@ -648,4 +648,39 @@ class CRUDController extends Controller
 
         return $output;
     }
+
+    /**
+     * @Route("/document", name="crud_document_list")
+     * @Template()
+     */
+    public function listDocumentAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $document_repository = $em->getRepository('Proethos2ModelBundle:Document');
+        $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
+
+        $documents = $document_repository->findAll();
+        
+        // serach parameter
+        $search_query = $request->query->get('q');
+        if($search_query) {
+            $documents = $document_repository->createQueryBuilder('m')
+               ->where('m.title LIKE :query')
+               ->setParameter('query', "%". $search_query ."%")
+               ->getQuery()
+               ->getResult();
+        }
+        
+        $output['documents'] = $documents;
+        
+        $roles = $role_repository->findAll();
+        $output['roles'] = $roles;
+
+        return $output;
+    }
 }

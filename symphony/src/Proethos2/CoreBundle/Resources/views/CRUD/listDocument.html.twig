@@ -1,0 +1,60 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}Documents{% endtrans %}{% endblock %}
+
+{% block content %}
+    
+    <div class="container-fluid main-content download-docs">
+
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">{% trans %}Documents{% endtrans %}</h1>
+            </div>
+        </div>
+
+        <div class="block">
+            
+            <div class="row">
+
+                {% for role in roles %}
+                    {% if role in app.user.proethos2Roles %}
+                        <div class="col-md-6">
+                            <h2 class='sub-header'>{{ role.name }}</h2>
+                            <ul>
+                                {% for document in documents %}
+                                    {% if role == document.role %}
+                                        <li><a href="{{ document.uri }}">
+                                            <span data-toggle="tooltip" data-placement="top" title="{{ document.description }}">
+                                                {{ document.title }}
+                                            </span>
+                                        </a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                <div class="col-md-12">
+                    <h2 class='sub-header'>{% trans %}Other Documents{% endtrans %}</h2>
+                    <ul>
+                        {% for document in documents %}
+                            {% if not document.role %}
+                                <li><a href="{{ document.uri }}" title="{{ document.description }}">{{ document.title }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>    
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+
+        });
+    </script>
+{% endblock %}
