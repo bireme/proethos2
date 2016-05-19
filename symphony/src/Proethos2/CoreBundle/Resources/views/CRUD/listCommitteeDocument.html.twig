@@ -65,7 +65,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ path("crud_committee_document_update", {document_id: document.id}) }}" data-toggle="modal" data-target="#modal-ajax-document" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
-                                        <a href="#" data-toggle="modal" data-target="#modal-ajax-document" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
+                                        <a href="{{ path("crud_committee_document_delete", {document_id: document.id}) }}" data-toggle="modal" data-target="#modal-ajax-document" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}

@@ -601,4 +601,51 @@ class CRUDController extends Controller
 
         return $output;
     }
+
+    /**
+     * @Route("/committee/document/{document_id}/delete", name="crud_committee_document_delete")
+     * @Template()
+     */
+    public function deleteCommitteeDocumentAction($document_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $document_repository = $em->getRepository('Proethos2ModelBundle:Document');
+        $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
+
+        // getting the current document
+        $document = $document_repository->find($document_id);
+        $output['document'] = $document;
+        
+        if (!$document) {
+            throw $this->createNotFoundException($translator->trans('No document found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required files
+            foreach(array('delete') as $field) {
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $em->remove($document);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Document deleted with success."));
+            return $this->redirectToRoute('crud_committee_document_list', array(), 301);
+        }
+
+        return $output;
+    }
 }
