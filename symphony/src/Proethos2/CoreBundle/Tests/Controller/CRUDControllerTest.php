@@ -15,6 +15,7 @@ class CRUDControllerTest extends WebTestCase
     var $submission_repository;
     var $meeting_repository;
     var $faq_repository;
+    var $document_repository;
     var $client;
     var $_em;
 
@@ -28,6 +29,7 @@ class CRUDControllerTest extends WebTestCase
         $this->faq_repository = $this->_em->getRepository('Proethos2ModelBundle:Faq');
         $this->submission_repository = $this->_em->getRepository('Proethos2ModelBundle:Submission');
         $this->protocol_repository = $this->_em->getRepository('Proethos2ModelBundle:Protocol');
+        $this->document_repository = $this->_em->getRepository('Proethos2ModelBundle:Document');
         
         $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'admin',
@@ -282,6 +284,37 @@ class CRUDControllerTest extends WebTestCase
             'status' => true, 
         ), array('file' => $image, ));
 
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }
+
+    public function testUpdateCommitteeDocumentGET()
+    {   
+        // getting last id
+        $last_document = end($this->document_repository->findAll());
+        $this->document_id = $last_document->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_document_update', array("document_id" => $this->document_id), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testUpdateCommitteeDocumentPOST()
+    {   
+        // getting last id
+        $last_document = end($this->document_repository->findAll());
+        $this->document_id = $last_document->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_document_update', array("document_id" => $this->document_id), false);
+
+        $client->request('POST', $route, array(
+            'title' => "Teste de Documento2233", 
+            'description' => "Descrição do documento", 
+            'role' => 2, 
+            'status' => true,          
+        ));
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
 }

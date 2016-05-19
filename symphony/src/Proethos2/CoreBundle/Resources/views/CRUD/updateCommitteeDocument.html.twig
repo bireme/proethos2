@@ -1,0 +1,63 @@
+<form enctype="multipart/form-data" class='form' method="POST" id='form-update-document' action='{{ path("crud_committee_document_update", {document_id: document.id}) }}'>
+    <input type="hidden" name="MAX_FILE_SIZE" value="{{ 10*1024*1024 }}" />
+    
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{% trans %}Update Document{% endtrans %}</h4>
+    </div>
+    <div class="modal-body">
+        
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <label for="input-title">{% trans %}Title{% endtrans %}:</label> 
+                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-document-sign'></i></a>
+                    <input type='text' class='form-control' id="input-title" name="title" value="{{ document.title }}" required>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <label for="input-description">{% trans %}Description{% endtrans %}:</label> 
+                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-document-sign'></i></a>
+                    <textarea class='form-control' id="input-description" name="description">{{ document.description }}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <label for="select-role">{% trans %}Role{% endtrans %}:</label> 
+                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-document-sign'></i></a>
+                    <select class='form-control' id="select-role" name="role">
+                        <option value="">{% trans %}All{% endtrans %}</option>
+                        {% for role in roles %}
+                            <option value="{{ role.id }}" {% if document.role == role %}selected{% endif %}>{{ role.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label for="input-status">
+                            <input type="checkbox" id='input-status' name='status' value="true" {% if document.status %}checked{% endif %}> {% trans %}Active?{% endtrans %}
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-document-sign'></i></a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+        <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
+    </div>
+</form>

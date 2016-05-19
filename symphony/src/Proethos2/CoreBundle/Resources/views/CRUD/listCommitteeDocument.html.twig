@@ -42,8 +42,9 @@
                         
                         <thead>
                             <tr>
-                                <th width="70%">{% trans %}Title{% endtrans %}</th>
+                                <th width="60%">{% trans %}Title{% endtrans %}</th>
                                 <th width="">{% trans %}Filename{% endtrans %}</th>
+                                <th width="">{% trans %}Role{% endtrans %}</th>
                                 <th width="">{% trans %}Status{% endtrans %}</th>
                                 <th>{% trans %}Actions{% endtrans %}</th>
                             </tr>
@@ -54,6 +55,7 @@
                                 <tr>
                                     <td>{{ document.title }}</td>
                                     <td>{{ document.filename }}</td>
+                                    <td>{% if document.role %}{{ document.role }}{% else %}{% trans %}All{% endtrans %}{% endif %}</td>
                                     <td>
                                         {% if document.status %}
                                             <span class='label label-success'>{% trans %}active{% endtrans %}</span>
@@ -62,7 +64,7 @@
                                         {% endif %}
                                     </td>
                                     <td>
-                                        <a href="#" data-toggle="modal" data-target="#modal-ajax-document" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
+                                        <a href="{{ path("crud_committee_document_update", {document_id: document.id}) }}" data-toggle="modal" data-target="#modal-ajax-document" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
                                         <a href="#" data-toggle="modal" data-target="#modal-ajax-document" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
                                     </td>
                                 </tr>

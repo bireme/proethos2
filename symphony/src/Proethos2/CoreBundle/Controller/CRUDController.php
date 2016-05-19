@@ -507,7 +507,6 @@ class CRUDController extends Controller
             $post_data = $request->request->all();
             $file = $request->files->get('file');
 
-
             if(empty($file)) {
                 $session->getFlashBag()->add('error', $translator->trans("Field 'file' is required."));
                 return $output;
@@ -537,6 +536,66 @@ class CRUDController extends Controller
             $em->flush();
 
             $session->getFlashBag()->add('success', $translator->trans("Question created with success."));
+            return $this->redirectToRoute('crud_committee_document_list', array(), 301);
+        }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/committee/document/{document_id}", name="crud_committee_document_update")
+     * @Template()
+     */
+    public function updateCommitteeDocumentAction($document_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $document_repository = $em->getRepository('Proethos2ModelBundle:Document');
+        $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
+
+        // getting the current document
+        $document = $document_repository->find($document_id);
+        $output['document'] = $document;
+        
+        if (!$document) {
+            throw $this->createNotFoundException($translator->trans('No document found'));
+        }
+
+        $roles = $role_repository->findAll();
+        $output['roles'] = $roles;
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            // checking required fields
+            foreach(array('title',) as $field) {   
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $role = $role_repository->find($post_data['role']);
+
+            $document->setTitle($post_data['title']);
+            $document->setDescription($post_data['description']);
+            $document->setRole($role);
+            
+            if(isset($post_data['status'])) {
+                $document->setStatus(true);
+            }
+
+            $em->persist($document);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Document updated with success."));
             return $this->redirectToRoute('crud_committee_document_list', array(), 301);
         }
 
