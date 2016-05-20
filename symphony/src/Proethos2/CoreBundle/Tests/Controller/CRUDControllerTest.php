@@ -354,4 +354,15 @@ class CRUDControllerTest extends WebTestCase
         $client->request('GET', $route);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
+
+    public function testListCommitteeUsersGET()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_user_list', array(), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    
 }

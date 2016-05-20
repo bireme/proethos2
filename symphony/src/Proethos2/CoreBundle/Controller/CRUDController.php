@@ -683,4 +683,72 @@ class CRUDController extends Controller
 
         return $output;
     }
+
+    /**
+     * @Route("/committee/users", name="crud_committee_user_list")
+     * @Template()
+     */
+    public function listCommitteeUserAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
+
+        $users = $user_repository->findAll();
+        
+        // serach parameter
+        $search_query = $request->query->get('q');
+        if($search_query) {
+            $users = $user_repository->createQueryBuilder('m')
+               ->where('m.name LIKE :query')
+               ->setParameter('query', "%". $search_query ."%")
+               ->getQuery()
+               ->getResult();
+        }
+        
+        $output['users'] = $users;
+        
+        $roles = $role_repository->findAll();
+        $output['roles'] = $roles;
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required fields
+            foreach(array('title',) as $field) {   
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $role = $role_repository->find($post_data['role']);
+
+            // $user = new Document();
+            // $user->setTitle($post_data['title']);
+            // $user->setDescription($post_data['description']);
+            // $user->setRole($role);
+            // $user->setFile($file);
+
+            // if(isset($post_data['status'])) {
+            //     $user->setStatus(true);
+            // }
+
+            // $em->persist($user);
+            // $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Question created with success."));
+            return $this->redirectToRoute('crud_committee_user_list', array(), 301);
+        }
+
+        return $output;
+    }
 }
