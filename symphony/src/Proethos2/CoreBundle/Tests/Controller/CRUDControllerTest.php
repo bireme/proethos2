@@ -16,6 +16,7 @@ class CRUDControllerTest extends WebTestCase
     var $meeting_repository;
     var $faq_repository;
     var $document_repository;
+    var $user_repository;
     var $client;
     var $_em;
 
@@ -30,6 +31,7 @@ class CRUDControllerTest extends WebTestCase
         $this->submission_repository = $this->_em->getRepository('Proethos2ModelBundle:Submission');
         $this->protocol_repository = $this->_em->getRepository('Proethos2ModelBundle:Protocol');
         $this->document_repository = $this->_em->getRepository('Proethos2ModelBundle:Document');
+        $this->user_repository = $this->_em->getRepository('Proethos2ModelBundle:User');
         
         $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'admin',
@@ -355,7 +357,7 @@ class CRUDControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
-    public function testListCommitteeUsersGET()
+    public function testListCommitteeUserGET()
     {   
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('crud_committee_user_list', array(), false);
@@ -364,20 +366,52 @@ class CRUDControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
-    public function testListCommitteeUsersPOST()
+    public function testListCommitteeUserPOST()
     {   
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('crud_committee_user_list', array(), false);
 
         $client->request('POST', $route, array(
             'name' => "Moacir",   
-            'username' => "moacirteste",   
-            'email' => "moa@cir.com",   
-            'country' => 1,   
+            'username' => md5(date("YmdHis")),   
+            'email' => md5(date("YmdHis")) . "@cir.com",   
+            'country' => 76,   
             'institution' => "BIREME",   
             'status' => "true",   
         ));
 
+        // print $client->getResponse()->getContent();
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
+
+    public function testUpdateCommitteeUserGET()
+    {   
+        // getting last id
+        $last_user = end($this->user_repository->findAll());
+        $this->user_id = $last_user->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_user_update', array("user_id" => $this->user_id), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testUpdateCommitteeUserPOST()
+    {   
+        // getting last id
+        $last_user = end($this->user_repository->findAll());
+        $this->user_id = $last_user->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_user_update', array("user_id" => $this->user_id), false);
+        
+        $client->request('POST', $route, array(
+            'name' => "Moacir Mo",   
+            'country' => 76,   
+            'institution' => "BIREME",
+        ));
+
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }    
 }

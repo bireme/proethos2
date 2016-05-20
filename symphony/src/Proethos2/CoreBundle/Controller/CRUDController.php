@@ -763,4 +763,71 @@ class CRUDController extends Controller
 
         return $output;
     }
+
+    /**
+     * @Route("/committee/user/{user_id}", name="crud_committee_user_update")
+     * @Template()
+     */
+    public function updateCommitteeUserAction($user_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
+        $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
+
+        // getting the current user
+        $user = $user_repository->find($user_id);
+        $output['user'] = $user;
+        
+        if (!$user) {
+            throw $this->createNotFoundException($translator->trans('No user found'));
+        }
+        
+        $roles = $role_repository->findAll();
+        $output['roles'] = $roles;
+        
+        $countries = $country_repository->findAll();
+        $output['countries'] = $countries;
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            // checking required fields
+            foreach(array('name', 'country', ) as $field) {   
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $country = $country_repository->find($post_data['country']);
+
+            $user->setCountry($country);
+            $user->setName($post_data['name']);
+            $user->setInstitution($post_data['institution']);
+
+            if(isset($post_data['status'])) {
+                $user->setIsActive(true);
+            }
+            
+            $em->persist($user);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("User updated with success."));
+            return $this->redirectToRoute('crud_committee_user_list', array(), 301);
+            
+        }
+
+        return $output;
+    }
+
+    
 }

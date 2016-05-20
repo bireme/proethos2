@@ -68,7 +68,7 @@
                                         {% endif %}
                                     </td>
                                     <td>
-                                        <a href="#" data-toggle="modal" data-target="#modal-ajax-user" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
+                                        <a href="{{ path("crud_committee_user_update", {user_id: user.id}) }}" data-toggle="modal" data-target="#modal-ajax-user" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
                                         <a href="#" data-toggle="modal" data-target="#modal-ajax-user" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
                                     </td>
                                 </tr>
