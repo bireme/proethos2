@@ -40,7 +40,7 @@
                     <ul>
                         {% for document in documents %}
                             {% if not document.role %}
-                                <li><a href="{{ document.uri }}" title="{{ document.description }}">{{ document.title }}</a></li>
+                                <li><a href="{{ document.uri }}" data-toggle="tooltip" data-placement="top" title="{{ document.description }}">{{ document.title }}</a></li>
                             {% endif %}
                         {% endfor %}
                     </ul>

@@ -304,6 +304,16 @@ class User extends Base implements UserInterface, \Serializable
         return $this->proethos2_roles;
     }
 
+    public function getRolesSlug() {
+
+        $slugs = array();
+        foreach($this->getProethos2Roles() as $role) {
+            $slugs[] = $role->getSlug();
+        }
+
+        return $slugs;
+    }
+
     /**
      * Set country
      *

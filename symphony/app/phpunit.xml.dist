@@ -12,6 +12,7 @@
             <directory>../src/Proethos2/CoreBundle/Tests/Controller/NewSubmissionControllerTest.php</directory>
             <directory>../src/Proethos2/CoreBundle/Tests/Controller/ProtocolControllerTest.php</directory>
             <directory>../src/Proethos2/CoreBundle/Tests/Controller/CRUDControllerTest.php</directory>
+            <directory>../src/Proethos2/CoreBundle/Tests/Controller/IndexControllerTest.php</directory>
         </testsuite>
     </testsuites>
 
