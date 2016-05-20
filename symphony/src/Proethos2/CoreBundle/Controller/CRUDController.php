@@ -589,6 +589,7 @@ class CRUDController extends Controller
             $document->setDescription($post_data['description']);
             $document->setRole($role);
             
+            $document->setStatus(false);
             if(isset($post_data['status'])) {
                 $document->setStatus(true);
             }
@@ -814,6 +815,7 @@ class CRUDController extends Controller
             $user->setName($post_data['name']);
             $user->setInstitution($post_data['institution']);
 
+            $user->setIsActive(false);
             if(isset($post_data['status'])) {
                 $user->setIsActive(true);
             }
