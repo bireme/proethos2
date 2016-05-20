@@ -117,3 +117,19 @@ h5 {
 .answer {
     margin: 0 0 20px 0;
 }
+
+/*cor do texto dos selecionados do select2 (multiple) */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    color: #666;
+}
+/*  padroniza as caixas de select2 (multiple) */
+.select2-container--default .select2-selection--multiple {
+    border: 1px solid #d2d6de;
+    border-radius: 0;
+}
+.select2-selection {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border-color: #d2d6de !important;
+    height: 34px !important;
+}

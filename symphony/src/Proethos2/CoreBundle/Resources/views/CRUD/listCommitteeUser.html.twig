@@ -21,7 +21,7 @@
                     <div class="col-md-11">
                         <div class="form-group" id='form-filter'>
                             <label for="input-filter-q">{% trans %}Search for a user{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-user-sign'></i></a>
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='text' class='form-control' id='input-filter-q' name='q' value="{{ app.request.get('q') }}">
                         </div>
                     </div>
@@ -86,7 +86,6 @@
         <div class="modal-dialog modal-lg" role="user">
             <div class="modal-content">
                 <form enctype="multipart/form-data" class='form' method="POST" id='form-new-user'>
-                    <input type="hidden" name="MAX_FILE_SIZE" value="{{ 10*1024*1024 }}" />
                     
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -96,33 +95,43 @@
                         
                         <div class='row'>
                             <div class='col-md-12'>
-                                <div class="form-group">
-                                    <label for="input-title">{% trans %}Title{% endtrans %}:</label> 
-                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-user-sign'></i></a>
-                                    <input type='text' class='form-control' id="input-title" name="title" required>
+                                <div class="form-group required">
+                                    <label for="input-username">{% trans %}Username{% endtrans %}:</label> 
+                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <input type='text' class='form-control' id="input-username" name="username" required>
                                 </div>
                             </div>
                         </div>
 
                         <div class='row'>
                             <div class='col-md-12'>
-                                <div class="form-group">
-                                    <label for="input-description">{% trans %}Description{% endtrans %}:</label> 
-                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-user-sign'></i></a>
-                                    <textarea class='form-control' id="input-description" name="description"></textarea>
+                                <div class="form-group required">
+                                    <label for="input-email">{% trans %}Email{% endtrans %}:</label> 
+                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <input type='email' class='form-control' id="input-email" name="email" required>
                                 </div>
                             </div>
                         </div>
 
                         <div class='row'>
                             <div class='col-md-12'>
-                                <div class="form-group">
-                                    <label for="select-role">{% trans %}Role{% endtrans %}:</label> 
-                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-user-sign'></i></a>
-                                    <select class='form-control' id="select-role" name="role">
-                                        <option value="">{% trans %}All{% endtrans %}</option>
-                                        {% for role in roles %}
-                                            <option value="{{ role.id }}">{{ role.name }}</option>
+                                <div class="form-group required">
+                                    <label for="input-name">{% trans %}Name{% endtrans %}:</label> 
+                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <input type='text' class='form-control' id="input-name" name="name" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='col-md-12'>
+                                <div class="form-group required">
+                                    <label for="select-country">{% trans %}Country{% endtrans %}:</label> 
+                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <select class='form-control select-select2' id="select-country" name="country" required>
+                                        <option value="">{% trans %}Select country{% endtrans %}</option>
+                                        {% for country in countries %}
+                                            <option value="{{ country.id }}">{{ country }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -132,9 +141,9 @@
                         <div class='row'>
                             <div class='col-md-12'>
                                 <div class="form-group">
-                                    <label for="input-file">{% trans %}File{% endtrans %}:</label> 
-                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-user-sign'></i></a>
-                                    <input type='file' class='form-control' id="input-file" name="file" required>
+                                    <label for="input-institution">{% trans %}Institution{% endtrans %}:</label> 
+                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <input type='text' class='form-control' id="input-institution" name="institution">
                                 </div>
                             </div>
                         </div>
@@ -145,7 +154,7 @@
                                     <div class="checkbox">
                                         <label for="input-status">
                                             <input type="checkbox" id='input-status' name='status' value="true" checked> {% trans %}Active?{% endtrans %}
-                                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-user-sign'></i></a>
+                                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                         </label>
                                     </div>
                                 </div>

@@ -58,10 +58,12 @@ class User extends Base implements UserInterface, \Serializable
      */
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=2)
-     * @Assert\NotBlank()
-     */
+    /** 
+     * @var Country
+     * 
+     * @ORM\ManyToOne(targetEntity="Country", inversedBy="users") 
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", onDelete="SET NULL") 
+     */ 
     private $country;
 
     /**
@@ -77,6 +79,7 @@ class User extends Base implements UserInterface, \Serializable
 
     public function __construct()
     {
+        parent::__construct();
         $this->proethos2_roles = new ArrayCollection();
         $this->isActive = true;
         // may not be needed, see section on salt below
@@ -244,30 +247,6 @@ class User extends Base implements UserInterface, \Serializable
     }
 
     /**
-     * Set country
-     *
-     * @param string $country
-     *
-     * @return User
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return string
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
      * Set institution
      *
      * @param string $institution
@@ -323,5 +302,29 @@ class User extends Base implements UserInterface, \Serializable
     public function getProethos2Roles()
     {
         return $this->proethos2_roles;
+    }
+
+    /**
+     * Set country
+     *
+     * @param \Proethos2\ModelBundle\Entity\Country $country
+     *
+     * @return User
+     */
+    public function setCountry(\Proethos2\ModelBundle\Entity\Country $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \Proethos2\ModelBundle\Entity\Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 }

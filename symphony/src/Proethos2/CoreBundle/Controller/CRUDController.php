@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Proethos2\ModelBundle\Entity\Meeting;
 use Proethos2\ModelBundle\Entity\Faq;
 use Proethos2\ModelBundle\Entity\Document;
+use Proethos2\ModelBundle\Entity\User;
 
 
 class CRUDController extends Controller
@@ -698,6 +699,7 @@ class CRUDController extends Controller
 
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
+        $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
 
         $users = $user_repository->findAll();
         
@@ -715,6 +717,9 @@ class CRUDController extends Controller
         
         $roles = $role_repository->findAll();
         $output['roles'] = $roles;
+        
+        $countries = $country_repository->findAll();
+        $output['countries'] = $countries;
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
@@ -723,29 +728,36 @@ class CRUDController extends Controller
             $post_data = $request->request->all();
             
             // checking required fields
-            foreach(array('title',) as $field) {   
+            foreach(array('name', 'username', 'email', 'country', ) as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
                     return $output;
                 }
             }
 
-            $role = $role_repository->find($post_data['role']);
+            $country = $country_repository->find($post_data['country']);
 
-            // $user = new Document();
-            // $user->setTitle($post_data['title']);
-            // $user->setDescription($post_data['description']);
-            // $user->setRole($role);
-            // $user->setFile($file);
+            $user = new User();
+            $user->setCountry($country);
+            $user->setName($post_data['name']);
+            $user->setUsername($post_data['username']);
+            $user->setEmail($post_data['email']);
+            $user->setInstitution($post_data['institution']);
 
-            // if(isset($post_data['status'])) {
-            //     $user->setStatus(true);
-            // }
+            if(isset($post_data['status'])) {
+                $user->setIsActive(true);
+            }
+            
+            $encoderFactory = $this->get('security.encoder_factory');
+            $encoder = $encoderFactory->getEncoder($user);
+            $salt = $user->getSalt(); // this should be different for every user
+            $password = $encoder->encodePassword('123456', $salt);
+            $user->setPassword($password);
 
-            // $em->persist($user);
-            // $em->flush();
+            $em->persist($user);
+            $em->flush();
 
-            $session->getFlashBag()->add('success', $translator->trans("Question created with success."));
+            $session->getFlashBag()->add('success', $translator->trans("User created with success."));
             return $this->redirectToRoute('crud_committee_user_list', array(), 301);
         }
 
