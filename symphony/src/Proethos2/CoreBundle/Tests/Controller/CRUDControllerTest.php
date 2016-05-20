@@ -413,5 +413,33 @@ class CRUDControllerTest extends WebTestCase
         ));
 
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
-    }    
+    } 
+
+    public function testDeleteCommitteeUserGET()
+    {   
+        // getting last id
+        $last_user = end($this->user_repository->findAll());
+        $this->user_id = $last_user->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_user_delete', array("user_id" => $this->user_id), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testDeleteCommitteeUserPOST()
+    {   
+        // getting last id
+        $last_user = end($this->user_repository->findAll());
+        $this->user_id = $last_user->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_user_delete', array("user_id" => $this->user_id), false);
+        
+        $client->request('POST', $route, array(
+            'delete' => "true", 
+        ));
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }
 }
