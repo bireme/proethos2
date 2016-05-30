@@ -428,7 +428,7 @@ class CRUDControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
-    public function testUpdateCommitteeUserRolePOST()
+    public function testUpdateUserRolePOST()
     {   
         // getting last id
         $last_user = end($this->user_repository->findAll());
@@ -443,6 +443,39 @@ class CRUDControllerTest extends WebTestCase
         ));
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
+
+    public function testUpdateUserProfileGET()
+    {   
+        // getting last id
+        $last_user = end($this->user_repository->findAll());
+        $this->user_id = $last_user->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_user_profile_update', array(), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testUpdateUserProfilePOST()
+    {   
+        // getting last id
+        $last_user = end($this->user_repository->findAll());
+        $this->user_id = $last_user->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_user_profile_update', array(), false);
+        
+        $client->request('POST', $route, array(
+            'name' => "Moacir Moda",   
+            'country' => 76,   
+            'institution' => "BIREME",
+        ));
+
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    } 
+
+    
 
     public function testDeleteCommitteeUserGET()
     {   
