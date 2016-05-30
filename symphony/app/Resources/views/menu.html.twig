@@ -62,7 +62,8 @@
                         <i class='glyphicon glyphicon-user'></i> <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" data-toggle='modal' data-target='#modal-edit-personal-information'>Seu Perfil</a></li>
+                        <li><a href="{{ path('security_change_password') }}" data-toggle='modal' data-target='#modal-edit-personal-information'>Seu Perfil</a></li>
+                        <li><a href="{{ path('security_change_password') }}" data-toggle='modal' data-target='#modalBaseAjax'>{% trans %}Change Password{% endtrans %}</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="{{ path('logout_route') }}">Logout</a></li>
                     </ul>    
