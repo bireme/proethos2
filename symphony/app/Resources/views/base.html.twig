@@ -92,7 +92,7 @@
             {% endfor %}
 
             {# if first access, tells to change password #}
-            {% if app.user.firstAccess %}
+            {% if app.user and app.user.firstAccess %}
                 console.log('first access...');
                 $("#menuChangePassword").trigger('click');
             {% endif %}

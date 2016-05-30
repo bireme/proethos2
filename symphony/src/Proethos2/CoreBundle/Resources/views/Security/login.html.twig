@@ -45,6 +45,8 @@
             {% endif %}
             
             <form class="form-signin" action="{{ path('login_check') }}" method="post">
+                <input type="hidden" name="_target_path" value="default_security_target" />
+
                 <div class="form-group">
                     <input type="text" name='_username' id="inputEmail" class="form-control" placeholder="Username" required autofocus>
                 </div>

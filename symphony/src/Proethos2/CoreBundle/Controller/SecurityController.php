@@ -51,6 +51,19 @@ class SecurityController extends Controller
     }
 
     /**
+     * @Route("/logged", name="default_security_target")
+     */
+    public function loggedAction()
+    {
+        // if secretary, send to committee home
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        if(in_array('secretary', $user->getRolesSlug())) {
+            return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
+        }
+    }
+
+    /**
      * @Route("/account/change_password", name="security_change_password")
      * @Template()
      */
