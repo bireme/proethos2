@@ -89,6 +89,10 @@ class SecurityController extends Controller
             $password = $encoder->encodePassword($post_data['change-password'], $salt);
             $user->setPassword($password);
 
+            if($user->getFirstAccess()) {
+                $user->setFirstAccess(false);
+            }
+
             $em->persist($user);
             $em->flush();
 

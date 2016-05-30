@@ -748,6 +748,9 @@ class CRUDController extends Controller
             if(isset($post_data['status'])) {
                 $user->setIsActive(true);
             }
+
+            // adding user role
+            $user->addProethos2Role($role_repository->findOneBy(array('slug' => 'investigator')));
             
             $encoderFactory = $this->get('security.encoder_factory');
             $encoder = $encoderFactory->getEncoder($user);

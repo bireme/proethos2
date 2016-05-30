@@ -46,7 +46,7 @@
     {% endblock %}
 
     <!-- Modal HELP -->
-    <div class="modal fade" id="modal-help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="modal-help" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -64,7 +64,7 @@
     </div>
 
     <!-- Modal Base Ajax -->
-    <div class="modal fade" id="modalBaseAjax" tabindex="-1" role="dialog">
+    <div class="modal fade" id="modalBaseAjax" data-keyboard="false" data-backdrop="static"  role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
             </div>
@@ -91,6 +91,11 @@
                 toastr.error('{{ flash_message }}');
             {% endfor %}
 
+            {# if first access, tells to change password #}
+            {% if app.user.firstAccess %}
+                console.log('first access...');
+                $("#menuChangePassword").trigger('click');
+            {% endif %}
         });
     </script>
     {% block script %}{% endblock %}

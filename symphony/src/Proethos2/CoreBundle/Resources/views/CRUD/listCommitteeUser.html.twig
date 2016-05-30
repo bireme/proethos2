@@ -48,6 +48,7 @@
                                 <th width="">{% trans %}Country{% endtrans %}</th>
                                 <th width="">{% trans %}Institution{% endtrans %}</th>
                                 <th width="">{% trans %}Roles{% endtrans %}</th>
+                                <th width="">{% trans %}Already Access?{% endtrans %}</th>
                                 <th width="">{% trans %}Status{% endtrans %}</th>
                                 <th>{% trans %}Actions{% endtrans %}</th>
                             </tr>
@@ -71,6 +72,13 @@
                                             <span class='label label-success'>{% trans %}active{% endtrans %}</span>
                                         {% else %}
                                             <span class='label label-default'>{% trans %}inactive{% endtrans %}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if user.firstAccess %}
+                                            <span class='label label-default'>{% trans %}no{% endtrans %}</span>
+                                        {% else %}
+                                            <span class='label label-success'>{% trans %}yes{% endtrans %}</span>
                                         {% endif %}
                                     </td>
                                     <td>

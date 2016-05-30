@@ -72,6 +72,11 @@ class User extends Base implements UserInterface, \Serializable
      */
     private $institution;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $first_access = true;
+
     public function __toString()
     {
         return $this->getName();
@@ -336,5 +341,29 @@ class User extends Base implements UserInterface, \Serializable
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Set firstAccess
+     *
+     * @param boolean $firstAccess
+     *
+     * @return User
+     */
+    public function setFirstAccess($firstAccess)
+    {
+        $this->first_access = $firstAccess;
+
+        return $this;
+    }
+
+    /**
+     * Get firstAccess
+     *
+     * @return boolean
+     */
+    public function getFirstAccess()
+    {
+        return $this->first_access;
     }
 }
