@@ -16,7 +16,17 @@ security:
             pattern: ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
 
+        login_firewall:
+            pattern:   ^/login$
+            anonymous: ~
+
         default:
+            provider: our_db_provider
             pattern:    ^/
             http_basic: ~
-            provider: our_db_provider
+            form_login:
+                login_path: /login
+                check_path: /login_check
+            logout:
+                path:   /logout
+                target: /
