@@ -415,6 +415,35 @@ class CRUDControllerTest extends WebTestCase
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     } 
 
+    public function testUpdateCommitteeUserRoleGET()
+    {   
+        // getting last id
+        $last_user = end($this->user_repository->findAll());
+        $this->user_id = $last_user->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_user_role_update', array("user_id" => $this->user_id), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testUpdateCommitteeUserRolePOST()
+    {   
+        // getting last id
+        $last_user = end($this->user_repository->findAll());
+        $this->user_id = $last_user->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_user_role_update', array("user_id" => $this->user_id), false);
+        
+        $client->request('POST', $route, array(
+            'investigator' => "on", 
+            'secretary' => "on", 
+        ));
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }
+
     public function testDeleteCommitteeUserGET()
     {   
         // getting last id

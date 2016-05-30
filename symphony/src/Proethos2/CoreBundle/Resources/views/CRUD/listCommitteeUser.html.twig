@@ -47,6 +47,7 @@
                                 <th width="">{% trans %}Email{% endtrans %}</th>
                                 <th width="">{% trans %}Country{% endtrans %}</th>
                                 <th width="">{% trans %}Institution{% endtrans %}</th>
+                                <th width="">{% trans %}Roles{% endtrans %}</th>
                                 <th width="">{% trans %}Status{% endtrans %}</th>
                                 <th>{% trans %}Actions{% endtrans %}</th>
                             </tr>
@@ -61,6 +62,11 @@
                                     <td>{{ user.country }}</td>
                                     <td>{{ user.institution }}</td>
                                     <td>
+                                        {% for role in user.proethos2Roles %}
+                                            <span class='label label-default' data-toggle='tooltip' data-placement='top' title='{{ role.name }}'>{{ role.slug|first|upper }}</span>
+                                        {% endfor %}
+                                    </td>
+                                    <td>
                                         {% if user.isActive %}
                                             <span class='label label-success'>{% trans %}active{% endtrans %}</span>
                                         {% else %}
@@ -68,8 +74,15 @@
                                         {% endif %}
                                     </td>
                                     <td>
-                                        <a href="{{ path("crud_committee_user_update", {user_id: user.id}) }}" data-toggle="modal" data-target="#modal-ajax-user" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
-                                        <a href="{{ path("crud_committee_user_delete", {user_id: user.id}) }}" data-toggle="modal" data-target="#modal-ajax-user" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
+                                        <span data-toggle='tooltip' data-placement='top' title="{% trans %}Edit roles{% endtrans %}">
+                                            <a href="{{ path("crud_committee_user_role_update", {user_id: user.id}) }}" data-toggle="modal" data-target="#modal-ajax-user" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-user"></i></a>
+                                        </span>
+                                        <span data-toggle='tooltip' data-placement='top' title="{% trans %}Edit user's informations{% endtrans %}">
+                                            <a href="{{ path("crud_committee_user_update", {user_id: user.id}) }}" data-toggle="modal" data-target="#modal-ajax-user" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
+                                        </span>
+                                        <span data-toggle='tooltip' data-placement='top' title="{% trans %}Exclude user{% endtrans %}">
+                                            <a href="{{ path("crud_committee_user_delete", {user_id: user.id}) }}" data-toggle="modal" data-target="#modal-ajax-user" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
+                                        </span>
                                     </td>
                                 </tr>
                             {% endfor %}

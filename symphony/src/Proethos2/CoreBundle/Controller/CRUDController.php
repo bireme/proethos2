@@ -832,6 +832,58 @@ class CRUDController extends Controller
     }
 
     /**
+     * @Route("/committee/user/{user_id}/role", name="crud_committee_user_role_update")
+     * @Template()
+     */
+    public function updateCommitteeUserRoleAction($user_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
+        $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
+
+        // getting the current user
+        $user = $user_repository->find($user_id);
+        $output['user'] = $user;
+        
+        if (!$user) {
+            throw $this->createNotFoundException($translator->trans('No user found'));
+        }
+        
+        $roles = $role_repository->findAll();
+        $output['roles'] = $roles;
+        
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            foreach($roles as $role) {
+                $user->removeProethos2Role($role);
+
+                if(in_array($role->getSlug(), array_keys($post_data))) {
+                    $user->addProethos2Role($role);
+                }
+            }
+
+            // var_dump($post_data);die;
+            $em->persist($user);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("User updated with success."));
+            return $this->redirectToRoute('crud_committee_user_list', array(), 301);
+        }
+
+        return $output;
+    }
+
+    /**
      * @Route("/committee/user/{user_id}/delete", name="crud_committee_user_delete")
      * @Template()
      */
