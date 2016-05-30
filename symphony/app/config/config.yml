@@ -70,7 +70,7 @@ swiftmailer:
     host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
-    spool:     { type: memory }
+    # spool:     { type: memory }
 
 knp_snappy:
     pdf:
@@ -81,3 +81,6 @@ knp_snappy:
 parameters:
     committee.name:   "Pan American Health Organization"
     committee.prefix: "PAHO"
+    committee.email:  "proethos2@paho.org"
+    committee.address:  "525 Twenty-third Street, N.W., Washington, D.C. 20037, Estados Unidos"
+    committee.phones:  "Tel.: +1 (202) 974-3000<br>Fax: +1 (202) 974-3663"

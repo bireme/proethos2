@@ -44,5 +44,18 @@ monolog:
 assetic:
     use_controller: true
 
-#swiftmailer:
-#    delivery_address: me@example.com
+swiftmailer:
+    transport:          "smtp"
+    host:               "smtp.webfaction.com"
+    port:               587
+    username:           "contatoapp"
+    password:           "contatoapp123"
+    auth_mode:          "login"
+    encryption:         "tls"
+    auth_mode:          "login"
+    delivery_address:   "moa.moda@gmail.com"
+
+parameters:
+    committee.name:   "BIREME/OPAS/OMS"
+    committee.prefix: "BIR"
+    committee.email:  "moa.moda@gmail.com"

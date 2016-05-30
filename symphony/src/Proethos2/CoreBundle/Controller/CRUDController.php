@@ -931,4 +931,65 @@ class CRUDController extends Controller
 
         return $output;
     }
+
+    /**
+     * @Route("/contact", name="crud_contact_list")
+     * @Template()
+     */
+    public function listContactAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $output['committee_prefix'] = $this->container->getParameter('committee.prefix');
+        $output['committee_name'] = $this->container->getParameter('committee.name');
+        $output['committee_email'] = $this->container->getParameter('committee.email');
+        $output['committee_address'] = $this->container->getParameter('committee.address');
+        $output['committee_phones'] = $this->container->getParameter('committee.phones');
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required files
+            foreach(array('name', 'email', 'subject', 'message') as $field) {
+                
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $message = \Swift_Message::newInstance()
+            ->setSubject("[proethos2] " . $translator->trans("Message from plataform."))
+            ->setFrom($output['committee_email'])
+            ->setTo($output['committee_email'])
+            ->setBody(
+                $translator->trans("Hello! A message was sended to proethos2 administrator from plataform.") .
+                "<br>" .
+                "<br><b>User</b>: " . $user->getUsername() . " (" . $user->getEmail() . ")" . 
+                "<br><b>Subject</b>: " . $post_data['subject'] . 
+                "<br><b>Message</b>:<br>" . 
+                nl2br($post_data['message'])
+                ,
+                'text/html'
+            );
+            
+            $send = $this->get('mailer')->send($message);
+            $session->getFlashBag()->add('success', $translator->trans("Message send to administrators."));
+            return $this->redirectToRoute('crud_contact_list', array(), 301);
+        }
+
+
+
+        // var_dump($send);die;
+        return $output;
+    }
 }
