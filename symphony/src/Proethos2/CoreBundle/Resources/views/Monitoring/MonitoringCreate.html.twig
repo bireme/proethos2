@@ -1,0 +1,29 @@
+<form class='form' method="POST" id='form-submit-monitoring-action' action='{{ path("protocol_new_monitoring", { protocol_id: protocol.id }) }}'>
+    
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{% trans %}Submit monitoring action{% endtrans %}</h4>
+    </div>
+    <div class="modal-body">
+            
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <label for="select-monitoring-action">{% trans %}Monitoring Action{% endtrans %}:</label> 
+                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <select class='form-control' id="select-monitoring-action" name="monitoring-action" required>
+                        <option value="">{% trans %}Select an action{% endtrans %}</option>
+                        {% for action in monitoring_actions %}
+                            <option value="{{ action.id }}">{{ action.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+        <button type="submit" class="btn btn-primary">{% trans %}Add{% endtrans %}</button>
+    </div>
+</form>

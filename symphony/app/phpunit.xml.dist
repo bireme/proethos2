@@ -11,6 +11,7 @@
         <testsuite name="Project Test Suite">
             <directory>../src/Proethos2/CoreBundle/Tests/Controller/NewSubmissionControllerTest.php</directory>
             <directory>../src/Proethos2/CoreBundle/Tests/Controller/ProtocolControllerTest.php</directory>
+            <directory>../src/Proethos2/CoreBundle/Tests/Controller/MonitoringControllerTest.php</directory>
             <directory>../src/Proethos2/CoreBundle/Tests/Controller/CRUDControllerTest.php</directory>
             <directory>../src/Proethos2/CoreBundle/Tests/Controller/IndexControllerTest.php</directory>
             <directory>../src/Proethos2/CoreBundle/Tests/Controller/SecurityControllerTest.php</directory>

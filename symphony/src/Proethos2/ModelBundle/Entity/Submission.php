@@ -545,6 +545,19 @@ class Submission extends Base
         return $this->team;
     }
 
+    public function isOwner(User $user)
+    {
+        if($this->getTeam()->contains($user)) {
+            return true;
+        }
+
+        if($user == $this->getOwner()) {
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * Set abstract
      *

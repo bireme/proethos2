@@ -126,6 +126,15 @@ class Protocol extends Base
     private $meeting;
 
     /** 
+     * @var MonitoringAction
+     * 
+     * @ORM\ManyToOne(targetEntity="MonitoringAction", inversedBy="protocols") 
+     * @ORM\JoinColumn(name="monitoring_action_id", referencedColumnName="id", onDelete="SET NULL") 
+     * @Assert\NotBlank 
+     */ 
+    private $monitoring_action;
+
+    /** 
      * Constructor 
      */ 
     public function __construct() 
@@ -607,5 +616,29 @@ class Protocol extends Base
     public function getRevisedIn()
     {
         return $this->revised_in;
+    }
+
+    /**
+     * Set monitoringAction
+     *
+     * @param \Proethos2\ModelBundle\Entity\MonitoringAction $monitoringAction
+     *
+     * @return Protocol
+     */
+    public function setMonitoringAction(\Proethos2\ModelBundle\Entity\MonitoringAction $monitoringAction = null)
+    {
+        $this->monitoring_action = $monitoringAction;
+
+        return $this;
+    }
+
+    /**
+     * Get monitoringAction
+     *
+     * @return \Proethos2\ModelBundle\Entity\MonitoringAction
+     */
+    public function getMonitoringAction()
+    {
+        return $this->monitoring_action;
     }
 }
