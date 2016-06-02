@@ -106,7 +106,7 @@
                     $("#input-is-reject").val('false');
                     $("#form-action").submit();
                 });
-            {% endblock %}
+            {% endif %}
         });
 
         function reject() {
@@ -130,7 +130,7 @@
 
             {% if protocol.monitoringAction %}
                 $("#button-accept-as-notification").show();
-            {% endblock %}
+            {% endif %}
         }
     </script>
 {% endblock %}
