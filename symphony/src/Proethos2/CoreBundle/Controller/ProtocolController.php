@@ -554,6 +554,7 @@ class ProtocolController extends Controller
             $submission_upload = new SubmissionUpload();
             $submission_upload->setSubmission($protocol->getMainSubmission());
             $submission_upload->setUploadType($upload_type);
+            $submission_upload->setSubmissionNumber($protocol->getMainSubmission()->getNumber());
             $submission_upload->setFile($file);
 
             $em = $this->getDoctrine()->getManager();
