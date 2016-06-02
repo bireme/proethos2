@@ -166,14 +166,32 @@ class ProtocolController extends Controller
                     $em->persist($protocol_history);
                     $em->flush();
 
-
+                    $em->persist($protocol);
+                    $em->flush();
+                    
+                    $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
+                    return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
                 }
 
-                $em->persist($protocol);
-                $em->flush();
-                
-                $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
-                return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
+                if($post_data['send-to'] == "notification-only") {
+
+                    $protocol->setStatus("A");
+                    $protocol->setMonitoringAction(NULL);
+
+                    // setting protocool history
+                    $protocol_history = new ProtocolHistory();
+                    $protocol_history->setProtocol($protocol);
+                    $protocol_history->setMessage($translator->trans("Monitoring action was accepted as notification only."));
+                    $em->persist($protocol_history);
+                    $em->flush();
+
+                    $em->persist($protocol);
+                    $em->flush();
+                    
+                    $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
+                    return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
+                }
+
             }
         }
 
@@ -527,6 +545,7 @@ class ProtocolController extends Controller
 
             // setting the Scheduled status
             $protocol->setStatus($post_data['final-decision']);
+            $protocol->setMonitoringAction(NULL);
 
             // getting the upload type
             $upload_type = $upload_type_repository->findOneBy(array("slug" => "draft-opinion"));

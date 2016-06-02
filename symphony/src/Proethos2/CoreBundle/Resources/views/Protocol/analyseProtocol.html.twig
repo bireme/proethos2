@@ -61,6 +61,9 @@
                     <button type="submit" class='btn btn-danger' id='button-reject-submission'>{% trans %}Send back to investigator{% endtrans %}</button>
                     <button class='btn btn-primary' id='button-send-to-committee'>{% trans %}Send to committee to decide{% endtrans %}</button>
                     <button class='btn btn-primary' id='button-send-to-ethical-revision'>{% trans %}Send to ethical revision{% endtrans %}</button>
+                    {% if protocol.monitoringAction %}
+                        <button class='btn btn-success' id='button-accept-as-notification' data-toggle='tooltip' data-placement='top' title="{% trans %}This monitoring action will not be reviewed by the committee{% endtrans %}">{% trans %}Accept as Notification{% endtrans %}</button>
+                    {% endif %}
                 </div>
             </div>
         </form>
@@ -96,6 +99,14 @@
                 $("#input-is-reject").val('false');
                 $("#form-action").submit();
             });
+
+            {% if protocol.monitoringAction %}
+                $("body").on("click", "#button-accept-as-notification", function(e){
+                    $("#input-send-to").val('notification-only');
+                    $("#input-is-reject").val('false');
+                    $("#form-action").submit();
+                });
+            {% endblock %}
         });
 
         function reject() {
@@ -116,6 +127,10 @@
 
             $("#button-send-to-committee").show();
             $("#button-send-to-ethical-revision").show();
+
+            {% if protocol.monitoringAction %}
+                $("#button-accept-as-notification").show();
+            {% endblock %}
         }
     </script>
 {% endblock %}
