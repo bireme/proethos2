@@ -84,7 +84,7 @@
                 </thead>
                 
                 <tbody>
-                    {% for file in protocol.mainSubmission.attachments %}
+                    {% for file in protocol.mainSubmission.attachments if not file.isMonitoringAction %}
                         <tr>
                             <td>{{ file.uploadType }}</td>
                             <td>{{ file.submissionNumber }}</td> 
