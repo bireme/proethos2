@@ -60,7 +60,10 @@ class SubmissionUpload extends Base
      */
     private $submission_number;
 
-
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_monitoring_action = false;
 
     /**
      * Get id
@@ -263,5 +266,29 @@ class SubmissionUpload extends Base
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set isMonitoringAction
+     *
+     * @param boolean $isMonitoringAction
+     *
+     * @return SubmissionUpload
+     */
+    public function setIsMonitoringAction($isMonitoringAction)
+    {
+        $this->is_monitoring_action = $isMonitoringAction;
+
+        return $this;
+    }
+
+    /**
+     * Get isMonitoringAction
+     *
+     * @return boolean
+     */
+    public function getIsMonitoringAction()
+    {
+        return $this->is_monitoring_action;
     }
 }

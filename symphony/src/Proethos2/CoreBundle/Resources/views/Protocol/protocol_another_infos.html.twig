@@ -1,0 +1,213 @@
+<div class='block'>
+    <div class='row'>
+        <div class="col-md-12">
+            <h2 class='sub-header toggle-block'>
+                <small class='pull-right'>
+                    <i class='glyphicon glyphicon-minus'></i>
+                </small>
+                
+                {% trans %}Team{% endtrans %}
+            </h2>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class="col-md-12">
+            <table class='table table-hover table-condensed' id='table-team'>
+                
+                <thead>
+                    <tr>
+                        <th width="50%">{% trans %}Name{% endtrans %}</th>
+                        <th>{% trans %}E-mail{% endtrans %}</th>
+                        <th>{% trans %}Country{% endtrans %}</th>
+                        <th>{% trans %}Main?{% endtrans %}</th>
+                        <!-- <th>{% trans %}Actions{% endtrans %}</th> -->
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <td>{{ protocol.mainSubmission.owner.name }}</td> 
+                        <td><a href='{{ protocol.mainSubmission.owner.email }}'>{{ protocol.mainSubmission.owner.email }}</a></td> 
+                        <td>{{ protocol.mainSubmission.owner.country }}</td> 
+                        <td><label class='label label-success'>{% trans %}Yes{% endtrans %}</label></td> 
+                        <!-- <td>-</td>  -->
+                    </tr>
+                    {% for team_user in protocol.mainSubmission.team %}
+                        <tr>
+                            <td>
+                                <input type='hidden' name='team_user[]' value='{{ team_user.id }}'>
+                                {{ team_user.name }}
+                            </td> 
+                            <td><a href='{{ team_user.email }}'>{{ team_user.email }}</a></td> 
+                            <td>{{ team_user.country }}</td> 
+                            <td><label class='label label-default'>{% trans %}No{% endtrans %}</label></td> 
+                            <!-- <td><a href='#' class='btn btn-default btn-xs button-remove-team'><i class='glyphicon glyphicon-trash'></i></a></td>  -->
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-investigator">
+                {% trans %}New Investigator{% endtrans %}
+            </a> -->
+        </div>
+    </div>
+</div>
+
+<div class='block'>
+    <div class='row'>
+        <div class="col-md-12">
+            <h2 class='sub-header toggle-block'>
+                <small class='pull-right'>
+                    <i class='glyphicon glyphicon-minus'></i>
+                </small>
+                
+                {% trans %}File submission{% endtrans %}:
+            </h2>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class="col-md-12">
+            <table class='table table-hover table-condensed' id='table-attachment'>
+                
+                <thead>
+                    <tr>
+                        <th>{% trans %}Type{% endtrans %}</th>
+                        <th>{% trans %}Original Submission{% endtrans %}</th>
+                        <th>{% trans %}Submitted by{% endtrans %}</th>
+                        <th>{% trans %}Filename{% endtrans %}</th>
+                        <th>{% trans %}Datetime{% endtrans %}</th>
+                        <th>{% trans %}Actions{% endtrans %}</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for file in protocol.mainSubmission.attachments %}
+                        <tr>
+                            <td>{{ file.uploadType }}</td>
+                            <td>{{ file.submissionNumber }}</td> 
+                            <td>{{ file.user }}</td> 
+                            <td>{{ file.filename }}</td> 
+                            <td>{{ file.created|date("d/m/Y H:i") }}</td> 
+                            <td>
+                                <a href='{{ asset(file.uri) }}' target="_blank" class='btn btn-default btn-xs' target="_blank">
+                                <i class='glyphicon glyphicon-eye-open'></i></a>
+                            </td> 
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-file">{% trans %}New Attachment{% endtrans %}</a> -->
+        </div>
+    </div>
+</div>
+
+<div class='block'>
+    <div class='row'>
+        <div class="col-md-12">
+            <h2 class='sub-header toggle-block'>
+                <small class='pull-right'>
+                    <i class='glyphicon glyphicon-minus'></i>
+                </small>
+                
+                {% trans %}History{% endtrans %}:
+            </h2>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class="col-md-12">
+            <table class='table table-hover table-condensed'>
+                
+                <thead>
+                    <tr>
+                        <th>{% trans %}Datetime{% endtrans %}</th>
+                        <th>{% trans %}Message{% endtrans %}</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for history in protocol.history %}
+                        <tr>
+                           <td width="20%">{{ history.created|date("d/m/Y H:i:s") }}</td>
+                           <td>{{ history.message }}</td> 
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class='block'>
+    <div class='row'>
+        <div class="col-md-12">
+            <h2 class='sub-header toggle-block'>
+                <small class='pull-right'>
+                    <i class='glyphicon glyphicon-minus'></i>
+                </small>
+                
+                {% trans %}Comments{% endtrans %}
+            </h2>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class="col-md-12">
+            <table class='table table-hover table-condensed'>
+                
+                <thead>
+                    <tr>
+                        <th width="15%">{% trans %}Datetime{% endtrans %}</th>
+                        <th width="15%">{% trans %}Author{% endtrans %}</th>
+                        <th>{% trans %}Message{% endtrans %}</th>
+                    </tr>
+                </thead>
+                 
+                <tbody>
+                    {% for comment in protocol.comment %}
+                        <tr>
+                           <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
+                           <td>{{ comment.owner }}</td> 
+                           <td>{{ comment.message }}</td> 
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-comment">{% trans %}New Comment{% endtrans %}</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // toggles de meta blocks
+    $(function() {
+        $("body").on("click", ".toggle-block", function(e){
+
+            // find and toggle all rows of block
+            block = $(this).parents('.block');
+            first_row = $(this).parents('.row');
+            block.find('.row').toggle();
+
+            // turns visible the title row and toggle the icon
+            first_row.show();
+            i = first_row.find('i')
+            if(i.hasClass('glyphicon-minus')) {
+                first_row.find('i').removeClass('glyphicon-minus');
+                first_row.find('i').addClass('glyphicon-plus');
+            } else {
+                first_row.find('i').removeClass('glyphicon-plus');
+                first_row.find('i').addClass('glyphicon-minus');
+            }
+        });
+
+        // hide all blocks on the load page
+        $(".toggle-block").each(function(){
+            $(this).trigger('click');     
+        });
+    });
+</script>

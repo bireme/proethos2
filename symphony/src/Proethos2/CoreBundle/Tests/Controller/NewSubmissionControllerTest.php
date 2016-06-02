@@ -225,8 +225,6 @@ class NewSubmissionControllerTest extends WebTestCase
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('submission_new_sixth_step', array("submission_id" => $submission_id), false);
 
-        file_put_contents("/tmp/photo.jpg", "test");
-
         $file = tempnam(sys_get_temp_dir(), 'upl'); // create file
         imagepng(imagecreatetruecolor(10, 10), $file); // create and write image/png to it
         $image = new UploadedFile(

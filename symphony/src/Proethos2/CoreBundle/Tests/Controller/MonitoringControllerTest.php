@@ -3,6 +3,8 @@
 namespace Proethos2\CoreBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 
 class MonitoringControllerTest extends WebTestCase
 {
@@ -37,7 +39,7 @@ class MonitoringControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
     
-    public function testNewMonitoringPOST()
+    public function testMonitoringCreateActionPOST()
     {
         // getting last id
         $last_protocol = end($this->protocol_repository->findAll());
@@ -53,4 +55,50 @@ class MonitoringControllerTest extends WebTestCase
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
 
+    public function testMonitoringCreateThatNotAmendmentGET()
+    {
+        // getting last id
+        $last_protocol = end($this->protocol_repository->findAll());
+        $protocol_id = $last_protocol->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate(
+            'protocol_new_monitoring_that_not_amendment', 
+            array("protocol_id" => $protocol_id, 'monitoring_action_id' => 2), 
+            false
+        );
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+    
+    public function testMonitoringCreateThatNotAmendmentPOST()
+    {
+        // getting last id
+        $last_protocol = end($this->protocol_repository->findAll());
+        $protocol_id = $last_protocol->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate(
+            'protocol_new_monitoring_that_not_amendment', 
+            array("protocol_id" => $protocol_id, 'monitoring_action_id' => 2), 
+            false
+        );
+
+        $file = tempnam(sys_get_temp_dir(), 'upl'); // create file
+        imagepng(imagecreatetruecolor(10, 10), $file); // create and write image/png to it
+        $image = new UploadedFile(
+            $file,
+            'new_image.png'
+        );
+        
+
+        $client->request('POST', $route, array(
+            'monitoring-action' => '2',
+            'justification' => 'teste de justification',
+            "new-atachment-file" => $image,
+        ));
+
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }
 }

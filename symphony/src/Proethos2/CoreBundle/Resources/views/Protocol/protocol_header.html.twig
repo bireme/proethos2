@@ -1,0 +1,104 @@
+<div class='block meta'>
+        
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="sub-header titulo">
+                {{ protocol.mainSubmission.publicTitle }} 
+                {% if protocol.mainSubmission.isClinicalTrial %}<small>({% trans %}clinical trial{% endtrans %})</small>{% endif %}
+            </h2>
+        </div>
+    </div>
+    
+    <div class='row'>
+        <div class='col-md-2'>
+            <div class='label'>{% trans %}Idetification{% endtrans %}</div>
+            <h3>{{ '%06d'|format(protocol.id) }}</h3>
+        </div>
+        
+        <div class='col-md-2'>
+            <div class='label'>{% trans %}Protocol{% endtrans %}</div>
+            <h3>{{ protocol.code }}</h3>
+        </div>
+        
+        <div class='col-md-4'>
+            <div class='label'>{% trans %}Protocol Type{% endtrans %}</div>
+            <h3>
+                {% if protocol.monitoringAction %}
+                    {% trans %}Monitoring Action{% endtrans %}
+                {% else %}
+                    {% if protocol.mainSubmission.isClinicalTrial %}
+                        {% trans %}Clinical Trial{% endtrans %}
+                    {% endif %}
+                {% endif %}
+            </h3>
+        </div>
+
+        <div class='col-md-4'>
+            <div class='label'>{% trans %}Status{% endtrans %}</div>
+            <h3>{{ protocol.statusLabel }}</h3>
+        </div>
+        
+    </div>
+
+    <div class='row'>
+        <div class='col-md-5'>
+            <div class='label'>{% trans %}Institution{% endtrans %}</div>
+            <h3>{{ protocol.mainSubmission.owner.institution }}</h3>
+        </div>
+
+        <div class='col-md-4'>
+            <div class='label'>{% trans %}Country{% endtrans %}</div>
+            <h3>{{ protocol.mainSubmission.owner.country }}</h3>
+        </div>
+
+        <div class='col-md-3'>
+            <div class='label'>{% trans %}Result{% endtrans %}</div>
+            <h3>-</h3>
+        </div>
+    </div>
+        
+    <div class='row'>
+        <div class='col-md-3'>
+            <div class='label'>{% trans %}Accepted in{% endtrans %}</div>
+            <h3>{{ protocol.dateInformed|date("d/m/Y") }}</h3>
+        </div>
+        
+        <div class='col-md-3'>
+            <div class='label'>{% trans %}Updated in{% endtrans %}</div>
+            <h3>{{ protocol.updatedIn|date("d/m/Y") }}</h3>
+        </div>
+        
+        <div class='col-md-3'>
+            <div class='label'>{% trans %}Revised in{% endtrans %}</div>
+            <h3>{% if protocol.revisedIn %}{{ protocol.revisedIn|date("d/m/Y") }}{% else %}-{% endif %}</h3>
+        </div>
+
+        <div class='col-md-3'>
+            <div class='label'>{% trans %}Decision in{% endtrans %}</div>
+            <h3>{% if protocol.decisionIn %}{{ protocol.decisionIn|date("d/m/Y") }}{% else %}-{% endif %}</h3>
+        </div>
+
+    </div>    
+
+    <div class='row'>
+        <div class='col-md-3'>
+            <div class='label'>{% trans %}Informed In{% endtrans %}</div>
+            <h3>{{ protocol.dateInformed|date("d/m/Y") }}</h3>
+        </div>
+
+        <div class='col-md-3'>
+            <div class='label'>{% trans %}Recruiting{% endtrans %}</div>
+            <h3>{{ protocol.mainSubmission.recruitmentInitDate|date("d/m/Y") }}</h3>
+        </div>
+
+        <div class='col-md-3'>
+            <div class='label'>{% trans %}Finish in{% endtrans %}</div>
+            <h3>{{ protocol.dateInformed|date("d/m/Y") }}</h3>
+        </div>
+
+        <div class='col-md-3'>
+            <div class='label'>{% trans %}Monitoring{% endtrans %}</div>
+            <h3>-</h3>
+        </div>
+    </div>
+</div>

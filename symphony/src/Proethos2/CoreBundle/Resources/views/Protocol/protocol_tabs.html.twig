@@ -1,0 +1,27 @@
+{% if app.request.get("_route") != "protocol_show_protocol" %}
+    <div class='row'>
+        <div class='col-md-12'>
+            <ul class="nav nav-tabs" id='tab-comite'>
+                <li {% if app.request.get('_route') == "protocol_analyse_protocol" %}class='active'{% endif %}>
+                    <a href="#action">{% trans %}Analyse{% endtrans %}</a>
+                </li>
+                <li {% if app.request.get('_route') == "protocol_initial_committee_screening" %}class='active'{% endif %}>
+                    <a href="#">{% trans %}Initial committee screening{% endtrans %}</a>
+                </li>
+                <li {% if app.request.get('_route') == "protocol_initial_committee_review" %}class='active'{% endif %}>
+                    <a href="#">{% trans %}Initial committee review{% endtrans %}</a>
+                </li>
+                <li {% if app.request.get('_route') == "protocol_end_review" %}class='active'{% endif %}>
+                    <a href="#">{% trans %}End Review{% endtrans %}</a>
+                </li>
+                <!-- <li>
+                    <a href="#">Análise Finalizada</a>
+                </li>
+                <li>
+                    <a href="#">Pesquisa em andamento</a>
+                </li>
+                 -->
+            </ul>
+        </div>
+    </div>
+{% endif %}
