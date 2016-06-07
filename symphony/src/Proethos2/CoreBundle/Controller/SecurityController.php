@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
+use Proethos2\ModelBundle\Entity\User;
 
 class SecurityController extends Controller
 {
@@ -250,6 +251,75 @@ class SecurityController extends Controller
             $session->getFlashBag()->add('success', $translator->trans("Password changed with success."));
             return $this->redirectToRoute('home', array(), 301);
 
+        }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/public/account/new", name="security_new_user")
+     * @Template()
+     */
+    public function newUserAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        // getting post data
+        $post_data = $request->request->all();
+
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
+
+        $countries = $country_repository->findAll();
+        $output['countries'] = $countries;
+        
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required fields
+            foreach(array('name', 'username', 'email', 'country', 'password', 'confirm-password') as $field) {   
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            if($post_data['password'] != $post_data['confirm-password']) {
+                $session->getFlashBag()->add('error', $translator->trans("Passwords doesn't match."));
+                return $output;
+            }
+
+            $country = $country_repository->find($post_data['country']);
+
+            $user = new User();
+            $user->setCountry($country);
+            $user->setName($post_data['name']);
+            $user->setUsername($post_data['username']);
+            $user->setEmail($post_data['email']);
+            $user->setInstitution($post_data['institution']);
+            $user->setFirstAccess(false);
+            $user->setIsActive(false);
+
+            $encoderFactory = $this->get('security.encoder_factory');
+            $encoder = $encoderFactory->getEncoder($user);
+            $salt = $user->getSalt(); // this should be different for every user
+            $password = $encoder->encodePassword($post_data['password'], $salt);
+            $user->setPassword($password);
+
+            $user->cleanHashcode();
+
+            $em->persist($user);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("User created with success. Wait for your approval."));
+            return $this->redirectToRoute('home', array(), 301);
         }
 
         return $output;

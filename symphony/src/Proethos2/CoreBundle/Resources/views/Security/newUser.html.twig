@@ -1,0 +1,132 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}Create new User{% endtrans %} - Proethos2{% endblock %}
+
+{% block body %}
+
+    <style>
+        .card-container.card {
+            max-width: 550px;
+            padding: 40px 40px;
+        }
+
+        /*
+         * Card component
+         */
+        .card {
+            background-color: #F7F7F7;
+            /* just in case there no content*/
+            padding: 20px 25px 30px;
+            margin: 0 auto 25px;
+            margin-top: 50px;
+            /* shadows and rounded borders */
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            border-radius: 2px;
+            -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        }
+        h1, h2 {
+            text-align: center;
+            text-transform: uppercase;
+        }
+        h2 {
+            font-size: 14pt;
+            margin-bottom: 40px;
+        }
+        
+    </style>
+
+    <div class="container-fluid">
+        <div class="card card-container">
+            
+            <h1>Pro<b>ethos</b>2</h1>
+            <h2>{% trans %}Create new User{% endtrans %}</h2>
+
+            <form class="form-change-password" action="" method="post">
+                
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <div class="form-group required">
+                            <label for="input-username">{% trans %}Username{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='text' class='form-control' id="input-username" name="username" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <div class="form-group required">
+                            <label for="input-email">{% trans %}Email{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='email' class='form-control' id="input-email" name="email" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <div class="form-group required">
+                            <label for="input-name">{% trans %}Name{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='text' class='form-control' id="input-name" name="name" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <div class="form-group required">
+                            <label for="select-country">{% trans %}Country{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <select class='form-control select-select2' id="select-country" name="country" required>
+                                <option value="">{% trans %}Select country{% endtrans %}</option>
+                                {% for country in countries %}
+                                    <option value="{{ country.id }}">{{ country }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <div class="form-group">
+                            <label for="input-institution">{% trans %}Institution{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='text' class='form-control' id="input-institution" name="institution">
+                        </div>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <div class="form-group required">
+                            <label for="input-password">{% trans %}Password{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='password' class='form-control' id="input-password" name="password" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <div class="form-group required">
+                            <label for="input-confirm-password">{% trans %}Confirm Password{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='password' class='form-control' id="input-confirm-password" name="confirm-password" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">{% trans %}Create user{% endtrans %}</button>
+                </div>
+            </form><!-- /form -->
+            
+
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+{% endblock %}

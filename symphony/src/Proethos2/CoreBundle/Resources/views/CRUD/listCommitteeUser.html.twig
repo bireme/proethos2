@@ -48,7 +48,6 @@
                                 <th width="">{% trans %}Country{% endtrans %}</th>
                                 <th width="">{% trans %}Institution{% endtrans %}</th>
                                 <th width="">{% trans %}Roles{% endtrans %}</th>
-                                <th width="">{% trans %}Already Access?{% endtrans %}</th>
                                 <th width="">{% trans %}Status{% endtrans %}</th>
                                 <th>{% trans %}Actions{% endtrans %}</th>
                             </tr>
@@ -66,13 +65,6 @@
                                         {% for role in user.proethos2Roles %}
                                             <span class='label label-default' data-toggle='tooltip' data-placement='top' title='{{ role.name }}'>{{ role.slug|first|upper }}</span>
                                         {% endfor %}
-                                    </td>
-                                    <td>
-                                        {% if not user.firstAccess %}
-                                            <span class='label label-success'>{% trans %}yes{% endtrans %}</span>
-                                        {% else %}
-                                            <span class='label label-default'>{% trans %}no{% endtrans %}</span>
-                                        {% endif %}
                                     </td>
                                     <td>
                                         {% if user.isActive %}

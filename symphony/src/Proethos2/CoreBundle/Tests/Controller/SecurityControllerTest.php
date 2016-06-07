@@ -68,4 +68,14 @@ class SecurityControllerTest extends WebTestCase
         $client->request('GET', $route);
         $this->assertNotEquals(200, $client->getResponse()->getStatusCode());
     }
+    
+    public function testNewUserGET()
+    {
+        $client = static::createClient();
+        $route = $client->getContainer()->get('router')->generate('security_new_user', array(), false);
+        
+        $client->request('GET', $route);
+        $this->assertNotEquals(200, $client->getResponse()->getStatusCode());
+    }
+
 }
