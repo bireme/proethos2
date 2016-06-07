@@ -32,7 +32,7 @@ class SecurityControllerTest extends WebTestCase
         $this->assertNotEquals(301, $client->getResponse()->getStatusCode());
     }
 
-    public function testChangePassword()
+    public function testChangePasswordGET()
     {
         $client = $this->login();
         
@@ -42,13 +42,30 @@ class SecurityControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
-    public function testResetMyPassword()
+    public function testForgotMyPasswordGET()
+    {
+        $client = static::createClient();
+        $route = $client->getContainer()->get('router')->generate('security_forgot_my_password', array(), false);
+        
+        $client->request('GET', $route);
+        $this->assertNotEquals(200, $client->getResponse()->getStatusCode());
+    }
+    
+    public function testForgotMyPasswordPOST()
+    {
+        $client = static::createClient();
+        $route = $client->getContainer()->get('router')->generate('security_forgot_my_password', array(), false);
+        
+        $client->request('POST', $route, array("email" => "moa.moda@gmail.com"));
+        $this->assertNotEquals(200, $client->getResponse()->getStatusCode());
+    }
+    
+    public function testResetMyPasswordGET()
     {
         $client = static::createClient();
         $route = $client->getContainer()->get('router')->generate('security_reset_my_password', array(), false);
         
         $client->request('GET', $route);
-        $this->assertNotEquals(301, $client->getResponse()->getStatusCode());
+        $this->assertNotEquals(200, $client->getResponse()->getStatusCode());
     }
-    
 }

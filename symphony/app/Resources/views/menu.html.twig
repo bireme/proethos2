@@ -5,42 +5,56 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 
-                <li>
-                    <p class="navbar-btn">
-                        <a href="{{ path('submission_new_first_step') }}" class="btn btn-primary">{% trans %}New submission{% endtrans %}</a>
-                    </p>
-                </li>
+                {% if is_granted("ROLE_USER") and 'investigator' in app.user.rolesSlug %}
+                    <li>
+                        <p class="navbar-btn">
+                            <a href="{{ path('submission_new_first_step') }}" class="btn btn-primary">{% trans %}New submission{% endtrans %}</a>
+                        </p>
+                    </li>
+                {% endif %}
+
                 <li class="active"><a href="{{ path("home") }}">{% trans %}Home{% endtrans %}</a></li>
-                <li class=""><a href="{{ path("crud_investigator_protocol_list") }}">{% trans %}Protocols{% endtrans %}</a></li>
                 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        {% trans %}Committee{% endtrans %} <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ path('crud_committee_protocol_list') }}">{% trans %}Protocols{% endtrans %}</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="{{ path('crud_committee_faq_list') }}">{% trans %}FAQ{% endtrans %}</a></li>
-                        <li><a href="{{ path('crud_committee_user_list') }}">{% trans %}Users{% endtrans %}</a></li>
-                        <li><a href="{{ path('crud_committee_meeting_list') }}">{% trans %}Meetings{% endtrans %}</a></li>
-                        <li><a href="{{ path('crud_committee_document_list') }}">{% trans %}Documents{% endtrans %}</a></li>
-                    </ul>
-                </li>
+                {% if is_granted("ROLE_USER") and 'investigator' in app.user.rolesSlug %}
+                    <li class=""><a href="{{ path("crud_investigator_protocol_list") }}">{% trans %}Protocols{% endtrans %}</a></li>
+                {% endif %}                
                 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Relatórios <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Indicadores</a></li>
-                        <li><a href="#">Monitoramento de Protocolos</a></li>
-                        <li><a href="#">Listagem de Investigadores</a></li>
-                        <li><a href="#">Membros do Comitê</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Reuniões</a></li>
-                    </ul>
-                </li>
+                {% if is_granted("ROLE_USER") and 'secretary' in app.user.rolesSlug %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            {% trans %}Committee{% endtrans %} <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('crud_committee_protocol_list') }}">{% trans %}Protocols{% endtrans %}</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{ path('crud_committee_faq_list') }}">{% trans %}FAQ{% endtrans %}</a></li>
+                            <li><a href="{{ path('crud_committee_user_list') }}">{% trans %}Users{% endtrans %}</a></li>
+                            <li><a href="{{ path('crud_committee_meeting_list') }}">{% trans %}Meetings{% endtrans %}</a></li>
+                            <li><a href="{{ path('crud_committee_document_list') }}">{% trans %}Documents{% endtrans %}</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+                
+                {% if is_granted("ROLE_USER") and 'investigator' in app.user.rolesSlug %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Relatórios <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Indicadores</a></li>
+                            <li><a href="#">Monitoramento de Protocolos</a></li>
+                            <li><a href="#">Listagem de Investigadores</a></li>
+                            <li><a href="#">Membros do Comitê</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Reuniões</a></li>
+                        </ul>
+                    </li>
+                {% endif %}                
 
                 <li class=""><a href="{{ path('crud_faq_list') }}">{% trans %}FAQ{% endtrans %}</a></li>
-                <li class=""><a href="{{ path('crud_document_list') }}">{% trans %}Documents{% endtrans %}</a></li>
+
+                {% if is_granted("ROLE_USER") %}
+                    <li class=""><a href="{{ path('crud_document_list') }}">{% trans %}Documents{% endtrans %}</a></li>
+                {% endif %}
+                
                 <li class=""><a href="{{ path('crud_contact_list') }}">{% trans %}Contact{% endtrans %}</a></li>
 
             </ul>
@@ -57,17 +71,19 @@
                     </ul>    
                 </li>
 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <i class='glyphicon glyphicon-user'></i> <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ path('crud_user_profile_update') }}" data-toggle='modal' data-target='#modalBaseAjax'>{% trans %}Your Profile{% endtrans %}</a></li>
-                        <li><a href="{{ path('security_change_password') }}" id='menuChangePassword' data-toggle='modal' data-target='#modalBaseAjax'>{% trans %}Change Password{% endtrans %}</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="{{ path('logout_route') }}">Logout</a></li>
-                    </ul>    
-                </li>
+                {% if is_granted("ROLE_USER") %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class='glyphicon glyphicon-user'></i> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('crud_user_profile_update') }}" data-toggle='modal' data-target='#modalBaseAjax'>{% trans %}Your Profile{% endtrans %}</a></li>
+                            <li><a href="{{ path('security_change_password') }}" id='menuChangePassword' data-toggle='modal' data-target='#modalBaseAjax'>{% trans %}Change Password{% endtrans %}</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{ path('logout_route') }}">Logout</a></li>
+                        </ul>    
+                    </li>
+                {% endif %}
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

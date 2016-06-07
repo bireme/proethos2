@@ -3,13 +3,9 @@
 {% block title %}Login - Proethos2{% endblock %}
 
 {% block body %}
-
+    
     <style>
-        .card-container.card {
-            max-width: 350px;
-            padding: 40px 40px;
-        }
-
+       
         /*
          * Card component
          */
@@ -17,8 +13,8 @@
             background-color: #F7F7F7;
             /* just in case there no content*/
             padding: 20px 25px 30px;
-            margin: 0 auto 25px;
-            margin-top: 50px;
+            margin: 100px 20px 20px 20px;
+
             /* shadows and rounded borders */
             -moz-border-radius: 2px;
             -webkit-border-radius: 2px;
@@ -27,38 +23,84 @@
             -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
             box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
         }
+        .card:last-child {
+            margin: 100px -40px 0 0;
+            width: 28%;
+        }
         h1 {
             text-align: center;
             margin-bottom: 40px;
             text-transform: uppercase;
         }
-        
+        .links ul {
+            padding: 0;
+            margin: 30px 0 0 0;
+            text-align: center;
+        }
+        .links li {
+            list-style: none;
+            margin: 5px 0;
+        }
+        h1, h2 {
+            text-align: left;
+            margin: 10px 0 20px 0;
+            padding: 0;
+        }
     </style>
 
+    {% include 'menu.html.twig' %}
+
     <div class="container-fluid">
-        <div class="card card-container">
-            
-            <h1>Pro<b>ethos</b>2</h1>
-
-            {% if error %}
-                <div class='alert alert-danger'>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
-            
-            <form class="form-signin" action="{{ path('login_check') }}" method="post">
-                <input type="hidden" name="_target_path" value="default_security_target" />
-
-                <div class="form-group">
-                    <input type="text" name='_username' id="inputEmail" class="form-control" placeholder="Username" required autofocus>
-                </div>
-                <div class="form-group">
-                    <input type="password" name='_password' id="inputPassword" class="form-control" placeholder="Password" required>
-                </div>
+        <div class='row'>
+            <div class="col-xs-8 card">
                 
-                <div class="form-group">
-                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-                </div>
-            </form><!-- /form -->
+                <h1><b>Proethos</b>2</h1>
+                
+                <h2>What's Proethos?</h2>
 
-        </div><!-- /card-container -->
+                <p>
+                    Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.
+                </p>
+            </div>
+
+            <div class="col-xs-4 card">
+                
+                {% if error %}
+                    <div class='alert alert-danger'>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                
+                <form class="form-signin" action="{{ path('login_check') }}" method="post">
+                    <input type="hidden" name="_target_path" value="default_security_target" />
+
+                    <div class="form-group">
+                        <input type="text" name='_username' id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name='_password' id="inputPassword" class="form-control" placeholder="Password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+                    </div>
+                </form><!-- /form -->
+
+                <div class='links'>
+                    <ul>
+                        <li>
+                            <a href='{{ path("security_forgot_my_password") }}' title="{% trans %}Forgot My Password{% endtrans %}">
+                                {% trans %}Forgot My Password{% endtrans %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href='#' title="{% trans %}Create an account{% endtrans %}">
+                                {% trans %}Create an account{% endtrans %}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div><!-- /card-container -->
+        </div>
+
     </div><!-- /container -->
 {% endblock %}

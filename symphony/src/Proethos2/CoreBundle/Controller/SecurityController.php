@@ -110,8 +110,77 @@ class SecurityController extends Controller
             $em->flush();
 
             $session->getFlashBag()->add('success', $translator->trans("Password changed with success."));
-            return $this->redirectToRoute('home', array(), 301);
+            return $this->redirectToRoute('login', array(), 301);
 
+        }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/public/account/forgot-my-password", name="security_forgot_my_password")
+     * @Template()
+     */
+    public function forgotMyPasswordAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        // getting post data
+        $post_data = $request->request->all();
+
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required fields
+            foreach(array('email') as $field) {   
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $this->redirectToRoute('login', array(), 301);
+                }
+            }
+
+            $user = $user_repository->findOneByEmail($post_data['email']);
+            if(!$user) {
+                $session->getFlashBag()->add('error', $translator->trans("Email doesn't registered in platform."));
+            }
+
+            $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+
+            $hashcode = $user->generateHashcode();
+            $em->persist($user);
+            $em->flush();
+
+            // TODO need to get the relative path
+            $url = $baseurl . "/public/account/reset_my_password?hashcode=" . $hashcode;
+
+            $message = \Swift_Message::newInstance()
+            ->setSubject("[proethos2] " . $translator->trans("Reset your password"))
+            ->setFrom($this->container->getParameter('committee.email'))
+            ->setTo($post_data['email'])
+            ->setBody(
+                $translator->trans("Hello! You ask for a new password in Proethos2 platform.") .
+                "<br>" .
+                "<br>" . $translator->trans("Access the link below") . ":" .
+                "<br>" .
+                "<br>$url" .
+                "<br>" .
+                "<br>". $translator->trans("Regards") . "," .
+                "<br>" . $translator->trans("Proethos2 Team")
+                ,   
+                'text/html'
+            );
+            
+            $send = $this->get('mailer')->send($message);
+            $session->getFlashBag()->add('success', $translator->trans("Instructions has been sended to your email."));
         }
 
         return $output;
