@@ -744,6 +744,7 @@ class CRUDController extends Controller
             $user->setUsername($post_data['username']);
             $user->setEmail($post_data['email']);
             $user->setInstitution($post_data['institution']);
+            $user->setFirstAccess(false);
 
             if(isset($post_data['status'])) {
                 $user->setIsActive(true);
@@ -757,6 +758,36 @@ class CRUDController extends Controller
             $salt = $user->getSalt(); // this should be different for every user
             $password = $encoder->encodePassword(md5(date("YmdHis")), $salt);
             $user->setPassword($password);
+
+            // Send email to created user with the link to change the first password
+            $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+
+            $hashcode = $user->generateHashcode();
+            $em->persist($user);
+            $em->flush();
+
+            // TODO need to get the relative path
+            $url = $baseurl . "/public/account/reset_my_password?hashcode=" . $hashcode;
+
+            $message = \Swift_Message::newInstance()
+            ->setSubject("[proethos2] " . $translator->trans("Reset your password"))
+            ->setFrom($this->container->getParameter('committee.email'))
+            ->setTo($post_data['email'])
+            ->setBody(
+                $translator->trans("Hello! You ask for a new password in Proethos2 platform.") .
+                "<br>" .
+                "<br>" . $translator->trans("Access the link below") . ":" .
+                "<br>" .
+                "<br>$url" .
+                "<br>" .
+                "<br>". $translator->trans("Regards") . "," .
+                "<br>" . $translator->trans("Proethos2 Team")
+                ,   
+                'text/html'
+            );
+            
+            $send = $this->get('mailer')->send($message);
+            
 
             $em->persist($user);
             $em->flush();

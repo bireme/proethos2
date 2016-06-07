@@ -61,6 +61,8 @@ class SecurityController extends Controller
         if(in_array('secretary', $user->getRolesSlug())) {
             return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
         }
+        
+        return $this->redirectToRoute('crud_investigator_protocol_list', array(), 301);
     }
 
     /**
@@ -180,6 +182,7 @@ class SecurityController extends Controller
             );
             
             $send = $this->get('mailer')->send($message);
+
             $session->getFlashBag()->add('success', $translator->trans("Instructions has been sended to your email."));
         }
 
