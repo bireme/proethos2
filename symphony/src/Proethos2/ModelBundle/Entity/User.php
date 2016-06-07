@@ -73,6 +73,11 @@ class User extends Base implements UserInterface, \Serializable
     private $institution;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $hashcode;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     private $first_access = true;
@@ -365,5 +370,35 @@ class User extends Base implements UserInterface, \Serializable
     public function getFirstAccess()
     {
         return $this->first_access;
+    }
+
+    /**
+     * Set hashcode
+     *
+     * @param string $hashcode
+     *
+     * @return User
+     */
+    public function setHashcode($hashcode)
+    {
+        $this->hashcode = $hashcode;
+
+        return $this;
+    }
+
+    public function generateHashcode()
+    {
+        $this->setHashcode(md5($this->getId() . $this->getUsername() . date("YmdHisss")));
+        return $this->getHashcode();
+    }
+
+    /**
+     * Get hashcode
+     *
+     * @return string
+     */
+    public function getHashcode()
+    {
+        return $this->hashcode;
     }
 }

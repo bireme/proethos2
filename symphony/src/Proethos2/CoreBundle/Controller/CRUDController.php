@@ -755,7 +755,7 @@ class CRUDController extends Controller
             $encoderFactory = $this->get('security.encoder_factory');
             $encoder = $encoderFactory->getEncoder($user);
             $salt = $user->getSalt(); // this should be different for every user
-            $password = $encoder->encodePassword('123456', $salt);
+            $password = $encoder->encodePassword(md5(date("YmdHis")), $salt);
             $user->setPassword($password);
 
             $em->persist($user);
@@ -880,6 +880,40 @@ class CRUDController extends Controller
             return $this->redirectToRoute('crud_committee_user_list', array(), 301);
             
         }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/committee/user/{user_id}/key", name="crud_committee_user_get_key_to_change_password")
+     * @Template()
+     */
+    public function getKeyToChangePasswordCommitteeUserAction($user_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        
+        // getting the current user
+        $user = $user_repository->find($user_id);
+        $output['user'] = $user;
+        
+        if (!$user) {
+            throw $this->createNotFoundException($translator->trans('No user found'));
+        }
+
+        $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+
+        $hashcode = $user->generateHashcode();
+        $em->persist($user);
+        $em->flush();
+
+        // TODO need to get the relative path
+        $output['url'] = $baseurl . "/public/account/change_password?hashcode=" . $hashcode;
 
         return $output;
     }
