@@ -118,10 +118,10 @@ class SecurityController extends Controller
     }
 
     /**
-     * @Route("/public/account/forgot_my_password", name="security_forgot_my_password")
+     * @Route("/public/account/reset_my_password", name="security_reset_my_password")
      * @Template()
      */
-    public function forgotMyPasswordAction()
+    public function resetMyPasswordAction()
     {
         $output = array();
         $request = $this->getRequest();

@@ -913,7 +913,7 @@ class CRUDController extends Controller
         $em->flush();
 
         // TODO need to get the relative path
-        $output['url'] = $baseurl . "/public/account/forgot_my_password?hashcode=" . $hashcode;
+        $output['url'] = $baseurl . "/public/account/reset_my_password?hashcode=" . $hashcode;
 
         return $output;
     }

@@ -42,10 +42,10 @@ class SecurityControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
-    public function testForgotMyPassword()
+    public function testResetMyPassword()
     {
         $client = static::createClient();
-        $route = $client->getContainer()->get('router')->generate('security_forgot_my_password', array(), false);
+        $route = $client->getContainer()->get('router')->generate('security_reset_my_password', array(), false);
         
         $client->request('GET', $route);
         $this->assertNotEquals(301, $client->getResponse()->getStatusCode());
