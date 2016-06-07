@@ -14,8 +14,6 @@ class SecurityControllerTest extends WebTestCase
         $kernel = static::createKernel();
         $kernel->boot();
         $this->_em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
-
-        
     }
 
     public function login() {
@@ -43,4 +41,14 @@ class SecurityControllerTest extends WebTestCase
         $client->request('GET', $route);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
+
+    public function testForgotMyPassword()
+    {
+        $client = static::createClient();
+        $route = $client->getContainer()->get('router')->generate('security_forgot_my_password', array(), false);
+        
+        $client->request('GET', $route);
+        $this->assertNotEquals(301, $client->getResponse()->getStatusCode());
+    }
+    
 }

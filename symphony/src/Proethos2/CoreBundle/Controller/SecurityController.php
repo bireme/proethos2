@@ -112,29 +112,71 @@ class SecurityController extends Controller
             $session->getFlashBag()->add('success', $translator->trans("Password changed with success."));
             return $this->redirectToRoute('home', array(), 301);
 
+        }
 
-            // if(isset($post_data['new-meeting-date'])) {
+        return $output;
+    }
 
-                
-            //     // checking required fields
-            //     foreach(array('new-meeting-date', 'new-meeting-subject', 'new-meeting-content') as $field) {   
-            //         if(!isset($post_data[$field]) or empty($post_data[$field])) {
-            //             $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
-            //             return $output;
-            //         }
-            //     }
+    /**
+     * @Route("/public/account/forgot_my_password", name="security_forgot_my_password")
+     * @Template()
+     */
+    public function forgotMyPasswordAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
 
-            //     $meeting = new Meeting();
-            //     $meeting->setDate(new \DateTime($post_data['new-meeting-date']));
-            //     $meeting->setSubject($post_data['new-meeting-subject']);
-            //     $meeting->setContent($post_data['new-meeting-content']);
+        // getting post data
+        $post_data = $request->request->all();
 
-            //     $em->persist($meeting);
-            //     $em->flush();
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        
+        if(!isset($_REQUEST['hashcode'])) {
+            throw $this->createNotFoundException($translator->trans('Invalid hashcode'));
+        }
 
-            //     $session->getFlashBag()->add('success', $translator->trans("Meeting created with success."));
-            //     return $this->redirectToRoute('crud_committee_meeting_list', array(), 301);
-            // }
+        $hashcode = $_REQUEST['hashcode'];
+        $user = $user_repository->findOneByHashcode($hashcode);
+
+        if(!$user) {
+            throw $this->createNotFoundException($translator->trans('No user found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required fields
+            foreach(array('new-password', 'confirm-password') as $field) {   
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $this->redirectToRoute('home', array(), 301);
+                }
+            }
+
+            if($post_data['new-password'] != $post_data['confirm-password']) {
+                $session->getFlashBag()->add('error', $translator->trans("Passwords doesn't match."));
+                return $this->redirectToRoute('home', array(), 301);
+            }
+
+            $encoderFactory = $this->get('security.encoder_factory');
+            $encoder = $encoderFactory->getEncoder($user);
+            $salt = $user->getSalt(); // this should be different for every user
+            $password = $encoder->encodePassword($post_data['new-password'], $salt);
+            $user->setPassword($password);
+
+            $user->cleanHashcode();
+
+            $em->persist($user);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Password changed with success."));
+            return $this->redirectToRoute('home', array(), 301);
 
         }
 

@@ -392,6 +392,11 @@ class User extends Base implements UserInterface, \Serializable
         return $this->getHashcode();
     }
 
+    public function cleanHashcode()
+    {
+        $this->setHashcode(NULL);
+    }
+
     /**
      * Get hashcode
      *

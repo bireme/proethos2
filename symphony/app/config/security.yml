@@ -8,8 +8,6 @@ security:
             entity:
                 class: Proethos2ModelBundle:User
                 property: username
-                # if you're using multiple entity managers
-                # manager_name: customer
 
     firewalls:
         dev:
@@ -18,6 +16,10 @@ security:
 
         login_firewall:
             pattern:   ^/login$
+            anonymous: ~
+
+        public_firewall:
+            pattern:   ^/public/
             anonymous: ~
 
         default:
@@ -30,3 +32,4 @@ security:
             logout:
                 path:   /logout
                 target: /
+
