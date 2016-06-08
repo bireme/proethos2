@@ -230,9 +230,14 @@ class MonitoringController extends Controller
             $protocol->setUpdatedIn(new \DateTime());
 
             // setting protocool history
+            $message = $translator->trans("New amendment submited by");
+            $message .= ' "' . $user . '" ';
+            $message .= $translator->trans("with this justify:");
+            $message .= ' "' . $post_data['justification'] . '"';
+
             $protocol_history = new ProtocolHistory();
             $protocol_history->setProtocol($protocol);
-            $protocol_history->setMessage($translator->trans("New amendment submited by") ." ". $user . ".");
+            $protocol_history->setMessage($message);
             $em->persist($protocol_history);
             $em->flush();
             
