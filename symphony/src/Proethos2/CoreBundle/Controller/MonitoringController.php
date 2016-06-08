@@ -223,10 +223,11 @@ class MonitoringController extends Controller
 
             $protocol->setMonitoringAction($monitoring_action);
             $em->persist($protocol);
-            $em->flush();            
+            $em->flush();
 
             // setting the Rejected status
             $protocol->setStatus("S");
+            $protocol->setUpdatedIn(new \DateTime());
 
             // setting protocool history
             $protocol_history = new ProtocolHistory();
