@@ -105,9 +105,9 @@ class ProtocolController extends Controller
                 if($protocol->getMonitoringAction()) {
 
                     $message = $translator->trans("Monitoring action was rejected by");
-                    $message .= " " . $user . " ";
+                    $message .= ' "' . $user . '" ';
                     $message .= $translator->trans("with this justify:");
-                    $message .= " " . $post_data['reject-reason'];
+                    $message .= ' "' . $post_data['reject-reason'] . '"';
 
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
