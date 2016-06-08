@@ -102,6 +102,29 @@ class ProtocolController extends Controller
 
             if(isset($post_data['is-reject']) and $post_data['is-reject'] == "true") {
 
+                if($protocol->getMonitoringAction()) {
+
+                    $message = $translator->trans("Monitoring action was rejected by");
+                    $message .= " " . $user . " ";
+                    $message .= $translator->trans("with this justify:");
+                    $message .= " " . $post_data['reject-reason'];
+
+                    $protocol_history = new ProtocolHistory();
+                    $protocol_history->setProtocol($protocol);
+                    $protocol_history->setMessage($message);
+                    $em->persist($protocol_history);
+                    $em->flush();
+
+                    $protocol->setStatus("A");
+                    $protocol->setMonitoringAction(NULL);
+
+                    $em->persist($protocol);
+                    $em->flush();
+
+                    $session->getFlashBag()->add('success', $translator->trans("Protocol rejected with success!"));
+                    return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
+                }
+
                 // cloning submission
                 $new_submission = clone $submission;
                 $new_submission->setNumber($submission->getNumber() + 1);
