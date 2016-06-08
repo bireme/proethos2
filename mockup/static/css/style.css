@@ -133,3 +133,7 @@ h5 {
     border-color: #d2d6de !important;
     height: 34px !important;
 }
+
+.g-recaptcha {
+    margin: 10px 0 20px 0;
+}

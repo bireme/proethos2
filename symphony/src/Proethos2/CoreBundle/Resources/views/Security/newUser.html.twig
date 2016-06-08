@@ -2,6 +2,12 @@
 
 {% block title %}{% trans %}Create new User{% endtrans %} - Proethos2{% endblock %}
 
+{% block extrahead %}
+    
+    <script src='https://www.google.com/recaptcha/api.js?hl=pt-BR'></script>
+
+{% endblock %}
+
 {% block body %}
 
     <style>
@@ -51,7 +57,7 @@
                         <div class="form-group required">
                             <label for="input-username">{% trans %}Username{% endtrans %}:</label> 
                             <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <input type='text' class='form-control' id="input-username" name="username" required>
+                            <input type='text' class='form-control' id="input-username" name="username" value="{% if content %}{{ content.username }}{% endif %}" required>
                         </div>
                     </div>
                 </div>
@@ -61,7 +67,7 @@
                         <div class="form-group required">
                             <label for="input-email">{% trans %}Email{% endtrans %}:</label> 
                             <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <input type='email' class='form-control' id="input-email" name="email" required>
+                            <input type='email' class='form-control' id="input-email" name="email" value="{% if content %}{{ content.email }}{% endif %}" required>
                         </div>
                     </div>
                 </div>
@@ -71,7 +77,7 @@
                         <div class="form-group required">
                             <label for="input-name">{% trans %}Name{% endtrans %}:</label> 
                             <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <input type='text' class='form-control' id="input-name" name="name" required>
+                            <input type='text' class='form-control' id="input-name" name="name" value="{% if content %}{{ content.name }}{% endif %}" required>
                         </div>
                     </div>
                 </div>
@@ -84,7 +90,7 @@
                             <select class='form-control select-select2' id="select-country" name="country" required>
                                 <option value="">{% trans %}Select country{% endtrans %}</option>
                                 {% for country in countries %}
-                                    <option value="{{ country.id }}">{{ country }}</option>
+                                    <option value="{{ country.id }}" {% if content and content.country == country.id %}selected{% endif %}>{{ country }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -96,7 +102,7 @@
                         <div class="form-group">
                             <label for="input-institution">{% trans %}Institution{% endtrans %}:</label> 
                             <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <input type='text' class='form-control' id="input-institution" name="institution">
+                            <input type='text' class='form-control' id="input-institution" name="institution" value="{% if content %}{{ content.institution }}{% endif %}">
                         </div>
                     </div>
                 </div>
@@ -121,8 +127,18 @@
                     </div>
                 </div>
                 
-                <div class="form-group">
-                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">{% trans %}Create user{% endtrans %}</button>
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <div class="g-recaptcha" data-sitekey="6LdtCiITAAAAAJxdzxnSdJzCrW_wJwtgC27qtvPS"></div>
+                    </div>
+                </div>
+                
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <div class="form-group">
+                            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">{% trans %}Create user{% endtrans %}</button>
+                        </div>
+                    </div>
                 </div>
             </form><!-- /form -->
             

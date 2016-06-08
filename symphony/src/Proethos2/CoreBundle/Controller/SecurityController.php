@@ -277,18 +277,51 @@ class SecurityController extends Controller
         $countries = $country_repository->findAll();
         $output['countries'] = $countries;
         
+        $output['content'] = array();
+        
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
             // getting post data
             $post_data = $request->request->all();
-            
+            $output['content'] = $post_data;
+
             // checking required fields
-            foreach(array('name', 'username', 'email', 'country', 'password', 'confirm-password') as $field) {   
+            foreach(array('name', 'username', 'email', 'country', 'password', 'confirm-password', 'g-recaptcha-response') as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
                     return $output;
                 }
+            }
+
+            // RECAPTCHA
+            $secret = $this->container->getParameter('recaptcha.secret');
+
+            // params to send to recapctha api
+            $data = array(
+                "secret" => $secret,
+                "response" => $post_data['g-recaptcha-response'],
+                "remoteip" => $_SERVER['REMOTE_ADDR'],
+            );
+
+            // options from file_Get_contents
+            $options = array(
+                'http' => array(
+                    'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                    'method'  => 'POST',
+                    'content' => http_build_query($data)
+                )
+            );
+            
+            // making the POST request to API
+            $context  = stream_context_create($options);
+            $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify", false, $context);
+            $response = json_decode($response);
+            
+            // if has problems, stop
+            if(!$response->success) {
+                $session->getFlashBag()->add('error', $translator->trans("Have an error with captcha. Please try again."));
+                return $output;
             }
 
             if($post_data['password'] != $post_data['confirm-password']) {

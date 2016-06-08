@@ -84,3 +84,5 @@ parameters:
     committee.email:  "proethos2@paho.org"
     committee.address:  "525 Twenty-third Street, N.W., Washington, D.C. 20037, Estados Unidos"
     committee.phones:  "Tel.: +1 (202) 974-3000<br>Fax: +1 (202) 974-3663"
+
+    recaptcha.secret: "6LdtCiITAAAAACON37pbmsAo1hjEUAjqz33rB-5r"
