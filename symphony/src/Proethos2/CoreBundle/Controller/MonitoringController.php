@@ -189,7 +189,11 @@ class MonitoringController extends Controller
                 $em->flush();
                 
                 $session->getFlashBag()->add('success', $translator->trans("File uploaded with sucess."));
-                return $output;
+                return $this->redirectToRoute('protocol_new_monitoring_that_not_amendment', 
+                    array(
+                        'protocol_id' => $protocol_id,
+                        'monitoring_action_id' => $monitoring_action_id,
+                    ), 301);
             }
 
             if(isset($post_data['delete-attachment-id']) and !empty($post_data['delete-attachment-id'])) {
