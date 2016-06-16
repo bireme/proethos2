@@ -137,3 +137,10 @@ h5 {
 .g-recaptcha {
     margin: 10px 0 20px 0;
 }
+.help-text-undefined, 
+.help-text-undefined:focus, 
+.help-text-undefined:link, 
+.help-text-undefined:visited, 
+.help-text-undefined:hover {
+    color: #ff0000;
+}

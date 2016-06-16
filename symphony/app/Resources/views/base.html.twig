@@ -85,6 +85,22 @@
                 console.log('first access...');
                 $("#menuChangePassword").trigger('click');
             {% endif %}
+
+            // actions in help links
+            var help_links = $('a[data-target="#modal-help"]');
+            $.each(help_links, function(){
+                link = $(this)
+                var url = link.attr('href') + "/check";
+                $.get(url, function(data){
+                    if(!data.status) {
+                        {% if is_granted("ROLE_USER") and 'administrator' in app.user.rolesSlug %}
+                            link.addClass('help-text-undefined');
+                        {% else %}
+                            link.hide();
+                        {% endif %}
+                    }
+                });
+            });
         });
     </script>
     {% block script %}{% endblock %}

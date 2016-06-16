@@ -5,6 +5,7 @@ namespace Proethos2\CoreBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Response;
 
 use Proethos2\ModelBundle\Entity\Meeting;
 use Proethos2\ModelBundle\Entity\Faq;
@@ -1216,5 +1217,33 @@ class CRUDController extends Controller
             throw $this->createNotFoundException($translator->trans('No help found'));
         }
         return $output;
+    }
+
+    /**
+     * @Route("/admin/help/{help_id}/check", name="crud_admin_help_check")
+     */
+    public function checkHelpAction($help_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+        
+        // getting the current help
+        $help = $help_repository->find($help_id);
+
+        if (!$help) {
+            throw $this->createNotFoundException($translator->trans('No help found'));
+        }
+
+        $output['status'] = $help->getStatus();        
+        $response = new Response();
+        $response->setContent(json_encode($output));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 }
