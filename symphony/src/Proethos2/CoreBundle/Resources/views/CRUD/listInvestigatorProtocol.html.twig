@@ -22,7 +22,7 @@
                     <div class="col-md-8">
                         <div class="form-group">
                             <label for="input-filter-q">{% trans %}Find protocols{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href='#' data-toggle="modal" data-help-id="71" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='text' class='form-control' id='input-filter-q' name='q' value="{{ app.request.get('q') }}">
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="select-filter-status">{% trans %}Status{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href='#' data-toggle="modal" data-help-id="72" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <select class='form-control selectpicker submit-on-change' id="select-filter-status" name="status" data-live-search="true">
                                 <option value="" {% if app.request.get('status') == "" %}selected{% endif %}>{% trans %}All{% endtrans %}</option>
                                 <option value="S" {% if app.request.get('status') == "D" %}selected{% endif %}>{% trans %}Draft{% endtrans %}</option>

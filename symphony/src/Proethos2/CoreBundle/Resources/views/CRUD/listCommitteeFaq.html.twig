@@ -21,7 +21,7 @@
                     <div class="col-md-11">
                         <div class="form-group" id='form-filter'>
                             <label for="input-filter-q">{% trans %}Search for a question{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href='#' data-toggle="modal" data-help-id="86" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='text' class='form-control' id='input-filter-q' name='q' value="{{ app.request.get('q') }}">
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                             <div class='col-md-12'>
                                 <div class="form-group">
                                     <label for="input-new-question">{% trans %}Question{% endtrans %}:</label> 
-                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <a href='#' data-toggle="modal" data-help-id="87" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <input type='text' class='form-control' id="input-new-question" name="new-question" required>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                             <div class='col-md-12'>
                                 <div class="form-group">
                                     <label for="input-new-question-answer">{% trans %}Answer{% endtrans %}:</label> 
-                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <a href='#' data-toggle="modal" data-help-id="88" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <textarea class='form-control' id="input-new-question-answer" name='new-question-answer' required></textarea>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                                     <div class="checkbox">
                                         <label for="input-new-question-status">
                                             <input type="checkbox" id='input-new-question-status' name='new-question-status' value="true" checked> {% trans %}Active?{% endtrans %}
-                                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                            <a href='#' data-toggle="modal" data-help-id="89" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                         </label>
                                     </div>
                                 </div>
