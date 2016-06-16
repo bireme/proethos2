@@ -19,7 +19,8 @@
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "cocur/slugify": "^2.1",
-	"knplabs/knp-snappy-bundle": "dev-master"
+	"knplabs/knp-snappy-bundle": "dev-master",
+        "symfony/translation": "2.6.13"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

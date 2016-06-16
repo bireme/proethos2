@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "935f753091d4aa5f400cf24b16c4a53f",
-    "content-hash": "fe0fcb5fdf804fa987db9803231495a5",
+    "hash": "33186dc17e80bcd149023881f680127b",
+    "content-hash": "95a271914a7a2f4ed6fd30d4c2e9568a",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -1012,7 +1012,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpSnappyBundle/zipball/ead0b44c6a9a96c1817710cd854665ee755afe04",
+                "url": "https://api.github.com/repos/KnpLabs/KnpSnappyBundle/zipball/f32454f8505dffae3414a771494da5d694177d41",
                 "reference": "ead0b44c6a9a96c1817710cd854665ee755afe04",
                 "shasum": ""
             },
