@@ -21,7 +21,7 @@
                     <div class="col-md-11">
                         <div class="form-group" id='form-filter'>
                             <label for="input-filter-q">{% trans %}Search for a meeting subject{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 193} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='text' class='form-control' id='input-filter-q' name='q' value="{{ app.request.get('q') }}">
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                             <div class='col-md-12'>
                                 <div class="form-group">
                                     <label for="input-new-meeting-date">{% trans %}Date{% endtrans %}:</label> 
-                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <a href="{{ path("crud_admin_help_show", {help_id: 194} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <input type='date' class='form-control' id="input-new-meeting-date" name="new-meeting-date" required>
                                 </div>
                             </div>
@@ -112,7 +112,7 @@
                             <div class='col-md-12'>
                                 <div class="form-group">
                                     <label for="input-new-meeting-subject">{% trans %}Subject{% endtrans %}:</label> 
-                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <a href="{{ path("crud_admin_help_show", {help_id: 195} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <input type='text' class='form-control' id="input-new-meeting-subject" name='new-meeting-subject' required>
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
                             <div class='col-md-12'>
                                 <div class="form-group">
                                     <label for="textarea-new-meeting-content">{% trans %}Content{% endtrans %}:</label> 
-                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <a href="{{ path("crud_admin_help_show", {help_id: 196} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <textarea rows="5" class='form-control' id="textarea-new-meeting-content" name="new-meeting-content" required></textarea>
                                 </div>
                             </div>

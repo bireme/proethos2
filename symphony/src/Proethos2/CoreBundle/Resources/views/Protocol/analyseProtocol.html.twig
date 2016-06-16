@@ -33,14 +33,14 @@
                             <div class='radio'>
                                 <label for="input-reject-submission">
                                     <input type='radio' id='input-reject-submission' name='action' value='accept' /> {% trans %}Reject Submission{% endtrans %}
-                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <a href="{{ path("crud_admin_help_show", {help_id: 256} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 </label> 
                             </div>
                         </div>
                         
                         <div class="form-group" id='group-reject-submission'>
                             <label for="">{% trans %}Reject reason{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 257} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <textarea class="form-control" id="textarea-reject-reason" name='reject-reason'></textarea>
                         </div>
                         
@@ -48,7 +48,7 @@
                             <div class='radio'>
                                 <label for="input-accept-submission">
                                     <input type='radio' id='input-accept-submission' name='action' value='accept' /> {% trans %}Accept Submission{% endtrans %}
-                                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <a href="{{ path("crud_admin_help_show", {help_id: 258} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 </label> 
                             </div>
                         </div>

@@ -56,7 +56,7 @@
                     <div class='col-md-12'>
                         <div class="form-group required">
                             <label for="input-username">{% trans %}Username{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 234} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='text' class='form-control' id="input-username" name="username" value="{% if content %}{{ content.username }}{% endif %}" required>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                     <div class='col-md-12'>
                         <div class="form-group required">
                             <label for="input-email">{% trans %}Email{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 235} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='email' class='form-control' id="input-email" name="email" value="{% if content %}{{ content.email }}{% endif %}" required>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                     <div class='col-md-12'>
                         <div class="form-group required">
                             <label for="input-name">{% trans %}Name{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 236} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='text' class='form-control' id="input-name" name="name" value="{% if content %}{{ content.name }}{% endif %}" required>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                     <div class='col-md-12'>
                         <div class="form-group required">
                             <label for="select-country">{% trans %}Country{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 237} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <select class='form-control select-select2' id="select-country" name="country" required>
                                 <option value="">{% trans %}Select country{% endtrans %}</option>
                                 {% for country in countries %}
@@ -101,7 +101,7 @@
                     <div class='col-md-12'>
                         <div class="form-group">
                             <label for="input-institution">{% trans %}Institution{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 238} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='text' class='form-control' id="input-institution" name="institution" value="{% if content %}{{ content.institution }}{% endif %}">
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                     <div class='col-md-12'>
                         <div class="form-group required">
                             <label for="input-password">{% trans %}Password{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 239} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='password' class='form-control' id="input-password" name="password" required>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                     <div class='col-md-12'>
                         <div class="form-group required">
                             <label for="input-confirm-password">{% trans %}Confirm Password{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 240} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='password' class='form-control' id="input-confirm-password" name="confirm-password" required>
                         </div>
                     </div>

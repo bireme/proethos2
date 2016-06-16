@@ -30,7 +30,7 @@
                     <div class="col-md-12">
                         <div class="form-group required">
                             <label for="input-decision">{% trans %}Decision{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 242} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='text' class="form-control" id='input-decision' name="decision" value="{{ protocol_revision.decision }}" required {% if protocol_revision.isFinalRevision %}readonly{% endif %}>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="textarea-social-value">{% trans %}Social Value{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 243} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <textarea class="form-control" id='textarea-social-value' name="social-value" {% if protocol_revision.isFinalRevision %}readonly{% endif %}>{{ protocol_revision.socialValue }}</textarea>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="textarea-scientific-validity">{% trans %}Scientific Validity{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 244} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <textarea class="form-control" id='textarea-scientific-validity' name="scientific-validity" {% if protocol_revision.isFinalRevision %}readonly{% endif %}>{{ protocol_revision.scientificValidity }}</textarea>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="textarea-fair-participant-selection">{% trans %}Fair participant selection{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 245} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <textarea class="form-control" id='textarea-fair-participant-selection' name="fair-participant-selection" {% if protocol_revision.isFinalRevision %}readonly{% endif %}>{{ protocol_revision.fairParticipantSelection }}</textarea>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="textarea-favorable-balance">{% trans %}Favorable balance of benefits and risks{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 246} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <textarea class="form-control" id='textarea-favorable-balance' name="favorable-balance" {% if protocol_revision.isFinalRevision %}readonly{% endif %}>{{ protocol_revision.favorableBalance }}</textarea>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="textarea-informed-consent">{% trans %}Informed Consent{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 247} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <textarea class="form-control" id='textarea-informed-consent' name="informed-consent" {% if protocol_revision.isFinalRevision %}readonly{% endif %}>{{ protocol_revision.informedConsent }}</textarea>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="textarea-respect-for-participants">{% trans %}Respect for participants{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 248} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <textarea class="form-control" id='textarea-respect-for-participants' name="respect-for-participants" {% if protocol_revision.isFinalRevision %}readonly{% endif %}>{{ protocol_revision.respectForParticipants }}</textarea>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="textarea-other-comments">{% trans %}Other Comments{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 249} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <textarea class="form-control" id='textarea-other-comments' name="other-comments" {% if protocol_revision.isFinalRevision %}readonly{% endif %}>{{ protocol_revision.otherComments }}</textarea>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                     <div class="col-md-12">
                         <div class="form-group required">
                             <label for="input-sugestions">{% trans %}Sugestions{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 250} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='text' class="form-control" id='input-sugestions' name="sugestions" value="{{ protocol_revision.sugestions }}" required {% if protocol_revision.isFinalRevision %}readonly{% endif %}>
                         </div>
                     </div>
