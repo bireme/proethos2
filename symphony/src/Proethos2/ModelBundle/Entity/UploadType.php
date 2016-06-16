@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Language
+ * UploadType
  *
  * @ORM\Table(name="upload_type")
  * @ORM\Entity
