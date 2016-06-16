@@ -30,7 +30,7 @@
                     <div class="col-md-12">
                         <div class="form-group" id='niec-manual'>
                             <label for="input-opinion-required">{% trans %}Opinions Required{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-help-id="120" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='number' class="form-control" id='input-opinion-required' name="opinion-required" min="0" value="{{ protocol.opinionRequired }}" required>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                     <div class="col-md-12">
                         <div class="form-group" id='rejeitar-group'>
                             <label for="select-meeting">{% trans %}Select meeting{% endtrans %}:</label> 
-                            <a href='#' data-toggle="modal" data-help-id="121" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <select class='form-control selectpicker' id="select-meeting" name="meeting" data-live-search="true">
                                 <option></option>
                                 {% for meeting in meetings %}

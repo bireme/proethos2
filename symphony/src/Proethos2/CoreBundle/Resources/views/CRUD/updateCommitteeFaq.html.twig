@@ -9,7 +9,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-new-question">{% trans %}Question{% endtrans %}:</label> 
-                    <a href='#' data-toggle="modal" data-help-id="77" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <input type='text' class='form-control' id="input-new-question" name="new-question" required value="{{ question.question }}">
                 </div>
             </div>
@@ -19,7 +19,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-new-question-answer">{% trans %}Answer{% endtrans %}:</label> 
-                    <a href='#' data-toggle="modal" data-help-id="78" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <textarea class='form-control' id="input-new-question-answer" name='new-question-answer' required>{{ question.answer }}</textarea>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                     <div class="checkbox">
                         <label for="input-new-question-status">
                             <input type="checkbox" id='input-new-question-status' name='new-question-status' value="true" {% if question.status %}checked{% endif %}> {% trans %}Active?{% endtrans %}
-                            <a href='#' data-toggle="modal" data-help-id="79" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                         </label>
                     </div>
                 </div>

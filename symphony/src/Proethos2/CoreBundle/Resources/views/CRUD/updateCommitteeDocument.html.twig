@@ -11,7 +11,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-title">{% trans %}Title{% endtrans %}:</label> 
-                    <a href='#' data-toggle="modal" data-help-id="67" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <input type='text' class='form-control' id="input-title" name="title" value="{{ document.title }}" required>
                 </div>
             </div>
@@ -21,7 +21,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-description">{% trans %}Description{% endtrans %}:</label> 
-                    <a href='#' data-toggle="modal" data-help-id="68" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <textarea class='form-control' id="input-description" name="description">{{ document.description }}</textarea>
                 </div>
             </div>
@@ -31,7 +31,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="select-role">{% trans %}Role{% endtrans %}:</label> 
-                    <a href='#' data-toggle="modal" data-help-id="69" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <select class='form-control' id="select-role" name="role">
                         <option value="">{% trans %}All{% endtrans %}</option>
                         {% for role in roles %}
@@ -48,7 +48,7 @@
                     <div class="checkbox">
                         <label for="input-status">
                             <input type="checkbox" id='input-status' name='status' value="true" {% if document.status %}checked{% endif %}> {% trans %}Active?{% endtrans %}
-                            <a href='#' data-toggle="modal" data-help-id="70" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href='#' data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                         </label>
                     </div>
                 </div>
