@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="pt-BR" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="efcab4b6b613aef8f8a8805265ddbc92" resname="New submission">
+        <source>New submission</source>
+        <target>Nova Submissão</target>
+      </trans-unit>
+      <trans-unit id="8cf04a9734132302f96da8e113e80ce5" resname="Home">
+        <source>Home</source>
+        <target>__Home</target>
+      </trans-unit>
+      <trans-unit id="9985b4390c40137573e6da05caf85874" resname="Protocols">
+        <source>Protocols</source>
+        <target>Protocolos</target>
+      </trans-unit>
+      <trans-unit id="7f89f915743c34e79c7271f792cf466e" resname="Committee">
+        <source>Committee</source>
+        <target>__Committee</target>
+      </trans-unit>
+      <trans-unit id="1fe917b01f9a3f87fa2d7d3b7643fac1" resname="FAQ">
+        <source>FAQ</source>
+        <target>__FAQ</target>
+      </trans-unit>
+      <trans-unit id="f9aae5fda8d810a29f12d1e61b4ab25f" resname="Users">
+        <source>Users</source>
+        <target>__Users</target>
+      </trans-unit>
+      <trans-unit id="2fd5c01f4902b65ff3d8dd3d60565520" resname="Meetings">
+        <source>Meetings</source>
+        <target>__Meetings</target>
+      </trans-unit>
+      <trans-unit id="f28128b38efbc6134dc40751ee21fd29" resname="Documents">
+        <source>Documents</source>
+        <target>__Documents</target>
+      </trans-unit>
+      <trans-unit id="bbaff12800505b22a853e8b7f4eb6a22" resname="Contact">
+        <source>Contact</source>
+        <target>__Contact</target>
+      </trans-unit>
+      <trans-unit id="4c37783f1ffd7ba3c34a4a018ecd8181" resname="System Management">
+        <source>System Management</source>
+        <target>__System Management</target>
+      </trans-unit>
+      <trans-unit id="6e85a80bd6c31931a93be2f2b4afcd70" resname="Help Messages">
+        <source>Help Messages</source>
+        <target>__Help Messages</target>
+      </trans-unit>
+      <trans-unit id="30e32c7c4cf434e9c75e60c14c442541" resname="Portuguese">
+        <source>Portuguese</source>
+        <target>__Portuguese</target>
+      </trans-unit>
+      <trans-unit id="78463a384a5aa4fad5fa73e2f506ecfc" resname="English">
+        <source>English</source>
+        <target>__English</target>
+      </trans-unit>
+      <trans-unit id="cb5480c32e71778852b08ae1e8712775" resname="Spanish">
+        <source>Spanish</source>
+        <target>__Spanish</target>
+      </trans-unit>
+      <trans-unit id="515767c04d6aa9c26c6e252bce1167f7" resname="Your Profile">
+        <source>Your Profile</source>
+        <target>__Your Profile</target>
+      </trans-unit>
+      <trans-unit id="8f1e77e0d2be21da93cd4d9a939148f7" resname="Change Password">
+        <source>Change Password</source>
+        <target>__Change Password</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
