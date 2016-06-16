@@ -1,0 +1,85 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}Helps{% endtrans %}{% endblock %}
+
+{% block content %}
+    
+    <div class="container-fluid main-content see-submission">
+
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">
+                    {% trans %}Helps{% endtrans %}
+                    <a href='#' class='btn btn-primary' data-toggle='modal' data-target='#modal-new-help'>{% trans %}New Help{% endtrans %}</a>
+                </h1>
+            </div>
+        </div>
+        
+        <div class='block'>
+            <form class='form'>
+                <div class='row'>
+                    <div class="col-md-11">
+                        <div class="form-group" id='form-filter'>
+                            <label for="input-filter-q">{% trans %}Search for a help message{% endtrans %}:</label> 
+                            <a href='#' data-toggle="modal" data-help-id="63" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='text' class='form-control' id='input-filter-q' name='q' value="{{ app.request.get('q') }}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 search-button">
+                        <div class="form-group">
+                            <button class='btn btn-primary'>{% trans %}Search{% endtrans %}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+            
+        <div class='block'>
+            <div class='row'>
+                <div class="col-md-12">
+                    <table class='table table-hover table-condensed'>
+                        
+                        <thead>
+                            <tr>
+                                <th width="90%">{% trans %}Message{% endtrans %}</th>
+                                <th>{% trans %}Actions{% endtrans %}</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            {% for help in helps %}
+                                <tr>
+                                    <td>{{ help.message }}</td> 
+                                    <td>
+                                        <a href='{{ path('crud_admin_help_update', {help_id: help.id} ) }}' data-toggle='modal' data-target='#modal-update-help' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
+                                    </td> 
+                                </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+    
+    <!-- Modal Update Help -->
+    <div class="modal fade" id="modal-update-help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+            {% if app.request.get('id') %}
+                // opens the update modal for this id
+                var update_button = $("a[data-target='#modal-update-help']");
+                update_button.trigger('click');
+            {% endif %}   
+        });
+    </script>
+{% endblock %}

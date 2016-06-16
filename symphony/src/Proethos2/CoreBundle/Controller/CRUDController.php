@@ -1107,4 +1107,216 @@ class CRUDController extends Controller
         // var_dump($send);die;
         return $output;
     }
+
+    /**
+     * @Route("/admin/help", name="crud_admin_help_list")
+     * @Template()
+     */
+    public function listHelpAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+        
+        $helps = $help_repository->findBy(array("status" => true));
+        
+        // serach parameter
+        $search_query = $request->query->get('q');
+        if($search_query) {
+            $helps = $help_repository->createQueryBuilder('m')
+               ->where('m.message LIKE :query')
+               ->andwhere('m.status = true')
+               ->setParameter('query', "%". $search_query ."%")
+               ->getQuery()
+               ->getResult();
+        }
+
+        $id = $request->query->get('id');
+        if($id) {
+            $helps = $help_repository->findBy(array("id" => $id));
+        }
+        
+        $output['helps'] = $helps;
+        return $output;
+    }
+
+    /**
+     * @Route("/admin/help/{help_id}", name="crud_admin_help_update")
+     * @Template()
+     */
+    public function updateHelpAction($help_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+        
+        // getting the current help
+        $help = $help_repository->find($help_id);
+        $output['help'] = $help;
+
+        if (!$help) {
+            throw $this->createNotFoundException($translator->trans('No help found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required files
+            foreach(array('help-message') as $field) {
+                
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $help->setMessage($post_data['help-message']);
+            $help->setStatus(true);
+
+            $em->persist($help);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Help updated with success."));
+            return $this->redirectToRoute('crud_admin_help_list', array(), 301);
+        }
+        
+        return $output;
+    }
+    
+    // /**
+    //  * @Route("/committee/meeting/{meeting_id}", name="crud_committee_meeting_update")
+    //  * @Template()
+    //  */
+    // public function updateMeetingAction($meeting_id)
+    // {
+    //     $output = array();
+    //     $request = $this->getRequest();
+    //     $session = $request->getSession();
+    //     $translator = $this->get('translator');
+    //     $em = $this->getDoctrine()->getManager();
+
+    //     $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
+
+    //     // getting the current meeting
+    //     $meeting = $meeting_repository->find($meeting_id);
+    //     $output['meeting'] = $meeting;
+
+    //     if (!$meeting) {
+    //         throw $this->createNotFoundException($translator->trans('No meeting found'));
+    //     }
+
+    //     // checking if was a post request
+    //     if($this->getRequest()->isMethod('POST')) {
+
+    //         // getting post data
+    //         $post_data = $request->request->all();
+            
+    //         // checking required files
+    //         foreach(array('new-meeting-date', 'new-meeting-subject', 'new-meeting-content') as $field) {
+                
+    //             if(!isset($post_data[$field]) or empty($post_data[$field])) {
+    //                 $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+    //                 return $output;
+    //             }
+    //         }
+
+    //         $meeting->setDate(new \DateTime($post_data['new-meeting-date']));
+    //         $meeting->setSubject($post_data['new-meeting-subject']);
+    //         $meeting->setContent($post_data['new-meeting-content']);
+
+    //         $em->persist($meeting);
+    //         $em->flush();
+
+    //         $session->getFlashBag()->add('success', $translator->trans("Meeting updated with success."));
+    //         return $this->redirectToRoute('crud_committee_meeting_list', array(), 301);
+    //     }
+
+    //     return $output;
+    // }
+
+    //  /**
+    //  * @Route("/committee/meeting/{meeting_id}/show", name="crud_committee_meeting_show")
+    //  * @Template()
+    //  */
+    // public function showMeetingAction($meeting_id)
+    // {
+    //     $output = array();
+    //     $request = $this->getRequest();
+    //     $session = $request->getSession();
+    //     $translator = $this->get('translator');
+    //     $em = $this->getDoctrine()->getManager();
+
+    //     $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
+    //     $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
+
+    //     // getting the current meeting
+    //     $meeting = $meeting_repository->find($meeting_id);
+    //     $output['meeting'] = $meeting;
+
+    //     if (!$meeting) {
+    //         throw $this->createNotFoundException($translator->trans('No meeting found'));
+    //     }
+
+    //     $protocols = $protocol_repository->findBy(array('meeting' => $meeting));
+    //     $output['protocols'] = $protocols;
+
+    //     return $output;
+    // }
+
+    // /**
+    //  * @Route("/committee/meeting/{meeting_id}/delete", name="crud_committee_meeting_delete")
+    //  * @Template()
+    //  */
+    // public function deleteMeetingAction($meeting_id)
+    // {
+    //     $output = array();
+    //     $request = $this->getRequest();
+    //     $session = $request->getSession();
+    //     $translator = $this->get('translator');
+    //     $em = $this->getDoctrine()->getManager();
+
+    //     $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
+
+    //     // getting the current meeting
+    //     $meeting = $meeting_repository->find($meeting_id);
+    //     $output['meeting'] = $meeting;
+
+    //     if (!$meeting) {
+    //         throw $this->createNotFoundException($translator->trans('No meeting found'));
+    //     }
+
+    //     // checking if was a post request
+    //     if($this->getRequest()->isMethod('POST')) {
+
+    //         // getting post data
+    //         $post_data = $request->request->all();
+            
+    //         // checking required files
+    //         foreach(array('meeting-delete') as $field) {
+    //             if(!isset($post_data[$field]) or empty($post_data[$field])) {
+    //                 $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+    //                 return $output;
+    //             }
+    //         }
+
+    //         $em->remove($meeting);
+    //         $em->flush();
+
+    //         $session->getFlashBag()->add('success', $translator->trans("Meeting deleted with success."));
+    //         return $this->redirectToRoute('crud_committee_meeting_list', array(), 301);
+    //     }
+
+    //     return $output;
+    // }
 }
