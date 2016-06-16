@@ -3,8 +3,15 @@
     <h4 class="modal-title" id="myModalLabel">{% trans %}Help{% endtrans %}</h4>
 </div>
 <div class="modal-body">
-    {{ help }}
+    {% if not help.message %}
+        <i>{% trans %}There is no help message setted to this field.{% endtrans %}</i>
+    {% else %}
+        {{ help }}
+    {% endif %}
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+    {% if is_granted("ROLE_USER") and 'administrator' in app.user.rolesSlug %}
+        <a href="{{ path('crud_admin_help_list') }}?id={{ help.id }}" type="button" class="btn btn-primary">{% trans %}Update this message{% endtrans %}</a>
+    {% endif %}
 </div>

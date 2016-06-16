@@ -34,7 +34,11 @@ class Help extends Base
     private $message;
 
     public function __toString() {
-        return $this->getMessage();
+        if($this->getMessage()) {
+            return $this->getMessage();
+        }
+
+        return "";
     }
 
     /**

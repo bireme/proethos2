@@ -40,17 +40,18 @@ class GenerateHelpMessagesCommand extends ContainerAwareCommand
                     if(strpos($line, "#modal-help") > -1) {
 
                         // if doesnt mapped, associate an id to this help link
-                        if(strpos($line, "data-help-id") === false) {
+                        if(strpos($line, "href='#'") > -1 or strpos($line, 'href="#"') > -1) {
 
                             // create a new help text
                             $help = new Help();
                             $em->persist($help);
                             $em->flush();
 
-                            $line = str_replace('data-target="#modal-help"', 'data-help-id="'. $help->getId() .'" data-target="#modal-help"', $line);
+                            $line = str_replace("href='#'", 'href="{{ path("crud_admin_help_show", {help_id: '. $help->getId() .'} ) }}"', $line);
+                            $line = str_replace('href="#"', 'href="{{ path("crud_admin_help_show", {help_id: '. $help->getId() .'} ) }}"', $line);
                             $output->writeln(trim($line));
                         }
-
+                        
                     }
 
                     // concat the new line on the new content.
