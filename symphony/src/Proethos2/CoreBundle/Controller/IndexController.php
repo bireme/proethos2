@@ -5,6 +5,7 @@ namespace Proethos2\CoreBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class IndexController extends Controller
 {
@@ -43,5 +44,20 @@ class IndexController extends Controller
         
 
         return $output;
+    }
+
+    /**
+     * @Route("/locale/{locale}", name="change_locale")
+     * @Template()
+     */
+    public function changeLocaleAction($locale)
+    {
+        $request = $this->getRequest();
+
+        // some logic to determine the $locale
+        $request->getSession()->set('_locale', $locale);
+
+        $referer = $request->headers->get('referer');
+        return new RedirectResponse($referer);
     }
 }

@@ -4,6 +4,8 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.locale_listener:
+            class: Proethos2\CoreBundle\EventListener\LocaleListener
+            arguments: ["%kernel.default_locale%"]
+            tags:
+                - { name: kernel.event_subscriber }
