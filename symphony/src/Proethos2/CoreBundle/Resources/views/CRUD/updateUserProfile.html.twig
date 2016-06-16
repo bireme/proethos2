@@ -10,7 +10,7 @@
             <div class='col-md-12'>
                 <div class="form-group required">
                     <label for="input-name">{% trans %}Name{% endtrans %}:</label> 
-                    <a href="{{ path("crud_admin_help_show", {help_id: 178} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 49} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <input type='text' class='form-control' id="input-name" name="name" value="{{ user.name }}" required>
                 </div>
             </div>
@@ -20,7 +20,7 @@
             <div class='col-md-12'>
                 <div class="form-group required">
                     <label for="select-country">{% trans %}Country{% endtrans %}:</label> 
-                    <a href="{{ path("crud_admin_help_show", {help_id: 179} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 50} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <select class='form-control select-select2' id="select-country" name="country" required>
                         <option value="">{% trans %}Select country{% endtrans %}</option>
                         {% for country in countries %}
@@ -35,7 +35,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-institution">{% trans %}Institution{% endtrans %}:</label> 
-                    <a href="{{ path("crud_admin_help_show", {help_id: 180} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 51} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <input type='text' class='form-control' id="input-institution" name="institution" value="{{ user.institution }}">
                 </div>
             </div>

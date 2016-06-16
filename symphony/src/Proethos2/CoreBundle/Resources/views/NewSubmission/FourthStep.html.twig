@@ -61,7 +61,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="textarea-clinical-trial-second">{% trans %}Secondary Registry{% endtrans %}:</label> 
-                                    <a href="{{ path("crud_admin_help_show", {help_id: 164} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <a href="{{ path("crud_admin_help_show", {help_id: 35} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <textarea rows="4" class="form-control" id='textarea-clinical-trial-second' name='clinical-trial-second'>{{ submission.clinicalTrialSecondary }}</textarea>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                         <div class="col-md-12">
                             <div class="form-group required">
                                 <label for="textarea-funding-source">{% trans %}Funding source{% endtrans %}:</label> 
-                                <a href="{{ path("crud_admin_help_show", {help_id: 165} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <a href="{{ path("crud_admin_help_show", {help_id: 36} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" id='textarea-funding-source' name='funding-source' required>{{ submission.fundingSource }}</textarea>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                         <div class="col-md-12">
                             <div class="form-group required">
                                 <label for="textarea-primary-sponsor">{% trans %}Primary Sponsor{% endtrans %}:</label> 
-                                <a href="{{ path("crud_admin_help_show", {help_id: 166} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <a href="{{ path("crud_admin_help_show", {help_id: 37} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" id='textarea-primary-sponsor' name='primary-sponsor' required>{{ submission.primarySponsor }}</textarea>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="textarea-secondary-sponsor">{% trans %}Secondary Sponsor{% endtrans %}:</label> 
-                                <a href="{{ path("crud_admin_help_show", {help_id: 167} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <a href="{{ path("crud_admin_help_show", {help_id: 38} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" id='textarea-secondary-sponsor' name='secondary-sponsor'>{{ submission.secondarySponsor }}</textarea>
                             </div>
                         </div>
@@ -201,19 +201,19 @@
                         
                         <div class="form-group">
                             <label for="input-cost-description">{% trans %}Description{% endtrans %}:</label> 
-                            <a href="{{ path("crud_admin_help_show", {help_id: 168} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 39} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='text' class='form-control' id='input-cost-description' name='cost-description' required>
                         </div>
 
                         <div class="form-group">
                             <label for="input-cost-quantity">{% trans %}Quantity{% endtrans %}:</label> 
-                            <a href="{{ path("crud_admin_help_show", {help_id: 169} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 40} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='number' class='form-control' min="1" id='input-cost-quantity' name='cost-quantity' required>
                         </div>
 
                         <div class="form-group">
                             <label for="input-cost-unit-cost">{% trans %}Unit cost{% endtrans %}:</label> 
-                            <a href="{{ path("crud_admin_help_show", {help_id: 170} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 41} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type="text" class='form-control mask-money' required="required" id='input-cost-unit-cost' name="cost-unit-cost" />
                         </div>
 
@@ -240,19 +240,19 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="input-task-description">{% trans %}Description{% endtrans %}:</label> 
-                            <a href="{{ path("crud_admin_help_show", {help_id: 171} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 42} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='text' class='form-control' id='input-task-description' name='task-description' required>
                         </div>
 
                         <div class="form-group">
                             <label for="input-task-init">{% trans %}Init{% endtrans %}:</label> 
-                            <a href="{{ path("crud_admin_help_show", {help_id: 172} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 43} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type="date" class='form-control' required="required" maxlength="10" id="input-task-init" name="task-init" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
                         </div>
 
                         <div class="form-group">
                             <label for="input-task-end">{% trans %}End{% endtrans %}:</label> 
-                            <a href="{{ path("crud_admin_help_show", {help_id: 173} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 44} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type="date" class='form-control' required="required" maxlength="10" id="input-task-end" name="task-end" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
                         </div>
                     </div>
@@ -279,7 +279,7 @@
 
                         <div class="form-group">
                             <label for="input-clinical-trial-name">{% trans %}Name{% endtrans %}:</label> 
-                            <a href="{{ path("crud_admin_help_show", {help_id: 174} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 45} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <select class='form-control' id='input-clinical-trial-name' name='clinical-trial-name' required>
                                 <option value="">-</option>
                                 {% for name in clinical_trial_names %}
@@ -290,13 +290,13 @@
 
                         <div class="form-group">
                             <label for="input-clinical-trial-number">{% trans %}Number{% endtrans %}:</label> 
-                            <a href="{{ path("crud_admin_help_show", {help_id: 175} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 46} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type="number" class='form-control' id='input-clinical-trial-number' name='clinical-trial-number' min="0" required>
                         </div>
 
                         <div class="form-group">
                             <label for="input-clinical-trial-date">{% trans %}Date{% endtrans %}:</label> 
-                            <a href="{{ path("crud_admin_help_show", {help_id: 176} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 47} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type="date" class='form-control' id='input-clinical-trial-date' name='clinical-trial-date'>
                         </div>
 
