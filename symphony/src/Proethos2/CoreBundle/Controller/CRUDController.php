@@ -1145,7 +1145,7 @@ class CRUDController extends Controller
     }
 
     /**
-     * @Route("/admin/help/{help_id}", name="crud_admin_help_update")
+     * @Route("/admin/help/{help_id}/update", name="crud_admin_help_update")
      * @Template()
      */
     public function updateHelpAction($help_id)
@@ -1191,6 +1191,30 @@ class CRUDController extends Controller
             return $this->redirectToRoute('crud_admin_help_list', array(), 301);
         }
         
+        return $output;
+    }
+
+    /**
+     * @Route("/admin/help/{help_id}", name="crud_admin_help_show")
+     * @Template()
+     */
+    public function showHelpAction($help_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+        
+        // getting the current help
+        $help = $help_repository->find($help_id);
+        $output['help'] = $help;
+
+        if (!$help) {
+            throw $this->createNotFoundException($translator->trans('No help found'));
+        }
         return $output;
     }
 }

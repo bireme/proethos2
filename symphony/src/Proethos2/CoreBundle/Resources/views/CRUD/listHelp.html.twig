@@ -52,7 +52,9 @@
                                 <tr>
                                     <td>{{ help.message }}</td> 
                                     <td>
+                                        <a href='{{ path('crud_admin_help_show', {help_id: help.id} ) }}' data-toggle='modal' data-target='#modal-update-help' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
                                         <a href='{{ path('crud_admin_help_update', {help_id: help.id} ) }}' data-toggle='modal' data-target='#modal-update-help' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
+
                                     </td> 
                                 </tr>
                             {% endfor %}
