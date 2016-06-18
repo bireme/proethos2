@@ -80,9 +80,9 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class='active'><a href="{{ path('change_locale', {locale: 'pt_BR'}) }}">{% trans %}Portuguese{% endtrans %}</a></li>
-                        <li><a href="{{ path('change_locale', {locale: 'en'}) }}">{% trans %}English{% endtrans %}</a></li>
-                        <li><a href="{{ path('change_locale', {locale: 'es_ES'}) }}">{% trans %}Spanish{% endtrans %}</a></li>
+                        <li class='{% if app.request.locale == 'pt_BR' %}active{% endif %}'><a href="{{ path('change_locale', {locale: 'pt_BR'}) }}">{% trans %}Portuguese{% endtrans %}</a></li>
+                        <li class='{% if app.request.locale == 'en' %}active{% endif %}'><a href="{{ path('change_locale', {locale: 'en'}) }}">{% trans %}English{% endtrans %}</a></li>
+                        <li class='{% if app.request.locale == 'es_ES' %}active{% endif %}'><a href="{{ path('change_locale', {locale: 'es_ES'}) }}">{% trans %}Spanish{% endtrans %}</a></li>
                     </ul>    
                 </li>
 
