@@ -1,0 +1,65 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}Configurations{% endtrans %}{% endblock %}
+
+{% block content %}
+    
+    <div class="container-fluid main-content see-submission">
+
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">{% trans %}Configurations{% endtrans %}</h1>
+            </div>
+        </div>
+        
+        <div class='block'>
+            <div class='row'>
+                <div class="col-md-12">
+                    <table class='table table-hover table-condensed'>
+                        
+                        <thead>
+                            <tr>
+                                <th width="40%">{% trans %}Description{% endtrans %}</th>
+                                <th>{% trans %}Value{% endtrans %}</th>
+                                <th width="5%">{% trans %}Actions{% endtrans %}</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            {% for configuration in configurations %}
+                                <tr>
+                                    <td>{{ configuration.description }}</td> 
+                                    <td>{% if not configuration.value %}<i>(empty value)</i>{% else %}{{ configuration.value }}{% endif %}</td> 
+                                    <td>
+                                        <a href='{{ path("crud_admin_configuration_update", {configuration_id: configuration.id}) }}' data-toggle='modal' data-target='#modal-update-configuration' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
+
+                                    </td> 
+                                </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+    
+    <!-- Modal Update Configuration -->
+    <div class="modal fade" id="modal-update-configuration" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+            {% if app.request.get('id') %}
+                // opens the update modal for this id
+                var update_button = $("a[data-target='#modal-update-configuration']");
+                update_button.trigger('click');
+            {% endif %}   
+        });
+    </script>
+{% endblock %}

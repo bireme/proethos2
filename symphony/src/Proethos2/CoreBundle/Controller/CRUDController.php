@@ -1103,9 +1103,6 @@ class CRUDController extends Controller
             return $this->redirectToRoute('crud_contact_list', array(), 301);
         }
 
-
-
-        // var_dump($send);die;
         return $output;
     }
 
@@ -1245,5 +1242,74 @@ class CRUDController extends Controller
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
+    }
+
+    /**
+     * @Route("/admin/configuration", name="crud_admin_configuration_list")
+     * @Template()
+     */
+    public function listConfigurationAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
+        
+        $configurations = $configuration_repository->findAll();
+        
+        $output['configurations'] = $configurations;
+        return $output;
+    }
+
+    /**
+     * @Route("/admin/configuration/{configuration_id}/update", name="crud_admin_configuration_update")
+     * @Template()
+     */
+    public function updateConfigurationAction($configuration_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
+        
+        // getting the current configuration
+        $configuration = $configuration_repository->find($configuration_id);
+        $output['configuration'] = $configuration;
+
+        if (!$configuration) {
+            throw $this->createNotFoundException($translator->trans('No configuration found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required files
+            foreach(array('configuration-value') as $field) {
+                
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $configuration->setValue($post_data['configuration-value']);
+            
+            $em->persist($configuration);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Configuration updated with success."));
+            return $this->redirectToRoute('crud_admin_configuration_list', array(), 301);
+        }
+        
+        return $output;
     }
 }

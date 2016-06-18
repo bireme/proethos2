@@ -574,5 +574,32 @@ class CRUDControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
+    public function testListConfigurationGET()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_configuration_list', array(), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
 
+    public function testUpdateConfigurationGET()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_configuration_update', array('configuration_id' => 2), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+    
+    public function testUpdateConfigurationPOST()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_configuration_update', array('configuration_id' => 2), false);
+        
+        $client->request('POST', $route, array(
+            "configuration-value" => "BIREME/OPAS/OMS",
+        ));
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }
 }
