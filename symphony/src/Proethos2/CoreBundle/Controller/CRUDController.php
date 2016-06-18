@@ -1174,15 +1174,17 @@ class CRUDController extends Controller
                 }
             }
 
+            $help->setTranslatableLocale('en');
             $help->setMessage($post_data['help-message-en']);
-            
-            $trans_repository
-                ->translate($help, 'message', 'pt_BR', $post_data['help-message-pt_BR'])
-                ->translate($help, 'message', 'es_ES', $post_data['help-message-es_ES'])
-                ->translate($help, 'message', 'en', $post_data['help-message-en'])
-            ;
-
             $help->setStatus(true);
+            
+            if(!empty($post_data['help-message-pt_BR'])) {
+                $trans_repository = $trans_repository->translate($help, 'message', 'pt_BR', $post_data['help-message-pt_BR']);
+            }
+            if(!empty($post_data['help-message-es_ES'])) {
+                $trans_repository = $trans_repository->translate($help, 'message', 'es_ES', $post_data['help-message-es_ES']);
+            }
+
             $em->persist($help);
             $em->flush();
 
