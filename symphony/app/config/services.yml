@@ -9,3 +9,8 @@ services:
             arguments: ["%kernel.default_locale%"]
             tags:
                 - { name: kernel.event_subscriber }
+
+    twig.text_extension:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - name: twig.extension

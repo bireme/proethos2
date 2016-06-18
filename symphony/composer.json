@@ -20,7 +20,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "cocur/slugify": "^2.1",
         "knplabs/knp-snappy-bundle": "dev-master",
-        "jms/translation-bundle": "^1.2"
+        "jms/translation-bundle": "^1.2",
+        "jms/di-extra-bundle": "^1.7"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

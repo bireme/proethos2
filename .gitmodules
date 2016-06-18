@@ -1,0 +1,3 @@
+[submodule "symphony/src/JMS/AopBundle"]
+	path = symphony/src/JMS/AopBundle
+	url = https://github.com/schmittjoh/JMSAopBundle.git

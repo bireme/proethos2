@@ -18,7 +18,10 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Proethos2\CoreBundle\Proethos2CoreBundle(),
             new Proethos2\ModelBundle\Proethos2ModelBundle(),
+            
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new JMS\AopBundle\JMSAopBundle(),
+            new JMS\DiExtraBundle\JMSDiExtraBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
         );
 
