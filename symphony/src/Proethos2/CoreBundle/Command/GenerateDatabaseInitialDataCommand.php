@@ -31,6 +31,7 @@ class GenerateDatabaseInitialDataCommand extends ContainerAwareCommand
 
         $tables = array(
             'language',
+            'configuration',
             'list_clinical_trial_name',
             'list_country',
             'list_gender',
