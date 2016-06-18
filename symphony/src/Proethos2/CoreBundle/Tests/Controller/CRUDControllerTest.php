@@ -527,5 +527,52 @@ class CRUDControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
+    public function testListHelpGET()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_help_list', array(), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testUpdateHelpGET()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_help_update', array('help_id' => 1), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
     
+    public function testUpdateHelpPOST()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_help_update', array('help_id' => 1), false);
+        
+        $client->request('POST', $route, array(
+            "help-message" => "Teste de Mensagem",
+        ));
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }
+
+    public function testShowHelpGET()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_help_show', array('help_id' => 1), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testCheckHelpGET()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_help_check', array('help_id' => 1), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+
 }
