@@ -8,12 +8,31 @@
         <div class='row'>
             <div class='col-md-12'>
                 <div class="form-group">
-                    <label for="textarea-help-message">{% trans %}Message{% endtrans %}:</label> 
-                    <a href="{{ path("crud_admin_help_show", {help_id: 81} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                    <textarea rows="5" class='form-control' id="textarea-help-message" name="help-message" required>{{ help.message }}</textarea>
+                    <label for="textarea-help-message-en">{% trans %}English message{% endtrans %}:</label> 
+                    <textarea rows="3" class='form-control' id="textarea-help-message-en" name="help-message-en" required>{% if translations.en is defined %}{{ translations.en.message }}{% endif %}</textarea>
                 </div>
             </div>
         </div>                        
+
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <label for="textarea-help-message-es_ES">{% trans %}Spanish message{% endtrans %}:</label> 
+                    <textarea rows="3" class='form-control' id="textarea-help-message-es_ES" name="help-message-es_ES">{% if translations.es_ES is defined %}{{ translations.es_ES.message }}{% endif %}</textarea>
+                </div>
+            </div>
+        </div>                        
+
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <label for="textarea-help-message-pt_BR">{% trans %}Portuguese message{% endtrans %}:</label> 
+                    <textarea rows="3" class='form-control' id="textarea-help-message-pt_BR" name="help-message-pt_BR">{% if translations.pt_BR is defined %}{{ translations.pt_BR.message }}{% endif %}</textarea>
+                </div>
+            </div>
+        </div>                        
+
+
 
     </div>
     <div class="modal-footer">

@@ -1,0 +1,23 @@
+# services to handle doctrine extensions
+# import it in config.yml
+services:
+    # KernelRequest listener
+    extension.listener:
+        class: Proethos2\CoreBundle\Listener\DoctrineExtensionListener
+        calls:
+            - [ setContainer, [ "@service_container" ] ]
+        tags:
+            # translatable sets locale after router processing
+            - { name: kernel.event_listener, event: kernel.request, method: onLateKernelRequest, priority: -10 }
+            # translatable sets locale such as default application locale before command execute
+            - { name: kernel.event_listener, event: console.command, method: onConsoleCommand, priority: -10 }
+
+
+    gedmo.listener.translatable:
+        class: Gedmo\Translatable\TranslatableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]
+            - [ setDefaultLocale, [ %locale% ] ]
+            - [ setTranslationFallback, [ false ] ]

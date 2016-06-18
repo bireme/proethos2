@@ -3,8 +3,12 @@
 namespace Proethos2\ModelBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo; // gedmo annotations
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Translatable\Translatable;
+
 
 /**
  * Help
@@ -12,7 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="help")
  * @ORM\Entity
  */
-class Help extends Base
+class Help extends Base implements Translatable
 {
     /**
      * @var integer
@@ -29,9 +33,26 @@ class Help extends Base
     private $status = false;
 
     /**
+     * @Gedmo\Translatable
      * @ORM\Column(type="text", nullable=true)
      */
     private $message;
+
+    /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    private $locale;
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    public function getLocale(){
+        return $this->locale;
+    }
 
     public function __toString() {
         if($this->getMessage()) {

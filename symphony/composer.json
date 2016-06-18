@@ -21,7 +21,8 @@
         "cocur/slugify": "^2.1",
         "knplabs/knp-snappy-bundle": "dev-master",
         "jms/translation-bundle": "^1.2",
-        "jms/di-extra-bundle": "^1.7"
+        "jms/di-extra-bundle": "^1.7",
+        "gedmo/doctrine-extensions": "^2.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

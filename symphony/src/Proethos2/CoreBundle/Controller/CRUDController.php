@@ -1122,17 +1122,6 @@ class CRUDController extends Controller
         
         $helps = $help_repository->findBy(array("status" => true));
         
-        // serach parameter
-        $search_query = $request->query->get('q');
-        if($search_query) {
-            $helps = $help_repository->createQueryBuilder('m')
-               ->where('m.message LIKE :query')
-               ->andwhere('m.status = true')
-               ->setParameter('query', "%". $search_query ."%")
-               ->getQuery()
-               ->getResult();
-        }
-
         $id = $request->query->get('id');
         if($id) {
             $helps = $help_repository->findBy(array("id" => $id));
@@ -1154,15 +1143,21 @@ class CRUDController extends Controller
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
 
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
         
         // getting the current help
         $help = $help_repository->find($help_id);
         $output['help'] = $help;
 
+
         if (!$help) {
             throw $this->createNotFoundException($translator->trans('No help found'));
         }
+
+        $translations = $trans_repository->findTranslations($help);
+        $output['translations'] = $translations;
+        var_dump($translations);
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
@@ -1171,7 +1166,7 @@ class CRUDController extends Controller
             $post_data = $request->request->all();
             
             // checking required files
-            foreach(array('help-message') as $field) {
+            foreach(array('help-message-en') as $field) {
                 
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
@@ -1179,9 +1174,15 @@ class CRUDController extends Controller
                 }
             }
 
-            $help->setMessage($post_data['help-message']);
-            $help->setStatus(true);
+            $help->setMessage($post_data['help-message-en']);
+            
+            $trans_repository
+                ->translate($help, 'message', 'pt_BR', $post_data['help-message-pt_BR'])
+                ->translate($help, 'message', 'es_ES', $post_data['help-message-es_ES'])
+                ->translate($help, 'message', 'en', $post_data['help-message-en'])
+            ;
 
+            $help->setStatus(true);
             $em->persist($help);
             $em->flush();
 
@@ -1213,6 +1214,11 @@ class CRUDController extends Controller
         if (!$help) {
             throw $this->createNotFoundException($translator->trans('No help found'));
         }
+
+        $repository = $em->getRepository('Gedmo\Translatable\Entity\Translation');
+        $translations = $repository->findTranslations($help);
+        $output['translations'] = $translations;
+
         return $output;
     }
 
@@ -1236,7 +1242,10 @@ class CRUDController extends Controller
             throw $this->createNotFoundException($translator->trans('No help found'));
         }
 
-        $output['status'] = $help->getStatus();        
+        $output['status'] = true;
+        if(!$help->getMessage()) {
+            $output['status'] = false;        
+        }
         $response = new Response();
         $response->setContent(json_encode($output));
         $response->headers->set('Content-Type', 'application/json');
