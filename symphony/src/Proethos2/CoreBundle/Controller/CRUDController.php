@@ -451,7 +451,7 @@ class CRUDController extends Controller
     }
 
     /**
-     * @Route("/faq", name="crud_faq_list")
+     * @Route("/public/faq", name="crud_faq_list")
      * @Template()
      */
     public function listFaqAction()
@@ -1049,7 +1049,7 @@ class CRUDController extends Controller
     }
 
     /**
-     * @Route("/contact", name="crud_contact_list")
+     * @Route("/public/contact", name="crud_contact_list")
      * @Template()
      */
     public function listContactAction()
