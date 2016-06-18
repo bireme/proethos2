@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Proethos2\CoreBundle\Proethos2CoreBundle(),
             new Proethos2\ModelBundle\Proethos2ModelBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new JMS\TranslationBundle\JMSTranslationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
