@@ -49,7 +49,6 @@ jms_translation:
             ignored_domains: [routes]
             excluded_names: ["*TestCase.php", "*Test.php"]
             excluded_dirs: [cache, data, logs]
-            extractors: [alias_of_the_extractor]
 
 assetic:
     use_controller: true
