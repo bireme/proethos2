@@ -64,6 +64,43 @@
             </div>
         {% endif %}
 
+        {% if 'secretary' in app.user.rolesSlug %}
+            <div class='block'>
+                <div class='row'>
+                    <div class="col-md-12">
+                        <h2 class="sub-header">{% trans %}Next meetings{% endtrans %}</h2>
+                    </div>
+                </div>
+                
+                <div class='row'>
+                    <div class="col-md-12">
+                        <table class='table table-hover '>
+                            <thead>
+                                <tr>
+                                    <th width="10%">{% trans %}Date{% endtrans %}</th>
+                                    <th width="80%">{% trans %}Subject{% endtrans %}</th>
+                                    <th>{% trans %}Actions{% endtrans %}</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                {% for meeting in meetings %}
+                                    <tr>
+                                        <td>{{ meeting.date|date("d/m/Y") }}</td> 
+                                        <td>{{ meeting.subject }}</td> 
+                                        <td>
+                                            <a href='{{ path("crud_committee_meeting_show", {meeting_id: meeting.id} ) }}' data-toggle='modal' data-target='#modalBaseAjax' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
+                                        </td> 
+                                    </tr>
+                                {% endfor %}
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
         {% if 'investigator' in app.user.rolesSlug %}
             <div class='block'>
                 <div class='row'>
@@ -116,6 +153,7 @@
                 </div>
             </div>
         {% endif %}
+
 
     </div>
 {% endblock %}

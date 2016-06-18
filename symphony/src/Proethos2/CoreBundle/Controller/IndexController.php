@@ -23,6 +23,7 @@ class IndexController extends Controller
 
         $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
         $protocol_revision_repository = $em->getRepository('Proethos2ModelBundle:ProtocolRevision');
+        $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -41,8 +42,25 @@ class IndexController extends Controller
             }
         }
         $output['submissions'] = $submissions;
-        
 
+        $now = new \DateTime();
+        $twoMonths = new \DateTime();
+        $twoMonths = $twoMonths->add(new \DateInterval("P60D"));
+        
+        $qb = $meeting_repository->createQueryBuilder('m');
+        $query = $qb->add('where', $qb->expr()->between(
+                'm.date',
+                ':from',
+                ':to'
+            )
+        )
+            ->setParameters(array('from' => $now, 'to' => $twoMonths))
+            ->getQuery();
+
+        $meetings = $query->getResult();
+
+        $output['meetings'] = $meetings;
+        
         return $output;
     }
 
