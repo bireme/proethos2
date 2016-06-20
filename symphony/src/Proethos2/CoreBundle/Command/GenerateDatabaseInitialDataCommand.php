@@ -49,7 +49,7 @@ class GenerateDatabaseInitialDataCommand extends ContainerAwareCommand
         }
 
         foreach($tables as $table) {
-            $command = "mysqldump -h $host -u$database_user -p$database_password $database_name --no-create-info -t $table";
+            $command = "mysqldump -h $host -u$database_user -p$database_password $database_name --replace --no-create-info -t $table";
             $command .= " > $fixtures_dir/data_$table.sql";
             exec($command);
         }
