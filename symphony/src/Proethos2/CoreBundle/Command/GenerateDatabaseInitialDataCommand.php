@@ -51,7 +51,7 @@ class GenerateDatabaseInitialDataCommand extends ContainerAwareCommand
         foreach($tables as $table) {
             $output->writeln("extracting $table...");
             
-            $command = "mysqldump -h $host -u$database_user -p$database_password $database_name --replace --no-create-info -t $table --lock-tables=false";
+            $command = "mysqldump -h $host -u$database_user -p$database_password $database_name --replace --no-create-info -t $table --single-transaction";
             $command .= " > $fixtures_dir/data_$table.sql";
             exec($command);
         }
