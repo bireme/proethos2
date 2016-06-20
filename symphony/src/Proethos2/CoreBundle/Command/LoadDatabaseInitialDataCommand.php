@@ -48,9 +48,11 @@ class LoadDatabaseInitialDataCommand extends ContainerAwareCommand
         }
 
         foreach($tables as $table) {
+            $output->writeln("loading $table...");
             $command = "mysql -h $host -u$database_user -p$database_password $database_name";
             $command .= " < $fixtures_dir/data_$table.sql";
             exec($command);
+
         }
     }
 }
