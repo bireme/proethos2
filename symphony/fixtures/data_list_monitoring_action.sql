@@ -21,7 +21,7 @@
 
 LOCK TABLES `list_monitoring_action` WRITE;
 /*!40000 ALTER TABLE `list_monitoring_action` DISABLE KEYS */;
-INSERT INTO `list_monitoring_action` VALUES (1,'2016-06-02 11:58:04','2016-06-02 11:58:04','Submit an amendment','submit-an-amendment'),(2,'2016-06-02 11:58:04','2016-06-02 11:58:04','Adverse events report','adverse-events-report'),(3,'2016-06-02 11:58:04','2016-06-02 11:58:04','Completion of Study','completion-of-study'),(4,'2016-06-02 11:58:04','2016-06-02 11:58:04','Follow-up Report','follow-up-report'),(5,'2016-06-02 11:58:04','2016-06-02 11:58:04','Discontinuation of Study','discontinuation-of-study'),(6,'2016-06-02 11:58:04','2016-06-02 11:58:04','Submission of Other Documents','submission-of-other-documents'),(7,'2016-06-02 11:58:05','2016-06-02 11:58:05','Request approval extension','request-approval-extension'),(8,'2016-06-02 11:58:05','2016-06-02 11:58:05','Cancellation of Study','cancellation-of-study');
+REPLACE INTO `list_monitoring_action` VALUES (1,'2016-06-02 11:58:04','2016-06-02 11:58:04','Submit an amendment','submit-an-amendment'),(2,'2016-06-02 11:58:04','2016-06-02 11:58:04','Adverse events report','adverse-events-report'),(3,'2016-06-02 11:58:04','2016-06-02 11:58:04','Completion of Study','completion-of-study'),(4,'2016-06-02 11:58:04','2016-06-02 11:58:04','Follow-up Report','follow-up-report'),(5,'2016-06-02 11:58:04','2016-06-02 11:58:04','Discontinuation of Study','discontinuation-of-study'),(6,'2016-06-02 11:58:04','2016-06-02 11:58:04','Submission of Other Documents','submission-of-other-documents'),(7,'2016-06-02 11:58:05','2016-06-02 11:58:05','Request approval extension','request-approval-extension'),(8,'2016-06-02 11:58:05','2016-06-02 11:58:05','Cancellation of Study','cancellation-of-study');
 /*!40000 ALTER TABLE `list_monitoring_action` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-18 13:25:47
+-- Dump completed on 2016-06-20 11:48:25

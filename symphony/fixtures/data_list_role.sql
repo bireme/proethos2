@@ -21,7 +21,7 @@
 
 LOCK TABLES `list_role` WRITE;
 /*!40000 ALTER TABLE `list_role` DISABLE KEYS */;
-INSERT INTO `list_role` VALUES (1,'2016-04-28 17:44:32','2016-04-28 17:44:32','Investigator','investigator'),(2,'2016-04-28 17:44:32','2016-04-28 17:44:32','Secretary','secretary'),(3,'2016-04-28 17:44:32','2016-04-28 17:44:32','Member of Committee','member-of-committee'),(4,'2016-04-28 17:44:32','2016-04-28 17:44:32','Member ad-hoc','member-ad-hoc'),(5,'2016-06-16 00:00:00','2016-06-16 00:00:00','Administrator','administrator');
+REPLACE INTO `list_role` VALUES (1,'2016-04-28 17:44:32','2016-04-28 17:44:32','Investigator','investigator'),(2,'2016-04-28 17:44:32','2016-04-28 17:44:32','Secretary','secretary'),(3,'2016-04-28 17:44:32','2016-04-28 17:44:32','Member of Committee','member-of-committee'),(4,'2016-04-28 17:44:32','2016-04-28 17:44:32','Member ad-hoc','member-ad-hoc'),(5,'2016-06-16 00:00:00','2016-06-16 00:00:00','Administrator','administrator');
 /*!40000 ALTER TABLE `list_role` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-18 13:25:47
+-- Dump completed on 2016-06-20 11:48:25
