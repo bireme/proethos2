@@ -17,5 +17,5 @@ def update():
         with cd(env.symfony_path):
             run("php app/console doctrine:schema:update --force")
             run("php app/console proethos2:load-database-initial-data")
-            run("php app/console cache:clear")
+            run("php app/console cache:clear --env=prod")
             
