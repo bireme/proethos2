@@ -318,7 +318,7 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        $clinical_trial_names = $clinical_trial_name_repository->findAll();
+        $clinical_trial_names = $clinical_trial_name_repository->findByStatus(true);
         $output['clinical_trial_names'] = $clinical_trial_names;
 
         if (!$submission or $submission->getIsSended()) {
