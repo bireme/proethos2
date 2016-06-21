@@ -1434,6 +1434,7 @@ class CRUDController extends Controller
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
         $extensions_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
         
         $items = $item_repository->findAll();
         $output['items'] = $items;
@@ -1459,7 +1460,14 @@ class CRUDController extends Controller
             }
 
             $item = new UploadType();
+            $item->setTranslatableLocale('en');
             $item->setName($post_data['name']);
+            
+            foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
+                if(!empty($post_data["name-$locale"])) {
+                    $trans_repository = $trans_repository->translate($item, 'name', $locale, $post_data["name-$locale"]);
+                }
+            }
             
             if(isset($post_data['extensions'])) {
                 foreach($post_data['extensions'] as $extension) {
@@ -1492,6 +1500,7 @@ class CRUDController extends Controller
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
         $extensions_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
         
         $item = $item_repository->find($item_id);
 
@@ -1502,6 +1511,9 @@ class CRUDController extends Controller
 
         $extensions = $extensions_repository->findByStatus(true);
         $output['extensions'] = $extensions;
+
+        $translations = $trans_repository->findTranslations($item);
+        $output['translations'] = $translations;
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
@@ -1522,7 +1534,14 @@ class CRUDController extends Controller
                 $item->removeExtension($extension);
             }
 
+            $item->setTranslatableLocale('en');
             $item->setName($post_data['name']);
+            
+            foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
+                if(!empty($post_data["name-$locale"])) {
+                    $trans_repository = $trans_repository->translate($item, 'name', $locale, $post_data["name-$locale"]);
+                }
+            }
             
             if(isset($post_data['extensions'])) {
                 foreach($post_data['extensions'] as $extension) {
