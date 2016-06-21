@@ -41,7 +41,7 @@ class MonitoringController extends Controller
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
 
-        $monitoring_actions = $monitoring_action_repository->findAll();
+        $monitoring_actions = $monitoring_action_repository->findByStatus(true);
         $output['monitoring_actions'] = $monitoring_actions;
 
         // checking if was a post request
