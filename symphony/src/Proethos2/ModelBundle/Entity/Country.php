@@ -5,6 +5,7 @@ namespace Proethos2\ModelBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Intl\Intl;
 
 /**
  * Country
@@ -92,6 +93,6 @@ class Country extends Base
      */
     public function getName()
     {
-        return $this->name;
+        return Intl::getRegionBundle()->getCountryName($this->getCode());
     }
 }
