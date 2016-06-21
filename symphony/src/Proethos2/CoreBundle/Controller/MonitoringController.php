@@ -143,7 +143,7 @@ class MonitoringController extends Controller
         $submission = $protocol->getMainSubmission();
         $output['submission'] = $submission;
 
-        $upload_types = $upload_type_repository->findAll();
+        $upload_types = $upload_type_repository->findByStatus(true);
         $output['upload_types'] = $upload_types;
 
 

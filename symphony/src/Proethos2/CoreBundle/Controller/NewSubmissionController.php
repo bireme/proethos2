@@ -551,7 +551,7 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        $upload_types = $upload_type_repository->findAll();
+        $upload_types = $upload_type_repository->findByStatus(true);
         $output['upload_types'] = $upload_types;
 
         if (!$submission or $submission->getIsSended()) {

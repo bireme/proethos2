@@ -1477,4 +1477,71 @@ class CRUDController extends Controller
 
         return $output;
     }
+
+    /**
+     * @Route("/admin/controlled-list/upload-type/{item_id}", name="crud_admin_controlled_list_upload_type_update")
+     * @Template()
+     */
+    public function updateControlledListUploadTypeAction($item_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $item_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
+        $extensions_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
+        
+        $item = $item_repository->find($item_id);
+
+        if (!$item) {
+            throw $this->createNotFoundException($translator->trans('No type found'));
+        }
+        $output['item'] = $item;
+
+        $extensions = $extensions_repository->findByStatus(true);
+        $output['extensions'] = $extensions;
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required files
+            foreach(array('name', 'extensions') as $field) {
+                
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            foreach($item->getExtensions() as $extension) {
+                $item->removeExtension($extension);
+            }
+
+            $item->setName($post_data['name']);
+            
+            if(isset($post_data['extensions'])) {
+                foreach($post_data['extensions'] as $extension) {
+                    $extension = $extensions_repository->find($extension);
+                    $item->addExtension($extension);
+                }
+            }
+
+            if(isset($post_data['status']) and $post_data['status'] == "true") {
+                $item->setStatus(true);
+            }
+
+            $em->persist($item);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Item updated with success."));
+            return $this->redirectToRoute('crud_admin_controlled_list_upload_type_list', array(), 301);
+        }
+
+        return $output;
+    }
 }
