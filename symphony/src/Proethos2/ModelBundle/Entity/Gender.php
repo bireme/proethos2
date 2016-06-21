@@ -3,8 +3,10 @@
 namespace Proethos2\ModelBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo; // gedmo annotations
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+use Cocur\Slugify\Slugify;
 
 /**
  * Gender
@@ -24,11 +26,36 @@ class Gender extends Base
     private $id;
 
     /**
+     * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-
     
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $status = true;
+
+    /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    private $locale;
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    public function getLocale(){
+        return $this->locale;
+    }
 
     /**
      * Get id
@@ -45,11 +72,14 @@ class Gender extends Base
      *
      * @param string $name
      *
-     * @return Gender
+     * @return MonitoringAction
      */
     public function setName($name)
-    {
+    {   
+        $slugify = new Slugify();
+
         $this->name = $name;
+        $this->slug = $slugify->slugify($name);
 
         return $this;
     }
@@ -62,5 +92,53 @@ class Gender extends Base
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Gender
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set status
+     *
+     * @param boolean $status
+     *
+     * @return Gender
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return boolean
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }
