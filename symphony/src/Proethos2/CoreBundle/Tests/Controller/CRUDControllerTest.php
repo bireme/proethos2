@@ -797,4 +797,42 @@ class CRUDControllerTest extends WebTestCase
         ));
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
+
+    public function testUpdateControlledListMonitoringActionGET()
+    {   
+        // getting last id
+        $repository = $this->_em->getRepository('Proethos2ModelBundle:MonitoringAction');
+        $last_item = end($repository->findAll());
+        $last_id = $last_item->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()
+            ->get('router')->generate('crud_admin_controlled_list_monitoring_action_update', array('item_id' => $last_id), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testUpdateControlledListMonitoringActionPOST()
+    {   
+        // getting last id
+        $repository = $this->_em->getRepository('Proethos2ModelBundle:MonitoringAction');
+        $last_item = end($repository->findAll());
+        $last_id = $last_item->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()
+            ->get('router')->generate('crud_admin_controlled_list_monitoring_action_update', array('item_id' => $last_id), false);
+        
+        $client->request('POST', $route, array(
+            "name" => "Gerado no Teste",
+        ));
+
+        $status_code = $client->getResponse()->getStatusCode();
+        
+        $this->_em->remove($last_item);
+        $this->_em->flush();
+
+        $this->assertEquals(301, $status_code);
+    }
 }
