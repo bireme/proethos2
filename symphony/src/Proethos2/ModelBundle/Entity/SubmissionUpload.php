@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Cocur\Slugify\Slugify;
 
 /**
- * Language
+ * SubmissionUpload
  *
  * @ORM\Table(name="submission_upload")
  * @ORM\Entity
