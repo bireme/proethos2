@@ -198,7 +198,7 @@ class NewSubmissionController extends Controller
         $output['genders'] = $genders;
 
         // getting recruitment_statuses list
-        $recruitment_statuses = $recruitment_status_repository->findAll();
+        $recruitment_statuses = $recruitment_status_repository->findByStatus(true);
         $output['recruitment_statuses'] = $recruitment_statuses;
 
         if (!$submission or $submission->getIsSended()) {
