@@ -57,6 +57,26 @@ CREATE TABLE `document` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `ext_translations`
+--
+
+DROP TABLE IF EXISTS `ext_translations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ext_translations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `locale` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
+  `object_class` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `field` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `foreign_key` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `content` longtext COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `lookup_unique_idx` (`locale`,`object_class`,`field`,`foreign_key`),
+  KEY `translations_lookup_idx` (`locale`,`object_class`,`foreign_key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `faq`
 --
 
@@ -92,23 +112,6 @@ CREATE TABLE `help` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `language`
---
-
-DROP TABLE IF EXISTS `language`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `language` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `created` datetime NOT NULL,
-  `updated` datetime NOT NULL,
-  `code` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `list_clinical_trial_name`
 --
 
@@ -121,6 +124,8 @@ CREATE TABLE `list_clinical_trial_name` (
   `updated` datetime NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -154,6 +159,8 @@ CREATE TABLE `list_gender` (
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -171,6 +178,7 @@ CREATE TABLE `list_monitoring_action` (
   `updated` datetime NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -187,6 +195,8 @@ CREATE TABLE `list_recruitment_status` (
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -204,25 +214,8 @@ CREATE TABLE `list_role` (
   `updated` datetime NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `list_upload_type`
---
-
-DROP TABLE IF EXISTS `list_upload_type`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `list_upload_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `created` datetime NOT NULL,
-  `updated` datetime NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_87E563DB989D9B62` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -556,6 +549,7 @@ CREATE TABLE `upload_type` (
   `updated` datetime NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_85AD050989D9B62` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -573,29 +567,8 @@ CREATE TABLE `upload_type_extension` (
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `extension` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `upload_type_translation`
---
-
-DROP TABLE IF EXISTS `upload_type_translation`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `upload_type_translation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `upload_type_id` int(11) DEFAULT NULL,
-  `language_id` int(11) DEFAULT NULL,
-  `created` datetime NOT NULL,
-  `updated` datetime NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `IDX_CC1EF1BF7B967D` (`upload_type_id`),
-  KEY `IDX_CC1EF1BF82F1BAF4` (`language_id`),
-  CONSTRAINT `FK_CC1EF1BF7B967D` FOREIGN KEY (`upload_type_id`) REFERENCES `upload_type` (`id`),
-  CONSTRAINT `FK_CC1EF1BF82F1BAF4` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -671,4 +644,4 @@ CREATE TABLE `user_role` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-18 13:25:15
+-- Dump completed on 2016-06-21 16:38:00
