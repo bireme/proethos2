@@ -1157,7 +1157,6 @@ class CRUDController extends Controller
 
         $translations = $trans_repository->findTranslations($help);
         $output['translations'] = $translations;
-        var_dump($translations);
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
@@ -1178,11 +1177,10 @@ class CRUDController extends Controller
             $help->setMessage($post_data['help-message-en']);
             $help->setStatus(true);
             
-            if(!empty($post_data['help-message-pt_BR'])) {
-                $trans_repository = $trans_repository->translate($help, 'message', 'pt_BR', $post_data['help-message-pt_BR']);
-            }
-            if(!empty($post_data['help-message-es_ES'])) {
-                $trans_repository = $trans_repository->translate($help, 'message', 'es_ES', $post_data['help-message-es_ES']);
+            foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
+                if(!empty($post_data["help-message-$locale"])) {
+                    $trans_repository = $trans_repository->translate($help, 'message', $locale, $post_data["help-message-$locale"]);
+                }
             }
 
             $em->persist($help);

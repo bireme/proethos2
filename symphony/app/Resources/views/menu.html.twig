@@ -79,12 +79,14 @@
                         {% if app.request.locale == 'pt_BR' %}Português{% endif %}
                         {% if app.request.locale == 'es_ES' %}Español{% endif %}
                         {% if app.request.locale == 'en' %}English{% endif %}
+                        {% if app.request.locale == 'fr_FR' %}Français{% endif %}
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class='{% if app.request.locale == 'pt_BR' %}active{% endif %}'><a href="{{ path('change_locale', {locale: 'pt_BR'}) }}">{% trans %}Portuguese{% endtrans %}</a></li>
                         <li class='{% if app.request.locale == 'en' %}active{% endif %}'><a href="{{ path('change_locale', {locale: 'en'}) }}">{% trans %}English{% endtrans %}</a></li>
                         <li class='{% if app.request.locale == 'es_ES' %}active{% endif %}'><a href="{{ path('change_locale', {locale: 'es_ES'}) }}">{% trans %}Spanish{% endtrans %}</a></li>
+                        <li class='{% if app.request.locale == 'fr_FR' %}active{% endif %}'><a href="{{ path('change_locale', {locale: 'fr_FR'}) }}">{% trans %}French{% endtrans %}</a></li>
                     </ul>    
                 </li>
 

@@ -32,7 +32,14 @@
             </div>
         </div>                        
 
-
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <label for="textarea-help-message-fr_FR">{% trans %}French message{% endtrans %}:</label> 
+                    <textarea rows="3" class='form-control' id="textarea-help-message-fr_FR" name="help-message-fr_FR">{% if translations.fr_FR is defined %}{{ translations.fr_FR.message }}{% endif %}</textarea>
+                </div>
+            </div>
+        </div>                        
 
     </div>
     <div class="modal-footer">
