@@ -194,7 +194,7 @@ class NewSubmissionController extends Controller
         $output['submission'] = $submission;
 
         // getting gender list
-        $genders = $gender_repository->findAll();
+        $genders = $gender_repository->findByStatus(true);
         $output['genders'] = $genders;
 
         // getting recruitment_statuses list
