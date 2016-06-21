@@ -1433,9 +1433,47 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
+        $extensions_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
         
         $items = $item_repository->findAll();
         $output['items'] = $items;
+        
+        $extensions = $extensions_repository->findByStatus(true);
+        $output['extensions'] = $extensions;
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            // var_dump($post_data);die;
+            
+            // checking required files
+            foreach(array('name', 'extensions') as $field) {
+                
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $item = new UploadType();
+            $item->setName($post_data['name']);
+            
+            if(isset($post_data['extensions'])) {
+                foreach($post_data['extensions'] as $extension) {
+                    $extension = $extensions_repository->find($extension);
+                    $item->addExtension($extension);
+                }
+            }
+            
+            $em->persist($item);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Upload Type Extension created with success."));
+            return $this->redirectToRoute('crud_admin_controlled_list_upload_type_list', array(), 301);
+        }
 
         return $output;
     }

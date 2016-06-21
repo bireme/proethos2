@@ -22,7 +22,7 @@
                         
                         <thead>
                             <tr>
-                                <th width="60%">{% trans %}Name{% endtrans %}</th>
+                                <th width="80%">{% trans %}Name{% endtrans %}</th>
                                 <th width="">{% trans %}Status{% endtrans %}</th>
                                 <th>{% trans %}Actions{% endtrans %}</th>
                             </tr>
@@ -40,7 +40,8 @@
                                         {% endif %}
                                     </td>
                                     <td>
-                                        <a href="{{ path("crud_admin_controlled_list_upload_type_update", {item_id: item.id}) }}" data-toggle="modal" data-target="#modal-ajax-item" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
+                                        {# {{ path("crud_admin_controlled_list_upload_type_update", {item_id: item.id}) }} #}
+                                        <a href="#" data-toggle="modal" data-target="#modal-ajax-item" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -68,9 +69,9 @@
                         <div class='row'>
                             <div class='col-md-12'>
                                 <div class="form-group">
-                                    <label for="input-title">{% trans %}Name{% endtrans %}:</label> 
+                                    <label for="input-name">{% trans %}Name{% endtrans %}:</label> 
                                     <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <input type='text' class='form-control' id="input-title" name="title" required>
+                                    <input type='text' class='form-control' id="input-name" name="name" required>
                                 </div>
                             </div>
                         </div>
@@ -78,47 +79,13 @@
                         <div class='row'>
                             <div class='col-md-12'>
                                 <div class="form-group">
-                                    <label for="input-description">{% trans %}Description{% endtrans %}:</label> 
+                                    <label for="select-extensions">{% trans %}Extensions{% endtrans %}:</label> 
                                     <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <textarea class='form-control' id="input-description" name="description"></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class='row'>
-                            <div class='col-md-12'>
-                                <div class="form-group">
-                                    <label for="select-role">{% trans %}Role{% endtrans %}:</label> 
-                                    <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <select class='form-control' id="select-role" name="role">
-                                        <option value="">{% trans %}All{% endtrans %}</option>
-                                        {% for role in roles %}
-                                            <option value="{{ role.id }}">{{ role.name }}</option>
+                                    <select class='form-control select2' id="select-extensions" name="extensions[]" multiple="true" required>
+                                        {% for extension in extensions %}
+                                            <option value='{{ extension.id }}'>{{ extension.extension }}</option>
                                         {% endfor %}
                                     </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class='row'>
-                            <div class='col-md-12'>
-                                <div class="form-group">
-                                    <label for="input-file">{% trans %}File{% endtrans %}:</label> 
-                                    <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <input type='file' class='form-control' id="input-file" name="file" required>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class='row'>
-                            <div class='col-md-12'>
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label for="input-status">
-                                            <input type="checkbox" id='input-status' name='status' value="true" checked> {% trans %}Active?{% endtrans %}
-                                            <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                        </label>
-                                    </div>
                                 </div>
                             </div>
                         </div>

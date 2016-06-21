@@ -645,7 +645,7 @@ class CRUDControllerTest extends WebTestCase
         $this->document_id = $last_item->getId();
 
         $client = $this->client;
-        $route = $client->getContainer()->get('router')->generate('crud_admin_controlled_list_upload_type_extension_list', array('item_id' => $this->document_id), false);
+        $route = $client->getContainer()->get('router')->generate('crud_admin_controlled_list_upload_type_extension_update', array('item_id' => $this->document_id), false);
         
         $client->request('POST', $route, array(
             "extension" => "jpeg",
@@ -658,5 +658,26 @@ class CRUDControllerTest extends WebTestCase
 
         $this->assertEquals(301, $status_code);
 
+    }
+
+    public function testListControlledListUploadTypeGET()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_controlled_list_upload_type_list', array(), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testListControlledListUploadTypePOST()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_controlled_list_upload_type_list', array(), false);
+        
+        $client->request('POST', $route, array(
+            "name" => "Gerado no Teste",
+            "extensions" => array(1, 2),
+        ));
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
 }

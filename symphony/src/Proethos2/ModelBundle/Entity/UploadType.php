@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use Cocur\Slugify\Slugify;
+
 /**
  * UploadType
  *
@@ -40,6 +42,12 @@ class UploadType extends Base
      */
     private $extensions;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $status = true;    
+
+    
     public function __toString() {
         return $this->getName();
     }
@@ -63,7 +71,10 @@ class UploadType extends Base
      */
     public function setName($name)
     {
+        $slugify = new Slugify();
+
         $this->name = $name;
+        $this->setSlug($slugify->slugify($name));
 
         return $this;
     }
@@ -134,5 +145,29 @@ class UploadType extends Base
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set status
+     *
+     * @param boolean $status
+     *
+     * @return UploadType
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return boolean
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }
