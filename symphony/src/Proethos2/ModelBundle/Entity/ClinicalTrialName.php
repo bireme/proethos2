@@ -3,8 +3,10 @@
 namespace Proethos2\ModelBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo; // gedmo annotations
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+use Cocur\Slugify\Slugify;
 
 /**
  * ClinicalTrialName
@@ -24,14 +26,41 @@ class ClinicalTrialName extends Base
     private $id;
 
     /**
+     * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+    
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $status = true;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $code;
+
+    /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    private $locale;
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    public function getLocale(){
+        return $this->locale;
+    }
 
     public function __toString() {
         
@@ -63,8 +92,11 @@ class ClinicalTrialName extends Base
      * @return ClinicalTrialName
      */
     public function setName($name)
-    {
+    {   
+        $slugify = new Slugify();
+
         $this->name = $name;
+        $this->slug = $slugify->slugify($name);
 
         return $this;
     }
@@ -101,5 +133,53 @@ class ClinicalTrialName extends Base
     public function getCode()
     {
         return $this->code;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return ClinicalTrialName
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set status
+     *
+     * @param boolean $status
+     *
+     * @return ClinicalTrialName
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return boolean
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

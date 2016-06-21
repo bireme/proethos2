@@ -835,4 +835,64 @@ class CRUDControllerTest extends WebTestCase
 
         $this->assertEquals(301, $status_code);
     }
+
+    public function testListControlledListClinicalTrialNameGET()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_controlled_list_clinical_trial_name_list', array(), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testListControlledListClinicalTrialNamePOST()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_controlled_list_clinical_trial_name_list', array(), false);
+        
+        $client->request('POST', $route, array(
+            "name" => "Gerado no Teste",
+            'code' => 'test',
+        ));
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }
+
+    public function testUpdateControlledListClinicalTrialNameGET()
+    {   
+        // getting last id
+        $repository = $this->_em->getRepository('Proethos2ModelBundle:MonitoringAction');
+        $last_item = end($repository->findAll());
+        $last_id = $last_item->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()
+            ->get('router')->generate('crud_admin_controlled_list_clinical_trial_name_update', array('item_id' => $last_id), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testUpdateControlledListClinicalTrialNamePOST()
+    {   
+        // getting last id
+        $repository = $this->_em->getRepository('Proethos2ModelBundle:MonitoringAction');
+        $last_item = end($repository->findAll());
+        $last_id = $last_item->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()
+            ->get('router')->generate('crud_admin_controlled_list_clinical_trial_name_update', array('item_id' => $last_id), false);
+        
+        $client->request('POST', $route, array(
+            "name" => "Gerado no Teste",
+            'code' => 'test',
+        ));
+
+        $status_code = $client->getResponse()->getStatusCode();
+        
+        $this->_em->remove($last_item);
+        $this->_em->flush();
+
+        $this->assertEquals(301, $status_code);
+    }
 }
