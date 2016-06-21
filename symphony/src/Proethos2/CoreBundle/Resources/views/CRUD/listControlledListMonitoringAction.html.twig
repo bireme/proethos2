@@ -1,0 +1,136 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}Monitoring Actions{% endtrans %}{% endblock %}
+
+{% block content %}
+    
+    <div class="container-fluid main-content see-submission">
+
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">
+                    {% trans %}Monitoring Actions{% endtrans %}
+                    <a href='#' class='btn btn-primary' data-toggle='modal' data-target='#modal-new-item'>{% trans %}New Monitoring Action{% endtrans %}</a>
+                </h1>
+            </div>
+        </div>
+        
+        <div class='block'>
+            <div class='row'>
+                <div class="col-md-12">
+                    <table class='table table-hover table-condensed'>
+                        
+                        <thead>
+                            <tr>
+                                <th width="80%">{% trans %}Name{% endtrans %}</th>
+                                <th width="">{% trans %}Status{% endtrans %}</th>
+                                <th>{% trans %}Actions{% endtrans %}</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            {% for item in items %}
+                                <tr>
+                                    <td>{{ item.name }}</td>
+                                    <td>
+                                        {% if item.status %}
+                                            <span class='label label-success'>{% trans %}active{% endtrans %}</span>
+                                        {% else %}
+                                            <span class='label label-default'>{% trans %}inactive{% endtrans %}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td> {# {{ path("crud_admin_controlled_list_recruitment_status_update", {item_id: item.id}) }} #}
+                                        <a href="#" data-toggle="modal" data-target="#modal-ajax-item" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal New Monitoring Action -->
+    <div class="modal fade" id="modal-new-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="item">
+            <div class="modal-content">
+                <form enctype="multipart/form-data" class='form' method="POST" id='form-new-item'>
+                    <input type="hidden" name="MAX_FILE_SIZE" value="{{ 10*1024*1024 }}" />
+                    
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}New Monitoring Action{% endtrans %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class='row'>
+                            <div class='col-md-12'>
+                                <div class="form-group">
+                                    <label for="input-name">{% trans %}Name in English{% endtrans %}:</label> 
+                                    <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <input type='text' class='form-control' id="input-name" name="name" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='col-md-12'>
+                                <div class="form-group">
+                                    <label for="input-name-es_ES">{% trans %}Name in Spanish{% endtrans %}:</label> 
+                                    <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <input type='text' class='form-control' id="input-name-es_ES" name="name-es_ES">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='col-md-12'>
+                                <div class="form-group">
+                                    <label for="input-name-pt_BR">{% trans %}Name in Portuguese{% endtrans %}:</label> 
+                                    <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <input type='text' class='form-control' id="input-name-pt_BR" name="name-pt_BR">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='col-md-12'>
+                                <div class="form-group">
+                                    <label for="input-name-fr_FR">{% trans %}Name in French{% endtrans %}:</label> 
+                                    <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <input type='text' class='form-control' id="input-name-fr_FR" name="name-fr_FR">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                        <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal ajax Monitoring Action -->
+    <div class="modal fade" id="modal-ajax-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="item">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+            
+           
+        });
+
+        
+    </script>
+{% endblock %}

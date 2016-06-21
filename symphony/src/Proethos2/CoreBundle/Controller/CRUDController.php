@@ -14,6 +14,7 @@ use Proethos2\ModelBundle\Entity\User;
 use Proethos2\ModelBundle\Entity\UploadTypeExtension;
 use Proethos2\ModelBundle\Entity\UploadType;
 use Proethos2\ModelBundle\Entity\RecruitmentStatus;
+use Proethos2\ModelBundle\Entity\MonitoringAction;
 
 
 class CRUDController extends Controller
@@ -1677,6 +1678,60 @@ class CRUDController extends Controller
 
             $session->getFlashBag()->add('success', $translator->trans("Status created with success."));
             return $this->redirectToRoute('crud_admin_controlled_list_recruitment_status_list', array(), 301);
+        }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/admin/controlled-list/monitoring-action", name="crud_admin_controlled_list_monitoring_action_list")
+     * @Template()
+     */
+    public function listControlledListMonitoringActionAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $item_repository = $em->getRepository('Proethos2ModelBundle:MonitoringAction');
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        
+        $items = $item_repository->findAll();
+        $output['items'] = $items;
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required files
+            foreach(array('name') as $field) {
+                
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $item = new MonitoringAction();
+            $item->setTranslatableLocale('en');
+
+            $item->setName($post_data['name']);
+
+            foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
+                if(!empty($post_data["name-$locale"])) {
+                    $trans_repository = $trans_repository->translate($item, 'name', $locale, $post_data["name-$locale"]);
+                }
+            }
+            
+            $em->persist($item);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Item created with success."));
+            return $this->redirectToRoute('crud_admin_controlled_list_monitoring_action_list', array(), 301);
         }
 
         return $output;

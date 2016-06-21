@@ -718,7 +718,6 @@ class CRUDControllerTest extends WebTestCase
         $this->_em->flush();
 
         $this->assertEquals(301, $status_code);
-
     }
 
     public function testListControlledListRecruitmentStatusGET()
@@ -777,6 +776,25 @@ class CRUDControllerTest extends WebTestCase
         $this->_em->flush();
 
         $this->assertEquals(301, $status_code);
+    }
 
+    public function testListControlledListMonitoringActionGET()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_controlled_list_monitoring_action_list', array(), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testListControlledListMonitoringActionPOST()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_controlled_list_monitoring_action_list', array(), false);
+        
+        $client->request('POST', $route, array(
+            "name" => "Gerado no Teste",
+        ));
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
 }
