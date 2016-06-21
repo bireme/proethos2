@@ -21,7 +21,7 @@
 
 LOCK TABLES `upload_type` WRITE;
 /*!40000 ALTER TABLE `upload_type` DISABLE KEYS */;
-REPLACE INTO `upload_type` VALUES (1,'2016-04-22 00:00:00','2016-04-22 00:00:00','Protocol','protocol'),(2,'2016-04-22 00:00:00','2016-04-22 00:00:00','Others','others'),(3,'2016-05-12 00:00:00','2016-05-12 00:00:00','Draft Opinion','draft-opinion');
+REPLACE INTO `upload_type` VALUES (1,'2016-04-22 00:00:00','2016-04-22 00:00:00','Protocol','protocol',1),(2,'2016-04-22 00:00:00','2016-04-22 00:00:00','Others','others',1),(3,'2016-05-12 00:00:00','2016-05-12 00:00:00','Draft Opinion','draft-opinion',1),(10,'2016-06-21 12:26:27','2016-06-21 12:26:27','this is a test','this-is-a-test',1);
 /*!40000 ALTER TABLE `upload_type` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-20 12:35:14
+-- Dump completed on 2016-06-21 16:39:19

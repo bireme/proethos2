@@ -21,7 +21,7 @@
 
 LOCK TABLES `list_recruitment_status` WRITE;
 /*!40000 ALTER TABLE `list_recruitment_status` DISABLE KEYS */;
-REPLACE INTO `list_recruitment_status` VALUES (1,'0000-00-00 00:00:00','0000-00-00 00:00:00','Recruiting'),(2,'0000-00-00 00:00:00','0000-00-00 00:00:00','Suspended'),(3,'0000-00-00 00:00:00','0000-00-00 00:00:00','Completed'),(4,'0000-00-00 00:00:00','0000-00-00 00:00:00','Other');
+REPLACE INTO `list_recruitment_status` VALUES (1,'0000-00-00 00:00:00','0000-00-00 00:00:00','Recruiting','recruiting',1),(2,'0000-00-00 00:00:00','0000-00-00 00:00:00','Suspended','suspended',1),(3,'0000-00-00 00:00:00','0000-00-00 00:00:00','Completed','completed',1),(4,'0000-00-00 00:00:00','0000-00-00 00:00:00','Other','other',1),(7,'2016-06-21 14:52:55','2016-06-21 14:52:55','Test','test',1);
 /*!40000 ALTER TABLE `list_recruitment_status` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-20 12:35:14
+-- Dump completed on 2016-06-21 16:39:19
