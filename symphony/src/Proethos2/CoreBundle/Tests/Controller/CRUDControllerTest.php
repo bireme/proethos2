@@ -553,7 +553,7 @@ class CRUDControllerTest extends WebTestCase
         $client->request('POST', $route, array(
             "help-message" => "Teste de Mensagem",
         ));
-        $this->assertEquals(301, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function testShowHelpGET()
@@ -582,7 +582,6 @@ class CRUDControllerTest extends WebTestCase
         $client->request('GET', $route);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
-
     public function testUpdateConfigurationGET()
     {   
         $client = $this->client;
@@ -601,5 +600,63 @@ class CRUDControllerTest extends WebTestCase
             "configuration-value" => "BIREME/OPAS/OMS",
         ));
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }
+    
+    public function testListControlledListUploadTypeExtensionGET()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_controlled_list_upload_type_extension_list', array(), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testListControlledListUploadTypeExtensionPOST()
+    {   
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_controlled_list_upload_type_extension_list', array(), false);
+        
+        $client->request('POST', $route, array(
+            "extension" => "jpeg",
+        ));
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }
+
+    public function testUpdateControlledListUploadTypeExtensionGET()
+    {   
+        // getting last id
+        $repository = $this->_em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
+        $last_item = end($repository->findAll());
+        $this->document_id = $last_item->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()
+            ->get('router')->generate('crud_admin_controlled_list_upload_type_extension_update', array('item_id' => $this->document_id), false);
+        
+        $client->request('GET', $route);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testUpdateControlledListUploadTypeExtensionPOST()
+    {   
+        // getting last id
+        $repository = $this->_em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
+        $last_item = end($repository->findAll());
+        $this->document_id = $last_item->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_admin_controlled_list_upload_type_extension_list', array('item_id' => $this->document_id), false);
+        
+        $client->request('POST', $route, array(
+            "extension" => "jpeg",
+        ));
+
+        $status_code = $client->getResponse()->getStatusCode();
+        
+        $this->_em->remove($last_item);
+        $this->_em->flush();
+
+        $this->assertEquals(301, $status_code);
+
     }
 }

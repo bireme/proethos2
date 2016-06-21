@@ -13,7 +13,7 @@
                     </li>
                 {% endif %}
 
-                <li class="active"><a href="{{ path("home") }}">{% trans %}Home{% endtrans %}</a></li>
+                <li class="active"><a href="{{ path("home") }}">{% trans %}Dashboard{% endtrans %}</a></li>
                 
                 {% if is_granted("ROLE_USER") and 'investigator' in app.user.rolesSlug %}
                     <li class=""><a href="{{ path("crud_investigator_protocol_list") }}">{% trans %}Protocols{% endtrans %}</a></li>
@@ -35,20 +35,6 @@
                     </li>
                 {% endif %}
 
-                {% if is_granted("ROLE_USER") and 'investigator' in app.user.rolesSlug %}
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Relatórios <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Indicadores</a></li>
-                            <li><a href="#">Monitoramento de Protocolos</a></li>
-                            <li><a href="#">Listagem de Investigadores</a></li>
-                            <li><a href="#">Membros do Comitê</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Reuniões</a></li>
-                        </ul>
-                    </li>
-                {% endif %}                
-
                 <li class=""><a href="{{ path('crud_faq_list') }}">{% trans %}FAQ{% endtrans %}</a></li>
 
                 {% if is_granted("ROLE_USER") %}
@@ -65,6 +51,13 @@
                         <ul class="dropdown-menu">
                             <li><a href="{{ path('crud_admin_help_list') }}">{% trans %}Help Messages{% endtrans %}</a></li>
                             <li><a href="/_trans">{% trans %}Label translations{% endtrans %}</a></li>
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="#">{% trans %}Controlled Lists{% endtrans %}</a>
+                                <ul class="dropdown-menu">
+                                    <li><a tabindex="-1" href="{{ path('crud_admin_controlled_list_upload_type_list') }}">{% trans %}Upload Types{% endtrans %}</a></li>
+                                    <li><a tabindex="-1" href="{{ path('crud_admin_controlled_list_upload_type_extension_list') }}">{% trans %}Upload Type Extensions{% endtrans %}</a></li>
+                                </ul>
+                            </li>
                             <li><a href="{{ path('crud_admin_configuration_list') }}">{% trans %}Configurations{% endtrans %}</a></li>
                         </ul>
                     </li>

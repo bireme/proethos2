@@ -27,6 +27,11 @@ class UploadTypeExtension extends Base
     private $extension;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $status = true;
+
+    /**
      * Get id
      *
      * @return integer
@@ -58,5 +63,29 @@ class UploadTypeExtension extends Base
     public function getExtension()
     {
         return $this->extension;
+    }
+
+    /**
+     * Set status
+     *
+     * @param boolean $status
+     *
+     * @return UploadTypeExtension
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return boolean
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

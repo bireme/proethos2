@@ -11,6 +11,8 @@ use Proethos2\ModelBundle\Entity\Meeting;
 use Proethos2\ModelBundle\Entity\Faq;
 use Proethos2\ModelBundle\Entity\Document;
 use Proethos2\ModelBundle\Entity\User;
+use Proethos2\ModelBundle\Entity\UploadTypeExtension;
+use Proethos2\ModelBundle\Entity\UploadType;
 
 
 class CRUDController extends Controller
@@ -1289,11 +1291,11 @@ class CRUDController extends Controller
         
         // getting the current configuration
         $configuration = $configuration_repository->find($configuration_id);
-        $output['configuration'] = $configuration;
 
         if (!$configuration) {
             throw $this->createNotFoundException($translator->trans('No configuration found'));
         }
+        $output['configuration'] = $configuration;
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
@@ -1319,6 +1321,122 @@ class CRUDController extends Controller
             return $this->redirectToRoute('crud_admin_configuration_list', array(), 301);
         }
         
+        return $output;
+    }
+
+    /**
+     * @Route("/admin/controlled-list/upload-type-extension", name="crud_admin_controlled_list_upload_type_extension_list")
+     * @Template()
+     */
+    public function listControlledListUploadTypeExtensionAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $item_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
+        
+        $items = $item_repository->findAll();
+        $output['items'] = $items;
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required files
+            foreach(array('extension') as $field) {
+                
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $item = new UploadTypeExtension();
+            $item->setExtension($post_data['extension']);
+            
+            $em->persist($item);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Upload Type Extension created with success."));
+            return $this->redirectToRoute('crud_admin_controlled_list_upload_type_extension_list', array(), 301);
+        }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/admin/controlled-list/upload-type-extension/{item_id}", name="crud_admin_controlled_list_upload_type_extension_update")
+     * @Template()
+     */
+    public function updateControlledListUploadTypeExtensionAction($item_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $item_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
+        
+        $item = $item_repository->find($item_id);
+
+        if (!$item) {
+            throw $this->createNotFoundException($translator->trans('No extension found'));
+        }
+        $output['item'] = $item;
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required files
+            foreach(array('extension') as $field) {
+                
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return $output;
+                }
+            }
+
+            $item->setExtension($post_data['extension']);
+            if(isset($post_data['status']) and $post_data['status'] == "true") {
+                $item->setStatus(true);
+            }
+            
+            $em->persist($item);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Upload Type Extension created with success."));
+            return $this->redirectToRoute('crud_admin_controlled_list_upload_type_extension_list', array(), 301);
+        }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/admin/controlled-list/upload-type", name="crud_admin_controlled_list_upload_type_list")
+     * @Template()
+     */
+    public function listControlledListUploadTypeAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $item_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
+        
+        $items = $item_repository->findAll();
+        $output['items'] = $items;
+
         return $output;
     }
 }
