@@ -88,15 +88,20 @@
 
             // actions in help links
             var help_links = $('a[data-target="#modal-help"]');
-            $.each(help_links, function(){
-                link = $(this)
-                var url = link.attr('href') + "/check";
+            $.each(help_links, function(id, link){
+                
+                var obj = $(link);
+                var id = link.href.split("/")
+                id = id[id.length-1]
+                console.log('[help] adding status to link ' + id + '...');
+                
+                var url = link.href + "/check";
                 $.get(url, function(data){
                     if(!data.status) {
                         {% if is_granted("ROLE_USER") and 'administrator' in app.user.rolesSlug %}
-                            link.addClass('help-text-undefined');
+                            obj.addClass('help-text-undefined');
                         {% else %}
-                            link.hide();
+                            obj.hide();
                         {% endif %}
                     }
                 });
