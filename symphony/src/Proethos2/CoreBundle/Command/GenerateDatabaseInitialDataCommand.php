@@ -39,6 +39,7 @@ class GenerateDatabaseInitialDataCommand extends ContainerAwareCommand
             'list_role',
             'upload_type',
             'help',
+            'ext_translations',
         );
 
         $host = $database_host;
