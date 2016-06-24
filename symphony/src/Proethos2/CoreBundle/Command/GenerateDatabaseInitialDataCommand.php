@@ -30,7 +30,6 @@ class GenerateDatabaseInitialDataCommand extends ContainerAwareCommand
         $database_password = $this->getContainer()->getParameter('database_password');
 
         $tables = array(
-            'language',
             'configuration',
             'list_clinical_trial_name',
             'list_country',
