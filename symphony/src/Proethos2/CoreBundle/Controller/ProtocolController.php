@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use Proethos2\CoreBundle\Util\Util;
+
 use Proethos2\ModelBundle\Entity\ProtocolComment;
 use Proethos2\ModelBundle\Entity\ProtocolHistory;
 use Proethos2\ModelBundle\Entity\ProtocolRevision;
@@ -79,6 +81,8 @@ class ProtocolController extends Controller
         $session = $request->getSession();
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
+
+        $util = new Util($this->container, $this->getDoctrine());
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
         
@@ -156,7 +160,7 @@ class ProtocolController extends Controller
             } else {
 
                 // generate the code
-                $committee_prefix = $this->container->getParameter('committee.prefix');
+                $committee_prefix = $util->getConfiguration('committee.prefix');
                 $total_submissions = count($protocol->getSubmission());
                 $protocol_code = sprintf('%s.%04d.%02d', $committee_prefix, $protocol->getId(), $total_submissions); 
                 $protocol->setCode($protocol_code);

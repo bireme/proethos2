@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 
+use Proethos2\CoreBundle\Util\Util;
+
 use Proethos2\ModelBundle\Entity\Meeting;
 use Proethos2\ModelBundle\Entity\Faq;
 use Proethos2\ModelBundle\Entity\Document;
@@ -705,6 +707,8 @@ class CRUDController extends Controller
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
 
+        $util = new Util($this->container, $this->getDoctrine());
+
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
         $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
@@ -778,7 +782,7 @@ class CRUDController extends Controller
 
             $message = \Swift_Message::newInstance()
             ->setSubject("[proethos2] " . $translator->trans("Reset your password"))
-            ->setFrom($this->container->getParameter('committee.email'))
+            ->setFrom($util->getConfiguration('committee.email'))
             ->setTo($post_data['email'])
             ->setBody(
                 $translator->trans("Hello! You ask for a new password in Proethos2 platform.") .
@@ -1065,14 +1069,16 @@ class CRUDController extends Controller
         $session = $request->getSession();
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
+        
+        $util = new Util($this->container, $this->getDoctrine());
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $output['committee_prefix'] = $this->container->getParameter('committee.prefix');
-        $output['committee_name'] = $this->container->getParameter('committee.name');
-        $output['committee_email'] = $this->container->getParameter('committee.email');
-        $output['committee_address'] = $this->container->getParameter('committee.address');
-        $output['committee_phones'] = $this->container->getParameter('committee.phones');
+        $output['committee_prefix'] = $util->getConfiguration('committee.prefix');
+        $output['committee_name'] = $util->getConfiguration('committee.name');
+        $output['committee_email'] = $util->getConfiguration('committee.email');
+        $output['committee_address'] = $util->getConfiguration('committee.address');
+        $output['committee_phones'] = $util->getConfiguration('committee.phones');
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {

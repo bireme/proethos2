@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use Proethos2\ModelBundle\Entity\User;
+use Proethos2\CoreBundle\Util\Util;
 
 class SecurityController extends Controller
 {
@@ -18,6 +19,8 @@ class SecurityController extends Controller
      */
     public function loginAction()
     {
+        $util = new Util($this->container, $this->getDoctrine());
+        
         $authenticationUtils = $this->get('security.authentication_utils');
 
         // get the login error if there is one
@@ -26,10 +29,15 @@ class SecurityController extends Controller
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
+        $committee_name = $util->getConfiguration("committee.name");
+        $committee_description = $util->getConfiguration("committee.description");
+
         return array(
-                // last username entered by the user
                 'last_username' => $lastUsername,
                 'error'         => $error,
+                
+                'committee_name' => $committee_name,
+                'committee_description' => $committee_description,
             );
     }
 
@@ -131,6 +139,7 @@ class SecurityController extends Controller
         $session = $request->getSession();
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
+        $util = new Util($this->container, $this->getDoctrine());
 
         // getting post data
         $post_data = $request->request->all();
@@ -167,7 +176,7 @@ class SecurityController extends Controller
 
             $message = \Swift_Message::newInstance()
             ->setSubject("[proethos2] " . $translator->trans("Reset your password"))
-            ->setFrom($this->container->getParameter('committee.email'))
+            ->setFrom($util->getConfiguration('committee.email'))
             ->setTo($post_data['email'])
             ->setBody(
                 $translator->trans("Hello! You ask for a new password in Proethos2 platform.") .
@@ -267,6 +276,7 @@ class SecurityController extends Controller
         $session = $request->getSession();
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
+        $util = new Util($this->container, $this->getDoctrine());
 
         // getting post data
         $post_data = $request->request->all();
@@ -295,7 +305,7 @@ class SecurityController extends Controller
             }
 
             // RECAPTCHA
-            $secret = $this->container->getParameter('recaptcha.secret');
+            $secret = $util->getConfiguration('recaptcha.secret');
 
             // params to send to recapctha api
             $data = array(
