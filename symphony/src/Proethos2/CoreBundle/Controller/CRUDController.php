@@ -781,11 +781,11 @@ class CRUDController extends Controller
             $url = $baseurl . "/public/account/reset_my_password?hashcode=" . $hashcode;
 
             $message = \Swift_Message::newInstance()
-            ->setSubject("[proethos2] " . $translator->trans("Reset your password"))
+            ->setSubject("[proethos2] " . $translator->trans("Set your password"))
             ->setFrom($util->getConfiguration('committee.email'))
             ->setTo($post_data['email'])
             ->setBody(
-                $translator->trans("Hello! You ask for a new password in Proethos2 platform.") .
+                $translator->trans("Hello! You was registered in Proethos2 platform. Please set your password:") .
                 "<br>" .
                 "<br>" . $translator->trans("Access the link below") . ":" .
                 "<br>" .
