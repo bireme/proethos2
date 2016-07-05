@@ -304,34 +304,37 @@ class SecurityController extends Controller
                 }
             }
 
-            // RECAPTCHA
-            $secret = $util->getConfiguration('recaptcha.secret');
+            // only check captcha if not in dev
+            if(strpos($_SERVER['HTTP_HOST'], 'localhost') < 0) {
+                // RECAPTCHA
+                $secret = $util->getConfiguration('recaptcha.secret');
 
-            // params to send to recapctha api
-            $data = array(
-                "secret" => $secret,
-                "response" => $post_data['g-recaptcha-response'],
-                "remoteip" => $_SERVER['REMOTE_ADDR'],
-            );
+                // params to send to recapctha api
+                $data = array(
+                    "secret" => $secret,
+                    "response" => $post_data['g-recaptcha-response'],
+                    "remoteip" => $_SERVER['REMOTE_ADDR'],
+                );
 
-            // options from file_Get_contents
-            $options = array(
-                'http' => array(
-                    'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                    'method'  => 'POST',
-                    'content' => http_build_query($data)
-                )
-            );
-            
-            // making the POST request to API
-            $context  = stream_context_create($options);
-            $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify", false, $context);
-            $response = json_decode($response);
-            
-            // if has problems, stop
-            if(!$response->success) {
-                $session->getFlashBag()->add('error', $translator->trans("Have an error with captcha. Please try again."));
-                return $output;
+                // options from file_Get_contents
+                $options = array(
+                    'http' => array(
+                        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                        'method'  => 'POST',
+                        'content' => http_build_query($data)
+                    )
+                );
+                
+                // making the POST request to API
+                $context  = stream_context_create($options);
+                $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify", false, $context);
+                $response = json_decode($response);
+                
+                // if has problems, stop
+                if(!$response->success) {
+                    $session->getFlashBag()->add('error', $translator->trans("Have an error with captcha. Please try again."));
+                    return $output;
+                }
             }
 
             if($post_data['password'] != $post_data['confirm-password']) {
@@ -357,6 +360,51 @@ class SecurityController extends Controller
             $user->setPassword($password);
 
             $user->cleanHashcode();
+
+            $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+
+            // send email to the user
+            $message = \Swift_Message::newInstance()
+            ->setSubject("[proethos2] " . $translator->trans("Welcome to the Proethos2 platform!"))
+            ->setFrom($util->getConfiguration('committee.email'))
+            ->setTo($post_data['email'])
+            ->setBody(
+                $translator->trans("Hello! You was registered in Proethos2 platform.") .
+                "<br>" .
+                "<br>" . $translator->trans("Please wait until your access was validated. We will send you an email.") .
+                "<br>" .
+                "<br>". $translator->trans("Regards") . "," .
+                "<br>" . $translator->trans("Proethos2 Team")
+                ,   
+                'text/html'
+            );
+            $send = $this->get('mailer')->send($message);
+
+            // send email to the secreataries
+            $secretaries_emails = array();
+            foreach($user_repository->findAll() as $secretary) {
+                if(in_array('secretary', $secretary->getRolesSlug())) {
+                    $secretaries_emails[] = $secretary->getEmail();
+                }
+            }
+
+            $message = \Swift_Message::newInstance()
+            ->setSubject("[proethos2] " . $translator->trans("New user on Proethos2 platform"))
+            ->setFrom($util->getConfiguration('committee.email'))
+            ->setTo($secretaries_emails)
+            ->setBody(
+                $translator->trans("Hello! There are an new user in the Proethos2 platform.") .
+                "<br>" .
+                "<br>" . $translator->trans("Can you check and authorize his access?") .
+                "<br>" .
+                "<br>" . $baseurl .
+                "<br>" .
+                "<br>". $translator->trans("Regards") . "," .
+                "<br>" . $translator->trans("Proethos2 Team")
+                ,   
+                'text/html'
+            );
+            $send = $this->get('mailer')->send($message);
 
             $em->persist($user);
             $em->flush();
