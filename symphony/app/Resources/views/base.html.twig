@@ -16,6 +16,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/lumen/bootstrap.min.css" rel="stylesheet" integrity="sha384-mvYjhBJXQ9VlNETV/xXShy849GsBHnKzVVudnMOcWUVM/6Nd2ksj8VNng5f8ylyX" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="https://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <link href="{{ asset('bundles/proethos2core/css/style.css') }}" rel="stylesheet">
     
     <!-- FAVICON –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -31,6 +32,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
     <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.min.js" charset="UTF-8"></script>
     <script src="{{ asset('bundles/proethos2core/js/script.js') }}"></script>
     
     {% block extrahead %}{% endblock %}
@@ -64,6 +67,14 @@
         $('body').on('hidden.bs.modal', '.modal', function () {
             $(this).removeData('bs.modal');
         });
+        
+        $('body').on('shown.bs.modal', '.modal', function () {
+            $('.datepicker').datepicker({
+                format: "yyyy-mm-dd",
+                autoclose: true
+            });
+        });
+
         
         $(function(){
             $(".submit-on-change").change(function(){
@@ -105,6 +116,11 @@
                         {% endif %}
                     }
                 });
+            });
+
+            $('.datepicker').datepicker({
+                format: "yyyy-mm-dd",
+                autoclose: true
             });
         });
     </script>
