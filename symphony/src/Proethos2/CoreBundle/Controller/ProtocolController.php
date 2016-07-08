@@ -242,6 +242,7 @@ class ProtocolController extends Controller
         
         $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        $upload_type_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
         
         // getting the current submission
         $protocol = $protocol_repository->find($protocol_id);
@@ -282,6 +283,29 @@ class ProtocolController extends Controller
 
             if($post_data['send-to'] == "excempt") {
 
+                $file = $request->files->get('draft-opinion');
+                if(!empty($file)) {
+
+                    // getting the upload type
+                    $upload_type = $upload_type_repository->findOneBy(array("slug" => "draft-opinion"));
+
+                    // adding the file uploaded
+                    $submission_upload = new SubmissionUpload();
+                    $submission_upload->setSubmission($protocol->getMainSubmission());
+                    $submission_upload->setUploadType($upload_type);
+                    $submission_upload->setSubmissionNumber($protocol->getMainSubmission()->getNumber());
+                    $submission_upload->setFile($file);
+
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($submission_upload);
+                    $em->flush();
+
+                    $protocol->getMainSubmission()->addAttachment($submission_upload);
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($protocol->getMainSubmission());
+                    $em->flush();
+                }
+                
                 // setting the Rejected status
                 $protocol->setStatus("F");
                     
@@ -291,6 +315,8 @@ class ProtocolController extends Controller
                 $protocol_history->setMessage($translator->trans("Protocol was setted as excempt."));
                 $em->persist($protocol_history);
                 $em->flush();
+
+
 
                 $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
                 return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);

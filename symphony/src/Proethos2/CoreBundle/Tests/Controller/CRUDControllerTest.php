@@ -282,7 +282,7 @@ class CRUDControllerTest extends WebTestCase
         $client->request('POST', $route, array(
             'title' => "Teste de Documento", 
             'description' => "Descrição do documento", 
-            'role' => 2, 
+            'roles' => array(2, 3), 
             'status' => true, 
         ), array('file' => $image, ));
 
@@ -314,7 +314,7 @@ class CRUDControllerTest extends WebTestCase
         $client->request('POST', $route, array(
             'title' => "Teste de Documento2233", 
             'description' => "Descrição do documento", 
-            'role' => 2, 
+            'roles' => array(2, 3), 
             'status' => true,          
         ));
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
