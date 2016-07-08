@@ -523,19 +523,21 @@ class CRUDController extends Controller
             }
 
             // checking required fields
-            foreach(array('title',) as $field) {   
+            foreach(array('title', 'roles') as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
                     return $output;
                 }
             }
 
-            $role = $role_repository->find($post_data['role']);
-
             $document = new Document();
+            foreach($post_data['roles'] as $role) {
+                $role = $role_repository->find($role);
+                $document->addRole($role);
+            }
+
             $document->setTitle($post_data['title']);
             $document->setDescription($post_data['description']);
-            $document->setRole($role);
             $document->setFile($file);
 
             if(isset($post_data['status'])) {
@@ -592,11 +594,17 @@ class CRUDController extends Controller
                 }
             }
 
-            $role = $role_repository->find($post_data['role']);
+            foreach($document->getRoles() as $role) {
+                $document->removeRole($role);
+            }
+
+            foreach($post_data['roles'] as $role) {
+                $role = $role_repository->find($role);
+                $document->addRole($role);
+            }
 
             $document->setTitle($post_data['title']);
             $document->setDescription($post_data['description']);
-            $document->setRole($role);
             
             $document->setStatus(false);
             if(isset($post_data['status'])) {

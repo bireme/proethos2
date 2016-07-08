@@ -55,7 +55,11 @@
                                 <tr>
                                     <td>{{ document.title }}</td>
                                     <td>{{ document.filename }}</td>
-                                    <td>{% if document.role %}{{ document.role }}{% else %}{% trans %}All{% endtrans %}{% endif %}</td>
+                                    <td>
+                                        {% for role in document.roles %}
+                                            <span class='label label-default' data-toggle='tooltip' data-placement='top' title='{{ role.name }}'>{{ role.slug|first|upper }}</span>
+                                        {% endfor %}
+                                    </td>
                                     <td>
                                         {% if document.status %}
                                             <span class='label label-success'>{% trans %}active{% endtrans %}</span>
@@ -114,9 +118,8 @@
                             <div class='col-md-12'>
                                 <div class="form-group">
                                     <label for="select-role">{% trans %}Role{% endtrans %}:</label> 
-                                    <a href="{{ path("crud_admin_help_show", {help_id: 95} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <select class='form-control' id="select-role" name="role">
-                                        <option value="">{% trans %}All{% endtrans %}</option>
+                                    <a href="{{ path("crud_admin_help_show", {help_id: 70} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <select class='form-control' id="select-role" name="roles[]" multiple>
                                         {% for role in roles %}
                                             <option value="{{ role.id }}">{{ role.name }}</option>
                                         {% endfor %}

@@ -30,11 +30,11 @@ class Document extends Base
      */
     private $status = true;
 
-    /** 
-     * @ORM\ManyToOne(targetEntity="Role") 
-     * @ORM\JoinColumn(name="role_id", referencedColumnName="id", nullable=true, onDelete="SET NULL") 
-     */ 
-    private $role;
+    /**
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="document")
+     * @ORM\JoinTable(name="document_role")
+     */
+    private $roles;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -224,26 +224,36 @@ class Document extends Base
     }
 
     /**
-     * Set role
+     * Add role
      *
      * @param \Proethos2\ModelBundle\Entity\Role $role
      *
      * @return Document
      */
-    public function setRole(\Proethos2\ModelBundle\Entity\Role $role = null)
+    public function addRole(\Proethos2\ModelBundle\Entity\Role $role)
     {
-        $this->role = $role;
+        $this->roles[] = $role;
 
         return $this;
     }
 
     /**
-     * Get role
+     * Remove role
      *
-     * @return \Proethos2\ModelBundle\Entity\Role
+     * @param \Proethos2\ModelBundle\Entity\Role $role
      */
-    public function getRole()
+    public function removeRole(\Proethos2\ModelBundle\Entity\Role $role)
     {
-        return $this->role;
+        $this->roles->removeElement($role);
+    }
+
+    /**
+     * Get roles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRoles()
+    {
+        return $this->roles;
     }
 }
