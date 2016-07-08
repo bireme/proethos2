@@ -92,5 +92,7 @@ parameters:
     committee.email:  "proethos2@paho.org"
     committee.address:  "525 Twenty-third Street, N.W., Washington, D.C. 20037, Estados Unidos"
     committee.phones:  "Tel.: +1 (202) 974-3000<br>Fax: +1 (202) 974-3663"
+    committee.description: "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker."
+    committee.logourl: ""
 
     recaptcha.secret: "6LdtCiITAAAAACON37pbmsAo1hjEUAjqz33rB-5r"
