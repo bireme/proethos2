@@ -22,7 +22,7 @@
                             <h2 class='sub-header'>{{ role.name }}</h2>
                             <ul>
                                 {% for document in documents %}
-                                    {% if role == document.role %}
+                                    {% if role in document.roles %}
                                         <li><a href="{{ document.uri }}">
                                             <span data-toggle="tooltip" data-placement="top" title="{{ document.description }}">
                                                 {{ document.title }}
@@ -34,17 +34,6 @@
                         </div>
                     {% endif %}
                 {% endfor %}
-
-                <div class="col-md-12">
-                    <h2 class='sub-header'>{% trans %}Other Documents{% endtrans %}</h2>
-                    <ul>
-                        {% for document in documents %}
-                            {% if not document.role %}
-                                <li><a href="{{ document.uri }}" data-toggle="tooltip" data-placement="top" title="{{ document.description }}">{{ document.title }}</a></li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </div>
             </div>    
         </div>
 
