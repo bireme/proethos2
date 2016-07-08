@@ -737,6 +737,7 @@ class CRUDControllerTest extends WebTestCase
         $client->request('POST', $route, array(
             "name" => "Gerado no Teste",
         ));
+
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
 

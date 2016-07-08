@@ -48,7 +48,7 @@ class SecurityControllerTest extends WebTestCase
         $route = $client->getContainer()->get('router')->generate('security_forgot_my_password', array(), false);
         
         $client->request('GET', $route);
-        $this->assertNotEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
     
     public function testForgotMyPasswordPOST()
@@ -57,7 +57,7 @@ class SecurityControllerTest extends WebTestCase
         $route = $client->getContainer()->get('router')->generate('security_forgot_my_password', array(), false);
         
         $client->request('POST', $route, array("email" => "moa.moda@gmail.com"));
-        $this->assertNotEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
     
     public function testResetMyPasswordGET()
@@ -65,8 +65,8 @@ class SecurityControllerTest extends WebTestCase
         $client = static::createClient();
         $route = $client->getContainer()->get('router')->generate('security_reset_my_password', array(), false);
         
-        $client->request('GET', $route);
-        $this->assertNotEquals(200, $client->getResponse()->getStatusCode());
+        $client->request('GET', $route, array('hashcode' => '53492620ca595451467a47b097e64b19'));
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
     
     public function testNewUserGET()
@@ -75,7 +75,7 @@ class SecurityControllerTest extends WebTestCase
         $route = $client->getContainer()->get('router')->generate('security_new_user', array(), false);
         
         $client->request('GET', $route);
-        $this->assertNotEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
 }

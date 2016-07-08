@@ -215,12 +215,14 @@ class SecurityController extends Controller
         $post_data = $request->request->all();
 
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+
+        $parameters = $request->query->all();
         
-        if(!isset($_REQUEST['hashcode'])) {
+        if(!isset($parameters['hashcode'])) {
             throw $this->createNotFoundException($translator->trans('Invalid hashcode'));
         }
 
-        $hashcode = $_REQUEST['hashcode'];
+        $hashcode = $parameters['hashcode'];
         $user = $user_repository->findOneByHashcode($hashcode);
 
         if(!$user) {

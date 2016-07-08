@@ -12,13 +12,16 @@
 <div class='row'>
     <div class='col-md-12'>
         <ul class="nav nav-tabs" id='new-submission-tab'>
-            <li role="presentation">
+            <!-- <li role="presentation">
                 <a href="javascript:void(0)" title="{% trans %}First Information{% endtrans %}">
                     {% trans %}First Information{% endtrans %}
                 </a>
+            </li> -->
+            <li role="presentation" {% if app.request.get('_route') == "submission_new_first_created_protocol_step" %}class='active'{% endif %}>
+                <a href="{{ path('submission_new_first_created_protocol_step', {'submission_id': submission.id }) }}" title="{% trans %}About Project{% endtrans %}">{% trans %}About Project{% endtrans %}</a>
             </li>
             <li role="presentation" {% if app.request.get('_route') == "submission_new_second_step" %}class='active'{% endif %}>
-                <a href="{{ path('submission_new_second_step', {'submission_id': submission.id }) }}" title="{% trans %}About Project{% endtrans %}">{% trans %}About Project{% endtrans %}</a>
+                <a href="{{ path('submission_new_second_step', {'submission_id': submission.id }) }}" title="{% trans %}First Information{% endtrans %}">{% trans %}First Information{% endtrans %}</a>
             </li>
             <li role="presentation" {% if app.request.get('_route') == "submission_new_third_step" %}class='active'{% endif %}>
                 <a href="{{ path('submission_new_third_step', {'submission_id': submission.id }) }}" title='{% trans %}Clinic study{% endtrans %}'>{% trans %}Clinic study{% endtrans %}</a>

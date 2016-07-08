@@ -52,6 +52,39 @@ class NewSubmissionControllerTest extends WebTestCase
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
 
+    public function testFirstStepCreatedProtocolGET()
+    {
+        // getting last id
+        $last_submission = end($this->submission_repository->findAll());
+        $submission_id = $last_submission->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('submission_new_first_created_protocol_step', array("submission_id" => $submission_id), false);
+        
+        $client->request('GET', $route);
+        
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+    
+    public function testFirstStepCreatedProtocolPOST()
+    {
+        // getting last id
+        $last_submission = end($this->submission_repository->findAll());
+        $submission_id = $last_submission->getId();
+
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('submission_new_first_created_protocol_step', array("submission_id" => $submission_id), false);
+        
+        $client->request('POST', $route, array(
+            "is_clinical_trial" => "no",
+            "cientific_title" => "Cientitif Title",
+            "public_title" => "Public Title",
+            "title_acronyms" => "Title Acronymous",
+        ));
+
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }
+
     public function testSecondStepGET()
     {   
         // getting last id

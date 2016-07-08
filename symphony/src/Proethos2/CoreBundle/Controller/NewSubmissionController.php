@@ -81,6 +81,61 @@ class NewSubmissionController extends Controller
     }
 
     /**
+     * @Route("/submission/new/{submission_id}/first", name="submission_new_first_created_protocol_step")
+     * @Template()
+     */
+    public function FirstStepCreatedProtocolAction($submission_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+        
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+
+        // getting the current submission
+        $submission = $submission_repository->find($submission_id);
+        $output['submission'] = $submission;
+
+        if (!$submission or $submission->getIsSended()) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
+        }
+
+        $users = $user_repository->findAll();
+        $output['users'] = $users;
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+            
+            // checking required files
+            foreach(array('cientific_title', 'public_title', 'is_clinical_trial') as $field) {
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    return array();
+                }
+            }
+
+            $submission->setIsClinicalTrial(($post_data['is_clinical_trial'] == 'yes') ? true : false);
+            $submission->setPublicTitle($post_data['public_title']);
+            $submission->setCientificTitle($post_data['cientific_title']);
+            $submission->setTitleAcronyms($post_data['title_acronyms']);
+            
+            $em->persist($submission);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("First step saved with sucess."));
+            return $this->redirectToRoute('submission_new_second_step', array('submission_id' => $submission->getId()), 301);
+        }
+        
+        return $output;    
+    }
+
+    /**
      * @Route("/submission/new/{submission_id}/second", name="submission_new_second_step")
      * @Template()
      */
