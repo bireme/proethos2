@@ -183,6 +183,34 @@
     </div>
 </div>
 
+<!-- Modal Novo Comentário -->
+<div class="modal fade" id="modal-new-comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form method='POST' action='{{ path('protocol_new_comment', {protocol_id: protocol.id}) }}'>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{% trans %}New Comment{% endtrans %}</h4>
+                </div>
+                <div class="modal-body">
+                    <form class='form'>
+                        <div class="form-group">
+                            <label for="textarea-new-comment-message">{% trans %}Message{% endtrans %}:</label> 
+                            <a href="{{ path("crud_admin_help_show", {help_id: 126} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <textarea class='form-control' rows='4' name='new-comment-message' id='textarea-new-comment-message' required></textarea>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                    <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 <script>
     // toggles de meta blocks
     $(function() {

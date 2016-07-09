@@ -68,6 +68,53 @@ class ProtocolController extends Controller
 
         return $output;
     }
+    /**
+     * @Route("/protocol/{protocol_id}/comment", name="protocol_new_comment")
+     */
+    public function newCommentProtocolAction($protocol_id)
+    {
+
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+        
+        $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        
+        // getting the current submission
+        $protocol = $protocol_repository->find($protocol_id);
+        $submission = $protocol->getMainSubmission();
+        $output['protocol'] = $protocol;
+
+        if (!$protocol) {
+            throw $this->createNotFoundException($translator->trans('No protocol found'));
+        }
+
+        $referer = $request->headers->get('referer');
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+
+            $comment = new ProtocolComment();
+            $comment->setProtocol($protocol);
+            $comment->setOwner($user);
+            $comment->setMessage($post_data['new-comment-message']);
+
+            $em->persist($comment);
+            $em->flush();
+                
+            $session->getFlashBag()->add('success', $translator->trans("Comment was created with sucess."));
+        }
+
+        return $this->redirect($referer, 301);
+    }
 
     /**
      * @Route("/protocol/{protocol_id}/analyse", name="protocol_analyse_protocol")
