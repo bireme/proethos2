@@ -276,6 +276,12 @@ class NewSubmissionController extends Controller
                 }
             }
 
+            $recruitment_init_date = new \DateTime($post_data['recruitment-init-date']);
+            if(new \DateTime('NOW') > $recruitment_init_date) {
+                $session->getFlashBag()->add('error', $translator->trans("The recruitment init date needs to be greater than today."));
+                return $output;
+            }
+
             // adding fields to model
             $submission->setStudyDesign($post_data['study-design']);
             $submission->setHealthCondition($post_data['health-condition']);
