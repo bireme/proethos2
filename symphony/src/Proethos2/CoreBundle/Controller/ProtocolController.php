@@ -394,6 +394,8 @@ class ProtocolController extends Controller
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
         $protocol_revision_repository = $em->getRepository('Proethos2ModelBundle:ProtocolRevision');
         $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
+
+        $util = new Util($this->container, $this->getDoctrine());
         
         // getting the current submission
         $protocol = $protocol_repository->find($protocol_id);
@@ -451,10 +453,31 @@ class ProtocolController extends Controller
                                 $revision = new ProtocolRevision();
                                 $revision->setMember($member);
                                 $revision->setProtocol($protocol);
+                                $em->persist($revision);
+                                $em->flush();
                             }
 
-                            $em->persist($revision);
-                            $em->flush();
+                            $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                            $url = $baseurl . $this->generateUrl('home');
+
+                            $message = \Swift_Message::newInstance()
+                            ->setSubject("[proethos2] " . $translator->trans("You was assigned to review a protocol"))
+                            ->setFrom($util->getConfiguration('committee.email'))
+                            ->setTo($member->getEmail())
+                            ->setBody(
+                                $translator->trans("Hello!") .
+                                "<br>" .
+                                "<br>" . $translator->trans("You was assigned to review a protocol. Access the link below") . ":" .
+                                "<br>" .
+                                "<br>$url" .
+                                "<br>" .
+                                "<br>". $translator->trans("Regards") . "," .
+                                "<br>" . $translator->trans("Proethos2 Team")
+                                ,   
+                                'text/html'
+                            );
+                            
+                            $send = $this->get('mailer')->send($message);
 
                         }
                     }
