@@ -30,8 +30,11 @@ class IndexController extends Controller
         $revisions = array();
         foreach($protocol_revision_repository->findBy(array("member" => $user)) as $revision) {
             if($revision->getProtocol()->getStatus() == 'E') {
-                $revisions[] = $revision;
+                $revisions[] = $revision->getProtocol();
             }
+        }
+        foreach($protocol_repository->findBy(array("status" => "I")) as $protocol) {
+            $revisions[] = $protocol;
         }
         $output['revisions'] = $revisions;
         

@@ -39,20 +39,20 @@
                                 <tbody>
                                     {% for revision in revisions %}
                                         <tr>
-                                            <th>{% if revision.protocol.code %}{{ revision.protocol.code }}{% else %}-{% endif %}</th>
-                                            <td>{{ revision.protocol.mainSubmission.publicTitle }}</td> 
+                                            <th>{% if revision.code %}{{ revision.code }}{% else %}-{% endif %}</th>
+                                            <td>{{ revision.mainSubmission.publicTitle }}</td> 
                                             <td>
-                                                {% if revision.protocol.mainSubmission.isClinicalTrial %}
+                                                {% if revision.mainSubmission.isClinicalTrial %}
                                                     <span class='label label-warning'>{% trans %}Clinical Trial{% endtrans %}</span>
                                                 {% else %}
                                                     <span class='label label-primary'>{% trans %}Research{% endtrans %}</span>
                                                 {% endif %}
                                             </td> 
-                                            <td>{{ revision.protocol.updatedIn|date("d/m/Y") }}</td>
-                                            <td>{{ revision.protocol.statusLabel }}</td> 
+                                            <td>{{ revision.updatedIn|date("d/m/Y") }}</td>
+                                            <td>{{ revision.statusLabel }}</td> 
                                             <td>
-                                                <a href='{{ path("protocol_show_protocol", {protocol_id: revision.protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See protocol{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
-                                                <a href='{{ path("protocol_initial_committee_review_revisor", {protocol_id: revision.protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Send protocol revision{% endtrans %}"><i class='glyphicon glyphicon-list-alt'></i></a>
+                                                <a href='{{ path("protocol_show_protocol", {protocol_id: revision.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See protocol{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
+                                                <a href='{{ path("protocol_initial_committee_review_revisor", {protocol_id: revision.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Send protocol revision{% endtrans %}"><i class='glyphicon glyphicon-list-alt'></i></a>
                                             </td>
                                         </tr>
                                     {% endfor %}

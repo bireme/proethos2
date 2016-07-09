@@ -224,6 +224,35 @@ class ProtocolController extends Controller
                     $em->persist($protocol_history);
                     $em->flush();
 
+                    $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                    $url = $baseurl . $this->generateUrl('home');
+
+                    foreach($user_repository->findAll() as $member) {
+                        foreach(array("members-of-committee", "members-ad-hoc") as $role) {
+                            if(in_array($role, $member->getRolesSlug())) {
+
+                                $message = \Swift_Message::newInstance()
+                                ->setSubject("[proethos2] " . $translator->trans("A new protocol need your analysis."))
+                                ->setFrom($util->getConfiguration('committee.email'))
+                                ->setTo($member->getEmail())
+                                ->setBody(
+                                    $translator->trans("Hello!") .
+                                    "<br>" .
+                                    "<br>" . $translator->trans("A new protocol need your analysis. Access the link below") . ":" .
+                                    "<br>" .
+                                    "<br>$url" .
+                                    "<br>" .
+                                    "<br>". $translator->trans("Regards") . "," .
+                                    "<br>" . $translator->trans("Proethos2 Team")
+                                    ,   
+                                    'text/html'
+                                );
+                                
+                                $send = $this->get('mailer')->send($message);
+                            }
+                        }
+                    }
+
                     $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
                     return $this->redirectToRoute('protocol_initial_committee_screening', array('protocol_id' => $protocol->getId()), 301);
                 }
