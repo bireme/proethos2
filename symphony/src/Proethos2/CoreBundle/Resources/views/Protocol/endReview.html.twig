@@ -64,19 +64,41 @@
 
             <div class='row'>
                 <div class='submission-button-controls col-md-12'>
-                    <button type="submit" class='btn btn-primary' id='button-excempt-protocol'>{% trans %}Save decision and finish process{% endtrans %}</button>
+                    <button type="button" class='btn btn-primary' data-toggle='modal' data-target='#modal-confirm'>{% trans %}Save decision and finish process{% endtrans %}</button>
                 </div>
             </div>
         </form>
     </div>
 
+    <!-- Modal confirm -->
+    <div class="modal fade" id="modal-confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}Confirm?{% endtrans %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{% trans %}Are you sure that you want to end this protocol evaluation?{% endtrans %}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                        <button type="button" class="btn btn-success" id='button-submit'>{% trans %}Confirm{% endtrans %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
 
 {% block script %}
     <script>
         $(function(){
-            
+            $("#button-submit").on('click', function(){
+                $("#form-action").submit();
+            });
         });
     </script>
 {% endblock %}
