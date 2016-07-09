@@ -265,13 +265,42 @@ class ProtocolController extends Controller
                     // setting protocool history
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
-                    $protocol_history->setMessage($translator->trans("Protocol was accepted."));
+                    $protocol_history->setMessage($translator->trans("Protocol was accepeted and investigators was notified."));
                     $em->persist($protocol_history);
                     $em->flush();
 
                     $em->persist($protocol);
                     $em->flush();
-                    
+
+                    $investigators = array();
+                    $investigators[] = $protocol->getMainSubmission()->getOwner();
+                    foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
+                        $investigators[] = $investigator;
+                    }
+                    foreach($investigators as $investigator) {
+                        $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                        $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
+                        $message = \Swift_Message::newInstance()
+                        ->setSubject("[proethos2] " . $translator->trans("Your protocol was accepted!"))
+                        ->setFrom($util->getConfiguration('committee.email'))
+                        ->setTo($investigator->getEmail())
+                        ->setBody(
+                            $translator->trans("Hello!") .
+                            "<br>" .
+                            "<br>" . $translator->trans("Your protocol was accepted. Access the link below") . ":" .
+                            "<br>" .
+                            "<br>$url" .
+                            "<br>" .
+                            "<br>". $translator->trans("Regards") . "," .
+                            "<br>" . $translator->trans("Proethos2 Team")
+                            ,   
+                            'text/html'
+                        );
+                        
+                        $send = $this->get('mailer')->send($message);
+                    }
+
                     $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
                     return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
                 }
@@ -315,6 +344,7 @@ class ProtocolController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
+        $util = new Util($this->container, $this->getDoctrine());
         
         $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
@@ -342,16 +372,45 @@ class ProtocolController extends Controller
 
                 // setting the Rejected status
                 $protocol->setStatus("E");
-                    
+                
                 // setting protocool history
                 $protocol_history = new ProtocolHistory();
                 $protocol_history->setProtocol($protocol);
-                $protocol_history->setMessage($translator->trans("Protocol was accepted."));
+                $protocol_history->setMessage($translator->trans("Protocol was accepeted and investigators was notified."));
                 $em->persist($protocol_history);
                 $em->flush();
 
                 $em->persist($protocol);
                 $em->flush();
+
+                $investigators = array();
+                $investigators[] = $protocol->getMainSubmission()->getOwner();
+                foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
+                    $investigators[] = $investigator;
+                }
+                foreach($investigators as $investigator) {
+                    $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                    $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
+                    $message = \Swift_Message::newInstance()
+                    ->setSubject("[proethos2] " . $translator->trans("Your protocol was accepted!"))
+                    ->setFrom($util->getConfiguration('committee.email'))
+                    ->setTo($investigator->getEmail())
+                    ->setBody(
+                        $translator->trans("Hello!") .
+                        "<br>" .
+                        "<br>" . $translator->trans("Your protocol was accepted. Access the link below") . ":" .
+                        "<br>" .
+                        "<br>$url" .
+                        "<br>" .
+                        "<br>". $translator->trans("Regards") . "," .
+                        "<br>" . $translator->trans("Proethos2 Team")
+                        ,   
+                        'text/html'
+                    );
+                    
+                    $send = $this->get('mailer')->send($message);
+                }
                 
                 $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
                 return $this->redirectToRoute('protocol_initial_committee_review', array('protocol_id' => $protocol->getId()), 301);
