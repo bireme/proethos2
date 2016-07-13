@@ -243,6 +243,7 @@ class NewSubmissionController extends Controller
         $submission_country_repository = $em->getRepository('Proethos2ModelBundle:SubmissionCountry');
         $gender_repository = $em->getRepository('Proethos2ModelBundle:Gender');
         $recruitment_status_repository = $em->getRepository('Proethos2ModelBundle:RecruitmentStatus');
+        $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
 
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
@@ -255,6 +256,9 @@ class NewSubmissionController extends Controller
         // getting recruitment_statuses list
         $recruitment_statuses = $recruitment_status_repository->findByStatus(true);
         $output['recruitment_statuses'] = $recruitment_statuses;
+        
+        $countries = $country_repository->findAll();
+        $output['countries'] = $countries;
 
         if (!$submission or $submission->getIsSended()) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
