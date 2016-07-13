@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use Proethos2\CoreBundle\Util\Util;
+
 use Proethos2\ModelBundle\Entity\MonitoringAction;
 use Proethos2\ModelBundle\Entity\ProtocolHistory;
 use Proethos2\ModelBundle\Entity\Submission;
@@ -28,9 +30,11 @@ class MonitoringController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
+        $util = new Util($this->container, $this->getDoctrine());
 
         $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
         $monitoring_action_repository = $em->getRepository('Proethos2ModelBundle:MonitoringAction');
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
         
         // getting the current submission
         $protocol = $protocol_repository->find($protocol_id);
@@ -88,6 +92,38 @@ class MonitoringController extends Controller
                 $protocol_history->setMessage($translator->trans("New amendment submited by") ." ". $user . ".");
                 $em->persist($protocol_history);
                 $em->flush();
+
+                // sending email
+                $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
+                $recipients = array();
+                foreach($user_repository->findAll() as $secretary) {
+                    if(in_array("secretary", $secretary->getRolesSlug())) {
+                        $recipients[] = $secretary;
+                    }
+                }
+
+                foreach($recipients as $recipient) {
+                    $message = \Swift_Message::newInstance()
+                    ->setSubject("[proethos2] " . $translator->trans("A new monitoring action was submitted."))
+                    ->setFrom($util->getConfiguration('committee.email'))
+                    ->setTo($recipient->getEmail())
+                    ->setBody(
+                        $translator->trans("Hello!") .
+                        "<br>" .
+                        "<br>" . $translator->trans("A new monitoring action was submitted. Access the link below for more details") . ":" .
+                        "<br>" .
+                        "<br>$url" .
+                        "<br>" .
+                        "<br>". $translator->trans("Regards") . "," .
+                        "<br>" . $translator->trans("Proethos2 Team")
+                        ,   
+                        'text/html'
+                    );
+                    
+                    $send = $this->get('mailer')->send($message);
+                }
                 
                 $session->getFlashBag()->add('success', $translator->trans("Ammendment submitted with success!"));
                 return $this->redirectToRoute('submission_new_second_step', array('submission_id' => $new_submission->getId()), 301);
@@ -118,12 +154,13 @@ class MonitoringController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
+        $util = new Util($this->container, $this->getDoctrine());
 
         $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
         $monitoring_action_repository = $em->getRepository('Proethos2ModelBundle:MonitoringAction');
         $upload_type_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
         $submission_upload_repository = $em->getRepository('Proethos2ModelBundle:SubmissionUpload');
-        
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
         
         // getting the current submission
         $protocol = $protocol_repository->find($protocol_id);
@@ -240,6 +277,39 @@ class MonitoringController extends Controller
             $protocol_history->setMessage($message);
             $em->persist($protocol_history);
             $em->flush();
+
+            // sending email
+            $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+            $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
+            $recipients = array();
+            foreach($user_repository->findAll() as $secretary) {
+                if(in_array("secretary", $secretary->getRolesSlug())) {
+                    $recipients[] = $secretary;
+                }
+            }
+
+            foreach($recipients as $recipient) {
+                $message = \Swift_Message::newInstance()
+                ->setSubject("[proethos2] " . $translator->trans("A new monitoring action was submitted."))
+                ->setFrom($util->getConfiguration('committee.email'))
+                ->setTo($recipient->getEmail())
+                ->setBody(
+                    $translator->trans("Hello!") .
+                    "<br>" .
+                    "<br>" . $translator->trans("A new monitoring action was submitted. Access the link below for more details") . ":" .
+                    "<br>" .
+                    "<br>$url" .
+                    "<br>" .
+                    "<br>". $translator->trans("Regards") . "," .
+                    "<br>" . $translator->trans("Proethos2 Team")
+                    ,   
+                    'text/html'
+                );
+                
+                $send = $this->get('mailer')->send($message);
+            }
+            
             
             $session->getFlashBag()->add('success', $translator->trans("Ammendment submitted with success!"));
             return $this->redirectToRoute('crud_investigator_protocol_list', array(), 301);
