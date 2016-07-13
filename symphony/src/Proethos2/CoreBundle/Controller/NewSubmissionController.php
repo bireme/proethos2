@@ -158,6 +158,22 @@ class NewSubmissionController extends Controller
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
+        $allow_to_edit_submission = true;
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        // if current user is not owner, check the team
+        if ($user != $submission->getOwner()) {
+            $allow_to_edit_submission = false;
+            foreach($submission->getTeam() as $team_member) {
+                // if current user = some team member, than it allows to edit  
+                if ($user == $team_member) {
+                    $allow_to_edit_submission = true;
+                }
+            }
+        }
+        if (!$allow_to_edit_submission) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
+        }
+
         $users = $user_repository->findAll();
         $output['users'] = $users;
 
@@ -261,6 +277,22 @@ class NewSubmissionController extends Controller
         $output['countries'] = $countries;
 
         if (!$submission or $submission->getIsSended()) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
+        }
+
+        $allow_to_edit_submission = true;
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        // if current user is not owner, check the team
+        if ($user != $submission->getOwner()) {
+            $allow_to_edit_submission = false;
+            foreach($submission->getTeam() as $team_member) {
+                // if current user = some team member, than it allows to edit  
+                if ($user == $team_member) {
+                    $allow_to_edit_submission = true;
+                }
+            }
+        }
+        if (!$allow_to_edit_submission) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
@@ -390,6 +422,22 @@ class NewSubmissionController extends Controller
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
+        $allow_to_edit_submission = true;
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        // if current user is not owner, check the team
+        if ($user != $submission->getOwner()) {
+            $allow_to_edit_submission = false;
+            foreach($submission->getTeam() as $team_member) {
+                // if current user = some team member, than it allows to edit  
+                if ($user == $team_member) {
+                    $allow_to_edit_submission = true;
+                }
+            }
+        }
+        if (!$allow_to_edit_submission) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
+        }
+        
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -557,6 +605,22 @@ class NewSubmissionController extends Controller
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
+        $allow_to_edit_submission = true;
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        // if current user is not owner, check the team
+        if ($user != $submission->getOwner()) {
+            $allow_to_edit_submission = false;
+            foreach($submission->getTeam() as $team_member) {
+                // if current user = some team member, than it allows to edit  
+                if ($user == $team_member) {
+                    $allow_to_edit_submission = true;
+                }
+            }
+        }
+        if (!$allow_to_edit_submission) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
+        }
+        
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -623,6 +687,22 @@ class NewSubmissionController extends Controller
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
+        $allow_to_edit_submission = true;
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        // if current user is not owner, check the team
+        if ($user != $submission->getOwner()) {
+            $allow_to_edit_submission = false;
+            foreach($submission->getTeam() as $team_member) {
+                // if current user = some team member, than it allows to edit  
+                if ($user == $team_member) {
+                    $allow_to_edit_submission = true;
+                }
+            }
+        }
+        if (!$allow_to_edit_submission) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
+        }
+        
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -706,6 +786,22 @@ class NewSubmissionController extends Controller
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
+        $allow_to_edit_submission = true;
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        // if current user is not owner, check the team
+        if ($user != $submission->getOwner()) {
+            $allow_to_edit_submission = false;
+            foreach($submission->getTeam() as $team_member) {
+                // if current user = some team member, than it allows to edit  
+                if ($user == $team_member) {
+                    $allow_to_edit_submission = true;
+                }
+            }
+        }
+        if (!$allow_to_edit_submission) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
+        }
+        
         // Revisions
         $revisions = array(); 
         $final_status = true;
