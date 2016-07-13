@@ -62,12 +62,35 @@
                     <button class='btn btn-primary' id='button-send-to-committee'>{% trans %}Send to committee to decide{% endtrans %}</button>
                     <button class='btn btn-primary' id='button-send-to-ethical-revision'>{% trans %}Send to ethical revision{% endtrans %}</button>
                     {% if protocol.monitoringAction %}
-                        <button class='btn btn-success' id='button-accept-as-notification' data-toggle='tooltip' data-placement='top' title="{% trans %}This monitoring action will not be reviewed by the committee{% endtrans %}">{% trans %}Accept as Notification{% endtrans %}</button>
+                        <span data-toggle='tooltip' data-placement='top' title="{% trans %}This monitoring action will not be reviewed by the committee{% endtrans %}">
+                            <button type='button' class='btn btn-success' data-toggle='modal' data-target='#modal-confirm' id='button-accept-as-notification'>{% trans %}Accept as Notification{% endtrans %}</button>
+                        </span>
                     {% endif %}
                 </div>
             </div>
         </form>
         
+    </div>
+
+    <!-- Modal confirm -->
+    <div class="modal fade" id="modal-confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}Confirm?{% endtrans %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{% trans %}Are you sure that you want to end this protocol evaluation?{% endtrans %}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                        <button type="button" class="btn btn-success" id='notification-submit'>{% trans %}Confirm{% endtrans %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
 {% endblock %}
@@ -101,7 +124,7 @@
             });
 
             {% if protocol.monitoringAction %}
-                $("body").on("click", "#button-accept-as-notification", function(e){
+                $("body").on("click", "#notification-submit", function(e){
                     $("#input-send-to").val('notification-only');
                     $("#input-is-reject").val('false');
                     $("#form-action").submit();
