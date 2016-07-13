@@ -277,8 +277,10 @@ class CRUDController extends Controller
         if(!empty($status_query))
             $status_array = array($status_query);
 
-        $query = $protocol_repository->createQueryBuilder('p')->join('p.main_submission', 's')
-           ->where("s.publicTitle LIKE :query AND p.status IN (:status) AND s.owner = :owner")
+        $query = $protocol_repository->createQueryBuilder('p')
+           ->join('p.main_submission', 's')
+           ->leftJoin('s.team', 't')
+           ->where("s.publicTitle LIKE :query AND p.status IN (:status) AND (s.owner = :owner OR t = :owner)")
            ->orderBy("p.created", 'DESC')
            ->setParameter('query', "%". $search_query ."%")
            ->setParameter('status', $status_array)
