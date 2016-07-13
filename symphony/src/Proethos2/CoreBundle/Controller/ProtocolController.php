@@ -202,7 +202,7 @@ class ProtocolController extends Controller
                 $em->flush();
 
                 $session->getFlashBag()->add('success', $translator->trans("Protocol rejected with success!"));
-                return $this->redirectToRoute('submission_new_second_step', array('submission_id' => $new_submission->getId()), 301);
+                return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
             
             } else {
 
