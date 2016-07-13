@@ -201,7 +201,13 @@
         <p>{{ submission.scientificContact }}</p>
 
         <h2>{% trans %}Prior Ethical Approval{% endtrans %}</h2>
-        <p>{{ submission.priorEthicalApproval }}</p>
+        <p>
+            {% if submission.priorEthicalApproval %}
+                {% trans %}yes{% endtrans %}
+            {% else %}
+                {% trans %}no{% endtrans %}
+            {% endif %}
+        </p>
 
         <h2>{% trans %}Upload Files{% endtrans %}</h2>
         <table>

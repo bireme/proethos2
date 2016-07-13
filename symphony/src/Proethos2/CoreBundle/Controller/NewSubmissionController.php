@@ -994,9 +994,7 @@ class NewSubmissionController extends Controller
                         $filepath = "/tmp/" . date("Y-m-d") . "-submission.pdf";
                         file_put_contents($filepath, $pdf->getOutputFromHtml($html));
 
-
-                        $submission_number = count($submission->getProtocol()->getSubmission());
-                        
+                        $submission_number = count($submission->getProtocol()->getSubmission());                        
 
                         // send tmp file to upload class and save
                         $pdfFile = new SubmissionUpload();
