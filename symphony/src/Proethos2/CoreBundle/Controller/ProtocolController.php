@@ -723,7 +723,16 @@ class ProtocolController extends Controller
         
         $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
         $upload_type_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
-        
+
+        $finish_options = array(
+            "A" => $translator->trans("Approved"),
+            'N' => $translator->trans('Not approved'),
+            'C' => $translator->trans('Condicional approval'),
+            'X' => $translator->trans('Expedite approval'),
+            'F' => $translator->trans('Excempt'),
+        );
+        $output['finish_options'] = $finish_options;
+
         // getting the current submission
         $protocol = $protocol_repository->find($protocol_id);
         $submission = $protocol->getMainSubmission();
@@ -770,6 +779,18 @@ class ProtocolController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission_upload);
+            $em->flush();
+
+            $protocol_history = new ProtocolHistory();
+            $protocol_history->setProtocol($protocol);
+            $protocol_history->setMessage($translator->trans(
+                'Protocol was ended by %user% with the option "%option%".', 
+                array(
+                    '%user%' => $user->getUsername(),
+                    '%option%' => $finish_options[$post_data['final-decision']],
+                )
+            ));
+            $em->persist($protocol_history);
             $em->flush();
 
             $protocol->getMainSubmission()->addAttachment($submission_upload);

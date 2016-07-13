@@ -49,18 +49,14 @@
                             <a href="{{ path("crud_admin_help_show", {help_id: 125} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <select class="form-control select2" id="select-final-decision" name="final-decision" required>
                                 <option value="">-</option>
-                                <option value="A">{% trans %}Approved{% endtrans %}</option>
-                                <option value="N">{% trans %}Not approved{% endtrans %}</option>
-                                <option value="C">{% trans %}Condicional approval{% endtrans %}</option>
-                                <option value="X">{% trans %}Expedite approval{% endtrans %}</option>
-                                <option value="F">{% trans %}Excempt{% endtrans %}</option>
+                                {% for key, option in finish_options %}
+                                    <option value="{{ key }}">{{ option }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>
                 </div>
             </div>  
-
-
 
             <div class='row'>
                 <div class='submission-button-controls col-md-12'>
