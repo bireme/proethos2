@@ -155,14 +155,14 @@ class ProtocolController extends Controller
 
                 if($protocol->getMonitoringAction()) {
 
-                    $message = $translator->trans("Monitoring action was rejected by");
-                    $message .= ' "' . $user . '" ';
-                    $message .= $translator->trans("with this justify:");
-                    $message .= ' "' . $post_data['reject-reason'] . '"';
-
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
-                    $protocol_history->setMessage($message);
+                    $protocol_history->setMessage($translator->trans('Monitoring action was rejected by %user% with this justify "%justify%".', 
+                        array(
+                            '%user%' => $user->getUsername(),
+                            '%justify%' => $post_data['reject-reason'],
+                        )
+                    ));
                     $em->persist($protocol_history);
                     $em->flush();
 
@@ -220,7 +220,7 @@ class ProtocolController extends Controller
                     // setting protocool history
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
-                    $protocol_history->setMessage($translator->trans("Protocol was send to comittee to initial analysis."));
+                    $protocol_history->setMessage($translator->trans("Protocol was send to comittee to initial analysis by %user%.", array("%user%" => $user->getUsername())));
                     $em->persist($protocol_history);
                     $em->flush();
 
@@ -228,7 +228,7 @@ class ProtocolController extends Controller
                     $url = $baseurl . $this->generateUrl('home');
 
                     foreach($user_repository->findAll() as $member) {
-                        foreach(array("members-of-committee", "members-ad-hoc") as $role) {
+                        foreach(array("members-of-committee") as $role) {
                             if(in_array($role, $member->getRolesSlug())) {
 
                                 $message = \Swift_Message::newInstance()
@@ -265,7 +265,7 @@ class ProtocolController extends Controller
                     // setting protocool history
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
-                    $protocol_history->setMessage($translator->trans("Protocol was accepeted and investigators was notified."));
+                    $protocol_history->setMessage($translator->trans("Protocol was accepeted to revision by %user% and investigators was notified.", array("%user%" => $user->getUsername())));
                     $em->persist($protocol_history);
                     $em->flush();
 
@@ -313,7 +313,7 @@ class ProtocolController extends Controller
                     // setting protocool history
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
-                    $protocol_history->setMessage($translator->trans("Monitoring action was accepted as notification only."));
+                    $protocol_history->setMessage($translator->trans("Monitoring action was accepted by %user% as notification only.", array("%user%" => $user->getUsername())));
                     $em->persist($protocol_history);
                     $em->flush();
 
