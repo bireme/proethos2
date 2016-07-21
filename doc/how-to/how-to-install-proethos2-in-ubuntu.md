@@ -1,7 +1,8 @@
-Hot to install Proethos2 in Ubuntu 14.04 LTS
+How to install Proethos2 in Ubuntu 14.04 LTS
 ============================================
 
-This document will help you how to install Proethos2 platform in a Ubuntu Server 16.04 standard installation.
+This document will help you how install Proethos2 platform in a Ubuntu Server 16.04 standard installation.
+
 Remember some tips:
 - We STRONGLY recommend that you use Proethos2 in a Linux Server;
 - We recommend that you use Proethos2 in Ubuntu Server;
@@ -12,7 +13,7 @@ and other tools;
 Dependencies
 ------------
 
-### Depencencies that every ubuntu instalation should has
+### Dependencies that every ubuntu instalation should have.
 
 ```
 $ sudo apt-get install -y vim openssh-server
@@ -106,7 +107,7 @@ $ composer install
 
 ```
 
-In the middle of proccess, you will be questioned by this questions below:
+In the middle of process, you will be questioned by this questions below:
 
 - `database_driver (pdo_mysql):` We use MySQL, so, press enter.
 - `database_host (127.0.0.1): ` We use a local MySQL installation (in this case), so, press enter.
@@ -134,7 +135,7 @@ $ php app/console server:run -v 0.0.0.0:8000
 
 ```
 
-and now access the address `http://YOUR_IP_SERVER:8000/`. If you see the login page, means that you make all right!
+and now access the address `http://YOUR_IP_SERVER:8000/`. If you see the login page, means that you made all right!
 
 Configuring the Apache2 to serve Proethos2
 ------------------------------------------
