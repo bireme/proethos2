@@ -84,6 +84,7 @@ $ sudo apt-get --yes --fix-broken install
 $ sudo dpkg --install wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
 
 ```
+
 Creating the file structure and install Proethos2
 -------------------------------------------------
 
