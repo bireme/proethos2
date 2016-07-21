@@ -36,7 +36,6 @@ class LoadDatabaseInitialDataCommand extends ContainerAwareCommand
             'list_monitoring_action',
             'list_recruitment_status',
             'list_role',
-            'list_upload_type',
             'upload_type',
             'help',
             'user',
