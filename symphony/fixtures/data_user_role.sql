@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `user_role`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-REPLACE INTO `user` VALUES (1,31,'0000-00-00 00:00:00','0000-00-00 00:00:00','admin@fictional_email.com','$2y$13$.g4C4kS9JpPuX/HUABa/4.MAVK37X03n9/3gU5vMnoqvojDckYuG.','admin',1,'Proethos2 Admin','BIREME',NULL,0);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `user_role` WRITE;
+/*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
+REPLACE INTO `user_role` VALUES (1,1),(1,2),(1,3),(1,4),(1,5);
+/*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-21 14:00:04
+-- Dump completed on 2016-07-21 14:16:09

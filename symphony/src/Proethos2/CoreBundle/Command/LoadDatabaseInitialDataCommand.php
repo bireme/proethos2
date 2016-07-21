@@ -39,6 +39,7 @@ class LoadDatabaseInitialDataCommand extends ContainerAwareCommand
             'upload_type',
             'help',
             'user',
+            'user_role',
         );
 
         $host = $database_host;
