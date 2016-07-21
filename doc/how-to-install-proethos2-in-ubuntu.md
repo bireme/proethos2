@@ -1,22 +1,23 @@
-Hot to install proethos2 in Ubuntu 14.04 LTS
+Hot to install Proethos2 in Ubuntu 14.04 LTS
 ============================================
 
 This document will help you how to install Proethos2 platform in a Ubuntu Server 16.04 standard installation.
 Remember some tips:
-- We STRONGLY recommend that you use Proethos2 in a Linux Server
-- We recommend that you use Proethos2 in Ubuntu Server
+- We STRONGLY recommend that you use Proethos2 in a Linux Server;
+- We recommend that you use Proethos2 in Ubuntu Server;
 - We STRONGLY recommend that you use Proethos2 in dedicated server. Nowadays it's possible with virtualization, docker, 
-and other tools
-- This manual will help you under this conditions
+and other tools;
+- This manual will help you under this conditions,
 
 Dependencies
 ------------
 
-### Other depencencies to every ubuntu instalation
+### Depencencies that every ubuntu instalation should has.
 
 ```
 $ sudo apt-get install -y vim openssh-server
 ```
+
 ### Git
 
 ```
@@ -73,11 +74,20 @@ $ sudo apt-get install -y apache2
 Creating the file structure and install Proethos2
 -------------------------------------------------
 
-Now, we have to create the file structure and download the code:
+We have to create the file structure and download the code:
 
 ```
 $ mkdir -p project/proethos2
 $ cd project/proethos2
 $ git clone https://github.com/bireme/proethos2.git git
+
+```
+
+Now, we have to install all the software dependencies and the software as well:
+(It can take some minutes)
+
+```
+$ cd project/proethos2/git/symphony
+$ composer install
 
 ```
