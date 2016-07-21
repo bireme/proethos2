@@ -7,12 +7,12 @@ Remember some tips:
 - We recommend that you use Proethos2 in Ubuntu Server;
 - We STRONGLY recommend that you use Proethos2 in dedicated server. Nowadays it's possible with virtualization, docker, 
 and other tools;
-- This manual will help you under this conditions,
+- This manual will help you under this conditions.
 
 Dependencies
 ------------
 
-### Depencencies that every ubuntu instalation should has.
+### Depencencies that every ubuntu instalation should has
 
 ```
 $ sudo apt-get install -y vim openssh-server
@@ -36,12 +36,19 @@ $ sudo a2enmod rewrite
 
 ```
 
+### PHP
+
+```
+$ sudo apt-get install -y curl php5 php5-cli php5-mysql libapache2-mod-php5 php5-mcrypt
+
+```
+
 ### MySQL
 
 The next command block is to install MySQL server and to config it.
 
 ```
-$ sudo apt-get install -y mysql-server libapache2-mod-auth-mysql php5-mysql
+$ sudo apt-get install -y mysql-server libapache2-mod-auth-mysql
 $ sudo mysql_secure_installation
 $ sudo mysql_install_db
 
@@ -57,12 +64,6 @@ GRANT ALL PRIVILEGES ON proethos2.* to proethos2@localhost;
 
 ```
 
-### PHP
-
-```
-$ sudo apt-get install -y curl php5 php5-cli php5-mysql libapache2-mod-php5 php5-mcrypt
-
-```
 ### Composer
 
 ```
