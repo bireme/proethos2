@@ -9,3 +9,4 @@ Links
 
 * [Project License](https://github.com/bireme/proethos2/blob/master/doc/license.md)
 * [How to install](https://github.com/bireme/proethos2/blob/master/doc/how-to/how-to-install-proethos2-in-ubuntu.md)
+* [Development Guide](https://github.com/bireme/proethos2/blob/master/doc/development-guide.md)
