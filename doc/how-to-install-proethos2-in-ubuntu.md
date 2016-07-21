@@ -53,7 +53,7 @@ GRANT ALL PRIVILEGES ON proethos2.* to proethos2@localhost;
 ### PHP
 
 ```
-$ sudo apt-get install -y curl php5-cli
+$ sudo apt-get install -y curl php5-cli php5-mysql
 
 ```
 ### Composer
@@ -104,4 +104,20 @@ In the middle of proccess, you will be questioned by this questions below:
 - `locale (en):` Choose your default language locale. We will use `es_ES`
 - `secret (ThisTokenIsNotSoSecretChangeIt):` Choose an secret token for your application.
 
+Now, we will setup the database and load the initial data:
 
+```
+php app/console doctrine:schema:update --force
+php app/console proethos2:load-database-initial-data
+
+```
+
+If you want to test the instalation, run this command:
+
+```
+$ cd ~/project/proethos2/git/symphony
+$ php app/console server:run -v 0.0.0.0:8000
+
+```
+
+and now access the address `http://YOUR_IP_SERVER:8000/`. If you see the login page, means that you make all right!
