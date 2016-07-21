@@ -21,7 +21,7 @@
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-REPLACE INTO `user` VALUES (1,'admin@proethos2.com','$2y$13$.g4C4kS9JpPuX/HUABa/4.MAVK37X03n9/3gU5vMnoqvojDckYuG.','admin',1,'Proethos2 Administrator','0000-00-00 00:00:00','0000-00-00 00:00:00','BIREME',76,0, NULL);
+REPLACE INTO `user` VALUES (1,'admin@proethos2.com','$2y$13$.g4C4kS9JpPuX/HUABa/4.MAVK37X03n9/3gU5vMnoqvojDckYuG.','admin',1,'Proethos2 Administrator','0000-00-00 00:00:00','0000-00-00 00:00:00','BIREME',76,0,'');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
