@@ -32,11 +32,13 @@ class SubmissionCountry extends Base
      */ 
     private $submission;
 
-    /**
-     * @ORM\Column(type="string", length=2)
-     * @Assert\NotBlank()
-     */
-    protected $country;
+    /** 
+     * @var Country
+     * 
+     * @ORM\ManyToOne(targetEntity="Country", inversedBy="users") 
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", onDelete="SET NULL") 
+     */ 
+    private $country;
 
     /**
      * @var integerS
@@ -46,6 +48,10 @@ class SubmissionCountry extends Base
      */
     private $participants;
 
+    public function __toString() {
+        return $this->getCountry();
+    }
+
     /**
      * Get id
      *
@@ -54,30 +60,6 @@ class SubmissionCountry extends Base
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set country
-     *
-     * @param string $country
-     *
-     * @return SubmissionCountry
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return string
-     */
-    public function getCountry()
-    {
-        return $this->country;
     }
 
     /**
@@ -126,5 +108,29 @@ class SubmissionCountry extends Base
     public function getSubmission()
     {
         return $this->submission;
+    }
+
+    /**
+     * Set country
+     *
+     * @param \Proethos2\ModelBundle\Entity\Country $country
+     *
+     * @return SubmissionCountry
+     */
+    public function setCountry(\Proethos2\ModelBundle\Entity\Country $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \Proethos2\ModelBundle\Entity\Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 }

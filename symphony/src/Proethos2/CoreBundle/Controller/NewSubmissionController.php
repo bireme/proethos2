@@ -346,17 +346,21 @@ class NewSubmissionController extends Controller
             if(isset($post_data['country'])) {
                 foreach($post_data['country'] as $key => $country) {
 
+                    $country_obj = $country_repository->find($country['country_id']);
+
                     // check if exists
                     $submission_country = $submission_country_repository->findOneBy(array(
                         'submission' => $submission, 
-                        'country' => $country['country'],
+                        'country' => $country_obj,
                     ));
+
+                    // var_dump($post_data);die;
 
                     // if not exists, create the new submission_country
                     if(!$submission_country) {
                         $submission_country = new SubmissionCountry();
                         $submission_country->setSubmission($submission);
-                        $submission_country->setCountry($country['country']);
+                        $submission_country->setCountry($country_obj);
                         $submission_country->setParticipants($country['participants']);
 
                     } else {

@@ -163,7 +163,7 @@
                                 <tbody>
                                     {% for country in submission.country %}
                                     <tr>
-                                        <input type='hidden' name='country[{{ loop.index0 }}][country]' value='{{ country.country }}'>
+                                        <input type='hidden' name='country[{{ loop.index0 }}][country_id]' value='{{ country.country.id }}'>
                                         <input type='hidden' name='country[{{ loop.index0 }}][participants]' value='{{ country.participants }}'>
 
                                         <td>{{ country.country }}</td> 
@@ -318,14 +318,13 @@
             $("#submit-country-form").click(function(e){
                 e.preventDefault();
 
-
-                $country = $("#select-country-country");
+                $country = $("#select-country-country option:selected");
                 $participants = $("#input-country-participants");
                     
                 string =  "<tr>"
-                string +=    "<input type='hidden' name='country["+ $total_countries +"][country]' value='"+ $country.val() +"'>"
+                string +=    "<input type='hidden' name='country["+ $total_countries +"][country_id]' value='"+ $country.val() +"'>"
                 string +=    "<input type='hidden' name='country["+ $total_countries +"][participants]' value='"+ $participants.val() +"'>"
-                string +=    "<td>"+ $country.val() +"</td>"
+                string +=    "<td>"+ $country.text() +"</td>"
                 string +=    "<td><label class='label label-default'>"+ $participants.val() +"</label></td>"
                 string +=    "<td><a href='#' class='btn btn-default btn-xs button-remove-country'><i class='glyphicon glyphicon-trash'></i></a></td>"
                 string += "</tr>"
