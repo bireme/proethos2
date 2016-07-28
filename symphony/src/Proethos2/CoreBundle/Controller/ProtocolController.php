@@ -109,36 +109,6 @@ class ProtocolController extends Controller
             $comment->setOwner($user);
             $comment->setMessage($post_data['new-comment-message']);
 
-            // sending email
-            $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
-            $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
-            
-            $recipients = array($user);
-            foreach($protocol->getMainSubmission()->getTeam() as $team_member) {
-                $recipients[] = $team_member;
-            }
-
-            foreach($recipients as $recipient) {
-                $message = \Swift_Message::newInstance()
-                ->setSubject("[proethos2] " . $translator->trans("Your protocol received a new comment."))
-                ->setFrom($util->getConfiguration('committee.email'))
-                ->setTo($recipient->getEmail())
-                ->setBody(
-                    $translator->trans("Hello!") .
-                    "<br>" .
-                    "<br>" . $translator->trans("Your protocol received a new comment. Access the link below for more details") . ":" .
-                    "<br>" .
-                    "<br>$url" .
-                    "<br>" .
-                    "<br>". $translator->trans("Regards") . "," .
-                    "<br>" . $translator->trans("Proethos2 Team")
-                    ,   
-                    'text/html'
-                );
-                
-                $send = $this->get('mailer')->send($message);
-            }
-
             $em->persist($comment);
             $em->flush();
                 
