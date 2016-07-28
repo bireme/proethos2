@@ -808,7 +808,13 @@ class ProtocolController extends Controller
             $submission_upload->setUploadType($upload_type);
             $submission_upload->setSubmissionNumber($protocol->getMainSubmission()->getNumber());
             $submission_upload->setFile($file);
-
+            
+            if(!empty($post_data['monitoring-period'])) {
+                $monitoring_action_next_date = new \DateTime();
+                $monitoring_action_next_date->modify('+'. $post_data['monitoring-period'] .' months');
+                $protocol->setMonitoringActionNextDate($monitoring_action_next_date);
+            }
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission_upload);
             $em->flush();
@@ -829,6 +835,7 @@ class ProtocolController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($protocol->getMainSubmission());
             $em->flush();
+
 
             $protocol->setDecisionIn(new \DateTime());
             $em->persist($protocol);

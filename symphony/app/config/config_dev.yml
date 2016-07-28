@@ -68,3 +68,7 @@ parameters:
     committee.name:   "BIREME/OPAS/OMS"
     committee.prefix: "BIR"
     committee.email:  "moa.moda@gmail.com"
+
+knp_snappy:
+    pdf:
+        binary:     /usr/bin/wkhtmltopdf

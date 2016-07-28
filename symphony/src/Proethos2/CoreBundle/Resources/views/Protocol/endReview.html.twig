@@ -56,6 +56,22 @@
                         </div>
                     </div>
                 </div>
+
+                <div class='row'>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="select-monitoring-period">{% trans %}Monitoring period{% endtrans %}:</label> 
+                            <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <select class="form-control select2" id="select-monitoring-period" name="monitoring-period" required>
+                                <option value="">{% trans %}N/A{% endtrans %}</option>
+                                <option value="6">{% trans %}6 months{% endtrans %}</option>
+                                <option value="12">{% trans %}12 months{% endtrans %}</option>
+                                <option value="18">{% trans %}18 months{% endtrans %}</option>
+                                <option value="24">{% trans %}24 months{% endtrans %}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>  
 
             <div class='row'>
@@ -94,6 +110,17 @@
         $(function(){
             $("#button-submit").on('click', function(){
                 $("#form-action").submit();
+            });
+
+            var monitoring_period = $("#select-monitoring-period").closest('.row');
+            monitoring_period.hide();
+            $("#select-final-decision").change(function(){
+                var value = $(this).val();
+                if(value == "A") {
+                    monitoring_period.show();
+                } else {
+                    monitoring_period.hide();
+                }
             });
         });
     </script>

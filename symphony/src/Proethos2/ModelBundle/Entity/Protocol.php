@@ -135,6 +135,11 @@ class Protocol extends Base
     private $monitoring_action;
 
     /** 
+     * @ORM\Column(type="datetime", nullable=true) 
+     */ 
+    private $monitoring_action_next_date;
+
+    /** 
      * Constructor 
      */ 
     public function __construct() 
@@ -640,5 +645,29 @@ class Protocol extends Base
     public function getMonitoringAction()
     {
         return $this->monitoring_action;
+    }
+
+    /**
+     * Set monitoringActionNextDate
+     *
+     * @param \DateTime $monitoringActionNextDate
+     *
+     * @return Protocol
+     */
+    public function setMonitoringActionNextDate($monitoringActionNextDate)
+    {
+        $this->monitoring_action_next_date = $monitoringActionNextDate;
+
+        return $this;
+    }
+
+    /**
+     * Get monitoringActionNextDate
+     *
+     * @return \DateTime
+     */
+    public function getMonitoringActionNextDate()
+    {
+        return $this->monitoring_action_next_date;
     }
 }

@@ -83,22 +83,17 @@
     </div>    
 
     <div class='row'>
-        <div class='col-md-3'>
-            <div class='label'>{% trans %}Informed In{% endtrans %}</div>
+        <div class='col-md-4'>
+            <div class='label'>{% trans %}Finish in{% endtrans %}</div>
             <h3>{{ protocol.dateInformed|date("d/m/Y") }}</h3>
         </div>
 
-        <div class='col-md-3'>
+        <div class='col-md-4'>
             <div class='label'>{% trans %}Recruiting{% endtrans %}</div>
             <h3>{{ protocol.mainSubmission.recruitmentInitDate|date("d/m/Y") }}</h3>
         </div>
 
-        <div class='col-md-3'>
-            <div class='label'>{% trans %}Finish in{% endtrans %}</div>
-            <h3>??</h3>
-        </div>
-
-        <div class='col-md-3'>
+        <div class='col-md-4'>
             <div class='label'>{% trans %}Monitoring{% endtrans %}</div>
             <h3>-</h3>
         </div>
