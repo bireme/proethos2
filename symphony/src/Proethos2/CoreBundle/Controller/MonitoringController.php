@@ -185,7 +185,7 @@ class MonitoringController extends Controller
 
 
         if (!$monitoring_action) {
-            throw $this->createNotFoundException($translator->trans('Monitoring action does not exists'));
+            throw $this->createNotFoundException($translator->trans('Monitoring action does not exist'));
         }
 
         // checking if was a post request

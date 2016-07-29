@@ -722,9 +722,9 @@
         <source>Monitoring Action</source>
         <target>Monitoring Action</target>
       </trans-unit>
-      <trans-unit id="74e7e0ee29f6336717881c3ad2bfec2c526049a0" resname="Monitoring action does not exists">
-        <source>Monitoring action does not exists</source>
-        <target>Monitoring action does not exists</target>
+      <trans-unit id="74e7e0ee29f6336717881c3ad2bfec2c526049a0" resname="Monitoring action does not exist">
+        <source>Monitoring action does not exist</source>
+        <target>Monitoring action does not exist</target>
       </trans-unit>
       <trans-unit id="101fefac0ddb0a782d2ee60bc094d7d7819a8f93" resname="Monitoring action was accepted as notification only.">
         <source>Monitoring action was accepted as notification only.</source>
