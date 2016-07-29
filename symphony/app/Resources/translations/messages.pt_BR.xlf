@@ -186,9 +186,9 @@
         <source>Completed</source>
         <target>Completed</target>
       </trans-unit>
-      <trans-unit id="c37a1dea6718f99bf85cee3fc30051cba43f2057" resname="Condicional approval">
-        <source>Condicional approval</source>
-        <target>Condicional approval</target>
+      <trans-unit id="c37a1dea6718f99bf85cee3fc30051cba43f2057" resname="Conditional approval">
+        <source>Conditional approval</source>
+        <target>Conditional approval</target>
       </trans-unit>
       <trans-unit id="04a212215ef9fbf686d280802eb81ee7a6e681cd" resname="Confirm">
         <source>Confirm</source>
