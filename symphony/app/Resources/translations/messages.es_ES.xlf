@@ -554,9 +554,9 @@
         <source>ID</source>
         <target>ID</target>
       </trans-unit>
-      <trans-unit id="242dcd68b2ff22cf35903e0ae6935ebb15e999b7" resname="Idetification">
-        <source>Idetification</source>
-        <target>Idetification</target>
+      <trans-unit id="242dcd68b2ff22cf35903e0ae6935ebb15e999b7" resname="Identification">
+        <source>Identification</source>
+        <target>Identification</target>
       </trans-unit>
       <trans-unit id="2fdb81fca373978977fa7a7c7e39620597be5e49" resname="Inclusion Criteria">
         <source>Inclusion Criteria</source>
