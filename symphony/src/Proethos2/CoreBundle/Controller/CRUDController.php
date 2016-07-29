@@ -1121,7 +1121,7 @@ class CRUDController extends Controller
             );
             
             $send = $this->get('mailer')->send($message);
-            $session->getFlashBag()->add('success', $translator->trans("Message send to administrators."));
+            $session->getFlashBag()->add('success', $translator->trans("Message sent to administrators."));
             return $this->redirectToRoute('crud_contact_list', array(), 301);
         }
 

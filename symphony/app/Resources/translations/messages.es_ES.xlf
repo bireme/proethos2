@@ -698,9 +698,9 @@
         <source>Message from plataform.</source>
         <target>Message from plataform.</target>
       </trans-unit>
-      <trans-unit id="e5dcb4d27887e71c6e9bad5a0a5a74225fa7dbd1" resname="Message send to administrators.">
-        <source>Message send to administrators.</source>
-        <target>Message send to administrators.</target>
+      <trans-unit id="e5dcb4d27887e71c6e9bad5a0a5a74225fa7dbd1" resname="Message sent to administrators.">
+        <source>Message sent to administrators.</source>
+        <target>Message sent to administrators.</target>
       </trans-unit>
       <trans-unit id="b509d96b1279b2d6e34627fce387a3fef5a59a74" resname="Methodology">
         <source>Methodology</source>
