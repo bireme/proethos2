@@ -191,7 +191,7 @@ class ProtocolControllerTest extends WebTestCase
             "informed-consent" => "Informed Consent",
             "respect-for-participants" => "Respect for participants",
             "other-comments" => "Other Comments",
-            "sugestions" => "Sugestions",
+            "suggestions" => "Suggestions",
         );
         
         $client->request('POST', $route, $post_data);
@@ -217,7 +217,7 @@ class ProtocolControllerTest extends WebTestCase
             "informed-consent" => "Informed Consent",
             "respect-for-participants" => "Respect for participants",
             "other-comments" => "Other Comments",
-            "sugestions" => "Sugestions",
+            "suggestions" => "Suggestions",
         );
         
         $client->request('POST', $route, $post_data);

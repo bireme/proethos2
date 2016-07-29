@@ -1294,9 +1294,9 @@
         <source>Submitted by</source>
         <target>Submitted by</target>
       </trans-unit>
-      <trans-unit id="99685807c6b56c6593de0fb0d91f4363f7e0f018" resname="Sugestions">
-        <source>Sugestions</source>
-        <target>Sugestions</target>
+      <trans-unit id="99685807c6b56c6593de0fb0d91f4363f7e0f018" resname="Suggestions">
+        <source>Suggestions</source>
+        <target>Suggestions</target>
       </trans-unit>
       <trans-unit id="794696a720669c524ad273a139db0fd375e6608b" resname="Suspended">
         <source>Suspended</source>

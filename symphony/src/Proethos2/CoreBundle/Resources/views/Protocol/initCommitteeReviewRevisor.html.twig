@@ -101,9 +101,9 @@
                 <div class='row'>
                     <div class="col-md-12">
                         <div class="form-group required">
-                            <label for="input-sugestions">{% trans %}Sugestions{% endtrans %}:</label> 
+                            <label for="input-suggestions">{% trans %}Suggestions{% endtrans %}:</label> 
                             <a href="{{ path("crud_admin_help_show", {help_id: 121} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <input type='text' class="form-control" id='input-sugestions' name="sugestions" value="{{ protocol_revision.sugestions }}" required {% if protocol_revision.isFinalRevision %}readonly{% endif %}>
+                            <input type='text' class="form-control" id='input-suggestions' name="suggestions" value="{{ protocol_revision.suggestions }}" required {% if protocol_revision.isFinalRevision %}readonly{% endif %}>
                         </div>
                     </div>
                 </div>

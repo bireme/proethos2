@@ -87,9 +87,9 @@ class ProtocolRevision extends Base
     /**
      * @var string
      *
-     * @ORM\Column(name="sugestions", type="string", length=255, nullable=true)
+     * @ORM\Column(name="suggestions", type="string", length=255, nullable=true)
      */
-    private $sugestions;   
+    private $suggestions;   
 
     /**
      * Get id
@@ -390,26 +390,26 @@ class ProtocolRevision extends Base
     }
 
     /**
-     * Set sugestions
+     * Set suggestions
      *
-     * @param string $sugestions
+     * @param string $suggestions
      *
      * @return ProtocolRevision
      */
-    public function setSugestions($sugestions)
+    public function setSuggestions($suggestions)
     {
-        $this->sugestions = $sugestions;
+        $this->suggestions = $suggestions;
 
         return $this;
     }
 
     /**
-     * Get sugestions
+     * Get suggestions
      *
      * @return string
      */
-    public function getSugestions()
+    public function getSuggestions()
     {
-        return $this->sugestions;
+        return $this->suggestions;
     }
 }
