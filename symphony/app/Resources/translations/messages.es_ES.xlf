@@ -450,9 +450,9 @@
         <source>Find protocols</source>
         <target>Find protocols</target>
       </trans-unit>
-      <trans-unit id="4547bc7af5d0070ce12d68e6bee95b8b8186a7a0" resname="Finish in">
-        <source>Finish in</source>
-        <target>Finish in</target>
+      <trans-unit id="4547bc7af5d0070ce12d68e6bee95b8b8186a7a0" resname="Finished in">
+        <source>Finished in</source>
+        <target>Finished in</target>
       </trans-unit>
       <trans-unit id="0b2524216fdd23203c0429eb00e528a14e18fdfc" resname="First Author">
         <source>First Author</source>
