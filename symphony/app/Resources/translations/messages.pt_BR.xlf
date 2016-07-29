@@ -1454,9 +1454,9 @@
         <source>You haven't submitted any protocols yet.</source>
         <target>You haven't submitted any protocols yet.</target>
       </trans-unit>
-      <trans-unit id="d0983c61f5bf710d4e7405c0cf5229c8e68c485b" resname="You dont have access to do this">
-        <source>You dont have access to do this</source>
-        <target>You dont have access to do this</target>
+      <trans-unit id="d0983c61f5bf710d4e7405c0cf5229c8e68c485b" resname="You don't have access to do this">
+        <source>You don't have access to do this</source>
+        <target>You don't have access to do this</target>
       </trans-unit>
       <trans-unit id="9d83093d264fae4e39e08606acc82d0a2a53b658" resname="You have revision pendencies.">
         <source>You have revision pendencies.</source>
