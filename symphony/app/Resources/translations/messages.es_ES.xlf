@@ -250,9 +250,9 @@
         <source>Date</source>
         <target>Date</target>
       </trans-unit>
-      <trans-unit id="3a634fe6b2da8d8d4c344bc698f77cf69c809b5f" resname="Datetime">
-        <source>Datetime</source>
-        <target>Datetime</target>
+      <trans-unit id="3a634fe6b2da8d8d4c344bc698f77cf69c809b5f" resname="Date & Time">
+        <source>Date & Time</source>
+        <target>Date & Time</target>
       </trans-unit>
       <trans-unit id="7f59a1f1d55a7cbd48c76e9f75723ccb6c63f3e0" resname="Decision">
         <source>Decision</source>
