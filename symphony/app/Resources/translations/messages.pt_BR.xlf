@@ -1494,9 +1494,9 @@
         <source>member(s)</source>
         <target>member(s)</target>
       </trans-unit>
-      <trans-unit id="772cfef6125d5889c55d24e46411e8a431b4d701" resname="with this justify:">
-        <source>with this justify:</source>
-        <target>with this justify:</target>
+      <trans-unit id="772cfef6125d5889c55d24e46411e8a431b4d701" resname="with this justification:">
+        <source>with this justification:</source>
+        <target>with this justification:</target>
       </trans-unit>
     </body>
   </file>

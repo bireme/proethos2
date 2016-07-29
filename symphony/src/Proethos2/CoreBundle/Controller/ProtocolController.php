@@ -189,7 +189,7 @@ class ProtocolController extends Controller
 
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
-                    $protocol_history->setMessage($translator->trans('Monitoring action was rejected by %user% with this justify "%justify%".', 
+                    $protocol_history->setMessage($translator->trans('Monitoring action was rejected by %user% with this justification "%justify%".', 
                         array(
                             '%user%' => $user->getUsername(),
                             '%justify%' => $post_data['reject-reason'],

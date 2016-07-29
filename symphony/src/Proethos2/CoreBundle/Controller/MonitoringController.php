@@ -269,7 +269,7 @@ class MonitoringController extends Controller
             // setting protocool history
             $message = $translator->trans("New amendment submited by");
             $message .= ' "' . $user . '" ';
-            $message .= $translator->trans("with this justify:");
+            $message .= $translator->trans("with this justification:");
             $message .= ' "' . $post_data['justification'] . '"';
 
             $protocol_history = new ProtocolHistory();
