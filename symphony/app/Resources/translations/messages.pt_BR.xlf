@@ -806,9 +806,9 @@
         <source>No document found</source>
         <target>No document found</target>
       </trans-unit>
-      <trans-unit id="7b7faba12c315ef41a00b58717da23005a8a8a0d" resname="No faq found">
-        <source>No faq found</source>
-        <target>No faq found</target>
+      <trans-unit id="7b7faba12c315ef41a00b58717da23005a8a8a0d" resname="No FAQ found">
+        <source>No FAQ found</source>
+        <target>No FAQ found</target>
       </trans-unit>
       <trans-unit id="0b5a3ecc12a9230d875b069694504a5a1ed2cd8c" resname="No help found">
         <source>No help found</source>

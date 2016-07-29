@@ -379,7 +379,7 @@ class CRUDController extends Controller
         $output['question'] = $question;
         
         if (!$question) {
-            throw $this->createNotFoundException($translator->trans('No faq found'));
+            throw $this->createNotFoundException($translator->trans('No FAQ found'));
         }
 
         // checking if was a post request
@@ -433,7 +433,7 @@ class CRUDController extends Controller
         $output['question'] = $question;
         
         if (!$question) {
-            throw $this->createNotFoundException($translator->trans('No faq found'));
+            throw $this->createNotFoundException($translator->trans('No FAQ found'));
         }
 
         // checking if was a post request
