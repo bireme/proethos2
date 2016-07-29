@@ -1042,7 +1042,7 @@ class NewSubmissionController extends Controller
                     $session->getFlashBag()->add('error', $translator->trans("You must to accept the terms and conditions."));
                 }
             } else {
-                $session->getFlashBag()->add('error', $translator->trans('You have revision pendencies.'));
+                $session->getFlashBag()->add('error', $translator->trans('You have pending reviews.'));
             }
         }
 
