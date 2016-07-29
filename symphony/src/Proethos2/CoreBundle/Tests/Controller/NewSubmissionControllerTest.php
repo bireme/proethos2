@@ -46,7 +46,7 @@ class NewSubmissionControllerTest extends WebTestCase
             "is_clinical_trial" => "no",
             "scientific_title" => "Cientitif Title",
             "public_title" => "Public Title",
-            "title_acronyms" => "Title Acronymous",
+            "title_acronym" => "Title Acronymous",
         ));
 
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
@@ -79,7 +79,7 @@ class NewSubmissionControllerTest extends WebTestCase
             "is_clinical_trial" => "no",
             "scientific_title" => "Cientitif Title",
             "public_title" => "Public Title",
-            "title_acronyms" => "Title Acronymous",
+            "title_acronym" => "Title Acronymous",
         ));
 
         $this->assertEquals(301, $client->getResponse()->getStatusCode());

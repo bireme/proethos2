@@ -66,9 +66,9 @@ class Submission extends Base
     /**
      * @var string
      *
-     * @ORM\Column(name="title_acronyms", type="string", length=255)
+     * @ORM\Column(name="title_acronym", type="string", length=255)
      */
-    private $titleAcronyms;
+    private $titleAcronym;
     
     /**
      * @var boolean
@@ -440,27 +440,27 @@ class Submission extends Base
     }
 
     /**
-     * Set titleAcronyms
+     * Set titleAcronym
      *
-     * @param string $titleAcronyms
+     * @param string $titleAcronym
      *
      * @return Submission
      */
-    public function setTitleAcronyms($titleAcronyms)
+    public function setTitleAcronym($titleAcronym)
     {
-        $this->titleAcronyms = $titleAcronyms;
+        $this->titleAcronym = $titleAcronym;
 
         return $this;
     }
 
     /**
-     * Get titleAcronyms
+     * Get titleAcronym
      *
      * @return string
      */
-    public function getTitleAcronyms()
+    public function getTitleAcronym()
     {
-        return $this->titleAcronyms;
+        return $this->titleAcronym;
     }
 
     /**

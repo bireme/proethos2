@@ -59,7 +59,7 @@ class NewSubmissionController extends Controller
             $submission->setIsClinicalTrial(($post_data['is_clinical_trial'] == 'yes') ? true : false);
             $submission->setPublicTitle($post_data['public_title']);
             $submission->setScientificTitle($post_data['scientific_title']);
-            $submission->setTitleAcronyms($post_data['title_acronyms']);
+            $submission->setTitleAcronym($post_data['title_acronym']);
             $submission->setProtocol($protocol);
             $submission->setNumber(1);
 
@@ -123,7 +123,7 @@ class NewSubmissionController extends Controller
             $submission->setIsClinicalTrial(($post_data['is_clinical_trial'] == 'yes') ? true : false);
             $submission->setPublicTitle($post_data['public_title']);
             $submission->setScientificTitle($post_data['scientific_title']);
-            $submission->setTitleAcronyms($post_data['title_acronyms']);
+            $submission->setTitleAcronym($post_data['title_acronym']);
             
             $em->persist($submission);
             $em->flush();

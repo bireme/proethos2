@@ -1338,9 +1338,9 @@
         <source>Title</source>
         <target>Title</target>
       </trans-unit>
-      <trans-unit id="8b73548439d03bdd13efd409d8dff3e9172e67ea" resname="Title Acronyms">
-        <source>Title Acronyms</source>
-        <target>Title Acronyms</target>
+      <trans-unit id="8b73548439d03bdd13efd409d8dff3e9172e67ea" resname="Title Acronym">
+        <source>Title Acronym</source>
+        <target>Title Acronym</target>
       </trans-unit>
       <trans-unit id="b25928c69902557b0ef0a628490a3a1768d7b82f" resname="Total">
         <source>Total</source>
