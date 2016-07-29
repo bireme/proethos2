@@ -479,7 +479,7 @@ class ProtocolController extends Controller
                 // setting protocool history
                 $protocol_history = new ProtocolHistory();
                 $protocol_history->setProtocol($protocol);
-                $protocol_history->setMessage($translator->trans("Protocol was setted as exempt."));
+                $protocol_history->setMessage($translator->trans("Protocol was concluded as Exempt."));
                 $em->persist($protocol_history);
                 $em->flush();
 
