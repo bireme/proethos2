@@ -162,7 +162,7 @@ class SecurityController extends Controller
 
             $user = $user_repository->findOneByEmail($post_data['email']);
             if(!$user) {
-                $session->getFlashBag()->add('error', $translator->trans("Email doesn't registered in platform."));
+                $session->getFlashBag()->add('error', $translator->trans("Email not registered in platform."));
             }
 
             $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();

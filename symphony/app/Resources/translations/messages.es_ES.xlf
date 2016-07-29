@@ -330,9 +330,9 @@
         <source>Email</source>
         <target>Email</target>
       </trans-unit>
-      <trans-unit id="512cab59a611cad09db5babcc81a27bf0850292c" resname="Email doesn't registered in platform.">
-        <source>Email doesn't registered in platform.</source>
-        <target>Email doesn't registered in platform.</target>
+      <trans-unit id="512cab59a611cad09db5babcc81a27bf0850292c" resname="Email not registered in platform.">
+        <source>Email not registered in platform.</source>
+        <target>Email not registered in platform.</target>
       </trans-unit>
       <trans-unit id="a2bb9d34b8a1a79665858d354585cf147e0dee4e" resname="End">
         <source>End</source>
