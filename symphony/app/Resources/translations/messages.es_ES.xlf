@@ -902,9 +902,9 @@
         <source>Prior Ethical Approval</source>
         <target>Prior Ethical Approval</target>
       </trans-unit>
-      <trans-unit id="9c1d43903ea5d64c765f4d4d8ba99494fb4c665f" resname="Problems to generate PDF. Please contact the administrator.">
-        <source>Problems to generate PDF. Please contact the administrator.</source>
-        <target>Problems to generate PDF. Please contact the administrator.</target>
+      <trans-unit id="9c1d43903ea5d64c765f4d4d8ba99494fb4c665f" resname="Problems generating PDF. Please contact the administrator.">
+        <source>Problems generating PDF. Please contact the administrator.</source>
+        <target>Problems generating PDF. Please contact the administrator.</target>
       </trans-unit>
       <trans-unit id="cb3583fdc95bee8235906aa799b6387f87b2b14a" resname="Proethos2 Team">
         <source>Proethos2 Team</source>
