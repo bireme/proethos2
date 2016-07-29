@@ -154,9 +154,9 @@
         <source>Scientific Title</source>
         <target>Scientific Title</target>
       </trans-unit>
-      <trans-unit id="eaafac5aa50ceb3b64396e080598a492a9cbecf5" resname="Clinic study">
-        <source>Clinic study</source>
-        <target>Clinic study</target>
+      <trans-unit id="eaafac5aa50ceb3b64396e080598a492a9cbecf5" resname="Clinical study">
+        <source>Clinical study</source>
+        <target>Clinical study</target>
       </trans-unit>
       <trans-unit id="a4781b4e531e406a69c0092ff5dcf176feecc6dd" resname="Clinical Trial">
         <source>Clinical Trial</source>
