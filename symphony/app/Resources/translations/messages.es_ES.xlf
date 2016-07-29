@@ -322,9 +322,9 @@
         <source>Edit submission</source>
         <target>Edit submission</target>
       </trans-unit>
-      <trans-unit id="9bbb028b33c1ae47e2baac9c107beeacf13812b9" resname="Edit user's informations">
-        <source>Edit user's informations</source>
-        <target>Edit user's informations</target>
+      <trans-unit id="9bbb028b33c1ae47e2baac9c107beeacf13812b9" resname="Edit user's information">
+        <source>Edit user's information</source>
+        <target>Edit user's information</target>
       </trans-unit>
       <trans-unit id="84add5b2952787581cb9a8851eef63d1ec75d22b" resname="Email">
         <source>Email</source>
