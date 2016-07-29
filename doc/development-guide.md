@@ -6,4 +6,6 @@ If you have any questions, please [open an ticket here](https://github.com/birem
 
 - [How to generate help messages in database to my new development](https://github.com/bireme/proethos2/blob/master/doc/how-to/how-to-generate-help-messages-in-database-to-my-new-development.md)
 - [How to generate new database initial data from my dev environment](https://github.com/bireme/proethos2/blob/master/doc/how-to/how-to-generate-new-database-initial-data-from-my-dev-environment.md)
+- [How to create translations](https://github.com/bireme/proethos2/blob/master/doc/how-to/how-to-create-translations.md)
+- [How to generate translation files](https://github.com/bireme/proethos2/blob/master/doc/how-to/how-to-generate-new-translation-files.md)
 - [How to translate](https://github.com/bireme/proethos2/blob/master/doc/how-to/how-to-translate.md)
