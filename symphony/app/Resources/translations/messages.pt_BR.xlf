@@ -1438,9 +1438,9 @@
         <source>Waiting for Committee</source>
         <target>Waiting for Committee</target>
       </trans-unit>
-      <trans-unit id="f13671fcc5e259f90cfbfc9b6bc42059dfb6b4b1" resname="Waiting Initial Avaliation">
-        <source>Waiting Initial Avaliation</source>
-        <target>Waiting Initial Avaliation</target>
+      <trans-unit id="f13671fcc5e259f90cfbfc9b6bc42059dfb6b4b1" resname="Waiting for Initial Avaliation">
+        <source>Waiting for Initial Avaliation</source>
+        <target>Waiting for Initial Avaliation</target>
       </trans-unit>
       <trans-unit id="5397e0583f14f6c88de06b1ef28f460a1fb5b0ae" resname="Yes">
         <source>Yes</source>

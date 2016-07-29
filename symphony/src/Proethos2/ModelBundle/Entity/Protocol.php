@@ -259,7 +259,7 @@ class Protocol extends Base
             case 'D': return "Draft"; break;
             case 'S': return "Submitted"; break;
             case 'R': return "Rejected"; break;
-            case 'I': return "Waiting Initial Avaliation"; break;
+            case 'I': return "Waiting for Initial Avaliation"; break;
             case 'E': return "Waiting for Committee"; break;
             case 'H': return "Scheduled"; break;
             case 'F': return "Exempted"; break;
