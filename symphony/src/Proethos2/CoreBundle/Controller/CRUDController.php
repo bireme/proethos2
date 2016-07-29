@@ -1110,7 +1110,7 @@ class CRUDController extends Controller
             ->setFrom($output['committee_email'])
             ->setTo($output['committee_email'])
             ->setBody(
-                $translator->trans("Hello! A message was sended to proethos2 administrator from plataform.") .
+                $translator->trans("Hello! A message was sent to proethos2 administrator from plataform.") .
                 "<br>" .
                 "<br><b>User</b>: " . $user->getUsername() . " (" . $user->getEmail() . ")" . 
                 "<br><b>Subject</b>: " . $post_data['subject'] . 

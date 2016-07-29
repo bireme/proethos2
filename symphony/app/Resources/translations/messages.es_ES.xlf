@@ -514,9 +514,9 @@
         <source>Health Condition or Problem Studied</source>
         <target>Health Condition or Problem Studied</target>
       </trans-unit>
-      <trans-unit id="42fdee43a9dd854954f5e7d30dee1b41cd8eea65" resname="Hello! A message was sended to proethos2 administrator from plataform.">
-        <source>Hello! A message was sended to proethos2 administrator from plataform.</source>
-        <target>Hello! A message was sended to proethos2 administrator from plataform.</target>
+      <trans-unit id="42fdee43a9dd854954f5e7d30dee1b41cd8eea65" resname="Hello! A message was sent to proethos2 administrator from plataform.">
+        <source>Hello! A message was sent to proethos2 administrator from plataform.</source>
+        <target>Hello! A message was sent to proethos2 administrator from plataform.</target>
       </trans-unit>
       <trans-unit id="2a2d31d4a1006a008f0f0598abd7579d9b691a0e" resname="Hello! You ask for a new password in Proethos2 platform.">
         <source>Hello! You ask for a new password in Proethos2 platform.</source>
@@ -602,9 +602,9 @@
         <source>Institution</source>
         <target>Institution</target>
       </trans-unit>
-      <trans-unit id="797a79ef04b95656866c96fddb4ea2e79c4e3adf" resname="Instructions has been sended to your email.">
-        <source>Instructions has been sended to your email.</source>
-        <target>Instructions has been sended to your email.</target>
+      <trans-unit id="797a79ef04b95656866c96fddb4ea2e79c4e3adf" resname="Instructions has been sent to your email.">
+        <source>Instructions has been sent to your email.</source>
+        <target>Instructions has been sent to your email.</target>
       </trans-unit>
       <trans-unit id="952103bb8973f96d62678656499879f262c97a6b" resname="Interventions">
         <source>Interventions</source>

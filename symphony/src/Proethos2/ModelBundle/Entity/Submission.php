@@ -81,10 +81,10 @@ class Submission extends Base
     /**
      * @var boolean
      *
-     * @ORM\Column(name="is_sended", type="boolean")
+     * @ORM\Column(name="is_sent", type="boolean")
      * @Assert\NotBlank 
      */
-    private $is_sended = false;
+    private $is_sent = false;
 
     /**
      * @var Team
@@ -1409,7 +1409,7 @@ class Submission extends Base
      */
     public function setIsSended($isSended)
     {
-        $this->is_sended = $isSended;
+        $this->is_sent = $isSended;
 
         return $this;
     }
@@ -1421,7 +1421,7 @@ class Submission extends Base
      */
     public function getIsSended()
     {
-        return $this->is_sended;
+        return $this->is_sent;
     }
 
     /**
