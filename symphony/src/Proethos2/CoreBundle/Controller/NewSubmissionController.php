@@ -1039,7 +1039,7 @@ class NewSubmissionController extends Controller
                     return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
 
                 } else {
-                    $session->getFlashBag()->add('error', $translator->trans("You must to accept the terms and conditions."));
+                    $session->getFlashBag()->add('error', $translator->trans("You must accept the terms and conditions."));
                 }
             } else {
                 $session->getFlashBag()->add('error', $translator->trans('You have pending reviews.'));

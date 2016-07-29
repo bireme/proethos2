@@ -1462,9 +1462,9 @@
         <source>You have pending reviews.</source>
         <target>You have pending reviews.</target>
       </trans-unit>
-      <trans-unit id="76c48c15ef3099f27e1167f4de37efe8be720e6d" resname="You must to accept the terms and conditions.">
-        <source>You must to accept the terms and conditions.</source>
-        <target>You must to accept the terms and conditions.</target>
+      <trans-unit id="76c48c15ef3099f27e1167f4de37efe8be720e6d" resname="You must accept the terms and conditions.">
+        <source>You must accept the terms and conditions.</source>
+        <target>You must accept the terms and conditions.</target>
       </trans-unit>
       <trans-unit id="5ad5f44930ed645f66efbc0a94ebd916eaab18aa" resname="You need to upload a draft opinion.">
         <source>You need to upload a draft opinion.</source>
