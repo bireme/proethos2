@@ -642,8 +642,8 @@
         <source>Last protocols that you reviewed</source>
         <target>Últimos protocolos em que você é revisor</target>
       </trans-unit>
-      <trans-unit id="81c76580e9d7a97829db8ed5131b17f32315859d" resname="MAximum Age">
-        <source>MAximum Age</source>
+      <trans-unit id="81c76580e9d7a97829db8ed5131b17f32315859d" resname="Maximum Age">
+        <source>Maximum Age</source>
         <target>Idade Máxima</target>
       </trans-unit>
       <trans-unit id="c1fed26979361d06c848030502536d84a52e6a13" resname="Main Type">

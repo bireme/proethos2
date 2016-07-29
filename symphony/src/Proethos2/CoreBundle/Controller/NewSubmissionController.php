@@ -886,7 +886,7 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('MAximum Age');
+        $text = $translator->trans('Maximum Age');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getMaximumAge())) {
             $item = array('text' => $text, 'status' => false);
