@@ -946,9 +946,9 @@
         <source>Protocol was rejected by</source>
         <target>Protocol was rejected by</target>
       </trans-unit>
-      <trans-unit id="c36e107b78ccd5fad78465e98011056811740fdf" resname="Protocol was send to comittee to initial analysis.">
-        <source>Protocol was send to comittee to initial analysis.</source>
-        <target>Protocol was send to comittee to initial analysis.</target>
+      <trans-unit id="c36e107b78ccd5fad78465e98011056811740fdf" resname="Protocol was sent to comittee to initial analysis.">
+        <source>Protocol was sent to comittee to initial analysis.</source>
+        <target>Protocol was sent to comittee to initial analysis.</target>
       </trans-unit>
       <trans-unit id="2c31fdf7da88a984c8619d5d6c9da962d8161804" resname="Protocol was setted as exempt.">
         <source>Protocol was setted as exempt.</source>

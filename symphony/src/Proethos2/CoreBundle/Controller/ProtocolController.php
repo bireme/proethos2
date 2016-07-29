@@ -252,7 +252,7 @@ class ProtocolController extends Controller
                     // setting protocool history
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
-                    $protocol_history->setMessage($translator->trans("Protocol was send to comittee to initial analysis by %user%.", array("%user%" => $user->getUsername())));
+                    $protocol_history->setMessage($translator->trans("Protocol was sent to comittee to initial analysis by %user%.", array("%user%" => $user->getUsername())));
                     $em->persist($protocol_history);
                     $em->flush();
 
