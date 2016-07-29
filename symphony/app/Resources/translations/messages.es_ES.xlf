@@ -1450,9 +1450,9 @@
         <source>You cannot edit this protocol</source>
         <target>You cannot edit this protocol</target>
       </trans-unit>
-      <trans-unit id="43f766b5751adb2906ca4b6d253c2ff866cc5edb" resname="You don't send any protocols yet.">
-        <source>You don't send any protocols yet.</source>
-        <target>You don't send any protocols yet.</target>
+      <trans-unit id="43f766b5751adb2906ca4b6d253c2ff866cc5edb" resname="You haven't submitted any protocols yet.">
+        <source>You haven't submitted any protocols yet.</source>
+        <target>You haven't submitted any protocols yet.</target>
       </trans-unit>
       <trans-unit id="d0983c61f5bf710d4e7405c0cf5229c8e68c485b" resname="You dont have access to do this">
         <source>You dont have access to do this</source>
