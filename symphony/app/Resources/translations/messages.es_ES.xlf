@@ -150,9 +150,9 @@
         <source>Choose reviewers</source>
         <target>Choose reviewers</target>
       </trans-unit>
-      <trans-unit id="91e5b15fd48c5ec8c528902bef7ac825c71e5a3b" resname="Cientific Title">
-        <source>Cientific Title</source>
-        <target>Cientific Title</target>
+      <trans-unit id="91e5b15fd48c5ec8c528902bef7ac825c71e5a3b" resname="Scientific Title">
+        <source>Scientific Title</source>
+        <target>Scientific Title</target>
       </trans-unit>
       <trans-unit id="eaafac5aa50ceb3b64396e080598a492a9cbecf5" resname="Clinic study">
         <source>Clinic study</source>
@@ -1118,13 +1118,13 @@
         <source>Scheduled</source>
         <target>Scheduled</target>
       </trans-unit>
-      <trans-unit id="285fdbd846f72839408ffbe0fbd374e7ce252d85" resname="Scientific Contact">
-        <source>Scientific Contact</source>
-        <target>Scientific Contact</target>
+      <trans-unit id="285fdbd846f72839408ffbe0fbd374e7ce252d85" resname="Sscientific Contact">
+        <source>Sscientific Contact</source>
+        <target>Sscientific Contact</target>
       </trans-unit>
-      <trans-unit id="4f9d11bcc9be784e7e05c8309de566ebe4087f5d" resname="Scientific Validity">
-        <source>Scientific Validity</source>
-        <target>Scientific Validity</target>
+      <trans-unit id="4f9d11bcc9be784e7e05c8309de566ebe4087f5d" resname="Sscientific Validity">
+        <source>Sscientific Validity</source>
+        <target>Sscientific Validity</target>
       </trans-unit>
       <trans-unit id="bce06414177f72ab70e6387b6af9f8ceef0d6049" resname="Search">
         <source>Search</source>

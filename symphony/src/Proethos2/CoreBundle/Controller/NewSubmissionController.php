@@ -42,7 +42,7 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
             
             // checking required files
-            foreach(array('cientific_title', 'public_title', 'is_clinical_trial') as $field) {
+            foreach(array('scientific_title', 'public_title', 'is_clinical_trial') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
                     return array();
@@ -58,7 +58,7 @@ class NewSubmissionController extends Controller
             $submission = new Submission();
             $submission->setIsClinicalTrial(($post_data['is_clinical_trial'] == 'yes') ? true : false);
             $submission->setPublicTitle($post_data['public_title']);
-            $submission->setCientificTitle($post_data['cientific_title']);
+            $submission->setScientificTitle($post_data['scientific_title']);
             $submission->setTitleAcronyms($post_data['title_acronyms']);
             $submission->setProtocol($protocol);
             $submission->setNumber(1);
@@ -113,7 +113,7 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
             
             // checking required files
-            foreach(array('cientific_title', 'public_title', 'is_clinical_trial') as $field) {
+            foreach(array('scientific_title', 'public_title', 'is_clinical_trial') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
                     return array();
@@ -122,7 +122,7 @@ class NewSubmissionController extends Controller
 
             $submission->setIsClinicalTrial(($post_data['is_clinical_trial'] == 'yes') ? true : false);
             $submission->setPublicTitle($post_data['public_title']);
-            $submission->setCientificTitle($post_data['cientific_title']);
+            $submission->setScientificTitle($post_data['scientific_title']);
             $submission->setTitleAcronyms($post_data['title_acronyms']);
             
             $em->persist($submission);
@@ -635,7 +635,7 @@ class NewSubmissionController extends Controller
             // var_dump($post_data);die;
             
             // checking required files
-            $required_fields = array('bibliography', 'scientific-contact', 'prior-ethical-approval');
+            $required_fields = array('bibliography', 'sscientific-contact', 'prior-ethical-approval');
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
@@ -648,7 +648,7 @@ class NewSubmissionController extends Controller
             $em->persist($submission);
             $em->flush();
 
-            $submission->setScientificContact($post_data['scientific-contact']);                   
+            $submission->setSscientificContact($post_data['sscientific-contact']);                   
             $submission->setPriorEthicalApproval(($post_data['prior-ethical-approval'] == 'Y') ? true : false);                   
 
             $em = $this->getDoctrine()->getManager();
@@ -958,9 +958,9 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
         
-        $text = $translator->trans('Scientific Contact');
+        $text = $translator->trans('Sscientific Contact');
         $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getScientificContact())) {
+        if(empty($submission->getSscientificContact())) {
             $item = array('text' => $text, 'status' => false);
             $final_status = false;
         }

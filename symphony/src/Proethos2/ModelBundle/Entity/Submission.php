@@ -58,10 +58,10 @@ class Submission extends Base
     /**
      * @var string
      *
-     * @ORM\Column(name="cientific_title", type="string", length=255)
+     * @ORM\Column(name="scientific_title", type="string", length=255)
      * @Assert\NotBlank 
      */
-    private $cientificTitle;
+    private $scientificTitle;
     
     /**
      * @var string
@@ -309,7 +309,7 @@ class Submission extends Base
      *
      * @ORM\Column(type="text", nullable=true)
      */
-    private $scientific_contact;
+    private $sscientific_contact;
     
     /**
      * @var boolean
@@ -416,27 +416,27 @@ class Submission extends Base
     }
 
     /**
-     * Set cientificTitle
+     * Set scientificTitle
      *
-     * @param string $cientificTitle
+     * @param string $scientificTitle
      *
      * @return Submission
      */
-    public function setCientificTitle($cientificTitle)
+    public function setScientificTitle($scientificTitle)
     {
-        $this->cientificTitle = $cientificTitle;
+        $this->scientificTitle = $scientificTitle;
 
         return $this;
     }
 
     /**
-     * Get cientificTitle
+     * Get scientificTitle
      *
      * @return string
      */
-    public function getCientificTitle()
+    public function getScientificTitle()
     {
-        return $this->cientificTitle;
+        return $this->scientificTitle;
     }
 
     /**
@@ -1213,27 +1213,27 @@ class Submission extends Base
     }
 
     /**
-     * Set scientificContact
+     * Set sscientificContact
      *
-     * @param string $scientificContact
+     * @param string $sscientificContact
      *
      * @return Submission
      */
-    public function setScientificContact($scientificContact)
+    public function setSscientificContact($sscientificContact)
     {
-        $this->scientific_contact = $scientificContact;
+        $this->sscientific_contact = $sscientificContact;
 
         return $this;
     }
 
     /**
-     * Get scientificContact
+     * Get sscientificContact
      *
      * @return string
      */
-    public function getScientificContact()
+    public function getSscientificContact()
     {
-        return $this->scientific_contact;
+        return $this->sscientific_contact;
     }
 
     /**

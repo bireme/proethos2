@@ -57,7 +57,7 @@ class ProtocolRevision extends Base
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $scientific_validity;
+    private $sscientific_validity;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -246,27 +246,27 @@ class ProtocolRevision extends Base
     }
 
     /**
-     * Set scientificValidity
+     * Set sscientificValidity
      *
-     * @param string $scientificValidity
+     * @param string $sscientificValidity
      *
      * @return ProtocolRevision
      */
-    public function setScientificValidity($scientificValidity)
+    public function setSscientificValidity($sscientificValidity)
     {
-        $this->scientific_validity = $scientificValidity;
+        $this->sscientific_validity = $sscientificValidity;
 
         return $this;
     }
 
     /**
-     * Get scientificValidity
+     * Get sscientificValidity
      *
      * @return string
      */
-    public function getScientificValidity()
+    public function getSscientificValidity()
     {
-        return $this->scientific_validity;
+        return $this->sscientific_validity;
     }
 
     /**

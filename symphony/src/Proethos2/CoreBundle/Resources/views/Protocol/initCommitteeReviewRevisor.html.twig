@@ -47,9 +47,9 @@
                 <div class='row'>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="textarea-scientific-validity">{% trans %}Scientific Validity{% endtrans %}:</label> 
+                            <label for="textarea-sscientific-validity">{% trans %}Sscientific Validity{% endtrans %}:</label> 
                             <a href="{{ path("crud_admin_help_show", {help_id: 115} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <textarea class="form-control" id='textarea-scientific-validity' name="scientific-validity" {% if protocol_revision.isFinalRevision %}readonly{% endif %}>{{ protocol_revision.scientificValidity }}</textarea>
+                            <textarea class="form-control" id='textarea-sscientific-validity' name="sscientific-validity" {% if protocol_revision.isFinalRevision %}readonly{% endif %}>{{ protocol_revision.sscientificValidity }}</textarea>
                         </div>
                     </div>
                 </div>

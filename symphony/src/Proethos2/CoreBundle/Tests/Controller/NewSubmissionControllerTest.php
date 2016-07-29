@@ -44,7 +44,7 @@ class NewSubmissionControllerTest extends WebTestCase
         
         $client->request('POST', $route, array(
             "is_clinical_trial" => "no",
-            "cientific_title" => "Cientitif Title",
+            "scientific_title" => "Cientitif Title",
             "public_title" => "Public Title",
             "title_acronyms" => "Title Acronymous",
         ));
@@ -77,7 +77,7 @@ class NewSubmissionControllerTest extends WebTestCase
         
         $client->request('POST', $route, array(
             "is_clinical_trial" => "no",
-            "cientific_title" => "Cientitif Title",
+            "scientific_title" => "Cientitif Title",
             "public_title" => "Public Title",
             "title_acronyms" => "Title Acronymous",
         ));
@@ -229,7 +229,7 @@ class NewSubmissionControllerTest extends WebTestCase
         $client->request('POST', $route, array(
             "submission_id" => $submission_id,
             "bibliography" => "Bibliography",
-            "scientific-contact" => "Scientific Contact",
+            "sscientific-contact" => "Sscientific Contact",
             "prior-ethical-approval" => "Y"
         ));
 
