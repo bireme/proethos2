@@ -706,9 +706,9 @@
         <source>Methodology</source>
         <target>Methodology</target>
       </trans-unit>
-      <trans-unit id="d2158eefb1ab654ea6130012320ed87e370f41b3" resname="Mettings">
-        <source>Mettings</source>
-        <target>Mettings</target>
+      <trans-unit id="d2158eefb1ab654ea6130012320ed87e370f41b3" resname="Meetings">
+        <source>Meetings</source>
+        <target>Meetings</target>
       </trans-unit>
       <trans-unit id="b93912e1b0e723ebedacd2eafe94ca333f944a96" resname="Minimum Age">
         <source>Minimum Age</source>
