@@ -358,9 +358,9 @@
         <source>Ethical Considerations</source>
         <target>Ethical Considerations</target>
       </trans-unit>
-      <trans-unit id="2fda615e1c5f0ef2a98ec82ddedd3b4de24bb64a" resname="Excempt">
-        <source>Excempt</source>
-        <target>Excempt</target>
+      <trans-unit id="2fda615e1c5f0ef2a98ec82ddedd3b4de24bb64a" resname="Exempt">
+        <source>Exempt</source>
+        <target>Exempt</target>
       </trans-unit>
       <trans-unit id="67690c75c03cd0e07da2b8ad46be269eb2c39a62" resname="Exclude user">
         <source>Exclude user</source>
@@ -950,9 +950,9 @@
         <source>Protocol was send to comittee to initial analysis.</source>
         <target>Protocol was send to comittee to initial analysis.</target>
       </trans-unit>
-      <trans-unit id="2c31fdf7da88a984c8619d5d6c9da962d8161804" resname="Protocol was setted as excempt.">
-        <source>Protocol was setted as excempt.</source>
-        <target>Protocol was setted as excempt.</target>
+      <trans-unit id="2c31fdf7da88a984c8619d5d6c9da962d8161804" resname="Protocol was setted as exempt.">
+        <source>Protocol was setted as exempt.</source>
+        <target>Protocol was setted as exempt.</target>
       </trans-unit>
       <trans-unit id="2a6e3082f7bd2a56b001fbb1624e361e5599002d" resname="Protocols">
         <source>Protocols</source>
@@ -1230,9 +1230,9 @@
         <source>Send to ethical revision</source>
         <target>Send to ethical revision</target>
       </trans-unit>
-      <trans-unit id="cf2d264d06c882fbaf261c20a354fdd5914c656e" resname="Set protocol as excempt">
-        <source>Set protocol as excempt</source>
-        <target>Set protocol as excempt</target>
+      <trans-unit id="cf2d264d06c882fbaf261c20a354fdd5914c656e" resname="Set protocol as exempt">
+        <source>Set protocol as exempt</source>
+        <target>Set protocol as exempt</target>
       </trans-unit>
       <trans-unit id="133cade7429c62bc10632a2e8dec0d499ed864de" resname="Show Protocol">
         <source>Show Protocol</source>

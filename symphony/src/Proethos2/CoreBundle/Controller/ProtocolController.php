@@ -448,7 +448,7 @@ class ProtocolController extends Controller
                 return $this->redirectToRoute('protocol_initial_committee_review', array('protocol_id' => $protocol->getId()), 301);
             }
 
-            if($post_data['send-to'] == "excempt") {
+            if($post_data['send-to'] == "exempt") {
 
                 $file = $request->files->get('draft-opinion');
                 if(!empty($file)) {
@@ -479,7 +479,7 @@ class ProtocolController extends Controller
                 // setting protocool history
                 $protocol_history = new ProtocolHistory();
                 $protocol_history->setProtocol($protocol);
-                $protocol_history->setMessage($translator->trans("Protocol was setted as excempt."));
+                $protocol_history->setMessage($translator->trans("Protocol was setted as exempt."));
                 $em->persist($protocol_history);
                 $em->flush();
 
@@ -761,7 +761,7 @@ class ProtocolController extends Controller
             'N' => $translator->trans('Not approved'),
             'C' => $translator->trans('Conditional approval'),
             'X' => $translator->trans('Expedite approval'),
-            'F' => $translator->trans('Excempt'),
+            'F' => $translator->trans('Exempt'),
         );
         $output['finish_options'] = $finish_options;
 

@@ -57,7 +57,7 @@
 
             <div class='row'>
                 <div class='submission-button-controls col-md-12'>
-                    <button type="button" class='btn btn-success' data-toggle='modal' data-target='#modal-confirm-excempt'>{% trans %}Set protocol as excempt{% endtrans %}</button>
+                    <button type="button" class='btn btn-success' data-toggle='modal' data-target='#modal-confirm-exempt'>{% trans %}Set protocol as exempt{% endtrans %}</button>
                     <button type="submit" class='btn btn-primary' id='button-ethical-revision'>{% trans %}Send to Ethical Revisision{% endtrans %}</button>
                 </div>
             </div>
@@ -65,7 +65,7 @@
     </div>
 
     <!-- Modal confirm -->
-    <div class="modal fade" id="modal-confirm-excempt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="modal-confirm-exempt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 
@@ -74,11 +74,11 @@
                         <h4 class="modal-title" id="myModalLabel">{% trans %}Confirm?{% endtrans %}</h4>
                     </div>
                     <div class="modal-body">
-                        <p>{% trans %}Are you sure that you want to set this protocol as Excempt?{% endtrans %}</p>
+                        <p>{% trans %}Are you sure that you want to set this protocol as Exempt?{% endtrans %}</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
-                        <button type="submit" class="btn btn-success" id='button-excempt-protocol'>{% trans %}Confirm{% endtrans %}</button>
+                        <button type="submit" class="btn btn-success" id='button-exempt-protocol'>{% trans %}Confirm{% endtrans %}</button>
                     </div>
                 </form>
             </div>
@@ -90,8 +90,8 @@
 {% block script %}
     <script>
         $(function(){
-            $("body").on("click", "#button-excempt-protocol", function(e){
-                $("#input-send-to").val('excempt');
+            $("body").on("click", "#button-exempt-protocol", function(e){
+                $("#input-send-to").val('exempt');
                 $("#form-action").submit();
             });
             
