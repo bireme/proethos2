@@ -1102,9 +1102,9 @@
         <source>Save and send to meeting</source>
         <target>Save and send to meeting</target>
       </trans-unit>
-      <trans-unit id="e9189e9cb4755df302740543271da2fdd3fb58d7" resname="Save and wait revisions">
-        <source>Save and wait revisions</source>
-        <target>Save and wait revisions</target>
+      <trans-unit id="e9189e9cb4755df302740543271da2fdd3fb58d7" resname="Save and wait for comments">
+        <source>Save and wait for comments</source>
+        <target>Save and wait for comments</target>
       </trans-unit>
       <trans-unit id="ab2155f76e6b2408c0665d35fb34cd4f7127565f" resname="Save decision and finish process">
         <source>Save decision and finish process</source>
