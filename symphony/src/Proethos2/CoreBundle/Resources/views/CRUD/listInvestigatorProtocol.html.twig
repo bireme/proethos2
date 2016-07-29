@@ -37,7 +37,7 @@
                                 <option value="S" {% if app.request.get('status') == "S" %}selected{% endif %}>{% trans %}Submitted{% endtrans %}</option>
                                 <option value="R" {% if app.request.get('status') == "R" %}selected{% endif %}>{% trans %}Rejected{% endtrans %}</option>
                                 <option value="I" {% if app.request.get('status') == "I" %}selected{% endif %}>{% trans %}Waiting Initial Avaliation{% endtrans %}</option>
-                                <option value="E" {% if app.request.get('status') == "E" %}selected{% endif %}>{% trans %}Waiting Committee{% endtrans %}</option>
+                                <option value="E" {% if app.request.get('status') == "E" %}selected{% endif %}>{% trans %}Waiting for Committee{% endtrans %}</option>
                                 <option value="H" {% if app.request.get('status') == "H" %}selected{% endif %}>{% trans %}Scheduled{% endtrans %}</option>
                             </select>
                         </div>

@@ -1434,9 +1434,9 @@
         <source>Users</source>
         <target>Users</target>
       </trans-unit>
-      <trans-unit id="1a4a45f997d0b8a6818841fb3ae7c2e5a5b044e0" resname="Waiting Committee">
-        <source>Waiting Committee</source>
-        <target>Waiting Committee</target>
+      <trans-unit id="1a4a45f997d0b8a6818841fb3ae7c2e5a5b044e0" resname="Waiting for Committee">
+        <source>Waiting for Committee</source>
+        <target>Waiting for Committee</target>
       </trans-unit>
       <trans-unit id="f13671fcc5e259f90cfbfc9b6bc42059dfb6b4b1" resname="Waiting Initial Avaliation">
         <source>Waiting Initial Avaliation</source>
