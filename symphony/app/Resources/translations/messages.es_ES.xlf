@@ -1318,9 +1318,9 @@
         <source>Terms and conditions</source>
         <target>Terms and conditions</target>
       </trans-unit>
-      <trans-unit id="8b9e8b8f8497f356e8a8b29f3023f25e026ec1d7" resname="There is no help message setted to this field.">
-        <source>There is no help message setted to this field.</source>
-        <target>There is no help message setted to this field.</target>
+      <trans-unit id="8b9e8b8f8497f356e8a8b29f3023f25e026ec1d7" resname="There is no help message set for this field.">
+        <source>There is no help message set for this field.</source>
+        <target>There is no help message set for this field.</target>
       </trans-unit>
       <trans-unit id="8989086d26bf60fdaf33d9abd8dbbd528f02ecaa" resname="Third step saved with sucess.">
         <source>Third step saved with sucess.</source>
