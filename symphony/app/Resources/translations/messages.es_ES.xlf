@@ -1218,9 +1218,9 @@
         <source>Send protocol revision</source>
         <target>Send protocol revision</target>
       </trans-unit>
-      <trans-unit id="b120b942e05ae816567852a68a0b1f57cbc19b11" resname="Send to Ethical Revisision">
-        <source>Send to Ethical Revisision</source>
-        <target>Send to Ethical Revisision</target>
+      <trans-unit id="b120b942e05ae816567852a68a0b1f57cbc19b11" resname="Send to Ethical Review">
+        <source>Send to Ethical Review</source>
+        <target>Send to Ethical Review</target>
       </trans-unit>
       <trans-unit id="d7ec62cd2e6527cce3320a981c4467ac06d66775" resname="Send to committee to decide">
         <source>Send to committee to decide</source>
