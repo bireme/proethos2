@@ -66,21 +66,21 @@
         <source>All</source>
         <target>All</target>
       </trans-unit>
-      <trans-unit id="1c0e9d6bc8e58228e99e1d33bf5dd929f99e2497" resname="Ammendment submitted with success!">
-        <source>Ammendment submitted with success!</source>
-        <target>Ammendment submitted with success!</target>
+      <trans-unit id="1c0e9d6bc8e58228e99e1d33bf5dd929f99e2497" resname="Amendment submitted with success!">
+        <source>Amendment submitted with success!</source>
+        <target>Amendment submitted with success!</target>
       </trans-unit>
-      <trans-unit id="28b6dc3117bb8ce7983dad020db1341969925384" resname="Analyse">
-        <source>Analyse</source>
-        <target>Analyse</target>
+      <trans-unit id="28b6dc3117bb8ce7983dad020db1341969925384" resname="Analyze">
+        <source>Analyze</source>
+        <target>Analyze</target>
       </trans-unit>
-      <trans-unit id="6924394d1fa6a73b62d39a03fb63004884731edd" resname="Analyse Protocol">
-        <source>Analyse Protocol</source>
-        <target>Analyse Protocol</target>
+      <trans-unit id="6924394d1fa6a73b62d39a03fb63004884731edd" resname="Analyze Protocol">
+        <source>Analyze Protocol</source>
+        <target>Analyze Protocol</target>
       </trans-unit>
-      <trans-unit id="dfbc68d7f5cd69d472b3763b07f6a4ccd4c68639" resname="Analyse protocol">
-        <source>Analyse protocol</source>
-        <target>Analyse protocol</target>
+      <trans-unit id="dfbc68d7f5cd69d472b3763b07f6a4ccd4c68639" resname="Analyze protocol">
+        <source>Analyze protocol</source>
+        <target>Analyze protocol</target>
       </trans-unit>
       <trans-unit id="a4b8975b92437556355f31800806fc20bb9ca19d" resname="Analysis Plan">
         <source>Analysis Plan</source>
@@ -146,9 +146,9 @@
         <source>Check</source>
         <target>Check</target>
       </trans-unit>
-      <trans-unit id="0b555319b9160aac796469a9bd0fbeac2e0188fd" resname="Choose relators">
-        <source>Choose relators</source>
-        <target>Choose relators</target>
+      <trans-unit id="0b555319b9160aac796469a9bd0fbeac2e0188fd" resname="Choose reviewers">
+        <source>Choose reviewers</source>
+        <target>Choose reviewers</target>
       </trans-unit>
       <trans-unit id="91e5b15fd48c5ec8c528902bef7ac825c71e5a3b" resname="Cientific Title">
         <source>Cientific Title</source>
@@ -1038,13 +1038,13 @@
         <source>Rejected</source>
         <target>Rejected</target>
       </trans-unit>
-      <trans-unit id="0e8d244caddb851b4d3c7992a62110dab1ae94ab" resname="Relator Review">
-        <source>Relator Review</source>
-        <target>Relator Review</target>
+      <trans-unit id="0e8d244caddb851b4d3c7992a62110dab1ae94ab" resname="Reviewer Review">
+        <source>Reviewer Review</source>
+        <target>Reviewer Review</target>
       </trans-unit>
-      <trans-unit id="c93c168f6a1f6b2b934990f4be0a6d03fc3310ab" resname="Relators">
-        <source>Relators</source>
-        <target>Relators</target>
+      <trans-unit id="c93c168f6a1f6b2b934990f4be0a6d03fc3310ab" resname="Reviewers">
+        <source>Reviewers</source>
+        <target>Reviewers</target>
       </trans-unit>
       <trans-unit id="8e3396f89515f442389f76203853468f9afa8e95" resname="Remove this investigator.">
         <source>Remove this investigator.</source>

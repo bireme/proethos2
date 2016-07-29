@@ -45,27 +45,27 @@ class ProtocolControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
-    public function testAnalyseProtocolGET()
+    public function testAnalyzeProtocolGET()
     {
         // getting last id
         $last_protocol = end($this->protocol_repository->findAll());
         $protocol_id = $last_protocol->getId();
 
         $client = $this->client;
-        $route = $client->getContainer()->get('router')->generate('protocol_analyse_protocol', array("protocol_id" => $protocol_id), false);
+        $route = $client->getContainer()->get('router')->generate('protocol_analyze_protocol', array("protocol_id" => $protocol_id), false);
         
         $client->request('GET', $route);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
-    public function testAnalyseProtocolPOST()
+    public function testAnalyzeProtocolPOST()
     {
         // getting last id
         $last_protocol = end($this->protocol_repository->findAll());
         $protocol_id = $last_protocol->getId();
 
         $client = $this->client;
-        $route = $client->getContainer()->get('router')->generate('protocol_analyse_protocol', array("protocol_id" => $protocol_id), false);
+        $route = $client->getContainer()->get('router')->generate('protocol_analyze_protocol', array("protocol_id" => $protocol_id), false);
 
         $post_data = array(
             "is-reject" => "false",

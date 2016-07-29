@@ -119,10 +119,10 @@ class ProtocolController extends Controller
     }
 
     /**
-     * @Route("/protocol/{protocol_id}/analyse", name="protocol_analyse_protocol")
+     * @Route("/protocol/{protocol_id}/analyze", name="protocol_analyze_protocol")
      * @Template()
      */
-    public function analyseProtocolAction($protocol_id)
+    public function analyzeProtocolAction($protocol_id)
     {
         
         $output = array();
@@ -522,7 +522,7 @@ class ProtocolController extends Controller
         $submission = $protocol->getMainSubmission();
         $output['protocol'] = $protocol;
 
-        // gettings relators members
+        // gettings reviewers members
         $role_member_of_committee = $role_repository->findOneBy(array('slug' => 'member-of-committee'));
         $role_member_ad_hoc = $role_repository->findOneBy(array('slug' => 'member-ad-hoc'));
         

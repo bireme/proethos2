@@ -125,7 +125,7 @@ class MonitoringController extends Controller
                     $send = $this->get('mailer')->send($message);
                 }
                 
-                $session->getFlashBag()->add('success', $translator->trans("Ammendment submitted with success!"));
+                $session->getFlashBag()->add('success', $translator->trans("Amendment submitted with success!"));
                 return $this->redirectToRoute('submission_new_second_step', array('submission_id' => $new_submission->getId()), 301);
             
             } else {
@@ -311,7 +311,7 @@ class MonitoringController extends Controller
             }
             
             
-            $session->getFlashBag()->add('success', $translator->trans("Ammendment submitted with success!"));
+            $session->getFlashBag()->add('success', $translator->trans("Amendment submitted with success!"));
             return $this->redirectToRoute('crud_investigator_protocol_list', array(), 301);
         }
         

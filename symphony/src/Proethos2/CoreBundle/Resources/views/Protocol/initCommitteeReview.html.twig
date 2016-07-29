@@ -22,7 +22,7 @@
                 <a name='action'></a>
                 <div class='row'>
                     <div class="col-md-12">
-                        <h2 class='sub-header'>{% trans %}Choose relators{% endtrans %}:</h2>
+                        <h2 class='sub-header'>{% trans %}Choose reviewers{% endtrans %}:</h2>
                     </div>
                 </div>
 
@@ -39,7 +39,7 @@
 
             <div class='row'>
                 <div class="col-md-12">
-                    <h2 class='sub-header'>{% trans %}Relators{% endtrans %}:</h2>
+                    <h2 class='sub-header'>{% trans %}Reviewers{% endtrans %}:</h2>
                 </div>
             </div>
 
@@ -74,7 +74,7 @@
                                         
                                     </td> 
                                     <td>
-                                        <a href='{{ path("protocol_initial_committee_review_show_review", {protocol_id: protocol.id, protocol_revision_id: revision.id }) }}' data-toggle='modal' data-target='#modal-parecer-relator' class='btn btn-default btn-xs {% if not revision.decision %}disabled{% endif %}'><i class='glyphicon glyphicon-eye-open'></i></a>
+                                        <a href='{{ path("protocol_initial_committee_review_show_review", {protocol_id: protocol.id, protocol_revision_id: revision.id }) }}' data-toggle='modal' data-target='#modal-parecer-reviewer' class='btn btn-default btn-xs {% if not revision.decision %}disabled{% endif %}'><i class='glyphicon glyphicon-eye-open'></i></a>
                                         <a href='#' class='btn btn-default btn-xs disabled'><i class='glyphicon glyphicon-trash'></i></a>
                                     </td> 
                                 </tr>
@@ -119,7 +119,7 @@
         </form>
     </div>
 
-    <!-- Modal Select Relator -->
+    <!-- Modal Select Reviewer -->
     <div class="modal fade" id="modal-select-members-of-commitee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <form class='form' method="POST">
@@ -167,7 +167,7 @@
         </div>
     </div>
 
-    <!-- Modal Select Relator -->
+    <!-- Modal Select Reviewer -->
     <div class="modal fade" id="modal-select-members-ad-hoc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <form class='form' method="POST">
@@ -215,8 +215,8 @@
         </div>
     </div>
 
-    <!-- Modal Visualizar Parecer do Relator -->
-    <div class="modal fade" id="modal-parecer-relator" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <!-- Modal Visualizar Parecer do Reviewer -->
+    <div class="modal fade" id="modal-parecer-reviewer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content"></div>
         </div>
