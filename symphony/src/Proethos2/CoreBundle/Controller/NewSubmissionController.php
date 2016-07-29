@@ -910,7 +910,7 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('Inicial recruitment estimation date');
+        $text = $translator->trans('Inicial recruitment estimated date');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getRecruitmentInitDate())) {
             $item = array('text' => $text, 'status' => false);

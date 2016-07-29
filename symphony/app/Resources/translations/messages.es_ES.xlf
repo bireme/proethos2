@@ -574,9 +574,9 @@
         <source>Informed In</source>
         <target>Informed In</target>
       </trans-unit>
-      <trans-unit id="ece158efc43f1b408fea9c0d83da2060ff658711" resname="Inicial recruitment estimation date">
-        <source>Inicial recruitment estimation date</source>
-        <target>Inicial recruitment estimation date</target>
+      <trans-unit id="ece158efc43f1b408fea9c0d83da2060ff658711" resname="Inicial recruitment estimated date">
+        <source>Inicial recruitment estimated date</source>
+        <target>Inicial recruitment estimated date</target>
       </trans-unit>
       <trans-unit id="19682bdb9185a5fa9d763d414d0443d3a0bc2456" resname="Init">
         <source>Init</source>
