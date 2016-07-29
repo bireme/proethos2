@@ -38,9 +38,9 @@
         <source>Actions</source>
         <target>Actions</target>
       </trans-unit>
-      <trans-unit id="7873a3b8a11890d05e168ec2fe775a82c60d0d72" resname="Actions Protocol">
-        <source>Actions Protocol</source>
-        <target>Actions Protocol</target>
+      <trans-unit id="7873a3b8a11890d05e168ec2fe775a82c60d0d72" resname="Protocol options">
+        <source>Protocol options</source>
+        <target>Protocol options</target>
       </trans-unit>
       <trans-unit id="c6b2b26e21b9615365e63788354660b6bdc98179" resname="Active?">
         <source>Active?</source>
