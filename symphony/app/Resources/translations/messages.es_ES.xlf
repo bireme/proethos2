@@ -434,9 +434,9 @@
         <source>File uploaded with sucess.</source>
         <target>File uploaded with sucess.</target>
       </trans-unit>
-      <trans-unit id="a3cbb98ddf5ee976bc1c3be5221d66ce3ca2e867" resname="Filename">
-        <source>Filename</source>
-        <target>Filename</target>
+      <trans-unit id="a3cbb98ddf5ee976bc1c3be5221d66ce3ca2e867" resname="File name">
+        <source>File name</source>
+        <target>File name</target>
       </trans-unit>
       <trans-unit id="6664d7899b7c52a8a4d7103c48dce690debb61eb" resname="Fill with your registered email">
         <source>Fill with your registered email</source>
