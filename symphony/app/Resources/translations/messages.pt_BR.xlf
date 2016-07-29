@@ -1410,9 +1410,9 @@
         <source>User created with success.</source>
         <target>User created with success.</target>
       </trans-unit>
-      <trans-unit id="16e85e45d5230efa7f7c1135aa5dc7499db45fa7" resname="User created with success. Wait for your approval.">
-        <source>User created with success. Wait for your approval.</source>
-        <target>User created with success. Wait for your approval.</target>
+      <trans-unit id="16e85e45d5230efa7f7c1135aa5dc7499db45fa7" resname="User created with success. Wait for approval.">
+        <source>User created with success. Wait for approval.</source>
+        <target>User created with success. Wait for approval.</target>
       </trans-unit>
       <trans-unit id="e0e4ebff5200c40e7359f66bd05c69cba4554014" resname="User deleted with success.">
         <source>User deleted with success.</source>

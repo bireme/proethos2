@@ -411,7 +411,7 @@ class SecurityController extends Controller
             $em->persist($user);
             $em->flush();
 
-            $session->getFlashBag()->add('success', $translator->trans("User created with success. Wait for your approval."));
+            $session->getFlashBag()->add('success', $translator->trans("User created with success. Wait for approval."));
             return $this->redirectToRoute('home', array(), 301);
         }
 
