@@ -534,9 +534,9 @@
         <source>Help updated with success.</source>
         <target>Help updated with success.</target>
       </trans-unit>
-      <trans-unit id="8fe0af9ac5418a3ddcd45a7d2e222015587edbca" resname="Helps">
-        <source>Helps</source>
-        <target>Helps</target>
+      <trans-unit id="8fe0af9ac5418a3ddcd45a7d2e222015587edbca" resname="Help">
+        <source>Help</source>
+        <target>Help</target>
       </trans-unit>
       <trans-unit id="90ccd6497400b5576aeca1bd94af74aae1e0a250" resname="History">
         <source>History</source>
