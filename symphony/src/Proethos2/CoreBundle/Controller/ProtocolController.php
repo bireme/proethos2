@@ -666,7 +666,7 @@ class ProtocolController extends Controller
         $output['protocol_revision'] = $protocol_revision;
 
         if (!$protocol_revision) {
-            throw $this->createNotFoundException($translator->trans('You are not abble to edit this protocol'));
+            throw $this->createNotFoundException($translator->trans('You cannot edit this protocol'));
         }
 
         // checking if was a post request

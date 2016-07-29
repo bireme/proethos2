@@ -1446,9 +1446,9 @@
         <source>Yes</source>
         <target>Yes</target>
       </trans-unit>
-      <trans-unit id="2f484f2ffa2e250129ad9956b505d9ceb09ad3f2" resname="You are not abble to edit this protocol">
-        <source>You are not abble to edit this protocol</source>
-        <target>You are not abble to edit this protocol</target>
+      <trans-unit id="2f484f2ffa2e250129ad9956b505d9ceb09ad3f2" resname="You cannot edit this protocol">
+        <source>You cannot edit this protocol</source>
+        <target>You cannot edit this protocol</target>
       </trans-unit>
       <trans-unit id="43f766b5751adb2906ca4b6d253c2ff866cc5edb" resname="You don't send any protocols yet.">
         <source>You don't send any protocols yet.</source>
