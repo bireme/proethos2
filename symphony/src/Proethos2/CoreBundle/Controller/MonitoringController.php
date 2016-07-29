@@ -55,7 +55,7 @@ class MonitoringController extends Controller
             $post_data = $request->request->all();
             
             if(!$protocol->getMainSubmission()->isOwner($user)) {
-                throw $this->createNotFoundException($translator->trans('You don't have access to do this'));
+                throw $this->createNotFoundException($translator->trans('You don\'t have access to do this'));
             }
 
             // checking required files
@@ -171,7 +171,7 @@ class MonitoringController extends Controller
         }
 
         if(!$protocol->getMainSubmission()->isOwner($user)) {
-            throw $this->createNotFoundException($translator->trans('You don't have access to do this'));
+            throw $this->createNotFoundException($translator->trans('You don\'t have access to do this'));
         }
         
         $monitoring_action = $monitoring_action_repository->find($monitoring_action_id);
