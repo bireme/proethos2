@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.5.49, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: proethos2
+-- Host: 127.0.0.1    Database: proethos2
 -- ------------------------------------------------------
--- Server version   5.5.49-0ubuntu0.14.04.1
+-- Server version	5.5.49-0ubuntu0.14.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -21,7 +21,7 @@
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-REPLACE INTO `user` VALUES (1,31,'0000-00-00 00:00:00','0000-00-00 00:00:00','admin@fictional_email.com','$2y$13$.g4C4kS9JpPuX/HUABa/4.MAVK37X03n9/3gU5vMnoqvojDckYuG.','admin',1,'Proethos2 Admin','BIREME',NULL,0);
+REPLACE INTO `user` (`id`, `email`, `password`, `username`, `is_active`, `name`, `created`, `updated`, `institution`, `country_id`, `first_access`, `hashcode`) VALUES (1,'admin@proethos2.com','$2y$13$.g4C4kS9JpPuX/HUABa/4.MAVK37X03n9/3gU5vMnoqvojDckYuG.','admin',1,'Proethos2 Admin','0000-00-00 00:00:00','0000-00-00 00:00:00','BIREME',31,0,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-21 14:00:04
+-- Dump completed on 2016-08-01 11:17:32

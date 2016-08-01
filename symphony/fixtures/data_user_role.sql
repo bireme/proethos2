@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.5.49, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: proethos2
+-- Host: 127.0.0.1    Database: proethos2
 -- ------------------------------------------------------
--- Server version   5.5.49-0ubuntu0.14.04.1
+-- Server version	5.5.49-0ubuntu0.14.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -21,7 +21,7 @@
 
 LOCK TABLES `user_role` WRITE;
 /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
-REPLACE INTO `user_role` VALUES (1,1),(1,2),(1,3),(1,4),(1,5);
+REPLACE INTO `user_role` (`user_id`, `role_id`) VALUES (1,1),(1,2),(1,3),(1,4),(1,5);
 /*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-21 14:16:09
+-- Dump completed on 2016-08-01 11:17:32
