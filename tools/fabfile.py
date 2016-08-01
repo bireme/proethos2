@@ -17,6 +17,17 @@ def update():
             run("composer.phar update")
             
         with cd(env.symfony_path):
-            run("php app/console doctrine:schema:update --force")
-            run("php app/console proethos2:load-database-initial-data")
-            run("php app/console cache:clear --env=prod")
+            run("php5.6 app/console doctrine:schema:update --force")
+            run("php5.6 app/console proethos2:load-database-initial-data")
+            run("php5.6 app/console cache:clear --env=prod")
+
+def fast_update():
+
+    with prefix(". %s" % env.env_script):
+        with cd(env.path):
+            run("git pull origin master")
+            
+        with cd(env.symfony_path):
+            run("php5.6 app/console doctrine:schema:update --force")
+            run("php5.6 app/console proethos2:load-database-initial-data")
+            run("php5.6 app/console cache:clear --env=prod")
