@@ -50,7 +50,7 @@
       </trans-unit>
       <trans-unit id="dc9fddafc66c1d0c41a9e7bee52e2f2768b6e2b5" resname="About Project">
         <source>About Project</source>
-        <target state="new">About Project</target>
+        <target state="new">Sobre o projeto</target>
         <jms:reference-file line="24">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStepCreatedProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="21">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/meta.html.twig</jms:reference-file>
         <jms:reference-file line="22">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStep.html.twig</jms:reference-file>

@@ -50,47 +50,47 @@
       </trans-unit>
       <trans-unit id="dc9fddafc66c1d0c41a9e7bee52e2f2768b6e2b5" resname="About Project">
         <source>About Project</source>
-        <target state="new">About Project</target>
+        <target state="new">Acerca del proyecto</target>
         <jms:reference-file line="24">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStepCreatedProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="21">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/meta.html.twig</jms:reference-file>
         <jms:reference-file line="22">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d79da395b5d7a09c6439a5f2660d8c568186ab7e" resname="Abstract">
         <source>Abstract</source>
-        <target state="new">Abstract</target>
+        <target state="new">Resumen</target>
         <jms:reference-file line="825">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
         <jms:reference-file line="88">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
         <jms:reference-file line="63">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a2c288c09add9ba1b436a7cba3f8d678471e248d" resname="Abstract and Keywords">
         <source>Abstract and Keywords</source>
-        <target state="new">Abstract and Keywords</target>
+        <target state="new">Resumen y palabras clave</target>
         <jms:reference-file line="81">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f8305e030f96d910b8adfa5d7f1623ea1d07b001" resname="Accept Submission">
         <source>Accept Submission</source>
-        <target state="new">Accept Submission</target>
+        <target state="new">Aceptar presentación</target>
         <jms:reference-file line="50">./src/Proethos2/CoreBundle/Resources/views/Protocol/analyzeProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0182636f85cc5ca30cc8e676ea978384c7029bb8" resname="Accept as Notification">
         <source>Accept as Notification</source>
-        <target state="new">Accept as Notification</target>
+        <target state="new">Aceptar como notificación</target>
         <jms:reference-file line="66">./src/Proethos2/CoreBundle/Resources/views/Protocol/analyzeProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1b1726908c1c87c027d7f7456dc496ddd7d8fcd3" resname="Accepted in">
         <source>Accepted in</source>
-        <target state="new">Accepted in</target>
+        <target state="new">Aceptado en</target>
         <jms:reference-file line="64">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_header.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b6f3deb8c12e7733563bb0d1b73fc37691abc052" resname="Access the link below">
         <source>Access the link below</source>
-        <target state="new">Access the link below</target>
+        <target state="new">Acceda el enlace que sigue</target>
         <jms:reference-file line="184">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
         <jms:reference-file line="800">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="c3cd636a585b20c40ac2df5ffb403e83cb2eef51" resname="Actions">
         <source>Actions</source>
-        <target state="new">Actions</target>
+        <target state="new">Acciones</target>
         <jms:reference-file line="37">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
         <jms:reference-file line="36">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SixtyStep.html.twig</jms:reference-file>
         <jms:reference-file line="159">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
@@ -123,7 +123,7 @@
       </trans-unit>
       <trans-unit id="c6b2b26e21b9615365e63788354660b6bdc98179" resname="Active?">
         <source>Active?</source>
-        <target state="new">Active?</target>
+        <target state="new">Activo?</target>
         <jms:reference-file line="23">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateControlledListUploadTypeExtension.html.twig</jms:reference-file>
         <jms:reference-file line="63">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateControlledListClinicalTrialName.html.twig</jms:reference-file>
         <jms:reference-file line="53">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateControlledListRecruitmentStatus.html.twig</jms:reference-file>
@@ -139,28 +139,28 @@
       </trans-unit>
       <trans-unit id="81c0d915fa6d82fd30661c5e66e204cea52bb2b5" resname="Activity">
         <source>Activity</source>
-        <target state="new">Activity</target>
+        <target state="new">Actividad</target>
         <jms:reference-file line="164">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="157">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="61cc55aa0453184734c3fa0b621eda6fa874bd83" resname="Add">
         <source>Add</source>
-        <target state="new">Add</target>
+        <target state="new">Agregar</target>
         <jms:reference-file line="27">./src/Proethos2/CoreBundle/Resources/views/Monitoring/monitoringCreate.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e86236c36d191296130926022e655c7aca7ee34a" resname="Add a monitoring action">
         <source>Add a monitoring action</source>
-        <target state="new">Add a monitoring action</target>
+        <target state="new">Agregar una acción de monitoreo</target>
         <jms:reference-file line="92">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ecfe29ef8fcfc7c6552fb9793fd0884a7b9c0a8b" resname="Additional Information">
         <source>Additional Information</source>
-        <target state="new">Additional Information</target>
+        <target state="new">Información adicional</target>
         <jms:reference-file line="30">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/meta.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6a72085653e4c5be8c7640c868ef787cbcf063d1" resname="All">
         <source>All</source>
-        <target state="new">All</target>
+        <target state="new">Todo</target>
         <jms:reference-file line="35">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="35">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
       </trans-unit>
@@ -172,7 +172,7 @@
       </trans-unit>
       <trans-unit id="a4b8975b92437556355f31800806fc20bb9ca19d" resname="Analysis Plan">
         <source>Analysis Plan</source>
-        <target state="new">Analysis Plan</target>
+        <target state="new">Plan de análisis</target>
         <jms:reference-file line="126">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="239">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
@@ -194,18 +194,18 @@
       </trans-unit>
       <trans-unit id="a16a4eda7cb2c8e91d7edd25e809ae9d392c7498" resname="Answer">
         <source>Answer</source>
-        <target state="new">Answer</target>
+        <target state="new">Respuesta</target>
         <jms:reference-file line="21">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateCommitteeFaq.html.twig</jms:reference-file>
         <jms:reference-file line="100">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeFaq.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e0aafffa028c1a77c7cc61a286a8bfa21a85356c" resname="Answered">
         <source>Answered</source>
-        <target state="new">Answered</target>
+        <target state="new">Respondido</target>
         <jms:reference-file line="71">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="41b81eb8db1b97e812a8fc182e3a5b3ce0f3aacb" resname="Approved">
         <source>Approved</source>
-        <target state="new">Approved</target>
+        <target state="new">Aprobado</target>
         <jms:reference-file line="760">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="82a015d57a9b653f5938e233e81618c31955e00e" resname="Are you sure that you want to end this protocol evaluation?">
@@ -221,7 +221,7 @@
       </trans-unit>
       <trans-unit id="410bf23a3f080def9c7a976a16305bcde7943ed1" resname="Are you sure?">
         <source>Are you sure?</source>
-        <target state="new">Are you sure?</target>
+        <target state="new">Esta seguro?</target>
         <jms:reference-file line="10">./src/Proethos2/CoreBundle/Resources/views/CRUD/deleteCommitteeFaq.html.twig</jms:reference-file>
         <jms:reference-file line="10">./src/Proethos2/CoreBundle/Resources/views/CRUD/deleteCommitteeDocument.html.twig</jms:reference-file>
         <jms:reference-file line="10">./src/Proethos2/CoreBundle/Resources/views/CRUD/deleteCommitteeUser.html.twig</jms:reference-file>
@@ -229,22 +229,22 @@
       </trans-unit>
       <trans-unit id="e24e824b68118fff14de0778b82b4c9dbfb94b46" resname="Assigned">
         <source>Assigned</source>
-        <target state="new">Assigned</target>
+        <target state="new">Asignado</target>
         <jms:reference-file line="73">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="875e271607d431fe62a7af9ec0e009f087ae3cdd" resname="Attached Files">
         <source>Attached Files</source>
-        <target state="new">Attached Files</target>
+        <target state="new">Archivos adjuntos</target>
         <jms:reference-file line="36">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/meta.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5fda23d62015b99fb2a9f86b38bcdf2bdf7609c8" resname="Author">
         <source>Author</source>
-        <target state="new">Author</target>
+        <target state="new">Autor</target>
         <jms:reference-file line="165">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_another_infos.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="619d65e1ae1a2704aa306451ac2a75a0cde345a8" resname="Bibliography">
         <source>Bibliography</source>
-        <target state="new">Bibliography</target>
+        <target state="new">Bibliografía</target>
         <jms:reference-file line="953">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
         <jms:reference-file line="33">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/meta.html.twig</jms:reference-file>
         <jms:reference-file line="197">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
@@ -252,12 +252,12 @@
       </trans-unit>
       <trans-unit id="7aeba4cd15b1afc5015285c0854f0edae2380d36" resname="Budget">
         <source>Budget</source>
-        <target state="new">Budget</target>
+        <target state="new">Presupuesto</target>
         <jms:reference-file line="178">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b1e5da235d7d370c1a64e8c1181cecbe419bdbce" resname="Bugdet">
         <source>Bugdet</source>
-        <target state="new">Bugdet</target>
+        <target state="new">Presupuesto</target>
         <jms:reference-file line="75">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="78a686cf08932cc7fb538b158a0cb1a8e3e99d29" resname="Can you check and authorize his access?">
@@ -267,28 +267,28 @@
       </trans-unit>
       <trans-unit id="77dfd2135f4db726c47299bb55be26f7f4525a46" resname="Cancel">
         <source>Cancel</source>
-        <target state="new">Cancel</target>
+        <target state="new">Cancelar</target>
         <jms:reference-file line="100">./src/Proethos2/CoreBundle/Resources/views/Monitoring/monitoringCreateThatNotAmendment.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="28470c0b8f4ee501e5f9def0b06aa336ee72886e" resname="Change My Password">
         <source>Change My Password</source>
-        <target state="new">Change My Password</target>
+        <target state="new">Cambiar mi contraseña</target>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/Security/resetMyPassword.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="49289db43e663a3df5e2c70714722ecc54895565" resname="Change Password">
         <source>Change Password</source>
-        <target state="new">Change Password</target>
+        <target state="new">Cambiar contraseña</target>
         <jms:reference-file line="7">./src/Proethos2/CoreBundle/Resources/views/Security/changePassword.html.twig</jms:reference-file>
         <jms:reference-file line="58">./src/Proethos2/CoreBundle/Resources/views/Security/resetMyPassword.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="821d76a96c9c5f6aa5498616a2a7e3218962f4ba" resname="Change my Password">
         <source>Change my Password</source>
-        <target state="new">Change my Password</target>
+        <target state="new">Cambiar mi contraseña</target>
         <jms:reference-file line="45">./src/Proethos2/CoreBundle/Resources/views/Security/resetMyPassword.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4b5e84be0e45d1f4cc38276a4ec0e7fdea116bcf" resname="Check">
         <source>Check</source>
-        <target state="new">Check</target>
+        <target state="new">Revisar</target>
         <jms:reference-file line="35">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SeventhStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="802718b260cba37555c0799ad7c73f3a3bcd15df" resname="Choose reviewers">
@@ -298,7 +298,7 @@
       </trans-unit>
       <trans-unit id="a4781b4e531e406a69c0092ff5dcf176feecc6dd" resname="Clinical Trial">
         <source>Clinical Trial</source>
-        <target state="new">Clinical Trial</target>
+        <target state="new">Ensayo clínico</target>
         <jms:reference-file line="42">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStepCreatedProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="44">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStepCreatedProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="130">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
@@ -323,7 +323,7 @@
       </trans-unit>
       <trans-unit id="bbfa773e5a63a5ea58c9b6207e608ca0120e592a" resname="Close">
         <source>Close</source>
-        <target state="new">Close</target>
+        <target state="new">Cerrar</target>
         <jms:reference-file line="181">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
         <jms:reference-file line="105">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SixtyStep.html.twig</jms:reference-file>
         <jms:reference-file line="131">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SixtyStep.html.twig</jms:reference-file>
@@ -380,23 +380,23 @@
       </trans-unit>
       <trans-unit id="a91012d2bc0e6b884a40d22f02f6e2dc8e01a150" resname="Comment was created with sucess.">
         <source>Comment was created with sucess.</source>
-        <target state="new">Comment was created with sucess.</target>
+        <target state="new">Comentario creado exitosamente</target>
         <jms:reference-file line="65">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
         <jms:reference-file line="115">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="fce06e20e5f7f74aacccab40b59b75a56c8f7305" resname="Comments">
         <source>Comments</source>
-        <target state="new">Comments</target>
+        <target state="new">Comentarios</target>
         <jms:reference-file line="153">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_another_infos.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4c5fc09da89297883dd5bec04bb40aef96b22971" resname="Committee Screening">
         <source>Committee Screening</source>
-        <target state="new">Committee Screening</target>
+        <target state="new">Revisión del comité</target>
         <jms:reference-file line="32">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeScreening.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1798b3ba42ee08ea09d9720b2d9c0181abbfe3e4" resname="Completed">
         <source>Completed</source>
-        <target state="new">Completed</target>
+        <target state="new">Completado</target>
         <jms:reference-file line="136">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="febbc0987c35d472058acb5a5aa25326404ebd10" resname="Conditional approval">
@@ -417,7 +417,7 @@
       </trans-unit>
       <trans-unit id="04a212215ef9fbf686d280802eb81ee7a6e681cd" resname="Confirm">
         <source>Confirm</source>
-        <target state="new">Confirm</target>
+        <target state="new">Confirmar</target>
         <jms:reference-file line="132">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SixtyStep.html.twig</jms:reference-file>
         <jms:reference-file line="168">./src/Proethos2/CoreBundle/Resources/views/Monitoring/monitoringCreateThatNotAmendment.html.twig</jms:reference-file>
         <jms:reference-file line="81">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeScreening.html.twig</jms:reference-file>
@@ -426,7 +426,7 @@
       </trans-unit>
       <trans-unit id="c2d404cb7bad34de0af2136b8efa809ea96170fa" resname="Confirm Password">
         <source>Confirm Password</source>
-        <target state="new">Confirm Password</target>
+        <target state="new">Confirmar contraseña</target>
         <jms:reference-file line="29">./src/Proethos2/CoreBundle/Resources/views/Security/changePassword.html.twig</jms:reference-file>
         <jms:reference-file line="123">./src/Proethos2/CoreBundle/Resources/views/Security/newUser.html.twig</jms:reference-file>
       </trans-unit>
@@ -439,31 +439,31 @@
       </trans-unit>
       <trans-unit id="b37456c4530be810dc040f50da72eda09addfb0a" resname="Contact">
         <source>Contact</source>
-        <target state="new">Contact</target>
+        <target state="new">Contacto</target>
         <jms:reference-file line="44">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/CRUD/listContact.html.twig</jms:reference-file>
         <jms:reference-file line="11">./src/Proethos2/CoreBundle/Resources/views/CRUD/listContact.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b0dd615cbbdcbf21ffb72115599ca915634fcb85" resname="Contacts">
         <source>Contacts</source>
-        <target state="new">Contacts</target>
+        <target state="new">Contactos</target>
         <jms:reference-file line="41">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FifthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4f9be057f0ea5d2ba72fd2c810e8d7b9aa98b469" resname="Content">
         <source>Content</source>
-        <target state="new">Content</target>
+        <target state="new">Contenido</target>
         <jms:reference-file line="31">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateMeeting.html.twig</jms:reference-file>
         <jms:reference-file line="124">./src/Proethos2/CoreBundle/Resources/views/CRUD/listMeeting.html.twig</jms:reference-file>
         <jms:reference-file line="20">./src/Proethos2/CoreBundle/Resources/views/CRUD/showMeeting.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="dbdde514d0936490acaa48f4cd3708c58410a2da" resname="Cost description">
         <source>Cost description</source>
-        <target state="new">Cost description</target>
+        <target state="new">Descripción de costo</target>
         <jms:reference-file line="85">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d523ebbd10146cdfd39dee077f04c9d08468d0bc" resname="Country">
         <source>Country</source>
-        <target state="new">Country</target>
+        <target state="new">País</target>
         <jms:reference-file line="35">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
         <jms:reference-file line="43">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="102">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
@@ -481,44 +481,44 @@
       </trans-unit>
       <trans-unit id="e86ca176d24d3a97125e480312a8bd87062b9636" resname="Countrỳ">
         <source>Countrỳ</source>
-        <target state="new">Countrỳ</target>
+        <target state="new">Países</target>
         <jms:reference-file line="157">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a18c88be99735cca7be4fbae031e40387c909692" resname="Create PDF">
         <source>Create PDF</source>
-        <target state="new">Create PDF</target>
+        <target state="new">Crear PDF</target>
         <jms:reference-file line="78">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SeventhStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3f4f547d73646d774e8f690b36333e8c9572894b" resname="Create an account">
         <source>Create an account</source>
-        <target state="new">Create an account</target>
+        <target state="new">Crear una cuenta</target>
         <jms:reference-file line="92">./src/Proethos2/CoreBundle/Resources/views/Security/login.html.twig</jms:reference-file>
         <jms:reference-file line="93">./src/Proethos2/CoreBundle/Resources/views/Security/login.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ca2c15d02a64d61457720b0c98ea7f3c4fbeb8a4" resname="Create new User">
         <source>Create new User</source>
-        <target state="new">Create new User</target>
+        <target state="new">Crear un usuario nuevo</target>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/Security/newUser.html.twig</jms:reference-file>
         <jms:reference-file line="51">./src/Proethos2/CoreBundle/Resources/views/Security/newUser.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="bdbcfa0af077ff0fd7655acc59af92887124997a" resname="Create user">
         <source>Create user</source>
-        <target state="new">Create user</target>
+        <target state="new">Crear usuario</target>
         <jms:reference-file line="139">./src/Proethos2/CoreBundle/Resources/views/Security/newUser.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="de06a1fbeb64e7f4b184e68b9e8b95b2fb6469c0" resname="Created in">
         <source>Created in</source>
-        <target state="new">Created in</target>
+        <target state="new">Creado en</target>
         <jms:reference-file line="229">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d87f47b47e4d5794d53fe0734c49417bd046cde0" resname="Dashboard">
         <source>Dashboard</source>
-        <target state="new">Dashboard</target>
+        <target state="new">Panel de control</target>
         <jms:reference-file line="10">./src/Proethos2/CoreBundle/Resources/views/Index/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="eb9a4bc1c0c153e4e4b042a79113b815b7e3021d" resname="Date">
         <source>Date</source>
-        <target state="new">Date</target>
+        <target state="new">Fecha</target>
         <jms:reference-file line="135">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="217">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="36">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
@@ -540,18 +540,18 @@
       </trans-unit>
       <trans-unit id="7f59a1f1d55a7cbd48c76e9f75723ccb6c63f3e0" resname="Decision">
         <source>Decision</source>
-        <target state="new">Decision</target>
+        <target state="new">Decisión</target>
         <jms:reference-file line="32">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReviewRevisor.html.twig</jms:reference-file>
         <jms:reference-file line="7">./src/Proethos2/CoreBundle/Resources/views/Protocol/showReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c3860c827ff80f9b174a6c9c10e249de93a7805b" resname="Decision in">
         <source>Decision in</source>
-        <target state="new">Decision in</target>
+        <target state="new">Decidido en</target>
         <jms:reference-file line="79">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_header.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f6fdbe48dc54dd86f63097a03bd24094dedd713a" resname="Delete">
         <source>Delete</source>
-        <target state="new">Delete</target>
+        <target state="new">Eliminar</target>
         <jms:reference-file line="16">./src/Proethos2/CoreBundle/Resources/views/CRUD/deleteCommitteeFaq.html.twig</jms:reference-file>
         <jms:reference-file line="16">./src/Proethos2/CoreBundle/Resources/views/CRUD/deleteCommitteeDocument.html.twig</jms:reference-file>
         <jms:reference-file line="16">./src/Proethos2/CoreBundle/Resources/views/CRUD/deleteCommitteeUser.html.twig</jms:reference-file>
@@ -559,33 +559,33 @@
       </trans-unit>
       <trans-unit id="379c5c481322f95beecbb9a492c7a58c94d7a9e4" resname="Delete Attachment">
         <source>Delete Attachment</source>
-        <target state="new">Delete Attachment</target>
+        <target state="new">Eliminar adjunto</target>
         <jms:reference-file line="123">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SixtyStep.html.twig</jms:reference-file>
         <jms:reference-file line="159">./src/Proethos2/CoreBundle/Resources/views/Monitoring/monitoringCreateThatNotAmendment.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ff420b1aaf835a138e71ff3ea0366de04bfbc587" resname="Delete Document">
         <source>Delete Document</source>
-        <target state="new">Delete Document</target>
+        <target state="new">Eliminar documento</target>
         <jms:reference-file line="4">./src/Proethos2/CoreBundle/Resources/views/CRUD/deleteCommitteeDocument.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="748f9b1b38e93e65df1cd9de2d06aa7f755c9a60" resname="Delete Meeting">
         <source>Delete Meeting</source>
-        <target state="new">Delete Meeting</target>
+        <target state="new">Eliminar reunión</target>
         <jms:reference-file line="4">./src/Proethos2/CoreBundle/Resources/views/CRUD/deleteMeeting.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="75363f97fd76d4ff347ab53db6f874ed9298e298" resname="Delete Question">
         <source>Delete Question</source>
-        <target state="new">Delete Question</target>
+        <target state="new">Eliminar pregunta</target>
         <jms:reference-file line="4">./src/Proethos2/CoreBundle/Resources/views/CRUD/deleteCommitteeFaq.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0a0a90f6c5a99223b71ca992b6c52fb82feb64b5" resname="Delete User">
         <source>Delete User</source>
-        <target state="new">Delete User</target>
+        <target state="new">Eliminar usuario</target>
         <jms:reference-file line="4">./src/Proethos2/CoreBundle/Resources/views/CRUD/deleteCommitteeUser.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="55f8ebc805e65b5b71ddafdae390e3be2bcd69af" resname="Description">
         <source>Description</source>
-        <target state="new">Description</target>
+        <target state="new">Descripción</target>
         <jms:reference-file line="181">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="203">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
         <jms:reference-file line="242">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
@@ -595,23 +595,23 @@
       </trans-unit>
       <trans-unit id="961f36de4c326fdd7cb4cc66ab04a5bd2188e0c3" resname="Do you confirm the exclusion of this attachment?">
         <source>Do you confirm the exclusion of this attachment?</source>
-        <target state="new">Do you confirm the exclusion of this attachment?</target>
+        <target state="new">Confirma la exclusión de este adjunto?</target>
         <jms:reference-file line="127">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SixtyStep.html.twig</jms:reference-file>
         <jms:reference-file line="163">./src/Proethos2/CoreBundle/Resources/views/Monitoring/monitoringCreateThatNotAmendment.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1ba3f7b24b33d4429e8627ee88886fafbcf3a27e" resname="Document deleted with success.">
         <source>Document deleted with success.</source>
-        <target state="new">Document deleted with success.</target>
+        <target state="new">Documento eliminado exitosamente</target>
         <jms:reference-file line="666">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="f683c3602f8770569d6651cb4518e4a6cdd9f202" resname="Document updated with success.">
         <source>Document updated with success.</source>
-        <target state="new">Document updated with success.</target>
+        <target state="new">Documento actualizado exitosamente</target>
         <jms:reference-file line="619">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="687c82861c956e47456186f6522cfc8dbadb8ef6" resname="Documents">
         <source>Documents</source>
-        <target state="new">Documents</target>
+        <target state="new">Documentos</target>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/CRUD/listDocument.html.twig</jms:reference-file>
         <jms:reference-file line="11">./src/Proethos2/CoreBundle/Resources/views/CRUD/listDocument.html.twig</jms:reference-file>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeDocument.html.twig</jms:reference-file>
@@ -619,7 +619,7 @@
       </trans-unit>
       <trans-unit id="23d33e22acfcb9ecddb4a85f10607dc4ff49e23c" resname="Draft">
         <source>Draft</source>
-        <target state="new">Draft</target>
+        <target state="new">Borrador</target>
         <jms:reference-file line="36">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0d01e2e86669e98441ab4dce5520696c318b7098" resname="E-mail">
@@ -635,12 +635,12 @@
       </trans-unit>
       <trans-unit id="4d32f9f7a82dd68da666475cd6c1355d1220879b" resname="Edit roles">
         <source>Edit roles</source>
-        <target state="new">Edit roles</target>
+        <target state="new">Editar roles</target>
         <jms:reference-file line="77">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9a5b8cc4be6810a0c84ade9ad505cd6d3b7e8e26" resname="Edit submission">
         <source>Edit submission</source>
-        <target state="new">Edit submission</target>
+        <target state="new">Editar presentación</target>
         <jms:reference-file line="91">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c26487a385ea3c0881132590cfba21b092c56074" resname="Edit user's information">
@@ -650,7 +650,7 @@
       </trans-unit>
       <trans-unit id="84add5b2952787581cb9a8851eef63d1ec75d22b" resname="Email">
         <source>Email</source>
-        <target state="new">Email</target>
+        <target state="new">E-mail</target>
         <jms:reference-file line="47">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
         <jms:reference-file line="125">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
         <jms:reference-file line="32">./src/Proethos2/CoreBundle/Resources/views/CRUD/listContact.html.twig</jms:reference-file>
@@ -663,20 +663,20 @@
       </trans-unit>
       <trans-unit id="a2bb9d34b8a1a79665858d354585cf147e0dee4e" resname="End">
         <source>End</source>
-        <target state="new">End</target>
+        <target state="new">Finalizar</target>
         <jms:reference-file line="166">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="159">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
         <jms:reference-file line="254">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e55d313325bffb54c173c2b24b2c71a494954346" resname="End Review">
         <source>End Review</source>
-        <target state="new">End Review</target>
+        <target state="new">Finalizar revisión</target>
         <jms:reference-file line="15">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_tabs.html.twig</jms:reference-file>
         <jms:reference-file line="11">./src/Proethos2/CoreBundle/Resources/views/Protocol/endReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1dadc43beeeee61fd3534391079f2325dea376e7" resname="End protocol review">
         <source>End protocol review</source>
-        <target state="new">End protocol review</target>
+        <target state="new">Finalizar revisión del protocolo</target>
         <jms:reference-file line="93">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1507054e985d3fca0ad9862f4c2407ccaa09c4be" resname="English message">
@@ -686,29 +686,29 @@
       </trans-unit>
       <trans-unit id="de84c6a03697e058ca921b8cc68aefced20e72b4" resname="Estimated date of initial recruitment">
         <source>Estimated date of initial recruitment</source>
-        <target state="new">Estimated date of initial recruitment</target>
+        <target state="new">Fecha estimada de inicio del reclutamiento</target>
         <jms:reference-file line="93">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="117">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fa693ba29cf58a65dcc4bb8b1cb78df746032e7e" resname="Ethical Considerations">
         <source>Ethical Considerations</source>
-        <target state="new">Ethical Considerations</target>
+        <target state="new">Consideraciones éticas</target>
         <jms:reference-file line="250">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
         <jms:reference-file line="257">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="67690c75c03cd0e07da2b8ad46be269eb2c39a62" resname="Exclude user">
         <source>Exclude user</source>
-        <target state="new">Exclude user</target>
+        <target state="new">Excluir usuario</target>
         <jms:reference-file line="86">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6447817241918c62d3555a7b5147d673ad878aad" resname="Exclusion Criteria">
         <source>Exclusion Criteria</source>
-        <target state="new">Exclusion Criteria</target>
+        <target state="new">Criterios de exclusión</target>
         <jms:reference-file line="905">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="2a239610daec5e460a75c9be2f3f4bbb1ae39d2b" resname="Exclusion criteria">
         <source>Exclusion criteria</source>
-        <target state="new">Exclusion criteria</target>
+        <target state="new">Criterios de exclusión</target>
         <jms:reference-file line="90">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="107">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
@@ -719,7 +719,7 @@
       </trans-unit>
       <trans-unit id="2ccdb32230e160bd7028ce8fc0830d9e34e40067" resname="Expedite approval">
         <source>Expedite approval</source>
-        <target state="new">Expedite approval</target>
+        <target state="new">Aprobación expedita</target>
         <jms:reference-file line="763">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="659087d3ca23db6ae11e0a43579b5f4a260dda11" resname="Extension">
@@ -737,54 +737,54 @@
       </trans-unit>
       <trans-unit id="7e31e3de14faae36e2214dae4bfad37026be9704" resname="Fair Participant Selection">
         <source>Fair Participant Selection</source>
-        <target state="new">Fair Participant Selection</target>
+        <target state="new">Selección justa de participantes</target>
         <jms:reference-file line="21">./src/Proethos2/CoreBundle/Resources/views/Protocol/showReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0e270486f3548a1a38ea7a4d4a8391e5af7f4472" resname="Fair participant selection">
         <source>Fair participant selection</source>
-        <target state="new">Fair participant selection</target>
+        <target state="new">Selección justa de participantes</target>
         <jms:reference-file line="59">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReviewRevisor.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a5240021081059e13ee2b3cc8d97ae85ab3b0bbb" resname="Favorable balance of benefits and risks">
         <source>Favorable balance of benefits and risks</source>
-        <target state="new">Favorable balance of benefits and risks</target>
+        <target state="new">Balance favorable de riesgos y beneficios</target>
         <jms:reference-file line="68">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReviewRevisor.html.twig</jms:reference-file>
         <jms:reference-file line="25">./src/Proethos2/CoreBundle/Resources/views/Protocol/showReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c326a4660b674d2f6ea82687a1e1abae2337541f" resname="Field">
         <source>Field</source>
-        <target state="new">Field</target>
+        <target state="new">Campo</target>
         <jms:reference-file line="34">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SeventhStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="197b6c42e9671e1abdb4f7603440a85d4e7a6c0f" resname="Field 'file' is required.">
         <source>Field 'file' is required.</source>
-        <target state="new">Field 'file' is required.</target>
+        <target state="new">El campo "archivo" es requerido</target>
         <jms:reference-file line="523">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="8012ddf06b7f5458fd8ebe4dbcd8c1024e93f2f8" resname="Field 'meeting' is required.">
         <source>Field 'meeting' is required.</source>
-        <target state="new">Field 'meeting' is required.</target>
+        <target state="new">El campo "reunión" es requerido</target>
         <jms:reference-file line="613">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="269730af8d96cb165bdc6273f2f9c2457f2e4b2c" resname="Field 'new-atachment-type' is required.">
         <source>Field 'new-atachment-type' is required.</source>
-        <target state="new">Field 'new-atachment-type' is required.</target>
+        <target state="new">El campo "nuevo tipo de adjunto" es requerido</target>
         <jms:reference-file line="201">./src/Proethos2/CoreBundle/Controller/MonitoringController.php</jms:reference-file>
         <jms:reference-file line="720">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="c9ea0663c137973c825c818a01d2cff964bedd61" resname="Fields answered with success!">
         <source>Fields answered with success!</source>
-        <target state="new">Fields answered with success!</target>
+        <target state="new">Campos respondidos exitosamente</target>
         <jms:reference-file line="708">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="0a882a8e6cb324a37cb69c7ddd539bc76f851dc7" resname="Fifth step saved with sucess.">
         <source>Fifth step saved with sucess.</source>
-        <target state="new">Fifth step saved with sucess.</target>
+        <target state="new">Quinto paso guardado exitosamente</target>
         <jms:reference-file line="658">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="2c3cafa4db3f3e1e51b3dff4303502dbe42b7a89" resname="File">
         <source>File</source>
-        <target state="new">File</target>
+        <target state="new">Archivo</target>
         <jms:reference-file line="134">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeDocument.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="09979a78c9954035af250cb7f4619ed9d606f0ef" resname="File name">
@@ -798,36 +798,36 @@
       </trans-unit>
       <trans-unit id="2250a0bb9f850e4cafc7d8be703e99cb9a1ea76a" resname="File removed with sucess.">
         <source>File removed with sucess.</source>
-        <target state="new">File removed with sucess.</target>
+        <target state="new">Archivo eliminado exitosamente</target>
         <jms:reference-file line="242">./src/Proethos2/CoreBundle/Controller/MonitoringController.php</jms:reference-file>
         <jms:reference-file line="758">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="014776fef86e430eda7cf9fc73a0619d4870f73e" resname="File submission">
         <source>File submission</source>
-        <target state="new">File submission</target>
+        <target state="new">Presentación de archivo</target>
         <jms:reference-file line="23">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SixtyStep.html.twig</jms:reference-file>
         <jms:reference-file line="44">./src/Proethos2/CoreBundle/Resources/views/Monitoring/monitoringCreateThatNotAmendment.html.twig</jms:reference-file>
         <jms:reference-file line="66">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_another_infos.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="db5c22087ee09cabed1cc8ecd52b217f72cf2781" resname="File uploaded with sucess.">
         <source>File uploaded with sucess.</source>
-        <target state="new">File uploaded with sucess.</target>
+        <target state="new">Archivo subido exitosamente</target>
         <jms:reference-file line="228">./src/Proethos2/CoreBundle/Controller/MonitoringController.php</jms:reference-file>
         <jms:reference-file line="746">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="6664d7899b7c52a8a4d7103c48dce690debb61eb" resname="Fill with your registered email">
         <source>Fill with your registered email</source>
-        <target state="new">Fill with your registered email</target>
+        <target state="new">Ingresar email registrado</target>
         <jms:reference-file line="50">./src/Proethos2/CoreBundle/Resources/views/Security/forgotMyPassword.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a9660077b2bf17b83d5eb8b6dcc2a608c2102572" resname="Final Revision">
         <source>Final Revision</source>
-        <target state="new">Final Revision</target>
+        <target state="new">Revisión final</target>
         <jms:reference-file line="72">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="377536910cb49419838b25531996f213c6cf3062" resname="Find protocols">
         <source>Find protocols</source>
-        <target state="new">Find protocols</target>
+        <target state="new">Encontrar protocolos</target>
         <jms:reference-file line="24">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="24">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
       </trans-unit>
@@ -838,12 +838,12 @@
       </trans-unit>
       <trans-unit id="0b2524216fdd23203c0429eb00e528a14e18fdfc" resname="First Author">
         <source>First Author</source>
-        <target state="new">First Author</target>
+        <target state="new">Primer autor</target>
         <jms:reference-file line="61">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/meta.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b57630c26c6a3296fe0fb80c16699e6920e6ec65" resname="First Information">
         <source>First Information</source>
-        <target state="new">First Information</target>
+        <target state="new">Información inicial</target>
         <jms:reference-file line="19">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStepCreatedProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="20">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStepCreatedProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="16">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/meta.html.twig</jms:reference-file>
@@ -859,19 +859,19 @@
       </trans-unit>
       <trans-unit id="ac5a8da5a06d99f0081933da88851572f26389a9" resname="Forgot My Password">
         <source>Forgot My Password</source>
-        <target state="new">Forgot My Password</target>
+        <target state="new">Olvidé mi contraseña</target>
         <jms:reference-file line="87">./src/Proethos2/CoreBundle/Resources/views/Security/login.html.twig</jms:reference-file>
         <jms:reference-file line="88">./src/Proethos2/CoreBundle/Resources/views/Security/login.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ae6fc6d7afac19b0f3fd51042c1eb0dfc6633d43" resname="Forgot my password">
         <source>Forgot my password</source>
-        <target state="new">Forgot my password</target>
+        <target state="new">Olvidé mi contraseña</target>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/Security/forgotMyPassword.html.twig</jms:reference-file>
         <jms:reference-file line="45">./src/Proethos2/CoreBundle/Resources/views/Security/forgotMyPassword.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d784cc3a625a898969b4636aa6e432003ec23ebb" resname="Fourth step saved with sucess.">
         <source>Fourth step saved with sucess.</source>
-        <target state="new">Fourth step saved with sucess.</target>
+        <target state="new">Cuarto paso guardado exitosamente</target>
         <jms:reference-file line="581">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="cec7d6c2129c9fe6a0dc554c6a825727af0a1055" resname="French message">
@@ -881,7 +881,7 @@
       </trans-unit>
       <trans-unit id="d790b402d79ac1a723c790313bcd679999474630" resname="Frequently Asked Questions">
         <source>Frequently Asked Questions</source>
-        <target state="new">Frequently Asked Questions</target>
+        <target state="new">Preguntas frecuentes</target>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/CRUD/listFaq.html.twig</jms:reference-file>
         <jms:reference-file line="11">./src/Proethos2/CoreBundle/Resources/views/CRUD/listFaq.html.twig</jms:reference-file>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeFaq.html.twig</jms:reference-file>
@@ -889,18 +889,18 @@
       </trans-unit>
       <trans-unit id="45c943240a0a1c114a13f6cfc12be38cf4c6191c" resname="Funding Source">
         <source>Funding Source</source>
-        <target state="new">Funding Source</target>
+        <target state="new">Fuente de financiamiento</target>
         <jms:reference-file line="937">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="5e278dac5e51fda5c351562cf7e5af1e33b4671b" resname="Funding source">
         <source>Funding source</source>
-        <target state="new">Funding source</target>
+        <target state="new">Fuente de financiamiento</target>
         <jms:reference-file line="152">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="116">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8a754c61c2ced0c5ff79a1827e02c9d643d6d926" resname="Gender">
         <source>Gender</source>
-        <target state="new">Gender</target>
+        <target state="new">Género</target>
         <jms:reference-file line="873">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
         <jms:reference-file line="58">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
@@ -912,36 +912,36 @@
       </trans-unit>
       <trans-unit id="31fb287c4fd7e5314b161d41b39e8f6ee94aa14f" resname="General Procedures">
         <source>General Procedures</source>
-        <target state="new">General Procedures</target>
+        <target state="new">Procedimientos generales</target>
         <jms:reference-file line="123">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="229">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d2f40c3626e4c42d4efc9b4b9c2e33981ab783cd" resname="General description">
         <source>General description</source>
-        <target state="new">General description</target>
+        <target state="new">Descripción general</target>
         <jms:reference-file line="23">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
         <jms:reference-file line="51">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e83e9e6f22577d3860c9fb04a5b00c8e0ea5abe9" resname="Get user's link to change password">
         <source>Get user's link to change password</source>
-        <target state="new">Get user's link to change password</target>
+        <target state="new">Obtener enlace del usuario para cambiar contraseña</target>
         <jms:reference-file line="83">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="48d8c627be3c12fac8a0a9ddb9ceaa5e126cf358" resname="Goals">
         <source>Goals</source>
-        <target state="new">Goals</target>
+        <target state="new">Objetivos</target>
         <jms:reference-file line="857">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
         <jms:reference-file line="136">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
         <jms:reference-file line="75">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9d8ba69ea37ad3dd3008e8b89eb6046f51780130" resname="Have an error with captcha. Please try again.">
         <source>Have an error with captcha. Please try again.</source>
-        <target state="new">Have an error with captcha. Please try again.</target>
+        <target state="new">Hay un error captcha. Por favor trate nuevamente</target>
         <jms:reference-file line="337">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="b1b56a8c60ba5abbdfd534adf74b6a4cb29eedd4" resname="Health Condition or Problem Studied">
         <source>Health Condition or Problem Studied</source>
-        <target state="new">Health Condition or Problem Studied</target>
+        <target state="new">Condición de salud o problema estudiado</target>
         <jms:reference-file line="81">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="40">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
@@ -968,7 +968,7 @@
       </trans-unit>
       <trans-unit id="2a2d31d4a1006a008f0f0598abd7579d9b691a0e" resname="Hello! You ask for a new password in Proethos2 platform.">
         <source>Hello! You ask for a new password in Proethos2 platform.</source>
-        <target state="new">Hello! You ask for a new password in Proethos2 platform.</target>
+        <target state="new">Hola! Ha solicitado una nueva contraseña en la plataforma ProEthos2</target>
         <jms:reference-file line="182">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="222e854049a65f983a84fdd7aa245585fa07b99f" resname="Hello! You was registered in Proethos2 platform.">
@@ -983,24 +983,24 @@
       </trans-unit>
       <trans-unit id="c47ae15370cfe1ed2781eedc1dc2547d12d9e972" resname="Help">
         <source>Help</source>
-        <target state="new">Help</target>
+        <target state="new">Ayuda</target>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/CRUD/listHelp.html.twig</jms:reference-file>
         <jms:reference-file line="11">./src/Proethos2/CoreBundle/Resources/views/CRUD/listHelp.html.twig</jms:reference-file>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/CRUD/showHelp.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7ea305782f9c411ea93b2689186299fdf991e42a" resname="Help updated with success.">
         <source>Help updated with success.</source>
-        <target state="new">Help updated with success.</target>
+        <target state="new">Ayuda actualizada exitosamente</target>
         <jms:reference-file line="1211">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="90ccd6497400b5576aeca1bd94af74aae1e0a250" resname="History">
         <source>History</source>
-        <target state="new">History</target>
+        <target state="new">Historial</target>
         <jms:reference-file line="116">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_another_infos.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d49f2234a92605900c5c3edd8198a0724e13183a" resname="I agree with terms and conditions">
         <source>I agree with terms and conditions</source>
-        <target state="new">I agree with terms and conditions</target>
+        <target state="new">Estoy de acuerdo con los términos y condiciones</target>
         <jms:reference-file line="69">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SeventhStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="89f89c02cf47e091e726a4e07b88af0966806897" resname="ID">
@@ -1018,18 +1018,18 @@
       </trans-unit>
       <trans-unit id="2fdb81fca373978977fa7a7c7e39620597be5e49" resname="Inclusion Criteria">
         <source>Inclusion Criteria</source>
-        <target state="new">Inclusion Criteria</target>
+        <target state="new">Criterios de inclusión</target>
         <jms:reference-file line="897">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="15782c7351818e74c159d0530853a5e7f4ff1be2" resname="Inclusion criteria">
         <source>Inclusion criteria</source>
-        <target state="new">Inclusion criteria</target>
+        <target state="new">Criterios de inclusión</target>
         <jms:reference-file line="87">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="97">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="bd8ff0629222bd23d2321fbbdf1f09d29921cbaa" resname="Informed Consent">
         <source>Informed Consent</source>
-        <target state="new">Informed Consent</target>
+        <target state="new">Consentimiento informado</target>
         <jms:reference-file line="77">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReviewRevisor.html.twig</jms:reference-file>
         <jms:reference-file line="31">./src/Proethos2/CoreBundle/Resources/views/Protocol/showReview.html.twig</jms:reference-file>
       </trans-unit>
@@ -1045,31 +1045,31 @@
       </trans-unit>
       <trans-unit id="34af284908ff7b3e717d1a14042d2de27ef42327" resname="Initial Committee Review">
         <source>Initial Committee Review</source>
-        <target state="new">Initial Committee Review</target>
+        <target state="new">Revisión inicial del comité</target>
         <jms:reference-file line="92">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="91bf74d821f50065919a9c202be4787c9b3710b5" resname="Initial Committee Screening">
         <source>Initial Committee Screening</source>
-        <target state="new">Initial Committee Screening</target>
+        <target state="new">Revisión inicial del comité</target>
         <jms:reference-file line="91">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1a3fae1a69fcdaab82d1737fcf3346a46cf50ac5" resname="Initial committee review">
         <source>Initial committee review</source>
-        <target state="new">Initial committee review</target>
+        <target state="new">Revisión inicial del comité</target>
         <jms:reference-file line="12">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_tabs.html.twig</jms:reference-file>
         <jms:reference-file line="11">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReviewRevisor.html.twig</jms:reference-file>
         <jms:reference-file line="11">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="618eea33ca57a4f3cc226f2f8dceec8fb290a1bd" resname="Initial committee screening">
         <source>Initial committee screening</source>
-        <target state="new">Initial committee screening</target>
+        <target state="new">Revisión inicial del comité</target>
         <jms:reference-file line="9">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_tabs.html.twig</jms:reference-file>
         <jms:reference-file line="11">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeScreening.html.twig</jms:reference-file>
         <jms:reference-file line="25">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeScreening.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="429f9450eaee6957c9b1461227b45d94079f2cac" resname="Institution">
         <source>Institution</source>
-        <target state="new">Institution</target>
+        <target state="new">Institución</target>
         <jms:reference-file line="37">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateUserProfile.html.twig</jms:reference-file>
         <jms:reference-file line="49">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
         <jms:reference-file line="160">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
@@ -1087,14 +1087,14 @@
       </trans-unit>
       <trans-unit id="952103bb8973f96d62678656499879f262c97a6b" resname="Interventions">
         <source>Interventions</source>
-        <target state="new">Interventions</target>
+        <target state="new">Intervenciones</target>
         <jms:reference-file line="921">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
         <jms:reference-file line="114">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="183">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="2473e96bc614a911821242119918a241a41836d6" resname="Introduction">
         <source>Introduction</source>
-        <target state="new">Introduction</target>
+        <target state="new">Introducción</target>
         <jms:reference-file line="841">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
         <jms:reference-file line="109">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
         <jms:reference-file line="116">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
@@ -1102,7 +1102,7 @@
       </trans-unit>
       <trans-unit id="49af6d68308b58e6682dc7d3d0408209ece925d0" resname="Invalid hashcode">
         <source>Invalid hashcode</source>
-        <target state="new">Invalid hashcode</target>
+        <target state="new">Hashcode inválido</target>
         <jms:reference-file line="222">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="a0c82c52808e161cd5b44fc9a52ce3065f662a50" resname="Item created with success.">
@@ -1122,26 +1122,26 @@
       </trans-unit>
       <trans-unit id="7d2a7bff0abb0d0de4946434ea191a1498465dec" resname="Justification">
         <source>Justification</source>
-        <target state="new">Justification</target>
+        <target state="new">Justificación</target>
         <jms:reference-file line="849">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
         <jms:reference-file line="72">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="90">./src/Proethos2/CoreBundle/Resources/views/Monitoring/monitoringCreateThatNotAmendment.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="536d2746f7f2f88df35515a9cd5e44cb1582b9ca" resname="Justify">
         <source>Justify</source>
-        <target state="new">Justify</target>
+        <target state="new">Justificar</target>
         <jms:reference-file line="126">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f530db58b3e5088dc7412c6d2298ba3f8456bdeb" resname="Keywords">
         <source>Keywords</source>
-        <target state="new">Keywords</target>
+        <target state="new">Palabras clave</target>
         <jms:reference-file line="833">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
         <jms:reference-file line="98">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
         <jms:reference-file line="66">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8351ebe53db2a3981a7e85ac4e1f58217f715944" resname="Last Update">
         <source>Last Update</source>
-        <target state="new">Last Update</target>
+        <target state="new">Ultima actualización</target>
         <jms:reference-file line="65">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="64">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="32">./src/Proethos2/CoreBundle/Resources/views/Index/index.html.twig</jms:reference-file>
@@ -1153,65 +1153,65 @@
       </trans-unit>
       <trans-unit id="c1fed26979361d06c848030502536d84a52e6a13" resname="Main Type">
         <source>Main Type</source>
-        <target state="new">Main Type</target>
+        <target state="new">Tipo principal</target>
         <jms:reference-file line="68">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/meta.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0064360554d6c6bb3519c42773cbdcc9a5bca711" resname="Main?">
         <source>Main?</source>
-        <target state="new">Main?</target>
+        <target state="new">Principal?</target>
         <jms:reference-file line="36">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
         <jms:reference-file line="23">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_another_infos.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f0491e4fd86b9dd09a34cac28549bfd001723dce" resname="Make this investigator owner of this sumibssion.">
         <source>Make this investigator owner of this sumibssion.</source>
-        <target state="new">Make this investigator owner of this sumibssion.</target>
+        <target state="new">Nombrar como investigador principal de esta presentación</target>
         <jms:reference-file line="59">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="2b090feeffd667ab00815a39bd2500b442fecfce" resname="Maximum Age">
         <source>Maximum Age</source>
-        <target state="new">Maximum Age</target>
+        <target state="new">Edad máxima</target>
         <jms:reference-file line="889">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
         <jms:reference-file line="87">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="17dc9a83744348b236bfe6e6683d12f00e3fd7e7" resname="Meeting">
         <source>Meeting</source>
-        <target state="new">Meeting</target>
+        <target state="new">Reunión</target>
         <jms:reference-file line="93">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="aa349c70ed042af847007bf9a36432501889f92a" resname="Meeting assigned with success!">
         <source>Meeting assigned with success!</source>
-        <target state="new">Meeting assigned with success!</target>
+        <target state="new">Reunión asignada exitosamente</target>
         <jms:reference-file line="627">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="3ec56d322c227f29ca15e08ce128c21c99467e08" resname="Meeting created with success.">
         <source>Meeting created with success.</source>
-        <target state="new">Meeting created with success.</target>
+        <target state="new">Reunión creada exitosamente</target>
         <jms:reference-file line="79">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="cad9f1df4648e619dbc7fc11a52f8ed0e787ca81" resname="Meeting deleted with success.">
         <source>Meeting deleted with success.</source>
-        <target state="new">Meeting deleted with success.</target>
+        <target state="new">Reunión eliminada exitosamente</target>
         <jms:reference-file line="207">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="ac228b06b68b4c99e9fdb8dc79c600648d169c46" resname="Meeting updated with success.">
         <source>Meeting updated with success.</source>
-        <target state="new">Meeting updated with success.</target>
+        <target state="new">Reunión actualizada exitosamente</target>
         <jms:reference-file line="132">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="b23a193872fc22386b943b59124e30963e802c52" resname="Meetings">
         <source>Meetings</source>
-        <target state="new">Meetings</target>
+        <target state="new">Reuniones</target>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/CRUD/listMeeting.html.twig</jms:reference-file>
         <jms:reference-file line="12">./src/Proethos2/CoreBundle/Resources/views/CRUD/listMeeting.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="abc4f304a08a21ce7477f600961a7c5e317824c5" resname="Members added with success!">
         <source>Members added with success!</source>
-        <target state="new">Members added with success!</target>
+        <target state="new">Miembros agregados exitosamente</target>
         <jms:reference-file line="606">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="68f4145fee7dde76afceb910165924ad14cf0d00" resname="Message">
         <source>Message</source>
-        <target state="new">Message</target>
+        <target state="new">Mensaje</target>
         <jms:reference-file line="22">./src/Proethos2/CoreBundle/Resources/views/CRUD/listHelp.html.twig</jms:reference-file>
         <jms:reference-file line="46">./src/Proethos2/CoreBundle/Resources/views/CRUD/listContact.html.twig</jms:reference-file>
         <jms:reference-file line="11">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateConfiguration.html.twig</jms:reference-file>
@@ -1221,7 +1221,7 @@
       </trans-unit>
       <trans-unit id="1a17e74b22217ce990f863fde649bfb6a9341bb8" resname="Message from plataform.">
         <source>Message from plataform.</source>
-        <target state="new">Message from plataform.</target>
+        <target state="new">Mensaje de la plataforma</target>
         <jms:reference-file line="1109">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="d378cd32935cd41425f00181812285372e78a72b" resname="Message sent to administrators.">
@@ -1231,23 +1231,23 @@
       </trans-unit>
       <trans-unit id="b509d96b1279b2d6e34627fce387a3fef5a59a74" resname="Methodology">
         <source>Methodology</source>
-        <target state="new">Methodology</target>
+        <target state="new">Metodología</target>
         <jms:reference-file line="222">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b93912e1b0e723ebedacd2eafe94ca333f944a96" resname="Minimum Age">
         <source>Minimum Age</source>
-        <target state="new">Minimum Age</target>
+        <target state="new">Edad mínima</target>
         <jms:reference-file line="881">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
         <jms:reference-file line="79">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a81434589757e654444719de434c44e9adc0c708" resname="Monitoring">
         <source>Monitoring</source>
-        <target state="new">Monitoring</target>
+        <target state="new">Monitoreo</target>
         <jms:reference-file line="97">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_header.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="27ddd4451a74d65f11ab49d95c9599f13a62e57d" resname="Monitoring Action">
         <source>Monitoring Action</source>
-        <target state="new">Monitoring Action</target>
+        <target state="new">Acción de monitoreo</target>
         <jms:reference-file line="78">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="77">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="12">./src/Proethos2/CoreBundle/Resources/views/Monitoring/monitoringCreate.html.twig</jms:reference-file>
@@ -1287,7 +1287,7 @@
       </trans-unit>
       <trans-unit id="709a23220f2c3d64d1e1d6d18c4d5280f8d82fca" resname="Name">
         <source>Name</source>
-        <target state="new">Name</target>
+        <target state="new">Nombre</target>
         <jms:reference-file line="33">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
         <jms:reference-file line="174">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
         <jms:reference-file line="41">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
@@ -1366,7 +1366,7 @@
       </trans-unit>
       <trans-unit id="fb373941a47807ada47e699f5a809b28bf546761" resname="New Attachment">
         <source>New Attachment</source>
-        <target state="new">New Attachment</target>
+        <target state="new">Nuevo adjunto</target>
         <jms:reference-file line="59">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SixtyStep.html.twig</jms:reference-file>
         <jms:reference-file line="81">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SixtyStep.html.twig</jms:reference-file>
         <jms:reference-file line="82">./src/Proethos2/CoreBundle/Resources/views/Monitoring/monitoringCreateThatNotAmendment.html.twig</jms:reference-file>
@@ -1381,30 +1381,30 @@
       </trans-unit>
       <trans-unit id="3b8e03b3675f0151624546a001859ebc8208be6e" resname="New Clinical Trial Registry">
         <source>New Clinical Trial Registry</source>
-        <target state="new">New Clinical Trial Registry</target>
+        <target state="new">Nuevo Registro de Ensayos Clínicos</target>
         <jms:reference-file line="56">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
         <jms:reference-file line="275">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="392e915c43c276266e65952bfc619351e5ded0a9" resname="New Comment">
         <source>New Comment</source>
-        <target state="new">New Comment</target>
+        <target state="new">Nuevo comentario</target>
         <jms:reference-file line="181">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_another_infos.html.twig</jms:reference-file>
         <jms:reference-file line="193">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_another_infos.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f9144ae8c5c06371493e1a14b4f09b79dbd15e61" resname="New Cost">
         <source>New Cost</source>
-        <target state="new">New Cost</target>
+        <target state="new">Nuevo costo</target>
         <jms:reference-file line="198">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e4e355ec77ff4d974cd8f663f45685b0662acca8" resname="New Country">
         <source>New Country</source>
-        <target state="new">New Country</target>
+        <target state="new">Nuevo país</target>
         <jms:reference-file line="176">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
         <jms:reference-file line="279">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e69f5da60a4e048b153ac26a5f65b9bb0ea18b3f" resname="New Document">
         <source>New Document</source>
-        <target state="new">New Document</target>
+        <target state="new">Nuevo documento</target>
         <jms:reference-file line="13">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeDocument.html.twig</jms:reference-file>
         <jms:reference-file line="93">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeDocument.html.twig</jms:reference-file>
       </trans-unit>
@@ -1416,14 +1416,14 @@
       </trans-unit>
       <trans-unit id="ea820e5da4a06114f0878748346305b7b0a46cf5" resname="New Investigator">
         <source>New Investigator</source>
-        <target state="new">New Investigator</target>
+        <target state="new">Nuevo investigador</target>
         <jms:reference-file line="72">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
         <jms:reference-file line="158">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
         <jms:reference-file line="52">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_another_infos.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e4cc33d64af4f8eaa127a13adf4a8d2289fcd97a" resname="New Meeting">
         <source>New Meeting</source>
-        <target state="new">New Meeting</target>
+        <target state="new">Nueva reunión</target>
         <jms:reference-file line="13">./src/Proethos2/CoreBundle/Resources/views/CRUD/listMeeting.html.twig</jms:reference-file>
         <jms:reference-file line="97">./src/Proethos2/CoreBundle/Resources/views/CRUD/listMeeting.html.twig</jms:reference-file>
       </trans-unit>
@@ -1435,12 +1435,12 @@
       </trans-unit>
       <trans-unit id="4894cb39ee419a77b480060f3e4a6d0a4d0fa01f" resname="New Password">
         <source>New Password</source>
-        <target state="new">New Password</target>
+        <target state="new">Nuevo contraseña</target>
         <jms:reference-file line="19">./src/Proethos2/CoreBundle/Resources/views/Security/changePassword.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6579b40580369448376cc845c6f094016fc2c420" resname="New Question">
         <source>New Question</source>
-        <target state="new">New Question</target>
+        <target state="new">Nueva pregunta</target>
         <jms:reference-file line="4">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateCommitteeFaq.html.twig</jms:reference-file>
         <jms:reference-file line="13">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeFaq.html.twig</jms:reference-file>
         <jms:reference-file line="83">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeFaq.html.twig</jms:reference-file>
@@ -1465,13 +1465,13 @@
       </trans-unit>
       <trans-unit id="b85e445f60044c26c53dc928d018cf9dfb200a6e" resname="New User">
         <source>New User</source>
-        <target state="new">New User</target>
+        <target state="new">Nuevo usuario</target>
         <jms:reference-file line="13">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
         <jms:reference-file line="108">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a7a85713659cf2c66761537a9ccc9b2cdd45603b" resname="New amendment submited by">
         <source>New amendment submited by</source>
-        <target state="new">New amendment submited by</target>
+        <target state="new">Nueva enmienda presentada por</target>
         <jms:reference-file line="92">./src/Proethos2/CoreBundle/Controller/MonitoringController.php</jms:reference-file>
         <jms:reference-file line="270">./src/Proethos2/CoreBundle/Controller/MonitoringController.php</jms:reference-file>
       </trans-unit>
@@ -1482,7 +1482,7 @@
       </trans-unit>
       <trans-unit id="505235c949c23571ad04e474dce1649c0dd150e7" resname="New submission">
         <source>New submission</source>
-        <target state="new">New submission</target>
+        <target state="new">Nueva presentación</target>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SeventhStep.html.twig</jms:reference-file>
         <jms:reference-file line="9">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SeventhStep.html.twig</jms:reference-file>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStepCreatedProtocol.html.twig</jms:reference-file>
@@ -1502,7 +1502,7 @@
       </trans-unit>
       <trans-unit id="17b2b838c5ce22c961a36736534a5029d6ba0087" resname="New task">
         <source>New task</source>
-        <target state="new">New task</target>
+        <target state="new">Nueva tarea</target>
         <jms:reference-file line="179">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
         <jms:reference-file line="238">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
@@ -1537,7 +1537,7 @@
       </trans-unit>
       <trans-unit id="976b102756d0b69ab3f9aab14745305a3db7cf72" resname="No document found">
         <source>No document found</source>
-        <target state="new">No document found</target>
+        <target state="new">No se encontró documento</target>
         <jms:reference-file line="579">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
         <jms:reference-file line="646">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
@@ -1548,7 +1548,7 @@
       </trans-unit>
       <trans-unit id="0b5a3ecc12a9230d875b069694504a5a1ed2cd8c" resname="No help found">
         <source>No help found</source>
-        <target state="new">No help found</target>
+        <target state="new">No se encontró ayuda</target>
         <jms:reference-file line="1177">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
         <jms:reference-file line="1237">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
         <jms:reference-file line="1264">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
@@ -1563,14 +1563,14 @@
       </trans-unit>
       <trans-unit id="c8ee8d57c0b2f64e3f09c47e37ccd74a36ba82e2" resname="No meeting found">
         <source>No meeting found</source>
-        <target state="new">No meeting found</target>
+        <target state="new">No se encontró reunión</target>
         <jms:reference-file line="107">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
         <jms:reference-file line="159">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
         <jms:reference-file line="187">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="e1babe5bbbd97bac15de86528e9a0956b908b1ae" resname="No protocol found">
         <source>No protocol found</source>
-        <target state="new">No protocol found</target>
+        <target state="new">No se encontró protocolo</target>
         <jms:reference-file line="42">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
         <jms:reference-file line="94">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
         <jms:reference-file line="147">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
@@ -1583,7 +1583,7 @@
       </trans-unit>
       <trans-unit id="7ed9bc59568cbb6845386079a65a0975cd9cd4c1" resname="No submission found">
         <source>No submission found</source>
-        <target state="new">No submission found</target>
+        <target state="new">No se encontró presentación</target>
         <jms:reference-file line="103">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
         <jms:reference-file line="158">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
         <jms:reference-file line="174">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
@@ -1606,13 +1606,13 @@
       </trans-unit>
       <trans-unit id="f8564cef17cb73a0db6040a119b2ae240f9db6bd" resname="No upload type found">
         <source>No upload type found</source>
-        <target state="new">No upload type found</target>
+        <target state="new">No se encontró tipo de upload</target>
         <jms:reference-file line="207">./src/Proethos2/CoreBundle/Controller/MonitoringController.php</jms:reference-file>
         <jms:reference-file line="726">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="cdcb1e9c6561d7d1fbf68583e79140317e93e5d2" resname="No user found">
         <source>No user found</source>
-        <target state="new">No user found</target>
+        <target state="new">No se encontró usuario</target>
         <jms:reference-file line="229">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
         <jms:reference-file line="894">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
         <jms:reference-file line="958">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
@@ -1621,59 +1621,59 @@
       </trans-unit>
       <trans-unit id="1759be7d1ee5f0675567c09987cd4419ba474561" resname="Not approved">
         <source>Not approved</source>
-        <target state="new">Not approved</target>
+        <target state="new">No aprobado</target>
         <jms:reference-file line="761">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="b7baa1d40c4ea29afc9098732bffee2a861a6c44" resname="Number">
         <source>Number</source>
-        <target state="new">Number</target>
+        <target state="new">Número</target>
         <jms:reference-file line="292">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="81a66b042f92ae09dec0fc1a1d5fccf4d2f6d252" resname="Opinions Required">
         <source>Opinions Required</source>
-        <target state="new">Opinions Required</target>
+        <target state="new">Opiniones requeridas</target>
         <jms:reference-file line="32">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="177cc7fa458f92130089c4a70af303ff1fd54c73" resname="Original Submission">
         <source>Original Submission</source>
-        <target state="new">Original Submission</target>
+        <target state="new">Presentación original</target>
         <jms:reference-file line="78">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_another_infos.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6e6a6f2086bb5fe5dbfd17d8d5f502d48759834b" resname="Other">
         <source>Other</source>
-        <target state="new">Other</target>
+        <target state="new">Otro</target>
         <jms:reference-file line="137">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b22ddf1e04606d5919c237c76b0f7b5d800fe8d5" resname="Other Comments">
         <source>Other Comments</source>
-        <target state="new">Other Comments</target>
+        <target state="new">Otros comentarios</target>
         <jms:reference-file line="95">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReviewRevisor.html.twig</jms:reference-file>
         <jms:reference-file line="43">./src/Proethos2/CoreBundle/Resources/views/Protocol/showReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6848ce552eefdb4708bb7274612f44308492fee2" resname="Outcomes">
         <source>Outcomes</source>
-        <target state="new">Outcomes</target>
+        <target state="new">Resultados</target>
         <jms:reference-file line="194">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cd56e0839d06af74923cd6ad99d6fc9e7dab8e3a" resname="Participants">
         <source>Participants</source>
-        <target state="new">Participants</target>
+        <target state="new">Participantes</target>
         <jms:reference-file line="295">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8be3c943b1609fffbfc51aad666d0a04adf83c9d" resname="Password">
         <source>Password</source>
-        <target state="new">Password</target>
+        <target state="new">Contraseña</target>
         <jms:reference-file line="113">./src/Proethos2/CoreBundle/Resources/views/Security/newUser.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e4d64aa6b64e302e5b6b2c82be0fd71cc0cc8624" resname="Password changed with success.">
         <source>Password changed with success.</source>
-        <target state="new">Password changed with success.</target>
+        <target state="new">Se cambió la contraseña exitosamente</target>
         <jms:reference-file line="123">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
         <jms:reference-file line="262">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="48fcb111ca9b24cb3cdcededd6ffc99829439f33" resname="Passwords doesn't match.">
         <source>Passwords doesn't match.</source>
-        <target state="new">Passwords doesn't match.</target>
+        <target state="new">La contraseña no es correcta</target>
         <jms:reference-file line="106">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
         <jms:reference-file line="247">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
         <jms:reference-file line="343">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
@@ -1690,25 +1690,25 @@
       </trans-unit>
       <trans-unit id="5234c002584ebfe77f162ef7672f9048a7be53bc" resname="Primary Outcome">
         <source>Primary Outcome</source>
-        <target state="new">Primary Outcome</target>
+        <target state="new">Resultado principal</target>
         <jms:reference-file line="929">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="39ea313caa3fba30f152794ea467bf50dd6d6ea0" resname="Primary Sponsor">
         <source>Primary Sponsor</source>
-        <target state="new">Primary Sponsor</target>
+        <target state="new">Patrocinador principal</target>
         <jms:reference-file line="945">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
         <jms:reference-file line="155">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="126">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a04bddd8be25fb7b3182b6a943e8015b708a72cd" resname="Primary outcomes">
         <source>Primary outcomes</source>
-        <target state="new">Primary outcomes</target>
+        <target state="new">Resultados principales</target>
         <jms:reference-file line="117">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="201">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="efc7d6099e76ee26a4a11d103c47e19c66a1b08f" resname="Prior Ethical Approval">
         <source>Prior Ethical Approval</source>
-        <target state="new">Prior Ethical Approval</target>
+        <target state="new">Aprobación ética anterior</target>
         <jms:reference-file line="203">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="59">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FifthStep.html.twig</jms:reference-file>
         <jms:reference-file line="66">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FifthStep.html.twig</jms:reference-file>
@@ -1720,7 +1720,7 @@
       </trans-unit>
       <trans-unit id="cb3583fdc95bee8235906aa799b6387f87b2b14a" resname="Proethos2 Team">
         <source>Proethos2 Team</source>
-        <target state="new">Proethos2 Team</target>
+        <target state="new">Equipo ProEthos2</target>
         <jms:reference-file line="189">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
         <jms:reference-file line="379">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
         <jms:reference-file line="405">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
@@ -1735,20 +1735,20 @@
       </trans-unit>
       <trans-unit id="f2f01e6249a5ad459e77f133a7e3b40627bb5617" resname="Project Title">
         <source>Project Title</source>
-        <target state="new">Project Title</target>
+        <target state="new">Título del proyecto</target>
         <jms:reference-file line="54">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStepCreatedProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="54">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/meta.html.twig</jms:reference-file>
         <jms:reference-file line="52">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1ed77c3f7ffc41a33eadccef5727dc7c97079235" resname="Protocol">
         <source>Protocol</source>
-        <target state="new">Protocol</target>
+        <target state="new">Protocolo</target>
         <jms:reference-file line="35">./src/Proethos2/CoreBundle/Resources/views/CRUD/showMeeting.html.twig</jms:reference-file>
         <jms:reference-file line="19">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_header.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ca6929afd5559b55d064c4c355cb0fd91b905470" resname="Protocol Type">
         <source>Protocol Type</source>
-        <target state="new">Protocol Type</target>
+        <target state="new">Tipo de protocolo</target>
         <jms:reference-file line="24">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_header.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="185a971b99159441d069b7b1aabcec8c0de209c1" resname="Protocol options">
@@ -1761,18 +1761,18 @@
       </trans-unit>
       <trans-unit id="585ced76384ea0f630d2739a958c67ab7ab2bc10" resname="Protocol rejected with success!">
         <source>Protocol rejected with success!</source>
-        <target state="new">Protocol rejected with success!</target>
+        <target state="new">Protocolo rechazado exitosamente</target>
         <jms:reference-file line="207">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
         <jms:reference-file line="236">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="c0f8ba868ce23737ee8ecafb7cec8f068a952512" resname="Protocol submitted with sucess!">
         <source>Protocol submitted with sucess!</source>
-        <target state="new">Protocol submitted with sucess!</target>
+        <target state="new">Protocolo presentado exitosamente</target>
         <jms:reference-file line="1038">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="890d8149df67798f79ecd13beaacdc815b30c201" resname="Protocol updated with success!">
         <source>Protocol updated with success!</source>
-        <target state="new">Protocol updated with success!</target>
+        <target state="new">Protocolo actualizado exitosamente</target>
         <jms:reference-file line="288">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
         <jms:reference-file line="336">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
         <jms:reference-file line="355">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
@@ -1801,12 +1801,12 @@
       </trans-unit>
       <trans-unit id="e97aa44ce19416e6fe9a582193d79f467cde4269" resname="Protocol was finished with success!">
         <source>Protocol was finished with success!</source>
-        <target state="new">Protocol was finished with success!</target>
+        <target state="new">Protocol finalizado exitosamente</target>
         <jms:reference-file line="844">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="ffdf4d462b48069706ac5c6bcf284b460a30f0c0" resname="Protocol was rejected by">
         <source>Protocol was rejected by</source>
-        <target state="new">Protocol was rejected by</target>
+        <target state="new">Protocolo rechazado por</target>
         <jms:reference-file line="226">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="147a167b834ac600071026e71826fac84da47530" resname="Protocol was sent to comittee to initial analysis by %user%.">
@@ -1816,13 +1816,13 @@
       </trans-unit>
       <trans-unit id="2a6e3082f7bd2a56b001fbb1624e361e5599002d" resname="Protocols">
         <source>Protocols</source>
-        <target state="new">Protocols</target>
+        <target state="new">Protocolos</target>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cd6ece72a6865ef15a2a98c642960a5e4dfa6404" resname="Public Title">
         <source>Public Title</source>
-        <target state="new">Public Title</target>
+        <target state="new">Título público</target>
         <jms:reference-file line="35">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="63">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="62">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
@@ -1830,69 +1830,69 @@
       </trans-unit>
       <trans-unit id="66504a22bf9c7de6cb0b13fc9e1924db84e74810" resname="Public title">
         <source>Public title</source>
-        <target state="new">Public title</target>
+        <target state="new">Título público</target>
         <jms:reference-file line="63">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStepCreatedProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="61">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="44f6af6945544c0bab016a9160df6abb0cefcb60" resname="Quantity">
         <source>Quantity</source>
-        <target state="new">Quantity</target>
+        <target state="new">Cantidad</target>
         <jms:reference-file line="183">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="87">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
         <jms:reference-file line="209">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="002ff598115d84595ffeee6219cb5c03d3a1d4a6" resname="Question">
         <source>Question</source>
-        <target state="new">Question</target>
+        <target state="new">Pregunta</target>
         <jms:reference-file line="11">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateCommitteeFaq.html.twig</jms:reference-file>
         <jms:reference-file line="45">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeFaq.html.twig</jms:reference-file>
         <jms:reference-file line="90">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeFaq.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1dbbd5af63f780d397672694ae573455e4435df7" resname="Question created with success.">
         <source>Question created with success.</source>
-        <target state="new">Question created with success.</target>
+        <target state="new">Pregunta creada exitosamente</target>
         <jms:reference-file line="356">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
         <jms:reference-file line="552">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="4e29be1b14a9aa09b5e3587e491828d67d773058" resname="Question deleted with success.">
         <source>Question deleted with success.</source>
-        <target state="new">Question deleted with success.</target>
+        <target state="new">Pregunta eliminada exitosamente</target>
         <jms:reference-file line="456">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="7891571661d7cd0d0a4ab05c20b1190069f8aaba" resname="Question updated with success.">
         <source>Question updated with success.</source>
-        <target state="new">Question updated with success.</target>
+        <target state="new">Pregunta actualizada exitosamente</target>
         <jms:reference-file line="410">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="004b64db6618e04b3adbb8f9b3829304e58aa939" resname="Reason that this protocol was rejected">
         <source>Reason that this protocol was rejected</source>
-        <target state="new">Reason that this protocol was rejected</target>
+        <target state="new">Razón de rechazo de este protocolo</target>
         <jms:reference-file line="5">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/meta.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5a76cf82e4eb916410d452e2ba307cbed8ca2707" resname="Recruiting">
         <source>Recruiting</source>
-        <target state="new">Recruiting</target>
+        <target state="new">Reclutando</target>
         <jms:reference-file line="134">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
         <jms:reference-file line="92">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_header.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8719d9d68025ddde999b790d2a3c4f313eeda9c9" resname="Recruitment Countries">
         <source>Recruitment Countries</source>
-        <target state="new">Recruitment Countries</target>
+        <target state="new">Países de reclutamiento</target>
         <jms:reference-file line="147">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9a81794f239d6203fc79a8cc5904c6abe703f820" resname="Recruitment Country">
         <source>Recruitment Country</source>
-        <target state="new">Recruitment Country</target>
+        <target state="new">País de reclutamiento</target>
         <jms:reference-file line="99">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5405cefe81474c3ed7b2b319a6c073988bd214e8" resname="Recruitment Date">
         <source>Recruitment Date</source>
-        <target state="new">Recruitment Date</target>
+        <target state="new">Fecha de reclutamiento</target>
         <jms:reference-file line="56">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1e09d6baa08eee9735606efb79ac7f275094a921" resname="Recruitment Status">
         <source>Recruitment Status</source>
-        <target state="new">Recruitment Status</target>
+        <target state="new">Estado del reclutamiento</target>
         <jms:reference-file line="96">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="127">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/CRUD/listControlledListRecruitmentStatus.html.twig</jms:reference-file>
@@ -1900,12 +1900,12 @@
       </trans-unit>
       <trans-unit id="5d20d0fee3b91643dd8d272ac33d01ca95179d82" resname="References">
         <source>References</source>
-        <target state="new">References</target>
+        <target state="new">Referncias</target>
         <jms:reference-file line="23">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FifthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e8831ffbbf8470faa83d1d1e77be272f5f957ec4" resname="Regards">
         <source>Regards</source>
-        <target state="new">Regards</target>
+        <target state="new">Saludos</target>
         <jms:reference-file line="188">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
         <jms:reference-file line="378">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
         <jms:reference-file line="404">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
@@ -1920,40 +1920,40 @@
       </trans-unit>
       <trans-unit id="8d5356875652eb773706aa66084b13cf4ba407de" resname="Registry Name">
         <source>Registry Name</source>
-        <target state="new">Registry Name</target>
+        <target state="new">Nombre del registro</target>
         <jms:reference-file line="133">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="34">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="59edefea279e0e78442ba8da4f9c15568c5bb75b" resname="Registry Number">
         <source>Registry Number</source>
-        <target state="new">Registry Number</target>
+        <target state="new">Número del registro</target>
         <jms:reference-file line="134">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="35">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="819133f871d8e86af4cc2f170e04112a94a8799d" resname="Reject Submission">
         <source>Reject Submission</source>
-        <target state="new">Reject Submission</target>
+        <target state="new">Rechazar presentación</target>
         <jms:reference-file line="35">./src/Proethos2/CoreBundle/Resources/views/Protocol/analyzeProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b115c76b4ffcb71b1d273537025b507680ccc587" resname="Reject reason">
         <source>Reject reason</source>
-        <target state="new">Reject reason</target>
+        <target state="new">Razón del rechazo</target>
         <jms:reference-file line="42">./src/Proethos2/CoreBundle/Resources/views/Protocol/analyzeProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="27eeb7a291bfc566447d9cd928e98caf90f70ee6" resname="Rejected">
         <source>Rejected</source>
-        <target state="new">Rejected</target>
+        <target state="new">Rechazado</target>
         <jms:reference-file line="38">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="37">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8e3396f89515f442389f76203853468f9afa8e95" resname="Remove this investigator.">
         <source>Remove this investigator.</source>
-        <target state="new">Remove this investigator.</target>
+        <target state="new">Eliminar este investigador</target>
         <jms:reference-file line="62">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="be601df25eea91eaaf0d5e80263930143af345be" resname="Research">
         <source>Research</source>
-        <target state="new">Research</target>
+        <target state="new">Investigación</target>
         <jms:reference-file line="83">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="82">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="48">./src/Proethos2/CoreBundle/Resources/views/Index/index.html.twig</jms:reference-file>
@@ -1961,18 +1961,18 @@
       </trans-unit>
       <trans-unit id="bf8804f07772036fc47c44e60c9c3ce7073e6891" resname="Reset your password">
         <source>Reset your password</source>
-        <target state="new">Reset your password</target>
+        <target state="new">Restablecer contraseña</target>
         <jms:reference-file line="178">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="ce535921787104e778f659c7d7f0046d4807cfb8" resname="Respect for participants">
         <source>Respect for participants</source>
-        <target state="new">Respect for participants</target>
+        <target state="new">Respeto por los participantes</target>
         <jms:reference-file line="86">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReviewRevisor.html.twig</jms:reference-file>
         <jms:reference-file line="37">./src/Proethos2/CoreBundle/Resources/views/Protocol/showReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5faa59d4bc3756040b8ce9e673c09f929e6ee9ba" resname="Result">
         <source>Result</source>
-        <target state="new">Result</target>
+        <target state="new">Resultado</target>
         <jms:reference-file line="57">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_header.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="001fb7f3098982c2f2b7248196b58881279fd0b1" resname="Reviewer Review">
@@ -1987,18 +1987,18 @@
       </trans-unit>
       <trans-unit id="306d866ac402b8c38b1966cd8942780d2828f448" resname="Revised in">
         <source>Revised in</source>
-        <target state="new">Revised in</target>
+        <target state="new">Revisado en</target>
         <jms:reference-file line="74">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_header.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3beb9ad4036d0f72f3aa2194db1e01cab6f18fd0" resname="Revision">
         <source>Revision</source>
-        <target state="new">Revision</target>
+        <target state="new">Revisión</target>
         <jms:reference-file line="24">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SeventhStep.html.twig</jms:reference-file>
         <jms:reference-file line="39">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/meta.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c3f104d1365744b538bfde9f4adb6a6df4b80355" resname="Role">
         <source>Role</source>
-        <target state="new">Role</target>
+        <target state="new">Rol</target>
         <jms:reference-file line="33">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateCommitteeDocument.html.twig</jms:reference-file>
         <jms:reference-file line="47">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeDocument.html.twig</jms:reference-file>
         <jms:reference-file line="120">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeDocument.html.twig</jms:reference-file>
@@ -2010,7 +2010,7 @@
       </trans-unit>
       <trans-unit id="efc007a393f66cdb14d57d385822a3d9e36ef873" resname="Save">
         <source>Save</source>
-        <target state="new">Save</target>
+        <target state="new">Guardar</target>
         <jms:reference-file line="182">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
         <jms:reference-file line="303">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
         <jms:reference-file line="34">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateControlledListUploadTypeExtension.html.twig</jms:reference-file>
@@ -2045,17 +2045,17 @@
       </trans-unit>
       <trans-unit id="d891b939ebd30c077be9b8947d719284d03aae02" resname="Save and finish">
         <source>Save and finish</source>
-        <target state="new">Save and finish</target>
+        <target state="new">Guardar y finalizar</target>
         <jms:reference-file line="79">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SeventhStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ff708ddf466ae8a6d7c39a05291103bdfa5d0405" resname="Save and mark as final revision">
         <source>Save and mark as final revision</source>
-        <target state="new">Save and mark as final revision</target>
+        <target state="new">Guardar y marcar como revisión final</target>
         <jms:reference-file line="117">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReviewRevisor.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="934c58ad92629910173f22a51fc46fcb7b0719aa" resname="Save and next">
         <source>Save and next</source>
-        <target state="new">Save and next</target>
+        <target state="new">Guardar y siguiente</target>
         <jms:reference-file line="76">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStepCreatedProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="145">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
         <jms:reference-file line="80">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FifthStep.html.twig</jms:reference-file>
@@ -2066,7 +2066,7 @@
       </trans-unit>
       <trans-unit id="538417dd35d60b4f1597be368fed485f6fb14c9d" resname="Save and send to meeting">
         <source>Save and send to meeting</source>
-        <target state="new">Save and send to meeting</target>
+        <target state="new">Guardar y enviar a reunión</target>
         <jms:reference-file line="116">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6dc3f2fd7c2d22f3d99289b9991985cd631e0767" resname="Save and wait for comments">
@@ -2076,18 +2076,18 @@
       </trans-unit>
       <trans-unit id="ab2155f76e6b2408c0665d35fb34cd4f7127565f" resname="Save decision and finish process">
         <source>Save decision and finish process</source>
-        <target state="new">Save decision and finish process</target>
+        <target state="new">Guardar decisión y finalizar proceso</target>
         <jms:reference-file line="79">./src/Proethos2/CoreBundle/Resources/views/Protocol/endReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0a8adac9d6d5f4d14ee887d196cd8618f0f3391a" resname="Schedule">
         <source>Schedule</source>
-        <target state="new">Schedule</target>
+        <target state="new">Programar</target>
         <jms:reference-file line="161">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="147">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1cd1bdad468f24f0cafe2226bfdd78b917ba7912" resname="Scheduled">
         <source>Scheduled</source>
-        <target state="new">Scheduled</target>
+        <target state="new">Programado</target>
         <jms:reference-file line="41">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="40">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
       </trans-unit>
@@ -2099,7 +2099,7 @@
       </trans-unit>
       <trans-unit id="bce06414177f72ab70e6387b6af9f8ceef0d6049" resname="Search">
         <source>Search</source>
-        <target state="new">Search</target>
+        <target state="new">Buscar</target>
         <jms:reference-file line="31">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
         <jms:reference-file line="31">./src/Proethos2/CoreBundle/Resources/views/CRUD/listMeeting.html.twig</jms:reference-file>
         <jms:reference-file line="48">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
@@ -2109,55 +2109,55 @@
       </trans-unit>
       <trans-unit id="a122ee60aabbe318f5105be284406e716f38622b" resname="Search for a document">
         <source>Search for a document</source>
-        <target state="new">Search for a document</target>
+        <target state="new">Buscar un documento</target>
         <jms:reference-file line="23">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeDocument.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c48a87e22c5b431d8f57903582305d386fc40cf8" resname="Search for a meeting subject">
         <source>Search for a meeting subject</source>
-        <target state="new">Search for a meeting subject</target>
+        <target state="new">Buscar un tema de reunión</target>
         <jms:reference-file line="23">./src/Proethos2/CoreBundle/Resources/views/CRUD/listMeeting.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="121c4a473af2bf951dfa68288eb51f45021880d9" resname="Search for a question">
         <source>Search for a question</source>
-        <target state="new">Search for a question</target>
+        <target state="new">Buscar una pregunta</target>
         <jms:reference-file line="23">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeFaq.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6c14b5b33ab54533adc70504f19296737a0fb545" resname="Search for a user">
         <source>Search for a user</source>
-        <target state="new">Search for a user</target>
+        <target state="new">Buscar un usuario</target>
         <jms:reference-file line="23">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7debd084e4aad66ed0649f8c02c41d1c60e6465c" resname="Second step saved with sucess.">
         <source>Second step saved with sucess.</source>
-        <target state="new">Second step saved with sucess.</target>
+        <target state="new">Segundo paso guardado exitosamente</target>
         <jms:reference-file line="238">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="bd52d5e0a933dcdd7cffc46f94402e939a2635f2" resname="Secondary Registry">
         <source>Secondary Registry</source>
-        <target state="new">Secondary Registry</target>
+        <target state="new">Registro secundario</target>
         <jms:reference-file line="147">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="63">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a4be1c41794ac749473c0592a0554d8f842a16de" resname="Secondary Sponsor">
         <source>Secondary Sponsor</source>
-        <target state="new">Secondary Sponsor</target>
+        <target state="new">Patrocinador secundario</target>
         <jms:reference-file line="158">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="136">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fe7f05fb9265df45b30f197ac151e097204df19d" resname="Secondary outcomes">
         <source>Secondary outcomes</source>
-        <target state="new">Secondary outcomes</target>
+        <target state="new">Resultados secundarios</target>
         <jms:reference-file line="120">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="211">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="455625bd5b9906064006aeacf166a16abd6249ae" resname="See Protocol">
         <source>See Protocol</source>
-        <target state="new">See Protocol</target>
+        <target state="new">Ver protocolo</target>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/Protocol/showProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f4a5757a3cee255c8368db475f449f74e306828c" resname="See protocol">
         <source>See protocol</source>
-        <target state="new">See protocol</target>
+        <target state="new">Ver protocolo</target>
         <jms:reference-file line="90">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="89">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="45">./src/Proethos2/CoreBundle/Resources/views/CRUD/showMeeting.html.twig</jms:reference-file>
@@ -2165,24 +2165,24 @@
       </trans-unit>
       <trans-unit id="60b8efb0f9c942c7851b7737fa07e21babe55542" resname="Select Members Ad-Hoc">
         <source>Select Members Ad-Hoc</source>
-        <target state="new">Select Members Ad-Hoc</target>
+        <target state="new">Seleccionar miembros ad-hoc</target>
         <jms:reference-file line="86">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReview.html.twig</jms:reference-file>
         <jms:reference-file line="179">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="760f9df06db95a28b99e075c59b970b8685671a5" resname="Select Members Of Committee">
         <source>Select Members Of Committee</source>
-        <target state="new">Select Members Of Committee</target>
+        <target state="new">Seleccionar miembros del comité</target>
         <jms:reference-file line="85">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReview.html.twig</jms:reference-file>
         <jms:reference-file line="131">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="21995b67ba3b5423b41a9a2ad6ab3501814bfef9" resname="Select an action">
         <source>Select an action</source>
-        <target state="new">Select an action</target>
+        <target state="new">Seleccionar una acción</target>
         <jms:reference-file line="15">./src/Proethos2/CoreBundle/Resources/views/Monitoring/monitoringCreate.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="59ee76bad1c84ae8a74eecd124068c0d3c7d4924" resname="Select country">
         <source>Select country</source>
-        <target state="new">Select country</target>
+        <target state="new">Seleccionar país</target>
         <jms:reference-file line="287">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
         <jms:reference-file line="25">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateUserProfile.html.twig</jms:reference-file>
         <jms:reference-file line="148">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
@@ -2191,18 +2191,18 @@
       </trans-unit>
       <trans-unit id="f9bcd620ea43fcf001a1d4d0f2865f4c07a17471" resname="Select meeting">
         <source>Select meeting</source>
-        <target state="new">Select meeting</target>
+        <target state="new">Seleccionar reunión</target>
         <jms:reference-file line="100">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9bc2575c3930437e80555f78757b783c842e8e66" resname="Send">
         <source>Send</source>
-        <target state="new">Send</target>
+        <target state="new">Enviar</target>
         <jms:reference-file line="106">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SixtyStep.html.twig</jms:reference-file>
         <jms:reference-file line="142">./src/Proethos2/CoreBundle/Resources/views/Monitoring/monitoringCreateThatNotAmendment.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6dcd151222c0c288e39811b96a54d91e50f9c4a8" resname="Send Message">
         <source>Send Message</source>
-        <target state="new">Send Message</target>
+        <target state="new">Enviar mensaje</target>
         <jms:reference-file line="54">./src/Proethos2/CoreBundle/Resources/views/CRUD/listContact.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b5cb95704a5a4b926f57958fe2f55b65ab9125c5" resname="Send an email to us by fields below or by the email">
@@ -2212,7 +2212,7 @@
       </trans-unit>
       <trans-unit id="ed0aad95adb0760d3cf37450799a0f8080dcc7dd" resname="Send back to investigator">
         <source>Send back to investigator</source>
-        <target state="new">Send back to investigator</target>
+        <target state="new">Devolver al investigador</target>
         <jms:reference-file line="61">./src/Proethos2/CoreBundle/Resources/views/Protocol/analyzeProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f7f7607b333b374d1116f2a2dd4cd970e3c6ef56" resname="Send draft opinion">
@@ -2222,12 +2222,12 @@
       </trans-unit>
       <trans-unit id="8c86d73c34f67918b3131fa1eb594dbbeafac78e" resname="Send me instructions">
         <source>Send me instructions</source>
-        <target state="new">Send me instructions</target>
+        <target state="new">Enviarme instrucciones</target>
         <jms:reference-file line="54">./src/Proethos2/CoreBundle/Resources/views/Security/forgotMyPassword.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="484ceee1920316eccd11f67ae2f6140ce196897a" resname="Send protocol revision">
         <source>Send protocol revision</source>
-        <target state="new">Send protocol revision</target>
+        <target state="new">Enviar revisión del protocolo</target>
         <jms:reference-file line="94">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="55">./src/Proethos2/CoreBundle/Resources/views/Index/index.html.twig</jms:reference-file>
       </trans-unit>
@@ -2238,12 +2238,12 @@
       </trans-unit>
       <trans-unit id="d7ec62cd2e6527cce3320a981c4467ac06d66775" resname="Send to committee to decide">
         <source>Send to committee to decide</source>
-        <target state="new">Send to committee to decide</target>
+        <target state="new">Enviar a comité para decidir</target>
         <jms:reference-file line="62">./src/Proethos2/CoreBundle/Resources/views/Protocol/analyzeProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="19ffa1466728796701f5ce75fb65995ecad95697" resname="Send to ethical revision">
         <source>Send to ethical revision</source>
-        <target state="new">Send to ethical revision</target>
+        <target state="new">None</target>
         <jms:reference-file line="63">./src/Proethos2/CoreBundle/Resources/views/Protocol/analyzeProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ead70aedefb78deab783bfd70a0ce258bf2d8111" resname="Set protocol as exempt">
@@ -2258,12 +2258,12 @@
       </trans-unit>
       <trans-unit id="133cade7429c62bc10632a2e8dec0d499ed864de" resname="Show Protocol">
         <source>Show Protocol</source>
-        <target state="new">Show Protocol</target>
+        <target state="new">Mostrar protocolo</target>
         <jms:reference-file line="11">./src/Proethos2/CoreBundle/Resources/views/Protocol/showProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ebc53bf2b48ba5c9a92abced07c57ae6fce40fe6" resname="Social Value">
         <source>Social Value</source>
-        <target state="new">Social Value</target>
+        <target state="new">Valor social</target>
         <jms:reference-file line="41">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReviewRevisor.html.twig</jms:reference-file>
         <jms:reference-file line="11">./src/Proethos2/CoreBundle/Resources/views/Protocol/showReview.html.twig</jms:reference-file>
       </trans-unit>
@@ -2287,13 +2287,13 @@
       </trans-unit>
       <trans-unit id="952f375412e89ff213a8aca383d18e5691354347" resname="Start">
         <source>Start</source>
-        <target state="new">Start</target>
+        <target state="new">Iniciar</target>
         <jms:reference-file line="165">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="158">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="bae7d5be70820ed56467bd9a63744e23b47bd711" resname="Status">
         <source>Status</source>
-        <target state="new">Status</target>
+        <target state="new">Estado</target>
         <jms:reference-file line="51">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
         <jms:reference-file line="27">./src/Proethos2/CoreBundle/Resources/views/CRUD/listControlledListClinicalTrialName.html.twig</jms:reference-file>
         <jms:reference-file line="32">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
@@ -2317,18 +2317,18 @@
       </trans-unit>
       <trans-unit id="f13e11e24e0a1e9f77916962b0260baf109fba5c" resname="Study Design">
         <source>Study Design</source>
-        <target state="new">Study Design</target>
+        <target state="new">Diseño del estudio</target>
         <jms:reference-file line="865">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
         <jms:reference-file line="78">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5ff385feb261a37fbd763f19e3129a0e9a17bb27" resname="Study design">
         <source>Study design</source>
-        <target state="new">Study design</target>
+        <target state="new">Diseño del estudio</target>
         <jms:reference-file line="30">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8d183dbdcea3b29906090bd83fa6fa37923cc8ec" resname="Subject">
         <source>Subject</source>
-        <target state="new">Subject</target>
+        <target state="new">Tema</target>
         <jms:reference-file line="21">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateMeeting.html.twig</jms:reference-file>
         <jms:reference-file line="46">./src/Proethos2/CoreBundle/Resources/views/CRUD/listMeeting.html.twig</jms:reference-file>
         <jms:reference-file line="114">./src/Proethos2/CoreBundle/Resources/views/CRUD/listMeeting.html.twig</jms:reference-file>
@@ -2338,40 +2338,40 @@
       </trans-unit>
       <trans-unit id="bd371eb7282bccb49854f6af1c39ed182695e1af" resname="Submission of protocol.">
         <source>Submission of protocol.</source>
-        <target state="new">Submission of protocol.</target>
+        <target state="new">Presentación del protocolo</target>
         <jms:reference-file line="1033">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="c5eafe1a51b80e934915ccfb1d0afbde2967b915" resname="Submission started with success.">
         <source>Submission started with success.</source>
-        <target state="new">Submission started with success.</target>
+        <target state="new">Presentación inicio exitosamente</target>
         <jms:reference-file line="76">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="616a727ccc63c1861aa904e743c589abd4f6e546" resname="Submit Monitoring Action">
         <source>Submit Monitoring Action</source>
-        <target state="new">Submit Monitoring Action</target>
+        <target state="new">Presentar acción de monitoreo</target>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/Monitoring/monitoringCreateThatNotAmendment.html.twig</jms:reference-file>
         <jms:reference-file line="11">./src/Proethos2/CoreBundle/Resources/views/Monitoring/monitoringCreateThatNotAmendment.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="982b5577e8467617e896721e86fdf37e8fa2514d" resname="Submit monitoring action">
         <source>Submit monitoring action</source>
-        <target state="new">Submit monitoring action</target>
+        <target state="new">Presentar acción de monitoreo</target>
         <jms:reference-file line="5">./src/Proethos2/CoreBundle/Resources/views/Monitoring/monitoringCreate.html.twig</jms:reference-file>
         <jms:reference-file line="101">./src/Proethos2/CoreBundle/Resources/views/Monitoring/monitoringCreateThatNotAmendment.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="2e00359b9802d1fa28aa05450482d8df1c0cf61f" resname="Submitted">
         <source>Submitted</source>
-        <target state="new">Submitted</target>
+        <target state="new">Presentado</target>
         <jms:reference-file line="37">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="36">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="749707db5d750f5cf2de9c62f93dadd9b6ffb698" resname="Submitted Protocols">
         <source>Submitted Protocols</source>
-        <target state="new">Submitted Protocols</target>
+        <target state="new">Protocolos presentados</target>
         <jms:reference-file line="12">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="046485aa309a8f023e2e4f75a5e5856f99c1dde8" resname="Submitted by">
         <source>Submitted by</source>
-        <target state="new">Submitted by</target>
+        <target state="new">Presentado por</target>
         <jms:reference-file line="79">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_another_infos.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="861edba00547bc9ce7a08df78d4378766418179f" resname="Suggestions">
@@ -2382,18 +2382,18 @@
       </trans-unit>
       <trans-unit id="794696a720669c524ad273a139db0fd375e6608b" resname="Suspended">
         <source>Suspended</source>
-        <target state="new">Suspended</target>
+        <target state="new">Suspendido</target>
         <jms:reference-file line="135">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9bfe48f8b037340d39eba12325d66f643d2b3730" resname="Target sample size">
         <source>Target sample size</source>
-        <target state="new">Target sample size</target>
+        <target state="new">Tamaño de la muestra</target>
         <jms:reference-file line="84">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="71">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="218887269ad5946d9dc53238651c90472884fb0f" resname="Team">
         <source>Team</source>
-        <target state="new">Team</target>
+        <target state="new">Equipo</target>
         <jms:reference-file line="813">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
         <jms:reference-file line="23">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
         <jms:reference-file line="38">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
@@ -2401,7 +2401,7 @@
       </trans-unit>
       <trans-unit id="92d0286da122f925192755a952e521131270bd5f" resname="Terms and conditions">
         <source>Terms and conditions</source>
-        <target state="new">Terms and conditions</target>
+        <target state="new">Términos y condiciones</target>
         <jms:reference-file line="59">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SeventhStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="56ae0b99ca2669bedf0bdfa54b5243239253cfa4" resname="The recruitment init date needs to be greater than today.">
@@ -2416,22 +2416,22 @@
       </trans-unit>
       <trans-unit id="8989086d26bf60fdaf33d9abd8dbbd528f02ecaa" resname="Third step saved with sucess.">
         <source>Third step saved with sucess.</source>
-        <target state="new">Third step saved with sucess.</target>
+        <target state="new">Tercer paso guardado exitosamente</target>
         <jms:reference-file line="392">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="da372ea9fbc37de95b78e59d7ce18649f17f7682" resname="This is your first access! Please, for your security, you need to change your password.">
         <source>This is your first access! Please, for your security, you need to change your password.</source>
-        <target state="new">This is your first access! Please, for your security, you need to change your password.</target>
+        <target state="new">Este es su primer acceso. Por favor, por su seguridad, cambie su contraseña.</target>
         <jms:reference-file line="13">./src/Proethos2/CoreBundle/Resources/views/Security/changePassword.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="129c0fc1268fe11e4bea38a257012f307e2c3716" resname="This monitoring action will not be reviewed by the committee">
         <source>This monitoring action will not be reviewed by the committee</source>
-        <target state="new">This monitoring action will not be reviewed by the committee</target>
+        <target state="new">Esta acción de monitoreo no será revisada por el comité</target>
         <jms:reference-file line="65">./src/Proethos2/CoreBundle/Resources/views/Protocol/analyzeProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="768e0c1c69573fb588f61f1308a015c11468e05f" resname="Title">
         <source>Title</source>
-        <target state="new">Title</target>
+        <target state="new">Título</target>
         <jms:reference-file line="13">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateCommitteeDocument.html.twig</jms:reference-file>
         <jms:reference-file line="45">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeDocument.html.twig</jms:reference-file>
         <jms:reference-file line="100">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeDocument.html.twig</jms:reference-file>
@@ -2450,17 +2450,17 @@
       </trans-unit>
       <trans-unit id="178a917f1ce61194cd25725183df7ef392e64f7c" resname="Total of Participants">
         <source>Total of Participants</source>
-        <target state="new">Total of Participants</target>
+        <target state="new">Total número de participantes</target>
         <jms:reference-file line="103">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="746e590d58b1f27efb7ed40536cf553de8603393" resname="Total of participants">
         <source>Total of participants</source>
-        <target state="new">Total of participants</target>
+        <target state="new">Total número de participantes</target>
         <jms:reference-file line="158">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/ThirdStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3deb7456519697ecf4eefc455516c969a3681bae" resname="Type">
         <source>Type</source>
-        <target state="new">Type</target>
+        <target state="new">Tipo</target>
         <jms:reference-file line="215">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="33">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SixtyStep.html.twig</jms:reference-file>
         <jms:reference-file line="86">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SixtyStep.html.twig</jms:reference-file>
@@ -2478,12 +2478,12 @@
       </trans-unit>
       <trans-unit id="0105252023c5b7351cf44bf806b537139af73e47" resname="Unit Cost">
         <source>Unit Cost</source>
-        <target state="new">Unit Cost</target>
+        <target state="new">Costo unitario</target>
         <jms:reference-file line="182">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b16e07e0bb92ec86f00ad92ef637d38cca0e3e8f" resname="Unit cost">
         <source>Unit cost</source>
-        <target state="new">Unit cost</target>
+        <target state="new">Costo unitario</target>
         <jms:reference-file line="86">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
         <jms:reference-file line="215">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FourthStep.html.twig</jms:reference-file>
       </trans-unit>
@@ -2494,12 +2494,12 @@
       </trans-unit>
       <trans-unit id="f8854695f5efda2bb8ed664e10a7866ff7d20394" resname="Update Document">
         <source>Update Document</source>
-        <target state="new">Update Document</target>
+        <target state="new">Actualizar documento</target>
         <jms:reference-file line="6">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateCommitteeDocument.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="21b337a73439496bcfd137ddc1549cbacb16c2ea" resname="Update Help">
         <source>Update Help</source>
-        <target state="new">Update Help</target>
+        <target state="new">Actualizar ayuda</target>
         <jms:reference-file line="4">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateHelp.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="829742072bf2372516f84cfc1b245da2a78ce4ed" resname="Update Item">
@@ -2514,38 +2514,38 @@
       </trans-unit>
       <trans-unit id="448b971c7b7738a4c2cb5fea621654b09beab725" resname="Update Meeting">
         <source>Update Meeting</source>
-        <target state="new">Update Meeting</target>
+        <target state="new">Actualizar reunión</target>
         <jms:reference-file line="4">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateMeeting.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e27738c47f3ecda86646c8ee5acafaa6829470f9" resname="Update User">
         <source>Update User</source>
-        <target state="new">Update User</target>
+        <target state="new">Actualizar usuario</target>
         <jms:reference-file line="5">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateUserProfile.html.twig</jms:reference-file>
         <jms:reference-file line="5">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateCommitteeUser.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="dfe40b97f641ce3b2e09d5d3d9e53ffea7c55098" resname="Update User's Roles">
         <source>Update User's Roles</source>
-        <target state="new">Update User's Roles</target>
+        <target state="new">Actualizar roles del usuario</target>
         <jms:reference-file line="5">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateCommitteeUserRole.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e51ea615f32865af81413214b39b47e68e2e4eae" resname="Update this message">
         <source>Update this message</source>
-        <target state="new">Update this message</target>
+        <target state="new">Actualizar este mensaje</target>
         <jms:reference-file line="15">./src/Proethos2/CoreBundle/Resources/views/CRUD/showHelp.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="22714274a44dd11e75f243d16cb61d47837a91ed" resname="Updated At">
         <source>Updated At</source>
-        <target state="new">Updated At</target>
+        <target state="new">Actualizado en</target>
         <jms:reference-file line="75">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/meta.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="54636de2429352d98a8323021be66e468e44e6c3" resname="Updated in">
         <source>Updated in</source>
-        <target state="new">Updated in</target>
+        <target state="new">Actualizado en</target>
         <jms:reference-file line="69">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_header.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4bf2cc96cb544b6d8e7250f77a3b6511a4e4e008" resname="Upload Files">
         <source>Upload Files</source>
-        <target state="new">Upload Files</target>
+        <target state="new">Subir archivos</target>
         <jms:reference-file line="212">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="55d4d691caf9220c37eb6195d9a6216cf9054840" resname="Upload Type Extension created with success.">
@@ -2569,7 +2569,7 @@
       </trans-unit>
       <trans-unit id="dfbff40e0380406fc9e4129026791082174263ee" resname="User created with success.">
         <source>User created with success.</source>
-        <target state="new">User created with success.</target>
+        <target state="new">Usuario creado exitosamente</target>
         <jms:reference-file line="816">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="47d11cb1df700c1d0155843dfc261b18d3b134f7" resname="User created with success. Wait for approval.">
@@ -2579,12 +2579,12 @@
       </trans-unit>
       <trans-unit id="e0e4ebff5200c40e7359f66bd05c69cba4554014" resname="User deleted with success.">
         <source>User deleted with success.</source>
-        <target state="new">User deleted with success.</target>
+        <target state="new">Usuario eliminado exitosamente</target>
         <jms:reference-file line="1064">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="9c19f4469c4e6c88fd28c8a3d373329b43ba4a7d" resname="User updated with success.">
         <source>User updated with success.</source>
-        <target state="new">User updated with success.</target>
+        <target state="new">Usuario actualizado exitosamente</target>
         <jms:reference-file line="866">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
         <jms:reference-file line="931">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
         <jms:reference-file line="1018">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
@@ -2596,14 +2596,14 @@
       </trans-unit>
       <trans-unit id="84c29015de33e5d22422382a372caba5c58f8c01" resname="Username">
         <source>Username</source>
-        <target state="new">Username</target>
+        <target state="new">Nombre de usuario</target>
         <jms:reference-file line="46">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
         <jms:reference-file line="115">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
         <jms:reference-file line="58">./src/Proethos2/CoreBundle/Resources/views/Security/newUser.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="57f2b181d0a5e79a147ea1cdf41457f58dbbb3c9" resname="Users">
         <source>Users</source>
-        <target state="new">Users</target>
+        <target state="new">Usuarios</target>
         <jms:reference-file line="3">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
         <jms:reference-file line="12">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
       </trans-unit>
@@ -2631,7 +2631,7 @@
       </trans-unit>
       <trans-unit id="5397e0583f14f6c88de06b1ef28f460a1fb5b0ae" resname="Yes">
         <source>Yes</source>
-        <target state="new">Yes</target>
+        <target state="new">Si</target>
         <jms:reference-file line="47">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStepCreatedProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="46">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SecondStep.html.twig</jms:reference-file>
         <jms:reference-file line="45">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStep.html.twig</jms:reference-file>
@@ -2665,7 +2665,7 @@
       </trans-unit>
       <trans-unit id="5ad5f44930ed645f66efbc0a94ebd916eaab18aa" resname="You need to upload a draft opinion.">
         <source>You need to upload a draft opinion.</source>
-        <target state="new">You need to upload a draft opinion.</target>
+        <target state="new">Suba una decisión</target>
         <jms:reference-file line="794">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="60aa78ee09654c0435f823448a8e0c0935af7895" resname="You was assigned to review a protocol">
@@ -2680,7 +2680,7 @@
       </trans-unit>
       <trans-unit id="82378d8f1e312930b2e019849c8ab441e3084827" resname="Your Protocols">
         <source>Your Protocols</source>
-        <target state="new">Your Protocols</target>
+        <target state="new">Sus protocolos</target>
         <jms:reference-file line="12">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9c3bce80ec4a4583d2a342199b95964195f28527" resname="Your protocol was accepted!">
@@ -2707,7 +2707,7 @@
       </trans-unit>
       <trans-unit id="2bb6b986c5d6fb26dd9dd1054b545ce022371b0c" resname="active">
         <source>active</source>
-        <target state="new">active</target>
+        <target state="new">activo</target>
         <jms:reference-file line="71">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
         <jms:reference-file line="39">./src/Proethos2/CoreBundle/Resources/views/CRUD/listControlledListClinicalTrialName.html.twig</jms:reference-file>
         <jms:reference-file line="37">./src/Proethos2/CoreBundle/Resources/views/CRUD/listControlledListGender.html.twig</jms:reference-file>
@@ -2720,12 +2720,12 @@
       </trans-unit>
       <trans-unit id="34356a0bb97032d85b905883f666dba5e56cfece" resname="clinical trial">
         <source>clinical trial</source>
-        <target state="new">clinical trial</target>
+        <target state="new">ensayo clínico</target>
         <jms:reference-file line="7">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_header.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d436a3f40e3ecce896010be99dcf00a577b909aa" resname="inactive">
         <source>inactive</source>
-        <target state="new">inactive</target>
+        <target state="new">inactivo</target>
         <jms:reference-file line="73">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeUser.html.twig</jms:reference-file>
         <jms:reference-file line="41">./src/Proethos2/CoreBundle/Resources/views/CRUD/listControlledListClinicalTrialName.html.twig</jms:reference-file>
         <jms:reference-file line="39">./src/Proethos2/CoreBundle/Resources/views/CRUD/listControlledListGender.html.twig</jms:reference-file>
@@ -2738,7 +2738,7 @@
       </trans-unit>
       <trans-unit id="34bf3783e8408d6e8bc09b5ec1decac161fbfdb6" resname="member(s)">
         <source>member(s)</source>
-        <target state="new">member(s)</target>
+        <target state="new">miembro(s)</target>
         <jms:reference-file line="813">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="fd1286353570c5703799ba76999323b7c7447b06" resname="no">
