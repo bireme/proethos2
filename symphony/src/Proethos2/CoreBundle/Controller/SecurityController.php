@@ -67,8 +67,10 @@ class SecurityController extends Controller
         // if secretary, send to committee home
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        if(in_array('secretary', $user->getRolesSlug())) {
-            return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
+        foreach(array('secretary', 'member-of-committee', 'member-ad-hoc') as $role) {
+            if(in_array($role, $user->getRolesSlug())) {
+                return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
+            }
         }
         
         return $this->redirectToRoute('crud_investigator_protocol_list', array(), 301);
