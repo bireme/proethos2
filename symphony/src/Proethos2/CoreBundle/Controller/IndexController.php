@@ -40,9 +40,7 @@ class IndexController extends Controller
         
         $submissions = array();
         foreach($protocol_repository->findBy(array("owner" => $user)) as $submission) {
-            if($submission->getStatus() == 'D') {
-                $submissions[] = $submission;
-            }
+            $submissions[] = $submission;
         }
         $output['submissions'] = $submissions;
 
