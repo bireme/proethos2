@@ -591,7 +591,7 @@ class ProtocolController extends Controller
                             ->setBody(
                                 $translator->trans("Hello!") .
                                 "<br>" .
-                                "<br>" . $translator->trans("You was assigned to review a protocol. Access the link below") . ":" .
+                                "<br>" . $translator->trans("You was assigned to review a protocol. Please access the link below") . ":" .
                                 "<br>" .
                                 "<br>$url" .
                                 "<br>" .
