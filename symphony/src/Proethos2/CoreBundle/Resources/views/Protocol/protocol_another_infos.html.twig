@@ -169,11 +169,13 @@
                  
                 <tbody>
                     {% for comment in protocol.comment %}
-                        <tr>
-                           <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
-                           <td>{{ comment.owner }}</td> 
-                           <td>{{ comment.message }}</td> 
-                        </tr>
+                        {% if not comment.isConfidential or 'investigator' not in app.user.getRolesSlug or not protocol.mainSubmission.isOwner(app.user) %}
+                            <tr>
+                               <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
+                               <td>{{ comment.owner }}</td> 
+                               <td>{{ comment.message }}</td> 
+                            </tr>
+                        {% endif %}
                     {% endfor %}
                 </tbody>
             </table>
@@ -199,6 +201,26 @@
                             <a href="{{ path("crud_admin_help_show", {help_id: 126} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <textarea class='form-control' rows='4' name='new-comment-message' id='textarea-new-comment-message' required></textarea>
                         </div>
+
+                        {# code that discover if should show the confidential option #}
+                        {% set is_show_confiential_field = false %}
+                        {% for role in app.user.getRolesSlug %}
+                            {% if role in ['secretary', 'member-of-committee', 'member-ad-hoc'] %}
+                                {% set is_show_confiential_field = true %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if is_show_confiential_field and not protocol.mainSubmission.isOwner(app.user) %}
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label for="checkbox-new-comment-is-confidential">
+                                        <input type="checkbox" name='new-comment-is-confidential' id='checkbox-new-comment-is-confidential' value="yes">{% trans %}Is this a confidential comment?{% endtrans %}
+                                        <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    </label>
+                                </div>
+                            </div>
+                        {% endif %}
+                        
                     </form>
                 </div>
                 

@@ -109,6 +109,10 @@ class ProtocolController extends Controller
             $comment->setOwner($user);
             $comment->setMessage($post_data['new-comment-message']);
 
+            if(isset($post_data['new-comment-is-confidential']) and $post_data['new-comment-is-confidential'] == "yes") {
+                $comment->setIsConfidential(true);
+            }
+
             $em->persist($comment);
             $em->flush();
                 

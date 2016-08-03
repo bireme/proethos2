@@ -41,6 +41,11 @@ class ProtocolComment extends Base
     private $owner;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_confidential = false;
+
+    /**
      * Get id
      *
      * @return integer
@@ -120,5 +125,29 @@ class ProtocolComment extends Base
     public function getOwner()
     {
         return $this->owner;
+    }
+
+    /**
+     * Set isConfidential
+     *
+     * @param boolean $isConfidential
+     *
+     * @return ProtocolComment
+     */
+    public function setIsConfidential($isConfidential)
+    {
+        $this->is_confidential = $isConfidential;
+
+        return $this;
+    }
+
+    /**
+     * Get isConfidential
+     *
+     * @return boolean
+     */
+    public function getIsConfidential()
+    {
+        return $this->is_confidential;
     }
 }
