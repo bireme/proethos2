@@ -92,7 +92,11 @@ class Country extends Base
      * @return string
      */
     public function getName()
-    {
-        return Intl::getRegionBundle()->getCountryName($this->getCode());
+    {   
+        $name = Intl::getRegionBundle()->getCountryName($this->getCode());
+        if(!empty($name)) {
+            return $name;
+        }
+        return "";
     }
 }
