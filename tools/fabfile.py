@@ -18,7 +18,7 @@ def update():
             
         with cd(env.symfony_path):
             run("php5.6 app/console doctrine:schema:update --force")
-            run("php5.6 app/console proethos2:load-database-initial-data")
+            # run("php5.6 app/console proethos2:load-database-initial-data")
             run("php5.6 app/console cache:clear --env=prod")
 
 def fast_update():
@@ -29,5 +29,5 @@ def fast_update():
             
         with cd(env.symfony_path):
             run("php5.6 app/console doctrine:schema:update --force")
-            run("php5.6 app/console proethos2:load-database-initial-data")
+            # run("php5.6 app/console proethos2:load-database-initial-data")
             run("php5.6 app/console cache:clear --env=prod")
