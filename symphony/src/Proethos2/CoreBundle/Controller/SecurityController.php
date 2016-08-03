@@ -375,7 +375,7 @@ class SecurityController extends Controller
             ->setFrom($util->getConfiguration('committee.email'))
             ->setTo($post_data['email'])
             ->setBody(
-                $translator->trans("Hello! You was registered in Proethos2 platform.") .
+                $translator->trans("Hello! You have been registered in the Proethos2 platform.") .
                 "<br>" .
                 "<br>" . $translator->trans("Please wait until your access was validated. We will send you an email.") .
                 "<br>" .
@@ -399,9 +399,9 @@ class SecurityController extends Controller
             ->setFrom($util->getConfiguration('committee.email'))
             ->setTo($secretaries_emails)
             ->setBody(
-                $translator->trans("Hello! There are an new user in the Proethos2 platform.") .
+                $translator->trans("Hello! There is a new user registered in the Proethos2 platform.") .
                 "<br>" .
-                "<br>" . $translator->trans("Can you check and authorize his access?") .
+                "<br>" . $translator->trans("Please check and authorize his access.") .
                 "<br>" .
                 "<br>" . $baseurl .
                 "<br>" .
