@@ -9,7 +9,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-name">{% trans %}Name{% endtrans %}:</label> 
-                    <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 174} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <input type='text' class='form-control' id="input-name" name="name" value="{% if translations.en is defined %}{{ translations.en.name }}{% else %}{{ item.name }}{% endif %}" required>
                 </div>
             </div>
@@ -19,7 +19,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-name-es_ES">{% trans %}Name in Spanish{% endtrans %}:</label> 
-                    <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 175} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <input type='text' class='form-control' id="input-name-es_ES" name="name-es_ES" value="{% if translations.es_ES is defined %}{{ translations.es_ES.name }}{% endif %}">
                 </div>
             </div>
@@ -29,7 +29,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-name-pt_BR">{% trans %}Name in Portuguese{% endtrans %}:</label> 
-                    <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 176} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <input type='text' class='form-control' id="input-name-pt_BR" name="name-pt_BR" value="{% if translations.pt_BR is defined %}{{ translations.pt_BR.name }}{% endif %}">
                 </div>
             </div>
@@ -39,7 +39,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-name-fr_FR">{% trans %}Name in French{% endtrans %}:</label> 
-                    <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 177} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <input type='text' class='form-control' id="input-name-fr_FR" name="name-fr_FR" value="{% if translations.fr_FR is defined %}{{ translations.fr_FR.name }}{% endif %}">
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     <div class="checkbox">
                         <label for="input-status">
                             <input type="checkbox" id='input-status' name='status' value="true" {% if item.status %}checked{% endif %}> {% trans %}Active?{% endtrans %}
-                            <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 178} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                         </label>
                     </div>
                 </div>

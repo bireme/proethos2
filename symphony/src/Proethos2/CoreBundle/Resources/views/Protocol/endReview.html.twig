@@ -61,7 +61,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="select-monitoring-period">{% trans %}Monitoring period{% endtrans %}:</label> 
-                            <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 185} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <select class="form-control select2" id="select-monitoring-period" name="monitoring-period" required>
                                 <option value="">{% trans %}N/A{% endtrans %}</option>
                                 <option value="6">{% trans %}6 months{% endtrans %}</option>
