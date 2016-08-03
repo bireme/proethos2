@@ -290,6 +290,8 @@ class SecurityController extends Controller
         $output['countries'] = $countries;
         
         $output['content'] = array();
+
+        $output['recaptcha_secret'] = $util->getConfiguration('recaptcha.secret');
         
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
@@ -299,7 +301,7 @@ class SecurityController extends Controller
             $output['content'] = $post_data;
 
             // checking required fields
-            foreach(array('name', 'username', 'email', 'country', 'password', 'confirm-password', 'g-recaptcha-response') as $field) {   
+            foreach(array('name', 'username', 'email', 'country', 'password', 'confirm-password') as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
                     return $output;
@@ -307,9 +309,9 @@ class SecurityController extends Controller
             }
 
             // only check captcha if not in dev
-            if(strpos($_SERVER['HTTP_HOST'], 'localhost') < 0) {
+            $secret = $output['recaptcha_secret'];
+            if(!empty($secret) and strpos($_SERVER['HTTP_HOST'], 'localhost') < 0) {
                 // RECAPTCHA
-                $secret = $util->getConfiguration('recaptcha.secret');
 
                 // params to send to recapctha api
                 $data = array(

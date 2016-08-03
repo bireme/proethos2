@@ -20,15 +20,15 @@ class Util {
         $configuration_repository = $this->em->getRepository('Proethos2ModelBundle:Configuration');
 
         $configuration = $configuration_repository->findOneByKey($key);
-        if($configuration) {
+        if($configuration and !empty($configuration->getValue())) {
            return $configuration->getValue(); 
         }
 
         $configuration = $this->container->getParameter($key);
-        if($configuration) {
+        if(!empty($configuration)) {
            return $configuration; 
         }
-
+        // 6LdtCiITAAAAACON37pbmsAo1hjEUAjqz33rB-5r
         return NULL;
     }
 }
