@@ -123,7 +123,7 @@ class SecurityController extends Controller
             $em->flush();
 
             $session->getFlashBag()->add('success', $translator->trans("Password changed with success."));
-            return $this->redirectToRoute('login', array(), 301);
+            return $this->redirectToRoute('login_route', array(), 301);
 
         }
 
