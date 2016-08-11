@@ -6,4 +6,4 @@ Explicação:
 
 O arquivo `database.sql` versiona todas as etapas abaixo:
 
-- setup inicial e submissão de um novo protocolo
+- setup inicial e submissão de um novo protocolo: 0511ec2
