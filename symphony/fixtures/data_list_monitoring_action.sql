@@ -1,7 +1,7 @@
 REPLACE INTO `list_monitoring_action` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (1,'2016-06-02 11:58:04','2016-06-02 11:58:04','Submit an amendment','submit-an-amendment',1);
 REPLACE INTO `list_monitoring_action` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (2,'2016-06-02 11:58:04','2016-06-02 11:58:04','Adverse events report','adverse-events-report',1);
-REPLACE INTO `list_monitoring_action` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (3,'2016-06-02 11:58:04','2016-06-02 11:58:04','Completion of Study','completion-of-study',0);
-REPLACE INTO `list_monitoring_action` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (4,'2016-06-02 11:58:04','2016-06-02 11:58:04','Follow-up Report','follow-up-report',0);
+REPLACE INTO `list_monitoring_action` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (3,'2016-06-02 11:58:04','2016-06-02 11:58:04','Completion of Study','completion-of-study',1);
+REPLACE INTO `list_monitoring_action` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (4,'2016-06-02 11:58:04','2016-06-02 11:58:04','Follow-up Report','follow-up-report',1);
 REPLACE INTO `list_monitoring_action` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (5,'2016-07-13 00:00:00','2016-07-13 00:00:00','Discontinuation of Study','discontinuation-of-study',1);
 REPLACE INTO `list_monitoring_action` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (6,'2016-07-13 00:00:00','2016-07-13 00:00:00','Submission of Other Documents','submission-of-other-documents',1);
 REPLACE INTO `list_monitoring_action` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (7,'2016-07-13 00:00:00','2016-07-13 00:00:00','Request approval extension','request-approval-extension',1);

@@ -69,7 +69,7 @@ REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (68
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (69,'2016-06-16 14:11:29','2016-06-16 14:11:29',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (70,'2016-06-16 14:11:29','2016-06-16 14:11:29',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (71,'2016-06-16 14:11:29','2016-06-16 14:11:29',0,NULL);
-REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (72,'2016-06-16 14:11:29','2016-06-16 14:11:29',0,NULL);
+REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (72,'2016-06-16 14:11:29','2016-06-16 14:11:29',1,'Search for protocols by ID number, key word or investigator\'s name');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (73,'2016-06-16 14:11:29','2016-06-16 14:11:29',1,'Protocolo status');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (74,'2016-06-16 14:11:29','2016-06-16 14:11:29',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (75,'2016-06-16 14:11:29','2016-06-16 14:11:29',0,NULL);
