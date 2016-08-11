@@ -27,7 +27,7 @@ class SubmissionClinicalTrial extends Base
      * @var ClinicalTrialName
      * 
      * @ORM\ManyToOne(targetEntity="ClinicalTrialName") 
-     * @ORM\JoinColumn(name="clinical_trial_name_id", referencedColumnName="id") 
+     * @ORM\JoinColumn(name="clinical_trial_name_id", referencedColumnName="id", onDelete="SET NULL") 
      */ 
     private $name;
 
