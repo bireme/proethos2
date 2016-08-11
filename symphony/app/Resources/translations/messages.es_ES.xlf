@@ -813,8 +813,8 @@
         <jms:reference-file line="228">./src/Proethos2/CoreBundle/Controller/MonitoringController.php</jms:reference-file>
         <jms:reference-file line="746">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="6664d7899b7c52a8a4d7103c48dce690debb61eb" resname="Fill with your registered email">
-        <source>Fill with your registered email</source>
+      <trans-unit id="6664d7899b7c52a8a4d7103c48dce690debb61eb" resname="Enter registered email">
+        <source>Enter registered email</source>
         <target>Ingresar email registrado</target>
         <jms:reference-file line="50">./src/Proethos2/CoreBundle/Resources/views/Security/forgotMyPassword.html.twig</jms:reference-file>
       </trans-unit>
