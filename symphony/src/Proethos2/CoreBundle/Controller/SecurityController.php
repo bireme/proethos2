@@ -105,7 +105,7 @@ class SecurityController extends Controller
             }
 
             if($post_data['change-password'] != $post_data['password-confirm']) {
-                $session->getFlashBag()->add('error', $translator->trans("Passwords doesn't match."));
+                $session->getFlashBag()->add('error', $translator->trans("Passwords don't match."));
                 return $this->redirectToRoute('home', array(), 301);
             }
 
@@ -246,7 +246,7 @@ class SecurityController extends Controller
             }
 
             if($post_data['new-password'] != $post_data['confirm-password']) {
-                $session->getFlashBag()->add('error', $translator->trans("Passwords doesn't match."));
+                $session->getFlashBag()->add('error', $translator->trans("Passwords don't match."));
                 return $this->redirectToRoute('home', array(), 301);
             }
 
@@ -344,7 +344,7 @@ class SecurityController extends Controller
             }
 
             if($post_data['password'] != $post_data['confirm-password']) {
-                $session->getFlashBag()->add('error', $translator->trans("Passwords doesn't match."));
+                $session->getFlashBag()->add('error', $translator->trans("Passwords don't match."));
                 return $output;
             }
 

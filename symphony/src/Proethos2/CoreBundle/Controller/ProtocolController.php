@@ -268,13 +268,13 @@ class ProtocolController extends Controller
                             if(in_array($role, $member->getRolesSlug())) {
 
                                 $message = \Swift_Message::newInstance()
-                                ->setSubject("[proethos2] " . $translator->trans("A new protocol need your analysis."))
+                                ->setSubject("[proethos2] " . $translator->trans("A new protocol needs your analysis."))
                                 ->setFrom($util->getConfiguration('committee.email'))
                                 ->setTo($member->getEmail())
                                 ->setBody(
                                     $translator->trans("Hello!") .
                                     "<br>" .
-                                    "<br>" . $translator->trans("A new protocol need your analysis. Access the link below") . ":" .
+                                    "<br>" . $translator->trans("A new protocol needs your analysis. Access the link below") . ":" .
                                     "<br>" .
                                     "<br>$url" .
                                     "<br>" .

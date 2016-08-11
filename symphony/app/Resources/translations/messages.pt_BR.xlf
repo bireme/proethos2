@@ -38,14 +38,14 @@
         <jms:reference-file line="115">./src/Proethos2/CoreBundle/Controller/MonitoringController.php</jms:reference-file>
         <jms:reference-file line="300">./src/Proethos2/CoreBundle/Controller/MonitoringController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="378aa66ac88151f8171e2aaa14c6f5c6bc4fb30e" resname="A new protocol need your analysis.">
-        <source>A new protocol need your analysis.</source>
-        <target>A new protocol need your analysis.</target>
+      <trans-unit id="378aa66ac88151f8171e2aaa14c6f5c6bc4fb30e" resname="A new protocol needs your analysis.">
+        <source>A new protocol needs your analysis.</source>
+        <target>A new protocol needs your analysis.</target>
         <jms:reference-file line="271">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="f43eb5d97fa751d591e674f950f7d04f232a68c7" resname="A new protocol need your analysis. Access the link below">
-        <source>A new protocol need your analysis. Access the link below</source>
-        <target>A new protocol need your analysis. Access the link below</target>
+      <trans-unit id="f43eb5d97fa751d591e674f950f7d04f232a68c7" resname="A new protocol needs your analysis. Access the link below">
+        <source>A new protocol needs your analysis. Access the link below</source>
+        <target>A new protocol needs your analysis. Access the link below</target>
         <jms:reference-file line="277">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="dc9fddafc66c1d0c41a9e7bee52e2f2768b6e2b5" resname="About Project">
@@ -1681,9 +1681,9 @@
         <jms:reference-file line="125">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
         <jms:reference-file line="264">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="48fcb111ca9b24cb3cdcededd6ffc99829439f33" resname="Passwords doesn't match.">
-        <source>Passwords doesn't match.</source>
-        <target>Passwords doesn't match.</target>
+      <trans-unit id="48fcb111ca9b24cb3cdcededd6ffc99829439f33" resname="Passwords don't match.">
+        <source>Passwords don't match.</source>
+        <target>Passwords don't match.</target>
         <jms:reference-file line="108">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
         <jms:reference-file line="249">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
         <jms:reference-file line="347">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
@@ -2223,9 +2223,9 @@
         <target>Send Message</target>
         <jms:reference-file line="54">./src/Proethos2/CoreBundle/Resources/views/CRUD/listContact.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="b5cb95704a5a4b926f57958fe2f55b65ab9125c5" resname="Send an email to us by fields below or by the email">
-        <source>Send an email to us by fields below or by the email</source>
-        <target>Send an email to us by fields below or by the email</target>
+      <trans-unit id="b5cb95704a5a4b926f57958fe2f55b65ab9125c5" resname="Send us a message by entering the fields below, or write to us at">
+        <source>Send us a message by entering the fields below, or write to us at</source>
+        <target>Send us a message by entering the fields below, or write to us at</target>
         <jms:reference-file line="19">./src/Proethos2/CoreBundle/Resources/views/CRUD/listContact.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ed0aad95adb0760d3cf37450799a0f8080dcc7dd" resname="Send back to investigator">
