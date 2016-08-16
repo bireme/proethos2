@@ -1987,9 +1987,9 @@
         <target>Result</target>
         <jms:reference-file line="57">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_header.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="001fb7f3098982c2f2b7248196b58881279fd0b1" resname="Reviewer Review">
-        <source>Reviewer Review</source>
-        <target>Reviewer Review</target>
+      <trans-unit id="001fb7f3098982c2f2b7248196b58881279fd0b1" resname="Reviewer's evaluation">
+        <source>Reviewer's evaluation</source>
+        <target>Reviewer's evaluation</target>
         <jms:reference-file line="25">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReviewRevisor.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="943b0f8df378c4eed5223a0095017b2ac90dbd3e" resname="Reviewers">
