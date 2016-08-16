@@ -9,7 +9,7 @@ from fabenv import *
 env.use_ssh_config = True
 
 def update():
-    local('phpunit -c /home/moa/project/proethos2/git/symphony/app')
+    local('phpunit -c /home/moa/project/proethos2/git/symphony/app --stop-on-failure')
     
     with prefix(". %s" % env.env_script):
         with cd(env.path):
