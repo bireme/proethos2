@@ -2285,9 +2285,9 @@
         <target>Spanish message</target>
         <jms:reference-file line="20">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateHelp.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="575f2225716100055da24d9599c84370feb7d727" resname="Sscientific Contact">
-        <source>Sscientific Contact</source>
-        <target>Sscientific Contact</target>
+      <trans-unit id="575f2225716100055da24d9599c84370feb7d727" resname="Scientific Contact">
+        <source>Scientific Contact</source>
+        <target>Scientific Contact</target>
         <jms:reference-file line="961">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
         <jms:reference-file line="200">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="48">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FifthStep.html.twig</jms:reference-file>

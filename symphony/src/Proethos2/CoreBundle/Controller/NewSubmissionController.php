@@ -958,7 +958,7 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
         
-        $text = $translator->trans('Sscientific Contact');
+        $text = $translator->trans('Scientific Contact');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getSscientificContact())) {
             $item = array('text' => $text, 'status' => false);
