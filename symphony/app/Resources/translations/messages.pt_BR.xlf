@@ -2419,9 +2419,9 @@
         <target>Terms and conditions</target>
         <jms:reference-file line="59">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SeventhStep.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="56ae0b99ca2669bedf0bdfa54b5243239253cfa4" resname="The recruitment init date needs to be greater than today.">
-        <source>The recruitment init date needs to be greater than today.</source>
-        <target>The recruitment init date needs to be greater than today.</target>
+      <trans-unit id="56ae0b99ca2669bedf0bdfa54b5243239253cfa4" resname="The recruitment start date has to be subsequent to the date of protocol submission.">
+        <source>The recruitment start date has to be subsequent to the date of protocol submission.</source>
+        <target>The recruitment start date has to be subsequent to the date of protocol submission.</target>
         <jms:reference-file line="317">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="80641d12b06bab66399479a096f095554b0710ae" resname="There is no help message set for this field.">

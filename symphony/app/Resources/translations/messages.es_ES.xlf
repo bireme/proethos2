@@ -2419,8 +2419,8 @@
         <target>Términos y condiciones</target>
         <jms:reference-file line="59">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SeventhStep.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="56ae0b99ca2669bedf0bdfa54b5243239253cfa4" resname="The recruitment init date needs to be greater than today.">
-        <source>The recruitment init date needs to be greater than today.</source>
+      <trans-unit id="56ae0b99ca2669bedf0bdfa54b5243239253cfa4" resname="The recruitment start date has to be subsequent to the date of protocol submission.">
+        <source>The recruitment start date has to be subsequent to the date of protocol submission.</source>
         <target>La fecha de inicio del reclutamiento debe ser posterior a la fecha de presentación del protocolo</target>
         <jms:reference-file line="317">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
       </trans-unit>

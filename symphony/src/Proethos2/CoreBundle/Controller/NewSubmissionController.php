@@ -314,7 +314,7 @@ class NewSubmissionController extends Controller
 
             $recruitment_init_date = new \DateTime($post_data['recruitment-init-date']);
             if(new \DateTime('NOW') > $recruitment_init_date) {
-                $session->getFlashBag()->add('error', $translator->trans("The recruitment init date needs to be greater than today."));
+                $session->getFlashBag()->add('error', $translator->trans("The recruitment start date has to be subsequent to the date of protocol submission."));
                 return $output;
             }
 
