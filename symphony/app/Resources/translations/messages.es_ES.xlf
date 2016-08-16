@@ -2684,14 +2684,14 @@
         <target>Suba una decisión</target>
         <jms:reference-file line="798">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="60aa78ee09654c0435f823448a8e0c0935af7895" resname="You was assigned to review a protocol">
-        <source>You was assigned to review a protocol</source>
+      <trans-unit id="60aa78ee09654c0435f823448a8e0c0935af7895" resname="You were assigned to review a protocol">
+        <source>You were assigned to review a protocol</source>
         <target>Ha sido asignado para revisar un protocolo</target>
         <jms:reference-file line="588">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="74eef095acaef755fad373c53e431412b1a8985e" resname="You was assigned to review a protocol. Please access the link below">
-        <source>You was assigned to review a protocol. Please access the link below</source>
-        <target>You was assigned to review a protocol. Please access the link below</target>
+      <trans-unit id="74eef095acaef755fad373c53e431412b1a8985e" resname="You were assigned to review a protocol. Please access the link below">
+        <source>You were assigned to review a protocol. Please access the link below</source>
+        <target>You were assigned to review a protocol. Please access the link below</target>
         <jms:reference-file line="594">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="82378d8f1e312930b2e019849c8ab441e3084827" resname="Your Protocols">

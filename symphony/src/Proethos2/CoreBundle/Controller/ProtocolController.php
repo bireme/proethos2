@@ -585,13 +585,13 @@ class ProtocolController extends Controller
                             $url = $baseurl . $this->generateUrl('home');
 
                             $message = \Swift_Message::newInstance()
-                            ->setSubject("[proethos2] " . $translator->trans("You was assigned to review a protocol"))
+                            ->setSubject("[proethos2] " . $translator->trans("You were assigned to review a protocol"))
                             ->setFrom($util->getConfiguration('committee.email'))
                             ->setTo($member->getEmail())
                             ->setBody(
                                 $translator->trans("Hello!") .
                                 "<br>" .
-                                "<br>" . $translator->trans("You was assigned to review a protocol. Please access the link below") . ":" .
+                                "<br>" . $translator->trans("You were assigned to review a protocol. Please access the link below") . ":" .
                                 "<br>" .
                                 "<br>$url" .
                                 "<br>" .
