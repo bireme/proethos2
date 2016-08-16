@@ -2634,9 +2634,9 @@
         <jms:reference-file line="40">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="39">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="a5ceac3e16f74f6c261a79038734a1bbb8af9533" resname="Waiting for Initial Avaliation">
-        <source>Waiting for Initial Avaliation</source>
-        <target>Waiting for Initial Avaliation</target>
+      <trans-unit id="a5ceac3e16f74f6c261a79038734a1bbb8af9533" resname="Waiting for initial evaluation">
+        <source>Waiting for initial evaluation</source>
+        <target>Waiting for initial evaluation</target>
         <jms:reference-file line="39">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="38">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
       </trans-unit>
