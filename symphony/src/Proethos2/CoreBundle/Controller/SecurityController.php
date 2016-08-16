@@ -377,7 +377,7 @@ class SecurityController extends Controller
             ->setBody(
                 $translator->trans("Hello! You have been registered in the Proethos2 platform.") .
                 "<br>" .
-                "<br>" . $translator->trans("Please wait until your access was validated. We will send you an email.") .
+                "<br>" . $translator->trans("Please wait until your access is validated. We will send you an email.") .
                 "<br>" .
                 "<br>". $translator->trans("Regards") . "," .
                 "<br>" . $translator->trans("Proethos2 Team")

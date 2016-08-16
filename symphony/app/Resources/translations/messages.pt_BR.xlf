@@ -1688,9 +1688,9 @@
         <target>Please check and authorize his access.</target>
         <jms:reference-file line="404">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="081da6794cd357a1b0e859035287bcec9e7e3872" resname="Please wait until your access was validated. We will send you an email.">
-        <source>Please wait until your access was validated. We will send you an email.</source>
-        <target>Please wait until your access was validated. We will send you an email.</target>
+      <trans-unit id="081da6794cd357a1b0e859035287bcec9e7e3872" resname="Please wait until your access is validated. We will send you an email.">
+        <source>Please wait until your access is validated. We will send you an email.</source>
+        <target>Please wait until your access is validated. We will send you an email.</target>
         <jms:reference-file line="380">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="ad2d5a59cb269298a2e42b55b8d40bdc7b9a5da4" resname="Portuguese message">
