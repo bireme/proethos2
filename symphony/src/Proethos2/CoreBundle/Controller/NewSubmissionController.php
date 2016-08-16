@@ -648,7 +648,7 @@ class NewSubmissionController extends Controller
             $em->persist($submission);
             $em->flush();
 
-            $submission->setSscientificContact($post_data['sscientific-contact']);                   
+            $submission->setScientificContact($post_data['sscientific-contact']);                   
             $submission->setPriorEthicalApproval(($post_data['prior-ethical-approval'] == 'Y') ? true : false);                   
 
             $em = $this->getDoctrine()->getManager();
@@ -958,9 +958,9 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
         
-        $text = $translator->trans('Sscientific Contact');
+        $text = $translator->trans('Scientific Contact');
         $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getSscientificContact())) {
+        if(empty($submission->getScientificContact())) {
             $item = array('text' => $text, 'status' => false);
             $final_status = false;
         }

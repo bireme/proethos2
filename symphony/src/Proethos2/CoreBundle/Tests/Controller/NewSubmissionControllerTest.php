@@ -229,7 +229,7 @@ class NewSubmissionControllerTest extends WebTestCase
         $client->request('POST', $route, array(
             "submission_id" => $submission_id,
             "bibliography" => "Bibliography",
-            "sscientific-contact" => "Sscientific Contact",
+            "sscientific-contact" => "Scientific Contact",
             "prior-ethical-approval" => "Y"
         ));
 
