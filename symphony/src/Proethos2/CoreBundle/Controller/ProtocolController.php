@@ -826,7 +826,7 @@ class ProtocolController extends Controller
             $protocol_history = new ProtocolHistory();
             $protocol_history->setProtocol($protocol);
             $protocol_history->setMessage($translator->trans(
-                'Protocol was ended by %user% with the option "%option%".', 
+                'Protocol finalized by %user% under option "%option%".', 
                 array(
                     '%user%' => $user->getUsername(),
                     '%option%' => $finish_options[$post_data['final-decision']],

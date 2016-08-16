@@ -1804,9 +1804,9 @@
         <target>Protocol was concluded as Exempt.</target>
         <jms:reference-file line="486">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="c17531d66539fbcc293a9242c4d892ff04662b3a" resname="Protocol was ended by %user% with the option &quot;%option%&quot;.">
-        <source>Protocol was ended by %user% with the option "%option%".</source>
-        <target>Protocol was ended by %user% with the option "%option%".</target>
+      <trans-unit id="c17531d66539fbcc293a9242c4d892ff04662b3a" resname="Protocol finalized by %user% under option &quot;%option%&quot;.">
+        <source>Protocol finalized by %user% under option "%option%".</source>
+        <target>Protocol finalized by %user% under option "%option%".</target>
         <jms:reference-file line="828">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="e97aa44ce19416e6fe9a582193d79f467cde4269" resname="Protocol was finished with success!">

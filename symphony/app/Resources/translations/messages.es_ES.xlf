@@ -1804,8 +1804,8 @@
         <target>Protocolo determinado como Exento</target>
         <jms:reference-file line="486">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="c17531d66539fbcc293a9242c4d892ff04662b3a" resname="Protocol was ended by %user% with the option &quot;%option%&quot;.">
-        <source>Protocol was ended by %user% with the option "%option%".</source>
+      <trans-unit id="c17531d66539fbcc293a9242c4d892ff04662b3a" resname="Protocol finalized by %user% under option &quot;%option%&quot;.">
+        <source>Protocol finalized by %user% under option "%option%".</source>
         <target>Protocolo finalizado por %user% bajo la opción "%option%".</target>
         <jms:reference-file line="828">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
