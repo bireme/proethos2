@@ -1789,13 +1789,13 @@
         <jms:reference-file line="451">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
         <jms:reference-file line="492">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="10ab5bd88f0ca181d9624a17eede2e3e0ae635cc" resname="Protocol was accepeted and investigators was notified.">
-        <source>Protocol was accepeted and investigators was notified.</source>
+      <trans-unit id="10ab5bd88f0ca181d9624a17eede2e3e0ae635cc" resname="Protocol was accepeted and investigators notified.">
+        <source>Protocol was accepeted and investigators notified.</source>
         <target>Protocolo ha sido aceptado y los investigadores han sido notificados</target>
         <jms:reference-file line="415">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="6229eeb8fcca167553e939ef787af67457fbcb33" resname="Protocol was accepeted to revision by %user% and investigators was notified.">
-        <source>Protocol was accepeted to revision by %user% and investigators was notified.</source>
+      <trans-unit id="6229eeb8fcca167553e939ef787af67457fbcb33" resname="Protocol accepted for review by %user% and investigators notified.">
+        <source>Protocol accepted for review by %user% and investigators notified.</source>
         <target>Protocolo aceptado para revisión por %user% e investigadores notificados</target>
         <jms:reference-file line="304">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>

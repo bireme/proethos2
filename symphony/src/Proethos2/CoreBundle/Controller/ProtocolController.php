@@ -301,7 +301,7 @@ class ProtocolController extends Controller
                     // setting protocool history
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
-                    $protocol_history->setMessage($translator->trans("Protocol was accepeted to revision by %user% and investigators was notified.", array("%user%" => $user->getUsername())));
+                    $protocol_history->setMessage($translator->trans("Protocol accepted for review by %user% and investigators notified.", array("%user%" => $user->getUsername())));
                     $em->persist($protocol_history);
                     $em->flush();
 
@@ -412,7 +412,7 @@ class ProtocolController extends Controller
                 // setting protocool history
                 $protocol_history = new ProtocolHistory();
                 $protocol_history->setProtocol($protocol);
-                $protocol_history->setMessage($translator->trans("Protocol was accepeted and investigators was notified."));
+                $protocol_history->setMessage($translator->trans("Protocol was accepeted and investigators notified."));
                 $em->persist($protocol_history);
                 $em->flush();
 
