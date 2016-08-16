@@ -1146,9 +1146,9 @@
         <jms:reference-file line="32">./src/Proethos2/CoreBundle/Resources/views/Index/index.html.twig</jms:reference-file>
         <jms:reference-file line="86">./src/Proethos2/CoreBundle/Resources/views/Index/index.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="8d2ff010d6cf710083918cd170b1bc62f55a51dc" resname="Last protocols that you are part of team">
-        <source>Last protocols that you are part of team</source>
-        <target>Last protocols that you are part of team</target>
+      <trans-unit id="8d2ff010d6cf710083918cd170b1bc62f55a51dc" resname="Last protocols in which you are part of the research team">
+        <source>Last protocols in which you are part of the research team</source>
+        <target>Last protocols in which you are part of the research team</target>
         <jms:reference-file line="18">./src/Proethos2/CoreBundle/Resources/views/Index/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0b195394b8549f42280b07339af6a05fc3a795e8" resname="Last protocols that you reviewed">
