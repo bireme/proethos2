@@ -1219,7 +1219,7 @@ class Submission extends Base
      *
      * @return Submission
      */
-    public function setScientificContact($sscientificContact)
+    public function setSscientificContact($sscientificContact)
     {
         $this->sscientific_contact = $sscientificContact;
 
@@ -1231,7 +1231,7 @@ class Submission extends Base
      *
      * @return string
      */
-    public function getScientificContact()
+    public function getSscientificContact()
     {
         return $this->sscientific_contact;
     }

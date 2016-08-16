@@ -696,7 +696,7 @@ class ProtocolController extends Controller
 
                 $protocol_revision->setDecision($post_data['decision']);
                 $protocol_revision->setSocialValue($post_data['social-value']);
-                $protocol_revision->setScientificValidity($post_data['sscientific-validity']);
+                $protocol_revision->setSscientificValidity($post_data['sscientific-validity']);
                 $protocol_revision->setFairParticipantSelection($post_data['fair-participant-selection']);
                 $protocol_revision->setFavorableBalance($post_data['favorable-balance']);
                 $protocol_revision->setInformedConsent($post_data['informed-consent']);

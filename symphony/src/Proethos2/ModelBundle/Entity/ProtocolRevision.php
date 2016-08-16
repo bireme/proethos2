@@ -252,7 +252,7 @@ class ProtocolRevision extends Base
      *
      * @return ProtocolRevision
      */
-    public function setScientificValidity($sscientificValidity)
+    public function setSscientificValidity($sscientificValidity)
     {
         $this->sscientific_validity = $sscientificValidity;
 
@@ -264,7 +264,7 @@ class ProtocolRevision extends Base
      *
      * @return string
      */
-    public function getScientificValidity()
+    public function getSscientificValidity()
     {
         return $this->sscientific_validity;
     }
