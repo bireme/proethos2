@@ -2292,9 +2292,9 @@
         <jms:reference-file line="200">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
         <jms:reference-file line="48">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FifthStep.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="b67c876180e55e6b04f0cef5522938340de0ef02" resname="Sscientific Validity">
-        <source>Sscientific Validity</source>
-        <target>Sscientific Validity</target>
+      <trans-unit id="b67c876180e55e6b04f0cef5522938340de0ef02" resname="Scientific Validity">
+        <source>Scientific Validity</source>
+        <target>Scientific Validity</target>
         <jms:reference-file line="50">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReviewRevisor.html.twig</jms:reference-file>
         <jms:reference-file line="16">./src/Proethos2/CoreBundle/Resources/views/Protocol/showReview.html.twig</jms:reference-file>
       </trans-unit>
