@@ -1074,8 +1074,8 @@
         <jms:reference-file line="187">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReview.html.twig</jms:reference-file>
         <jms:reference-file line="47">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_header.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="68a5167c6e0a0e82d189cda12a1885b8a78eb002" resname="Instructions has been sent to your email.">
-        <source>Instructions has been sent to your email.</source>
+      <trans-unit id="68a5167c6e0a0e82d189cda12a1885b8a78eb002" resname="Instructions have been sent to your email.">
+        <source>Instructions have been sent to your email.</source>
         <target>Se ha enviado instrucciones a su e-mail</target>
         <jms:reference-file line="198">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
       </trans-unit>

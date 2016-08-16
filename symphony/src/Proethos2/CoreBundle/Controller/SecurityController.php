@@ -195,7 +195,7 @@ class SecurityController extends Controller
             
             $send = $this->get('mailer')->send($message);
 
-            $session->getFlashBag()->add('success', $translator->trans("Instructions has been sent to your email."));
+            $session->getFlashBag()->add('success', $translator->trans("Instructions have been sent to your email."));
         }
 
         return $output;
