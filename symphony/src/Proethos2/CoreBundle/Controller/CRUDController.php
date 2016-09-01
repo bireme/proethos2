@@ -329,6 +329,7 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $faq_repository = $em->getRepository('Proethos2ModelBundle:Faq');
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         $faqs = $faq_repository->findAll();
         
@@ -359,8 +360,21 @@ class CRUDController extends Controller
             }
 
             $question = new Faq();
+            $question->setTranslatableLocale('en');
+            
             $question->setQuestion($post_data['new-question']);
+            foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
+                if(!empty($post_data["new-question-$locale"])) {
+                    $trans_repository = $trans_repository->translate($question, 'question', $locale, $post_data["new-question-$locale"]);
+                }
+            }
+            
             $question->setAnswer($post_data['new-question-answer']);
+            foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
+                if(!empty($post_data["new-question-answer-$locale"])) {
+                    $trans_repository = $trans_repository->translate($question, 'answer', $locale, $post_data["new-question-answer-$locale"]);
+                }
+            }
 
             if(isset($post_data['new-question-status'])) {
                 $question->setStatus(true);
@@ -389,6 +403,8 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $faq_repository = $em->getRepository('Proethos2ModelBundle:Faq');
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+
 
         // getting the current faq
         $question = $faq_repository->find($faq_id);
@@ -397,6 +413,9 @@ class CRUDController extends Controller
         if (!$question) {
             throw $this->createNotFoundException($translator->trans('No FAQ found'));
         }
+        
+        $translations = $trans_repository->findTranslations($question);
+        $output['translations'] = $translations;
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
@@ -412,8 +431,21 @@ class CRUDController extends Controller
                 }
             }
 
+            $question->setTranslatableLocale('en');
+            
             $question->setQuestion($post_data['new-question']);
+            foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
+                if(!empty($post_data["new-question-$locale"])) {
+                    $trans_repository = $trans_repository->translate($question, 'question', $locale, $post_data["new-question-$locale"]);
+                }
+            }
+            
             $question->setAnswer($post_data['new-question-answer']);
+            foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
+                if(!empty($post_data["new-question-answer-$locale"])) {
+                    $trans_repository = $trans_repository->translate($question, 'answer', $locale, $post_data["new-question-answer-$locale"]);
+                }
+            }
 
             $question->setStatus(false);
             if(isset($post_data['new-question-status'])) {
