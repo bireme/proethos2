@@ -190,6 +190,32 @@ $ chmod 777 uploads
 
 ```
 
+Software configuration
+======================
+
+SMTP and emails
+---------------
+
+Go to `app/config/parameters.yml` and add/change these parameters:
+
+```
+mailer_transport: smtp
+mailer_host: 127.0.0.1
+mailer_user: null
+mailer_password: null
+
+```
+
+For more informations about this theme, access http://symfony.com/doc/2.7/email.html.
+
+
+Other configutations and customizations
+---------------------------------------
+
+The system comes with pre-stablished configuration. But, if you want to change or customize your instalation, make login 
+as an admin role and access System Management > Configurations.
+
+
 That's it!
 
 If you have any questions or difficults to execute this steps, please [open an ticket here](https://github.com/bireme/proethos2/issues).
