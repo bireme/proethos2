@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-08-16T10:47:50Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2016-09-01T09:31:08Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -1074,7 +1074,7 @@
         <jms:reference-file line="187">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReview.html.twig</jms:reference-file>
         <jms:reference-file line="47">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_header.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="68a5167c6e0a0e82d189cda12a1885b8a78eb002" resname="Instructions have been sent to your email.">
+      <trans-unit id="9233558115eef0fcfc733ff8993c4e6df7a62e86" resname="Instructions have been sent to your email.">
         <source>Instructions have been sent to your email.</source>
         <target>Instructions have been sent to your email.</target>
         <jms:reference-file line="198">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
@@ -1146,7 +1146,7 @@
         <jms:reference-file line="32">./src/Proethos2/CoreBundle/Resources/views/Index/index.html.twig</jms:reference-file>
         <jms:reference-file line="86">./src/Proethos2/CoreBundle/Resources/views/Index/index.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="8d2ff010d6cf710083918cd170b1bc62f55a51dc" resname="Last protocols in which you are part of the research team">
+      <trans-unit id="75cca9eaa903c1aef9a9065226bc7aec69acf61c" resname="Last protocols in which you are part of the research team">
         <source>Last protocols in which you are part of the research team</source>
         <target>Last protocols in which you are part of the research team</target>
         <jms:reference-file line="18">./src/Proethos2/CoreBundle/Resources/views/Index/index.html.twig</jms:reference-file>
@@ -1688,7 +1688,7 @@
         <target>Please check and authorize his access.</target>
         <jms:reference-file line="404">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="081da6794cd357a1b0e859035287bcec9e7e3872" resname="Please wait until your access is validated. We will send you an email.">
+      <trans-unit id="1576f56dff5358b11e56a3e8cbf03b7aa80148db" resname="Please wait until your access is validated. We will send you an email.">
         <source>Please wait until your access is validated. We will send you an email.</source>
         <target>Please wait until your access is validated. We will send you an email.</target>
         <jms:reference-file line="380">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
@@ -1761,6 +1761,16 @@
         <target>Protocol Type</target>
         <jms:reference-file line="24">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_header.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="ed4d7084883b643c2fc1e2f41583751be3baa4fd" resname="Protocol accepted for review by %user% and investigators notified.">
+        <source>Protocol accepted for review by %user% and investigators notified.</source>
+        <target>Protocol accepted for review by %user% and investigators notified.</target>
+        <jms:reference-file line="304">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="06bf9594ee1763ecffe91609059d78947ce13591" resname="Protocol finalized by %user% under option &quot;%option%&quot;.">
+        <source>Protocol finalized by %user% under option "%option%".</source>
+        <target>Protocol finalized by %user% under option "%option%".</target>
+        <jms:reference-file line="828">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
+      </trans-unit>
       <trans-unit id="185a971b99159441d069b7b1aabcec8c0de209c1" resname="Protocol options">
         <source>Protocol options</source>
         <target>Protocol options</target>
@@ -1789,25 +1799,15 @@
         <jms:reference-file line="451">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
         <jms:reference-file line="492">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="10ab5bd88f0ca181d9624a17eede2e3e0ae635cc" resname="Protocol was accepeted and investigators notified.">
+      <trans-unit id="bb1e53e3cef57a0fab04ba50de792ee3da51768e" resname="Protocol was accepeted and investigators notified.">
         <source>Protocol was accepeted and investigators notified.</source>
         <target>Protocol was accepeted and investigators notified.</target>
         <jms:reference-file line="415">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="6229eeb8fcca167553e939ef787af67457fbcb33" resname="Protocol accepted for review by %user% and investigators notified.">
-        <source>Protocol accepted for review by %user% and investigators notified.</source>
-        <target>Protocol accepted for review by %user% and investigators notified.</target>
-        <jms:reference-file line="304">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="3224369bc089e3ef36e591adcf9030467e4e7808" resname="Protocol was concluded as Exempt.">
         <source>Protocol was concluded as Exempt.</source>
         <target>Protocol was concluded as Exempt.</target>
         <jms:reference-file line="486">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="c17531d66539fbcc293a9242c4d892ff04662b3a" resname="Protocol finalized by %user% under option &quot;%option%&quot;.">
-        <source>Protocol finalized by %user% under option "%option%".</source>
-        <target>Protocol finalized by %user% under option "%option%".</target>
-        <jms:reference-file line="828">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="e97aa44ce19416e6fe9a582193d79f467cde4269" resname="Protocol was finished with success!">
         <source>Protocol was finished with success!</source>
@@ -1987,7 +1987,7 @@
         <target>Result</target>
         <jms:reference-file line="57">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_header.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="001fb7f3098982c2f2b7248196b58881279fd0b1" resname="Reviewer's evaluation">
+      <trans-unit id="c2b90e0cf183a4d16219a17b8e74e556cc4b12c1" resname="Reviewer's evaluation">
         <source>Reviewer's evaluation</source>
         <target>Reviewer's evaluation</target>
         <jms:reference-file line="25">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReviewRevisor.html.twig</jms:reference-file>
@@ -2103,11 +2103,24 @@
         <jms:reference-file line="41">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="40">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="285fdbd846f72839408ffbe0fbd374e7ce252d85" resname="Scientific Contact">
+        <source>Scientific Contact</source>
+        <target>Scientific Contact</target>
+        <jms:reference-file line="961">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
+        <jms:reference-file line="200">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
+        <jms:reference-file line="48">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FifthStep.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="efb9234d17b6bdc26322f7104103574db219055f" resname="Scientific Title">
         <source>Scientific Title</source>
         <target>Scientific Title</target>
         <jms:reference-file line="57">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStepCreatedProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="55">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FirstStep.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4f9d11bcc9be784e7e05c8309de566ebe4087f5d" resname="Scientific Validity">
+        <source>Scientific Validity</source>
+        <target>Scientific Validity</target>
+        <jms:reference-file line="50">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReviewRevisor.html.twig</jms:reference-file>
+        <jms:reference-file line="16">./src/Proethos2/CoreBundle/Resources/views/Protocol/showReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="bce06414177f72ab70e6387b6af9f8ceef0d6049" resname="Search">
         <source>Search</source>
@@ -2285,19 +2298,6 @@
         <target>Spanish message</target>
         <jms:reference-file line="20">./src/Proethos2/CoreBundle/Resources/views/CRUD/updateHelp.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="575f2225716100055da24d9599c84370feb7d727" resname="Scientific Contact">
-        <source>Scientific Contact</source>
-        <target>Scientific Contact</target>
-        <jms:reference-file line="961">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
-        <jms:reference-file line="200">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/showPdf.html.twig</jms:reference-file>
-        <jms:reference-file line="48">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/FifthStep.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="b67c876180e55e6b04f0cef5522938340de0ef02" resname="Scientific Validity">
-        <source>Scientific Validity</source>
-        <target>Scientific Validity</target>
-        <jms:reference-file line="50">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReviewRevisor.html.twig</jms:reference-file>
-        <jms:reference-file line="16">./src/Proethos2/CoreBundle/Resources/views/Protocol/showReview.html.twig</jms:reference-file>
-      </trans-unit>
       <trans-unit id="952f375412e89ff213a8aca383d18e5691354347" resname="Start">
         <source>Start</source>
         <target>Start</target>
@@ -2419,7 +2419,7 @@
         <target>Terms and conditions</target>
         <jms:reference-file line="59">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SeventhStep.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="56ae0b99ca2669bedf0bdfa54b5243239253cfa4" resname="The recruitment start date has to be subsequent to the date of protocol submission.">
+      <trans-unit id="de167b40a093ce8babd605948823067f4b4de0f9" resname="The recruitment start date has to be subsequent to the date of protocol submission.">
         <source>The recruitment start date has to be subsequent to the date of protocol submission.</source>
         <target>The recruitment start date has to be subsequent to the date of protocol submission.</target>
         <jms:reference-file line="317">./src/Proethos2/CoreBundle/Controller/NewSubmissionController.php</jms:reference-file>
@@ -2634,7 +2634,7 @@
         <jms:reference-file line="40">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
         <jms:reference-file line="39">./src/Proethos2/CoreBundle/Resources/views/CRUD/listCommitteeProtocol.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="a5ceac3e16f74f6c261a79038734a1bbb8af9533" resname="Waiting for initial evaluation">
+      <trans-unit id="c0dbc9647009c412d8233097b849a2ab76fc58c3" resname="Waiting for initial evaluation">
         <source>Waiting for initial evaluation</source>
         <target>Waiting for initial evaluation</target>
         <jms:reference-file line="39">./src/Proethos2/CoreBundle/Resources/views/CRUD/listInvestigatorProtocol.html.twig</jms:reference-file>
@@ -2684,12 +2684,12 @@
         <target>You need to upload a draft opinion.</target>
         <jms:reference-file line="798">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="60aa78ee09654c0435f823448a8e0c0935af7895" resname="You were assigned to review a protocol">
+      <trans-unit id="9d3e6251bc24268327e02a63d5023bea3c5a5de8" resname="You were assigned to review a protocol">
         <source>You were assigned to review a protocol</source>
         <target>You were assigned to review a protocol</target>
         <jms:reference-file line="588">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="74eef095acaef755fad373c53e431412b1a8985e" resname="You were assigned to review a protocol. Please access the link below">
+      <trans-unit id="5b6ac759a039cae2bd0d3beb88d67bc616a88eb2" resname="You were assigned to review a protocol. Please access the link below">
         <source>You were assigned to review a protocol. Please access the link below</source>
         <target>You were assigned to review a protocol. Please access the link below</target>
         <jms:reference-file line="594">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
