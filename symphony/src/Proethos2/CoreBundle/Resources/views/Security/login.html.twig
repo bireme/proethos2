@@ -54,7 +54,13 @@
         <div class='row'>
             <div class="col-xs-8 card">
                 
-                <h1><b>Proethos</b>2</h1>
+                <h1>
+                    {% if committee_logourl %}
+                        <img src="{{ committee_logourl }}" class='logo'>
+                    {% else %}
+                        <b>Proethos</b>2
+                    {% endif %}
+                </h1>
                 
                 <h2>{{ committee_name }}</h2>
                 <p>{{ committee_description|raw }}</p>

@@ -46,6 +46,7 @@ class SecurityController extends Controller
 
         $committee_name = $util->getConfiguration("committee.name");
         $committee_description = $util->getConfiguration("committee.description");
+        $committee_logourl = $util->getConfiguration("committee.logourl");
 
         return array(
                 'last_username' => $lastUsername,
@@ -53,6 +54,7 @@ class SecurityController extends Controller
                 
                 'committee_name' => $committee_name,
                 'committee_description' => $committee_description,
+                'committee_logourl' => $committee_logourl,
             );
     }
 
