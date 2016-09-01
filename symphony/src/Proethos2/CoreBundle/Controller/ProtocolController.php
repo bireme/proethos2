@@ -271,7 +271,7 @@ class ProtocolController extends Controller
                     // setting protocool history
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
-                    $protocol_history->setMessage($translator->trans("Protocol was sent to comittee to initial analysis by %user%.", array("%user%" => $user->getUsername())));
+                    $protocol_history->setMessage($translator->trans("Protocol was sent to comittee for initial analysis by %user%.", array("%user%" => $user->getUsername())));
                     $em->persist($protocol_history);
                     $em->flush();
 
@@ -427,7 +427,7 @@ class ProtocolController extends Controller
                 // setting protocool history
                 $protocol_history = new ProtocolHistory();
                 $protocol_history->setProtocol($protocol);
-                $protocol_history->setMessage($translator->trans("Protocol was accepeted and investigators notified."));
+                $protocol_history->setMessage($translator->trans("Protocol has been accepeted and investigators notified."));
                 $em->persist($protocol_history);
                 $em->flush();
 
@@ -860,7 +860,7 @@ class ProtocolController extends Controller
             $em->persist($protocol);
             $em->flush();
 
-            $session->getFlashBag()->add('success', $translator->trans("Protocol was finished with success!"));
+            $session->getFlashBag()->add('success', $translator->trans("Protocol was finalized with success!"));
             return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);            
         }
 

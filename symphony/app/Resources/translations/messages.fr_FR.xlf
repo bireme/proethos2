@@ -964,9 +964,9 @@
         <target>Hello! There is a new user registered in the Proethos2 platform.</target>
         <jms:reference-file line="402">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="2a2d31d4a1006a008f0f0598abd7579d9b691a0e" resname="Hello! You ask for a new password in Proethos2 platform.">
-        <source>Hello! You ask for a new password in Proethos2 platform.</source>
-        <target>Hello! You ask for a new password in Proethos2 platform.</target>
+      <trans-unit id="2a2d31d4a1006a008f0f0598abd7579d9b691a0e" resname="Hello! You asked for a new password in Proethos2 platform.">
+        <source>Hello! You asked for a new password in Proethos2 platform.</source>
+        <target>Hello! You asked for a new password in Proethos2 platform.</target>
         <jms:reference-file line="184">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="8add473594e8f90da918dfb232b9dd0609bc2ddb" resname="Hello! You have been registered in the Proethos2 platform.">
@@ -974,9 +974,9 @@
         <target>Hello! You have been registered in the Proethos2 platform.</target>
         <jms:reference-file line="378">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="a3b8b15ad670aff2b21d777326313fcaf0a5d9cb" resname="Hello! You was registered in Proethos2 platform. Please set your password:">
-        <source>Hello! You was registered in Proethos2 platform. Please set your password:</source>
-        <target>Hello! You was registered in Proethos2 platform. Please set your password:</target>
+      <trans-unit id="a3b8b15ad670aff2b21d777326313fcaf0a5d9cb" resname="Hello! You have been in Proethos2 platform. Please set your password:">
+        <source>Hello! You have been in Proethos2 platform. Please set your password:</source>
+        <target>Hello! You have been in Proethos2 platform. Please set your password:</target>
         <jms:reference-file line="799">./src/Proethos2/CoreBundle/Controller/CRUDController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="c47ae15370cfe1ed2781eedc1dc2547d12d9e972" resname="Help">
@@ -996,9 +996,9 @@
         <target>History</target>
         <jms:reference-file line="116">./src/Proethos2/CoreBundle/Resources/views/Protocol/protocol_another_infos.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="d49f2234a92605900c5c3edd8198a0724e13183a" resname="I agree with terms and conditions">
-        <source>I agree with terms and conditions</source>
-        <target>I agree with terms and conditions</target>
+      <trans-unit id="d49f2234a92605900c5c3edd8198a0724e13183a" resname="I agree with the terms and conditions">
+        <source>I agree with the terms and conditions</source>
+        <target>I agree with the terms and conditions</target>
         <jms:reference-file line="69">./src/Proethos2/CoreBundle/Resources/views/NewSubmission/SeventhStep.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="89f89c02cf47e091e726a4e07b88af0966806897" resname="ID">
@@ -1683,14 +1683,14 @@
         <jms:reference-file line="249">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
         <jms:reference-file line="347">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="cd8d040ee6dc846e0f9e0ba7e2da94f2da80d653" resname="Please check and authorize his access.">
-        <source>Please check and authorize his access.</source>
-        <target>Please check and authorize his access.</target>
+      <trans-unit id="cd8d040ee6dc846e0f9e0ba7e2da94f2da80d653" resname="Please check and authorize this access.">
+        <source>Please check and authorize this access.</source>
+        <target>Please check and authorize this access.</target>
         <jms:reference-file line="404">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="1576f56dff5358b11e56a3e8cbf03b7aa80148db" resname="Please wait until your access is validated. We will send you an email.">
-        <source>Please wait until your access is validated. We will send you an email.</source>
-        <target>Please wait until your access is validated. We will send you an email.</target>
+      <trans-unit id="1576f56dff5358b11e56a3e8cbf03b7aa80148db" resname="Please wait until your access has been validated. We will send you an email.">
+        <source>Please wait until your access has been validated. We will send you an email.</source>
+        <target>Please wait until your access has been validated. We will send you an email.</target>
         <jms:reference-file line="380">./src/Proethos2/CoreBundle/Controller/SecurityController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="ad2d5a59cb269298a2e42b55b8d40bdc7b9a5da4" resname="Portuguese message">
@@ -1799,9 +1799,9 @@
         <jms:reference-file line="451">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
         <jms:reference-file line="492">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="bb1e53e3cef57a0fab04ba50de792ee3da51768e" resname="Protocol was accepeted and investigators notified.">
-        <source>Protocol was accepeted and investigators notified.</source>
-        <target>Protocol was accepeted and investigators notified.</target>
+      <trans-unit id="bb1e53e3cef57a0fab04ba50de792ee3da51768e" resname="Protocol has been accepeted and investigators notified.">
+        <source>Protocol has been accepeted and investigators notified.</source>
+        <target>Protocol has been accepeted and investigators notified.</target>
         <jms:reference-file line="415">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="3224369bc089e3ef36e591adcf9030467e4e7808" resname="Protocol was concluded as Exempt.">
@@ -1809,9 +1809,9 @@
         <target>Protocol was concluded as Exempt.</target>
         <jms:reference-file line="486">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="e97aa44ce19416e6fe9a582193d79f467cde4269" resname="Protocol was finished with success!">
-        <source>Protocol was finished with success!</source>
-        <target>Protocol was finished with success!</target>
+      <trans-unit id="e97aa44ce19416e6fe9a582193d79f467cde4269" resname="Protocol was finalized with success!">
+        <source>Protocol was finalized with success!</source>
+        <target>Protocol was finalized with success!</target>
         <jms:reference-file line="848">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="ffdf4d462b48069706ac5c6bcf284b460a30f0c0" resname="Protocol was rejected by">
@@ -1819,9 +1819,9 @@
         <target>Protocol was rejected by</target>
         <jms:reference-file line="230">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="147a167b834ac600071026e71826fac84da47530" resname="Protocol was sent to comittee to initial analysis by %user%.">
-        <source>Protocol was sent to comittee to initial analysis by %user%.</source>
-        <target>Protocol was sent to comittee to initial analysis by %user%.</target>
+      <trans-unit id="147a167b834ac600071026e71826fac84da47530" resname="Protocol was sent to comittee for initial analysis by %user%.">
+        <source>Protocol was sent to comittee for initial analysis by %user%.</source>
+        <target>Protocol was sent to comittee for initial analysis by %user%.</target>
         <jms:reference-file line="259">./src/Proethos2/CoreBundle/Controller/ProtocolController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="2a6e3082f7bd2a56b001fbb1624e361e5599002d" resname="Protocols">
@@ -2086,9 +2086,9 @@
         <target>Save and wait for comments</target>
         <jms:reference-file line="115">./src/Proethos2/CoreBundle/Resources/views/Protocol/initCommitteeReview.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="ab2155f76e6b2408c0665d35fb34cd4f7127565f" resname="Save decision and finish process">
-        <source>Save decision and finish process</source>
-        <target>Save decision and finish process</target>
+      <trans-unit id="ab2155f76e6b2408c0665d35fb34cd4f7127565f" resname="Save decision and finalize process">
+        <source>Save decision and finalize process</source>
+        <target>Save decision and finalize process</target>
         <jms:reference-file line="79">./src/Proethos2/CoreBundle/Resources/views/Protocol/endReview.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0a8adac9d6d5f4d14ee887d196cd8618f0f3391a" resname="Schedule">

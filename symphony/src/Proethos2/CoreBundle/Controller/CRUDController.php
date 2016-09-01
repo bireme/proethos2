@@ -811,7 +811,7 @@ class CRUDController extends Controller
             ->setFrom($util->getConfiguration('committee.email'))
             ->setTo($post_data['email'])
             ->setBody(
-                $translator->trans("Hello! You was registered in Proethos2 platform. Please set your password:") .
+                $translator->trans("Hello! You have been in Proethos2 platform. Please set your password:") .
                 "<br>" .
                 "<br>" . $translator->trans("Access the link below") . ":" .
                 "<br>" .
