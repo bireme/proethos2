@@ -21,6 +21,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
+
+use Proethos2\CoreBundle\Util\Util;
+
 
 class IndexController extends Controller
 {
@@ -93,5 +97,17 @@ class IndexController extends Controller
 
         $referer = $request->headers->get('referer');
         return new RedirectResponse($referer);
+    }
+
+    public function getLogoAction()
+    {   
+        $util = new Util($this->container, $this->getDoctrine());
+        $committee_logourl = $util->getConfiguration("committee.logourl");
+
+        if(!empty($committee_logourl))
+            return new Response($committee_logourl);
+        
+        return new Response();
+
     }
 }

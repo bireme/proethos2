@@ -112,6 +112,6 @@ class Country extends Base
         if(!empty($name)) {
             return $name;
         }
-        return "";
+        return $this->name;
     }
 }

@@ -4,6 +4,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+
+                {% if render(controller('Proethos2CoreBundle:Index:getLogo')) %}
+                <li><a><img src='{{ render(controller('Proethos2CoreBundle:Index:getLogo')) }}' class='logo'></a></li>
+                {% endif %}
                 
                 {% if is_granted("ROLE_USER") and 'investigator' in app.user.rolesSlug %}
                     <li>

@@ -305,7 +305,7 @@ class SecurityController extends Controller
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
         $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
 
-        $countries = $country_repository->findAll();
+        $countries = $country_repository->findBy(array(), array('name' => 'asc'));
         $output['countries'] = $countries;
         
         $output['content'] = array();
