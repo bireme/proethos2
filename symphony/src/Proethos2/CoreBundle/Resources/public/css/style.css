@@ -1,0 +1,156 @@
+fieldset {
+    /*border: 1px solid #ccc;*/
+}
+table:not(.table-bordered)>thead>tr>th, .table:not(.table-bordered)>thead>tr>th, table:not(.table-bordered)>tbody>tr>th, .table:not(.table-bordered)>tbody>tr>th, table:not(.table-bordered)>tfoot>tr>th, .table:not(.table-bordered)>tfoot>tr>th, table:not(.table-bordered)>thead>tr>td, .table:not(.table-bordered)>thead>tr>td, table:not(.table-bordered)>tbody>tr>td, .table:not(.table-bordered)>tbody>tr>td, table:not(.table-bordered)>tfoot>tr>td, .table:not(.table-bordered)>tfoot>tr>td {
+    border-color: #eee;
+}
+.center {
+    text-align: center;
+}
+.navbar-default .nav > li > a {
+    text-transform: uppercase;
+}
+.main-footer {
+    text-align: center;
+}
+.flashbag {
+    margin-top: 60px;
+    margin-bottom: -100px;
+}
+.main-content {
+    margin-top: 30px;
+}
+.submission-meta {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.submission-meta img {
+    width: 60px;
+}
+.submission-meta .label, .see-submission .block.meta .label {
+    color: #333;
+    text-transform: uppercase;
+    padding: 1px;
+}
+.submission-meta .block {
+    margin-bottom: 30px;
+}
+.submission-meta h2, .submission-meta h3 {
+    margin: 0;
+    font-weight: bold;
+}
+.new-submission-content h2.sub-header, 
+.submissions h2.sub-header, 
+.see-submission h2.sub-header, 
+.download-docs h2.sub-header, 
+.faq h2.sub-header {
+    padding: 0;
+    font-size: 21px;
+    line-height: inherit;
+    color: #333333;
+    border: 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+.submission-button-controls {
+    border-top: 1px solid #e5e5e5;
+    margin: 20px 0 30px 0;
+    padding-top: 15px;
+}
+.error {
+    color: #ff0000;
+}
+.search-button {
+    margin-top: 25px;
+}
+#pagination {
+    text-align: center;
+}
+.pagination li a {
+    margin: 0 2px;
+}
+.see-submission .block .row {
+    margin-bottom: 15px;
+}
+.see-submission .block .row:first-child {
+    /*margin-bottom: 0;*/
+}
+.see-submission h3 {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 5px;
+}
+.meta .titulo {
+    font-weight: bold;
+}
+.block.action {
+    /*background-color: #efefef;*/
+}
+h5 {
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 12pt;
+    padding-bottom: 5px;
+    margin-top: 15px;
+}
+.sortable > * {
+    cursor: move;
+}
+.faq .content {
+    margin-top: 20px;
+    line-height: 18pt;
+}
+.download-docs h3 {
+    font-size: 14pt;
+    /*border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 5px;*/
+    margin-bottom: 15px;
+}
+.required > label {
+    font-weight: bold;
+    color: #ff0000;
+}
+.question h2.sub-header {
+    font-size: 14pt;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+.answer {
+    margin: 0 0 20px 0;
+}
+
+/*cor do texto dos selecionados do select2 (multiple) */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    color: #666;
+}
+/*  padroniza as caixas de select2 (multiple) */
+.select2-container--default .select2-selection--multiple {
+    border: 1px solid #d2d6de;
+    border-radius: 0;
+}
+.select2-selection {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border-color: #d2d6de !important;
+    height: 34px !important;
+}
+
+.g-recaptcha {
+    margin: 10px 0 20px 0;
+}
+.help-text-undefined, 
+.help-text-undefined:focus, 
+.help-text-undefined:link, 
+.help-text-undefined:visited, 
+.help-text-undefined:hover {
+    color: #ff0000;
+}
+
+.dropdown-submenu{position:relative;}
+.dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
+.dropdown-submenu:hover>.dropdown-menu{display:block;}
+.dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
+.dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
+.dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
