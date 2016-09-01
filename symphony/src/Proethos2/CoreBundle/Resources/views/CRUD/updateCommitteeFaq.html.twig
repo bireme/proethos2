@@ -19,7 +19,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-new-question-es_ES">{% trans %}Question in Spanish{% endtrans %}:</label> 
-                    <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 186} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <input type='text' class='form-control' id="input-new-question-es_ES" name="new-question-es_ES" value="{% if translations.es_ES is defined %}{{ translations.es_ES.question }}{% endif %}">
                 </div>
             </div>
@@ -29,7 +29,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-new-question-pt_BR">{% trans %}Question in Portuguese{% endtrans %}:</label> 
-                    <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 187} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <input type='text' class='form-control' id="input-new-question-pt_BR" name="new-question-pt_BR" value="{% if translations.pt_BR is defined %}{{ translations.pt_BR.question }}{% endif %}">
                 </div>
             </div>
@@ -39,7 +39,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-new-question-fr_FR">{% trans %}Question in French{% endtrans %}:</label> 
-                    <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 188} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <input type='text' class='form-control' id="input-new-question-fr_FR" name="new-question-fr_FR" value="{% if translations.fr_FR is defined %}{{ translations.fr_FR.question }}{% endif %}">
                 </div>
             </div>
@@ -59,7 +59,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-new-question-answer-es_ES">{% trans %}Answer in Spanish{% endtrans %}:</label> 
-                    <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 189} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <textarea rows="5" class='form-control' id="input-new-question-answer-es_ES" name='new-question-answer-es_ES'>{% if translations.es_ES is defined %}{{ translations.es_ES.answer }}{% endif %}</textarea>
                 </div>
             </div>
@@ -69,7 +69,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-new-question-answer-pt_BR">{% trans %}Answer in Portuguese{% endtrans %}:</label> 
-                    <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 190} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <textarea rows="5" class='form-control' id="input-new-question-answer-pt_BR" name='new-question-answer-pt_BR'>{% if translations.pt_BR is defined %}{{ translations.pt_BR.answer }}{% endif %}</textarea>
                 </div>
             </div>
@@ -79,7 +79,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-new-question-answer-fr_FR">{% trans %}Answer in French{% endtrans %}:</label> 
-                    <a href="#" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 191} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <textarea rows="5" class='form-control' id="input-new-question-answer-fr_FR" name='new-question-answer-fr_FR'>{% if translations.fr_FR is defined %}{{ translations.fr_FR.answer }}{% endif %}</textarea>
                 </div>
             </div>
