@@ -1113,7 +1113,7 @@ class CRUDController extends Controller
             ->setBody(
                 $translator->trans("Hello! A message was sent to proethos2 administrator from plataform.") .
                 "<br>" .
-                "<br><b>User</b>: " . $user->getUsername() . " (" . $user->getEmail() . ")" . 
+                "<br><b>User</b>: " . $post_data['name'] . " (" . $post_data['email'] . ")" . 
                 "<br><b>Subject</b>: " . $post_data['subject'] . 
                 "<br><b>Message</b>:<br>" . 
                 nl2br($post_data['message'])
