@@ -48,6 +48,15 @@
 
     {% endblock %}
 
+    <footer class="navbar navbar-fixed-bottom main-footer">
+        <div class='row'>
+            <div class='col-sm-12'>
+                <a href="https://github.com/bireme/proethos2/blob/master/doc/legal/legal-disclaimer-{{ app.request.locale }}.pdf" target="_blank">{% trans %}Legal disclaimer{% endtrans %}</a> | 
+                <a href="https://github.com/bireme/proethos2/blob/master/doc/legal/terms-of-use-{{ app.request.locale }}.pdf" target="_blank">{% trans %}Terms of Use{% endtrans %}</a>
+            </div>
+        </div>
+    </footer>
+
     <!-- Modal HELP -->
     <div class="modal fade" id="modal-help" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">

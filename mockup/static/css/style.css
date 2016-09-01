@@ -10,6 +10,9 @@ table:not(.table-bordered)>thead>tr>th, .table:not(.table-bordered)>thead>tr>th,
 .navbar-default .nav > li > a {
     text-transform: uppercase;
 }
+.main-footer {
+    text-align: center;
+}
 .flashbag {
     margin-top: 60px;
     margin-bottom: -100px;
