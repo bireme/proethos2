@@ -62,7 +62,7 @@ a license that permits end users to modify these portions and  redistribute its 
 software is governed solely by the terms and  conditions of the applicable Open Source 
 License. A list of the Open Source  Softwares and the applicable Open Source licenses 
 including relevant code can be  obtained at 
-https://github.com/bireme/proethos/COPYRIGHT.txt
+https://github.com/bireme/proethos2/blob/master/doc/COPYRIGHT.txt
 
 10. Disclaimer. PAHO disclaims any and all implied warranties or conditions,  including 
 any implied warranty of title, non-infringement, merchantability or  fitness for a particular 
