@@ -1,5 +1,4 @@
 ProEthos2 License
-=================
 
 NOTICE TO USER: Please read this Software License carefully. By using all or any  
 portion of this Software, you accept all the terms and conditions of this License,  and 
