@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-09-07T18:58:25Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2016-09-12T12:37:21Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -120,15 +120,15 @@
       </trans-unit>
       <trans-unit id="ee00aa1e8910284da47e2f69d81c90ec6a9cee03" resname="Answer in French">
         <source>Answer in French</source>
-        <target state="new">Answer in French</target>
+        <target>Answer in French</target>
       </trans-unit>
       <trans-unit id="cc120aacca11a86b8de7dcd8708ee5dbebb4f85d" resname="Answer in Portuguese">
         <source>Answer in Portuguese</source>
-        <target state="new">Answer in Portuguese</target>
+        <target>Answer in Portuguese</target>
       </trans-unit>
       <trans-unit id="fdd736d8c3f51dc7f779983a18dff4b18a730744" resname="Answer in Spanish">
         <source>Answer in Spanish</source>
-        <target state="new">Answer in Spanish</target>
+        <target>Answer in Spanish</target>
       </trans-unit>
       <trans-unit id="e0aafffa028c1a77c7cc61a286a8bfa21a85356c" resname="Answered">
         <source>Answered</source>
@@ -141,6 +141,22 @@
       <trans-unit id="82a015d57a9b653f5938e233e81618c31955e00e" resname="Are you sure that you want to end this protocol evaluation?">
         <source>Are you sure that you want to end this protocol evaluation?</source>
         <target>Are you sure that you want to end this protocol evaluation?</target>
+      </trans-unit>
+      <trans-unit id="3d0e6589cf988b9b7df265be8361e1f5ee2d4692" resname="Are you sure that you want to go to the next step without any revisions?">
+        <source>Are you sure that you want to go to the next step without any revisions?</source>
+        <target state="new">Are you sure that you want to go to the next step without any revisions?</target>
+      </trans-unit>
+      <trans-unit id="72017af4b6eccc95ea1f13bacac7b264cb859e31" resname="Are you sure that you want to going on?">
+        <source>Are you sure that you want to going on?</source>
+        <target state="new">Are you sure that you want to going on?</target>
+      </trans-unit>
+      <trans-unit id="129d86112d0f124b04a96f1e06036d1b66e8e4b2" resname="Are you sure that you want to remove this member?">
+        <source>Are you sure that you want to remove this member?</source>
+        <target state="new">Are you sure that you want to remove this member?</target>
+      </trans-unit>
+      <trans-unit id="d26b6ea1493aea555f0f09e0a0761e26eec1def5" resname="Are you sure that you want to remove this revisor?">
+        <source>Are you sure that you want to remove this revisor?</source>
+        <target state="new">Are you sure that you want to remove this revisor?</target>
       </trans-unit>
       <trans-unit id="c9cfdfefe700ad0c6ce8167a78d04e7cfc305a3e" resname="Are you sure that you want to set this protocol as Exempt?">
         <source>Are you sure that you want to set this protocol as Exempt?</source>
@@ -466,6 +482,10 @@
         <source>Field</source>
         <target>Field</target>
       </trans-unit>
+      <trans-unit id="29edab558d15607b66e55efa5a814497a53ee8c9" resname="Field '%field%' is required.">
+        <source>Field '%field%' is required.</source>
+        <target state="new">Field '%field%' is required.</target>
+      </trans-unit>
       <trans-unit id="197b6c42e9671e1abdb4f7603440a85d4e7a6c0f" resname="Field 'file' is required.">
         <source>Field 'file' is required.</source>
         <target>Field 'file' is required.</target>
@@ -578,6 +598,10 @@
         <source>Get user's link to change password</source>
         <target>Get user's link to change password</target>
       </trans-unit>
+      <trans-unit id="4319a1b9dd4db1bddf039feda08cc7add302a49f" resname="Go on">
+        <source>Go on</source>
+        <target state="new">Go on</target>
+      </trans-unit>
       <trans-unit id="48d8c627be3c12fac8a0a9ddb9ceaa5e126cf358" resname="Goals">
         <source>Goals</source>
         <target>Goals</target>
@@ -604,11 +628,11 @@
       </trans-unit>
       <trans-unit id="ac086f9347bc2bd07e72c1fcd07952b16112c14d" resname="Hello! You asked for a new password in Proethos2 platform.">
         <source>Hello! You asked for a new password in Proethos2 platform.</source>
-        <target state="new">Hello! You asked for a new password in Proethos2 platform.</target>
+        <target>Hello! You asked for a new password in Proethos2 platform.</target>
       </trans-unit>
       <trans-unit id="a31a2bcfed2f16c84630f8b88aa83851cfc56c0c" resname="Hello! You have been in Proethos2 platform. Please set your password:">
         <source>Hello! You have been in Proethos2 platform. Please set your password:</source>
-        <target state="new">Hello! You have been in Proethos2 platform. Please set your password:</target>
+        <target>Hello! You have been in Proethos2 platform. Please set your password:</target>
       </trans-unit>
       <trans-unit id="8add473594e8f90da918dfb232b9dd0609bc2ddb" resname="Hello! You have been registered in the Proethos2 platform.">
         <source>Hello! You have been registered in the Proethos2 platform.</source>
@@ -628,7 +652,7 @@
       </trans-unit>
       <trans-unit id="80e3219fcaf6f7640e44924857fbaf55a52b8032" resname="I agree with the terms and conditions">
         <source>I agree with the terms and conditions</source>
-        <target state="new">I agree with the terms and conditions</target>
+        <target>I agree with the terms and conditions</target>
       </trans-unit>
       <trans-unit id="89f89c02cf47e091e726a4e07b88af0966806897" resname="ID">
         <source>ID</source>
@@ -765,6 +789,10 @@
       <trans-unit id="b23a193872fc22386b943b59124e30963e802c52" resname="Meetings">
         <source>Meetings</source>
         <target>Meetings</target>
+      </trans-unit>
+      <trans-unit id="4014afc56173e7dda855348d627c2ccd839bf610" resname="Member has been removed with success!">
+        <source>Member has been removed with success!</source>
+        <target state="new">Member has been removed with success!</target>
       </trans-unit>
       <trans-unit id="abc4f304a08a21ce7477f600961a7c5e317824c5" resname="Members added with success!">
         <source>Members added with success!</source>
@@ -998,6 +1026,10 @@
         <source>Opinions Required</source>
         <target>Opinions Required</target>
       </trans-unit>
+      <trans-unit id="359baa522ea829047594f9a7d579bde0792f4653" resname="Options has been saved with success!">
+        <source>Options has been saved with success!</source>
+        <target state="new">Options has been saved with success!</target>
+      </trans-unit>
       <trans-unit id="177cc7fa458f92130089c4a70af303ff1fd54c73" resname="Original Submission">
         <source>Original Submission</source>
         <target>Original Submission</target>
@@ -1032,11 +1064,11 @@
       </trans-unit>
       <trans-unit id="68903d44f6608ff7603550f9ca7932e890daa328" resname="Please check and authorize this access.">
         <source>Please check and authorize this access.</source>
-        <target state="new">Please check and authorize this access.</target>
+        <target>Please check and authorize this access.</target>
       </trans-unit>
       <trans-unit id="207b74f0be737ef1217787e833120109272cd456" resname="Please wait until your access has been validated. We will send you an email.">
         <source>Please wait until your access has been validated. We will send you an email.</source>
-        <target state="new">Please wait until your access has been validated. We will send you an email.</target>
+        <target>Please wait until your access has been validated. We will send you an email.</target>
       </trans-unit>
       <trans-unit id="ad2d5a59cb269298a2e42b55b8d40bdc7b9a5da4" resname="Portuguese message">
         <source>Portuguese message</source>
@@ -1088,7 +1120,7 @@
       </trans-unit>
       <trans-unit id="620043c798da0b02a5a3236b40e134ecdec364a4" resname="Protocol has been accepeted and investigators notified.">
         <source>Protocol has been accepeted and investigators notified.</source>
-        <target state="new">Protocol has been accepeted and investigators notified.</target>
+        <target>Protocol has been accepeted and investigators notified.</target>
       </trans-unit>
       <trans-unit id="185a971b99159441d069b7b1aabcec8c0de209c1" resname="Protocol options">
         <source>Protocol options</source>
@@ -1112,7 +1144,7 @@
       </trans-unit>
       <trans-unit id="12c22e7fdb09dfba836d15fb9e5eb7862f5a01f0" resname="Protocol was finalized with success!">
         <source>Protocol was finalized with success!</source>
-        <target state="new">Protocol was finalized with success!</target>
+        <target>Protocol was finalized with success!</target>
       </trans-unit>
       <trans-unit id="ffdf4d462b48069706ac5c6bcf284b460a30f0c0" resname="Protocol was rejected by">
         <source>Protocol was rejected by</source>
@@ -1120,7 +1152,7 @@
       </trans-unit>
       <trans-unit id="e76c7159e192d371590953e2b0d3cc660c24edfa" resname="Protocol was sent to comittee for initial analysis by %user%.">
         <source>Protocol was sent to comittee for initial analysis by %user%.</source>
-        <target state="new">Protocol was sent to comittee for initial analysis by %user%.</target>
+        <target>Protocol was sent to comittee for initial analysis by %user%.</target>
       </trans-unit>
       <trans-unit id="2a6e3082f7bd2a56b001fbb1624e361e5599002d" resname="Protocols">
         <source>Protocols</source>
@@ -1152,15 +1184,15 @@
       </trans-unit>
       <trans-unit id="27f3fcd84e92a1fd66a80c3dfc48f2a09ce482fe" resname="Question in French">
         <source>Question in French</source>
-        <target state="new">Question in French</target>
+        <target>Question in French</target>
       </trans-unit>
       <trans-unit id="d1b1753e646a59ab64e40bee16df5a8a561dc5d4" resname="Question in Portuguese">
         <source>Question in Portuguese</source>
-        <target state="new">Question in Portuguese</target>
+        <target>Question in Portuguese</target>
       </trans-unit>
       <trans-unit id="9fa13b2d708bfa370bdf14f1ea980a85db1e832e" resname="Question in Spanish">
         <source>Question in Spanish</source>
-        <target state="new">Question in Spanish</target>
+        <target>Question in Spanish</target>
       </trans-unit>
       <trans-unit id="7891571661d7cd0d0a4ab05c20b1190069f8aaba" resname="Question updated with success.">
         <source>Question updated with success.</source>
@@ -1217,6 +1249,10 @@
       <trans-unit id="27eeb7a291bfc566447d9cd928e98caf90f70ee6" resname="Rejected">
         <source>Rejected</source>
         <target>Rejected</target>
+      </trans-unit>
+      <trans-unit id="e963907dac5cd5c017869b4c96c18021c9bd058b" resname="Remove">
+        <source>Remove</source>
+        <target state="new">Remove</target>
       </trans-unit>
       <trans-unit id="8e3396f89515f442389f76203853468f9afa8e95" resname="Remove this investigator.">
         <source>Remove this investigator.</source>
@@ -1288,7 +1324,7 @@
       </trans-unit>
       <trans-unit id="7dc93dfdfd8466365adcc58b37f66a5a654e8f27" resname="Save decision and finalize process">
         <source>Save decision and finalize process</source>
-        <target state="new">Save decision and finalize process</target>
+        <target>Save decision and finalize process</target>
       </trans-unit>
       <trans-unit id="0a8adac9d6d5f4d14ee887d196cd8618f0f3391a" resname="Schedule">
         <source>Schedule</source>
