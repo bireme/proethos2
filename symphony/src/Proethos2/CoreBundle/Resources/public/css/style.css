@@ -28,6 +28,9 @@ table:not(.table-bordered)>thead>tr>th, .table:not(.table-bordered)>thead>tr>th,
 .navbar-default .nav > li > a {
     text-transform: uppercase;
 }
+footer {
+    background-color: #fff;
+}
 .main-footer {
     text-align: center;
 }
