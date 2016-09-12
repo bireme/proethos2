@@ -21,7 +21,7 @@
                 </div>    
 
                 <div class='row answer'>
-                    <div class="col-md-12 content"><p>{{ question.answer}}</p></div>
+                    <div class="col-md-12 content"><p>{{ question.answer|raw }}</p></div>
                 </div>    
             </div>
         {% endfor %}
