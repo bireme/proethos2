@@ -178,7 +178,7 @@ class ProtocolController extends Controller
                 $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
                 $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
                 
-                $recipients = array($user);
+                $recipients = array($protocol->getOwner());
                 foreach($protocol->getMainSubmission()->getTeam() as $team_member) {
                     $recipients[] = $team_member;
                 }

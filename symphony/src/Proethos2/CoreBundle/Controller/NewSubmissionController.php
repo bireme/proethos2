@@ -229,6 +229,11 @@ class NewSubmissionController extends Controller
                     $old_owner = $submission->getOwner();
                     $submission->setOwner($new_owner);
 
+                    $protocol = $submission->getProtocol();
+                    $protocol->setOwner($new_owner);
+                    $em->persist($protocol);
+                    $em->flush();
+
                     $submission->removeTeam($new_owner);
                     $submission->addTeam($old_owner);
                 }
