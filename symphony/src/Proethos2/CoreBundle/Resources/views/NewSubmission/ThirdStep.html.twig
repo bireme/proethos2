@@ -13,7 +13,7 @@
         {% include 'Proethos2CoreBundle:NewSubmission:meta.html.twig' %}
 
         <div class='new-submission-tab-content'>
-            <form class='form' method='POST' action='{{ path("submission_new_third_step", {submission_id: submission.id}) }}'>
+            <form class='form' method='POST' id='form-submission' action='{{ path("submission_new_third_step", {submission_id: submission.id}) }}'>
 
                 <input type='hidden' name='submission_id' value='{{ submission.id }}'>
 
@@ -339,6 +339,21 @@
 
                 parent = $(this).parents('tr');
                 parent.remove();
+            });
+
+            $("#form-submission").submit(function(e){
+
+                var today = new Date();
+                var recruitment_date = $("#input-recruitment-init-date").val();
+
+                recruitment_date = new Date(recruitment_date);
+                if(recruitment_date > today) {
+                    $("#form-submission").submit();
+                } else {
+                    e.preventDefault();
+                    $("#input-recruitment-init-date").focus();
+                    alert("{% trans %}ERROR: The recruitment date needs to be greather than today.{% endtrans %}");
+                }
             });
         });
     </script>
