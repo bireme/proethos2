@@ -249,7 +249,7 @@ class ProtocolControllerTest extends WebTestCase
         $route = $client->getContainer()->get('router')->generate('protocol_initial_committee_review', array("protocol_id" => $protocol_id), false);
 
         $post_data = array(
-            "send-to" => "",
+            "send-to" => "button-save-and-send-to-meeting",
             "opinion-required" => "1",
             "meeting" => "2",
         );
