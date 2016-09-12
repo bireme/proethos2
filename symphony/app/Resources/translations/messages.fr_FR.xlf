@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-09-12T12:37:21Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2016-09-12T19:44:32Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -389,6 +389,10 @@
       <trans-unit id="0d01e2e86669e98441ab4dce5520696c318b7098" resname="E-mail">
         <source>E-mail</source>
         <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="945b98980b4d2a091a6897fb3ad735cc3d3df478" resname="ERROR: The recruitment date needs to be greather than today.">
+        <source>ERROR: The recruitment date needs to be greather than today.</source>
+        <target state="new">ERROR: The recruitment date needs to be greather than today.</target>
       </trans-unit>
       <trans-unit id="4d32f9f7a82dd68da666475cd6c1355d1220879b" resname="Edit roles">
         <source>Edit roles</source>
@@ -1617,6 +1621,10 @@
       <trans-unit id="448b971c7b7738a4c2cb5fea621654b09beab725" resname="Update Meeting">
         <source>Update Meeting</source>
         <target>Update Meeting</target>
+      </trans-unit>
+      <trans-unit id="a4652f309e03aa9378c02de07e4fab50a8310ae3" resname="Update Question">
+        <source>Update Question</source>
+        <target state="new">Update Question</target>
       </trans-unit>
       <trans-unit id="e27738c47f3ecda86646c8ee5acafaa6829470f9" resname="Update User">
         <source>Update User</source>
