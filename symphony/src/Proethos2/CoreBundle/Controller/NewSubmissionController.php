@@ -796,6 +796,7 @@ class NewSubmissionController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $upload_type_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
         
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
@@ -1015,10 +1016,13 @@ class NewSubmissionController extends Controller
 
                         $submission_number = count($submission->getProtocol()->getSubmission());                        
 
+                        $upload_type = $upload_type_repository->findOneBy(array("slug" => "protocol"));
+
                         // send tmp file to upload class and save
                         $pdfFile = new SubmissionUpload();
                         $pdfFile->setSubmission($submission);
                         $pdfFile->setSimpleFile($filepath);
+                        $pdfFile->setUploadType($upload_type);
                         $pdfFile->setUser($user);
                         $pdfFile->setSubmissionNumber($submission->getNumber());
                         $em->persist($pdfFile);
