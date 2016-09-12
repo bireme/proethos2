@@ -116,7 +116,7 @@
                             <div class="form-group required">
                                 <label for="input-recruitment-init-date">{% trans %}Estimated date of initial recruitment{% endtrans %}:</label> 
                                 <a href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <input type='date' class='form-control' id='input-recruitment-init-date' name='recruitment-init-date' value='{{ submission.recruitmentInitDate|date("Y-m-d") }}' required>
+                                <input type='date' class='form-control datepicker' id='input-recruitment-init-date' name='recruitment-init-date' value='{{ submission.recruitmentInitDate|date("Y-m-d") }}' required>
                             </div>
                         </div>
                     </div>

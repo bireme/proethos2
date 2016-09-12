@@ -247,13 +247,13 @@
                         <div class="form-group">
                             <label for="input-task-init">{% trans %}Start{% endtrans %}:</label> 
                             <a href="{{ path("crud_admin_help_show", {help_id: 43} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <input type="date" class='form-control' required="required" maxlength="10" id="input-task-init" name="task-init" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
+                            <input type="date" class='form-control datepicker' required="required" maxlength="10" id="input-task-init" name="task-init" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
                         </div>
 
                         <div class="form-group">
                             <label for="input-task-end">{% trans %}End{% endtrans %}:</label> 
                             <a href="{{ path("crud_admin_help_show", {help_id: 44} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <input type="date" class='form-control' required="required" maxlength="10" id="input-task-end" name="task-end" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
+                            <input type="date" class='form-control datepicker' required="required" maxlength="10" id="input-task-end" name="task-end" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -297,7 +297,7 @@
                         <div class="form-group">
                             <label for="input-clinical-trial-date">{% trans %}Date{% endtrans %}:</label> 
                             <a href="{{ path("crud_admin_help_show", {help_id: 47} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <input type="date" class='form-control' id='input-clinical-trial-date' name='clinical-trial-date'>
+                            <input type="date" class='form-control datepicker' id='input-clinical-trial-date' name='clinical-trial-date'>
                         </div>
 
 
