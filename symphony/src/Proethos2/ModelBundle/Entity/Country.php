@@ -18,6 +18,7 @@
 namespace Proethos2\ModelBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo; // gedmo annotations
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Intl\Intl;
@@ -45,6 +46,7 @@ class Country extends Base
     private $code;
 
     /**
+     * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255)
      */
     private $name;
@@ -107,11 +109,7 @@ class Country extends Base
      * @return string
      */
     public function getName()
-    {   
-        $name = Intl::getRegionBundle()->getCountryName($this->getCode());
-        if(!empty($name)) {
-            return $name;
-        }
+    {
         return $this->name;
     }
 }
