@@ -10,7 +10,7 @@
                 <div class="form-group">
                     <label for="textarea-configuration-value">{% trans %}Message{% endtrans %}:</label> 
                     <a href="{{ path("crud_admin_help_show", {help_id: 130} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                    <textarea rows="5" class='form-control' id="textarea-configuration-value" name="configuration-value" required>{{ configuration.value }}</textarea>
+                    <textarea rows="5" class='form-control' id="textarea-configuration-value" name="configuration-value">{{ configuration.value }}</textarea>
                 </div>
             </div>
         </div>                        
