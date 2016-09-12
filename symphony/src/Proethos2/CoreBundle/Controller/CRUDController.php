@@ -788,7 +788,7 @@ class CRUDController extends Controller
         $roles = $role_repository->findAll();
         $output['roles'] = $roles;
         
-        $countries = $country_repository->findAll();
+        $countries = $country_repository->findBy(array(), array('name' => 'asc'));
         $output['countries'] = $countries;
 
         // checking if was a post request
@@ -885,7 +885,7 @@ class CRUDController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $output['user'] = $user;
 
-        $countries = $country_repository->findAll();
+        $countries = $country_repository->findBy(array(), array('name' => 'asc'));
         $output['countries'] = $countries;
         
         // checking if was a post request
@@ -945,7 +945,7 @@ class CRUDController extends Controller
         $roles = $role_repository->findAll();
         $output['roles'] = $roles;
         
-        $countries = $country_repository->findAll();
+        $countries = $country_repository->findBy(array(), array('name' => 'asc'));
         $output['countries'] = $countries;
 
         // checking if was a post request
@@ -1032,7 +1032,6 @@ class CRUDController extends Controller
 
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
-        $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
 
         // getting the current user
         $user = $user_repository->find($user_id);

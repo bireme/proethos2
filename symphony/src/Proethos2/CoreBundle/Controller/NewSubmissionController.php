@@ -288,7 +288,7 @@ class NewSubmissionController extends Controller
         $recruitment_statuses = $recruitment_status_repository->findByStatus(true);
         $output['recruitment_statuses'] = $recruitment_statuses;
         
-        $countries = $country_repository->findAll();
+        $countries = $country_repository->findBy(array(), array('name' => 'asc'));
         $output['countries'] = $countries;
 
         if (!$submission or $submission->getIsSended()) {
