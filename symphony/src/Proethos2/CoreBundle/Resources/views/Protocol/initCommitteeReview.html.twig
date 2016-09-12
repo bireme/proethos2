@@ -75,8 +75,8 @@
                                     </td> 
                                     <td>
                                         <a href='{{ path("protocol_initial_committee_review_show_review", {protocol_id: protocol.id, protocol_revision_id: revision.id }) }}' data-toggle='modal' data-target='#modal-parecer-reviewer' class='btn btn-default btn-xs {% if not revision.decision %}disabled{% endif %}'><i class='glyphicon glyphicon-eye-open'></i></a>
-                                        <a href='#' class='btn btn-default btn-xs disabled'><i class='glyphicon glyphicon-trash'></i></a>
-                                    </td> 
+                                        <a href='#' class='btn btn-default btn-xs' data-toggle="modal" data-target="#modal-remove-revisor" id='remove-revisor-{{ revision.id }}'><i class='glyphicon glyphicon-trash'></i></a>
+                                    </td
                                 </tr>
                             {% endfor %}
                         </tbody>
@@ -109,11 +109,11 @@
                     </div>
                 </div>
             {% endif %}
-
+            
             <div class='row'>
                 <div class='submission-button-controls col-md-12'>
                     <button type="submit" class='btn btn-primary' id='button-save-and-wait-revisions'>{% trans %}Save and wait for comments{% endtrans %}</button>
-                    <button type="submit" class='btn btn-primary' id='button-save-and-send-to-meeting' {% if protocol.opinionRequired > total_final_revisions %}disabled{% endif %}>{% trans %}Save and send to meeting{% endtrans %}</button>
+                    <button type="button" class='btn btn-primary' id='button-save-and-send-to-meeting' {% if protocol.opinionRequired > total_final_revisions %}disabled{% endif %}>{% trans %}Save and send to meeting{% endtrans %}</button>
                 </div>
             </div>
         </form>
@@ -222,31 +222,85 @@
         </div>
     </div>
 
+    <!-- Modal Remove Reviewer -->
+    <div class="modal fade" id="modal-remove-revisor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <form class='form' method="POST" >
+                <input type="hidden" name="remove-member" value="">
+                
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}Are you sure that you want to remove this member?{% endtrans %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{% trans %}Are you sure that you want to remove this revisor?{% endtrans %}</p>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                        <button type="submit" class="btn btn-danger">{% trans %}Remove{% endtrans %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal confirm if that not revisions -->
+    <div class="modal fade" id="modal-confirm-submit-without-revisions" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{% trans %}Are you sure that you want to going on?{% endtrans %}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{% trans %}Are you sure that you want to go to the next step without any revisions?{% endtrans %}</p>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                    <button type="button" class="btn btn-danger" id="button-confirm-submit-without-revisions">{% trans %}Go on{% endtrans %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block script %}
     <script>
         $(function(){
+
+            // set action
+            $('#form-action button').on('keypress click', function(e){
+                // e.preventDefault();
+
+                var action = $(this).attr('id');
+                $('#input-send-to').val(action);
+            });
+
+            // binding revision id to remove member form
+            $("a[id^=remove-revisor-").on('keypress click', function(e){
+                var member_id = $(this).attr('id');
+                member_id = member_id.replace("remove-revisor-", "");
+                $("input[name=remove-member]").val(member_id);
+
+            });
+
+            // binding action to button that goes on
+            $('#button-save-and-send-to-meeting').on('keypress click', function(e){
+                {% if total_final_revisions == 0 %}
+                    $('#modal-confirm-submit-without-revisions').modal('show');
+                {% else %}
+                    $('#form-action').submit();
+                {% endif %}
+            });
             
-            // $("#select-meeting").change(function(){
-            //     $("#button-save-and-wait-revisions").prop('disabled', false);
-            //     $("#button-save-and-send-to-meeting").prop('disabled', true);
-                
-            //     if($("#select-meeting").val() > 0) {
-            //         $("#button-save-and-send-to-meeting").prop('disabled', false);
-            //         $("#button-save-and-wait-revisions").prop('disabled', true);
-            //     } 
-            // });
-            // $("body").on("click", "#button-exempt-protocol", function(e){
-            //     $("#input-send-to").val('exempt');
-            //     $("#form-action").submit();
-            // });
-            
-            // $("body").on("click", "#button-ethical-revision", function(e){
-            //     $("#input-send-to").val('ethical-revision');
-            //     $("#form-action").submit();
-            // });
-            
+            $('#button-confirm-submit-without-revisions').on('keypress click', function(e){
+                $('#form-action').submit();
+            });
+
         });
     </script>
 {% endblock %}

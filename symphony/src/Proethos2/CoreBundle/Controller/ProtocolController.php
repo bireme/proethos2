@@ -572,14 +572,20 @@ class ProtocolController extends Controller
             // getting post data
             $post_data = $request->request->all();
             
-            if(isset($post_data['opinion-required']) and !empty($post_data['opinion-required'])) {
+            if(isset($post_data['send-to']) and $post_data['send-to'] == "button-save-and-wait-revisions") {
                 
-                $protocol->setOpinionRequired($post_data['opinion-required']);
+                // saving opinion required
+                if(isset($post_data['opinion-required'])) {
+                    $protocol->setOpinionRequired($post_data['opinion-required']);
+                    $em->persist($protocol);
+                    $em->flush();
+                }
 
-                $em->persist($protocol);
-                $em->flush();
+                $session->getFlashBag()->add('success', $translator->trans("Options has been saved with success!"));
+                return $this->redirectToRoute('protocol_initial_committee_review', array('protocol_id' => $protocol->getId()), 301);
             }
 
+            // check if form used is adding members
             if(isset($post_data['type-of-members'])) {
 
                 foreach(array("select-members-of-committee", "select-members-ad-hoc") as $input_name) {
@@ -625,8 +631,22 @@ class ProtocolController extends Controller
                 $session->getFlashBag()->add('success', $translator->trans("Members added with success!"));
                 return $this->redirectToRoute('protocol_initial_committee_review', array('protocol_id' => $protocol->getId()), 301);
             }
-            if(isset($post_data['meeting'])) {
 
+            // if form was to remove a member
+            if(isset($post_data['remove-member']) and !empty($post_data['remove-member'])) {
+
+                $revision = $protocol_revision_repository->findOneById($post_data['remove-member']);
+                if($revision) {
+                    $em->remove($revision);
+                    $em->flush();
+
+                    $session->getFlashBag()->add('success', $translator->trans("Member has been removed with success!"));
+                    return $this->redirectToRoute('protocol_initial_committee_review', array('protocol_id' => $protocol->getId()), 301);
+                }
+            }
+            
+            if(isset($post_data['send-to']) and $post_data['send-to'] == "button-save-and-send-to-meeting") {
+                
                 // checking required fields
                 if(!isset($post_data['meeting']) or empty($post_data['meeting'])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field 'meeting' is required."));
