@@ -76,7 +76,7 @@ class MonitoringController extends Controller
             // checking required files
             foreach(array('monitoring-action') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -262,7 +262,7 @@ class MonitoringController extends Controller
             // checking required files
             foreach(array('monitoring-action', 'justification') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }

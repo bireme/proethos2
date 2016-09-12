@@ -116,7 +116,7 @@ class SecurityController extends Controller
             // checking required fields
             foreach(array('change-password', 'password-confirm') as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $this->redirectToRoute('home', array(), 301);
                 }
             }
@@ -174,7 +174,7 @@ class SecurityController extends Controller
             // checking required fields
             foreach(array('email') as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $this->redirectToRoute('login', array(), 301);
                 }
             }
@@ -257,7 +257,7 @@ class SecurityController extends Controller
             // checking required fields
             foreach(array('new-password', 'confirm-password') as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $this->redirectToRoute('home', array(), 301);
                 }
             }
@@ -322,7 +322,7 @@ class SecurityController extends Controller
             // checking required fields
             foreach(array('name', 'username', 'email', 'country', 'password', 'confirm-password') as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }

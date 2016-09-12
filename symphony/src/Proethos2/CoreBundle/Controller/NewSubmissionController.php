@@ -59,7 +59,7 @@ class NewSubmissionController extends Controller
             // checking required files
             foreach(array('scientific_title', 'public_title', 'is_clinical_trial') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return array();
                 }
             }
@@ -130,7 +130,7 @@ class NewSubmissionController extends Controller
             // checking required files
             foreach(array('scientific_title', 'public_title', 'is_clinical_trial') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return array();
                 }
             }
@@ -204,7 +204,7 @@ class NewSubmissionController extends Controller
             $required_fields = array('abstract', 'keywords', 'introduction', 'justify', 'goals');
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -322,7 +322,7 @@ class NewSubmissionController extends Controller
                 'exclusion-criteria', 'recruitment-init-date', 'recruitment-status', 'interventions', 'primary-outcome');
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -467,7 +467,7 @@ class NewSubmissionController extends Controller
             $required_fields = array('funding-source', 'primary-sponsor');
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -653,7 +653,7 @@ class NewSubmissionController extends Controller
             $required_fields = array('bibliography', 'sscientific-contact', 'prior-ethical-approval');
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }

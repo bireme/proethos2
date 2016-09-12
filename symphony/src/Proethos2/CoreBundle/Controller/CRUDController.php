@@ -78,7 +78,7 @@ class CRUDController extends Controller
                 // checking required fields
                 foreach(array('new-meeting-date', 'new-meeting-subject', 'new-meeting-content') as $field) {   
                     if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                        $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                        $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                         return $output;
                     }
                 }
@@ -132,7 +132,7 @@ class CRUDController extends Controller
             foreach(array('new-meeting-date', 'new-meeting-subject', 'new-meeting-content') as $field) {
                 
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -211,7 +211,7 @@ class CRUDController extends Controller
             // checking required files
             foreach(array('meeting-delete') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -354,7 +354,7 @@ class CRUDController extends Controller
             // checking required fields
             foreach(array('new-question', 'new-question-answer') as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -426,7 +426,7 @@ class CRUDController extends Controller
             // checking required fields
             foreach(array('new-question', 'new-question-answer') as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -493,7 +493,7 @@ class CRUDController extends Controller
             // checking required files
             foreach(array('question-delete') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $this->redirectToRoute('crud_committee_faq_list', array(), 301);
                 }
             }
@@ -575,7 +575,7 @@ class CRUDController extends Controller
             // checking required fields
             foreach(array('title', 'roles') as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -639,7 +639,7 @@ class CRUDController extends Controller
             // checking required fields
             foreach(array('title',) as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -703,7 +703,7 @@ class CRUDController extends Controller
             // checking required files
             foreach(array('delete') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -800,7 +800,7 @@ class CRUDController extends Controller
             // checking required fields
             foreach(array('name', 'username', 'email', 'country', ) as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -897,7 +897,7 @@ class CRUDController extends Controller
             // checking required fields
             foreach(array('name', 'country', ) as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -957,7 +957,7 @@ class CRUDController extends Controller
             // checking required fields
             foreach(array('name', 'country', ) as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -1101,7 +1101,7 @@ class CRUDController extends Controller
             // checking required files
             foreach(array('delete') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -1148,7 +1148,7 @@ class CRUDController extends Controller
             foreach(array('name', 'email', 'subject', 'message') as $field) {
                 
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -1238,7 +1238,7 @@ class CRUDController extends Controller
             foreach(array('help-message-en') as $field) {
                 
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -1375,7 +1375,7 @@ class CRUDController extends Controller
             foreach(array('configuration-value') as $field) {
                 
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -1419,7 +1419,7 @@ class CRUDController extends Controller
             foreach(array('extension') as $field) {
                 
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -1468,7 +1468,7 @@ class CRUDController extends Controller
             foreach(array('extension') as $field) {
                 
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -1522,7 +1522,7 @@ class CRUDController extends Controller
             foreach(array('name', 'extensions') as $field) {
                 
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -1593,7 +1593,7 @@ class CRUDController extends Controller
             foreach(array('name', 'extensions') as $field) {
                 
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -1660,7 +1660,7 @@ class CRUDController extends Controller
             foreach(array('name') as $field) {
                 
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -1720,7 +1720,7 @@ class CRUDController extends Controller
             // checking required files
             foreach(array('name') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -1777,7 +1777,7 @@ class CRUDController extends Controller
             foreach(array('name') as $field) {
                 
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -1837,7 +1837,7 @@ class CRUDController extends Controller
             // checking required files
             foreach(array('name') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -1894,7 +1894,7 @@ class CRUDController extends Controller
             foreach(array('name') as $field) {
                 
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -1955,7 +1955,7 @@ class CRUDController extends Controller
             // checking required files
             foreach(array('name') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -2013,7 +2013,7 @@ class CRUDController extends Controller
             foreach(array('name') as $field) {
                 
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
@@ -2073,7 +2073,7 @@ class CRUDController extends Controller
             // checking required files
             foreach(array('name') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '$field' is required."));
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
