@@ -27,7 +27,7 @@ Then, commit the updated files.
 Automatic method
 ----------
 
-Execute the bash script [tools/generate-locale-files.sh](tools/generate-locale-files.sh)
+Execute the bash script [tools/generate-locale-files.sh](../../tools/generate-locale-files.sh)
 
 
 Then, commit the updated files.
