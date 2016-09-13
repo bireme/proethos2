@@ -1,4 +1,4 @@
-How to create translations
+How to create translations for system labels
 =================================================================
 
 Twig files
