@@ -1248,7 +1248,7 @@
       </trans-unit>
       <trans-unit id="b115c76b4ffcb71b1d273537025b507680ccc587" resname="Reject reason">
         <source>Reject reason</source>
-        <target>Razón del rechazo</target>
+        <target>Razón de devolución</target>
       </trans-unit>
       <trans-unit id="27eeb7a291bfc566447d9cd928e98caf90f70ee6" resname="Rejected">
         <source>Rejected</source>
