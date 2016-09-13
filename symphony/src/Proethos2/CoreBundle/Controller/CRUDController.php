@@ -843,7 +843,7 @@ class CRUDController extends Controller
             ->setFrom($util->getConfiguration('committee.email'))
             ->setTo($post_data['email'])
             ->setBody(
-                $translator->trans("Hello! You have been in Proethos2 platform. Please set your password:") .
+                $translator->trans("Hello! You have been registered in the ProEthos2 Platform. Please set your password:") .
                 "<br>" .
                 "<br>" . $translator->trans("Access the link below") . ":" .
                 "<br>" .
@@ -1420,7 +1420,7 @@ class CRUDController extends Controller
             $em->persist($item);
             $em->flush();
 
-            $session->getFlashBag()->add('success', $translator->trans("Upload Type Extension created with success."));
+            $session->getFlashBag()->add('success', $translator->trans("Upload Extension Type created with success."));
             return $this->redirectToRoute('crud_admin_controlled_list_upload_type_extension_list', array(), 301);
         }
 
@@ -1471,7 +1471,7 @@ class CRUDController extends Controller
             $em->persist($item);
             $em->flush();
 
-            $session->getFlashBag()->add('success', $translator->trans("Upload Type Extension created with success."));
+            $session->getFlashBag()->add('success', $translator->trans("Upload Extension Type created with success."));
             return $this->redirectToRoute('crud_admin_controlled_list_upload_type_extension_list', array(), 301);
         }
 
@@ -1537,7 +1537,7 @@ class CRUDController extends Controller
             $em->persist($item);
             $em->flush();
 
-            $session->getFlashBag()->add('success', $translator->trans("Upload Type Extension created with success."));
+            $session->getFlashBag()->add('success', $translator->trans("Upload Extension Type created with success."));
             return $this->redirectToRoute('crud_admin_controlled_list_upload_type_list', array(), 301);
         }
 

@@ -830,7 +830,7 @@ class ProtocolController extends Controller
 
             $file = $request->files->get('draft-opinion');
             if(empty($file)) {
-                $session->getFlashBag()->add('error', $translator->trans("You need to upload a draft opinion."));
+                $session->getFlashBag()->add('error', $translator->trans("You have to upload a decision."));
                 return $output;
             }
 

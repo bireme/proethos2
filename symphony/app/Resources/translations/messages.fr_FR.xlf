@@ -22,13 +22,13 @@
         <source>6 months</source>
         <target>6 months</target>
       </trans-unit>
-      <trans-unit id="0e5c0c6520c15dc9e8e6ccc32e1e1a8d92686d26" resname="A new monitoring action was submitted.">
-        <source>A new monitoring action was submitted.</source>
-        <target>A new monitoring action was submitted.</target>
+      <trans-unit id="0e5c0c6520c15dc9e8e6ccc32e1e1a8d92686d26" resname="A new monitoring action has been submitted.">
+        <source>A new monitoring action has been submitted.</source>
+        <target>A new monitoring action has been submitted.</target>
       </trans-unit>
-      <trans-unit id="d0dfc5c8167eb6ba20c06ddb06df869559da7da3" resname="A new monitoring action was submitted. Access the link below for more details">
-        <source>A new monitoring action was submitted. Access the link below for more details</source>
-        <target>A new monitoring action was submitted. Access the link below for more details</target>
+      <trans-unit id="d0dfc5c8167eb6ba20c06ddb06df869559da7da3" resname="A new monitoring action has been submitted. Access the link below for more details">
+        <source>A new monitoring action has been submitted. Access the link below for more details</source>
+        <target>A new monitoring action has been submitted. Access the link below for more details</target>
       </trans-unit>
       <trans-unit id="fbc04efd70447c17074755d3b22ef86b113cd74f" resname="A new protocol needs your analysis.">
         <source>A new protocol needs your analysis.</source>
@@ -634,9 +634,9 @@
         <source>Hello! You asked for a new password in Proethos2 platform.</source>
         <target>Hello! You asked for a new password in Proethos2 platform.</target>
       </trans-unit>
-      <trans-unit id="a31a2bcfed2f16c84630f8b88aa83851cfc56c0c" resname="Hello! You have been in Proethos2 platform. Please set your password:">
-        <source>Hello! You have been in Proethos2 platform. Please set your password:</source>
-        <target>Hello! You have been in Proethos2 platform. Please set your password:</target>
+      <trans-unit id="a31a2bcfed2f16c84630f8b88aa83851cfc56c0c" resname="Hello! You have been registered in the ProEthos2 Platform. Please set your password:">
+        <source>Hello! You have been registered in the ProEthos2 Platform. Please set your password:</source>
+        <target>Hello! You have been registered in the ProEthos2 Platform. Please set your password:</target>
       </trans-unit>
       <trans-unit id="8add473594e8f90da918dfb232b9dd0609bc2ddb" resname="Hello! You have been registered in the Proethos2 platform.">
         <source>Hello! You have been registered in the Proethos2 platform.</source>
@@ -934,9 +934,9 @@
         <source>New Upload Type</source>
         <target>New Upload Type</target>
       </trans-unit>
-      <trans-unit id="1836733098e147f4cd543841aeba9523300e432f" resname="New Upload Type Extension">
-        <source>New Upload Type Extension</source>
-        <target>New Upload Type Extension</target>
+      <trans-unit id="1836733098e147f4cd543841aeba9523300e432f" resname="New Upload Extension Type">
+        <source>New Upload Extension Type</source>
+        <target>New Upload Extension Type</target>
       </trans-unit>
       <trans-unit id="b85e445f60044c26c53dc928d018cf9dfb200a6e" resname="New User">
         <source>New User</source>
@@ -1426,9 +1426,9 @@
         <source>Send back to investigator</source>
         <target>Send back to investigator</target>
       </trans-unit>
-      <trans-unit id="f7f7607b333b374d1116f2a2dd4cd970e3c6ef56" resname="Send draft opinion">
-        <source>Send draft opinion</source>
-        <target>Send draft opinion</target>
+      <trans-unit id="f7f7607b333b374d1116f2a2dd4cd970e3c6ef56" resname="Send decision">
+        <source>Send decision</source>
+        <target>Send decision</target>
       </trans-unit>
       <trans-unit id="8c86d73c34f67918b3131fa1eb594dbbeafac78e" resname="Send me instructions">
         <source>Send me instructions</source>
@@ -1650,13 +1650,13 @@
         <source>Upload Files</source>
         <target>Upload Files</target>
       </trans-unit>
-      <trans-unit id="55d4d691caf9220c37eb6195d9a6216cf9054840" resname="Upload Type Extension created with success.">
-        <source>Upload Type Extension created with success.</source>
-        <target>Upload Type Extension created with success.</target>
+      <trans-unit id="55d4d691caf9220c37eb6195d9a6216cf9054840" resname="Upload Extension Type created with success.">
+        <source>Upload Extension Type created with success.</source>
+        <target>Upload Extension Type created with success.</target>
       </trans-unit>
-      <trans-unit id="4a086ec9eaac8e53a2a2f7df47ffb3e2bc11136d" resname="Upload Type Extensions">
-        <source>Upload Type Extensions</source>
-        <target>Upload Type Extensions</target>
+      <trans-unit id="4a086ec9eaac8e53a2a2f7df47ffb3e2bc11136d" resname="Upload Extension Types">
+        <source>Upload Extension Types</source>
+        <target>Upload Extension Types</target>
       </trans-unit>
       <trans-unit id="3b18bc46aee1ae14253e66f6f0c4d015e4ad80d5" resname="Upload Types">
         <source>Upload Types</source>
@@ -1730,9 +1730,9 @@
         <source>You must accept the terms and conditions.</source>
         <target>You must accept the terms and conditions.</target>
       </trans-unit>
-      <trans-unit id="5ad5f44930ed645f66efbc0a94ebd916eaab18aa" resname="You need to upload a draft opinion.">
-        <source>You need to upload a draft opinion.</source>
-        <target>You need to upload a draft opinion.</target>
+      <trans-unit id="5ad5f44930ed645f66efbc0a94ebd916eaab18aa" resname="You have to upload a decision.">
+        <source>You have to upload a decision.</source>
+        <target>You have to upload a decision.</target>
       </trans-unit>
       <trans-unit id="9d3e6251bc24268327e02a63d5023bea3c5a5de8" resname="You were assigned to review a protocol">
         <source>You were assigned to review a protocol</source>

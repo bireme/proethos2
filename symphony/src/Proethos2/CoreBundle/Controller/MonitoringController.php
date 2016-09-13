@@ -121,13 +121,13 @@ class MonitoringController extends Controller
 
                 foreach($recipients as $recipient) {
                     $message = \Swift_Message::newInstance()
-                    ->setSubject("[proethos2] " . $translator->trans("A new monitoring action was submitted."))
+                    ->setSubject("[proethos2] " . $translator->trans("A new monitoring action has been submitted."))
                     ->setFrom($util->getConfiguration('committee.email'))
                     ->setTo($recipient->getEmail())
                     ->setBody(
                         $translator->trans("Hello!") .
                         "<br>" .
-                        "<br>" . $translator->trans("A new monitoring action was submitted. Access the link below for more details") . ":" .
+                        "<br>" . $translator->trans("A new monitoring action has been submitted. Access the link below for more details") . ":" .
                         "<br>" .
                         "<br>$url" .
                         "<br>" .
@@ -306,13 +306,13 @@ class MonitoringController extends Controller
 
             foreach($recipients as $recipient) {
                 $message = \Swift_Message::newInstance()
-                ->setSubject("[proethos2] " . $translator->trans("A new monitoring action was submitted."))
+                ->setSubject("[proethos2] " . $translator->trans("A new monitoring action has been submitted."))
                 ->setFrom($util->getConfiguration('committee.email'))
                 ->setTo($recipient->getEmail())
                 ->setBody(
                     $translator->trans("Hello!") .
                     "<br>" .
-                    "<br>" . $translator->trans("A new monitoring action was submitted. Access the link below for more details") . ":" .
+                    "<br>" . $translator->trans("A new monitoring action has been submitted. Access the link below for more details") . ":" .
                     "<br>" .
                     "<br>$url" .
                     "<br>" .
