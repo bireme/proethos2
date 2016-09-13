@@ -54,7 +54,6 @@ class GenerateDatabaseInitialDataCommand extends ContainerAwareCommand
             'list_role',
             'upload_type',
             'help',
-            'ext_translations',
             'user',
             'user_role',
         );
@@ -72,7 +71,6 @@ class GenerateDatabaseInitialDataCommand extends ContainerAwareCommand
             exec($command);
         }
 
-        exec("cd $fixtures_dir && python ../../tools/reorder-fixtures-translations.py data_ext_translations.sql");
         exec("cd $fixtures_dir && python ../../tools/reorder-fixtures-help.py data_help.sql");
     }
 }
