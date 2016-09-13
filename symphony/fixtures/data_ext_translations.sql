@@ -1,12 +1,12 @@
 DELETE FROM ext_translations;
 
---====================================================
+-- ====================================================
 -- en
---====================================================
+-- ====================================================
 
------------------------
+-- ---------------------
 -- Help
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '1', 'Brief summary of the protocol');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '2', 'Key words pertaining to the protocol, separated by commas');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '3', 'Introductory information of the protocolo');
@@ -44,16 +44,16 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '184', 'Is this a confidential message?');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '185', 'Monitoring time frame');
 
------------------------
+-- ---------------------
 -- Gender
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Gender', 'name', '2', 'Male');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Gender', 'name', '3', 'Female');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Gender', 'name', '4', 'Both');
 
------------------------
+-- ---------------------
 -- MonitoringAction
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\MonitoringAction', 'name', '1', 'Submit an amendment');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\MonitoringAction', 'name', '2', 'Adverse event report');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\MonitoringAction', 'name', '3', 'Conclusion of study');
@@ -63,18 +63,18 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\MonitoringAction', 'name', '7', 'Request extension of approval');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\MonitoringAction', 'name', '8', 'Cancellation of study');
 
------------------------
+-- ---------------------
 -- RecruitmentStatus
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\RecruitmentStatus', 'name', '1', 'Recruiting');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\RecruitmentStatus', 'name', '2', 'Suspended');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\RecruitmentStatus', 'name', '3', 'Completed');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\RecruitmentStatus', 'name', '4', 'Other');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\RecruitmentStatus', 'name', '8', 'Pending');
 
------------------------
+-- ---------------------
 -- UploadType
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '1', 'Protocol');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '2', 'Others');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '3', 'Decision');
@@ -94,13 +94,13 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '39', 'Executive Summary');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '40', 'Informed consent');
 
---====================================================
+-- ====================================================
 -- es_ES
---====================================================
+-- ====================================================
 
------------------------
+-- ---------------------
 -- Help
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '1', 'Resumen breve del protocolo');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '2', 'Palabras claves referentes al protocolo, separadas por comas');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '3', 'Informacion introductoria del protocolo');
@@ -142,14 +142,14 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '184', '¿Es este un mensaje confidencial?');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '185', 'Período de monitoreo');
 
------------------------
+-- ---------------------
 -- ClinicalTrialName
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\ClinicalTrialName', 'name', '4', 'ClinicalTrials.gov');
 
------------------------
+-- ---------------------
 -- Country
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Country', 'name', '1', 'Afganistán');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Country', 'name', '2', 'Islas Åland');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Country', 'name', '3', 'Albania');
@@ -578,17 +578,17 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Country', 'name', '887', 'Yemen');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Country', 'name', '894', 'Zambia');
 
------------------------
+-- ---------------------
 -- Gender
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Gender', 'name', '1', 'N/A');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Gender', 'name', '2', 'Hombre');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Gender', 'name', '3', 'Mujer');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Gender', 'name', '4', 'Ambos');
 
------------------------
+-- ---------------------
 -- MonitoringAction
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\MonitoringAction', 'name', '1', 'Presentar una enmienda');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\MonitoringAction', 'name', '2', 'Reporte de evento adverso');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\MonitoringAction', 'name', '3', 'Finalización del estudio');
@@ -598,18 +598,18 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\MonitoringAction', 'name', '7', 'Solicitar extensión de la aprobación');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\MonitoringAction', 'name', '8', 'Cancelación del estudio');
 
------------------------
+-- ---------------------
 -- RecruitmentStatus
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\RecruitmentStatus', 'name', '1', 'Reclutando');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\RecruitmentStatus', 'name', '2', 'Suspendido');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\RecruitmentStatus', 'name', '3', 'Completado');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\RecruitmentStatus', 'name', '4', 'Otro');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\RecruitmentStatus', 'name', '8', 'Pendiente');
 
------------------------
+-- ---------------------
 -- UploadType
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '1', 'Protocolo');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '2', 'Otros');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '3', 'Decisión');
@@ -629,23 +629,23 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '39', 'Resumen ejecutivo');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '40', 'Consentimiento informado');
 
---====================================================
+-- ====================================================
 -- pt_BR
---====================================================
+-- ====================================================
 
------------------------
+-- ---------------------
 -- Help
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '16', 'O título deste protocolo tem um acrônimo?');
 
------------------------
+-- ---------------------
 -- ClinicalTrialName
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\ClinicalTrialName', 'name', '4', 'ClinicalTrials.gov');
 
------------------------
+-- ---------------------
 -- Country
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Country', 'name', '1', 'Afeganistão');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Country', 'name', '2', 'Ilhas Åland');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Country', 'name', '3', 'Albânia');
@@ -1074,16 +1074,16 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Country', 'name', '887', 'Yemen');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Country', 'name', '894', 'Zambia');
 
------------------------
+-- ---------------------
 -- Gender
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Gender', 'name', '2', 'Homem');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Gender', 'name', '3', 'Mulher');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Gender', 'name', '4', 'Ambos');
 
------------------------
+-- ---------------------
 -- UploadType
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '1', 'Protocolo ');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '2', 'Outro');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '3', 'Decisão');
@@ -1102,18 +1102,18 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '38', 'Relatório de evento adverso');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '39', 'Resumo executivo');
 
---====================================================
+-- ====================================================
 -- fr_FR
---====================================================
+-- ====================================================
 
------------------------
+-- ---------------------
 -- ClinicalTrialName
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\ClinicalTrialName', 'name', '4', 'ClinicalTrials.gov');
 
------------------------
+-- ---------------------
 -- Country
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\Country', 'name', '1', 'Afghanistan');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\Country', 'name', '2', 'Îles Åland');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\Country', 'name', '3', 'Albanie');
@@ -1542,9 +1542,9 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\Country', 'name', '887', 'Yemen');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\Country', 'name', '894', 'Zambia');
 
------------------------
+-- ---------------------
 -- UploadType
------------------------
+-- ---------------------
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '1', 'Protocole');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '2', 'Autre');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '3', 'Décision');
