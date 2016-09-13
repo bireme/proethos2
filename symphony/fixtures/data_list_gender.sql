@@ -2,4 +2,3 @@ REPLACE INTO `list_gender` (`id`, `created`, `updated`, `name`, `slug`, `status`
 REPLACE INTO `list_gender` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (2,'2016-04-27 13:44:00','2016-04-27 13:44:00','Male','hombre',1);
 REPLACE INTO `list_gender` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (3,'2016-04-27 13:44:00','2016-04-27 13:44:00','Female','mujer',1);
 REPLACE INTO `list_gender` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (4,'2016-04-27 13:44:00','2016-04-27 13:44:00','Both','ambos',1);
-REPLACE INTO `list_gender` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (5,'2016-06-21 16:30:11','2016-06-21 16:30:11','Test','test',1);
