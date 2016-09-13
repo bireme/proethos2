@@ -3,7 +3,7 @@ REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (2,
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (3,'2016-06-16 14:11:28','2016-06-16 14:11:28',1,'Introductory information of the protocolo');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (4,'2016-06-16 14:11:28','2016-06-16 14:11:28',1,'Justification of the study');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (5,'2016-06-16 14:11:28','2016-06-16 14:11:28',1,'Objectives of the study');
-REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (13,'2016-06-16 14:11:28','2016-06-16 14:11:28',1,'Is this submission a clinical trial');
+REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (13,'2016-06-16 14:11:28','2016-06-16 14:11:28',1,'Is this submission a clinical trial?');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (14,'2016-06-16 14:11:28','2016-06-16 14:11:28',1,'Scientific title of the protocol');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (15,'2016-06-16 14:11:28','2016-06-16 14:11:28',1,'Public title of protocol');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (16,'2016-06-16 14:11:28','2016-06-16 14:11:28',1,'Does this protocol have an acronym? ');
@@ -33,10 +33,11 @@ REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (12
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (125,'2016-06-16 14:11:29','2016-06-16 14:11:29',1,'Final decision');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (126,'2016-06-16 14:11:29','2016-06-16 14:11:29',1,'Message');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (127,'2016-06-16 14:11:30','2016-06-16 14:11:30',1,'Reject submission');
-REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (128,'2016-06-16 14:11:30','2016-06-16 14:11:30',1,'Reason for rejection ');
+REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (128,'2016-06-16 14:11:30','2016-06-16 14:11:30',1,'Reason why protocol is being returned');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (129,'2016-06-16 14:11:30','2016-06-16 14:11:30',1,'Accept submission');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (183,'2016-08-03 13:43:14','2016-08-03 13:43:14',1,'Decision');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (184,'2016-08-03 13:43:14','2016-08-03 13:43:14',1,'Is this a confidential message?');
+REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (185,'2016-08-03 13:43:14','2016-08-03 13:43:14',1,'Monitoring time frame');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (6,'2016-06-16 14:11:28','2016-06-16 14:11:28',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (7,'2016-06-16 14:11:28','2016-06-16 14:11:28',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (8,'2016-06-16 14:11:28','2016-06-16 14:11:28',0,NULL);
@@ -182,7 +183,6 @@ REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (17
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (180,'2016-08-03 13:43:14','2016-08-03 13:43:14',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (181,'2016-08-03 13:43:14','2016-08-03 13:43:14',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (182,'2016-08-03 13:43:14','2016-08-03 13:43:14',0,NULL);
-REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (185,'2016-08-03 13:43:14','2016-08-03 13:43:14',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (186,'2016-09-01 13:21:20','2016-09-01 13:21:20',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (187,'2016-09-01 13:21:20','2016-09-01 13:21:20',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (188,'2016-09-01 13:21:20','2016-09-01 13:21:20',0,NULL);
