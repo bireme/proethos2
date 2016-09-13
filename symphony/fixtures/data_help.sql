@@ -35,10 +35,8 @@ REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (12
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (127,'2016-06-16 14:11:30','2016-06-16 14:11:30',1,'Reject submission');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (128,'2016-06-16 14:11:30','2016-06-16 14:11:30',1,'Reason for rejection ');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (129,'2016-06-16 14:11:30','2016-06-16 14:11:30',1,'Accept submission');
-REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (184,'2016-08-03 13:43:14','2016-08-03 13:43:14',1,'Is this a confidential message?');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (183,'2016-08-03 13:43:14','2016-08-03 13:43:14',1,'Decision');
-REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (95,'2016-06-16 14:11:29','2016-06-16 14:11:29',0,NULL);
-REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (185,'2016-08-03 13:43:14','2016-08-03 13:43:14',0,NULL);
+REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (184,'2016-08-03 13:43:14','2016-08-03 13:43:14',1,'Is this a confidential message?');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (6,'2016-06-16 14:11:28','2016-06-16 14:11:28',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (7,'2016-06-16 14:11:28','2016-06-16 14:11:28',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (8,'2016-06-16 14:11:28','2016-06-16 14:11:28',0,NULL);
@@ -107,6 +105,7 @@ REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (84
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (85,'2016-06-16 14:11:29','2016-06-16 14:11:29',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (86,'2016-06-16 14:11:29','2016-06-16 14:11:29',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (87,'2016-06-16 14:11:29','2016-06-16 14:11:29',0,NULL);
+REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (95,'2016-06-16 14:11:29','2016-06-16 14:11:29',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (98,'2016-06-16 14:11:29','2016-06-16 14:11:29',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (99,'2016-06-16 14:11:29','2016-06-16 14:11:29',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (100,'2016-06-16 14:11:29','2016-06-16 14:11:29',0,NULL);
@@ -183,6 +182,7 @@ REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (17
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (180,'2016-08-03 13:43:14','2016-08-03 13:43:14',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (181,'2016-08-03 13:43:14','2016-08-03 13:43:14',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (182,'2016-08-03 13:43:14','2016-08-03 13:43:14',0,NULL);
+REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (185,'2016-08-03 13:43:14','2016-08-03 13:43:14',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (186,'2016-09-01 13:21:20','2016-09-01 13:21:20',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (187,'2016-09-01 13:21:20','2016-09-01 13:21:20',0,NULL);
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `message`) VALUES (188,'2016-09-01 13:21:20','2016-09-01 13:21:20',0,NULL);
