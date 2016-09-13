@@ -53,13 +53,13 @@ class GenerateDatabaseTranslationsCommand extends ContainerAwareCommand
 
         $pdo = new \PDO("mysql:host=$database_host;dbname=$database_name", $database_user, $database_password);
 
-        foreach($languages as $language) {
+        print "DELETE FROM ext_translations;\n";
+        print "\n";
 
-            print "DELETE FROM ext_translations;\n";
-            print "\n";
-            print "--====================================================\n";
+        foreach($languages as $language) {
+            print "\n-- ====================================================\n";
             print "-- $language\n";
-            print "--====================================================\n";
+            print "-- ====================================================\n";
             foreach($object_classes as $object_class) {
                 
                 $full_object_class = "Proethos2\\ModelBundle\\Entity\\" . $object_class;
@@ -80,9 +80,9 @@ class GenerateDatabaseTranslationsCommand extends ContainerAwareCommand
                 $executa = $stmte->execute();
 
                 if($executa and $stmte->rowCount() > 0){
-                    print "\n-----------------------\n";
+                    print "\n-- ---------------------\n";
                     print "-- $object_class\n";
-                    print "-----------------------\n";
+                    print "-- ---------------------\n";
                     while($reg = $stmte->fetch(\PDO::FETCH_OBJ)){ /* Para recuperar um ARRAY utilize PDO::FETCH_ASSOC */
                         print "INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('". $reg->locale ."', '". addslashes($reg->object_class) ."', '". $reg->field ."', '". $reg->foreign_key ."', '". addslashes(utf8_encode($reg->content)) ."');\n";
                     }
