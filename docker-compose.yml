@@ -1,0 +1,21 @@
+version: '2'
+services:
+    db:
+        image: mysql:5.7
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: rootpasswd
+            MYSQL_DATABASE: proethos2
+            MYSQL_USER: proethos2
+            MYSQL_PASSWORD: proethos2
+    php:
+        build: ./docker/php
+        ports:
+            - "8000:8000"
+        volumes:
+            - ./symphony:/var/www/symfony
+            - ./symphony/app/logs/:/var/www/symfony/app/logs
+        links:
+            - db
+        command: /runserver.sh
