@@ -1,21 +1,21 @@
 define test
-	cd app && php /usr/bin/phpunit --stop-on-failure
+	cd app && $1 /usr/bin/phpunit --stop-on-failure
 endef
 
 define load_initial
-	php app/console proethos2:load-database-initial-data
+	$1 app/console proethos2:load-database-initial-data
 endef
 
 define update_initial
-	php app/console proethos2:load-database-initial-data --update
+	$1 app/console proethos2:load-database-initial-data --update
 endef
 
 define database_update
-	php app/console doctrine:schema:update --force
+	$1 app/console doctrine:schema:update --force
 endef
 
 define clear_cache
-	php app/console cache:clear --env=prod
+	$1 app/console cache:clear --env=prod
 endef
 
 define set_permissions
@@ -24,10 +24,16 @@ define set_permissions
 endef
 
 update:
-	$(call database_update)
-	$(call update_initial)
-	$(call set_permissions)
-	$(call clear_cache)
+	$(call database_update, php)
+	$(call update_initial, php)
+	$(call set_permissions, php)
+	$(call clear_cache, php)
+
+update_homolog:
+	$(call database_update, php5.6)
+	$(call update_initial, php5.6)
+	$(call set_permissions, php5.6)
+	$(call clear_cache, php5.6)
 
 runserver:
 	php app/console server:run -v 0.0.0.0:8000
