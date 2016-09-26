@@ -38,7 +38,7 @@ clear_cache:
 	mkdir -p app/cache/dev
 	mv app/cache/prod app/cache/$(dt)-prod
 	mv app/cache/dev app/cache/$(dt)-dev
-	rm -rfv app/cache/*
+	rm -rf app/cache/*
 
 set_permissions:
 	find -type f -name "*.xlf" | xargs chmod 0777
