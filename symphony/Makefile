@@ -42,7 +42,7 @@ set_permissions:
 generate_help:
 	$(php) app/console proethos2:generate-help-messages
 
-update: git_pull database_update update_initial set_permissions clear_cache
+update: git_pull database_update set_permissions clear_cache
 
 runserver:
 	$(php) app/console server:run -v 0.0.0.0:8000
