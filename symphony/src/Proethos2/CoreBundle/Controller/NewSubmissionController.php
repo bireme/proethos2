@@ -1,15 +1,15 @@
 <?php
 
-// This file is part of the ProEthos Software. 
-// 
+// This file is part of the ProEthos Software.
+//
 // Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
 // ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
+// restricts commercial use of the Software.
+//
 // ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
+// PARTICULAR PURPOSE. See the ProEthos License for more details.
+//
 // You should have received a copy of the ProEthos License along with the ProEthos
 // Software. If not, see
 // https://github.com/bireme/proethos2/blob/master/doc/license.md
@@ -23,6 +23,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
+
+use Proethos2\CoreBundle\Util\Util;
 
 use Proethos2\ModelBundle\Entity\Submission;
 use Proethos2\ModelBundle\Entity\SubmissionCountry;
@@ -55,7 +57,7 @@ class NewSubmissionController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('scientific_title', 'public_title', 'is_clinical_trial') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
@@ -79,7 +81,7 @@ class NewSubmissionController extends Controller
             $submission->setNumber(1);
 
             $submission->setOwner($user);
-            
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
             $em->flush();
@@ -91,8 +93,8 @@ class NewSubmissionController extends Controller
             $session->getFlashBag()->add('success', $translator->trans("Submission started with success."));
             return $this->redirectToRoute('submission_new_second_step', array('submission_id' => $submission->getId()), 301);
         }
-        
-        return array();    
+
+        return array();
     }
 
     /**
@@ -106,7 +108,7 @@ class NewSubmissionController extends Controller
         $session = $request->getSession();
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
-        
+
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
 
@@ -126,7 +128,7 @@ class NewSubmissionController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('scientific_title', 'public_title', 'is_clinical_trial') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
@@ -139,15 +141,15 @@ class NewSubmissionController extends Controller
             $submission->setPublicTitle($post_data['public_title']);
             $submission->setScientificTitle($post_data['scientific_title']);
             $submission->setTitleAcronym($post_data['title_acronym']);
-            
+
             $em->persist($submission);
             $em->flush();
 
             $session->getFlashBag()->add('success', $translator->trans("First step saved with sucess."));
             return $this->redirectToRoute('submission_new_second_step', array('submission_id' => $submission->getId()), 301);
         }
-        
-        return $output;    
+
+        return $output;
     }
 
     /**
@@ -161,7 +163,7 @@ class NewSubmissionController extends Controller
         $session = $request->getSession();
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
-        
+
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
 
@@ -179,7 +181,7 @@ class NewSubmissionController extends Controller
         if ($user != $submission->getOwner()) {
             $allow_to_edit_submission = false;
             foreach($submission->getTeam() as $team_member) {
-                // if current user = some team member, than it allows to edit  
+                // if current user = some team member, than it allows to edit
                 if ($user == $team_member) {
                     $allow_to_edit_submission = true;
                 }
@@ -208,7 +210,7 @@ class NewSubmissionController extends Controller
                     return $output;
                 }
             }
-            
+
             // removing all team to readd
             foreach($submission->getTeam() as $team_user) {
                 $submission->removeTeam($team_user);
@@ -245,11 +247,11 @@ class NewSubmissionController extends Controller
             $submission->setIntroduction($post_data['introduction']);
             $submission->setJustification($post_data['justify']);
             $submission->setGoals($post_data['goals']);
-            
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
             $em->flush();
-            
+
             // if is a post to set a new owner, returns to the same page
             if(isset($post_data['team-new-owner'])) {
                 return $this->redirectToRoute('submission_new_second_step', array('submission_id' => $submission->getId()), 301);
@@ -258,7 +260,7 @@ class NewSubmissionController extends Controller
             $session->getFlashBag()->add('success', $translator->trans("Second step saved with sucess."));
             return $this->redirectToRoute('submission_new_third_step', array('submission_id' => $submission->getId()), 301);
         }
-        
+
         return $output;
     }
 
@@ -292,7 +294,7 @@ class NewSubmissionController extends Controller
         // getting recruitment_statuses list
         $recruitment_statuses = $recruitment_status_repository->findByStatus(true);
         $output['recruitment_statuses'] = $recruitment_statuses;
-        
+
         $countries = $country_repository->findBy(array(), array('name' => 'asc'));
         $output['countries'] = $countries;
 
@@ -306,7 +308,7 @@ class NewSubmissionController extends Controller
         if ($user != $submission->getOwner()) {
             $allow_to_edit_submission = false;
             foreach($submission->getTeam() as $team_member) {
-                // if current user = some team member, than it allows to edit  
+                // if current user = some team member, than it allows to edit
                 if ($user == $team_member) {
                     $allow_to_edit_submission = true;
                 }
@@ -323,7 +325,7 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
 
             // checking required files
-            $required_fields = array('study-design', 'gender', 'sample-size', 'minimum-age', 'maximum-age', 'inclusion-criteria', 
+            $required_fields = array('study-design', 'gender', 'sample-size', 'minimum-age', 'maximum-age', 'inclusion-criteria',
                 'exclusion-criteria', 'recruitment-init-date', 'recruitment-status', 'interventions', 'primary-outcome');
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
@@ -370,7 +372,7 @@ class NewSubmissionController extends Controller
 
                     // check if exists
                     $submission_country = $submission_country_repository->findOneBy(array(
-                        'submission' => $submission, 
+                        'submission' => $submission,
                         'country' => $country_obj,
                     ));
 
@@ -397,7 +399,7 @@ class NewSubmissionController extends Controller
             }
 
             $submission->setInterventions($post_data['interventions']);
-            
+
             $submission->setPrimaryOutcome($post_data['primary-outcome']);
             $submission->setSecondaryOutcome($post_data['secondary-outcome']);
 
@@ -452,7 +454,7 @@ class NewSubmissionController extends Controller
         if ($user != $submission->getOwner()) {
             $allow_to_edit_submission = false;
             foreach($submission->getTeam() as $team_member) {
-                // if current user = some team member, than it allows to edit  
+                // if current user = some team member, than it allows to edit
                 if ($user == $team_member) {
                     $allow_to_edit_submission = true;
                 }
@@ -461,7 +463,7 @@ class NewSubmissionController extends Controller
         if (!$allow_to_edit_submission) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
-        
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -496,10 +498,10 @@ class NewSubmissionController extends Controller
                     if (!empty($trial_data['date'])) {
                         $date = new \DateTime($trial_data['date']);
                     }
-                    
+
                     // check if exists
                     $trial = $submission_clinical_trial_repository->findOneBy(array(
-                        'submission' => $submission, 
+                        'submission' => $submission,
                         'name' => $trial_name,
                         'date' => $date,
                         'number' => $trial_data['number'],
@@ -512,7 +514,7 @@ class NewSubmissionController extends Controller
                         $trial->setNumber($trial_data['number']);
                         $trial->setDate($date);
                     }
-                    
+
                     $em->persist($trial);
                     $em->flush();
 
@@ -533,7 +535,7 @@ class NewSubmissionController extends Controller
 
                     // check if exists
                     $submission_cost = $submission_cost_repository->findOneBy(array(
-                        'submission' => $submission, 
+                        'submission' => $submission,
                         'description' => $cost['description'],
                         'quantity' => $cost['quantity'],
                         'unit_cost' => $cost['unit_cost'],
@@ -572,7 +574,7 @@ class NewSubmissionController extends Controller
 
                     // check if exists
                     $submission_task = $submission_task_repository->findOneBy(array(
-                        'submission' => $submission, 
+                        'submission' => $submission,
                         'description' => $task['description'],
                         'init' => new \DateTime($task['init']),
                         'end' => new \DateTime($task['end']),
@@ -597,7 +599,7 @@ class NewSubmissionController extends Controller
 
             $em->persist($submission);
             $em->flush();
-            
+
             $session->getFlashBag()->add('success', $translator->trans("Fourth step saved with sucess."));
             return $this->redirectToRoute('submission_new_fifth_step', array('submission_id' => $submission->getId()), 301);
         }
@@ -635,7 +637,7 @@ class NewSubmissionController extends Controller
         if ($user != $submission->getOwner()) {
             $allow_to_edit_submission = false;
             foreach($submission->getTeam() as $team_member) {
-                // if current user = some team member, than it allows to edit  
+                // if current user = some team member, than it allows to edit
                 if ($user == $team_member) {
                     $allow_to_edit_submission = true;
                 }
@@ -644,7 +646,7 @@ class NewSubmissionController extends Controller
         if (!$allow_to_edit_submission) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
-        
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -653,7 +655,7 @@ class NewSubmissionController extends Controller
 
             // print '<pre>';
             // var_dump($post_data);die;
-            
+
             // checking required files
             $required_fields = array('bibliography', 'sscientific-contact', 'prior-ethical-approval');
             foreach($required_fields as $field) {
@@ -662,14 +664,14 @@ class NewSubmissionController extends Controller
                     return $output;
                 }
             }
-    
-            $submission->setBibliography($post_data['bibliography']);        
+
+            $submission->setBibliography($post_data['bibliography']);
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
             $em->flush();
 
-            $submission->setSscientificContact($post_data['sscientific-contact']);                   
-            $submission->setPriorEthicalApproval(($post_data['prior-ethical-approval'] == 'Y') ? true : false);                   
+            $submission->setSscientificContact($post_data['sscientific-contact']);
+            $submission->setPriorEthicalApproval(($post_data['prior-ethical-approval'] == 'Y') ? true : false);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
@@ -699,7 +701,7 @@ class NewSubmissionController extends Controller
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         $upload_type_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
         $submission_upload_repository = $em->getRepository('Proethos2ModelBundle:SubmissionUpload');
-        
+
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
@@ -717,7 +719,7 @@ class NewSubmissionController extends Controller
         if ($user != $submission->getOwner()) {
             $allow_to_edit_submission = false;
             foreach($submission->getTeam() as $team_member) {
-                // if current user = some team member, than it allows to edit  
+                // if current user = some team member, than it allows to edit
                 if ($user == $team_member) {
                     $allow_to_edit_submission = true;
                 }
@@ -726,7 +728,7 @@ class NewSubmissionController extends Controller
         if (!$allow_to_edit_submission) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
-        
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -735,16 +737,16 @@ class NewSubmissionController extends Controller
 
             $file = $request->files->get('new-atachment-file');
             if(!empty($file)) {
-                
+
                 if(!isset($post_data['new-atachment-type']) or empty($post_data['new-atachment-type'])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field 'new-atachment-type' is required."));
-                    return $output;                
+                    return $output;
                 }
-                
+
                 $upload_type = $upload_type_repository->find($post_data['new-atachment-type']);
                 if (!$upload_type) {
                     throw $this->createNotFoundException($translator->trans('No upload type found'));
-                    return $output;                
+                    return $output;
                 }
 
                 $submission_upload = new SubmissionUpload();
@@ -762,24 +764,24 @@ class NewSubmissionController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($submission);
                 $em->flush();
-                
+
                 $session->getFlashBag()->add('success', $translator->trans("File uploaded with sucess."));
                 return $this->redirectToRoute('submission_new_sixth_step', array('submission_id' => $submission->getId()), 301);
-                
+
             }
 
             if(isset($post_data['delete-attachment-id']) and !empty($post_data['delete-attachment-id'])) {
 
                 $submission_upload = $submission_upload_repository->find($post_data['delete-attachment-id']);
                 if($submission_upload) {
-                    
+
                     $em->remove($submission_upload);
                     $em->flush();
                     $session->getFlashBag()->add('success', $translator->trans("File removed with sucess."));
                     return $this->redirectToRoute('submission_new_sixth_step', array('submission_id' => $submission->getId()), 301);
                 }
             }
- 
+
             return $this->redirectToRoute('submission_new_seventh_step', array('submission_id' => $submission->getId()), 301);
         }
 
@@ -799,10 +801,12 @@ class NewSubmissionController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
+        $util = new Util($this->container, $this->getDoctrine());
 
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         $upload_type_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
-        
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
@@ -817,7 +821,7 @@ class NewSubmissionController extends Controller
         if ($user != $submission->getOwner()) {
             $allow_to_edit_submission = false;
             foreach($submission->getTeam() as $team_member) {
-                // if current user = some team member, than it allows to edit  
+                // if current user = some team member, than it allows to edit
                 if ($user == $team_member) {
                     $allow_to_edit_submission = true;
                 }
@@ -826,9 +830,9 @@ class NewSubmissionController extends Controller
         if (!$allow_to_edit_submission) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
-        
+
         // Revisions
-        $revisions = array(); 
+        $revisions = array();
         $final_status = true;
 
         $text = $translator->trans('Team') . " (" . count($submission->getTeam())+1 . " " . $translator->trans('member(s)') . ")";
@@ -842,7 +846,7 @@ class NewSubmissionController extends Controller
         //     $final_status = false;
         // }
         // $revisions[] = $item;
-        
+
         $text = $translator->trans('Abstract');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getAbstract())) {
@@ -850,7 +854,7 @@ class NewSubmissionController extends Controller
             $final_status = false;
         }
         $revisions[] = $item;
-        
+
         $text = $translator->trans('Keywords');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getKeywords())) {
@@ -858,7 +862,7 @@ class NewSubmissionController extends Controller
             $final_status = false;
         }
         $revisions[] = $item;
-        
+
         $text = $translator->trans('Introduction');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getIntroduction())) {
@@ -866,7 +870,7 @@ class NewSubmissionController extends Controller
             $final_status = false;
         }
         $revisions[] = $item;
-        
+
         $text = $translator->trans('Justification');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getJustification())) {
@@ -874,7 +878,7 @@ class NewSubmissionController extends Controller
             $final_status = false;
         }
         $revisions[] = $item;
-        
+
         $text = $translator->trans('Goals');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getGoals())) {
@@ -882,7 +886,7 @@ class NewSubmissionController extends Controller
             $final_status = false;
         }
         $revisions[] = $item;
-        
+
         $text = $translator->trans('Study Design');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getStudyDesign())) {
@@ -890,7 +894,7 @@ class NewSubmissionController extends Controller
             $final_status = false;
         }
         $revisions[] = $item;
-        
+
         $text = $translator->trans('Gender');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getGender())) {
@@ -978,7 +982,7 @@ class NewSubmissionController extends Controller
             $final_status = false;
         }
         $revisions[] = $item;
-        
+
         $text = $translator->trans('Scientific Contact');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getSscientificContact())) {
@@ -989,7 +993,7 @@ class NewSubmissionController extends Controller
 
         $output['revisions'] = $revisions;
         $output['final_status'] = $final_status;
-        
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -1014,12 +1018,12 @@ class NewSubmissionController extends Controller
                         $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
                         $pdf->getInternalGenerator()->setOption('margin-left', '20px');
                         $pdf->getInternalGenerator()->setOption('margin-right', '20px');
-                        
+
                         // adding pdf to tmp file
                         $filepath = "/tmp/" . date("Y-m-d") . "-submission.pdf";
                         file_put_contents($filepath, $pdf->getOutputFromHtml($html));
 
-                        $submission_number = count($submission->getProtocol()->getSubmission());                        
+                        $submission_number = count($submission->getProtocol()->getSubmission());
 
                         $upload_type = $upload_type_repository->findOneBy(array("slug" => "protocol"));
 
@@ -1034,7 +1038,7 @@ class NewSubmissionController extends Controller
                         $em->flush();
 
                     } catch(\RuntimeException $e) {
-                        
+
                         $session->getFlashBag()->add('error', $translator->trans('Problems generating PDF. Please contact the administrator.'));
                         return $output;
                     }
@@ -1058,8 +1062,45 @@ class NewSubmissionController extends Controller
                     $em->persist($protocol_history);
                     $em->flush();
 
+                    if($protocol->getMonitoringAction()) {
 
-                    $session->getFlashBag()->add('success', $translator->trans("Protocol submitted with sucess!"));
+                        // sending email
+                        $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                        $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
+                        $recipients = array();
+                        foreach($user_repository->findAll() as $secretary) {
+                            if(in_array("secretary", $secretary->getRolesSlug())) {
+                                $recipients[] = $secretary;
+                            }
+                        }
+
+                        foreach($recipients as $recipient) {
+                            $message = \Swift_Message::newInstance()
+                            ->setSubject("[proethos2] " . $translator->trans("A new monitoring action has been submitted."))
+                            ->setFrom($util->getConfiguration('committee.email'))
+                            ->setTo($recipient->getEmail())
+                            ->setBody(
+                                $translator->trans("Hello!") .
+                                "<br>" .
+                                "<br>" . $translator->trans("A new monitoring action has been submitted. Access the link below for more details") . ":" .
+                                "<br>" .
+                                "<br>$url" .
+                                "<br>" .
+                                "<br>". $translator->trans("Regards") . "," .
+                                "<br>" . $translator->trans("Proethos2 Team")
+                                ,
+                                'text/html'
+                            );
+
+                            $send = $this->get('mailer')->send($message);
+                        }
+
+                        $session->getFlashBag()->add('success', $translator->trans("Amendment submitted with success!"));
+                    } else {
+                        $session->getFlashBag()->add('success', $translator->trans("Protocol submitted with sucess!"));
+                    }
+
                     return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
 
                 } else {
@@ -1086,7 +1127,7 @@ class NewSubmissionController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
-        
+
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
