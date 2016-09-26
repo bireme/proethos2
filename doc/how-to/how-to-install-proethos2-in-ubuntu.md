@@ -209,7 +209,7 @@ mailer_password: null
 For more informations about this theme, access http://symfony.com/doc/2.7/email.html.
 
 
-Other configutations and customizations
+Other configurations and customizations
 ---------------------------------------
 
 The system comes with pre-stablished configuration. But, if you want to change or customize your instalation, make login 
