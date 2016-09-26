@@ -146,17 +146,17 @@
         <source>Are you sure that you want to go to the next step without any revisions?</source>
         <target>Are you sure that you want to go to the next step without any revisions?</target>
       </trans-unit>
-      <trans-unit id="72017af4b6eccc95ea1f13bacac7b264cb859e31" resname="Are you sure that you want to going on?">
-        <source>Are you sure that you want to going on?</source>
-        <target>Are you sure that you want to going on?</target>
+      <trans-unit id="72017af4b6eccc95ea1f13bacac7b264cb859e31" resname="Are you sure you want to continue?">
+        <source>Are you sure you want to continue?</source>
+        <target>Are you sure you want to continue?</target>
       </trans-unit>
       <trans-unit id="129d86112d0f124b04a96f1e06036d1b66e8e4b2" resname="Are you sure that you want to remove this member?">
         <source>Are you sure that you want to remove this member?</source>
         <target>Are you sure that you want to remove this member?</target>
       </trans-unit>
-      <trans-unit id="d26b6ea1493aea555f0f09e0a0761e26eec1def5" resname="Are you sure that you want to remove this revisor?">
-        <source>Are you sure that you want to remove this revisor?</source>
-        <target>Are you sure that you want to remove this revisor?</target>
+      <trans-unit id="d26b6ea1493aea555f0f09e0a0761e26eec1def5" resname="Are you sure you want to remove this reviewer?">
+        <source>Are you sure you want to remove this reviewer?</source>
+        <target>Are you sure you want to remove this reviewer?</target>
       </trans-unit>
       <trans-unit id="c9cfdfefe700ad0c6ce8167a78d04e7cfc305a3e" resname="Are you sure that you want to set this protocol as Exempt?">
         <source>Are you sure that you want to set this protocol as Exempt?</source>
@@ -390,9 +390,9 @@
         <source>E-mail</source>
         <target>E-mail</target>
       </trans-unit>
-      <trans-unit id="945b98980b4d2a091a6897fb3ad735cc3d3df478" resname="ERROR: The recruitment date needs to be greather than today.">
-        <source>ERROR: The recruitment date needs to be greather than today.</source>
-        <target>ERROR: The recruitment date needs to be greather than today.</target>
+      <trans-unit id="945b98980b4d2a091a6897fb3ad735cc3d3df478" resname="ERROR. The initial recruitment date needs to be subsequent to today's date.">
+        <source>ERROR. The initial recruitment date needs to be subsequent to today's date.</source>
+        <target>ERROR. The initial recruitment date needs to be subsequent to today's date.</target>
       </trans-unit>
       <trans-unit id="4d32f9f7a82dd68da666475cd6c1355d1220879b" resname="Edit roles">
         <source>Edit roles</source>
@@ -602,9 +602,9 @@
         <source>Get user's link to change password</source>
         <target>Get user's link to change password</target>
       </trans-unit>
-      <trans-unit id="4319a1b9dd4db1bddf039feda08cc7add302a49f" resname="Go on">
-        <source>Go on</source>
-        <target>Go on</target>
+      <trans-unit id="4319a1b9dd4db1bddf039feda08cc7add302a49f" resname="go on">
+        <source>go on</source>
+        <target>go on</target>
       </trans-unit>
       <trans-unit id="48d8c627be3c12fac8a0a9ddb9ceaa5e126cf358" resname="Goals">
         <source>Goals</source>
@@ -1030,9 +1030,9 @@
         <source>Opinions Required</source>
         <target>Opinions Required</target>
       </trans-unit>
-      <trans-unit id="359baa522ea829047594f9a7d579bde0792f4653" resname="Options has been saved with success!">
-        <source>Options has been saved with success!</source>
-        <target>Options has been saved with success!</target>
+      <trans-unit id="359baa522ea829047594f9a7d579bde0792f4653" resname="Options have been saved with success!">
+        <source>Options have been saved with success!</source>
+        <target>Options have been saved with success!</target>
       </trans-unit>
       <trans-unit id="177cc7fa458f92130089c4a70af303ff1fd54c73" resname="Original Submission">
         <source>Original Submission</source>
@@ -1246,9 +1246,9 @@
         <source>Reject Submission</source>
         <target>Reject Submission</target>
       </trans-unit>
-      <trans-unit id="b115c76b4ffcb71b1d273537025b507680ccc587" resname="Reject reason">
-        <source>Reject reason</source>
-        <target>Reject reason</target>
+      <trans-unit id="b115c76b4ffcb71b1d273537025b507680ccc587" resname="Return reason">
+        <source>Return reason</source>
+        <target>Return reason</target>
       </trans-unit>
       <trans-unit id="27eeb7a291bfc566447d9cd928e98caf90f70ee6" resname="Rejected">
         <source>Rejected</source>

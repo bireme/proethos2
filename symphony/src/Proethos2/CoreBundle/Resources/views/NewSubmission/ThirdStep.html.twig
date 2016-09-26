@@ -352,7 +352,7 @@
                 } else {
                     e.preventDefault();
                     $("#input-recruitment-init-date").focus();
-                    alert("{% trans %}ERROR: The recruitment date needs to be greather than today.{% endtrans %}");
+                    alert("{% trans %}ERROR. The initial recruitment date needs to be subsequent to today's date.{% endtrans %}");
                 }
             });
         });

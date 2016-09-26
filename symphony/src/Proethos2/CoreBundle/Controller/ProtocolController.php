@@ -581,7 +581,7 @@ class ProtocolController extends Controller
                     $em->flush();
                 }
 
-                $session->getFlashBag()->add('success', $translator->trans("Options has been saved with success!"));
+                $session->getFlashBag()->add('success', $translator->trans("Options have been saved with success!"));
                 return $this->redirectToRoute('protocol_initial_committee_review', array('protocol_id' => $protocol->getId()), 301);
             }
 
