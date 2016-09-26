@@ -22,6 +22,10 @@ security:
             pattern:   ^/public/
             anonymous: ~
 
+        locale_firewall:
+            pattern:   ^/locale/
+            anonymous: ~
+
         default:
             provider: our_db_provider
             pattern:    ^/
@@ -32,4 +36,3 @@ security:
             logout:
                 path:   /logout
                 target: /
-
