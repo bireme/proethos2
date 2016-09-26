@@ -27,17 +27,17 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="textarea-study-design">{% trans %}Study design{% endtrans %}</label> 
+                                <label for="textarea-study-design">{% trans %}Study design{% endtrans %}</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 17} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" name='study-design' id='textarea-study-design' required>{{ submission.studyDesign }}</textarea>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="textarea-health-condition">{% trans %}Health Condition or Problem Studied{% endtrans %}</label> 
+                                <label for="textarea-health-condition">{% trans %}Health Condition or Problem Studied{% endtrans %}</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 18} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" name='health-condition' id='textarea-health-condition'>{{ submission.healthCondition }}</textarea>
                             </div>
@@ -55,7 +55,7 @@
                     <div class='row'>
                         <div class="col-md-3">
                             <div class="form-group required">
-                                <label for="select-gender">{% trans %}Gender{% endtrans %}:</label> 
+                                <label for="select-gender">{% trans %}Gender{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 19} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <select class='form-control' id='select-gender' name='gender' required>
                                     <option value="">-</option>
@@ -65,10 +65,10 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="col-md-3">
                             <div class="form-group required">
-                                <label for="input-sample-size">{% trans %}Target sample size{% endtrans %}:</label> 
+                                <label for="input-sample-size">{% trans %}Target sample size{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 20} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="number" class="form-control" placeholder="" min="1" value="{{ submission.sampleSize }}" id='input-sample-size' name='sample-size' required>
                             </div>
@@ -76,7 +76,7 @@
 
                         <div class="col-md-3">
                             <div class="form-group required">
-                                <label for="input-minimum-age">{% trans %}Minimum Age{% endtrans %}:</label> 
+                                <label for="input-minimum-age">{% trans %}Minimum Age{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="number" class="form-control" placeholder="" min="0" value="{{ submission.minimumAge }}" name='minimum-age' id='input-minimum-age' required>
                             </div>
@@ -84,7 +84,7 @@
 
                         <div class="col-md-3">
                             <div class="form-group required">
-                                <label for="input-maximum-age">{% trans %}Maximum Age{% endtrans %}:</label> 
+                                <label for="input-maximum-age">{% trans %}Maximum Age{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 22} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="number" class="form-control" placeholder="" min="0" value="{{ submission.maximumAge }}" name='maximum-age' id='input-maximum-age' required>
                             </div>
@@ -94,17 +94,17 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="textarea-inclusion-criteria">{% trans %}Inclusion criteria{% endtrans %}:</label> 
+                                <label for="textarea-inclusion-criteria">{% trans %}Inclusion criteria{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 23} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="5" class="form-control" id='textarea-inclusion-criteria' name='inclusion-criteria' required>{{ submission.inclusionCriteria }}</textarea>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="textarea-exclusion-criteria">{% trans %}Exclusion criteria{% endtrans %}:</label> 
+                                <label for="textarea-exclusion-criteria">{% trans %}Exclusion criteria{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 24} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="5" class="form-control" id='textarea-exclusion-criteria' name='exclusion-criteria' required>{{ submission.exclusionCriteria }}</textarea>
                             </div>
@@ -114,9 +114,9 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="input-recruitment-init-date">{% trans %}Estimated date of initial recruitment{% endtrans %}:</label> 
+                                <label for="input-recruitment-init-date">{% trans %}Estimated date of initial recruitment{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <input type='date' class='form-control datepicker' id='input-recruitment-init-date' name='recruitment-init-date' value='{{ submission.recruitmentInitDate|date("Y-m-d") }}' required>
+                                <input type="text" class='form-control datepicker' id='input-recruitment-init-date' name='recruitment-init-date' value='{{ submission.recruitmentInitDate|date("Y-m-d") }}' required>
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="select-recruitment-status">{% trans %}Recruitment Status{% endtrans %}:</label> 
+                                <label for="select-recruitment-status">{% trans %}Recruitment Status{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 26} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <select class='form-control' id='select-recruitment-status' name='recruitment-status' required>
                                     <option value="">-</option>
@@ -151,7 +151,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <table class='table table-hover table-condensed' id='table-country'>
-                                
+
                                 <thead>
                                     <tr>
                                         <th width="50%">{% trans %}Countrỳ{% endtrans %}</th>
@@ -159,16 +159,16 @@
                                         <th>{% trans %}Actions{% endtrans %}</th>
                                     </tr>
                                 </thead>
-                                
+
                                 <tbody>
                                     {% for country in submission.country %}
                                     <tr>
                                         <input type='hidden' name='country[{{ loop.index0 }}][country_id]' value='{{ country.country.id }}'>
                                         <input type='hidden' name='country[{{ loop.index0 }}][participants]' value='{{ country.participants }}'>
 
-                                        <td>{{ country.country }}</td> 
-                                        <td><label class='label label-default'>{{ country.participants }}</label></td> 
-                                        <td><a href='#' class='btn btn-default btn-xs button-remove-country'><i class='glyphicon glyphicon-trash'></i></a></td> 
+                                        <td>{{ country.country }}</td>
+                                        <td><label class='label label-default'>{{ country.participants }}</label></td>
+                                        <td><a href='#' class='btn btn-default btn-xs button-remove-country'><i class='glyphicon glyphicon-trash'></i></a></td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -180,7 +180,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="textarea-interventions">{% trans %}Interventions{% endtrans %}:</label> 
+                                <label for="textarea-interventions">{% trans %}Interventions{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 27} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" id='textarea-interventions' name='interventions' required>{{ submission.interventions }}</textarea>
                             </div>
@@ -198,17 +198,17 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="textarea-primary-outcome">{% trans %}Primary outcomes{% endtrans %}</label> 
+                                <label for="textarea-primary-outcome">{% trans %}Primary outcomes{% endtrans %}</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 28} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" id='textarea-primary-outcome' name='primary-outcome' required>{{ submission.primaryOutcome }}</textarea>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="textarea-secondary-outcome">{% trans %}Secondary outcomes{% endtrans %}</label> 
+                                <label for="textarea-secondary-outcome">{% trans %}Secondary outcomes{% endtrans %}</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 29} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" id='textarea-secondary-outcome' name='secondary-outcome'>{{ submission.secondaryOutcome }}</textarea>
                             </div>
@@ -226,24 +226,24 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="textarea-general-procedures">{% trans %}General Procedures{% endtrans %}:</label> 
+                                <label for="textarea-general-procedures">{% trans %}General Procedures{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 30} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" id='textarea-general-procedures' name='general-procedures'>{{ submission.generalProcedures }}</textarea>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="textarea-analysis-plan">{% trans %}Analysis Plan{% endtrans %}:</label> 
+                                <label for="textarea-analysis-plan">{% trans %}Analysis Plan{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 31} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" id='textarea-analysis-plan' name='analysis-plan'>{{ submission.analysisPlan }}</textarea>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class='block'>
                     <div class='row'>
                         <div class="col-md-12">
@@ -254,7 +254,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="textarea-ethical-considerations">{% trans %}Ethical Considerations{% endtrans %}:</label> 
+                                <label for="textarea-ethical-considerations">{% trans %}Ethical Considerations{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 32} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" id='textarea-ethical-considerations' name='ethical-considerations'>{{ submission.ethicalConsiderations }}</textarea>
                             </div>
@@ -279,9 +279,9 @@
                         <h4 class="modal-title" id="myModalLabel">{% trans %}New Country{% endtrans %}</h4>
                     </div>
                     <div class="modal-body">
-                            
+
                         <div class="form-group">
-                            <label for="">{% trans %}Country{% endtrans %}:</label> 
+                            <label for="">{% trans %}Country{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 33} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <select class='form-control selectpicker' data-live-search="true" name='country' id='select-country-country'>
                                 <option value="">{% trans %}Select country{% endtrans %}</option>
@@ -292,11 +292,11 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">{% trans %}Participants{% endtrans %}:</label> 
+                            <label for="">{% trans %}Participants{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 34} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='number' class='form-control' min="1" name='participants' id='input-country-participants'>
                         </div>
-                            
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
@@ -320,7 +320,7 @@
 
                 $country = $("#select-country-country option:selected");
                 $participants = $("#input-country-participants");
-                    
+
                 string =  "<tr>"
                 string +=    "<input type='hidden' name='country["+ $total_countries +"][country_id]' value='"+ $country.val() +"'>"
                 string +=    "<input type='hidden' name='country["+ $total_countries +"][participants]' value='"+ $participants.val() +"'>"
