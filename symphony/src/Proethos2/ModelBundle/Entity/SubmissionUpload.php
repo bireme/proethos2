@@ -1,15 +1,15 @@
 <?php
 
-// This file is part of the ProEthos Software. 
-// 
+// This file is part of the ProEthos Software.
+//
 // Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
 // ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
+// restricts commercial use of the Software.
+//
 // ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
+// PARTICULAR PURPOSE. See the ProEthos License for more details.
+//
 // You should have received a copy of the ProEthos License along with the ProEthos
 // Software. If not, see
 // https://github.com/bireme/proethos2/blob/master/doc/license.md
@@ -39,25 +39,25 @@ class SubmissionUpload extends Base
      */
     private $id;
 
-    /** 
-     * @ORM\ManyToOne(targetEntity="User") 
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true, onDelete="SET NULL") 
-     * @Assert\NotBlank 
-     */ 
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @Assert\NotBlank
+     */
     private $user;
 
-    /** 
-     * @ORM\ManyToOne(targetEntity="Submission") 
-     * @ORM\JoinColumn(name="submission_id", referencedColumnName="id", nullable=true, onDelete="CASCADE") 
-     * @Assert\NotBlank 
-     */ 
+    /**
+     * @ORM\ManyToOne(targetEntity="Submission")
+     * @ORM\JoinColumn(name="submission_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
+     * @Assert\NotBlank
+     */
     private $submission;
 
-    /** 
-     * @ORM\ManyToOne(targetEntity="UploadType") 
-     * @ORM\JoinColumn(name="upload_type_id", referencedColumnName="id", nullable=true) 
-     * @Assert\NotBlank 
-     */ 
+    /**
+     * @ORM\ManyToOne(targetEntity="UploadType")
+     * @ORM\JoinColumn(name="upload_type_id", referencedColumnName="id", nullable=true, onDelete="SET NULL") 
+     * @Assert\NotBlank
+     */
     private $upload_type;
 
     /**
@@ -187,19 +187,19 @@ class SubmissionUpload extends Base
     }
 
     public function getSubmissionDirectory() {
-        
+
         $upload_directory = __DIR__.'/../../../../uploads';
-        $submission_upload_directory = $upload_directory . "/" . str_pad($this->getSubmission()->getId(), 5, '0', STR_PAD_LEFT);        
-        
+        $submission_upload_directory = $upload_directory . "/" . str_pad($this->getSubmission()->getId(), 5, '0', STR_PAD_LEFT);
+
         if(!is_dir($submission_upload_directory)) {
             mkdir($submission_upload_directory);
         }
 
         return $submission_upload_directory;
     }
-    
+
     public function setFile($file) {
-        
+
         $slugify = new Slugify();
         $submission_upload_directory = $this->getSubmissionDirectory();
 

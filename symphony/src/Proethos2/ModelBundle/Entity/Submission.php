@@ -1,15 +1,15 @@
 <?php
 
-// This file is part of the ProEthos Software. 
-// 
+// This file is part of the ProEthos Software.
+//
 // Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
 // ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
+// restricts commercial use of the Software.
+//
 // ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
+// PARTICULAR PURPOSE. See the ProEthos License for more details.
+//
 // You should have received a copy of the ProEthos License along with the ProEthos
 // Software. If not, see
 // https://github.com/bireme/proethos2/blob/master/doc/license.md
@@ -38,27 +38,27 @@ class Submission extends Base
      */
     private $id;
 
-    /** 
+    /**
      * @var Protocol
-     * 
-     * @ORM\ManyToOne(targetEntity="Protocol", inversedBy="submissions") 
-     * @ORM\JoinColumn(name="protocol_id", referencedColumnName="id", nullable=true, onDelete="CASCADE") 
-     * @Assert\NotBlank 
-     */ 
+     *
+     * @ORM\ManyToOne(targetEntity="Protocol", inversedBy="submissions")
+     * @ORM\JoinColumn(name="protocol_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
+     * @Assert\NotBlank
+     */
     private $protocol;
 
-    /** 
+    /**
      * @var User
-     * 
-     * @ORM\ManyToOne(targetEntity="User") 
-     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=true, onDelete="SET NULL") 
-     * @Assert\NotBlank 
-     */ 
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @Assert\NotBlank
+     */
     private $owner;
-    
+
     /**
      * @ORM\Column(name="number", type="integer")
-     * @Assert\NotBlank 
+     * @Assert\NotBlank
      */
     private $number;
 
@@ -66,7 +66,7 @@ class Submission extends Base
      * @var string
      *
      * @ORM\Column(name="public_title", type="string", length=255)
-     * @Assert\NotBlank 
+     * @Assert\NotBlank
      */
     private $publicTitle;
 
@@ -74,22 +74,22 @@ class Submission extends Base
      * @var string
      *
      * @ORM\Column(name="scientific_title", type="string", length=255)
-     * @Assert\NotBlank 
+     * @Assert\NotBlank
      */
     private $scientificTitle;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="title_acronym", type="string", length=255)
      */
     private $titleAcronym;
-    
+
     /**
      * @var boolean
      *
      * @ORM\Column(name="is_clinical_trial", type="boolean")
-     * @Assert\NotBlank 
+     * @Assert\NotBlank
      */
     private $is_clinical_trial;
 
@@ -97,7 +97,7 @@ class Submission extends Base
      * @var boolean
      *
      * @ORM\Column(name="is_sent", type="boolean")
-     * @Assert\NotBlank 
+     * @Assert\NotBlank
      */
     private $is_sent = false;
 
@@ -114,7 +114,7 @@ class Submission extends Base
      * @ORM\Column(type="text", nullable=true)
      */
     private $abstract;
-    
+
     /**
      * @var string
      *
@@ -128,41 +128,41 @@ class Submission extends Base
      * @ORM\Column(type="text", nullable=true)
      */
     private $introduction;
-    
+
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
     private $justification;
-    
+
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
     private $goals;
-    
+
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
     private $study_design;
-    
+
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
     private $health_condition;
-    
-    /** 
+
+    /**
      * @var Gender
-     * 
-     * @ORM\ManyToOne(targetEntity="Gender") 
-     * @ORM\JoinColumn(name="gender_id", referencedColumnName="id") 
-     */ 
+     *
+     * @ORM\ManyToOne(targetEntity="Gender")
+     * @ORM\JoinColumn(name="gender_id", referencedColumnName="id", onDelete="SET NULL")
+     */
     private $gender;
     /**
      * @var integer
@@ -170,99 +170,99 @@ class Submission extends Base
      * @ORM\Column(type="integer", nullable=true)
      */
     private $sample_size;
-    
+
     /**
      * @var integer
      *
      * @ORM\Column(type="integer", nullable=true)
      */
     private $minimum_age;
-    
+
     /**
      * @var integer
      *
      * @ORM\Column(type="integer", nullable=true)
      */
     private $maximum_age;
-    
+
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
     private $inclusion_criteria;
-    
-    /** 
+
+    /**
      * @var RecruitmentStatus
-     * 
-     * @ORM\ManyToOne(targetEntity="RecruitmentStatus") 
-     * @ORM\JoinColumn(name="recruitment_status_id", referencedColumnName="id") 
-     */ 
+     *
+     * @ORM\ManyToOne(targetEntity="RecruitmentStatus")
+     * @ORM\JoinColumn(name="recruitment_status_id", referencedColumnName="id", onDelete="SET NULL")
+     */
     private $recruitment_status;
-    
+
     /**
      * @var SubmissionCountry
      * @ORM\OneToMany(targetEntity="SubmissionCountry", mappedBy="submission", cascade={"persist"})
      * @ORM\JoinTable(name="submission_country")
      */
     private $country;
-    
+
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
     private $exclusion_criteria;
-    
+
     /**
      * @var date
      *
      * @ORM\Column(type="date", nullable=true)
      */
     private $recruitment_init_date;
-    
+
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
     private $interventions;
-    
+
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
     private $primary_outcome;
-    
+
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
     private $secondary_outcome;
-    
+
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
     private $general_procedures;
-    
+
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
     private $analysis_plan;
-    
+
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
     private $ethical_considerations;
-    
+
     /**
      * @var SubmissionCost
      * @ORM\OneToMany(targetEntity="SubmissionCost", mappedBy="submission", cascade={"persist"})
@@ -276,7 +276,7 @@ class Submission extends Base
      * @ORM\JoinTable(name="submission_clinical_trial")
      */
     private $clinical_trial;
-    
+
     /**
      * @var text
      *
@@ -290,21 +290,21 @@ class Submission extends Base
      * @ORM\Column(type="text", nullable=true)
      */
     private $funding_source;
-    
+
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
     private $primary_sponsor;
-    
+
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
     private $secondary_sponsor;
-    
+
     /**
      * @var SubmissionTask
      * @ORM\OneToMany(targetEntity="SubmissionTask", mappedBy="submission", cascade={"persist"})
@@ -318,14 +318,14 @@ class Submission extends Base
      * @ORM\Column(type="text", nullable=true)
      */
     private $bibliography;
-    
+
     /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
      */
     private $sscientific_contact;
-    
+
     /**
      * @var boolean
      *
@@ -354,20 +354,20 @@ class Submission extends Base
 
 
     public function __clone() {
-        
+
         $this->setCreated(new \Datetime());
         $this->setUpdated(new \Datetime());
         $this->setIsSended(false);
 
         foreach(array('country', 'budget', 'clinical_trial', 'schedule', 'attachments') as $attribute) {
-            
+
             $mClone = new ArrayCollection();
             foreach ($this->$attribute as $item) {
                 $itemClone = clone $item;
                 $itemClone->setSubmission($this);
                 $mClone->add($itemClone);
             }
-            
+
             $this->$attribute = $mClone;
         }
     }
