@@ -1,6 +1,7 @@
 # in case that you need to use some different version of php, execute with param php.
 # Example: make test php=php5.6
 php=php
+dt=$(shell date --iso=seconds)
 
 git_pull:
 	git pull
@@ -33,7 +34,11 @@ database_update:
 	$(php) app/console doctrine:schema:update --force
 
 clear_cache:
-	$(php) app/console cache:clear --env=prod
+	mkdir -p app/cache/prod
+	mkdir -p app/cache/dev
+	mv app/cache/prod app/cache/$(dt)-prod
+	mv app/cache/dev app/cache/$(dt)-dev
+	rm -rfv app/cache/*
 
 set_permissions:
 	find -type f -name "*.xlf" | xargs chmod 0777
