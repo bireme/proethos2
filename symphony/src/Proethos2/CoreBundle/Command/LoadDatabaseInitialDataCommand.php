@@ -30,6 +30,7 @@ class LoadDatabaseInitialDataCommand extends ContainerAwareCommand
         $this
             ->setName('proethos2:load-database-initial-data')
             ->setDescription('Load initial data.')
+            ->addOption('update', 'u', InputOption::VALUE_NONE)
         ;
     }
 
@@ -45,7 +46,6 @@ class LoadDatabaseInitialDataCommand extends ContainerAwareCommand
         $database_password = $this->getContainer()->getParameter('database_password');
 
         $tables = array(
-            'configuration',
             'list_clinical_trial_name',
             'list_country',
             'list_gender',
@@ -56,9 +56,13 @@ class LoadDatabaseInitialDataCommand extends ContainerAwareCommand
             'upload_type',
             'upload_type_upload_type_extension',
             'help',
-            'user',
-            'user_role',
         );
+
+        if($input->getOption('update') != true) {
+            $tables[] = 'configuration';
+            $tables[] = 'user';
+            $tables[] = 'user_role';
+        }
 
         $host = $database_host;
         if($database_port) {
