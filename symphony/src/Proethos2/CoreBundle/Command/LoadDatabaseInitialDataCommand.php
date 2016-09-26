@@ -12,7 +12,7 @@
 //
 // You should have received a copy of the ProEthos License along with the ProEthos
 // Software. If not, see
-// https://github.com/bireme/proethos2/blob/master/doc/license.md
+// https://github.com/bireme/proethos2/blob/master/LICENSE.txt
 
 
 namespace Proethos2\CoreBundle\Command;
