@@ -21,11 +21,11 @@
                     <li role="presentation">
                         <a href="javascript:void(0)" title="{% trans %}About Project{% endtrans %}">{% trans %}About Project{% endtrans %}</a>
                     </li>
-                    <li role="presentation"><a href="javascript:void(0)">Estudo clínico</a></li>
-                    <li role="presentation"><a href="javascript:void(0)">Cronograma e Orçamento</a></li>
-                    <li role="presentation"><a href="javascript:void(0)">Referências</a></li>
-                    <li role="presentation"><a href="javascript:void(0)">Arquivos anexados</a></li>
-                    <li role="presentation"><a href="javascript:void(0)">Revisão</a></li>
+                    <li role="presentation"><a href="javascript:void(0)">{% trans %}Clinical study{% endtrans %}</a></li>
+                    <li role="presentation"><a href="javascript:void(0)">{% trans %}Additional Information{% endtrans %}</a></li>
+                    <li role="presentation"><a href="javascript:void(0)">{% trans %}Bibliography{% endtrans %}</a></li>
+                    <li role="presentation"><a href="javascript:void(0)">{% trans %}Attached Files{% endtrans %}</a></li>
+                    <li role="presentation"><a href="javascript:void(0)">{% trans %}Revision{% endtrans %}</a></li
                 </ul>
             </div>
         </div>
@@ -50,21 +50,21 @@
 
                         <fieldset>
                             <legend>{% trans %}Project Title{% endtrans %}</legend>
-                            
+
                             <div class="form-group required">
-                                <label for="input_scientific_title">{% trans %}Scientific Title{% endtrans %}:</label> 
+                                <label for="input_scientific_title">{% trans %}Scientific Title{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 14} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="text" class="form-control" name='scientific_title' id='input_scientific_title' required>
                             </div>
 
                             <div class="form-group required">
-                                <label for="input_public_title">{% trans %}Public title{% endtrans %}:</label> 
+                                <label for="input_public_title">{% trans %}Public title{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 15} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="text" class="form-control" name='public_title' id='input_public_title' required>
                             </div>
 
                             <div class="form-group">
-                                <label for="input_title_acronym">{% trans %}Title Acronym{% endtrans %}:</label> 
+                                <label for="input_title_acronym">{% trans %}Title Acronym{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="text" class="form-control" name='title_acronym' id='input_title_acronym'>
                             </div>
