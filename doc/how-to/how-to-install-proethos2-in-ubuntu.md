@@ -6,7 +6,7 @@ This document will help you how install Proethos2 platform in a Ubuntu Server 16
 Remember some tips:
 - We STRONGLY recommend that you use Proethos2 in a Linux Server;
 - We recommend that you use Proethos2 in Ubuntu Server;
-- We STRONGLY recommend that you use Proethos2 in dedicated server. Nowadays it's possible with virtualization, docker, 
+- We STRONGLY recommend that you use Proethos2 in dedicated server. Nowadays it's possible with virtualization, docker,
 and other tools;
 - This manual will help you under this conditions.
 
@@ -122,16 +122,14 @@ In the middle of process, you will be questioned by this questions below:
 Now, we will setup the database and load the initial data:
 
 ```
-php app/console doctrine:schema:update --force
-php app/console proethos2:load-database-initial-data
+$ make load_initial
 
 ```
 
 If you want to test the instalation, run this command:
 
 ```
-$ cd ~/project/proethos2/git/symphony
-$ php app/console server:run -v 0.0.0.0:8000
+$ make runserver
 
 ```
 
@@ -212,7 +210,7 @@ For more informations about this theme, access http://symfony.com/doc/2.7/email.
 Other configurations and customizations
 ---------------------------------------
 
-The system comes with pre-stablished configuration. But, if you want to change or customize your instalation, make login 
+The system comes with pre-stablished configuration. But, if you want to change or customize your instalation, make login
 as an admin role and access System Management > Configurations.
 
 
