@@ -56,6 +56,8 @@ class LoadDatabaseInitialDataCommand extends ContainerAwareCommand
             'upload_type',
             'upload_type_upload_type_extension',
             'help',
+            'faq',
+            'ext_translations',
         );
 
         if($input->getOption('update') != true) {
