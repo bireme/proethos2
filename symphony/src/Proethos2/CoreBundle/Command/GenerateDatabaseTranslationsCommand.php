@@ -1,15 +1,15 @@
 <?php
 
-// This file is part of the ProEthos Software. 
-// 
+// This file is part of the ProEthos Software.
+//
 // Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
 // ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
+// restricts commercial use of the Software.
+//
 // ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
+// PARTICULAR PURPOSE. See the ProEthos License for more details.
+//
 // You should have received a copy of the ProEthos License along with the ProEthos
 // Software. If not, see
 // https://github.com/bireme/proethos2/blob/master/LICENSE.txt
@@ -48,7 +48,7 @@ class GenerateDatabaseTranslationsCommand extends ContainerAwareCommand
         $database_user = $this->getContainer()->getParameter('database_user');
         $database_password = $this->getContainer()->getParameter('database_password');
 
-        $object_classes = array('Help', 'ClinicalTrialName', "Country", 'Gender', 'MonitoringAction', 'RecruitmentStatus', "Role", 'UploadType');
+        $object_classes = array('Help', 'ClinicalTrialName', "Country", 'Gender', 'MonitoringAction', 'RecruitmentStatus', "Role", 'UploadType', 'Faq');
         $languages = array('en', 'es_ES', 'pt_BR', 'fr_FR');
 
         $pdo = new \PDO("mysql:host=$database_host;dbname=$database_name", $database_user, $database_password);
@@ -61,14 +61,14 @@ class GenerateDatabaseTranslationsCommand extends ContainerAwareCommand
             print "-- $language\n";
             print "-- ====================================================\n";
             foreach($object_classes as $object_class) {
-                
+
                 $full_object_class = "Proethos2\\ModelBundle\\Entity\\" . $object_class;
 
-                $sql = "SELECT 
+                $sql = "SELECT
                         `locale`, `object_class`, `field`, `foreign_key`, `content`, CAST(`foreign_key` AS UNSIGNED) as fkeyint
-                    FROM 
-                        ext_translations 
-                    WHERE 
+                    FROM
+                        ext_translations
+                    WHERE
                         object_class = :object_class
                         AND locale = :locale
                     ORDER BY fkeyint ASC

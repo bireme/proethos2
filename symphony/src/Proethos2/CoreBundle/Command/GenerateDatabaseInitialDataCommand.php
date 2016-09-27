@@ -1,15 +1,15 @@
 <?php
 
-// This file is part of the ProEthos Software. 
-// 
+// This file is part of the ProEthos Software.
+//
 // Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
 // ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
+// restricts commercial use of the Software.
+//
 // ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
+// PARTICULAR PURPOSE. See the ProEthos License for more details.
+//
 // You should have received a copy of the ProEthos License along with the ProEthos
 // Software. If not, see
 // https://github.com/bireme/proethos2/blob/master/LICENSE.txt
@@ -56,6 +56,7 @@ class GenerateDatabaseInitialDataCommand extends ContainerAwareCommand
             'help',
             'user',
             'user_role',
+            'faq',
         );
 
         $host = $database_host;
@@ -65,7 +66,7 @@ class GenerateDatabaseInitialDataCommand extends ContainerAwareCommand
 
         foreach($tables as $table) {
             $output->writeln("extracting $table...");
-            
+
             $command = "mysqldump -h $host -u$database_user -p$database_password $database_name --replace --no-create-info -t $table --complete-insert --compact --extended-insert=FALSE";
             $command .= " > $fixtures_dir/data_$table.sql";
             exec($command);
