@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
- 
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
- 
+
     <title>{% block title %}{% endblock %} | Proethos2</title>
     <meta name="description" content="">
-    
+
     <!-- CSS –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/lumen/bootstrap.min.css" rel="stylesheet" integrity="sha384-mvYjhBJXQ9VlNETV/xXShy849GsBHnKzVVudnMOcWUVM/6Nd2ksj8VNng5f8ylyX" crossorigin="anonymous">
@@ -19,17 +19,17 @@
     <link rel="stylesheet" href="https://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-wysiwyg/0.3.3/bootstrap3-wysihtml5.min.css" />
     <link href="{{ asset('bundles/proethos2core/css/style.css') }}" rel="stylesheet">
-    
+
     <!-- FAVICON –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
- 
+
     <!-- for mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="">
 
     <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
     <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -37,10 +37,10 @@
     <script src="https://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.min.js" charset="UTF-8"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-wysiwyg/0.3.3/bootstrap3-wysihtml5.all.min.js"></script>
     <script src="{{ asset('bundles/proethos2core/js/script.js') }}"></script>
-    
+
     {% block extrahead %}{% endblock %}
 </head>
- 
+
 <body>
     {% block body %}
 
@@ -53,7 +53,7 @@
     <footer class="navbar main-footer">
         <div class='row'>
             <div class='col-sm-12'>
-                <a href="https://github.com/bireme/proethos2/blob/master/doc/legal/legal-disclaimer-es_ES.pdf" target="_blank">{% trans %}Legal disclaimer{% endtrans %}</a> | 
+                <a href="https://github.com/bireme/proethos2/raw/master/doc/legal/legal-disclaimer-es_ES.pdf" target="_blank">{% trans %}Legal disclaimer{% endtrans %}</a> | 
                 <a href="https://github.com/bireme/proethos2/blob/master/LICENSE.txt" target="_blank">{% trans %}Terms of Use{% endtrans %}</a>
             </div>
         </div>
@@ -78,12 +78,12 @@
             </div>
         </div>
     </div>
-    
+
     <script>
         $('body').on('hidden.bs.modal', '.modal', function () {
             $(this).removeData('bs.modal');
         });
-        
+
         $('body').on('shown.bs.modal', '.modal', function () {
             $('.datepicker').datepicker({
                 format: "yyyy-mm-dd",
@@ -91,7 +91,7 @@
             });
         });
 
-        
+
         $(function(){
             $(".submit-on-change").change(function(){
                 $(this).parents('form').submit();
@@ -102,7 +102,7 @@
             {% for flash_message in app.session.flashBag.get('success') %}
                 toastr.success('{{ flash_message }}');
             {% endfor %}
-            
+
             {% for flash_message in app.session.flashBag.get('error') %}
                 toastr.error('{{ flash_message }}');
             {% endfor %}
@@ -116,12 +116,12 @@
             // actions in help links
             var help_links = $('a[data-target="#modal-help"]');
             $.each(help_links, function(id, link){
-                
+
                 var obj = $(link);
                 var id = link.href.split("/")
                 id = id[id.length-1]
                 console.log('[help] adding status to link ' + id + '...');
-                
+
                 var url = link.href + "/check";
                 $.get(url, function(data){
                     if(!data.status) {
@@ -141,5 +141,5 @@
         });
     </script>
     {% block script %}{% endblock %}
-</body> 
+</body>
 </html>
