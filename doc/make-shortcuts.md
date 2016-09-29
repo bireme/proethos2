@@ -13,6 +13,6 @@ To use these `make` shortcuts, go to `symphony` directory.
 | `make database_update` | update the database structure |
 | `make clear_cache` | cleans all symfony caches |
 | `make set_permissions` | set permissions that allow users to translate (this is a dev feature) |
-| `make generate_help` | generates new helps on database, [how-to/how-to-generate-help-messages-in-database-to-my-new-development](based on these documentation) (this is a dev feature) |
+| `make generate_help` | generates new helps on database, [based on these documentation](how-to/how-to-generate-help-messages-in-database-to-my-new-development) (this is a dev feature) |
 | `make update` | executes all commands to update correctly the system |
 | `make runserver` | runs the development server (this is a dev feature) |
