@@ -18,4 +18,4 @@ services:
             - ./symphony/app/logs/:/var/www/symfony/app/logs
         links:
             - db
-        command: /runserver.sh
+        command: bash /runserver.sh
