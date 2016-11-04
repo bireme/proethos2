@@ -3,7 +3,7 @@
 {% block title %}{% trans %}Protocols{% endtrans %}{% endblock %}
 
 {% block content %}
-    
+
     <div class="container-fluid main-content see-submission">
 
         <div class="row">
@@ -13,15 +13,15 @@
                 </h1>
             </div>
         </div>
-        
+
         <div class='block'>
-                    
-    
+
+
             <form class="form-group" id='form-filter'>
                 <div class='row'>
                     <div class="col-md-8">
                         <div class="form-group">
-                            <label for="input-filter-q">{% trans %}Find protocols{% endtrans %}:</label> 
+                            <label for="input-filter-q">{% trans %}Find protocols{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 72} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='text' class='form-control' id='input-filter-q' name='q' value="{{ app.request.get('q') }}">
                         </div>
@@ -29,7 +29,7 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="select-filter-status">{% trans %}Status{% endtrans %}:</label> 
+                            <label for="select-filter-status">{% trans %}Status{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 73} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <select class='form-control selectpicker submit-on-change' id="select-filter-status" name="status" data-live-search="true">
                                 <option value="" {% if app.request.get('status') == "" %}selected{% endif %}>{% trans %}All{% endtrans %}</option>
@@ -42,7 +42,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="col-md-1 search-button">
                         <div class="form-group">
                             <button class='btn btn-primary' type='submit'>{% trans %}Search{% endtrans %}</button>
@@ -56,7 +56,7 @@
             <div class='row'>
                 <div class="col-md-12">
                     <table class='table table-hover table-condensed'>
-                        
+
                         <thead>
                             <tr>
                                 <th width="10%">{% trans %}ID{% endtrans %}</th>
@@ -67,12 +67,12 @@
                                 <th>{% trans %}Actions{% endtrans %}</th>
                             </tr>
                         </thead>
-                        
+
                         <tbody>
                             {% for protocol in protocols if protocols %}
                                 <tr>
                                     <th>{% if protocol.code %}{{ protocol.code }}{% else %}-{% endif %}</th>
-                                    <td>{{ protocol.mainSubmission.publicTitle }}</td> 
+                                    <td>{{ protocol.mainSubmission.publicTitle }}</td>
                                     <td>
                                         {% if protocol.monitoringAction %}
                                             <span class='label label-success'>{% trans %}Monitoring Action{% endtrans %}</span>
@@ -83,16 +83,16 @@
                                                 <span class='label label-primary'>{% trans %}Research{% endtrans %}</span>
                                             {% endif %}
                                         {% endif %}
-                                    </td> 
+                                    </td>
                                     <td>{{ protocol.updatedIn|date("d/m/Y") }}</td>
-                                    <td><span class='label {% if protocol.status == 'R' %}label-danger{% else %}label-default{% endif %}'>{{ protocol.statusLabel }}</span></td> 
+                                    <td><span class='label {% if protocol.status == 'R' %}label-danger{% else %}label-default{% endif %}'>{{ protocol.statusLabel|trans }}</span></td> 
                                     <td>
                                         <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See protocol{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
                                         <a href='{{ path("submission_new_second_step", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-default btn-xs {% if protocol.status not in ["R","D"] %}disabled{% endif %}' data-toggle="tooltip" data-placement="top" title="{% trans %}Edit submission{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>
                                         <span data-toggle="tooltip" data-placement="top" title="{% trans %}Add a monitoring action{% endtrans %}">
                                             <a href='{{ path("protocol_new_monitoring", {protocol_id: protocol.id}) }}' data-toggle='modal' data-target="#modalBaseAjax" class='btn btn-primary btn-xs {% if protocol.status not in ["A"] %}disabled{% endif %}'><i class='glyphicon glyphicon-record'></i></a>
                                         </span>
-                                    </td> 
+                                    </td>
                                 </tr>
                             {% else %}
                                 <tr>
@@ -110,8 +110,8 @@
 {% block script %}
     <script>
         $(function(){
-            
-           
+
+
         });
     </script>
 {% endblock %}
