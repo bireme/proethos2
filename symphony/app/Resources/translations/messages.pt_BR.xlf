@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-09-26T17:53:33Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2016-11-21T14:13:14Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -1158,10 +1158,6 @@
         <source>Protocol finalized by %user% under option "%option%".</source>
         <target>Protocolo finalizado pelo %user% sob opção "%option%".</target>
       </trans-unit>
-      <trans-unit id="620043c798da0b02a5a3236b40e134ecdec364a4" resname="Protocol has been accepeted and investigators notified.">
-        <source>Protocol has been accepeted and investigators notified.</source>
-        <target>Protocolo foi aceite e investigadores notificados </target>
-      </trans-unit>
       <trans-unit id="185a971b99159441d069b7b1aabcec8c0de209c1" resname="Protocol options">
         <source>Protocol options</source>
         <target>Opções de protocolo</target>
@@ -1797,6 +1793,10 @@
       <trans-unit id="82378d8f1e312930b2e019849c8ab441e3084827" resname="Your Protocols">
         <source>Your Protocols</source>
         <target>Os protocolos de</target>
+      </trans-unit>
+      <trans-unit id="972ecffb6ef8ccde5aabf03f81c5fead85440f71" resname="Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized.">
+        <source>Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized.</source>
+        <target>Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized.</target>
       </trans-unit>
       <trans-unit id="9c3bce80ec4a4583d2a342199b95964195f28527" resname="Your protocol was accepted!">
         <source>Your protocol was accepted!</source>
