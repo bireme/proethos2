@@ -427,7 +427,7 @@ class ProtocolController extends Controller
                 // setting protocool history
                 $protocol_history = new ProtocolHistory();
                 $protocol_history->setProtocol($protocol);
-                $protocol_history->setMessage($translator->trans("Protocol has been accepeted and investigators notified."));
+                $protocol_history->setMessage($translator->trans("Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized."));
                 $em->persist($protocol_history);
                 $em->flush();
 
