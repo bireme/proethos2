@@ -333,13 +333,13 @@ class ProtocolController extends Controller
                         $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
 
                         $message = \Swift_Message::newInstance()
-                        ->setSubject("[proethos2] " . $translator->trans("Your protocol was accepted!"))
+                        ->setSubject("[proethos2] " . $translator->trans("Your protocol was sent to review!"))
                         ->setFrom($util->getConfiguration('committee.email'))
                         ->setTo($investigator->getEmail())
                         ->setBody(
                             $translator->trans("Hello!") .
                             "<br>" .
-                            "<br>" . $translator->trans("Your protocol was accepted. Access the link below") . ":" .
+                            "<br>" . $translator->trans("Your protocol was sent to review. Access the link below") . ":" .
                             "<br>" .
                             "<br>$url" .
                             "<br>" .
@@ -444,13 +444,13 @@ class ProtocolController extends Controller
                     $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
 
                     $message = \Swift_Message::newInstance()
-                    ->setSubject("[proethos2] " . $translator->trans("Your protocol was accepted!"))
+                    ->setSubject("[proethos2] " . $translator->trans("Your protocol was sent to review!"))
                     ->setFrom($util->getConfiguration('committee.email'))
                     ->setTo($investigator->getEmail())
                     ->setBody(
                         $translator->trans("Hello!") .
                         "<br>" .
-                        "<br>" . $translator->trans("Your protocol was accepted. Access the link below") . ":" .
+                        "<br>" . $translator->trans("Your protocol was sent to review. Access the link below") . ":" .
                         "<br>" .
                         "<br>$url" .
                         "<br>" .
