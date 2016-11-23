@@ -15,10 +15,11 @@ test_ci:
 	cd app && $(php) phpunit --stop-on-failure
 
 setup_ci:
-	composer install --prefer-source --no-interaction
 	composer global remove "phpunit/phpunit" --update-with-dependencies
 	composer global require "phpunit/phpunit=5.*"
+	composer install --prefer-source --no-interaction
 
+	cat app/config/parameters.yml
 	cp -v app/config/parameters.ci.yml app/config/parameters.yml
 	make load_initial
 
