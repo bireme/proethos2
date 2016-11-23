@@ -15,10 +15,11 @@ test_ci:
 	cd app && $(php) phpunit --stop-on-failure
 
 setup_ci:
-	echo $(SYMFONY__DATABASE__USER)
-	echo $(SYMFONY__DATABASE__PASSWORD)
 	composer install --prefer-source --no-interaction
-	cp app/config/parameters.ci.yml app/config/parameters.yml
+	composer global remove "phpunit/phpunit" --update-with-dependencies
+	composer global require "phpunit/phpunit=5.*"
+
+	cp -v app/config/parameters.ci.yml app/config/parameters.yml
 	make load_initial
 
 load_initial: database_update
