@@ -12,7 +12,7 @@ test:
 	cd app && $(php) /usr/bin/phpunit --stop-on-failure
 
 test_ci:
-	cd app && $(php) phpunit --stop-on-failure
+	cd app && phpunit --stop-on-failure
 
 setup_ci:
 	composer global remove "phpunit/phpunit" --update-with-dependencies
