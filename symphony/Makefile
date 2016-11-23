@@ -15,6 +15,8 @@ test_ci:
 	cd app && $(php) phpunit --stop-on-failure
 
 setup_ci:
+	echo $(SYMFONY__DATABASE__USER)
+	echo $(SYMFONY__DATABASE__PASSWORD)
 	composer install --prefer-source --no-interaction
 	cp app/config/parameters.ci.yml app/config/parameters.yml
 	make load_initial
