@@ -303,7 +303,6 @@ class CRUDControllerTest extends WebTestCase
             'status' => true,
         ), array('file' => $image, ));
 
-        print $client->getResponse()->getContent();
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
 
