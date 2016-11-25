@@ -2,8 +2,6 @@
 # Example: make test php=php5.6
 php=php
 dt=$(shell date --iso=seconds)
-export SYMFONY__DATABASE__USER=$(MYSQL_USER)
-export SYMFONY__DATABASE__PASSWORD=$(MYSQL_PASSWORD)
 
 git_pull:
 	git pull
@@ -15,11 +13,19 @@ test_ci:
 	cd app && phpunit --stop-on-failure
 
 setup_ci:
+	cd /tmp
+
+	# wkhtmltopdf
+	wget http://download.gna.org/wkhtmltopdf/0.12/0.12.2.1/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
+	sudo dpkg --install wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
+	sudo apt-get --yes --fix-broken install
+
+	# software
 	composer global remove "phpunit/phpunit" --update-with-dependencies
 	composer global require "phpunit/phpunit=5.*"
 	composer install --prefer-source --no-interaction
 
-	cat app/config/parameters.yml
+	# configs to this build
 	cp -v app/config/parameters.ci.yml app/config/parameters.yml
 	make load_initial
 
