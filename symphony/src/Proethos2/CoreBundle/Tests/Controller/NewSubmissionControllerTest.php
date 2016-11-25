@@ -70,7 +70,8 @@ class NewSubmissionControllerTest extends WebTestCase
     public function testFirstStepCreatedProtocolGET()
     {
         // getting last id
-        $last_submission = end($this->submission_repository->findAll());
+        $all_submissions = $this->submission_repository->findAll();
+        $last_submission = end($all_submissions);
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
@@ -84,7 +85,8 @@ class NewSubmissionControllerTest extends WebTestCase
     public function testFirstStepCreatedProtocolPOST()
     {
         // getting last id
-        $last_submission = end($this->submission_repository->findAll());
+        $all_submissions = $this->submission_repository->findAll();
+        $last_submission = end($all_submissions);
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
@@ -103,7 +105,8 @@ class NewSubmissionControllerTest extends WebTestCase
     public function testSecondStepGET()
     {
         // getting last id
-        $last_submission = end($this->submission_repository->findAll());
+        $all_submissions = $this->submission_repository->findAll();
+        $last_submission = end($all_submissions);
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
@@ -116,7 +119,8 @@ class NewSubmissionControllerTest extends WebTestCase
     public function testSecondStepPOST()
     {
         // getting last id
-        $last_submission = end($this->submission_repository->findAll());
+        $all_submissions = $this->submission_repository->findAll();
+        $last_submission = end($all_submissions);
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
@@ -137,7 +141,8 @@ class NewSubmissionControllerTest extends WebTestCase
     public function testThirdStepGET()
     {
         // getting last id
-        $last_submission = end($this->submission_repository->findAll());
+        $all_submissions = $this->submission_repository->findAll();
+        $last_submission = end($all_submissions);
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
@@ -150,7 +155,8 @@ class NewSubmissionControllerTest extends WebTestCase
     public function testThirdStepPOST()
     {
         // getting last id
-        $last_submission = end($this->submission_repository->findAll());
+        $all_submissions = $this->submission_repository->findAll();
+        $last_submission = end($all_submissions);
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
@@ -184,7 +190,8 @@ class NewSubmissionControllerTest extends WebTestCase
     public function testFourthStepGET()
     {
         // getting last id
-        $last_submission = end($this->submission_repository->findAll());
+        $all_submissions = $this->submission_repository->findAll();
+        $last_submission = end($all_submissions);
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
@@ -197,7 +204,8 @@ class NewSubmissionControllerTest extends WebTestCase
     public function testFourthStepPOST()
     {
         // getting last id
-        $last_submission = end($this->submission_repository->findAll());
+        $all_submissions = $this->submission_repository->findAll();
+        $last_submission = end($all_submissions);
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
@@ -222,7 +230,8 @@ class NewSubmissionControllerTest extends WebTestCase
     public function testFifthStepGET()
     {
         // getting last id
-        $last_submission = end($this->submission_repository->findAll());
+        $all_submissions = $this->submission_repository->findAll();
+        $last_submission = end($all_submissions);
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
@@ -235,7 +244,8 @@ class NewSubmissionControllerTest extends WebTestCase
     public function testFifthStepPOST()
     {
         // getting last id
-        $last_submission = end($this->submission_repository->findAll());
+        $all_submissions = $this->submission_repository->findAll();
+        $last_submission = end($all_submissions);
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
@@ -254,7 +264,8 @@ class NewSubmissionControllerTest extends WebTestCase
     public function testSixthfStepGET()
     {
         // getting last id
-        $last_submission = end($this->submission_repository->findAll());
+        $all_submissions = $this->submission_repository->findAll();
+        $last_submission = end($all_submissions);
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
@@ -267,7 +278,8 @@ class NewSubmissionControllerTest extends WebTestCase
     public function testSixthStepPOST()
     {
         // getting last id
-        $last_submission = end($this->submission_repository->findAll());
+        $all_submissions = $this->submission_repository->findAll();
+        $last_submission = end($all_submissions);
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
@@ -292,7 +304,8 @@ class NewSubmissionControllerTest extends WebTestCase
     public function testSeventhStepGET()
     {
         // getting last id
-        $last_submission = end($this->submission_repository->findAll());
+        $all_submissions = $this->submission_repository->findAll();
+        $last_submission = end($all_submissions);
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
@@ -305,7 +318,8 @@ class NewSubmissionControllerTest extends WebTestCase
     public function testSeventhStepPOST()
     {
         // getting last id
-        $last_submission = end($this->submission_repository->findAll());
+        $all_submissions = $this->submission_repository->findAll();
+        $last_submission = end($all_submissions);
         $submission_id = $last_submission->getId();
 
         $client = $this->client;

@@ -169,7 +169,8 @@ class CRUDControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
         // getting last id
-        $last_submission = end($this->submission_repository->findAll());
+        $all_submissions = $this->submission_repository->findAll();
+        $last_submission = end($all_submissions);
         $submission_id = $last_submission->getId();
 
         $this->_em->remove($last_submission->getProtocol());
