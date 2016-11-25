@@ -15,3 +15,4 @@ Links
 * [Project License](LICENSE.txt)
 * [How to install](doc/how-to/how-to-install-proethos2-in-ubuntu.md)
 * [Development Guide](doc/README.md)
+* [About Continuous Integration](doc/continuous-integration.md)
