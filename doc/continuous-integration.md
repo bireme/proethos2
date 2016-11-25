@@ -11,3 +11,21 @@ Exceptions
 ----------
 
 Because we can't install depedencies in codeship, at the build moment, we had to remove the test that envolves to create PDFs.
+
+Codeship configurations
+-----------------------
+
+### Setup command
+```
+phpenv local 5.6
+cd symphony/
+mkdir -p uploads/documents
+make setup_ci
+
+```
+
+### Test Commands
+```
+make test_ci
+
+```
