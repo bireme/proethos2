@@ -14,7 +14,7 @@ test_ci:
 
 setup_ci:
 	composer global remove "phpunit/phpunit" --update-with-dependencies
-	composer global require "phpunit/phpunit=5.*"
+	composer global require "phpunit/phpunit=4.8.2*"
 	composer install --no-interaction
 	make load_initial
 
