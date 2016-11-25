@@ -290,7 +290,7 @@ class CRUDControllerTest extends WebTestCase
         $route = $client->getContainer()->get('router')->generate('crud_committee_document_list', array(), false);
 
         $file = tempnam(sys_get_temp_dir(), 'upl'); // create file
-        imagepng(imagecreatetruecolor(10, 10), $file); // create and write image/png to it
+        // imagepng(imagecreatetruecolor(10, 10), $file); // create and write image/png to it
         $image = new UploadedFile(
             $file,
             'new_image.png'
