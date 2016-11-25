@@ -1,15 +1,15 @@
 <?php
 
-// This file is part of the ProEthos Software. 
-// 
+// This file is part of the ProEthos Software.
+//
 // Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
 // ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
+// restricts commercial use of the Software.
+//
 // ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
+// PARTICULAR PURPOSE. See the ProEthos License for more details.
+//
 // You should have received a copy of the ProEthos License along with the ProEthos
 // Software. If not, see
 // https://github.com/bireme/proethos2/blob/master/LICENSE.txt
@@ -35,7 +35,7 @@ class NewSubmissionControllerTest extends WebTestCase
 
         $this->submission_repository = $this->_em->getRepository('Proethos2ModelBundle:Submission');
         $this->protocol_repository = $this->_em->getRepository('Proethos2ModelBundle:Protocol');
-        
+
         $this->client = static::createClient(array(), array(
             'PHP_AUTH_USER' => 'admin',
             'PHP_AUTH_PW'   => 'admin'
@@ -46,17 +46,17 @@ class NewSubmissionControllerTest extends WebTestCase
     {
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('submission_new_first_step', array(), false);
-        
+
         $client->request('GET', $route);
-        
+
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
-    
+
     public function testFirstStepPOST()
     {
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('submission_new_first_step', array(), false);
-        
+
         $client->request('POST', $route, array(
             "is_clinical_trial" => "no",
             "scientific_title" => "Cientitif Title",
@@ -75,12 +75,12 @@ class NewSubmissionControllerTest extends WebTestCase
 
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('submission_new_first_created_protocol_step', array("submission_id" => $submission_id), false);
-        
+
         $client->request('GET', $route);
-        
+
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
-    
+
     public function testFirstStepCreatedProtocolPOST()
     {
         // getting last id
@@ -89,7 +89,7 @@ class NewSubmissionControllerTest extends WebTestCase
 
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('submission_new_first_created_protocol_step', array("submission_id" => $submission_id), false);
-        
+
         $client->request('POST', $route, array(
             "is_clinical_trial" => "no",
             "scientific_title" => "Cientitif Title",
@@ -101,27 +101,27 @@ class NewSubmissionControllerTest extends WebTestCase
     }
 
     public function testSecondStepGET()
-    {   
+    {
         // getting last id
         $last_submission = end($this->submission_repository->findAll());
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('submission_new_second_step', array("submission_id" => $submission_id), false);
-        
+
         $client->request('GET', $route);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function testSecondStepPOST()
-    {   
+    {
         // getting last id
         $last_submission = end($this->submission_repository->findAll());
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('submission_new_second_step', array("submission_id" => $submission_id), false);
-        
+
         $client->request('POST', $route, array(
             "submission_id" => $submission_id,
             "abstract" => "Abstract",
@@ -135,27 +135,27 @@ class NewSubmissionControllerTest extends WebTestCase
     }
 
     public function testThirdStepGET()
-    {   
+    {
         // getting last id
         $last_submission = end($this->submission_repository->findAll());
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('submission_new_third_step', array("submission_id" => $submission_id), false);
-        
+
         $client->request('GET', $route);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function testThirdStepPOST()
-    {   
+    {
         // getting last id
         $last_submission = end($this->submission_repository->findAll());
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('submission_new_third_step', array("submission_id" => $submission_id), false);
-        
+
         $client->request('POST', $route, array(
             "submission_id" => $submission_id,
             "study-design" => "Study design",
@@ -182,27 +182,27 @@ class NewSubmissionControllerTest extends WebTestCase
     }
 
     public function testFourthStepGET()
-    {   
+    {
         // getting last id
         $last_submission = end($this->submission_repository->findAll());
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('submission_new_fourth_step', array("submission_id" => $submission_id), false);
-        
+
         $client->request('GET', $route);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function testFourthStepPOST()
-    {   
+    {
         // getting last id
         $last_submission = end($this->submission_repository->findAll());
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('submission_new_fourth_step', array("submission_id" => $submission_id), false);
-        
+
         $client->request('POST', $route, array(
             "submission_id" => $submission_id,
             "budget[][description]" => "Budget teste",
@@ -220,27 +220,27 @@ class NewSubmissionControllerTest extends WebTestCase
     }
 
     public function testFifthStepGET()
-    {   
+    {
         // getting last id
         $last_submission = end($this->submission_repository->findAll());
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('submission_new_fifth_step', array("submission_id" => $submission_id), false);
-        
+
         $client->request('GET', $route);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function testFifthStepPOST()
-    {   
+    {
         // getting last id
         $last_submission = end($this->submission_repository->findAll());
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('submission_new_fifth_step', array("submission_id" => $submission_id), false);
-        
+
         $client->request('POST', $route, array(
             "submission_id" => $submission_id,
             "bibliography" => "Bibliography",
@@ -252,20 +252,20 @@ class NewSubmissionControllerTest extends WebTestCase
     }
 
     public function testSixthfStepGET()
-    {   
+    {
         // getting last id
         $last_submission = end($this->submission_repository->findAll());
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('submission_new_sixth_step', array("submission_id" => $submission_id), false);
-        
+
         $client->request('GET', $route);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function testSixthStepPOST()
-    {   
+    {
         // getting last id
         $last_submission = end($this->submission_repository->findAll());
         $submission_id = $last_submission->getId();
@@ -279,7 +279,7 @@ class NewSubmissionControllerTest extends WebTestCase
             $file,
             'new_image.png'
         );
-        
+
         $client->request('POST', $route, array(
             "submission_id" => $submission_id,
             "new-atachment-type" => "1",
@@ -290,27 +290,27 @@ class NewSubmissionControllerTest extends WebTestCase
     }
 
     public function testSeventhStepGET()
-    {   
+    {
         // getting last id
         $last_submission = end($this->submission_repository->findAll());
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('submission_new_seventh_step', array("submission_id" => $submission_id), false);
-        
+
         $client->request('GET', $route);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function testSeventhStepPOST()
-    {   
+    {
         // getting last id
         $last_submission = end($this->submission_repository->findAll());
         $submission_id = $last_submission->getId();
 
         $client = $this->client;
         $route = $client->getContainer()->get('router')->generate('submission_new_seventh_step', array("submission_id" => $submission_id), false);
-        
+
         $client->request('POST', $route, array(
             "submission_id" => $submission_id,
             "accept-terms" => "on"
