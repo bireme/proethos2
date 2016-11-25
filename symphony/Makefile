@@ -13,15 +13,9 @@ test_ci:
 	cd app && phpunit --stop-on-failure
 
 setup_ci:
-	cd /tmp
-
 	composer global remove "phpunit/phpunit" --update-with-dependencies
 	composer global require "phpunit/phpunit=5.*"
 	composer install --prefer-source --no-interaction
-
-	# configs to this build
-	cp -v app/config/parameters.ci.yml app/config/parameters.yml
-	make load_initial
 
 load_initial: database_update
 	$(php) app/console proethos2:load-database-initial-data
