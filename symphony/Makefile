@@ -15,7 +15,7 @@ test_ci:
 setup_ci:
 	composer global remove "phpunit/phpunit" --update-with-dependencies
 	composer global require "phpunit/phpunit=5.*"
-	composer install --prefer-source --no-interaction
+	composer install --no-interaction
 
 load_initial: database_update
 	$(php) app/console proethos2:load-database-initial-data
