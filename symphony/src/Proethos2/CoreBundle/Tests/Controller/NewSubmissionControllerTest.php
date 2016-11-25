@@ -327,10 +327,12 @@ class NewSubmissionControllerTest extends WebTestCase
 
         $client->request('POST', $route, array(
             "submission_id" => $submission_id,
-            "accept-terms" => "on"
+            "accept-terms" => "on",
+            // BUGFIX: See https://github.com/bireme/proethos2/blob/master/doc/continuous-integration.md
+            // needs to has this extra, to ignore pdf, otherwise, tests don't pass
+            "extra" => "no-pdf"
         ));
 
-        // BUGFIX: See https://github.com/bireme/proethos2/blob/master/doc/continuous-integration.md
-        // $this->assertEquals(301, $client->getResponse()->getStatusCode());
+        $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
 }
