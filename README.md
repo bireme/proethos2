@@ -1,3 +1,5 @@
+![Build](https://codeship.com/projects/e61c3520-93d1-0134-acbe-426698f4d6ff/status?branch=master)
+
 Welcome to Proethos2 repository!
 ================================
 
