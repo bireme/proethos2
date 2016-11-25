@@ -15,12 +15,6 @@ test_ci:
 setup_ci:
 	cd /tmp
 
-	# wkhtmltopdf
-	wget http://download.gna.org/wkhtmltopdf/0.12/0.12.2.1/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
-	sudo dpkg --install wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
-	sudo apt-get --yes --fix-broken install
-
-	# software
 	composer global remove "phpunit/phpunit" --update-with-dependencies
 	composer global require "phpunit/phpunit=5.*"
 	composer install --prefer-source --no-interaction
