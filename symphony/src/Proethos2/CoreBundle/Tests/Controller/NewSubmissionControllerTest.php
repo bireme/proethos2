@@ -332,6 +332,5 @@ class NewSubmissionControllerTest extends WebTestCase
 
         // BUGFIX: See https://github.com/bireme/proethos2/blob/master/doc/continuous-integration.md
         // $this->assertEquals(301, $client->getResponse()->getStatusCode());
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 }

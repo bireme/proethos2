@@ -81,7 +81,8 @@ class CRUDControllerTest extends WebTestCase
     public function testShowMeetingGET()
     {
         // getting last id
-        $last_meeting = end($this->meeting_repository->findAll());
+        $all_meetings = $this->meeting_repository->findAll();
+        $last_meeting = end($all_meetings);
         $this->meeting_id = $last_meeting->getId();
 
         $client = $this->client;
@@ -94,7 +95,8 @@ class CRUDControllerTest extends WebTestCase
     public function testUpdateMeetingGET()
     {
         // getting last id
-        $last_meeting = end($this->meeting_repository->findAll());
+        $all_meetings = $this->meeting_repository->findAll();
+        $last_meeting = end($all_meetings);
         $this->meeting_id = $last_meeting->getId();
 
         $client = $this->client;
@@ -107,7 +109,8 @@ class CRUDControllerTest extends WebTestCase
     public function testUpdateMeetingPOST()
     {
         // getting last id
-        $last_meeting = end($this->meeting_repository->findAll());
+        $all_meetings = $this->meeting_repository->findAll();
+        $last_meeting = end($all_meetings);
         $this->meeting_id = $last_meeting->getId();
 
         $client = $this->client;
@@ -125,7 +128,8 @@ class CRUDControllerTest extends WebTestCase
     public function testDeleteMeetingGET()
     {
         // getting last id
-        $last_meeting = end($this->meeting_repository->findAll());
+        $all_meetings = $this->meeting_repository->findAll();
+        $last_meeting = end($all_meetings);
         $this->meeting_id = $last_meeting->getId();
 
         $client = $this->client;
@@ -138,7 +142,8 @@ class CRUDControllerTest extends WebTestCase
     public function testDeleteMeetingPOST()
     {
         // getting last id
-        $last_meeting = end($this->meeting_repository->findAll());
+        $all_meetings = $this->meeting_repository->findAll();
+        $last_meeting = end($all_meetings);
         $this->meeting_id = $last_meeting->getId();
 
         $client = $this->client;
@@ -202,7 +207,8 @@ class CRUDControllerTest extends WebTestCase
     public function testUpdateFaqGET()
     {
         // getting last id
-        $last_question = end($this->faq_repository->findAll());
+        $all_questions = $this->faq_repository->findAll();
+        $last_question = end($all_questions);
         $this->faq_id = $last_question->getId();
 
         $client = $this->client;
@@ -215,7 +221,8 @@ class CRUDControllerTest extends WebTestCase
     public function testUpdateFaqPOST()
     {
         // getting last id
-        $last_question = end($this->faq_repository->findAll());
+        $all_questions = $this->faq_repository->findAll();
+        $last_question = end($all_questions);
         $this->faq_id = $last_question->getId();
 
         $client = $this->client;
@@ -241,7 +248,8 @@ class CRUDControllerTest extends WebTestCase
     public function testDeleteFaqGET()
     {
         // getting last id
-        $last_question = end($this->faq_repository->findAll());
+        $all_questions = $this->faq_repository->findAll();
+        $last_question = end($all_questions);
         $this->faq_id = $last_question->getId();
 
         $client = $this->client;
@@ -254,7 +262,8 @@ class CRUDControllerTest extends WebTestCase
     public function testDeleteFaqPOST()
     {
         // getting last id
-        $last_question = end($this->faq_repository->findAll());
+        $all_questions = $this->faq_repository->findAll();
+        $last_question = end($all_questions);
         $this->faq_id = $last_question->getId();
 
         $client = $this->client;
@@ -300,7 +309,8 @@ class CRUDControllerTest extends WebTestCase
     public function testUpdateCommitteeDocumentGET()
     {
         // getting last id
-        $last_document = end($this->document_repository->findAll());
+        $all_documents = $this->document_repository->findAll();
+        $last_document = end($all_documents);
         $this->document_id = $last_document->getId();
 
         $client = $this->client;
@@ -313,7 +323,8 @@ class CRUDControllerTest extends WebTestCase
     public function testUpdateCommitteeDocumentPOST()
     {
         // getting last id
-        $last_document = end($this->document_repository->findAll());
+        $all_documents = $this->document_repository->findAll();
+        $last_document = end($all_documents);
         $this->document_id = $last_document->getId();
 
         $client = $this->client;
@@ -331,7 +342,8 @@ class CRUDControllerTest extends WebTestCase
     public function testDeleteCommitteeDocumentGET()
     {
         // getting last id
-        $last_document = end($this->document_repository->findAll());
+        $all_documents = $this->document_repository->findAll();
+        $last_document = end($all_documents);
         $this->document_id = $last_document->getId();
 
         $client = $this->client;
@@ -344,7 +356,8 @@ class CRUDControllerTest extends WebTestCase
     public function testDeleteCommitteeDocumentPOST()
     {
         // getting last id
-        $last_document = end($this->document_repository->findAll());
+        $all_documents = $this->document_repository->findAll();
+        $last_document = end($all_documents);
         $this->document_id = $last_document->getId();
 
         $client = $this->client;
@@ -395,7 +408,8 @@ class CRUDControllerTest extends WebTestCase
     public function testUpdateCommitteeUserGET()
     {
         // getting last id
-        $last_user = end($this->user_repository->findAll());
+        $all_users = $this->user_repository->findAll();
+        $last_user = end($all_users);
         $this->user_id = $last_user->getId();
 
         $client = $this->client;
@@ -408,7 +422,8 @@ class CRUDControllerTest extends WebTestCase
     public function testUpdateCommitteeUserPOST()
     {
         // getting last id
-        $last_user = end($this->user_repository->findAll());
+        $all_users = $this->user_repository->findAll();
+        $last_user = end($all_users);
         $this->user_id = $last_user->getId();
 
         $client = $this->client;
@@ -426,7 +441,8 @@ class CRUDControllerTest extends WebTestCase
     public function testGetKeyToChangePasswordCommitteeUserGET()
     {
         // getting last id
-        $last_user = end($this->user_repository->findAll());
+        $all_users = $this->user_repository->findAll();
+        $last_user = end($all_users);
         $this->user_id = $last_user->getId();
 
         $client = $this->client;
@@ -439,7 +455,8 @@ class CRUDControllerTest extends WebTestCase
     public function testUpdateCommitteeUserRoleGET()
     {
         // getting last id
-        $last_user = end($this->user_repository->findAll());
+        $all_users = $this->user_repository->findAll();
+        $last_user = end($all_users);
         $this->user_id = $last_user->getId();
 
         $client = $this->client;
@@ -452,7 +469,8 @@ class CRUDControllerTest extends WebTestCase
     public function testUpdateUserRolePOST()
     {
         // getting last id
-        $last_user = end($this->user_repository->findAll());
+        $all_users = $this->user_repository->findAll();
+        $last_user = end($all_users);
         $this->user_id = $last_user->getId();
 
         $client = $this->client;
@@ -468,7 +486,8 @@ class CRUDControllerTest extends WebTestCase
     public function testUpdateUserProfileGET()
     {
         // getting last id
-        $last_user = end($this->user_repository->findAll());
+        $all_users = $this->user_repository->findAll();
+        $last_user = end($all_users);
         $this->user_id = $last_user->getId();
 
         $client = $this->client;
@@ -481,7 +500,8 @@ class CRUDControllerTest extends WebTestCase
     public function testUpdateUserProfilePOST()
     {
         // getting last id
-        $last_user = end($this->user_repository->findAll());
+        $all_users = $this->user_repository->findAll();
+        $last_user = end($all_users);
         $this->user_id = $last_user->getId();
 
         $client = $this->client;
@@ -501,7 +521,8 @@ class CRUDControllerTest extends WebTestCase
     public function testDeleteCommitteeUserGET()
     {
         // getting last id
-        $last_user = end($this->user_repository->findAll());
+        $all_users = $this->user_repository->findAll();
+        $last_user = end($all_users);
         $this->user_id = $last_user->getId();
 
         $client = $this->client;
@@ -514,7 +535,8 @@ class CRUDControllerTest extends WebTestCase
     public function testDeleteCommitteeUserPOST()
     {
         // getting last id
-        $last_user = end($this->user_repository->findAll());
+        $all_users = $this->user_repository->findAll();
+        $last_user = end($all_users);
         $this->user_id = $last_user->getId();
 
         $client = $this->client;
@@ -634,7 +656,8 @@ class CRUDControllerTest extends WebTestCase
     {
         // getting last id
         $repository = $this->_em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
-        $last_item = end($repository->findAll());
+        $all_items = $repository->findAll();
+        $last_item = end($all_items);
         $last_id = $last_item->getId();
 
         $client = $this->client;
@@ -649,7 +672,8 @@ class CRUDControllerTest extends WebTestCase
     {
         // getting last id
         $repository = $this->_em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
-        $last_item = end($repository->findAll());
+        $all_items = $repository->findAll();
+        $last_item = end($all_items);
         $last_id = $last_item->getId();
 
         $client = $this->client;
@@ -693,7 +717,8 @@ class CRUDControllerTest extends WebTestCase
     {
         // getting last id
         $repository = $this->_em->getRepository('Proethos2ModelBundle:UploadType');
-        $last_item = end($repository->findAll());
+        $all_items = $repository->findAll();
+        $last_item = end($all_items);
         $last_id = $last_item->getId();
 
         $client = $this->client;
@@ -708,7 +733,8 @@ class CRUDControllerTest extends WebTestCase
     {
         // getting last id
         $repository = $this->_em->getRepository('Proethos2ModelBundle:UploadType');
-        $last_item = end($repository->findAll());
+        $all_items = $repository->findAll();
+        $last_item = end($all_items);
         $last_id = $last_item->getId();
 
         $client = $this->client;
@@ -753,7 +779,8 @@ class CRUDControllerTest extends WebTestCase
     {
         // getting last id
         $repository = $this->_em->getRepository('Proethos2ModelBundle:RecruitmentStatus');
-        $last_item = end($repository->findAll());
+        $all_items = $repository->findAll();
+        $last_item = end($all_items);
         $last_id = $last_item->getId();
 
         $client = $this->client;
@@ -768,7 +795,8 @@ class CRUDControllerTest extends WebTestCase
     {
         // getting last id
         $repository = $this->_em->getRepository('Proethos2ModelBundle:RecruitmentStatus');
-        $last_item = end($repository->findAll());
+        $all_items = $repository->findAll();
+        $last_item = end($all_items);
         $last_id = $last_item->getId();
 
         $client = $this->client;
@@ -811,7 +839,8 @@ class CRUDControllerTest extends WebTestCase
     {
         // getting last id
         $repository = $this->_em->getRepository('Proethos2ModelBundle:MonitoringAction');
-        $last_item = end($repository->findAll());
+        $all_items = $repository->findAll();
+        $last_item = end($all_items);
         $last_id = $last_item->getId();
 
         $client = $this->client;
@@ -826,7 +855,8 @@ class CRUDControllerTest extends WebTestCase
     {
         // getting last id
         $repository = $this->_em->getRepository('Proethos2ModelBundle:MonitoringAction');
-        $last_item = end($repository->findAll());
+        $all_items = $repository->findAll();
+        $last_item = end($all_items);
         $last_id = $last_item->getId();
 
         $client = $this->client;
@@ -870,7 +900,8 @@ class CRUDControllerTest extends WebTestCase
     {
         // getting last id
         $repository = $this->_em->getRepository('Proethos2ModelBundle:MonitoringAction');
-        $last_item = end($repository->findAll());
+        $all_items = $repository->findAll();
+        $last_item = end($all_items);
         $last_id = $last_item->getId();
 
         $client = $this->client;
@@ -885,7 +916,8 @@ class CRUDControllerTest extends WebTestCase
     {
         // getting last id
         $repository = $this->_em->getRepository('Proethos2ModelBundle:MonitoringAction');
-        $last_item = end($repository->findAll());
+        $all_items = $repository->findAll();
+        $last_item = end($all_items);
         $last_id = $last_item->getId();
 
         $client = $this->client;
@@ -929,7 +961,8 @@ class CRUDControllerTest extends WebTestCase
     {
         // getting last id
         $repository = $this->_em->getRepository('Proethos2ModelBundle:Gender');
-        $last_item = end($repository->findAll());
+        $all_items = $repository->findAll();
+        $last_item = end($all_items);
         $last_id = $last_item->getId();
 
         $client = $this->client;
@@ -944,7 +977,8 @@ class CRUDControllerTest extends WebTestCase
     {
         // getting last id
         $repository = $this->_em->getRepository('Proethos2ModelBundle:Gender');
-        $last_item = end($repository->findAll());
+        $all_items = $repository->findAll();
+        $last_item = end($all_items);
         $last_id = $last_item->getId();
 
         $client = $this->client;
