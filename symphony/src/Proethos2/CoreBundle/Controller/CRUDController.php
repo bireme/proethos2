@@ -23,6 +23,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 
 use Proethos2\CoreBundle\Util\Util;
+use Proethos2\CoreBundle\Util\CSVResponse;
 
 use Proethos2\ModelBundle\Entity\Meeting;
 use Proethos2\ModelBundle\Entity\Faq;
@@ -784,6 +785,30 @@ class CRUDController extends Controller
         }
 
         $output['users'] = $users;
+
+        // output parameter
+        $output_parameter = $request->query->get('output');
+        if($output_parameter == 'csv') {
+            $csv_headers = array('ID', 'USERNAME', 'EMAIL', 'ROLES', 'ACTIVE?', 'NAME', 'COUNTRY', 'INSTITUTION');
+            $csv_output = array();
+            foreach($users as $user) {
+                $current_line = array();
+                $current_line[] = $user->getId();
+                $current_line[] = $user->getUsername();
+                $current_line[] = $user->getEmail();
+                $current_line[] = implode(",", $user->getRolesSlug());
+                $current_line[] = $user->getIsActive() == 1 ? "YES" : "NO";
+                $current_line[] = $user->getName();
+                $current_line[] = $user->getCountry() ? $user->getCountry()->getName() : '';
+                $current_line[] = $user->getInstitution();
+                $csv_output[] = $current_line;
+            }
+
+            $response = new CSVResponse( $csv_output, 200, $csv_headers );
+            $response->setFilename( "proethos2-users.csv" );
+            return $response;
+        }
+
 
         $roles = $role_repository->findAll();
         $output['roles'] = $roles;

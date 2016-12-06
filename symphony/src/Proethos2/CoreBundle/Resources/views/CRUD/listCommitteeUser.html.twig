@@ -3,7 +3,7 @@
 {% block title %}{% trans %}Users{% endtrans %}{% endblock %}
 
 {% block content %}
-    
+
     <div class="container-fluid main-content see-submission">
 
         <div class="row">
@@ -14,15 +14,23 @@
                 </h1>
             </div>
         </div>
-        
+
         <div class='block'>
             <form class='form'>
+                <input type="hidden" name="output" id="input-output" value="html" />
+
                 <div class='row'>
-                    <div class="col-md-11">
+                    <div class="col-md-10">
                         <div class="form-group" id='form-filter'>
-                            <label for="input-filter-q">{% trans %}Search for a user{% endtrans %}:</label> 
+                            <label for="input-filter-q">{% trans %}Search for a user{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 56} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='text' class='form-control' id='input-filter-q' name='q' value="{{ app.request.get('q') }}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 search-button">
+                        <div class="form-group">
+                            <button class='btn btn-warning' id="export-to-csv-button">{% trans %}Export to CSV{% endtrans %}</button>
                         </div>
                     </div>
 
@@ -34,12 +42,12 @@
                 </div>
             </form>
         </div>
-            
+
         <div class='block'>
             <div class='row'>
                 <div class="col-md-12">
                     <table class='table table-hover table-condensed'>
-                        
+
                         <thead>
                             <tr>
                                 <th width="30%">{% trans %}Name{% endtrans %}</th>
@@ -52,7 +60,7 @@
                                 <th>{% trans %}Actions{% endtrans %}</th>
                             </tr>
                         </thead>
-                        
+
                         <tbody>
                             {% for user in users %}
                                 <tr>
@@ -102,17 +110,17 @@
         <div class="modal-dialog modal-lg" role="user">
             <div class="modal-content">
                 <form enctype="multipart/form-data" class='form' method="POST" id='form-new-user'>
-                    
+
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">{% trans %}New User{% endtrans %}</h4>
                     </div>
                     <div class="modal-body">
-                        
+
                         <div class='row'>
                             <div class='col-md-12'>
                                 <div class="form-group required">
-                                    <label for="input-username">{% trans %}Username{% endtrans %}:</label> 
+                                    <label for="input-username">{% trans %}Username{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 57} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <input type='text' class='form-control' id="input-username" name="username" required>
                                 </div>
@@ -122,7 +130,7 @@
                         <div class='row'>
                             <div class='col-md-12'>
                                 <div class="form-group required">
-                                    <label for="input-email">{% trans %}Email{% endtrans %}:</label> 
+                                    <label for="input-email">{% trans %}Email{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 58} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <input type='email' class='form-control' id="input-email" name="email" required>
                                 </div>
@@ -132,7 +140,7 @@
                         <div class='row'>
                             <div class='col-md-12'>
                                 <div class="form-group required">
-                                    <label for="input-name">{% trans %}Name{% endtrans %}:</label> 
+                                    <label for="input-name">{% trans %}Name{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 59} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <input type='text' class='form-control' id="input-name" name="name" required>
                                 </div>
@@ -142,7 +150,7 @@
                         <div class='row'>
                             <div class='col-md-12'>
                                 <div class="form-group required">
-                                    <label for="select-country">{% trans %}Country{% endtrans %}:</label> 
+                                    <label for="select-country">{% trans %}Country{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 60} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <select class='form-control select-select2' id="select-country" name="country" required>
                                         <option value="">{% trans %}Select country{% endtrans %}</option>
@@ -157,7 +165,7 @@
                         <div class='row'>
                             <div class='col-md-12'>
                                 <div class="form-group">
-                                    <label for="input-institution">{% trans %}Institution{% endtrans %}:</label> 
+                                    <label for="input-institution">{% trans %}Institution{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 61} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <input type='text' class='form-control' id="input-institution" name="institution">
                                 </div>
@@ -186,7 +194,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Modal ajax User -->
     <div class="modal fade" id="modal-ajax-user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="user">
@@ -199,10 +207,13 @@
 {% block script %}
     <script>
         $(function(){
-            
-           
+            $("#export-to-csv-button").click(function(){
+                $("#input-output").val('csv');
+                $(".form").submit();
+            });
+
         });
 
-        
+
     </script>
 {% endblock %}
