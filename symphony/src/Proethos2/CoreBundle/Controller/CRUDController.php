@@ -1,15 +1,15 @@
 <?php
 
-// This file is part of the ProEthos Software. 
-// 
+// This file is part of the ProEthos Software.
+//
 // Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
 // ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
+// restricts commercial use of the Software.
+//
 // ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
+// PARTICULAR PURPOSE. See the ProEthos License for more details.
+//
 // You should have received a copy of the ProEthos License along with the ProEthos
 // Software. If not, see
 // https://github.com/bireme/proethos2/blob/master/LICENSE.txt
@@ -53,7 +53,7 @@ class CRUDController extends Controller
         $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
 
         $meetings = $meeting_repository->findAll();
-        
+
         // serach parameter
         $search_query = $request->query->get('q');
         if($search_query) {
@@ -63,7 +63,7 @@ class CRUDController extends Controller
                ->getQuery()
                ->getResult();
         }
-        
+
         $output['meetings'] = $meetings;
 
         // checking if was a post request
@@ -74,9 +74,9 @@ class CRUDController extends Controller
 
             if(isset($post_data['new-meeting-date'])) {
 
-                
+
                 // checking required fields
-                foreach(array('new-meeting-date', 'new-meeting-subject', 'new-meeting-content') as $field) {   
+                foreach(array('new-meeting-date', 'new-meeting-subject', 'new-meeting-content') as $field) {
                     if(!isset($post_data[$field]) or empty($post_data[$field])) {
                         $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                         return $output;
@@ -99,7 +99,7 @@ class CRUDController extends Controller
 
         return $output;
     }
-    
+
     /**
      * @Route("/committee/meeting/{meeting_id}", name="crud_committee_meeting_update")
      * @Template()
@@ -127,10 +127,10 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('new-meeting-date', 'new-meeting-subject', 'new-meeting-content') as $field) {
-                
+
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -207,7 +207,7 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('meeting-delete') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
@@ -244,7 +244,7 @@ class CRUDController extends Controller
         $status_array = array('S', 'R', 'I', 'E', 'H', "F", "A", "N", "C", "X");
         $search_query = $request->query->get('q');
         $status_query = $request->query->get('status');
-        
+
         if(!empty($status_query))
             $status_array = array($status_query);
 
@@ -288,7 +288,7 @@ class CRUDController extends Controller
         $status_array = array('D', 'S', 'R', 'I', 'E', 'H', 'F', 'A', 'N', 'C', 'X');
         $search_query = $request->query->get('q');
         $status_query = $request->query->get('status');
-        
+
         if(!empty($status_query))
             $status_array = array($status_query);
 
@@ -332,7 +332,7 @@ class CRUDController extends Controller
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         $faqs = $faq_repository->findAll();
-        
+
         // serach parameter
         $search_query = $request->query->get('q');
         if($search_query) {
@@ -342,7 +342,7 @@ class CRUDController extends Controller
                ->getQuery()
                ->getResult();
         }
-        
+
         $output['faqs'] = $faqs;
 
         // checking if was a post request
@@ -352,7 +352,7 @@ class CRUDController extends Controller
             $post_data = $request->request->all();
 
             // checking required fields
-            foreach(array('new-question', 'new-question-answer') as $field) {   
+            foreach(array('new-question', 'new-question-answer') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -361,14 +361,14 @@ class CRUDController extends Controller
 
             $question = new Faq();
             $question->setTranslatableLocale('en');
-            
+
             $question->setQuestion($post_data['new-question']);
             foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
                 if(!empty($post_data["new-question-$locale"])) {
                     $trans_repository = $trans_repository->translate($question, 'question', $locale, $post_data["new-question-$locale"]);
                 }
             }
-            
+
             $question->setAnswer($post_data['new-question-answer']);
             foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
                 if(!empty($post_data["new-question-answer-$locale"])) {
@@ -409,11 +409,11 @@ class CRUDController extends Controller
         // getting the current faq
         $question = $faq_repository->find($faq_id);
         $output['question'] = $question;
-        
+
         if (!$question) {
             throw $this->createNotFoundException($translator->trans('No FAQ found'));
         }
-        
+
         $translations = $trans_repository->findTranslations($question);
         $output['translations'] = $translations;
 
@@ -424,7 +424,7 @@ class CRUDController extends Controller
             $post_data = $request->request->all();
 
             // checking required fields
-            foreach(array('new-question', 'new-question-answer') as $field) {   
+            foreach(array('new-question', 'new-question-answer') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -432,14 +432,14 @@ class CRUDController extends Controller
             }
 
             $question->setTranslatableLocale('en');
-            
+
             $question->setQuestion($post_data['new-question']);
             foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
                 if(!empty($post_data["new-question-$locale"])) {
                     $trans_repository = $trans_repository->translate($question, 'question', $locale, $post_data["new-question-$locale"]);
                 }
             }
-            
+
             $question->setAnswer($post_data['new-question-answer']);
             foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
                 if(!empty($post_data["new-question-answer-$locale"])) {
@@ -479,7 +479,7 @@ class CRUDController extends Controller
         // getting the current faq
         $question = $faq_repository->find($faq_id);
         $output['question'] = $question;
-        
+
         if (!$question) {
             throw $this->createNotFoundException($translator->trans('No FAQ found'));
         }
@@ -489,7 +489,7 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('question-delete') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
@@ -544,7 +544,7 @@ class CRUDController extends Controller
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
 
         $documents = $document_repository->findAll();
-        
+
         // serach parameter
         $search_query = $request->query->get('q');
         if($search_query) {
@@ -554,9 +554,9 @@ class CRUDController extends Controller
                ->getQuery()
                ->getResult();
         }
-        
+
         $output['documents'] = $documents;
-        
+
         $roles = $role_repository->findAll();
         $output['roles'] = $roles;
 
@@ -573,7 +573,7 @@ class CRUDController extends Controller
             }
 
             // checking required fields
-            foreach(array('title', 'roles') as $field) {   
+            foreach(array('title', 'roles') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -622,7 +622,7 @@ class CRUDController extends Controller
         // getting the current document
         $document = $document_repository->find($document_id);
         $output['document'] = $document;
-        
+
         if (!$document) {
             throw $this->createNotFoundException($translator->trans('No document found'));
         }
@@ -637,7 +637,7 @@ class CRUDController extends Controller
             $post_data = $request->request->all();
 
             // checking required fields
-            foreach(array('title',) as $field) {   
+            foreach(array('title',) as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -655,7 +655,7 @@ class CRUDController extends Controller
 
             $document->setTitle($post_data['title']);
             $document->setDescription($post_data['description']);
-            
+
             $document->setStatus(false);
             if(isset($post_data['status'])) {
                 $document->setStatus(true);
@@ -689,7 +689,7 @@ class CRUDController extends Controller
         // getting the current document
         $document = $document_repository->find($document_id);
         $output['document'] = $document;
-        
+
         if (!$document) {
             throw $this->createNotFoundException($translator->trans('No document found'));
         }
@@ -699,7 +699,7 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('delete') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
@@ -734,7 +734,7 @@ class CRUDController extends Controller
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
 
         $documents = $document_repository->findAll();
-        
+
         // serach parameter
         $search_query = $request->query->get('q');
         if($search_query) {
@@ -744,9 +744,9 @@ class CRUDController extends Controller
                ->getQuery()
                ->getResult();
         }
-        
+
         $output['documents'] = $documents;
-        
+
         $roles = $role_repository->findAll();
         $output['roles'] = $roles;
 
@@ -772,7 +772,7 @@ class CRUDController extends Controller
         $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
 
         $users = $user_repository->findAll();
-        
+
         // serach parameter
         $search_query = $request->query->get('q');
         if($search_query) {
@@ -782,12 +782,12 @@ class CRUDController extends Controller
                ->getQuery()
                ->getResult();
         }
-        
+
         $output['users'] = $users;
-        
+
         $roles = $role_repository->findAll();
         $output['roles'] = $roles;
-        
+
         $countries = $country_repository->findBy(array(), array('name' => 'asc'));
         $output['countries'] = $countries;
 
@@ -796,9 +796,9 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required fields
-            foreach(array('name', 'username', 'email', 'country', ) as $field) {   
+            foreach(array('name', 'username', 'email', 'country', ) as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -821,7 +821,7 @@ class CRUDController extends Controller
 
             // adding user role
             $user->addProethos2Role($role_repository->findOneBy(array('slug' => 'investigator')));
-            
+
             $encoderFactory = $this->get('security.encoder_factory');
             $encoder = $encoderFactory->getEncoder($user);
             $salt = $user->getSalt(); // this should be different for every user
@@ -851,12 +851,12 @@ class CRUDController extends Controller
                 "<br>" .
                 "<br>". $translator->trans("Regards") . "," .
                 "<br>" . $translator->trans("Proethos2 Team")
-                ,   
+                ,
                 'text/html'
             );
-            
+
             $send = $this->get('mailer')->send($message);
-            
+
 
             $em->persist($user);
             $em->flush();
@@ -887,7 +887,7 @@ class CRUDController extends Controller
 
         $countries = $country_repository->findBy(array(), array('name' => 'asc'));
         $output['countries'] = $countries;
-        
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -895,7 +895,7 @@ class CRUDController extends Controller
             $post_data = $request->request->all();
 
             // checking required fields
-            foreach(array('name', 'country', ) as $field) {   
+            foreach(array('name', 'country', ) as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -937,14 +937,14 @@ class CRUDController extends Controller
         // getting the current user
         $user = $user_repository->find($user_id);
         $output['user'] = $user;
-        
+
         if (!$user) {
             throw $this->createNotFoundException($translator->trans('No user found'));
         }
-        
+
         $roles = $role_repository->findAll();
         $output['roles'] = $roles;
-        
+
         $countries = $country_repository->findBy(array(), array('name' => 'asc'));
         $output['countries'] = $countries;
 
@@ -955,7 +955,7 @@ class CRUDController extends Controller
             $post_data = $request->request->all();
 
             // checking required fields
-            foreach(array('name', 'country', ) as $field) {   
+            foreach(array('name', 'country', ) as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -972,13 +972,13 @@ class CRUDController extends Controller
             if(isset($post_data['status'])) {
                 $user->setIsActive(true);
             }
-            
+
             $em->persist($user);
             $em->flush();
 
             $session->getFlashBag()->add('success', $translator->trans("User updated with success."));
             return $this->redirectToRoute('crud_committee_user_list', array(), 301);
-            
+
         }
 
         return $output;
@@ -997,11 +997,11 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
-        
+
         // getting the current user
         $user = $user_repository->find($user_id);
         $output['user'] = $user;
-        
+
         if (!$user) {
             throw $this->createNotFoundException($translator->trans('No user found'));
         }
@@ -1036,14 +1036,14 @@ class CRUDController extends Controller
         // getting the current user
         $user = $user_repository->find($user_id);
         $output['user'] = $user;
-        
+
         if (!$user) {
             throw $this->createNotFoundException($translator->trans('No user found'));
         }
-        
+
         $roles = $role_repository->findAll();
         $output['roles'] = $roles;
-        
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -1082,21 +1082,21 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
-        
+
         // getting the current user
         $user = $user_repository->find($user_id);
         $output['user'] = $user;
-        
+
         if (!$user) {
             throw $this->createNotFoundException($translator->trans('No user found'));
         }
-        
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('delete') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
@@ -1126,7 +1126,7 @@ class CRUDController extends Controller
         $session = $request->getSession();
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
-        
+
         $util = new Util($this->container, $this->getDoctrine());
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -1142,10 +1142,10 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('name', 'email', 'subject', 'message') as $field) {
-                
+
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -1159,14 +1159,14 @@ class CRUDController extends Controller
             ->setBody(
                 $translator->trans("Hello! A message was sent to proethos2 administrator from plataform.") .
                 "<br>" .
-                "<br><b>User</b>: " . $post_data['name'] . " (" . $post_data['email'] . ")" . 
-                "<br><b>Subject</b>: " . $post_data['subject'] . 
-                "<br><b>Message</b>:<br>" . 
+                "<br><b>User</b>: " . $post_data['name'] . " (" . $post_data['email'] . ")" .
+                "<br><b>Subject</b>: " . $post_data['subject'] .
+                "<br><b>Message</b>:<br>" .
                 nl2br($post_data['message'])
                 ,
                 'text/html'
             );
-            
+
             $send = $this->get('mailer')->send($message);
             $session->getFlashBag()->add('success', $translator->trans("Message sent to administrators."));
             return $this->redirectToRoute('crud_contact_list', array(), 301);
@@ -1188,14 +1188,14 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
-        
+
         $helps = $help_repository->findBy(array("status" => true));
-        
+
         $id = $request->query->get('id');
         if($id) {
             $helps = $help_repository->findBy(array("id" => $id));
         }
-        
+
         $output['helps'] = $helps;
         return $output;
     }
@@ -1214,7 +1214,7 @@ class CRUDController extends Controller
 
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
-        
+
         // getting the current help
         $help = $help_repository->find($help_id);
         $output['help'] = $help;
@@ -1232,10 +1232,10 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('help-message-en') as $field) {
-                
+
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -1245,7 +1245,7 @@ class CRUDController extends Controller
             $help->setTranslatableLocale('en');
             $help->setMessage($post_data['help-message-en']);
             $help->setStatus(true);
-            
+
             foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
                 if(!empty($post_data["help-message-$locale"])) {
                     $trans_repository = $trans_repository->translate($help, 'message', $locale, $post_data["help-message-$locale"]);
@@ -1258,7 +1258,7 @@ class CRUDController extends Controller
             $session->getFlashBag()->add('success', $translator->trans("Help updated with success."));
             return $this->redirectToRoute('crud_admin_help_list', array(), 301);
         }
-        
+
         return $output;
     }
 
@@ -1275,7 +1275,7 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
-        
+
         // getting the current help
         $help = $help_repository->find($help_id);
         $output['help'] = $help;
@@ -1303,7 +1303,7 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
-        
+
         // getting the current help
         $help = $help_repository->find($help_id);
 
@@ -1313,7 +1313,7 @@ class CRUDController extends Controller
 
         $output['status'] = true;
         if(!$help->getMessage()) {
-            $output['status'] = false;        
+            $output['status'] = false;
         }
         $response = new Response();
         $response->setContent(json_encode($output));
@@ -1335,9 +1335,9 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
-        
+
         $configurations = $configuration_repository->findAll();
-        
+
         $output['configurations'] = $configurations;
         return $output;
     }
@@ -1355,7 +1355,7 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
-        
+
         // getting the current configuration
         $configuration = $configuration_repository->find($configuration_id);
 
@@ -1369,16 +1369,16 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             $configuration->setValue($post_data['configuration-value']);
-            
+
             $em->persist($configuration);
             $em->flush();
 
             $session->getFlashBag()->add('success', $translator->trans("Configuration updated with success."));
             return $this->redirectToRoute('crud_admin_configuration_list', array(), 301);
         }
-        
+
         return $output;
     }
 
@@ -1395,7 +1395,7 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
-        
+
         $items = $item_repository->findAll();
         $output['items'] = $items;
 
@@ -1404,10 +1404,10 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('extension') as $field) {
-                
+
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -1416,7 +1416,7 @@ class CRUDController extends Controller
 
             $item = new UploadTypeExtension();
             $item->setExtension($post_data['extension']);
-            
+
             $em->persist($item);
             $em->flush();
 
@@ -1440,7 +1440,7 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
-        
+
         $item = $item_repository->find($item_id);
 
         if (!$item) {
@@ -1453,10 +1453,10 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('extension') as $field) {
-                
+
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -1467,7 +1467,7 @@ class CRUDController extends Controller
             if(isset($post_data['status']) and $post_data['status'] == "true") {
                 $item->setStatus(true);
             }
-            
+
             $em->persist($item);
             $em->flush();
 
@@ -1493,10 +1493,10 @@ class CRUDController extends Controller
         $item_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
         $extensions_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
-        
+
         $items = $item_repository->findAll();
         $output['items'] = $items;
-        
+
         $extensions = $extensions_repository->findByStatus(true);
         $output['extensions'] = $extensions;
 
@@ -1507,10 +1507,10 @@ class CRUDController extends Controller
             $post_data = $request->request->all();
 
             // var_dump($post_data);die;
-            
+
             // checking required files
             foreach(array('name', 'extensions') as $field) {
-                
+
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -1520,20 +1520,20 @@ class CRUDController extends Controller
             $item = new UploadType();
             $item->setTranslatableLocale('en');
             $item->setName($post_data['name']);
-            
+
             foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
                 if(!empty($post_data["name-$locale"])) {
                     $trans_repository = $trans_repository->translate($item, 'name', $locale, $post_data["name-$locale"]);
                 }
             }
-            
+
             if(isset($post_data['extensions'])) {
                 foreach($post_data['extensions'] as $extension) {
                     $extension = $extensions_repository->find($extension);
                     $item->addExtension($extension);
                 }
             }
-            
+
             $em->persist($item);
             $em->flush();
 
@@ -1559,7 +1559,7 @@ class CRUDController extends Controller
         $item_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
         $extensions_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
-        
+
         $item = $item_repository->find($item_id);
 
         if (!$item) {
@@ -1578,10 +1578,10 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('name', 'extensions') as $field) {
-                
+
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -1594,13 +1594,13 @@ class CRUDController extends Controller
 
             $item->setTranslatableLocale('en');
             $item->setName($post_data['name']);
-            
+
             foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
                 if(!empty($post_data["name-$locale"])) {
                     $trans_repository = $trans_repository->translate($item, 'name', $locale, $post_data["name-$locale"]);
                 }
             }
-            
+
             if(isset($post_data['extensions'])) {
                 foreach($post_data['extensions'] as $extension) {
                     $extension = $extensions_repository->find($extension);
@@ -1636,7 +1636,7 @@ class CRUDController extends Controller
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:RecruitmentStatus');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
-        
+
         $items = $item_repository->findAll();
         $output['items'] = $items;
 
@@ -1645,10 +1645,10 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('name') as $field) {
-                
+
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -1665,7 +1665,7 @@ class CRUDController extends Controller
                     $trans_repository = $trans_repository->translate($item, 'name', $locale, $post_data["name-$locale"]);
                 }
             }
-            
+
             $em->persist($item);
             $em->flush();
 
@@ -1690,7 +1690,7 @@ class CRUDController extends Controller
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:RecruitmentStatus');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
-        
+
         $item = $item_repository->find($item_id);
 
         if (!$item) {
@@ -1706,7 +1706,7 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('name') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
@@ -1728,7 +1728,7 @@ class CRUDController extends Controller
             if(isset($post_data['status']) and $post_data['status'] == "true") {
                 $item->setStatus(true);
             }
-            
+
             $em->persist($item);
             $em->flush();
 
@@ -1753,7 +1753,7 @@ class CRUDController extends Controller
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:MonitoringAction');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
-        
+
         $items = $item_repository->findAll();
         $output['items'] = $items;
 
@@ -1762,10 +1762,10 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('name') as $field) {
-                
+
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -1782,7 +1782,7 @@ class CRUDController extends Controller
                     $trans_repository = $trans_repository->translate($item, 'name', $locale, $post_data["name-$locale"]);
                 }
             }
-            
+
             $em->persist($item);
             $em->flush();
 
@@ -1807,7 +1807,7 @@ class CRUDController extends Controller
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:MonitoringAction');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
-        
+
         $item = $item_repository->find($item_id);
 
         if (!$item) {
@@ -1823,7 +1823,7 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('name') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
@@ -1845,7 +1845,7 @@ class CRUDController extends Controller
             if(isset($post_data['status']) and $post_data['status'] == "true") {
                 $item->setStatus(true);
             }
-            
+
             $em->persist($item);
             $em->flush();
 
@@ -1870,7 +1870,7 @@ class CRUDController extends Controller
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:ClinicalTrialName');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
-        
+
         $items = $item_repository->findAll();
         $output['items'] = $items;
 
@@ -1879,10 +1879,10 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('name') as $field) {
-                
+
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -1900,7 +1900,7 @@ class CRUDController extends Controller
                     $trans_repository = $trans_repository->translate($item, 'name', $locale, $post_data["name-$locale"]);
                 }
             }
-            
+
             $em->persist($item);
             $em->flush();
 
@@ -1925,7 +1925,7 @@ class CRUDController extends Controller
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:ClinicalTrialName');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
-        
+
         $item = $item_repository->find($item_id);
 
         if (!$item) {
@@ -1941,7 +1941,7 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('name') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
@@ -1964,7 +1964,7 @@ class CRUDController extends Controller
             if(isset($post_data['status']) and $post_data['status'] == "true") {
                 $item->setStatus(true);
             }
-            
+
             $em->persist($item);
             $em->flush();
 
@@ -1989,7 +1989,7 @@ class CRUDController extends Controller
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:Gender');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
-        
+
         $items = $item_repository->findAll();
         $output['items'] = $items;
 
@@ -1998,10 +1998,10 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('name') as $field) {
-                
+
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -2018,7 +2018,7 @@ class CRUDController extends Controller
                     $trans_repository = $trans_repository->translate($item, 'name', $locale, $post_data["name-$locale"]);
                 }
             }
-            
+
             $em->persist($item);
             $em->flush();
 
@@ -2043,7 +2043,7 @@ class CRUDController extends Controller
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:Gender');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
-        
+
         $item = $item_repository->find($item_id);
 
         if (!$item) {
@@ -2059,7 +2059,7 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
-            
+
             // checking required files
             foreach(array('name') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
@@ -2081,7 +2081,7 @@ class CRUDController extends Controller
             if(isset($post_data['status']) and $post_data['status'] == "true") {
                 $item->setStatus(true);
             }
-            
+
             $em->persist($item);
             $em->flush();
 
