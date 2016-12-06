@@ -560,6 +560,16 @@ class Submission extends Base
         return $this->team;
     }
 
+    /**
+     * Get total team
+     *
+     * @return int
+     */
+    public function getTotalTeam()
+    {
+        return count($this->team) + 1;
+    }
+
     public function isOwner(User $user)
     {
         if($this->getTeam()->contains($user)) {

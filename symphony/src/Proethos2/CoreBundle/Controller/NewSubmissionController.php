@@ -835,7 +835,7 @@ class NewSubmissionController extends Controller
         $revisions = array();
         $final_status = true;
 
-        $text = $translator->trans('Team') . " (" . count($submission->getTeam())+1 . " " . $translator->trans('member(s)') . ")";
+        $text = $translator->trans("%total% member(s)", array("%total%" => $submission->getTotalTeam()));
         $item = array('text' => $text, 'status' => true);
         $revisions[] = $item;
 
