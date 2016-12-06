@@ -809,7 +809,6 @@ class CRUDController extends Controller
             return $response;
         }
 
-
         $roles = $role_repository->findAll();
         $output['roles'] = $roles;
 
