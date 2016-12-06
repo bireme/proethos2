@@ -18,8 +18,10 @@
 
 
             <form class="form-group" id='form-filter'>
+                <input type="hidden" name="output" id="input-output" value="html" />
+                
                 <div class='row'>
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                         <div class="form-group">
                             <label for="input-filter-q">{% trans %}Find protocols{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 82} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
@@ -39,6 +41,12 @@
                                 <option value="E" {% if app.request.get('status') == "E" %}selected{% endif %}>{% trans %}Waiting for Committee{% endtrans %}</option>
                                 <option value="H" {% if app.request.get('status') == "H" %}selected{% endif %}>{% trans %}Scheduled{% endtrans %}</option>
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 search-button">
+                        <div class="form-group">
+                            <button class='btn btn-warning' id="export-to-csv-button">{% trans %}Export to CSV{% endtrans %}</button>
                         </div>
                     </div>
 
@@ -84,7 +92,7 @@
                                         {% endif %}
                                     </td>
                                     <td>{{ protocol.updatedIn|date("d/m/Y") }}</td>
-                                    <td>{{ protocol.statusLabel|trans }}</td> 
+                                    <td>{{ protocol.statusLabel|trans }}</td>
                                     <td>
                                         <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See protocol{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
                                         {% if protocol.status == "S" and 'secretary' in app.user.getRolesSlug %}<a href='{{ path("protocol_analyze_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Analyze protocol{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
@@ -107,8 +115,10 @@
 {% block script %}
     <script>
         $(function(){
-
-
+            $("#export-to-csv-button").click(function(){
+                $("#input-output").val('csv');
+                $(".form").submit();
+            });
         });
     </script>
 {% endblock %}

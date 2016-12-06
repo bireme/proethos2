@@ -258,6 +258,40 @@ class CRUDController extends Controller
         $protocols = $query->getQuery()->getResult();
         $output['protocols'] = $protocols;
 
+        // output parameter
+        $output_parameter = $request->query->get('output');
+        if($output_parameter == 'csv') {
+            $csv_headers = array('ID', 'CODE', 'OWNER', 'STATUS', 'PUBLIC TITLE', 'TYPE', 'RECRUITMENT INIT DATE',
+                'REJECT REASON', 'COMMITTEE SCREENING', 'OPINIONS REQUIRED', 'DATE INFORMED', 'UPDATED IN', 'REVISED IN',
+                'DECISION IN', 'MEETING', 'MONITORING ACTION', 'NEXT DATE OF MONITORING ACTION');
+            $csv_output = array();
+            foreach($protocols as $protocol) {
+                $current_line = array();
+                $current_line[] = $protocol->getId();
+                $current_line[] = $protocol->getCode();
+                $current_line[] = $protocol->getOwner()->getUsername();
+                $current_line[] = $protocol->getStatusLabel();
+                $current_line[] = $protocol->getMainSubmission()->getPublicTitle();
+                $current_line[] = $protocol->getMainSubmission()->getIsClinicalTrial() ? "Clinical Trial" : "Research";
+                $current_line[] = $protocol->getMainSubmission()->getRecruitmentInitDate()->format("Y-m-d H:i");
+                $current_line[] = $protocol->getRejectReason();
+                $current_line[] = $protocol->getCommitteeScreening();
+                $current_line[] = $protocol->getOpinionRequired();
+                $current_line[] = $protocol->getDateInformed() ? $protocol->getDateInformed()->format("Y-m-d H:i") : "";
+                $current_line[] = $protocol->getUpdatedIn() ? $protocol->getUpdatedIn()->format("Y-m-d H:i") : "";
+                $current_line[] = $protocol->getRevisedIn() ? $protocol->getRevisedIn()->format("Y-m-d H:i") : "";
+                $current_line[] = $protocol->getDecisionIn() ? $protocol->getDecisionIn()->format("Y-m-d H:i") : "";
+                $current_line[] = $protocol->getMeeting() ? $protocol->getMeeting()->getSubject() : "";
+                $current_line[] = $protocol->getMonitoringAction() ? $protocol->getMonitoringAction()->getName() : "";
+                $current_line[] = $protocol->getMonitoringActionNextDate() ? $protocol->getMonitoringActionNextDate()->format("Y-m-d H:i") : "";
+                $csv_output[] = $current_line;
+            }
+
+            $response = new CSVResponse( $csv_output, 200, $csv_headers );
+            $response->setFilename( "proethos2-protocols.csv" );
+            return $response;
+        }
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
