@@ -405,6 +405,15 @@ class CRUDControllerTest extends WebTestCase
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
 
+    public function testListCommitteeUserExportToCSV()
+    {
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_user_list', array(), false);
+
+        $client->request('GET', $route . "?output=csv");
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
     public function testUpdateCommitteeUserGET()
     {
         // getting last id
