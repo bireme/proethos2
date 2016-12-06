@@ -126,6 +126,8 @@ $ make load_initial
 
 ```
 
+__TIP:__ See all the [Make commands](../continuous-integration.md), that certainly will help you.
+
 If you want to test the instalation, run this command:
 
 ```

@@ -1039,8 +1039,10 @@ class NewSubmissionController extends Controller
 
                     } catch(\RuntimeException $e) {
 
-                        $session->getFlashBag()->add('error', $translator->trans('Problems generating PDF. Please contact the administrator.'));
-                        return $output;
+                        if($post_data['extra'] != 'no-pdf') {
+                            $session->getFlashBag()->add('error', $translator->trans('Problems generating PDF. Please contact the administrator.'));
+                            return $output;
+                        }
                     }
 
                     // updating protocol and setting status

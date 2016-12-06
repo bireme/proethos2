@@ -9,6 +9,15 @@ git_pull:
 test:
 	cd app && $(php) /usr/bin/phpunit --stop-on-failure
 
+test_ci:
+	cd app && phpunit --stop-on-failure
+
+setup_ci:
+	composer global remove "phpunit/phpunit" --update-with-dependencies
+	composer global require "phpunit/phpunit=4.8.2"
+	composer install --no-interaction
+	make load_initial
+
 load_initial: database_update
 	$(php) app/console proethos2:load-database-initial-data
 

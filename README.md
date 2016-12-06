@@ -1,3 +1,5 @@
+![Build](https://codeship.com/projects/e61c3520-93d1-0134-acbe-426698f4d6ff/status?branch=master)
+
 Welcome to Proethos2 repository!
 ================================
 
@@ -13,3 +15,4 @@ Links
 * [Project License](LICENSE.txt)
 * [How to install](doc/how-to/how-to-install-proethos2-in-ubuntu.md)
 * [Development Guide](doc/README.md)
+* [About Continuous Integration](doc/continuous-integration.md)
