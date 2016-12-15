@@ -211,7 +211,7 @@ For more informations about this theme, access http://symfony.com/doc/2.7/email.
 Adding routines to crontab
 --------------------------
 
-See the page [How to add routines in crontab](how-to/how-to-add-routines-in-crontab.md).
+See the page [How to add routines in crontab](how-to-add-routines-in-crontab.md).
 
 
 Other configurations and customizations
