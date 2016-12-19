@@ -89,8 +89,6 @@ class SendMonitoringActionEmailCommand extends ContainerAwareCommand
             }
         }
 
-        var_dump(array_keys($protocols_to_send));
-
         foreach($protocols_to_send as $protocol) {
 
             $date = $protocol->getMonitoringActionNextDate()->format("d/m/Y");
