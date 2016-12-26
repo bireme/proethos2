@@ -54,7 +54,7 @@
                                 <th width="">{% trans %}Username{% endtrans %}</th>
                                 <th width="">{% trans %}Email{% endtrans %}</th>
                                 <th width="">{% trans %}Country{% endtrans %}</th>
-                                <th width="">{% trans %}Institution{% endtrans %}</th>
+                                <!-- <th width="">{% trans %}Institution{% endtrans %}</th> -->
                                 <th width="">{% trans %}Roles{% endtrans %}</th>
                                 <th width="">{% trans %}Status{% endtrans %}</th>
                                 <th>{% trans %}Actions{% endtrans %}</th>
@@ -68,7 +68,7 @@
                                     <td>{{ user.username }}</td>
                                     <td>{{ user.email }}</td>
                                     <td>{{ user.country }}</td>
-                                    <td>{{ user.institution }}</td>
+                                    <!-- <td>{{ user.institution }}</td> -->
                                     <td>
                                         {% for role in user.proethos2Roles %}
                                             <span class='label label-default' data-toggle='tooltip' data-placement='top' title='{{ role.name }}'>{{ role.slug|first|upper }}</span>
