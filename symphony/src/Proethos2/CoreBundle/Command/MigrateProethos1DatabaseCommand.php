@@ -24,10 +24,14 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Proethos2\ModelBundle\Entity\User;
+use Proethos2\ModelBundle\Entity\Meeting;
 
 
 class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
 {
+    var $user_relations = array();
+    var $meeting_relations = array();
+
     protected function configure()
     {
         $this
@@ -38,29 +42,13 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        $container = $this->getContainer();
-        $doctrine = $container->get('doctrine');
-        $translator = $container->get('translator');
-        $em = $doctrine->getManager();
+    public function migrate_users($input, $output) {
 
-        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
-        $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
-        $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
+        $user_repository = $this->em->getRepository('Proethos2ModelBundle:User');
+        $role_repository = $this->em->getRepository('Proethos2ModelBundle:Role');
+        $country_repository = $this->em->getRepository('Proethos2ModelBundle:Country');
 
-        $database_host = $this->getContainer()->getParameter('database_host');
-        $database_port = $this->getContainer()->getParameter('database_port');
-        $database_name = $input->getArgument('database');
-        $database_user = $this->getContainer()->getParameter('database_user');
-        $database_password = $this->getContainer()->getParameter('database_password');
-        $default_country = -$input->getArgument('default_country');
-
-        $mysql_connect = mysql_connect($database_host, $database_user, $database_password);
-        $mysql_database = mysql_select_db($database_name, $mysql_connect);
-        if (!$mysql_database) {
-            die ('Can\'t use foo : ' . mysql_error());
-        }
+        $mysql_connect = $this->connect_database($input);
 
         $LIST_ROLES = array(
             'RES' => 1,
@@ -72,7 +60,8 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
 
         // Migration usernames
         $query = "SELECT
-                 us_email as email
+                id_us as id
+                ,us_email as email
                 ,us_senha as password
                 ,us_nome as name
                 ,us_instituition as institution
@@ -82,7 +71,6 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 us_perfil <> ''
                 AND us_ativo > 0
         ";
-
 
         $result = mysql_query($query);
         if (!$result) {
@@ -95,8 +83,9 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
         while($row = mysql_fetch_assoc($result)) {
 
             // if the user already exists, skip the row
-            $user = $user_repository->findBy(array('username' => $row['email']));
+            $user = $user_repository->findOneBy(array('username' => $row['email']));
             if($user) {
+                $this->user_relations[$row['id']] = $user->getId();
                 $output->writeln('<info>User '. $row['email'] .' already exists. Skipping...</info>');
                 continue;
             }
@@ -106,19 +95,19 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
             $user->setEmail($row['email']);
             $user->setUsername($row['email']);
             $user->setName(utf8_encode($row['name']));
-            $user->setCountry($country_repository->findOneBy(array('code' => $default_country )));
+            $user->setCountry($country_repository->findOneBy(array('code' => $this->default_country )));
             $user->setInstitution(utf8_encode($row['institution']));
             $user->setIsActive(true);
             $user->setFirstAccess(false);
 
-            $encoderFactory = $container->get('security.encoder_factory');
+            $encoderFactory = $this->container->get('security.encoder_factory');
             $encoder = $encoderFactory->getEncoder($user);
             $salt = $user->getSalt();
             $password = $encoder->encodePassword($row['password'], $salt);
             $user->setPassword($password);
 
-            $em->persist($user);
-            $em->flush();
+            $this->em->persist($user);
+            $this->em->flush();
 
             $roles = explode("#", $row['proethos2_roles']);
             $added_roles = array();
@@ -132,13 +121,93 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                     }
                 }
             }
-            $em->persist($user);
-            $em->flush();
+            $this->em->persist($user);
+            $this->em->flush();
 
+            $this->user_relations[$row['id']] = $user->getId();
             $output->writeln('<info>User '. $user->getUsername() .' have been inserted.</info>');
             $count += 1;
         }
 
         $output->writeln('<info>Added '. $count .' users in system.</info>');
+    }
+
+    public function migrate_meetings($input, $output) {
+
+        $meeting_repository = $this->em->getRepository('Proethos2ModelBundle:Meeting');
+
+        $mysql_connect = $this->connect_database($input);
+
+        $query = "SELECT
+                id_cal as id
+                ,cal_date as date
+                ,cal_description as subject
+                ,cal_description as content
+            FROM calender
+            WHERE
+                cal_ativo > 0
+        ";
+
+        $result = mysql_query($query);
+        if (!$result) {
+            $message  = 'Invalid query: ' . mysql_error() . "\n";
+            $message .= 'Whole query: ' . $query;
+            die($message);
+        }
+
+        $count = 0;
+        while($row = mysql_fetch_assoc($result)) {
+
+            $date = \DateTime::createFromFormat('Ymd', $row['date']);
+
+            // if the user already exists, skip the row
+            $meeting = $meeting_repository->findOneBy(array('date' => $date, 'subject' => utf8_encode(utf8_encode($row['subject']))));
+            if($meeting) {
+                $this->meeting_relations[$row['id']] = $meeting->getId();
+                $output->writeln('<info>Meeting '. $row['subject'] .' already exists. Skipping...</info>');
+                continue;
+            }
+
+            $meeting = new Meeting();
+            $meeting->setDate($date);
+            $meeting->setSubject(utf8_encode($row['subject']));
+            $meeting->setContent(utf8_encode($row['content']));
+
+            $this->em->persist($meeting);
+            $this->em->flush();
+
+            $this->meeting_relations[$row['id']] = $meeting->getId();
+            $output->writeln('<info>Meeting '. $row['subject'] .' have been inserted.</info>');
+            $count += 1;
+        }
+
+        $output->writeln('<info>Added '. $count .' meeting in system.</info>');
+    }
+
+    public function connect_database($input) {
+        $database_host = $this->getContainer()->getParameter('database_host');
+        $database_port = $this->getContainer()->getParameter('database_port');
+        $database_name = $input->getArgument('database');
+        $database_user = $this->getContainer()->getParameter('database_user');
+        $database_password = $this->getContainer()->getParameter('database_password');
+
+        $this->default_country = -$input->getArgument('default_country');
+
+        $mysql_connect = mysql_connect($database_host, $database_user, $database_password);
+        $mysql_database = mysql_select_db($database_name, $mysql_connect);
+        if (!$mysql_database) {
+            die ('Can\'t use foo : ' . mysql_error());
+        }
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $this->container = $this->getContainer();
+        $this->doctrine = $this->container->get('doctrine');
+        $translator = $this->container->get('translator');
+        $this->em = $this->doctrine->getManager();
+
+        $users = $this->migrate_users($input, $output);
+        $users = $this->migrate_meetings($input, $output);
     }
 }
