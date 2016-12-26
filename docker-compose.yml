@@ -1,15 +1,25 @@
 version: '2'
+
+volumes:
+    proethos2_database_data: {}
+
 services:
-    db:
+    proethos2_db:
+        container_name: proethos2_db
+        restart: always
         image: mysql:5.7
         ports:
             - "3306:3306"
+        volumes:
+            - proethos2_database_data:/var/lib/postgresql/data
         environment:
             MYSQL_ROOT_PASSWORD: rootpasswd
             MYSQL_DATABASE: proethos2
             MYSQL_USER: proethos2
             MYSQL_PASSWORD: proethos2
     php:
+        container_name: proethos2_database
+        restart: always
         build: ./docker/php
         ports:
             - "8000:8000"
@@ -17,5 +27,5 @@ services:
             - ./symphony:/var/www/symfony
             - ./symphony/app/logs/:/var/www/symfony/app/logs
         links:
-            - db
+            - proethos2_db:db
         command: bash /runserver.sh
