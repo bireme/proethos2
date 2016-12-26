@@ -5840,6 +5840,7 @@ INSERT INTO `calender` (`id_cal`, `cal_date`, `cal_time`, `cal_cod`, `cal_descri
 INSERT INTO `calender` (`id_cal`, `cal_date`, `cal_time`, `cal_cod`, `cal_description`, `cal_ativo`, `cal_public`) VALUES (60,20161110,'9:30','001','ReuniÃ³n extraordinaria',1,'0');
 INSERT INTO `calender` (`id_cal`, `cal_date`, `cal_time`, `cal_cod`, `cal_description`, `cal_ativo`, `cal_public`) VALUES (61,20160712,'1400','001','Reunion mensual Comite',1,'1');
 INSERT INTO `calender` (`id_cal`, `cal_date`, `cal_time`, `cal_cod`, `cal_description`, `cal_ativo`, `cal_public`) VALUES (62,20161507,'1400','001','Monthly committee meeting',1,'1');
+INSERT INTO `calender` (`id_cal`, `cal_date`, `cal_time`, `cal_cod`, `cal_description`, `cal_ativo`, `cal_public`) VALUES (63,20161025,'1400','004','Reunion extraordinaria del comite',1,'1');
 INSERT INTO `calender_type` (`id_calt`, `calt_codigo`, `calt_descricao`, `calt_ativo`, `calt_color`) VALUES (1,'001','ReuniÃ³n del comitÃ©',1,'#9EB5CA');
 INSERT INTO `calender_type` (`id_calt`, `calt_codigo`, `calt_descricao`, `calt_ativo`, `calt_color`) VALUES (2,'002','Fecha lÃ­mite para presentar decisiÃ³n',1,'#C0C0C0');
 INSERT INTO `calender_type` (`id_calt`, `calt_codigo`, `calt_descricao`, `calt_ativo`, `calt_color`) VALUES (3,'003','Taller de entrenamiento',1,'#909090');
