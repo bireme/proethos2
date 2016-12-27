@@ -448,13 +448,12 @@ class ProtocolController extends Controller
                     ->setFrom($util->getConfiguration('committee.email'))
                     ->setTo($investigator->getEmail())
                     ->setBody(
-                        $translator->trans("Hello!") .
+                        $translator->trans("Dear investigator,") .
                         "<br>" .
-                        "<br>" . $translator->trans("Your protocol was sent to review. Access the link below") . ":" .
+                        "<br>" . $translator->trans("Your protocol has been accepted for ethics review.") .
+                        "<br>" . $translator->trans("The committee will now meet to review your protocol, and an official decision will be sent to you shortly.") .
                         "<br>" .
-                        "<br>$url" .
-                        "<br>" .
-                        "<br>". $translator->trans("Regards") . "," .
+                        "<br>". $translator->trans("Thank you") . "," .
                         "<br>" . $translator->trans("Proethos2 Team")
                         ,
                         'text/html'
