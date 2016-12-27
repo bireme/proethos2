@@ -253,7 +253,7 @@ class NewSubmissionController extends Controller
             $em->flush();
 
             // if is a post to set a new owner, returns to the same page
-            if(isset($post_data['team-new-owner'])) {
+            if($post_data['stay_on_the_same_page'] == 'true') {
                 return $this->redirectToRoute('submission_new_second_step', array('submission_id' => $submission->getId()), 301);
             }
 
