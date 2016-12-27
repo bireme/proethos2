@@ -261,14 +261,14 @@ class CRUDController extends Controller
         // output parameter
         $output_parameter = $request->query->get('output');
         if($output_parameter == 'csv') {
-            $csv_headers = array('ID', 'CODE', 'OWNER', 'STATUS', 'PUBLIC TITLE', 'TYPE', 'RECRUITMENT INIT DATE',
+            $csv_headers = array('CODE', 'ID', 'OWNER', 'STATUS', 'PUBLIC TITLE', 'TYPE', 'RECRUITMENT INIT DATE',
                 'REJECT REASON', 'COMMITTEE SCREENING', 'OPINIONS REQUIRED', 'DATE INFORMED', 'UPDATED IN', 'REVISED IN',
                 'DECISION IN', 'MEETING', 'MONITORING ACTION', 'NEXT DATE OF MONITORING ACTION');
             $csv_output = array();
             foreach($protocols as $protocol) {
                 $current_line = array();
-                $current_line[] = $protocol->getId();
                 $current_line[] = $protocol->getCode();
+                $current_line[] = $protocol->getId();
                 $current_line[] = $protocol->getOwner()->getUsername();
                 $current_line[] = $protocol->getStatusLabel();
                 $current_line[] = $protocol->getMainSubmission()->getPublicTitle();
