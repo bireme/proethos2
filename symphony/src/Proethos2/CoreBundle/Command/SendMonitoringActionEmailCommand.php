@@ -39,12 +39,6 @@ class SendMonitoringActionEmailCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        // $em = $this->getContainer()->get('doctrine')->getManager();
-        // $util = new Util($this->container, $this->getDoctrine());
-        // $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
-        // $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
-
-
         $container = $this->getContainer();
         $doctrine = $container->get('doctrine');
         $translator = $container->get('translator');
@@ -63,8 +57,10 @@ class SendMonitoringActionEmailCommand extends ContainerAwareCommand
 
         // next 30 days
         $protocols = $protocol_repository->createQueryBuilder('p')
-            ->where('p.monitoring_action_next_date = :date')
-            ->setParameter('date', $next_30_days->format("Y-m-d"))
+            ->andWhere('p.monitoring_action_next_date > :date_start')
+            ->andWhere('p.monitoring_action_next_date < :date_end')
+            ->setParameter('date_start', $next_30_days->format('Y-m-d 00:00:00'))
+            ->setParameter('date_end', $next_30_days->format('Y-m-d 23:59:59'))
             ->getQuery()
             ->getResult();
 
@@ -75,10 +71,12 @@ class SendMonitoringActionEmailCommand extends ContainerAwareCommand
             }
         }
 
-        // next 7 days
+        // next 30 days
         $protocols = $protocol_repository->createQueryBuilder('p')
-            ->where('p.monitoring_action_next_date = :date')
-            ->setParameter('date', $next_7_days->format("Y-m-d"))
+            ->andWhere('p.monitoring_action_next_date > :date_start')
+            ->andWhere('p.monitoring_action_next_date < :date_end')
+            ->setParameter('date_start', $next_7_days->format('Y-m-d 00:00:00'))
+            ->setParameter('date_end', $next_7_days->format('Y-m-d 23:59:59'))
             ->getQuery()
             ->getResult();
 
