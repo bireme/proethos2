@@ -197,19 +197,8 @@ class NewSubmissionController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
-
             // getting post data
             $post_data = $request->request->all();
-
-
-            // checking required files
-            $required_fields = array('abstract', 'keywords', 'introduction', 'justify', 'goals');
-            foreach($required_fields as $field) {
-                if(!isset($post_data[$field]) or empty($post_data[$field])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
-                    return $output;
-                }
-            }
 
             // removing all team to readd
             foreach($submission->getTeam() as $team_user) {
@@ -241,6 +230,22 @@ class NewSubmissionController extends Controller
                 }
             }
 
+            // if is a post to set a new owner, returns to the same page
+            if(isset($post_data['stay_on_the_same_page']) and $post_data['stay_on_the_same_page'] == 'true') {
+                $em->persist($submission);
+                $em->flush();
+                return $this->redirectToRoute('submission_new_second_step', array('submission_id' => $submission->getId()), 301);
+            }
+
+            // checking required files
+            $required_fields = array('abstract', 'keywords', 'introduction', 'justify', 'goals');
+            foreach($required_fields as $field) {
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
+                    return $output;
+                }
+            }
+
             // adding fields to model
             $submission->setAbstract($post_data['abstract']);
             $submission->setKeywords($post_data['keywords']);
@@ -248,14 +253,8 @@ class NewSubmissionController extends Controller
             $submission->setJustification($post_data['justify']);
             $submission->setGoals($post_data['goals']);
 
-            $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
             $em->flush();
-
-            // if is a post to set a new owner, returns to the same page
-            if(isset($post_data['stay_on_the_same_page']) and $post_data['stay_on_the_same_page'] == 'true') {
-                return $this->redirectToRoute('submission_new_second_step', array('submission_id' => $submission->getId()), 301);
-            }
 
             $session->getFlashBag()->add('success', $translator->trans("Second step saved with sucess."));
             return $this->redirectToRoute('submission_new_third_step', array('submission_id' => $submission->getId()), 301);
