@@ -1,15 +1,15 @@
 <?php
 
-// This file is part of the ProEthos Software. 
-// 
+// This file is part of the ProEthos Software.
+//
 // Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
 // ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
+// restricts commercial use of the Software.
+//
 // ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
+// PARTICULAR PURPOSE. See the ProEthos License for more details.
+//
 // You should have received a copy of the ProEthos License along with the ProEthos
 // Software. If not, see
 // https://github.com/bireme/proethos2/blob/master/LICENSE.txt
@@ -39,51 +39,58 @@ class Protocol extends Base
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $migrated_id;
+
+    /**
      * @ORM\Column(type="string", length=20, nullable=true)
-     * @Assert\NotBlank 
+     * @Assert\NotBlank
      */
     private $code;
 
-    /** 
+    /**
      * @var User
-     * 
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="users") 
-     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false, onDelete="CASCADE") 
-     * @Assert\NotBlank 
-     */ 
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="users")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     * @Assert\NotBlank
+     */
     private $owner;
 
-    /** 
-     * @var ArrayCollection 
-     * 
-     * @ORM\OneToMany(targetEntity="Submission", mappedBy="protocol", cascade={"remove"}) 
-     */ 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Submission", mappedBy="protocol", cascade={"remove"})
+     */
     private $submission;
 
-    /** 
-     * @var ArrayCollection 
-     * 
-     * @ORM\OneToMany(targetEntity="ProtocolHistory", mappedBy="protocol", cascade={"remove"}) 
-     */ 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ProtocolHistory", mappedBy="protocol", cascade={"remove"})
+     */
     private $history;
 
-    /** 
-     * @var ArrayCollection 
-     * 
-     * @ORM\OneToMany(targetEntity="ProtocolComment", mappedBy="protocol", cascade={"remove"}) 
-     */ 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ProtocolComment", mappedBy="protocol", cascade={"remove"})
+     */
     private $comment;
 
     /**
      * @ORM\Column(type="string", length=1)
-     * @Assert\NotBlank 
+     * @Assert\NotBlank
      */
     private $status;
 
-    /** 
-     * @ORM\ManyToOne(targetEntity="Submission") 
-     * @ORM\JoinColumn(name="main_submission_id", referencedColumnName="id", nullable=true, onDelete="SET NULL") 
-     */ 
+    /**
+     * @ORM\ManyToOne(targetEntity="Submission")
+     * @ORM\JoinColumn(name="main_submission_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
     private $main_submission;
 
     /**
@@ -107,63 +114,63 @@ class Protocol extends Base
      */
     private $opinion_required = 0;
 
-    /** 
-     * @ORM\Column(name="date_informed", type="datetime", nullable=true) 
-     */ 
+    /**
+     * @ORM\Column(name="date_informed", type="datetime", nullable=true)
+     */
     private $date_informed;
 
-    /** 
-     * @ORM\Column(name="updated_in", type="datetime", nullable=true) 
-     */ 
+    /**
+     * @ORM\Column(name="updated_in", type="datetime", nullable=true)
+     */
     private $updated_in;
 
-    /** 
-     * @ORM\Column(type="datetime", nullable=true) 
-     */ 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
     private $revised_in;
 
-    /** 
-     * @ORM\Column(type="datetime", nullable=true) 
-     */ 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
     private $decision_in;
 
-    /** 
+    /**
      * @var ProtocolRevision
      *
-     * @ORM\OneToMany(targetEntity="ProtocolRevision", mappedBy="protocol", cascade={"remove"}) 
-     */ 
+     * @ORM\OneToMany(targetEntity="ProtocolRevision", mappedBy="protocol", cascade={"remove"})
+     */
     private $revision;
 
-    /** 
-     * @ORM\ManyToOne(targetEntity="Meeting", inversedBy="protocols") 
-     * @ORM\JoinColumn(name="meeting_id", referencedColumnName="id", nullable=true, onDelete="SET NULL") 
-     */ 
+    /**
+     * @ORM\ManyToOne(targetEntity="Meeting", inversedBy="protocols")
+     * @ORM\JoinColumn(name="meeting_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
     private $meeting;
 
-    /** 
+    /**
      * @var MonitoringAction
-     * 
-     * @ORM\ManyToOne(targetEntity="MonitoringAction", inversedBy="protocols") 
-     * @ORM\JoinColumn(name="monitoring_action_id", referencedColumnName="id", onDelete="SET NULL") 
-     * @Assert\NotBlank 
-     */ 
+     *
+     * @ORM\ManyToOne(targetEntity="MonitoringAction", inversedBy="protocols")
+     * @ORM\JoinColumn(name="monitoring_action_id", referencedColumnName="id", onDelete="SET NULL")
+     * @Assert\NotBlank
+     */
     private $monitoring_action;
 
-    /** 
-     * @ORM\Column(type="datetime", nullable=true) 
-     */ 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
     private $monitoring_action_next_date;
 
-    /** 
-     * Constructor 
-     */ 
-    public function __construct() 
-    { 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
          parent::__construct();
-    
-        $this->submission = new ArrayCollection(); 
+
+        $this->submission = new ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
@@ -208,14 +215,14 @@ class Protocol extends Base
         return $this->submission;
     }
 
-    /** 
-     * @return string 
-     */ 
-    public function __toString() 
-    {   
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
         if($this->getCode()) {
 
-            return (string) $this->getCode(); 
+            return (string) $this->getCode();
         }
         return (string) $this->getId();
     }
@@ -684,5 +691,29 @@ class Protocol extends Base
     public function getMonitoringActionNextDate()
     {
         return $this->monitoring_action_next_date;
+    }
+
+    /**
+     * Set migratedId
+     *
+     * @param integer $migratedId
+     *
+     * @return Protocol
+     */
+    public function setMigratedId($migratedId)
+    {
+        $this->migrated_id = $migratedId;
+
+        return $this;
+    }
+
+    /**
+     * Get migratedId
+     *
+     * @return integer
+     */
+    public function getMigratedId()
+    {
+        return $this->migrated_id;
     }
 }
