@@ -65,7 +65,7 @@ class Submission extends Base
     /**
      * @var string
      *
-     * @ORM\Column(name="public_title", type="string", length=255)
+     * @ORM\Column(name="public_title", type="string", length=510)
      * @Assert\NotBlank
      */
     private $publicTitle;
@@ -73,7 +73,7 @@ class Submission extends Base
     /**
      * @var string
      *
-     * @ORM\Column(name="scientific_title", type="string", length=255)
+     * @ORM\Column(name="scientific_title", type="string", length=510)
      * @Assert\NotBlank
      */
     private $scientificTitle;
