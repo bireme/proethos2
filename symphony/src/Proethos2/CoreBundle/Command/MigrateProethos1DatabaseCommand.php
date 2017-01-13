@@ -30,6 +30,9 @@ use Proethos2\ModelBundle\Entity\Submission;
 use Proethos2\ModelBundle\Entity\SubmissionCost;
 use Proethos2\ModelBundle\Entity\SubmissionCountry;
 use Proethos2\ModelBundle\Entity\SubmissionTask;
+use Proethos2\ModelBundle\Entity\SubmissionUpload;
+use Proethos2\ModelBundle\Entity\ProtocolComment;
+use Proethos2\ModelBundle\Entity\ProtocolHistory;
 
 
 class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
@@ -52,9 +55,9 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
         $user_repository = $this->em->getRepository('Proethos2ModelBundle:User');
         $role_repository = $this->em->getRepository('Proethos2ModelBundle:Role');
         $country_repository = $this->em->getRepository('Proethos2ModelBundle:Country');
-
         $mysql_connect = $this->connect_database($input);
 
+        // mapping of roles from proethos1 => proethos2
         $LIST_ROLES = array(
             'RES' => 1,
             'SCR' => 2,
@@ -74,6 +77,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
             FROM usuario
         ";
 
+        // making the query
         $result = mysql_query($query);
         if (!$result) {
             $message  = 'Invalid query: ' . mysql_error() . "\n";
@@ -84,6 +88,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
         $count = 0;
         while($row = mysql_fetch_assoc($result)) {
 
+            // making username from first part of email
             $email = explode(" ", $row['email']);
             $email = $email[0];
             $username = explode("@", $email);
@@ -102,20 +107,23 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
             $user->setEmail($email);
             $user->setUsername($username);
             $user->setName($row['name']);
-            $user->setCountry($country_repository->findOneBy(array('code' => $this->default_country )));
+            $user->setCountry($country_repository->findOneBy(array('code' => $this->default_country ))); // sets the default country
             $user->setInstitution($row['institution']);
             $user->setIsActive(true);
             $user->setFirstAccess(false);
 
+            // generate the password salt from old password. In practical, the passwords won't change.
             $encoderFactory = $this->container->get('security.encoder_factory');
             $encoder = $encoderFactory->getEncoder($user);
             $salt = $user->getSalt();
             $password = $encoder->encodePassword($row['password'], $salt);
             $user->setPassword($password);
 
+            // save the user on proethos2
             $this->em->persist($user);
             $this->em->flush();
 
+            // adding roles to this user
             $roles = explode("#", $row['proethos2_roles']);
             $added_roles = array();
             foreach($roles as $role) {
@@ -142,9 +150,9 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
     public function migrate_meetings($input, $output) {
 
         $meeting_repository = $this->em->getRepository('Proethos2ModelBundle:Meeting');
-
         $mysql_connect = $this->connect_database($input);
 
+        // Meetings query
         $query = "SELECT
                 id_cal as id
                 ,cal_date as date
@@ -155,6 +163,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 cal_ativo > 0
         ";
 
+        // making the query
         $result = mysql_query($query);
         if (!$result) {
             $message  = 'Invalid query: ' . mysql_error() . "\n";
@@ -165,9 +174,10 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
         $count = 0;
         while($row = mysql_fetch_assoc($result)) {
 
+            // creating date of this meeting
             $date = \DateTime::createFromFormat('Ymd', $row['date']);
 
-            // if the user already exists, skip the row
+            // if the meeting already exists, skip the row
             $meeting = $meeting_repository->findOneBy(array('date' => $date, 'subject' => $row['subject']));
             if($meeting) {
                 $this->meeting_relations[$row['id']] = $meeting->getId();
@@ -175,11 +185,13 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 continue;
             }
 
+            // setting the meeting
             $meeting = new Meeting();
             $meeting->setDate($date);
             $meeting->setSubject($row['subject']);
             $meeting->setContent($row['content']);
 
+            // saving this meeting
             $this->em->persist($meeting);
             $this->em->flush();
 
@@ -197,6 +209,31 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
         $submission_repository = $this->em->getRepository('Proethos2ModelBundle:Submission');
         $gender_repository = $this->em->getRepository('Proethos2ModelBundle:Gender');
         $recruitment_status_repository = $this->em->getRepository('Proethos2ModelBundle:RecruitmentStatus');
+        $upload_type_repository = $this->em->getRepository('Proethos2ModelBundle:UploadType');
+
+        // relations of upload types from proethos1 to proethos2
+        $UPLOAD_TYPE_RELATIONS = array(
+            'TCLE' => 'informed-consent',
+            'outhe' => 'others',
+            'PROJ' => 'protocol',
+            'DICT' => 'decision',
+            'REEAD' => 'adverse-event-report',
+            'DICTA' => 'estimation', // TODO: Verificar com tânia se "Budget" pode ser considerado como "Estimation".
+            'SEGU' => 'insurance-policy',
+        );
+
+        // relations of protocol status from proethos1 to proethos2
+        // TODO: Dúvida: usar o status do protocolo ou da submissão?
+        $PROTOCOL_STATUS_RELATIONS = array(
+            '@' => 'D',
+            'A' => 'S',
+            'B' => 'I',
+            'C' => 'I',
+            'D' => 'H',
+            '$' => 'R',
+            'X' => 'D', // TODO: neste caso ele é cancelado pelo pesquisador. Não existe essa função no novo. Como proceder? Temporariamente coloquei como draft.
+            'Z' => 'A',
+        );
 
         $mysql_connect = $this->connect_database($input);
 
@@ -207,6 +244,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 ,doc_1_titulo as scientificTitle
                 ,doc_acronym as titleAcronym
                 ,doc_clinic as is_clinical_trial
+                ,doc_status as status
             FROM cep_submit_documento
 
         ";
@@ -221,7 +259,15 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
         $count = 0;
         while($row = mysql_fetch_assoc($result)) {
 
-            // var_dump($row);
+            // if the meeting already exists, skip the row
+            $protocol = $protocol_repository->findOneBy(array('migrated_id' => $row['id']));
+            if($protocol) {
+                $output->writeln('<info>Protocol '. $protocol->getMainSubmission()->getPublicTitle() .' already migrated. Skipping...</info>');
+                continue;
+            }
+
+            $protocol = new Protocol();
+            $submission = new Submission();
 
             $owner = (int) $row['owner'];
             if(!array_key_exists($owner, $this->user_relations)) {
@@ -229,13 +275,48 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 continue;
             }
 
-            $protocol = new Protocol();
-            $submission = new Submission();
-
-            $protocol->setMainSubmission($submission);
+            // setting protocol fields
             $protocol->setOwner($this->user_relations[$owner]);
-            // $protocol->setStatus();
+            $protocol->setMigratedId($row['id']);
 
+            // trying to set status
+            if(!array_key_exists($row['status'], $PROTOCOL_STATUS_RELATIONS)) {
+                $output->writeln('<error>ERROR: Protocol "'. $row['publicTitle'] .'" skipped because status "'. $row['status'] .' "doesn\'t had been mapped.</error>');
+                continue;
+            } else {
+                $protocol->setStatus($PROTOCOL_STATUS_RELATIONS[$row['status']]);
+            }
+
+            // maaping other fields to insert in protocol
+            $sql = "SELECT
+                cep_caae as code, cep_dictamen as opinion_required, cep_data as date_informed, cep_atualizado as updated_in,
+                cep_dt_ciencia as revised_in, cep_dt_liberacao as decision_in
+            FROM cep_protocolos WHERE CAST(cep_protocol AS UNSIGNED) = ". $row['id'];
+
+            $result2 = mysql_query($sql) or die(mysql_error());
+            while($row2 = mysql_fetch_assoc($result2)) {
+                $protocol->setCode($row2['code']);
+                $protocol->setOpinionRequired($row2['opinion_required']);
+                $protocol->setDateInformed(\DateTime::createFromFormat('Ymd', $row2['date_informed']));
+                $protocol->setUpdatedIn(\DateTime::createFromFormat('Ymd', $row2['updated_in']));
+                $protocol->setRevisedIn(\DateTime::createFromFormat('Ymd', $row2['revised_in'])); // TODO: revised_in creio estar errada.
+                $protocol->setDecisionIn(\DateTime::createFromFormat('Ymd', $row2['decision_in'])); // TODO: decision_in creio estar errada.
+            }
+
+            // preventing erros from too long titles
+            if(strlen($row['publicTitle']) > 510) {
+                $output->writeln('<error>ERROR: Protocol ID "'. $row['id'] .'" skipped because title is too long.</error>');
+                continue;
+            }
+
+            print "1\n";
+            // saving this protocol
+            $this->em->persist($protocol);
+            $this->em->flush();
+
+            analisar status por exemplo do 000165
+
+            // setting submission fields
             $submission->setProtocol($protocol);
             $submission->setOwner($this->user_relations[$owner]);
             $submission->setNumber(1);
@@ -245,7 +326,6 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
             $submission->setIsClinicalTrial($row['is_clinical_trial']);
 
             $field_relations = array(
-                // TODO: Team (dúvida: o que é ct_type? C e N)
                 '00002' => 'setAbstract',
                 '00008' => 'setKeywords',
                 '00004' => 'setIntroduction',
@@ -260,7 +340,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 '00028' => 'setExclusionCriteria',
                 '00022' => 'setRecruitmentInitDate',
                 '00042' => 'setRecruitmentStatus',
-                // TODO: countries
+                // TODO: Os SubmissionCountry terão que ser inseridos a mão pela falta de relação entre os códigos dos paises
                 '00020' => 'setInterventions',
                 '00017' => 'setPrimaryOutcome',
                 '00018' => 'setSecondaryOutcome',
@@ -272,13 +352,10 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 '00040' => 'setPrimarySponsor',
                 '00041' => 'setSecondarySponsor',
                 '00024' => 'setBibliography',
-                '00056' => 'setScientificTitle',
                 '00083' => 'setPriorEthicalApproval',
-                --------------------- PAREI AQUI ---------------------
-                // TODO: uploads
             );
 
-            // text fields
+            // setting text fields on submission
             foreach($field_relations as $p1_field => $p2_method) {
                 $sql = "SELECT spc_content as value FROM cep_submit_documento_valor WHERE CAST(spc_projeto AS UNSIGNED) = ". $row['id'] ." AND spc_codigo = '". $p1_field . "'";
                 $result2 = mysql_query($sql) or die(mysql_error());
@@ -300,12 +377,42 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 // set recruitment status
                 } elseif($p1_field == '00042') {
                     $value = $recruitment_status_repository->findOneBy(array('slug' => $value));
+
+                // fixing minimum or maximum age
+                } elseif($p1_field == '00070' or $p1_field == '00071') {
+                    if(!is_numeric($value)) {
+                        $value = 0;
+                    }
+
+                // set recruitment init date
+                } elseif($p1_field == '00022') {
+
+                    // if size != means that not a valid date format
+                    if(strlen($value) != 10 or !is_numeric($value)) {
+                        continue;
+                    }
+                    print "$value\n";
+                    $value = \DateTime::createFromFormat('d/m/Y', $value);
+
+                // set prior ethical approval
+                } elseif($p1_field == '00083') {
+                    $value = false;
+                    if($value == "#YES") {
+                        $value = true;
+                    }
                 }
 
                 $submission->{$p2_method}($value);
             }
 
-            // submission cost
+            print "2\n";
+            $this->em->persist($submission);
+            $this->em->flush();
+
+            // associating submission to protocol
+            $protocol->setMainSubmission($submission);
+
+            // setting all submission costs
             $sql = "SELECT sorca_descricao as description, sorca_unid as quantity, sorca_valor as unit_cost FROM cep_submit_orca WHERE CAST(sorca_protocol AS UNSIGNED) = ". $row['id'];
             $result2 = mysql_query($sql) or die(mysql_error());
             while($row2 = mysql_fetch_assoc($result2)) {
@@ -315,10 +422,15 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 $item->setDescription($row2['description']);
                 $item->setQuantity($row2['quantity']);
                 $item->setUnitCost($row2['unit_cost']);
-                // TODO: salvar
+
+                print "3\n";
+                $this->em->persist($item);
+                $this->em->flush();
+
+                $submission->addBudget($item);
             }
 
-            // submission task
+            // setting all submission task
             $sql = "SELECT scrono_descricao as description, scrono_date_start as init, scrono_date_end as end FROM cep_submit_crono WHERE CAST(scrono_protocol AS UNSIGNED) = ". $row['id'];
             $result2 = mysql_query($sql) or die(mysql_error());
             while($row2 = mysql_fetch_assoc($result2)) {
@@ -327,8 +439,89 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 $item->setDescription($row2['description']);
                 $item->setInit(\DateTime::createFromFormat('Ym', $row2['init']));
                 $item->setEnd(\DateTime::createFromFormat('Ym', $row2['end']));
-                // TODO: salvar
+
+                print "4\n";
+                $this->em->persist($item);
+                $this->em->flush();
+
+                $submission->addSchedule($item);
             }
+
+            // setting all submission upload
+            $sql = "SELECT doc_data as date, doc_hora as time, doc_tipo as upload_type, doc_filename as filename, doc_arquivo as filepath  FROM cep_ged_documento WHERE CAST(doc_dd0 AS UNSIGNED) = ". $row['id'];
+            $result2 = mysql_query($sql) or die(mysql_error());
+            while($row2 = mysql_fetch_assoc($result2)) {
+
+                $date = \DateTime::createFromFormat('YmdH:i', $row2['date'] . $row2['time']);
+
+                $item = new SubmissionUpload();
+                $item->setCreated($date);
+                $item->setUpdated($date);
+                $item->setUser($this->user_relations[$owner]); // TODO: Informar que o owner do arquivo será sempre o owner do protocolo
+                $item->setSubmission($submission);
+                $item->setUploadType($upload_type_repository->findOneBy(array('slug' => $row2['upload_type'])));
+                $item->setMigratedFile($row2['filepath']);// TODO: Criar script depois que slugifica todos os arquivos importados, pq aqui salva slugificado
+                $item->setSubmissionNumber(1); // TODO: Não temos mapeado, então tem que cravar 1.
+
+                print "5\n";
+                $this->em->persist($item);
+                $this->em->flush();
+
+                $submission->addAttachment($item);
+            }
+
+            print "6\n";
+            $this->em->persist($submission);
+            $this->em->flush();
+
+            // TODO: Importar revisões.
+            // TODO: Descobrir quais são os campos Decisão e Sugestão, nas revisões enviadas pelos revisores.
+            // TODO: Remover os prints de debug.
+
+            // setting all submission comments
+            $sql = "SELECT cepc_data as date, cepc_hora as time, cepc_user as owner, cepc_comment as message FROM cep_comment WHERE CAST(cepc_codigo AS UNSIGNED) = ". $row['id'];
+            $result2 = mysql_query($sql) or die(mysql_error());
+            while($row2 = mysql_fetch_assoc($result2)) {
+
+                $date = \DateTime::createFromFormat('YmdH:i:s', $row2['date'] . $row2['time']);
+
+                $item = new ProtocolComment();
+                $item->setCreated($date);
+                $item->setUpdated($date);
+                $item->setMessage($row2['message']);
+                $item->setProtocol($protocol);
+
+                print "7\n";
+                $this->em->persist($item);
+                $this->em->flush();
+
+                $protocol->addComment($item);
+            }
+
+            // setting all submission histories
+            $sql = "SELECT his_data as date, his_time as time, his_comment as message  FROM cep_protocolos_historic WHERE CAST(his_protocol AS UNSIGNED) = ". $row['id'];
+            $result2 = mysql_query($sql) or die(mysql_error());
+            while($row2 = mysql_fetch_assoc($result2)) {
+
+                $date = \DateTime::createFromFormat('YmdH:i', $row2['date'] . $row2['time']);
+                $item = new ProtocolHistory();
+                $item->setCreated($date);
+                $item->setUpdated($date);
+                $item->setProtocol($protocol);
+                $item->setMessage($row2['message']);
+
+                print "8\n";
+                $this->em->persist($item);
+                $this->em->flush();
+
+                $protocol->addHistory($item);
+            }
+
+            print "9\n";
+            $this->em->persist($protocol);
+            $this->em->flush();
+
+            // TODO: pelo o que entendi, o monitoreo nada mais é que alterar os campos originais e anexar um novo PDF. Ou seja, não dá pra migrar.
 
             $output->writeln('<info>Protocol '. $submission->getPublicTitle() .' have been inserted.</info>');
             $count += 1;
