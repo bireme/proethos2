@@ -218,7 +218,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
             'PROJ' => 'protocol',
             'DICT' => 'decision',
             'REEAD' => 'adverse-event-report',
-            'DICTA' => 'estimation', // TODO: Verificar com tânia se "Budget" pode ser considerado como "Estimation".
+            'DICTA' => 'estimation',
             'SEGU' => 'insurance-policy',
         );
 
@@ -231,7 +231,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
             'C' => 'I',
             'D' => 'H',
             '$' => 'R',
-            'X' => 'D', // TODO: neste caso ele é cancelado pelo pesquisador. Não existe essa função no novo. Como proceder? Temporariamente coloquei como draft.
+            'X' => 'D', // TODO: neste caso ele é cancelado pelo pesquisador. Pular este protocolo no nomento da migração
             'Z' => 'A',
         );
 
@@ -299,8 +299,8 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 $protocol->setOpinionRequired($row2['opinion_required']);
                 $protocol->setDateInformed(\DateTime::createFromFormat('Ymd', $row2['date_informed']));
                 $protocol->setUpdatedIn(\DateTime::createFromFormat('Ymd', $row2['updated_in']));
-                $protocol->setRevisedIn(\DateTime::createFromFormat('Ymd', $row2['revised_in'])); // TODO: revised_in creio estar errada.
-                $protocol->setDecisionIn(\DateTime::createFromFormat('Ymd', $row2['decision_in'])); // TODO: decision_in creio estar errada.
+                $protocol->setRevisedIn(\DateTime::createFromFormat('Ymd', $row2['revised_in'])); // TODO: revised_in creio estar errada. Tirar dúvida com o Rene.
+                $protocol->setDecisionIn(\DateTime::createFromFormat('Ymd', $row2['decision_in'])); // TODO: decision_in creio estar errada. Tirar dúvida com o Rene.
             }
 
             // preventing erros from too long titles
@@ -314,7 +314,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
             $this->em->persist($protocol);
             $this->em->flush();
 
-            analisar status por exemplo do 000165
+            // analisar status por exemplo do 000165
 
             // setting submission fields
             $submission->setProtocol($protocol);
@@ -475,7 +475,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
             $this->em->flush();
 
             // TODO: Importar revisões.
-            // TODO: Descobrir quais são os campos Decisão e Sugestão, nas revisões enviadas pelos revisores.
+            // TODO: Descobrir quais são os campos Decisão e Sugestão, nas revisões enviadas pelos revisores. Verificar en el proethos.curso.
             // TODO: Remover os prints de debug.
 
             // setting all submission comments
