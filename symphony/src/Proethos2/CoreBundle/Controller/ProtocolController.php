@@ -886,4 +886,61 @@ class ProtocolController extends Controller
 
         return $output;
     }
+
+    /**
+     * @Route("/protocol/{protocol_id}/delete", name="protocol_delete")
+     * @Template()
+     */
+    public function deleteAction($protocol_id)
+    {
+
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
+
+        // getting the current submission
+        $protocol = $protocol_repository->find($protocol_id);
+        $submission = $protocol->getMainSubmission();
+        $output['protocol'] = $protocol;
+
+        if (!$protocol or !(in_array('administrator', $user->getRolesSlug()) or $user == $protocol->getOwner())) {
+            throw $this->createNotFoundException($translator->trans('No protocol found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            // checking required files
+            $required_fields = array('are-you-sure');
+            foreach($required_fields as $field) {
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
+                    return $output;
+                }
+            }
+
+            if($post_data['are-you-sure'] == 'yes') {
+                $em->remove($protocol);
+                $em->flush();
+
+                $session->getFlashBag()->add('success', $translator->trans("Protocol was removed with success!"));
+                if(in_array('administrator', $user->getRolesSlug())) {
+                    return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
+                }
+                return $this->redirectToRoute('crud_investigator_protocol_list', array(), 301);
+            }
+
+        }
+
+        return $output;
+    }
 }
