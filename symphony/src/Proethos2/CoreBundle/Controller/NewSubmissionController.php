@@ -1160,7 +1160,7 @@ class NewSubmissionController extends Controller
                         $session->getFlashBag()->add('success', $translator->trans("Amendment submitted with success!"));
                     } else {
 
-                        $recipients = array();
+                        $recipients = array($protocol->getMainSubmission()->getOwner()->getEmail());
                         foreach($recipients as $recipient) {
                             $message = \Swift_Message::newInstance()
                             ->setSubject("[proethos2] " . $translator->trans("Your protocol was sent to review."))
