@@ -1159,6 +1159,28 @@ class NewSubmissionController extends Controller
 
                         $session->getFlashBag()->add('success', $translator->trans("Amendment submitted with success!"));
                     } else {
+
+                        $recipients = array();
+                        foreach($recipients as $recipient) {
+                            $message = \Swift_Message::newInstance()
+                            ->setSubject("[proethos2] " . $translator->trans("Your protocol was sent to review."))
+                            ->setFrom($util->getConfiguration('committee.email'))
+                            ->setTo($recipient->getEmail())
+                            ->setBody(
+                                $translator->trans("Dear investigator") .
+                                ",<br>" .
+                                "<br>" . $translator->trans("Your protocol was sent to ethics review.") .
+                                "<br>" . $translator->trans("The committee will now meet to review your protocol, and an official decision will be sent to you shortly.") .
+                                "<br>" .
+                                "<br>". $translator->trans("Regards") . "," .
+                                "<br>" . $translator->trans("Proethos2 Team")
+                                ,
+                                'text/html'
+                            );
+
+                            $send = $this->get('mailer')->send($message);
+                        }
+
                         $session->getFlashBag()->add('success', $translator->trans("Protocol submitted with sucess!"));
                     }
 
