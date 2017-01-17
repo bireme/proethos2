@@ -94,13 +94,13 @@
                                     <td>{{ protocol.updatedIn|date("d/m/Y") }}</td>
                                     <td>{{ protocol.statusLabel|trans }}</td>
                                     <td>
+                                        {% if 'administrator' in app.user.getRolesSlug and protocol.isMigrated %}<a href='{{ path("submission_new_second_step", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-warning btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}This is a migrated protocol. You can edit some informations.{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
                                         <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See protocol{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
                                         {% if protocol.status == "S" and 'secretary' in app.user.getRolesSlug %}<a href='{{ path("protocol_analyze_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Analyze protocol{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
                                         {% if protocol.status == "I" and 'secretary' in app.user.getRolesSlug %}<a href='{{ path("protocol_initial_committee_screening", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Initial Committee Screening{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
                                         {% if protocol.status == "E" and 'secretary' in app.user.getRolesSlug %}<a href='{{ path("protocol_initial_committee_review", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Initial Committee Review{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
                                         {% if protocol.status == "H" and 'secretary' in app.user.getRolesSlug %}<a href='{{ path("protocol_end_review", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}End protocol review{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
                                         {% if protocol.status == "E" and app.user in protocol.revisionUsers %}<a href='{{ path("protocol_initial_committee_review_revisor", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Send protocol revision{% endtrans %}"><i class='glyphicon glyphicon-list-alt'></i></a>{% endif %}
-
                                     </td>
                                 </tr>
                             {% endfor %}

@@ -1472,4 +1472,18 @@ class Submission extends Base
     {
         return $this->number;
     }
+
+    /**
+     * can be edited?
+     *
+     * @return boolean
+     */
+    public function getCanBeEdited()
+    {
+        if($this->getProtocol()->getStatus() == "D" or $this->getProtocol()->getStatus() == "R") {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

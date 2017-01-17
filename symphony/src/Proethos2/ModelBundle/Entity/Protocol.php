@@ -716,4 +716,17 @@ class Protocol extends Base
     {
         return $this->migrated_id;
     }
+
+    /**
+     * isMigrated?
+     *
+     * @return boolean
+     */
+    public function getIsMigrated()
+    {
+        if(!empty($this->getMigratedId())) {
+            return true;
+        }
+        return false;
+    }
 }
