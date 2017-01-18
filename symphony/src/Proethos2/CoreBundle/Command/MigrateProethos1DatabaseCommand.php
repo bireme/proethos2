@@ -33,6 +33,7 @@ use Proethos2\ModelBundle\Entity\SubmissionTask;
 use Proethos2\ModelBundle\Entity\SubmissionUpload;
 use Proethos2\ModelBundle\Entity\ProtocolComment;
 use Proethos2\ModelBundle\Entity\ProtocolHistory;
+use Proethos2\ModelBundle\Entity\ProtocolRevision;
 
 
 class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
@@ -226,13 +227,20 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
         // TODO: Dúvida: usar o status do protocolo ou da submissão?
         $PROTOCOL_STATUS_RELATIONS = array(
             '@' => 'D',
+            // 'A' => 'S',
+            // 'B' => 'I',
+            // 'C' => 'I',
+            // 'D' => 'H',
+            // '$' => 'R',
+            // 'X' => 'D', // TODO: neste caso ele é cancelado pelo pesquisador. Pular este protocolo no nomento da migração
+            // 'Z' => 'A',
             'A' => 'S',
-            'B' => 'I',
-            'C' => 'I',
-            'D' => 'H',
-            '$' => 'R',
-            'X' => 'D', // TODO: neste caso ele é cancelado pelo pesquisador. Pular este protocolo no nomento da migração
-            'Z' => 'A',
+            'B' => 'S',
+            'C' => 'S',
+            'D' => 'S',
+            '$' => 'S',
+            'X' => 'S', // TODO: neste caso ele é cancelado pelo pesquisador. Pular este protocolo no nomento da migração
+            'Z' => 'S',
         );
 
         $mysql_connect = $this->connect_database($input);
@@ -475,6 +483,40 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
             $this->em->flush();
 
             // TODO: Importar revisões.
+            // setting all submission comments
+            $sql = "SELECT pp_avaliador as member, pp_data as date, pp_hora as time, pp_abe_01 as social_value,
+                pp_abe_02 as sscientific_validity, pp_abe_03 as fair_participant_selection, pp_abe_04 as favorable_balance,
+                pp_abe_05 as informed_consent, pp_abe_06 as respect_for_participants, pp_abe_07 as other_comments FROM cep_dictamen WHERE CAST(pp_protocolo AS UNSIGNED) = ". $row['id'];
+            $result2 = mysql_query($sql) or die(mysql_error());
+            while($row2 = mysql_fetch_assoc($result2)) {
+
+                $item = new ProtocolRevision();
+                $date = \DateTime::createFromFormat('YmdH:i:s', $row2['date'] . $row2['time']);
+                if($date) {
+                    $item->setCreated($date);
+                    $item->setUpdated($date);
+                }
+
+                $item->setProtocol($protocol);
+                $item->setMember($this->user_relations[(int)$row2['member']]);
+                $item->setSocialValue($row2['social_value']);
+                $item->setSscientificValidity($row2['sscientific_validity']);
+                $item->setFairParticipantSelection($row2['fair_participant_selection']);
+                $item->setFavorableBalance($row2['favorable_balance']);
+                $item->setInformedConsent($row2['informed_consent']);
+                $item->setRespectForParticipants($row2['respect_for_participants']);
+                $item->setOtherComments($row2['other_comments']);
+
+                // TODO: Achar forma de preencher answer
+                // TODO: Preencher final decision
+                //
+                print "7.5\n";
+                $this->em->persist($item);
+                $this->em->flush();
+
+                $protocol->addRevision($item);
+            }
+
             // TODO: Descobrir quais são os campos Decisão e Sugestão, nas revisões enviadas pelos revisores. Verificar en el proethos.curso.
             // TODO: Remover os prints de debug.
 
