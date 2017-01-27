@@ -40,6 +40,28 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
 {
     var $user_relations = array();
     var $meeting_relations = array();
+    var $country_relations = array(
+        13 => 4,
+        18 => 9,
+        20 => 11,
+        24 => 16,
+        31 => 23,
+        25 => 17,
+        26 => 18,
+        55 => 48,
+        59 => 52,
+        63 => 57,
+        76 => 69,
+        78 => 71,
+        104 => 95,
+        110 => 101,
+        139 => 131,
+        152 => 145,
+        // 221 =>
+        238 => 826,
+        240 => 840,
+        243 => 858,
+    );
 
     protected function configure()
     {
@@ -70,6 +92,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
         // Migration usernames
         $query = "SELECT
                 id_us as id
+                ,us_country as country
                 ,us_email as email
                 ,us_senha as password
                 ,us_nome as name
@@ -103,12 +126,19 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 continue;
             }
 
+            $current_country = (int) $row['country'];
+            if(array_key_exists($current_country, $this->country_relations)) {
+                $current_country = $country_repository->findOneBy(array('id' => $current_country));
+            } else {
+                $current_country = $country_repository->findOneBy(array('code' => $this->default_country ));
+            }
+
             // initing the User object
             $user = new User();
             $user->setEmail($email);
             $user->setUsername($username);
             $user->setName($row['name']);
-            $user->setCountry($country_repository->findOneBy(array('code' => $this->default_country ))); // sets the default country
+            $user->setCountry($current_country);
             $user->setInstitution($row['institution']);
             $user->setIsActive(true);
             $user->setFirstAccess(false);
