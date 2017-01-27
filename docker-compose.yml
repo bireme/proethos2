@@ -1,8 +1,5 @@
 version: '2'
 
-volumes:
-    proethos2_database_data: {}
-
 services:
     proethos2_db:
         container_name: proethos2_db
@@ -11,14 +8,14 @@ services:
         ports:
             - "3306:3306"
         volumes:
-            - proethos2_database_data:/var/lib/postgresql/data
+            - ./docker/mysql:/var/lib/mysql
         environment:
             MYSQL_ROOT_PASSWORD: rootpasswd
             MYSQL_DATABASE: proethos2
             MYSQL_USER: proethos2
             MYSQL_PASSWORD: proethos2
     php:
-        container_name: proethos2_database
+        container_name: proethos2_php
         restart: always
         build: ./docker/php
         ports:
