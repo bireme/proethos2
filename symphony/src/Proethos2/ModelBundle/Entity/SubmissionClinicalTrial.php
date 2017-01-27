@@ -56,9 +56,9 @@ class SubmissionClinicalTrial extends Base
     private $submission;
 
     /**
-     * @var number
+     * @var string
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="number", type="string", length=255)
      */
     private $number;
 
@@ -84,7 +84,7 @@ class SubmissionClinicalTrial extends Base
     /**
      * Set number
      *
-     * @param integer $number
+     * @param string $number
      *
      * @return SubmissionClinicalTrial
      */
@@ -98,7 +98,7 @@ class SubmissionClinicalTrial extends Base
     /**
      * Get number
      *
-     * @return integer
+     * @return string
      */
     public function getNumber()
     {
