@@ -241,7 +241,8 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
         $gender_repository = $this->em->getRepository('Proethos2ModelBundle:Gender');
         $recruitment_status_repository = $this->em->getRepository('Proethos2ModelBundle:RecruitmentStatus');
         $upload_type_repository = $this->em->getRepository('Proethos2ModelBundle:UploadType');
-
+        $country_repository = $this->em->getRepository('Proethos2ModelBundle:Country');
+        
         // relations of upload types from proethos1 to proethos2
         $UPLOAD_TYPE_RELATIONS = array(
             'TCLE' => 'informed-consent',
@@ -468,6 +469,31 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 $submission->addBudget($item);
             }
 
+            // setting all submission country
+            $sql = "SELECT ctr_protocol as submission, ctr_country as country, ctr_target as participants FROM `cep_submit_country` WHERE CAST(ctr_protocol AS UNSIGNED) = ". $row['id'];
+            $result2 = mysql_query($sql) or die(mysql_error());
+            while($row2 = mysql_fetch_assoc($result2)) {
+
+                $item = new SubmissionCountry();
+                $current_country = (int) $row2['country'];
+                if(array_key_exists($current_country, $this->country_relations)) {
+                    $current_country = $country_repository->findOneBy(array('id' => $current_country));
+                } else {
+                    $output->writeln('<error>ERROR: Country from protocol ID "'. $row['id'] .'" skipped because country has not been mapped.</error>');
+                    continue;
+                }
+
+                $item->setSubmission($submission);
+                $item->setCountry($current_country);
+                $item->setParticipants($row2['participants']);
+
+                print "4\n";
+                $this->em->persist($item);
+                $this->em->flush();
+
+                $submission->addCountry($item);
+            }
+
             // setting all submission task
             $sql = "SELECT scrono_descricao as description, scrono_date_start as init, scrono_date_end as end FROM cep_submit_crono WHERE CAST(scrono_protocol AS UNSIGNED) = ". $row['id'];
             $result2 = mysql_query($sql) or die(mysql_error());
@@ -478,7 +504,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 $item->setInit(\DateTime::createFromFormat('Ym', $row2['init']));
                 $item->setEnd(\DateTime::createFromFormat('Ym', $row2['end']));
 
-                print "4\n";
+                print "5\n";
                 $this->em->persist($item);
                 $this->em->flush();
 
@@ -501,7 +527,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 $item->setMigratedFile($row2['filepath']);// TODO: Criar script depois que slugifica todos os arquivos importados, pq aqui salva slugificado
                 $item->setSubmissionNumber(1); // TODO: Não temos mapeado, então tem que cravar 1.
 
-                print "5\n";
+                print "6\n";
                 $this->em->persist($item);
                 $this->em->flush();
 
@@ -540,7 +566,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 // TODO: Achar forma de preencher answer
                 // TODO: Preencher final decision
                 //
-                print "7.5\n";
+                print "7\n";
                 $this->em->persist($item);
                 $this->em->flush();
 
@@ -563,7 +589,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 $item->setMessage($row2['message']);
                 $item->setProtocol($protocol);
 
-                print "7\n";
+                print "8\n";
                 $this->em->persist($item);
                 $this->em->flush();
 
@@ -582,14 +608,14 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 $item->setProtocol($protocol);
                 $item->setMessage($row2['message']);
 
-                print "8\n";
+                print "9\n";
                 $this->em->persist($item);
                 $this->em->flush();
 
                 $protocol->addHistory($item);
             }
 
-            print "9\n";
+            print "10\n";
             $this->em->persist($protocol);
             $this->em->flush();
 
