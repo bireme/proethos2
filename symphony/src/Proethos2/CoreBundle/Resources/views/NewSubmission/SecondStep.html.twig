@@ -18,6 +18,7 @@
                 <input type='hidden' name='submission_id' value='{{ submission.id }}'>
                 <input type='hidden' id='id_stay_on_the_same_page' name='stay_on_the_same_page' value='false'>
 
+                {% if not submission.isTranslation %}
                 <div class='block'>
                     <div class='row'>
                         <div class="col-md-12">
@@ -75,6 +76,7 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
 
                 <div class='block'>
                     <div class='row'>

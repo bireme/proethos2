@@ -59,7 +59,7 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
 
             // checking required files
-            foreach(array('scientific_title', 'public_title', 'is_clinical_trial') as $field) {
+            foreach(array('scientific_title', 'public_title', 'is_clinical_trial', 'language') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return array();
@@ -77,6 +77,7 @@ class NewSubmissionController extends Controller
             $submission->setPublicTitle($post_data['public_title']);
             $submission->setScientificTitle($post_data['scientific_title']);
             $submission->setTitleAcronym($post_data['title_acronym']);
+            $submission->setLanguage($post_data['language']);
             $submission->setProtocol($protocol);
             $submission->setNumber(1);
 
@@ -130,7 +131,7 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
 
             // checking required files
-            foreach(array('scientific_title', 'public_title', 'is_clinical_trial') as $field) {
+            foreach(array('scientific_title', 'public_title', 'is_clinical_trial', 'language') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return array();
@@ -141,12 +142,91 @@ class NewSubmissionController extends Controller
             $submission->setPublicTitle($post_data['public_title']);
             $submission->setScientificTitle($post_data['scientific_title']);
             $submission->setTitleAcronym($post_data['title_acronym']);
+            $submission->setLanguage($post_data['language']);
 
             $em->persist($submission);
             $em->flush();
 
             $session->getFlashBag()->add('success', $translator->trans("First step saved with sucess."));
             return $this->redirectToRoute('submission_new_second_step', array('submission_id' => $submission->getId()), 301);
+        }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/submission/new/{submission_id}/translation", name="submission_new_first_translation_protocol_step")
+     * @Template()
+     */
+    public function FirstStepTranslationProtocolAction($submission_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+
+        // getting the current submission
+        $submission = $submission_repository->find($submission_id);
+        $output['submission'] = $submission;
+
+        if (!$submission or $submission->getIsSended()) {
+            throw $this->createNotFoundException($translator->trans('No submission found'));
+        }
+
+        $users = $user_repository->findAll();
+        $output['users'] = $users;
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            // checking required files
+            foreach(array('scientific_title', 'public_title', 'language') as $field) {
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
+                    return array();
+                }
+            }
+
+            $protocol = $submission->getProtocol();
+
+            $new_submission = new Submission();
+            $new_submission->setIsTranslation(true);
+            $new_submission->setOriginalSubmission($submission);
+            $new_submission->setIsClinicalTrial($submission->getIsClinicalTrial());
+            $new_submission->setPublicTitle($post_data['public_title']);
+            $new_submission->setScientificTitle($post_data['scientific_title']);
+            $new_submission->setTitleAcronym($post_data['title_acronym']);
+            $new_submission->setLanguage($post_data['language']);
+            $new_submission->setProtocol($protocol);
+            $new_submission->setNumber(1);
+
+            $new_submission->setGender($submission->getGender());
+            $new_submission->setSampleSize($submission->getSampleSize());
+            $new_submission->setMinimumAge($submission->getMinimumAge());
+            $new_submission->setMaximumAge($submission->getMaximumAge());
+            $new_submission->setRecruitmentInitDate($submission->getRecruitmentInitDate());
+            $new_submission->setRecruitmentStatus($submission->getRecruitmentStatus());
+            $new_submission->setPriorEthicalApproval($submission->getPriorEthicalApproval());
+
+            $new_submission->setOwner($submission->getOwner());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($new_submission);
+            $em->flush();
+
+            $submission->addTranlsation($new_submission);
+            $em->persist($submission);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("First step saved with sucess."));
+            return $this->redirectToRoute('submission_new_second_step', array('submission_id' => $new_submission->getId()), 301);
         }
 
         return $output;
@@ -324,8 +404,15 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
 
             // checking required files
-            $required_fields = array('study-design', 'gender', 'sample-size', 'minimum-age', 'maximum-age', 'inclusion-criteria',
-                'exclusion-criteria', 'recruitment-init-date', 'recruitment-status', 'interventions', 'primary-outcome');
+            $required_fields = array('study-design', 'inclusion-criteria', 'exclusion-criteria', 'interventions', 'primary-outcome');
+            if(!$submission->getIsTranslation()) {
+                $required_fields[] = 'gender';
+                $required_fields[] = 'sample-size';
+                $required_fields[] = 'minimum-age';
+                $required_fields[] = 'maximum-age';
+                $required_fields[] = 'recruitment-init-date';
+                $required_fields[] = 'recruitment-status';
+            }
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
@@ -333,35 +420,40 @@ class NewSubmissionController extends Controller
                 }
             }
 
-            $recruitment_init_date = new \DateTime($post_data['recruitment-init-date']);
-            if(new \DateTime('NOW') > $recruitment_init_date) {
-                $session->getFlashBag()->add('error', $translator->trans("The recruitment start date has to be subsequent to the date of protocol submission."));
-                return $output;
+            if(!$submission->getIsTranslation()) {
+                $recruitment_init_date = new \DateTime($post_data['recruitment-init-date']);
+                if(new \DateTime('NOW') > $recruitment_init_date) {
+                    $session->getFlashBag()->add('error', $translator->trans("The recruitment start date has to be subsequent to the date of protocol submission."));
+                    return $output;
+                }
             }
 
             // adding fields to model
             $submission->setStudyDesign($post_data['study-design']);
             $submission->setHealthCondition($post_data['health-condition']);
-            $submission->setSampleSize($post_data['sample-size']);
-            $submission->setMinimumAge($post_data['minimum-age']);
-            $submission->setMaximumAge($post_data['maximum-age']);
             $submission->setInclusionCriteria($post_data['inclusion-criteria']);
             $submission->setExclusionCriteria($post_data['exclusion-criteria']);
-            $submission->setRecruitmentInitDate(new \DateTime($post_data['recruitment-init-date']));
 
-            // gender
-            $selected_gender = $gender_repository->find($post_data['gender']);
-            $submission->setGender($selected_gender);
+            if(!$submission->getIsTranslation()) {
+                $submission->setSampleSize($post_data['sample-size']);
+                $submission->setMinimumAge($post_data['minimum-age']);
+                $submission->setMaximumAge($post_data['maximum-age']);
+                $submission->setRecruitmentInitDate(new \DateTime($post_data['recruitment-init-date']));
 
-            // recruitment status
-            $selected_recruitment_status = $recruitment_status_repository->find($post_data['recruitment-status']);
-            $submission->setRecruitmentStatus($selected_recruitment_status);
+                // gender
+                $selected_gender = $gender_repository->find($post_data['gender']);
+                $submission->setGender($selected_gender);
 
-            // removing all team to readd
-            foreach($submission->getCountry() as $country) {
-                $submission->removeCountry($country);
-                $em->remove($country);
-                $em->flush();
+                // recruitment status
+                $selected_recruitment_status = $recruitment_status_repository->find($post_data['recruitment-status']);
+                $submission->setRecruitmentStatus($selected_recruitment_status);
+
+                // removing all team to readd
+                foreach($submission->getCountry() as $country) {
+                    $submission->removeCountry($country);
+                    $em->remove($country);
+                    $em->flush();
+                }
             }
 
             if(isset($post_data['country'])) {
@@ -656,7 +748,10 @@ class NewSubmissionController extends Controller
             // var_dump($post_data);die;
 
             // checking required files
-            $required_fields = array('bibliography', 'sscientific-contact', 'prior-ethical-approval');
+            $required_fields = array('bibliography', 'sscientific-contact');
+            if(!$submission->getIsTranslation()) {
+                $required_fields[] = 'prior-ethical-approval';
+            }
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
@@ -665,12 +760,11 @@ class NewSubmissionController extends Controller
             }
 
             $submission->setBibliography($post_data['bibliography']);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($submission);
-            $em->flush();
-
             $submission->setSscientificContact($post_data['sscientific-contact']);
-            $submission->setPriorEthicalApproval(($post_data['prior-ethical-approval'] == 'Y') ? true : false);
+
+            if(!$submission->getIsTranslation()) {
+                $submission->setPriorEthicalApproval(($post_data['prior-ethical-approval'] == 'Y') ? true : false);
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
@@ -1003,7 +1097,7 @@ class NewSubmissionController extends Controller
 
                 if($post_data['accept-terms'] == 'on') {
 
-                    // gerando um novo pdf
+                    // gerando um novo pdf da submission original
                     try {
                         $html = $this->renderView(
                             'Proethos2CoreBundle:NewSubmission:showPdf.html.twig',
@@ -1041,6 +1135,52 @@ class NewSubmissionController extends Controller
                         if($post_data['extra'] != 'no-pdf') {
                             $session->getFlashBag()->add('error', $translator->trans('Problems generating PDF. Please contact the administrator.'));
                             return $output;
+                        }
+                    }
+
+                    // genrating pdf from translations
+                    foreach($submission->getTranslations() as $translation) {
+
+                        $new_output = $output;
+                        $new_output['submission'] = $translation;
+
+                        // gerando um novo pdf
+                        try {
+                            $html = $this->renderView(
+                                'Proethos2CoreBundle:NewSubmission:showPdf.html.twig',
+                                $new_output
+                            );
+
+                            $pdf = $this->get('knp_snappy.pdf');
+
+                            // setting margins
+                            $pdf->getInternalGenerator()->setOption('margin-top', '50px');
+                            $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
+                            $pdf->getInternalGenerator()->setOption('margin-left', '20px');
+                            $pdf->getInternalGenerator()->setOption('margin-right', '20px');
+
+                            // adding pdf to tmp file
+                            $filepath = "/tmp/" . date("Y-m-d") . "-submission-". $translation->getLanguage() .".pdf";
+                            file_put_contents($filepath, $pdf->getOutputFromHtml($html));
+
+                            $upload_type = $upload_type_repository->findOneBy(array("slug" => "protocol"));
+
+                            // send tmp file to upload class and save
+                            $pdfFile = new SubmissionUpload();
+                            $pdfFile->setSubmission($submission);
+                            $pdfFile->setSimpleFile($filepath);
+                            $pdfFile->setUploadType($upload_type);
+                            $pdfFile->setUser($user);
+                            $pdfFile->setSubmissionNumber($submission->getNumber());
+                            $em->persist($pdfFile);
+                            $em->flush();
+
+                        } catch(\RuntimeException $e) {
+
+                            if($post_data['extra'] != 'no-pdf') {
+                                $session->getFlashBag()->add('error', $translator->trans('Problems generating PDF. Please contact the administrator.'));
+                                return $output;
+                            }
                         }
                     }
 

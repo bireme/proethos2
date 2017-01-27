@@ -30,11 +30,14 @@
         </style>
     </head>
     <body>
-        <h1>{{ submission.scientificTitle }}</h1>
+        <h1>
+            {{ submission.scientificTitle }}
+            (<small>{% if submission.language == 'pt_BR' %}Português{% endif %}{% if submission.language == 'es_ES' %}Español{% endif %}{% if submission.language == 'en' %}English{% endif %}{% if submission.language == 'fr_FR' %}Français{% endif %}</small>)
+        </h1>
 
         <h3>{% trans %}Public Title{% endtrans %}</h3>
         <p>{{ submission.publicTitle }}</p>
-        
+
         <h2>{% trans %}Team{% endtrans %}</h2>
         <table>
             <tr>
@@ -65,13 +68,13 @@
 
         <h2>{% trans %}Keywords{% endtrans %}</h2>
         <p>{{ submission.keywords }}</p>
-        
+
         <h2>{% trans %}Introduction{% endtrans %}</h2>
         <p>{{ submission.introduction }}</p>
-        
+
         <h2>{% trans %}Justification{% endtrans %}</h2>
         <p>{{ submission.justification }}</p>
-        
+
         <h2>{% trans %}Goals{% endtrans %}</h2>
         <p>{{ submission.goals }}</p>
 
@@ -86,7 +89,7 @@
 
         <h2>{% trans %}Inclusion criteria{% endtrans %}</h2>
         <p>{{ submission.inclusionCriteria }}</p>
-        
+
         <h2>{% trans %}Exclusion criteria{% endtrans %}</h2>
         <p>{{ submission.exclusionCriteria }}</p>
 
@@ -146,15 +149,15 @@
 
             <h2>{% trans %}Secondary Registry{% endtrans %}</h2>
             <p>{{ submission.clinicalTrialSecondary }}</p>
-            
+
         {% endif %}
-        
+
         <h2>{% trans %}Funding source{% endtrans %}</h2>
         <p>{{ submission.fundingSource }}</p>
-        
+
         <h2>{% trans %}Primary Sponsor{% endtrans %}</h2>
         <p>{{ submission.primarySponsor }}</p>
-        
+
         <h2>{% trans %}Secondary Sponsor{% endtrans %}</h2>
         <p>{{ submission.secondarySponsor }}</p>
 

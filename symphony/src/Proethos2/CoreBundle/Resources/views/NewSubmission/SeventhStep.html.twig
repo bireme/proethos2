@@ -28,14 +28,14 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <table class='table table-hover table-condensed table-bordered'>
-                                
+
                                 <thead>
                                     <tr>
                                         <th class='center'>{% trans %}Field{% endtrans %}</th>
                                         <th class='center'>{% trans %}Check{% endtrans %}</th>
                                     </tr>
                                 </thead>
-                                
+
                                 <tbody>
                                     {% for revision in revisions %}
                                         <tr class='{% if not revision.status %}error{% endif %}'>
@@ -72,11 +72,22 @@
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
 
                 <div class='submission-button-controls'>
                     <a href='{{ path("submission_generate_pdf", {submission_id: submission.id}) }}' class='btn btn-default' target='_blank'>{% trans %}Create PDF{% endtrans %}</a>
-                    <button type='submit' class='btn btn-primary {% if not final_status %}disabled{% endif %}'>{% trans %}Save and finish{% endtrans %}</button>
+                    {% if final_status %}
+                        {% if submission.isTranslation %}
+                            <a href='{{ path("submission_new_first_translation_protocol_step", {submission_id: submission.originalSubmission.id}) }}' class='btn btn-default'>{% trans %}Submit translation{% endtrans %}</a>
+                        {% else %}
+                            <a href='{{ path("submission_new_first_translation_protocol_step", {submission_id: submission.id}) }}' class='btn btn-default'>{% trans %}Submit translation{% endtrans %}</a>
+                        {% endif %}
+                    {% endif %}
+                    {% if submission.isTranslation %}
+                        <a href='{{ path("submission_new_seventh_step", {submission_id: submission.originalSubmission.id}) }}' class='btn btn-default'>{% trans %}Back to original to save and finish{% endtrans %}</a>
+                    {% else %}
+                        <button type='submit' class='btn btn-primary {% if not final_status %}disabled{% endif %}'>{% trans %}Save and finish{% endtrans %}</button>
+                    {% endif %}
                 </div>
             </form>
         </div>
@@ -87,7 +98,7 @@
 {% block script %}
     <script>
         $(function(){
-            
-        });    
+
+        });
     </script>
 {% endblock %}

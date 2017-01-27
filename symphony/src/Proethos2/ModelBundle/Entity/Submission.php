@@ -48,6 +48,28 @@ class Submission extends Base
     private $protocol;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="language", type="string", length=255)
+     */
+    private $language;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_translation", type="boolean")
+     */
+    private $is_translation = false;
+
+    /**
+     * @var Submission
+     *
+     * @ORM\ManyToOne(targetEntity="Submission")
+     * @ORM\JoinColumn(name="original_submission_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    private $original_submission;
+
+    /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="User")
@@ -55,6 +77,13 @@ class Submission extends Base
      * @Assert\NotBlank
      */
     private $owner;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Submission", mappedBy="original_submission", cascade={"remove"})
+     */
+    private $translations;
 
     /**
      * @ORM\Column(name="number", type="integer")
@@ -1471,5 +1500,145 @@ class Submission extends Base
     public function getNumber()
     {
         return $this->number;
+    }
+
+    /**
+     * Set language
+     *
+     * @param string $language
+     *
+     * @return Submission
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * Set isSent
+     *
+     * @param boolean $isSent
+     *
+     * @return Submission
+     */
+    public function setIsSent($isSent)
+    {
+        $this->is_sent = $isSent;
+
+        return $this;
+    }
+
+    /**
+     * Get isSent
+     *
+     * @return boolean
+     */
+    public function getIsSent()
+    {
+        return $this->is_sent;
+    }
+
+    /**
+     * Add tranlsation
+     *
+     * @param \Proethos2\ModelBundle\Entity\Submission $tranlsation
+     *
+     * @return Submission
+     */
+    public function addTranlsation(\Proethos2\ModelBundle\Entity\Submission $tranlsation)
+    {
+        $this->translations[] = $tranlsation;
+
+        return $this;
+    }
+
+    /**
+     * Remove tranlsation
+     *
+     * @param \Proethos2\ModelBundle\Entity\Submission $tranlsation
+     */
+    public function removeTranlsation(\Proethos2\ModelBundle\Entity\Submission $tranlsation)
+    {
+        $this->translations->removeElement($tranlsation);
+    }
+
+    /**
+     * Get translations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
+     * Get total translations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTotalTranslations()
+    {
+        return count($this->getTranslations());
+    }
+
+    /**
+     * Set isTranslation
+     *
+     * @param boolean $isTranslation
+     *
+     * @return Submission
+     */
+    public function setIsTranslation($isTranslation)
+    {
+        $this->is_translation = $isTranslation;
+
+        return $this;
+    }
+
+    /**
+     * Get isTranslation
+     *
+     * @return boolean
+     */
+    public function getIsTranslation()
+    {
+        return $this->is_translation;
+    }
+
+    /**
+     * Set originalSubmission
+     *
+     * @param \Proethos2\ModelBundle\Entity\Submission $originalSubmission
+     *
+     * @return Submission
+     */
+    public function setOriginalSubmission(\Proethos2\ModelBundle\Entity\Submission $originalSubmission = null)
+    {
+        $this->original_submission = $originalSubmission;
+
+        return $this;
+    }
+
+    /**
+     * Get originalSubmission
+     *
+     * @return \Proethos2\ModelBundle\Entity\Submission
+     */
+    public function getOriginalSubmission()
+    {
+        return $this->original_submission;
     }
 }

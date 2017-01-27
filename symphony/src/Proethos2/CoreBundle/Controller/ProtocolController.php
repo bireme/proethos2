@@ -231,6 +231,17 @@ class ProtocolController extends Controller
                 $new_submission = clone $submission;
                 $new_submission->setNumber($submission->getNumber() + 1);
                 $em->persist($new_submission);
+
+                // cloning translations
+                foreach($submission->getTranslations() as $translation) {
+                    $new_translation = clone $translation;
+                    $new_translation->setOriginalSubmission($new_submission);
+                    $new_translation->setNumber($translation->getNumber() + 1);
+                    $em->persist($new_translation);
+
+                    $new_submission->addTranlsation($new_translation);
+                    $em->persist($new_submission);
+                }
                 $em->flush();
 
                 // setting new main submission
