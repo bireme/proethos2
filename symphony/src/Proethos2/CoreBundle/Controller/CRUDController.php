@@ -53,7 +53,7 @@ class CRUDController extends Controller
 
         $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
 
-        $meetings = $meeting_repository->findAll();
+        $meetings = $meeting_repository->findBy(array(), array('date' => 'DESC'));
 
         // serach parameter
         $search_query = $request->query->get('q');
@@ -61,6 +61,7 @@ class CRUDController extends Controller
             $meetings = $meeting_repository->createQueryBuilder('m')
                ->where('m.subject LIKE :query')
                ->setParameter('query', "%". $search_query ."%")
+               ->addOrderBy('m.date', 'DESC')
                ->getQuery()
                ->getResult();
         }

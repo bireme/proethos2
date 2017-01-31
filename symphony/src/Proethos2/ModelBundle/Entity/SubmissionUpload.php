@@ -55,7 +55,7 @@ class SubmissionUpload extends Base
 
     /**
      * @ORM\ManyToOne(targetEntity="UploadType")
-     * @ORM\JoinColumn(name="upload_type_id", referencedColumnName="id", nullable=true, onDelete="SET NULL") 
+     * @ORM\JoinColumn(name="upload_type_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      * @Assert\NotBlank
      */
     private $upload_type;
@@ -214,20 +214,27 @@ class SubmissionUpload extends Base
         return $this;
     }
 
-    public function setSimpleFile($filepath) {
+    public function setSimpleFile($filepath, $need_real_copy = true) {
 
         $slugify = new Slugify();
         $submission_upload_directory = $this->getSubmissionDirectory();
 
         $pathinfo = pathinfo($filepath);
         $new_filepath = $submission_upload_directory . "/" . $pathinfo['basename'];
-        $file = copy($filepath, $new_filepath);
+
+        if($need_real_copy) {
+            $file = copy($filepath, $new_filepath);
+        }
 
         $this->setFilename($pathinfo['basename']);
         $this->setFilepath($new_filepath);
 
         return $this;
 
+    }
+
+    public function setMigratedFile($filepath) {
+        return $this->setSimpleFile($filepath, false);
     }
 
     public function getUri() {

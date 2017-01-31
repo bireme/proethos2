@@ -117,7 +117,7 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission or $submission->getIsSended()) {
+        if (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('administrator', $user->getRolesSlug()))) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
@@ -247,23 +247,32 @@ class NewSubmissionController extends Controller
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
 
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission or $submission->getIsSended()) {
-            throw $this->createNotFoundException($translator->trans('No submission found'));
+        if (!$submission or $submission->getCanBeEdited() == false) {
+            if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
+                throw $this->createNotFoundException($translator->trans('No submission found'));
+            }
         }
 
         $allow_to_edit_submission = true;
-        $user = $this->get('security.token_storage')->getToken()->getUser();
         // if current user is not owner, check the team
         if ($user != $submission->getOwner()) {
             $allow_to_edit_submission = false;
-            foreach($submission->getTeam() as $team_member) {
-                // if current user = some team member, than it allows to edit
-                if ($user == $team_member) {
-                    $allow_to_edit_submission = true;
+
+            if(in_array('administrator', $user->getRolesSlug())) {
+                $allow_to_edit_submission = true;
+
+            } else {
+                foreach($submission->getTeam() as $team_member) {
+                    // if current user = some team member, than it allows to edit
+                    if ($user == $team_member) {
+                        $allow_to_edit_submission = true;
+                    }
                 }
             }
         }
@@ -362,6 +371,8 @@ class NewSubmissionController extends Controller
         $recruitment_status_repository = $em->getRepository('Proethos2ModelBundle:RecruitmentStatus');
         $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
 
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
@@ -377,19 +388,26 @@ class NewSubmissionController extends Controller
         $countries = $country_repository->findBy(array(), array('name' => 'asc'));
         $output['countries'] = $countries;
 
-        if (!$submission or $submission->getIsSended()) {
-            throw $this->createNotFoundException($translator->trans('No submission found'));
+        if (!$submission or $submission->getCanBeEdited() == false) {
+            if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
+                throw $this->createNotFoundException($translator->trans('No submission found'));
+            }
         }
 
         $allow_to_edit_submission = true;
-        $user = $this->get('security.token_storage')->getToken()->getUser();
         // if current user is not owner, check the team
         if ($user != $submission->getOwner()) {
             $allow_to_edit_submission = false;
-            foreach($submission->getTeam() as $team_member) {
-                // if current user = some team member, than it allows to edit
-                if ($user == $team_member) {
-                    $allow_to_edit_submission = true;
+
+            if(in_array('administrator', $user->getRolesSlug())) {
+                $allow_to_edit_submission = true;
+
+            } else {
+                foreach($submission->getTeam() as $team_member) {
+                    // if current user = some team member, than it allows to edit
+                    if ($user == $team_member) {
+                        $allow_to_edit_submission = true;
+                    }
                 }
             }
         }
@@ -528,6 +546,8 @@ class NewSubmissionController extends Controller
         $submission_clinical_trial_repository = $em->getRepository('Proethos2ModelBundle:SubmissionClinicalTrial');
         $clinical_trial_name_repository = $em->getRepository('Proethos2ModelBundle:ClinicalTrialName');
 
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
@@ -535,19 +555,26 @@ class NewSubmissionController extends Controller
         $clinical_trial_names = $clinical_trial_name_repository->findByStatus(true);
         $output['clinical_trial_names'] = $clinical_trial_names;
 
-        if (!$submission or $submission->getIsSended()) {
-            throw $this->createNotFoundException($translator->trans('No submission found'));
+        if (!$submission or $submission->getCanBeEdited() == false) {
+            if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
+                throw $this->createNotFoundException($translator->trans('No submission found'));
+            }
         }
 
         $allow_to_edit_submission = true;
-        $user = $this->get('security.token_storage')->getToken()->getUser();
         // if current user is not owner, check the team
         if ($user != $submission->getOwner()) {
             $allow_to_edit_submission = false;
-            foreach($submission->getTeam() as $team_member) {
-                // if current user = some team member, than it allows to edit
-                if ($user == $team_member) {
-                    $allow_to_edit_submission = true;
+
+            if(in_array('administrator', $user->getRolesSlug())) {
+                $allow_to_edit_submission = true;
+
+            } else {
+                foreach($submission->getTeam() as $team_member) {
+                    // if current user = some team member, than it allows to edit
+                    if ($user == $team_member) {
+                        $allow_to_edit_submission = true;
+                    }
                 }
             }
         }
@@ -714,23 +741,32 @@ class NewSubmissionController extends Controller
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
         $submission_country_repository = $em->getRepository('Proethos2ModelBundle:SubmissionCountry');
 
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission or $submission->getIsSended()) {
-            throw $this->createNotFoundException($translator->trans('No submission found'));
+        if (!$submission or $submission->getCanBeEdited() == false) {
+            if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
+                throw $this->createNotFoundException($translator->trans('No submission found'));
+            }
         }
 
         $allow_to_edit_submission = true;
-        $user = $this->get('security.token_storage')->getToken()->getUser();
         // if current user is not owner, check the team
         if ($user != $submission->getOwner()) {
             $allow_to_edit_submission = false;
-            foreach($submission->getTeam() as $team_member) {
-                // if current user = some team member, than it allows to edit
-                if ($user == $team_member) {
-                    $allow_to_edit_submission = true;
+
+            if(in_array('administrator', $user->getRolesSlug())) {
+                $allow_to_edit_submission = true;
+
+            } else {
+                foreach($submission->getTeam() as $team_member) {
+                    // if current user = some team member, than it allows to edit
+                    if ($user == $team_member) {
+                        $allow_to_edit_submission = true;
+                    }
                 }
             }
         }
@@ -802,19 +838,26 @@ class NewSubmissionController extends Controller
         $upload_types = $upload_type_repository->findByStatus(true);
         $output['upload_types'] = $upload_types;
 
-        if (!$submission or $submission->getIsSended()) {
-            throw $this->createNotFoundException($translator->trans('No submission found'));
+        if (!$submission or $submission->getCanBeEdited() == false) {
+            if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
+                throw $this->createNotFoundException($translator->trans('No submission found'));
+            }
         }
 
         $allow_to_edit_submission = true;
-        $user = $this->get('security.token_storage')->getToken()->getUser();
         // if current user is not owner, check the team
         if ($user != $submission->getOwner()) {
             $allow_to_edit_submission = false;
-            foreach($submission->getTeam() as $team_member) {
-                // if current user = some team member, than it allows to edit
-                if ($user == $team_member) {
-                    $allow_to_edit_submission = true;
+
+            if(in_array('administrator', $user->getRolesSlug())) {
+                $allow_to_edit_submission = true;
+
+            } else {
+                foreach($submission->getTeam() as $team_member) {
+                    // if current user = some team member, than it allows to edit
+                    if ($user == $team_member) {
+                        $allow_to_edit_submission = true;
+                    }
                 }
             }
         }
@@ -904,19 +947,26 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission or $submission->getIsSended()) {
-            throw $this->createNotFoundException($translator->trans('No submission found'));
+        if (!$submission or $submission->getCanBeEdited() == false) {
+            if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
+                throw $this->createNotFoundException($translator->trans('No submission found'));
+            }
         }
 
         $allow_to_edit_submission = true;
-        $user = $this->get('security.token_storage')->getToken()->getUser();
         // if current user is not owner, check the team
         if ($user != $submission->getOwner()) {
             $allow_to_edit_submission = false;
-            foreach($submission->getTeam() as $team_member) {
-                // if current user = some team member, than it allows to edit
-                if ($user == $team_member) {
-                    $allow_to_edit_submission = true;
+
+            if(in_array('administrator', $user->getRolesSlug())) {
+                $allow_to_edit_submission = true;
+
+            } else {
+                foreach($submission->getTeam() as $team_member) {
+                    // if current user = some team member, than it allows to edit
+                    if ($user == $team_member) {
+                        $allow_to_edit_submission = true;
+                    }
                 }
             }
         }
@@ -1184,6 +1234,15 @@ class NewSubmissionController extends Controller
                         }
                     }
 
+                    // in case of editing migrated posts
+                    if ($submission->getProtocol()->getIsMigrated() and !$submission->getCanBeEdited()) {
+                        $em->persist($submission);
+                        $em->flush();
+
+                        $session->getFlashBag()->add('success', $translator->trans("Protocol submitted with sucess!"));
+                        return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
+                    }
+
                     // updating protocol and setting status
                     $protocol = $submission->getProtocol();
                     $protocol->setStatus("S");
@@ -1239,6 +1298,28 @@ class NewSubmissionController extends Controller
 
                         $session->getFlashBag()->add('success', $translator->trans("Amendment submitted with success!"));
                     } else {
+
+                        $recipients = array($protocol->getMainSubmission()->getOwner());
+                        foreach($recipients as $recipient) {
+                            $message = \Swift_Message::newInstance()
+                            ->setSubject("[proethos2] " . $translator->trans("Your protocol was sent to review."))
+                            ->setFrom($util->getConfiguration('committee.email'))
+                            ->setTo($recipient->getEmail())
+                            ->setBody(
+                                $translator->trans("Dear investigator") .
+                                ",<br>" .
+                                "<br>" . $translator->trans("Your protocol was sent to ethics review.") .
+                                "<br>" . $translator->trans("The committee will now meet to review your protocol, and an official decision will be sent to you shortly.") .
+                                "<br>" .
+                                "<br>". $translator->trans("Regards") . "," .
+                                "<br>" . $translator->trans("Proethos2 Team")
+                                ,
+                                'text/html'
+                            );
+
+                            $send = $this->get('mailer')->send($message);
+                        }
+
                         $session->getFlashBag()->add('success', $translator->trans("Protocol submitted with sucess!"));
                     }
 
@@ -1273,7 +1354,7 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission or $submission->getIsSended()) {
+        if (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('administrator', $user->getRolesSlug()))) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 

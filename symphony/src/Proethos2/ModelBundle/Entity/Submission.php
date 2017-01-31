@@ -94,7 +94,7 @@ class Submission extends Base
     /**
      * @var string
      *
-     * @ORM\Column(name="public_title", type="string", length=255)
+     * @ORM\Column(name="public_title", type="string", length=510)
      * @Assert\NotBlank
      */
     private $publicTitle;
@@ -102,7 +102,7 @@ class Submission extends Base
     /**
      * @var string
      *
-     * @ORM\Column(name="scientific_title", type="string", length=255)
+     * @ORM\Column(name="scientific_title", type="string", length=510)
      * @Assert\NotBlank
      */
     private $scientificTitle;
@@ -1640,5 +1640,19 @@ class Submission extends Base
     public function getOriginalSubmission()
     {
         return $this->original_submission;
+    }
+    
+    /**
+     * can be edited?
+     *
+     * @return boolean
+     */
+    public function getCanBeEdited()
+    {
+        if($this->getProtocol()->getStatus() == "D" or $this->getProtocol()->getStatus() == "R") {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
