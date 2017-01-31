@@ -16,3 +16,6 @@ Links
 * [How to install](doc/how-to/how-to-install-proethos2-in-ubuntu.md)
 * [Development Guide](doc/README.md)
 * [About Continuous Integration](doc/continuous-integration.md)
+* Mailing lists
+ * for developers (http://bit.ly/mailing-proethos-dev)
+ * for end-users (http://bit.ly/mailing-proethos-committee)
