@@ -1,6 +1,9 @@
 Relations between Proethos2 and XML ICTRP
 =========================================
 
+Fuente: http://www.ensaiosclinicos.gov.br/rg/RBR-268trs/
+Yo procuré pero no encontré la documentación de esto XML. Portanto, puede haver campos que fueran relacionados.
+
 
 | Proethos2                                  | REBEC                                                             | Obs                                                                                            | Migrado |
 |--------------------------------------------|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------| --------|
