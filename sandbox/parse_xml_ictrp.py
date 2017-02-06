@@ -11,7 +11,7 @@ def print_keys(data, prefix=None):
 
         output_string = key
         if prefix:
-            output_string = "{0},{1}".format(prefix, key)
+            output_string = "{0}/{1}".format(prefix, key)
 
         if type(value) == type(data):
             print_keys(value, prefix=output_string)
