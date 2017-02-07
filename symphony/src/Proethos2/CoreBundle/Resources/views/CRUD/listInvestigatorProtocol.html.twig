@@ -89,7 +89,9 @@
                                     <td>
                                         <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See protocol{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
                                         <a href='{{ path("submission_new_second_step", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-default btn-xs {% if protocol.status not in ["R","D"] %}disabled{% endif %}' data-toggle="tooltip" data-placement="top" title="{% trans %}Edit submission{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>
-                                        <span data-toggle="tooltip" data-placement="top" title="{% trans %}Delete this protocol.{% endtrans %}"><a href='{{ path("protocol_delete", {protocol_id: protocol.id} ) }}' class='btn btn-danger btn-xs' data-toggle='modal' data-target='#modalBaseAjax'><i class='glyphicon glyphicon-trash'></i></a></span>
+                                        {% if protocol.status in ['D', 'A'] %}
+                                            <span data-toggle="tooltip" data-placement="top" title="{% trans %}Delete this protocol.{% endtrans %}"><a href='{{ path("protocol_delete", {protocol_id: protocol.id} ) }}' class='btn btn-danger btn-xs' data-toggle='modal' data-target='#modalBaseAjax'><i class='glyphicon glyphicon-trash'></i></a></span>
+                                        {% endif %}
                                         <span data-toggle="tooltip" data-placement="top" title="{% trans %}Add a monitoring action{% endtrans %}">
                                             <a href='{{ path("protocol_new_monitoring", {protocol_id: protocol.id}) }}' data-toggle='modal' data-target="#modalBaseAjax" class='btn btn-primary btn-xs {% if protocol.status not in ["A"] %}disabled{% endif %}'><i class='glyphicon glyphicon-record'></i></a>
                                         </span>
