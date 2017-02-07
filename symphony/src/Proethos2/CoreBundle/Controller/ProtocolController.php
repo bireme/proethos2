@@ -1059,8 +1059,10 @@ class ProtocolController extends Controller
         foreach($protocol->getMainSubmission()->getTeam() as $team) {
             $person = $contacts->addChild('person');
             $person->addAttribute('pid', $team->getId());
-            $person->addAttribute('country_code', $team->getCountry()->getCode());
-            $contacts->addChild('email', $team->getEmail());
+            $person->addChild('email', $team->getEmail());
+            if($team->getCountry()) {
+                $person->addAttribute('country_code', $team->getCountry()->getCode());
+            }
 
             $name = explode(" ", $team->getName());
             $contacts->addChild('firstname', $name[0]);
