@@ -113,6 +113,8 @@ class NewSubmissionController extends Controller
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
 
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
         // getting the current submission
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
