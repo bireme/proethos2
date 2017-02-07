@@ -1038,8 +1038,10 @@ class ProtocolController extends Controller
         $contacts = $trial->addChild('contacts');
         $person = $contacts->addChild('person');
         $person->addAttribute('pid', $protocol->getMainSubmission()->getOwner()->getId());
-        $person->addAttribute('country_code', $protocol->getMainSubmission()->getOwner()->getCountry()->getCode());
-        $contacts->addChild('email', $protocol->getMainSubmission()->getOwner()->getEmail());
+        $person->addChild('email', $protocol->getMainSubmission()->getOwner()->getEmail());
+        if($protocol->getMainSubmission()->getOwner()->getCountry()) {
+            $person->addAttribute('country_code', $protocol->getMainSubmission()->getOwner()->getCountry()->getCode());
+        }
 
         $name = explode(" ", $protocol->getMainSubmission()->getOwner()->getName());
         $contacts->addChild('firstname', $name[0]);
