@@ -50,7 +50,7 @@ class Submission extends Base
     /**
      * @var string
      *
-     * @ORM\Column(name="language", type="string", length=255)
+     * @ORM\Column(name="language", type="string", nullable=true, length=255)
      */
     private $language;
 
@@ -1641,7 +1641,7 @@ class Submission extends Base
     {
         return $this->original_submission;
     }
-    
+
     /**
      * can be edited?
      *
