@@ -1044,15 +1044,15 @@ class ProtocolController extends Controller
         }
 
         $name = explode(" ", $protocol->getMainSubmission()->getOwner()->getName());
-        $contacts->addChild('firstname', $name[0]);
+        $person->addChild('firstname', $name[0]);
         if(count($name) > 1) {
-            $contacts->addChild('middlename', $name[1]);
+            $person->addChild('middlename', $name[1]);
         }
         if(count($name) > 2) {
             $lastname = str_replace($name[0], "", $protocol->getMainSubmission()->getOwner()->getName());
             $lastname = str_replace($name[1], "", $lastname);
             $lastname = trim($lastname);
-            $contacts->addChild('lastname', $lastname);
+            $person->addChild('lastname', $lastname);
         }
 
         // adicionando agora todo o time
@@ -1065,15 +1065,15 @@ class ProtocolController extends Controller
             }
 
             $name = explode(" ", $team->getName());
-            $contacts->addChild('firstname', $name[0]);
+            $person->addChild('firstname', $name[0]);
             if(count($name) > 1) {
-                $contacts->addChild('middlename', $name[1]);
+                $person->addChild('middlename', $name[1]);
             }
             if(count($name) > 2) {
                 $lastname = str_replace($name[0], "", $team->getName());
                 $lastname = str_replace($name[1], "", $lastname);
                 $lastname = trim($lastname);
-                $contacts->addChild('lastname', $lastname);
+                $person->addChild('lastname', $lastname);
             }
         }
 
