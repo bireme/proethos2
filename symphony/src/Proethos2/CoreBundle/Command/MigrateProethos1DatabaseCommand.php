@@ -57,6 +57,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
         110 => 101,
         139 => 131,
         152 => 145,
+        182 => 176,
         // 221 =>
         238 => 826,
         240 => 840,
@@ -242,7 +243,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
         $recruitment_status_repository = $this->em->getRepository('Proethos2ModelBundle:RecruitmentStatus');
         $upload_type_repository = $this->em->getRepository('Proethos2ModelBundle:UploadType');
         $country_repository = $this->em->getRepository('Proethos2ModelBundle:Country');
-        
+
         // relations of upload types from proethos1 to proethos2
         $UPLOAD_TYPE_RELATIONS = array(
             'TCLE' => 'informed-consent',
@@ -301,7 +302,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
             // if the meeting already exists, skip the row
             $protocol = $protocol_repository->findOneBy(array('migrated_id' => $row['id']));
             if($protocol) {
-                $output->writeln('<info>Protocol '. $protocol->getMainSubmission()->getPublicTitle() .' already migrated. Skipping...</info>');
+                $output->writeln('<info>Protocol '. $protocol->getId() .' already migrated. Skipping...</info>');
                 continue;
             }
 
