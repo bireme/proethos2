@@ -969,6 +969,7 @@ class ProtocolController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
+        $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
 
         $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
 
@@ -977,105 +978,108 @@ class ProtocolController extends Controller
         $submission = $protocol->getMainSubmission();
         $output['protocol'] = $protocol;
 
+
         if (!$protocol or !(in_array('administrator', $user->getRolesSlug()) or $user == $protocol->getOwner())) {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
 
-        $xml = new \SimpleXMLElement('<trials version="1"></trials>');
+        $xml = new \SimpleXMLElement('<trials><trial></trial></trials>');
 
         // var_dump($xml);
-        $trial = $xml->addChild('trial');
-        $trial->addAttribute('date_registration', $protocol->getDateInformed()->format("Y-m-d"));
-        $trial->addAttribute('language', $protocol->getMainSubmission()->getLanguage());
-        $trial->addAttribute('status', $protocol->getStatusLabel());
-        $trial->addAttribute('created', $protocol->getCreated()->format("Y-m-d"));
-        $trial->addAttribute('update', $protocol->getUpdated()->format("Y-m-d"));
+        $main = $xml->addChild('main');
+        $main->addChild('trial_id', $protocol->getCode());
+        $main->addChild('utrn', "");
+        $main->addChild('reg_name', "");
+        $main->addChild('date_registration', $protocol->getCreated()->format("Y-m-d"));
+        $main->addChild('primary_sponsor', $protocol->getMainSubmission()->getPrimarySponsor());
+        $main->addChild('public_title', $protocol->getMainSubmission()->getPublicTitle());
+        $main->addChild('acronym', $protocol->getMainSubmission()->getTitleAcronym());
+        $main->addChild('scientific_title', $protocol->getMainSubmission()->getScientificTitle());
+        $main->addChild('scientific_acronym', "");
+        $main->addChild('date_enrolment', $protocol->getDateInformed()->format("Y-m-d"));
+        $main->addChild('type_enrolment', "actual");
+        $main->addChild('target_size', $protocol->getMainSubmission()->getSampleSize());
+        $main->addChild('recruitment_status', $protocol->getMainSubmission()->getRecruitmentStatus()->getName());
+        $main->addChild('url', $baseurl . $this->generateUrl('protocol_show_protocol', array('protocol_id' => $protocol->getId())));
+        $main->addChild('study_type', "");
+        $main->addChild('study_design', $protocol->getMainSubmission()->getStudyDesign());
+        $main->addChild('phase', "N/A");
+        $main->addChild('hc_freetext', $protocol->getMainSubmission()->getHealthCondition());
+        $main->addChild('i_freetext', "");
 
-        $trial_identification = $trial->addChild('trial_identification');
-        $trial_identification->addChild('trial_id', $protocol->getCode());
-        $trial_identification->addChild('public_title', $protocol->getMainSubmission()->getPublicTitle());
-        $trial_identification->addChild('acronym', $protocol->getMainSubmission()->getTitleAcronym());
-        $trial_identification->addChild('scientific_title', $protocol->getMainSubmission()->getScientificTitle());
+        $contacts = $main->addChild('contacts');
+        $contact = $contacts->addChild('contact');
+        $contact->addChild('type', "");
+        $contact->addChild('address', "");
+        $contact->addChild('city', "");
+        $contact->addChild('zip', "");
+        $contact->addChild('telephone', "");
+        $contact->addChild('email', $protocol->getMainSubmission()->getOwner()->getEmail());
+        $contact->addChild('affiliation', "");
 
-        $recruitment = $trial->addChild('recruitment');
-        $recruitment->addAttribute('status', $protocol->getMainSubmission()->getRecruitmentStatus());
-
-        // TODO: verificar se não há mais atributos dentro dessa parte do XML
-        foreach($protocol->getMainSubmission()->getCountry() as $country) {
-            $recruitment_country = $recruitment->addChild('recruitment_country');
-            $recruitment_country->addAttribute('value', $country->getCountry()->getCode());
-        }
-
-        $recruitment->addChild('inclusion_criteria', $protocol->getMainSubmission()->getInclusionCriteria());
-        $recruitment->addChild('exclusion_criteria', $protocol->getMainSubmission()->getExclusionCriteria());
-
-        $gender = $recruitment->addChild('gender');
-        $gender->addAttribute('value', $protocol->getMainSubmission()->getGender()->getSlug());
-
-        $agemin = $recruitment->addChild('agemin');
-        $agemin->addAttribute('value', $protocol->getMainSubmission()->getMinimumAge());
-        $agemin->addAttribute('unit', "years");
-
-        $agemax = $recruitment->addChild('agemax');
-        $agemax->addAttribute('value', $protocol->getMainSubmission()->getMaximumAge());
-        $agemax->addAttribute('unit', "years");
-
-        $target_size = $recruitment->addChild('target_size');
-        $target_size->addAttribute('value', $protocol->getMainSubmission()->getSampleSize());
-
-        $study = $trial->addChild('study');
-        $study_design = $study->addChild('study_design');
-        $study_design->addAttribute('value', $protocol->getMainSubmission()->getStudyDesign());
-
-        // TODO: translations das primarys and secondarys outcome
-        $outcomes = $trial->addChild('outcomes');
-        $primary_outcome = $outcomes->addChild('primary_outcome');
-        $primary_outcome->addAttribute('value', $protocol->getMainSubmission()->getPrimaryOutcome());
-
-        $secondary_outcome = $outcomes->addChild('secondary_outcome');
-        $secondary_outcome->addAttribute('value', $protocol->getMainSubmission()->getSecondaryOutcome());
-
-        $contacts = $trial->addChild('contacts');
-        $person = $contacts->addChild('person');
-        $person->addAttribute('pid', $protocol->getMainSubmission()->getOwner()->getId());
-        $person->addChild('email', $protocol->getMainSubmission()->getOwner()->getEmail());
         if($protocol->getMainSubmission()->getOwner()->getCountry()) {
-            $person->addAttribute('country_code', $protocol->getMainSubmission()->getOwner()->getCountry()->getCode());
+            $contact->addChild('country1', $protocol->getMainSubmission()->getOwner()->getCountry()->getName());
         }
 
         $name = explode(" ", $protocol->getMainSubmission()->getOwner()->getName());
-        $person->addChild('firstname', $name[0]);
+        $contact->addChild('firstname', $name[0]);
         if(count($name) > 1) {
-            $person->addChild('middlename', $name[1]);
+            $contact->addChild('middlename', $name[1]);
         }
         if(count($name) > 2) {
             $lastname = str_replace($name[0], "", $protocol->getMainSubmission()->getOwner()->getName());
             $lastname = str_replace($name[1], "", $lastname);
             $lastname = trim($lastname);
-            $person->addChild('lastname', $lastname);
+            $contact->addChild('lastname', $lastname);
         }
 
         // adicionando agora todo o time
         foreach($protocol->getMainSubmission()->getTeam() as $team) {
-            $person = $contacts->addChild('person');
-            $person->addAttribute('pid', $team->getId());
-            $person->addChild('email', $team->getEmail());
+            $contact = $contacts->addChild('contact');
+            $contact->addChild('type', "");
+            $contact->addChild('address', "");
+            $contact->addChild('city', "");
+            $contact->addChild('zip', "");
+            $contact->addChild('telephone', "");
+            $contact->addChild('email', $team->getEmail());
+            $contact->addChild('affiliation', "");
+
             if($team->getCountry()) {
-                $person->addAttribute('country_code', $team->getCountry()->getCode());
+                $contact->addAttribute('country1', $team->getCountry()->getName());
             }
 
             $name = explode(" ", $team->getName());
-            $person->addChild('firstname', $name[0]);
+            $contact->addChild('firstname', $name[0]);
             if(count($name) > 1) {
-                $person->addChild('middlename', $name[1]);
+                $contact->addChild('middlename', $name[1]);
             }
             if(count($name) > 2) {
                 $lastname = str_replace($name[0], "", $team->getName());
                 $lastname = str_replace($name[1], "", $lastname);
                 $lastname = trim($lastname);
-                $person->addChild('lastname', $lastname);
+                $contact->addChild('lastname', $lastname);
             }
         }
+
+        $criterias = $main->addChild('criterias');
+        $criteria = $criterias->addChild('criteria');
+        $criteria->addChild('inclusion_criteria', $protocol->getMainSubmission()->getInclusionCriteria());
+        $criteria->addChild('agemin', $protocol->getMainSubmission()->getMinimumAge() . "Y");
+        $criteria->addChild('agemax', $protocol->getMainSubmission()->getMaximumAge() . "Y");
+        $criteria->addChild('gender', substr($protocol->getMainSubmission()->getGender()->getName(), 0, 1));
+        $criteria->addChild('exclusion_criteria', $protocol->getMainSubmission()->getExclusionCriteria());
+
+        $primary_outcome = $main->addChild('primary_outcome');
+        $primary_outcome->addChild('prim_outcome', $protocol->getMainSubmission()->getPrimaryOutcome());
+
+        $primary_sponsor = $main->addChild('primary_sponsor');
+        $primary_sponsor->addChild('sponsor_name', $protocol->getMainSubmission()->getPrimarySponsor());
+
+        $secondary_outcome = $main->addChild('secondary_outcome');
+        $secondary_outcome->addChild('sec_outcome', $protocol->getMainSubmission()->getSecondaryOutcome());
+
+        $secondary_sponsor = $main->addChild('secondary_sponsor');
+        $secondary_sponsor->addChild('sponsor_name', $protocol->getMainSubmission()->getSecondarySponsor());
 
         return new Response(
             $xml->asXML(),

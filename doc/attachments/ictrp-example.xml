@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<trials>
+
+    <trial>
+        <main>
+            <trial_id>RBR-76cd72</trial_id>
+            <utrn>U1111-1176-3855</utrn>
+            <reg_name>REBEC</reg_name>
+            <date_registration>05/10/2016</date_registration>
+            <primary_sponsor>Departamento de Nutrição da Universidade Federal de Sergipe - São Cristóvão, SE, Brazil</primary_sponsor>
+            <public_title>Weight loss using different amounts of carbohydrates in the diet of fighters: impact on health and sports performance</public_title>
+            <acronym></acronym>
+            <scientific_title>Restricted energy for weight loss with different proportions of carbohydrates in the diet of fighters: impact on health and sports performance</scientific_title>
+            <scientific_acronym></scientific_acronym>
+            <date_enrolment>08/03/2015</date_enrolment>
+            <type_enrolment>actual</type_enrolment>
+            <target_size>18</target_size>
+            <recruitment_status>Recruitment completed</recruitment_status>
+            <url>http://ensaiosclinicos.gov.br/rg/RBR-76cd72/</url>
+            <study_type>Observational</study_type>
+            <study_design>Clinical trial, observational type before and after</study_design>
+            <phase>N/A</phase>
+            <hc_freetext>Human Healthy, fighters, weight loss</hc_freetext>
+            <i_freetext>Study will be conducted with 18 athletes. Having two diets with different proportions of carbohydrate. Diet low carbohydrate diet with carbohydrate normo - The calorie restriction protocol will be based from the 5% reduction target body weight of the athlete to be achieved in 30 days. They will be planned from 5 to 7 daily between meals and snacks and no athlete will have meal plan below 1500kcal / d. training protocol - the maximum repetition protocol will be applied (1RM) for exercise prescription and comparison of pre muscle strength and post-intervention. maximum strength of 1RM load lifted in the last correct execution will be considered. As for strength training, volunteers will hold five weekly sessions consisted of three series of 6 to 8 repetitions / exercise 80% of 1RM with 2-minute intervals between sets over the 4-week intervention. The exercise load will gradually be adjusted according to the progress of each participant. Anthropometry and body composition - Anthropometric measurements will be carried out in three stages of the study (baseline, assessment and reassessment). Body mass will be measured (kg), height (m), the perimeters of circumferences of the relaxed arm (CB), the contracted arm (CBC). They will be measured skinfolds triceps, subscapularis, supra-iliac, axillary, pectoral, abdominal and thigh. The seven folds will be used to monitor the sum of skinfolds and also will estimate the percentage of body fat in athletes. The sagittal abdominal diameter will be measured with an abdominal caliper. Hydration and monitoring of the percentage of body water (% ACT) athletes will be evaluated by bioelectrical impedance. resting energy expenditure and analysis of respiratory gases - The resting energy expenditure (REE) is obtained from the metabolic analyzer VO2000 (Inbrasport), where the variables are analyzed: VO2 (oxygen consumption in ml / kg / min) , VCO 2 (carbon dioxide production in ml / kg / min), QR (respiratory quotient = VCO2 / VO2). Biochemical - Athletes will be subjected to biochemical tests at three times (M2, M3 and M4), and each time the fighters will hold twice the tests before and after the completion of the physical fitness tests. Blood samples will be carried out by technically qualified professional so that they can be measured: complete blood count, urea, serum creatinine and uric acid; glucose, serum total cholesterol and its fractions (LDL-cholesterol, HDL-cholesterol, VLDL-cholesterol) and triglycerides. There will also be analyzed C-reactive protein, cortisol, insulin, T3. T4 and TSH. Aptitude measures physically These tests consist of measures: a) travel speed test; b) speed test; c) strength and power testing of the lower limbs; d) test strength and power of the upper limbs; e) vertical jump test; f) measure the electromyographic signal (EMG) in the vertical jump; g) analysis of the electromyographic signal (EMG) in the vertical jump; h) maximum voluntary isometric contraction test (CISG); and i) intermittent endurance test.</i_freetext>            
+        </main>
+        <contacts>
+        
+            <contact>
+                <type>public</type>
+                <firstname>Raquel</firstname>
+                <middlename>Simões Mendes</middlename>
+                <lastname>Netto</lastname>
+                <address>Avenida Marechal Rondon, S/n, Jardim Rosa Elze</address>
+                <city>São Cristóvão</city>
+                <country1>Brazil</country1>
+                <zip>xxxxx-xxx</zip>
+                <telephone>+55(79)2105-6662</telephone>
+                <email>raquelufs@gmail.com</email>
+                <affiliation>Departamento de Nutrição da Universidade Federal de Sergipe</affiliation>
+            </contact>
+        
+        
+            <contact>
+                <type>scientific</type>
+                <firstname>Raquel</firstname>
+                <middlename>Simões Mendes</middlename>
+                <lastname>Netto</lastname>
+                <address>Avenida Marechal Rondon, S/n, Jardim Rosa Elze</address>
+                <city>São Cristóvão</city>
+                <country1>Brazil</country1>
+                <zip>xxxxx-xxx</zip>
+                <telephone>+55(79)2105-6662</telephone>
+                <email>raquelufs@gmail.com</email>
+                <affiliation>Departamento de Nutrição da Universidade Federal de Sergipe</affiliation>
+            </contact>
+        
+        </contacts>
+        <countries>
+        
+            <country2>Brazil</country2>
+        
+        </countries>
+        <criteria>
+            <inclusion_criteria>being male; have over 18 years; are in off-season period; with over 5 years of practice in sport; 1.5 to 2h training / d and 4 to 5 times per week; have as a minimum graduation blue band; are from 4 to 10% of their body weight over the category in which they compete.</inclusion_criteria>
+            <agemin>18Y</agemin>
+            <agemax>59Y</agemax>
+            <gender>M</gender>
+            <exclusion_criteria>recent weight loss history; conditions and / or are in medical or nutritional counseling for specialized treatment.</exclusion_criteria>
+        </criteria>
+        <health_condition_code>
+            
+            <hc_code>C23</hc_code>
+            
+        </health_condition_code>
+        <health_condition_keyword>
+            
+            <hc_keyword>M01.774.500</hc_keyword>
+            
+            <hc_keyword>M01.072</hc_keyword>
+            
+        </health_condition_keyword>
+        <intervention_code>
+            
+            <i_code>Other</i_code>
+            
+        </intervention_code>
+        <intervention_keyword>
+            
+            <i_keyword>C23.888</i_keyword>
+            
+            <i_keyword>I02.233.543</i_keyword>
+            
+            <i_keyword>E01.370.600.024</i_keyword>
+            
+            <i_keyword>G03.495.335</i_keyword>
+            
+            <i_keyword>A12.207.152</i_keyword>
+            
+            <i_keyword>G11.427.685</i_keyword>
+            
+        </intervention_keyword>
+        <primary_outcome>
+            
+            <prim_outcome>Weight loss and improved sports performance, the 30-day period, the consumption of two diets with different carbohydrate ratios (2 to 3 g / kg / weight or 4 to 6 g / kg / weight).</prim_outcome>
+            
+            <prim_outcome>Weight loss of 5% and improved sports performance in power of the lower limbs, the 30-day period, the dietary carbohydrate consumption with 2 to 3 g / kg / weight.</prim_outcome>
+            
+        </primary_outcome>
+        <secondary_outcome>
+            
+            <sec_outcome>A leg greater than five percent</sec_outcome>
+            
+            <sec_outcome>Deterioration in physical performance of athletes</sec_outcome>
+            
+        </secondary_outcome>
+        <secondary_sponsor>
+            
+            <sponsor_name>Fundação Universidade Federal de Sergipe - São Cristóvão, SE, Brazil</sponsor_name>
+            
+        </secondary_sponsor>
+        <secondary_ids>
+            
+            <secondary_id>
+                <sec_id>Número do CAAE: 19931513.1.0000.5546</sec_id>
+                <issuing_authority>Plataforma Brasil</issuing_authority>    
+            </secondary_id>
+            
+            <secondary_id>
+                <sec_id>Número do Parecer do CEP: 855.069</sec_id>
+                <issuing_authority>Comitê de Ética em Pesquisa do Hospital Universitário de Aracajú/ Universidade Federal de Sergipe</issuing_authority>    
+            </secondary_id>
+            
+        </secondary_ids>
+        <source_support>
+            
+            <source_name>Fundação de Apoio à Pesquisa e Inovação Tecnológica de Sergipe - FAPITEC/SE - Aracaju, SE, Brazil</source_name>
+            
+        </source_support>        
+    </trial>
+
+</trials>
+
+
