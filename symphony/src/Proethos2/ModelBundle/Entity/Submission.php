@@ -1652,6 +1652,9 @@ class Submission extends Base
         if($this->getProtocol()->getStatus() == "D" or $this->getProtocol()->getStatus() == "R") {
             return true;
         } else {
+            if($this->getProtocol()->getIsMigrated()) {
+                return true;
+            }
             return false;
         }
     }
