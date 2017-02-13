@@ -956,10 +956,10 @@ class ProtocolController extends Controller
     }
 
     /**
-     * @Route("/protocol/{protocol_id}/xml", name="protocol_xml")
+     * @Route("/protocol/{protocol_id}/xml/{language_code}", name="protocol_xml")
      * @Template()
      */
-    public function XmlOutputAction($protocol_id)
+    public function XmlOutputAction($protocol_id, $language_code)
     {
 
         $output = array();
@@ -975,11 +975,24 @@ class ProtocolController extends Controller
 
         // getting the current submission
         $protocol = $protocol_repository->find($protocol_id);
-        $submission = $protocol->getMainSubmission();
-        $output['protocol'] = $protocol;
-
 
         if (!$protocol or !(in_array('administrator', $user->getRolesSlug()) or $user == $protocol->getOwner())) {
+            throw $this->createNotFoundException($translator->trans('No protocol found'));
+        }
+
+        // finding translation
+        $submission = NULL;
+        if($protocol->getMainSubmission()->getLanguage() == $language_code) {
+            $submission = $protocol->getMainSubmission();
+        } else {
+            foreach($protocol->getMainSubmission()->getTranslations() as $translation) {
+                if($translation->getLanguage() == $language_code) {
+                    $submission = $translation;
+                }
+            }
+        }
+
+        if(!$submission) {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
 
@@ -991,20 +1004,20 @@ class ProtocolController extends Controller
         $main->addChild('utrn', "");
         $main->addChild('reg_name', "");
         $main->addChild('date_registration', $protocol->getCreated()->format("Y-m-d"));
-        $main->addChild('primary_sponsor', $protocol->getMainSubmission()->getPrimarySponsor());
-        $main->addChild('public_title', $protocol->getMainSubmission()->getPublicTitle());
-        $main->addChild('acronym', $protocol->getMainSubmission()->getTitleAcronym());
-        $main->addChild('scientific_title', $protocol->getMainSubmission()->getScientificTitle());
+        $main->addChild('primary_sponsor', $submission->getPrimarySponsor());
+        $main->addChild('public_title', $submission->getPublicTitle());
+        $main->addChild('acronym', $submission->getTitleAcronym());
+        $main->addChild('scientific_title', $submission->getScientificTitle());
         $main->addChild('scientific_acronym', "");
         $main->addChild('date_enrolment', $protocol->getDateInformed()->format("Y-m-d"));
         $main->addChild('type_enrolment', "actual");
-        $main->addChild('target_size', $protocol->getMainSubmission()->getSampleSize());
-        $main->addChild('recruitment_status', $protocol->getMainSubmission()->getRecruitmentStatus()->getName());
+        $main->addChild('target_size', $submission->getSampleSize());
+        $main->addChild('recruitment_status', $submission->getRecruitmentStatus()->getName());
         $main->addChild('url', $baseurl . $this->generateUrl('protocol_show_protocol', array('protocol_id' => $protocol->getId())));
         $main->addChild('study_type', "");
-        $main->addChild('study_design', $protocol->getMainSubmission()->getStudyDesign());
+        $main->addChild('study_design', $submission->getStudyDesign());
         $main->addChild('phase', "N/A");
-        $main->addChild('hc_freetext', $protocol->getMainSubmission()->getHealthCondition());
+        $main->addChild('hc_freetext', $submission->getHealthCondition());
         $main->addChild('i_freetext', "");
 
         $contacts = $main->addChild('contacts');
@@ -1014,27 +1027,27 @@ class ProtocolController extends Controller
         $contact->addChild('city', "");
         $contact->addChild('zip', "");
         $contact->addChild('telephone', "");
-        $contact->addChild('email', $protocol->getMainSubmission()->getOwner()->getEmail());
+        $contact->addChild('email', $submission->getOwner()->getEmail());
         $contact->addChild('affiliation', "");
 
-        if($protocol->getMainSubmission()->getOwner()->getCountry()) {
-            $contact->addChild('country1', $protocol->getMainSubmission()->getOwner()->getCountry()->getName());
+        if($submission->getOwner()->getCountry()) {
+            $contact->addChild('country1', $submission->getOwner()->getCountry()->getName());
         }
 
-        $name = explode(" ", $protocol->getMainSubmission()->getOwner()->getName());
+        $name = explode(" ", $submission->getOwner()->getName());
         $contact->addChild('firstname', $name[0]);
         if(count($name) > 1) {
             $contact->addChild('middlename', $name[1]);
         }
         if(count($name) > 2) {
-            $lastname = str_replace($name[0], "", $protocol->getMainSubmission()->getOwner()->getName());
+            $lastname = str_replace($name[0], "", $submission->getOwner()->getName());
             $lastname = str_replace($name[1], "", $lastname);
             $lastname = trim($lastname);
             $contact->addChild('lastname', $lastname);
         }
 
         // adicionando agora todo o time
-        foreach($protocol->getMainSubmission()->getTeam() as $team) {
+        foreach($submission->getTeam() as $team) {
             $contact = $contacts->addChild('contact');
             $contact->addChild('type', "");
             $contact->addChild('address', "");
@@ -1063,23 +1076,23 @@ class ProtocolController extends Controller
 
         $criterias = $main->addChild('criterias');
         $criteria = $criterias->addChild('criteria');
-        $criteria->addChild('inclusion_criteria', $protocol->getMainSubmission()->getInclusionCriteria());
-        $criteria->addChild('agemin', $protocol->getMainSubmission()->getMinimumAge() . "Y");
-        $criteria->addChild('agemax', $protocol->getMainSubmission()->getMaximumAge() . "Y");
-        $criteria->addChild('gender', substr($protocol->getMainSubmission()->getGender()->getName(), 0, 1));
-        $criteria->addChild('exclusion_criteria', $protocol->getMainSubmission()->getExclusionCriteria());
+        $criteria->addChild('inclusion_criteria', $submission->getInclusionCriteria());
+        $criteria->addChild('agemin', $submission->getMinimumAge() . "Y");
+        $criteria->addChild('agemax', $submission->getMaximumAge() . "Y");
+        $criteria->addChild('gender', substr($submission->getGender()->getName(), 0, 1));
+        $criteria->addChild('exclusion_criteria', $submission->getExclusionCriteria());
 
         $primary_outcome = $main->addChild('primary_outcome');
-        $primary_outcome->addChild('prim_outcome', $protocol->getMainSubmission()->getPrimaryOutcome());
+        $primary_outcome->addChild('prim_outcome', $submission->getPrimaryOutcome());
 
         $primary_sponsor = $main->addChild('primary_sponsor');
-        $primary_sponsor->addChild('sponsor_name', $protocol->getMainSubmission()->getPrimarySponsor());
+        $primary_sponsor->addChild('sponsor_name', $submission->getPrimarySponsor());
 
         $secondary_outcome = $main->addChild('secondary_outcome');
-        $secondary_outcome->addChild('sec_outcome', $protocol->getMainSubmission()->getSecondaryOutcome());
+        $secondary_outcome->addChild('sec_outcome', $submission->getSecondaryOutcome());
 
         $secondary_sponsor = $main->addChild('secondary_sponsor');
-        $secondary_sponsor->addChild('sponsor_name', $protocol->getMainSubmission()->getSecondarySponsor());
+        $secondary_sponsor->addChild('sponsor_name', $submission->getSecondarySponsor());
 
         return new Response(
             $xml->asXML(),
