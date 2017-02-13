@@ -729,4 +729,28 @@ class Protocol extends Base
         }
         return false;
     }
+
+    /**
+     * list XML availables
+     *
+     * @return array
+     */
+    public function getXMLAvailable()
+    {
+        $xml_available_list = array();
+
+        // listing current submission and translations related
+        $submissions = array($this->getMainSubmission());
+        foreach($this->getMainSubmission()->getTranslations() as $translation) {
+            $submissions[] = $translation;
+        }
+
+        foreach($submissions as $submission) {
+            if($submission->getProtocol()->getDateInformed() and $submission->getRecruitmentStatus() and $submission->getGender()) {
+                $xml_available_list[] = $submission->getLanguage();
+            }
+        }
+
+        return $xml_available_list;
+    }
 }
