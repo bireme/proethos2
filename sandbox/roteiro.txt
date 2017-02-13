@@ -1,0 +1,118 @@
+Marco dia 1
+demo_proethos-2016-08-30-11-37-45.sql
+Marco dia 2 - marco
+demo_proethos-2016-08-31-12-10-54.sql
+
+1 - Creacion usuario Nuevo
+-informacion del usuário
+ demo_proethos-2016-08-30-11-47-04.sql
+
+2 - Olvide mi contrasena
+-  demo_proethos-2016-08-30-11-48-17.sql
+
+3 - Presentacion protocolo nuevo
+- informacion preliminar
+demo_proethos-2016-08-30-11-49-40.sql
+- sobre el proecto
+demo_proethos-2016-08-30-11-51-15.sql
+- procedimientos y resultados
+ demo_proethos-2016-08-30-11-56-16.sql
+- informacion adicional
+demo_proethos-2016-08-30-11-58-05.sql
+- bibliografia
+demo_proethos-2016-08-30-11-59-04.sql
+- archivos adjuntos
+demo_proethos-2016-08-30-12-00-35.sql
+-  listas de validación / crear pdf
+demo_proethos-2016-08-30-12-01-43.sql
+- lista de validación /presentar protocolo
+demo_proethos-2016-08-30-12-04-21.sql
+
+4 - Cambiar contraseña
+- demo_proethos-2016-08-30-12-05-37.sql
+
+5 - Validacion de protocolos nuevos
+- anadir comentários
+ demo_proethos-2016-08-30-12-28-57.sql
+
+6 - Devolver a investigador
+ demo_proethos-2016-08-30-12-08-52.sql
+
+7 - Asignar a comité para decisión - [no hecho]
+
+8 - Aceptar para revision-
+demo_proethos-2016-08-30-12-35-46.sql
+- assignar identificación
+demo_proethos-2016-08-30-12-37-37.sql
+
+9 - Asignar revisores
+ demo_proethos-2016-08-30-12-40-30.sql
+
+10 - Asignar para reunión
+demo_proethos-2016-08-30-12-42-42.sql
+
+11 - Subir dictamen
+demo_proethos-2016-08-30-13-00-21.sql
+- finalizar el proceso (paso 1)
+demo_proethos-2016-08-30-13-01-49.sql
+- Borrar dictamen
+ demo_proethos-2016-08-30-13-04-32.sql
+- subir nuevo dictamen
+demo_proethos-2016-08-30-13-05-24.sql
+- (segunda) nueva finalizacion
+demo_proethos-2016-08-30-13-07-46.sql
+- finalizar y comunicar investigador
+demo_proethos-2016-08-30-13-08-33.sql
+
+12 - Validar usuarios [no hecho]
+13 - Asignar perfiles [no hecho]
+
+14- Programar nueva reunión (Calendario)
+demo_proethos-2016-08-31-12-52-49.sql
+
+15- Agenda de la reunión [no hecho]
+16-  Subir nuevos documentos (plantilha de los documentos) (no hecho) - no funciona
+17 - Personalizar información y logos del comité [no hecho]
+18 - Editar emails-  [no hecho]
+19 - Editar lista de FAQs  [No hecho]
+20 - Subir tipos de decisión [No hecho]
+21 - Editar textos - [no hecho]
+22 - Reportes - [no hecho]
+
+-------------------------------------------------------
+Nuevos
+23 - presentación de protocolo rechazados
+ - creación de pdf
+demo_proethos-2016-08-30-12-18-03.sql
+- Submissión final
+demo_proethos-2016-08-30-12-18-54.sql
+
+24 - subir guia de revision interna
+- aprobado
+demo_proethos-2016-08-30-12-58-28.sql
+
+25 - acciones de monitoreo
+
+- presentar la emnienda
+-- crear pdf
+demo_proethos-2016-08-31-12-20-35.sql
+(no fue concluido el proceso)
+
+- reporte de eventos adversos
+-- crear pdf
+demo_proethos-2016-08-31-12-28-32.sql
+-- Presentar
+demo_proethos-2016-08-31-12-29-25.sql
+
+- conclusion del estudio (hecho con otro)
+-- crear pdf
+demo_proethos-2016-08-31-12-37-41.sql
+-- Presentar
+ demo_proethos-2016-08-31-12-39-31.sql
+
+- envio de otros documentos
+-- crear pdf
+demo_proethos-2016-08-31-12-43-26.sql
+-- presentar
+demo_proethos-2016-08-31-12-44-01.sql
+

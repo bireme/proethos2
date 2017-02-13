@@ -12,33 +12,27 @@
 
         {% include 'Proethos2CoreBundle:NewSubmission:meta.html.twig' %}
 
-        <div class='row'>
-            <div class='col-md-12'>
-                <ul class="nav nav-tabs" id='new-submission-tab'>
-                    <li role="presentation" class='active'>
-                        <a href="{{ path("submission_new_first_step") }}" title="{% trans %}First Information{% endtrans %}">
-                            {% trans %}First Information{% endtrans %}
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a href="javascript:void(0)" title="{% trans %}About Project{% endtrans %}">{% trans %}About Project{% endtrans %}</a>
-                    </li>
-                    <li role="presentation"><a href="javascript:void(0)">Estudo clínico</a></li>
-                    <li role="presentation"><a href="javascript:void(0)">Cronograma e Orçamento</a></li>
-                    <li role="presentation"><a href="javascript:void(0)">Referências</a></li>
-                    <li role="presentation"><a href="javascript:void(0)">Arquivos anexados</a></li>
-                    <li role="presentation"><a href="javascript:void(0)">Revisão</a></li>
-                </ul>
-            </div>
-        </div>
-
         <div class='new-submission-tab-content'>
             <div class='row submission-meta'> </div>
 
             <div class='row'>
                 <div class='col-md-12'>
                     <form class='form' method='POST' action='{{ path("submission_new_first_created_protocol_step", {submission_id: submission.id}) }}'>
-                        <fieldset>
+                    <fieldset>
+                        <legend>{% trans %}Language{% endtrans %}</legend>
+                        <div class="form-group required">
+                            <label for="select-language">{% trans %}Submission Language{% endtrans %}:</label>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 198} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <select class='form-control select2' id='select-language' name='language'>
+                                <option value="pt_BR" {% if submission.language == 'pt_BR' %}selected{% endif %}>Português</option>
+                                <option value="es_ES" {% if submission.language == 'es_ES' %}selected{% endif %}>Español</option>
+                                <option value="en" {% if submission.language == 'en' %}selected{% endif %}>English</option>
+                                <option value="fr_FR" {% if submission.language == 'fr_FR' %}selected{% endif %}>Français</option>
+                            </select>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
                             <legend>{% trans %}Clinical Trial{% endtrans %}</legend>
                             <div class="form-group required">
                                 <label for="">{% trans %}Clinical Trial{% endtrans %}?</label>
@@ -52,21 +46,21 @@
 
                         <fieldset>
                             <legend>{% trans %}Project Title{% endtrans %}</legend>
-                            
+
                             <div class="form-group required">
-                                <label for="input_scientific_title">{% trans %}Scientific Title{% endtrans %}:</label> 
+                                <label for="input_scientific_title">{% trans %}Scientific Title{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 14} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="text" class="form-control" name='scientific_title' id='input_scientific_title' value="{{ submission.scientificTitle }}" required>
                             </div>
 
                             <div class="form-group required">
-                                <label for="input_public_title">{% trans %}Public title{% endtrans %}:</label> 
+                                <label for="input_public_title">{% trans %}Public title{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 15} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="text" class="form-control" name='public_title' id='input_public_title' value="{{ submission.publicTitle }}" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="input_title_acronym">{% trans %}Title Acronym{% endtrans %}:</label> 
+                                <label for="input_title_acronym">{% trans %}Title Acronym{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="text" class="form-control" name='title_acronym' value="{{ submission.titleAcronym }}" id='input_title_acronym'>
                             </div>

@@ -9,6 +9,43 @@
     </div>
 {% endif %}
 
+{% if submission.isTranslation %}
+    <div class='row'>
+        <div class='col-md-12'>
+            <div class='alert alert-info'>
+                <h4>
+                    {% trans %}This is a translated version.{% endtrans %}
+                    <a href="{{ path("submission_new_first_created_protocol_step", {submission_id: submission.originalSubmission.id}) }}">{% trans %}See original{% endtrans %}.</a>
+                </h4>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if submission.totalTranslations > 0 %}
+    <div class='row'>
+        <div class='col-md-12'>
+            <div class='alert alert-info'>
+                <h4>
+                    {% trans %}This submission has translations{% endtrans %}:
+                    <ul>
+                        {% for translation in submission.translations %}
+                            <li>
+                                <a href="{{ path("submission_new_first_created_protocol_step", {submission_id: translation.id}) }}">
+                                    {% if translation.language == 'pt_BR' %}Português{% endif %}
+                                    {% if translation.language == 'es_ES' %}Español{% endif %}
+                                    {% if translation.language == 'en' %}English{% endif %}
+                                    {% if translation.language == 'fr_FR' %}Français{% endif %}
+                                </a>
+                            </li>
+                    {% endfor %}
+                    </ul>
+                </h4>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
 <div class='row'>
     <div class='col-md-12'>
         <ul class="nav nav-tabs" id='new-submission-tab'>
@@ -27,7 +64,7 @@
                 <a href="{{ path('submission_new_third_step', {'submission_id': submission.id }) }}" title='{% trans %}Clinical study{% endtrans %}'>{% trans %}Clinical study{% endtrans %}</a>
             </li>
             <li role="presentation" {% if app.request.get('_route') == "submission_new_fourth_step" %}class='active'{% endif %}>
-                <a href="{{ path('submission_new_fourth_step', {'submission_id': submission.id }) }}" title='{% trans %}Additional Information{% endtrans %}'>{% trans %}Additional Information{% endtrans %}</a> 
+                <a href="{{ path('submission_new_fourth_step', {'submission_id': submission.id }) }}" title='{% trans %}Additional Information{% endtrans %}'>{% trans %}Additional Information{% endtrans %}</a>
             </li>
             <li role="presentation" {% if app.request.get('_route') == "submission_new_fifth_step" %}class='active'{% endif %}>
                 <a href="{{ path('submission_new_fifth_step', {'submission_id': submission.id }) }}" title='{% trans %}Bibliography{% endtrans %}'>{% trans %}Bibliography{% endtrans %}</a>
@@ -43,7 +80,7 @@
 </div>
 
 <div class='new-submission-tab-content'>
-    <div class='row submission-meta'>                
+    <div class='row submission-meta'>
         {% if app.request.get('_route') != "submission_new_first_step" %}
             <div class='col-md-1'>
                 <img src='{{ asset("bundles/proethos2core/img/icon-submission.png") }}'>
@@ -52,7 +89,17 @@
             <div class='col-md-5'>
                 <div class='block'>
                     <div class='label'>{% trans %}Project Title{% endtrans %}</div>
-                    <h2>{{ submission.publicTitle }}</h2>
+                    <h2>
+                        {{ submission.publicTitle }}
+                        {% if submission.isTranslation %}
+                            <small>
+                                {% trans %}translation{% endtrans %}{% endif %}:
+                                {% if submission.language == 'pt_BR' %}Português{% endif %}
+                                {% if submission.language == 'es_ES' %}Español{% endif %}
+                                {% if submission.language == 'en' %}English{% endif %}
+                                {% if submission.language == 'fr_FR' %}Français{% endif %}
+                            </small>
+                    </h2>
                 </div>
             </div>
 
@@ -75,7 +122,7 @@
                     <div class='label'>{% trans %}Updated At{% endtrans %}</div>
                     <h3>{{ submission.updated|date('d/m/Y') }}</h3>
                 </div>
-            </div>         
+            </div>
         {% endif %}
     </div>
 </div>

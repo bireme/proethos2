@@ -27,7 +27,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="textarea-bibliography">{% trans %}Bibliography{% endtrans %}:</label> 
+                                <label for="textarea-bibliography">{% trans %}Bibliography{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 8} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="5" class="form-control" id='textarea-bibliography' name='bibliography' required>{{ submission.bibliography }}</textarea>
                             </div>
@@ -45,7 +45,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="textarea-sscientific-contact">{% trans %}Scientific Contact{% endtrans %}:</label> 
+                                <label for="textarea-sscientific-contact">{% trans %}Scientific Contact{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 9} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="5" class="form-control" id='textarea-sscientific-contact' name='sscientific-contact' required>{{ submission.sscientificContact }}</textarea>
                             </div>
@@ -53,28 +53,30 @@
                     </div>
                 </div>
 
-                <div class='block'>
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <h2 class='sub-header'>{% trans %}Prior Ethical Approval{% endtrans %}</h2>
+                {% if not submission.isTranslation %}
+                    <div class='block'>
+                        <div class='row'>
+                            <div class="col-md-12">
+                                <h2 class='sub-header'>{% trans %}Prior Ethical Approval{% endtrans %}</h2>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class='row'>
-                        <div class="col-md-12">
-                            <div class="form-group required">
-                                <label for="">{% trans %}Prior Ethical Approval{% endtrans %}:</label> 
-                                <a href="{{ path("crud_admin_help_show", {help_id: 10} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <div class='radio'>
-                                    <label><input type='radio' name='prior-ethical-approval' id='radio-prior-ethical-approval-yes' value='Y' required> Sim</label>
-                                </div>
-                                <div class='radio'>
-                                    <label><input type='radio' name='prior-ethical-approval' id="radio-prior-ethical-approval-no" value='N' required> Não</label>
+                        <div class='row'>
+                            <div class="col-md-12">
+                                <div class="form-group required">
+                                    <label for="">{% trans %}Prior Ethical Approval{% endtrans %}:</label>
+                                    <a href="{{ path("crud_admin_help_show", {help_id: 10} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <div class='radio'>
+                                        <label><input type='radio' name='prior-ethical-approval' id='radio-prior-ethical-approval-yes' value='Y' required> Sim</label>
+                                    </div>
+                                    <div class='radio'>
+                                        <label><input type='radio' name='prior-ethical-approval' id="radio-prior-ethical-approval-no" value='N' required> Não</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                {% endif %}
 
                 <div class='submission-button-controls'>
                     <button type='submit' class='btn btn-primary'>{% trans %}Save and next{% endtrans %}</button>
@@ -88,6 +90,6 @@
 {% block script %}
     <script>
 
-        
+
     </script>
 {% endblock %}

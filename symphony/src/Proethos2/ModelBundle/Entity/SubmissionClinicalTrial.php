@@ -1,15 +1,15 @@
 <?php
 
-// This file is part of the ProEthos Software. 
-// 
+// This file is part of the ProEthos Software.
+//
 // Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
 // ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
+// restricts commercial use of the Software.
+//
 // ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
+// PARTICULAR PURPOSE. See the ProEthos License for more details.
+//
 // You should have received a copy of the ProEthos License along with the ProEthos
 // Software. If not, see
 // https://github.com/bireme/proethos2/blob/master/LICENSE.txt
@@ -38,27 +38,27 @@ class SubmissionClinicalTrial extends Base
      */
     private $id;
 
-    /** 
+    /**
      * @var ClinicalTrialName
-     * 
-     * @ORM\ManyToOne(targetEntity="ClinicalTrialName") 
-     * @ORM\JoinColumn(name="clinical_trial_name_id", referencedColumnName="id", onDelete="SET NULL") 
-     */ 
+     *
+     * @ORM\ManyToOne(targetEntity="ClinicalTrialName")
+     * @ORM\JoinColumn(name="clinical_trial_name_id", referencedColumnName="id", onDelete="SET NULL")
+     */
     private $name;
 
-    /** 
+    /**
      * @var Submission
-     * 
-     * @ORM\ManyToOne(targetEntity="Submission", inversedBy="clinical_trial") 
-     * @ORM\JoinColumn(name="submission_id", referencedColumnName="id", nullable=false, onDelete="CASCADE") 
-     * @Assert\NotBlank 
-     */ 
+     *
+     * @ORM\ManyToOne(targetEntity="Submission", inversedBy="clinical_trial")
+     * @ORM\JoinColumn(name="submission_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     * @Assert\NotBlank
+     */
     private $submission;
 
     /**
-     * @var number
+     * @var string
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="number", type="string", length=255)
      */
     private $number;
 
@@ -84,7 +84,7 @@ class SubmissionClinicalTrial extends Base
     /**
      * Set number
      *
-     * @param integer $number
+     * @param string $number
      *
      * @return SubmissionClinicalTrial
      */
@@ -98,7 +98,7 @@ class SubmissionClinicalTrial extends Base
     /**
      * Get number
      *
-     * @return integer
+     * @return string
      */
     public function getNumber()
     {

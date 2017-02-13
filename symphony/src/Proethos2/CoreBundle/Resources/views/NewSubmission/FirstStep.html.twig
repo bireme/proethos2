@@ -37,6 +37,20 @@
                 <div class='col-md-12'>
                     <form class='form' method='POST' action='{{ path("submission_new_first_step") }}'>
                         <fieldset>
+                            <legend>{% trans %}Language{% endtrans %}</legend>
+                            <div class="form-group required">
+                                <label for="select-language">{% trans %}Submission Language{% endtrans %}:</label>
+                                <a href="{{ path("crud_admin_help_show", {help_id: 198} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <select class='form-control select2' id='select-language' name='language'>
+                                    <option value="pt_BR" {% if app.request.locale == 'pt_BR' %}selected{% endif %}>Português</option>
+                                    <option value="es_ES" {% if app.request.locale == 'es_ES' %}selected{% endif %}>Español</option>
+                                    <option value="en" {% if app.request.locale == 'en' %}selected{% endif %}>English</option>
+                                    <option value="fr_FR" {% if app.request.locale == 'fr_FR' %}selected{% endif %}>Français</option>
+                                </select>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
                             <legend>{% trans %}Clinical Trial{% endtrans %}</legend>
                             <div class="form-group required">
                                 <label for="">{% trans %}Clinical Trial{% endtrans %}?</label>
