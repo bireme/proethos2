@@ -13,3 +13,4 @@ If you have any questions, please [open an ticket here](https://github.com/birem
 - [How to translate labels](how-to/how-to-translate.md)
 - [How to configure reCaptcha for registration form](how-to/how-to-configure-recaptcha-for-registration-form.md)
 - [How to add routines in crontab](how-to/how-to-add-routines-in-crontab.md)
+- [How to create custom fields](how-to/how-to-create-custom-fields.md)

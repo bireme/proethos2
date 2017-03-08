@@ -9,29 +9,31 @@ Preparing Github and Repos structure and flow
 ---------------------------------------------
 
 1. Fork the Bireme's repository to your own profile:
+
 ![Fork the Bireme's repository to your own profile](../img/how-to-create-custom-fields-1.png)
 
-1. Clone the forked repo to your machine:
+2. Clone the forked repo to your machine:
+
 ![Clone the forked repo to your machine](../img/how-to-create-custom-fields-2.png)
 ```
 git clone git@github.com:moacirmoda/proethos2.git
 ```
 
-1. Access your forked repo and create a new branch to separate your custom from the master branch: (in this case we use
+3. Access your forked repo and create a new branch to separate your custom from the master branch: (in this case we use
 the "customization" in branch name. You can use any name.)
 ```
 cd proethos2
 git checkout -B customization
 ```
 
-1. Came back to the master branch and add the Bireme's repo to your fork:
+4. Came back to the master branch and add the Bireme's repo to your fork:
 ```
 git checkout master
 git remote add upstream https://github.com/bireme/proethos2
 git fetch upstream
 ```
 
-1. Now, we recommend that you update and merge periodically, or even that Bireme shares a new version from Proethos2.
+5. Now, we recommend that you update and merge periodically, or even that Bireme shares a new version from Proethos2.
 You will need to merge your master branch with our master branch, and merge your master branch with your custom branch.
 To do this, execute the following command:
 ```
@@ -83,8 +85,8 @@ php app/console doctrine:generate:entities Proethos2/ModelBundle/Entity/Submissi
 
 If all run correctly, you will see this message:
 
-Generating entity "Proethos2\ModelBundle\Entity\Submission"
 ```
+Generating entity "Proethos2\ModelBundle\Entity\Submission"
   > backing up Submission.php to Submission.php~
   > generating Proethos2\ModelBundle\Entity\Submission
 ```
@@ -174,6 +176,11 @@ $submission->setInternalProtocolNumber($post_data['internal_protocol_number']);
 ```
 
 And it's done! Your info will be saved in database.
+
+### Generating the help message to the created field:
+
+All fields in proethos2 have an help message associate. To create the current help message, follow the steps in
+["How to generate help messages"](how-to-generate-help-messages-in-database-to-my-new-development.md).
 
 References:
 -----------
