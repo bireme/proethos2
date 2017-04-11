@@ -46,7 +46,7 @@ $ sudo apt-get install -y curl php5 php5-cli php5-mysql libapache2-mod-php5 php5
 
 ### MySQL
 
-The next command block is to install MySQL server and to config it.
+The next command block is to install MySQL server and to configure it.
 
 ```
 $ sudo apt-get install -y mysql-server libapache2-mod-auth-mysql
