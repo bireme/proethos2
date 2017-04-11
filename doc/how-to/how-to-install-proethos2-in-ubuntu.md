@@ -196,7 +196,7 @@ Software configuration
 SMTP and emails
 ---------------
 
-Go to `app/config/parameters.yml` and add/change these parameters:
+Go to `app/config/parameters.yml` and add/change these parameters, according to your e-mail service:
 
 ```
 mailer_transport: smtp
