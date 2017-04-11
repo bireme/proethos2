@@ -112,9 +112,9 @@ In the middle of process, you will be questioned by this questions below:
 - `database_driver (pdo_mysql):` We use MySQL, so, press enter.
 - `database_host (127.0.0.1): ` We use a local MySQL installation (in this case), so, press enter.
 - `database_port (null):` We use a default port, so, press enter.
-- `database_name (symfony):` Fill with the database name that we created. In this case `proethos2`.
-- `database_user (root):` Fill with the database name that we created. In this case `proethos2`.
-- `database_password (null):` Fill with the database name that we created. In this case `choose_a_password!`.
+- `database_name (symfony):` Fill in with the database name that we created. In this case `proethos2`.
+- `database_user (root):` Fill in with the user that we created. In this case `proethos2`.
+- `database_password (null):` Fill in with the database name that we created. In this case `choose_a_password!`.
 - `mailer_transport (smtp):` We will configure this options later, so, press enter for the SMTP options.
 - `locale (en):` Choose your default language locale. We will use `es_ES`
 - `secret (ThisTokenIsNotSoSecretChangeIt):` Choose an secret token for your application.
