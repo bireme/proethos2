@@ -56,7 +56,7 @@ $ sudo mysql_install_db
 ```
 
 Now, we have to create the user and database that proethos2 will have access.
-Type `mysql -uroot -p` and next type the following codes:
+Type `mysql -uroot -p` and then type the following codes:
 
 ```
 CREATE USER 'proethos2'@'localhost' IDENTIFIED BY 'choose_a_password!';
