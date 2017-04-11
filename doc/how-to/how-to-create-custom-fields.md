@@ -26,7 +26,7 @@ cd proethos2
 git checkout -B customization
 ```
 
-4. Came back to the master branch and add the Bireme's repo to your fork:
+4. Come back to the master branch and add the Bireme's repo to your fork:
 ```
 git checkout master
 git remote add upstream https://github.com/bireme/proethos2
