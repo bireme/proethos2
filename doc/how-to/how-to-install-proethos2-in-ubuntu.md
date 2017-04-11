@@ -24,7 +24,7 @@ $ sudo apt-get install -y vim openssh-server
 ```
 $ sudo apt-get update
 $ sudo apt-get install -y git
-$ git config --global user.name "You github name"
+$ git config --global user.name "Your github name"
 $ git config --global user.email yourgithub@email.com
 
 ```
