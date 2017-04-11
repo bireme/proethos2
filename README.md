@@ -17,5 +17,5 @@ Links
 * [Development Guide](doc/README.md)
 * [About Continuous Integration](doc/continuous-integration.md)
 * Mailing lists
- * for developers (http://bit.ly/mailing-proethos-dev)
- * for end-users (http://bit.ly/mailing-proethos-committee)
+  * for developers (http://bit.ly/mailing-proethos-dev)
+  * for end-users (http://bit.ly/mailing-proethos-committee)
