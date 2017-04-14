@@ -1,0 +1,66 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}New submission{% endtrans %}{% endblock %}
+
+{% block content %}
+    <div class="container-fluid main-content">
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">{% trans %}New submission{% endtrans %}</h1>
+            </div>
+        </div>
+
+        {% include 'Proethos2CoreBundle:NewSubmission:meta.html.twig' %}
+
+        <div class='new-submission-tab-content'>
+            <div class='row submission-meta'> </div>
+
+            <div class='row'>
+                <div class='col-md-12'>
+                    <form class='form' method='POST' action='{{ path("submission_new_first_translation_protocol_step", {submission_id: submission.id}) }}'>
+                        <fieldset>
+                            <legend>{% trans %}Language{% endtrans %}</legend>
+                            <div class="form-group required">
+                                <label for="select-language">{% trans %}Submission Language{% endtrans %}:</label>
+                                <a href="{{ path("crud_admin_help_show", {help_id: 198} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <select class='form-control select2' id='select-language' name='language'>
+                                    <option value="">-</option>
+                                    {% if submission.language != 'pt_BR' %}<option value="pt_BR" {% if app.request.locale == 'pt_BR' %}selected{% endif %}>Português</option>{% endif %}
+                                    {% if submission.language != 'es_ES' %}<option value="es_ES" {% if app.request.locale == 'es_ES' and submission.language != 'es_ES' %}selected{% endif %}>Español</option>{% endif %}
+                                    {% if submission.language != 'fr_FR' %}<option value="fr_FR" {% if app.request.locale == 'fr_FR' and submission.language != 'fr_FR' %}selected{% endif %}>Français</option>{% endif %}
+                                    {% if submission.language != 'en' %}<option value="en" {% if app.request.locale == 'en' and submission.language != 'en' %}selected{% endif %}>English</option>{% endif %}
+                                </select>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>{% trans %}Project Title{% endtrans %}</legend>
+
+                            <div class="form-group required">
+                                <label for="input_scientific_title">{% trans %}Scientific Title{% endtrans %}:</label>
+                                <a href="{{ path("crud_admin_help_show", {help_id: 14} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type="text" class="form-control" name='scientific_title' id='input_scientific_title' value="" required>
+                            </div>
+
+                            <div class="form-group required">
+                                <label for="input_public_title">{% trans %}Public title{% endtrans %}:</label>
+                                <a href="{{ path("crud_admin_help_show", {help_id: 15} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type="text" class="form-control" name='public_title' id='input_public_title' value="" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input_title_acronym">{% trans %}Title Acronym{% endtrans %}:</label>
+                                <a href="{{ path("crud_admin_help_show", {help_id: 16} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <input type="text" class="form-control" name='title_acronym' value="" id='input_title_acronym'>
+                            </div>
+                        </fieldset>
+
+                        <div class='submission-button-controls'>
+                            <button type='submit' class='btn btn-primary'>{% trans %}Save and next{% endtrans %}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

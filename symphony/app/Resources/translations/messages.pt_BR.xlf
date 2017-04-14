@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-09-26T17:53:33Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2016-11-22T19:21:53Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -1158,10 +1158,6 @@
         <source>Protocol finalized by %user% under option "%option%".</source>
         <target>Protocolo finalizado pelo %user% sob opção "%option%".</target>
       </trans-unit>
-      <trans-unit id="620043c798da0b02a5a3236b40e134ecdec364a4" resname="Protocol has been accepeted and investigators notified.">
-        <source>Protocol has been accepeted and investigators notified.</source>
-        <target>Protocolo foi aceite e investigadores notificados </target>
-      </trans-unit>
       <trans-unit id="185a971b99159441d069b7b1aabcec8c0de209c1" resname="Protocol options">
         <source>Protocol options</source>
         <target>Opções de protocolo</target>
@@ -1798,13 +1794,9 @@
         <source>Your Protocols</source>
         <target>Os protocolos de</target>
       </trans-unit>
-      <trans-unit id="9c3bce80ec4a4583d2a342199b95964195f28527" resname="Your protocol was accepted!">
-        <source>Your protocol was accepted!</source>
-        <target>Seu protocolo foi aceito </target>
-      </trans-unit>
-      <trans-unit id="1b1713f223a9531fe18be4fbf0d880b5f5b426f8" resname="Your protocol was accepted. Access the link below">
-        <source>Your protocol was accepted. Access the link below</source>
-        <target>Seu protocolo foi aceito. Acesse o link abaixo</target>
+      <trans-unit id="972ecffb6ef8ccde5aabf03f81c5fead85440f71" resname="Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized.">
+        <source>Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized.</source>
+        <target>Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized.</target>
       </trans-unit>
       <trans-unit id="60c9b18a70144cba44f474c1ce58d461a1c7a7e8" resname="Your protocol was rejected">
         <source>Your protocol was rejected</source>
@@ -1813,6 +1805,14 @@
       <trans-unit id="e88e6ce797cb55347ea08ce7e327dbefc73b76d6" resname="Your protocol was rejected. Access the link below for more details">
         <source>Your protocol was rejected. Access the link below for more details</source>
         <target>Seu protocolo foi rejeitado. Acesse o link abaixo para mais detalhes </target>
+      </trans-unit>
+      <trans-unit id="5cb6f0688279d13a930b1c9f2abfafb390ad2cd3" resname="Your protocol was sent to review!">
+        <source>Your protocol was sent to review!</source>
+        <target>Your protocol was sent to review!</target>
+      </trans-unit>
+      <trans-unit id="c5ce0b05f1b31931e06201587a1cd43a791f3c34" resname="Your protocol was sent to review. Access the link below">
+        <source>Your protocol was sent to review. Access the link below</source>
+        <target>Your protocol was sent to review. Access the link below</target>
       </trans-unit>
       <trans-unit id="2bb6b986c5d6fb26dd9dd1054b545ce022371b0c" resname="active">
         <source>active</source>

@@ -16,7 +16,9 @@
             <form class='form' method='POST' id='form-second' action='{{ path("submission_new_second_step", {submission_id: submission.id}) }}'>
 
                 <input type='hidden' name='submission_id' value='{{ submission.id }}'>
-                
+                <input type='hidden' id='id_stay_on_the_same_page' name='stay_on_the_same_page' value='false'>
+
+                {% if not submission.isTranslation %}
                 <div class='block'>
                     <div class='row'>
                         <div class="col-md-12">
@@ -27,7 +29,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <table class='table table-hover table-condensed' id='table-team'>
-                                
+
                                 <thead>
                                     <tr>
                                         <th width="50%">{% trans %}Name{% endtrans %}</th>
@@ -37,24 +39,24 @@
                                         <th>{% trans %}Actions{% endtrans %}</th>
                                     </tr>
                                 </thead>
-                                
+
                                 <tbody>
                                     <tr>
-                                        <td>{{ submission.owner.name }}</td> 
-                                        <td><a href='{{ submission.owner.email }}'>{{ submission.owner.email }}</a></td> 
-                                        <td>{{ submission.owner.country }}</td> 
-                                        <td><label class='label label-success'>{% trans %}Yes{% endtrans %}</label></td> 
-                                        <td>-</td> 
+                                        <td>{{ submission.owner.name }}</td>
+                                        <td><a href='{{ submission.owner.email }}'>{{ submission.owner.email }}</a></td>
+                                        <td>{{ submission.owner.country }}</td>
+                                        <td><label class='label label-success'>{% trans %}Yes{% endtrans %}</label></td>
+                                        <td>-</td>
                                     </tr>
                                     {% for team_user in submission.team %}
                                         <tr data-id="{{ team_user.id }}">
                                             <td>
                                                 <input type='hidden' name='team_user[]' value='{{ team_user.id }}'>
                                                 {{ team_user.name }}
-                                            </td> 
-                                            <td><a href='{{ team_user.email }}'>{{ team_user.email }}</a></td> 
-                                            <td>{{ team_user.country }}</td> 
-                                            <td><label class='label label-default'>{% trans %}No{% endtrans %}</label></td> 
+                                            </td>
+                                            <td><a href='{{ team_user.email }}'>{{ team_user.email }}</a></td>
+                                            <td>{{ team_user.country }}</td>
+                                            <td><label class='label label-default'>{% trans %}No{% endtrans %}</label></td>
                                             <td>
                                                 <a href='#' class='btn btn-default btn-xs button-make-owner' data-toggle="tooltip" data-placement="top" title="{% trans %}Make this investigator owner of this sumibssion.{% endtrans %}">
                                                     <i class='glyphicon glyphicon-star'></i>
@@ -62,7 +64,7 @@
                                                 <a href='#' class='btn btn-default btn-xs button-remove-team' data-toggle="tooltip" data-placement="top" title="{% trans %}Remove this investigator.{% endtrans %}">
                                                     <i class='glyphicon glyphicon-trash'></i>
                                                 </a>
-                                            </td> 
+                                            </td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
@@ -74,6 +76,7 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
 
                 <div class='block'>
                     <div class='row'>
@@ -85,7 +88,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="textarea-abstract">{% trans %}Abstract{% endtrans %}:</label> 
+                                <label for="textarea-abstract">{% trans %}Abstract{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 1} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea class="form-control" name='abstract' id='textarea-abstract' required>{{ submission.abstract }}</textarea>
                             </div>
@@ -95,7 +98,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="input-keywords">{% trans %}Keywords{% endtrans %}:</label> 
+                                <label for="input-keywords">{% trans %}Keywords{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 2} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <input type="text" class="form-control" placeholder="" id='input-keywords' name='keywords' value='{{ submission.keywords }}' required>
                             </div>
@@ -113,7 +116,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="textarea-introduction">{% trans %}Introduction{% endtrans %}:</label> 
+                                <label for="textarea-introduction">{% trans %}Introduction{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="6" class="form-control" name='introduction' id='textarea-introduction' required>{{ submission.introduction }}</textarea>
                             </div>
@@ -123,7 +126,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="textarea-justify">{% trans %}Justify{% endtrans %}:</label> 
+                                <label for="textarea-justify">{% trans %}Justify{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 4} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="3" class="form-control" name='justify' id='textarea-justify' required>{{ submission.justification }}</textarea>
                             </div>
@@ -133,7 +136,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label for="textarea-goals">{% trans %}Goals{% endtrans %}:</label> 
+                                <label for="textarea-goals">{% trans %}Goals{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 5} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="3" class="form-control" name='goals' id='textarea-goals' required>{{ submission.goals }}</textarea>
                             </div>
@@ -159,7 +162,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="">{% trans %}E-mail{% endtrans %}:</label> 
+                            <label for="">{% trans %}E-mail{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 6} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <!-- <input type='email' class='form-control' name='team-email'> -->
                             <select class='form-control select2' id='select-team-email' name='team-email'>
@@ -169,14 +172,14 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
-                            <label for="">{% trans %}Name{% endtrans %}:</label> 
+                            <label for="">{% trans %}Name{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 7} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='text' class='form-control' name='team-name' readonly="">
                         </div>
                     </div>
-                    
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
                         <button type="submit" id='team-submit' class="btn btn-primary disabled" data-dismiss="modal">{% trans %}Save{% endtrans %}</button>
@@ -205,7 +208,7 @@
                     country = user[2];
 
                     $team[id] = {name: name, email: email, country: country};
-                    
+
                     $("#form-team input[name='team-name']").val(name);
                     $("#team-submit").removeClass('disabled');
                 }
@@ -216,7 +219,7 @@
 
                 for(id in $team) {
                     user = $team[id];
-                    
+
                     string =  "<tr>"
                     string += "<td><input type='hidden' name='team_user[]' value='"+ id +"'>"+ user['name'] +"</td>"
                     string += "<td><a href='mailto:"+ user['email'] +"'>"+ user['email'] +"</a></td>"
@@ -227,6 +230,10 @@
 
                     $("#table-team tbody").append(string);
                     $team = {};
+
+                    form = $("#form-second");
+                    $("#id_stay_on_the_same_page").val('true');
+                    form.submit();
                 }
             });
 
@@ -237,7 +244,7 @@
                 parent.remove();
             });
         });
-    
+
         // making investigator owner
         $(function(){
             $("#table-team").on("click", ".button-make-owner", function(e){
@@ -249,7 +256,8 @@
                 form = $("#form-second");
                 input = "<input type='hidden' name='team-new-owner' value='"+ id +"'>";
                 form.prepend(input);
-                
+
+                $("#id_stay_on_the_same_page").val('true');
                 form.submit();
             });
         });

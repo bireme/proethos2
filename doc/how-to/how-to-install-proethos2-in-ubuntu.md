@@ -208,6 +208,11 @@ mailer_password: null
 
 For more informations about this theme, access http://symfony.com/doc/2.7/email.html.
 
+Adding routines to crontab
+--------------------------
+
+See the page [How to add routines in crontab](how-to-add-routines-in-crontab.md).
+
 
 Other configurations and customizations
 ---------------------------------------

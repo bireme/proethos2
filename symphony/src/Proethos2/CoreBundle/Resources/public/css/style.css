@@ -1,20 +1,19 @@
 
 /*
-* This file is part of the ProEthos Software. 
-* 
+* This file is part of the ProEthos Software.
+*
 * Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
 * ProEthos under the terms of the ProEthos License as published by PAHO, which
-* restricts commercial use of the Software. 
-* 
+* restricts commercial use of the Software.
+*
 * ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
 * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-* PARTICULAR PURPOSE. See the ProEthos License for more details. 
-* 
+* PARTICULAR PURPOSE. See the ProEthos License for more details.
+*
 * You should have received a copy of the ProEthos License along with the ProEthos
 * Software. If not, see
 * https://github.com/bireme/proethos2/blob/master/LICENSE.txt
 */
-
 
 fieldset {
     /*border: 1px solid #ccc;*/
@@ -60,10 +59,10 @@ footer {
     margin: 0;
     font-weight: bold;
 }
-.new-submission-content h2.sub-header, 
-.submissions h2.sub-header, 
-.see-submission h2.sub-header, 
-.download-docs h2.sub-header, 
+.new-submission-content h2.sub-header,
+.submissions h2.sub-header,
+.see-submission h2.sub-header,
+.download-docs h2.sub-header,
 .faq h2.sub-header {
     padding: 0;
     font-size: 21px;
@@ -161,10 +160,10 @@ h5 {
 .g-recaptcha {
     margin: 10px 0 20px 0;
 }
-.help-text-undefined, 
-.help-text-undefined:focus, 
-.help-text-undefined:link, 
-.help-text-undefined:visited, 
+.help-text-undefined,
+.help-text-undefined:focus,
+.help-text-undefined:link,
+.help-text-undefined:visited,
 .help-text-undefined:hover {
     color: #ff0000;
 }
@@ -178,7 +177,19 @@ h5 {
 
 img.logo {
     max-width: 120px;
-} 
+}
 .nav>li>a>img.logo {
     max-height: 18px;
+}
+
+.alert-info ul {
+    margin: 10px 0 0 0;
+}
+.alert-info a {
+    color: #fff;
+    border-bottom: 1px dashed #fff;
+}
+.alert-info a:hover {
+    border-bottom: 1px solid #fff;
+    text-decoration: none;
 }

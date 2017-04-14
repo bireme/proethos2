@@ -165,6 +165,15 @@ class CRUDControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
+    public function testListCommitteeProtocolExportToCSV()
+    {
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_protocol_list', array(), false);
+
+        $client->request('GET', $route . "?output=csv");
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
     public function testListInvestigatorProtocolGET()
     {
         $client = $this->client;
@@ -403,6 +412,15 @@ class CRUDControllerTest extends WebTestCase
 
         // print $client->getResponse()->getContent();
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
+    }
+
+    public function testListCommitteeUserExportToCSV()
+    {
+        $client = $this->client;
+        $route = $client->getContainer()->get('router')->generate('crud_committee_user_list', array(), false);
+
+        $client->request('GET', $route . "?output=csv");
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function testUpdateCommitteeUserGET()

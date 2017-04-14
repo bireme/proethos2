@@ -23,6 +23,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 
 use Proethos2\CoreBundle\Util\Util;
+use Proethos2\CoreBundle\Util\CSVResponse;
 
 use Proethos2\ModelBundle\Entity\Meeting;
 use Proethos2\ModelBundle\Entity\Faq;
@@ -52,7 +53,7 @@ class CRUDController extends Controller
 
         $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
 
-        $meetings = $meeting_repository->findAll();
+        $meetings = $meeting_repository->findBy(array(), array('date' => 'DESC'));
 
         // serach parameter
         $search_query = $request->query->get('q');
@@ -60,6 +61,7 @@ class CRUDController extends Controller
             $meetings = $meeting_repository->createQueryBuilder('m')
                ->where('m.subject LIKE :query')
                ->setParameter('query', "%". $search_query ."%")
+               ->addOrderBy('m.date', 'DESC')
                ->getQuery()
                ->getResult();
         }
@@ -256,6 +258,40 @@ class CRUDController extends Controller
 
         $protocols = $query->getQuery()->getResult();
         $output['protocols'] = $protocols;
+
+        // output parameter
+        $output_parameter = $request->query->get('output');
+        if($output_parameter == 'csv') {
+            $csv_headers = array('CODE', 'ID', 'OWNER', 'STATUS', 'PUBLIC TITLE', 'TYPE', 'RECRUITMENT INIT DATE',
+                'REJECT REASON', 'COMMITTEE SCREENING', 'OPINIONS REQUIRED', 'DATE INFORMED', 'UPDATED IN', 'REVISED IN',
+                'DECISION IN', 'MEETING', 'MONITORING ACTION', 'NEXT DATE OF MONITORING ACTION');
+            $csv_output = array();
+            foreach($protocols as $protocol) {
+                $current_line = array();
+                $current_line[] = $protocol->getCode();
+                $current_line[] = $protocol->getId();
+                $current_line[] = $protocol->getOwner()->getUsername();
+                $current_line[] = $protocol->getStatusLabel();
+                $current_line[] = $protocol->getMainSubmission()->getPublicTitle();
+                $current_line[] = $protocol->getMainSubmission()->getIsClinicalTrial() ? "Clinical Trial" : "Research";
+                $current_line[] = $protocol->getMainSubmission()->getRecruitmentInitDate() ? $protocol->getMainSubmission()->getRecruitmentInitDate()->format("Y-m-d H:i") : "";
+                $current_line[] = $protocol->getRejectReason();
+                $current_line[] = $protocol->getCommitteeScreening();
+                $current_line[] = $protocol->getOpinionRequired();
+                $current_line[] = $protocol->getDateInformed() ? $protocol->getDateInformed()->format("Y-m-d H:i") : "";
+                $current_line[] = $protocol->getUpdatedIn() ? $protocol->getUpdatedIn()->format("Y-m-d H:i") : "";
+                $current_line[] = $protocol->getRevisedIn() ? $protocol->getRevisedIn()->format("Y-m-d H:i") : "";
+                $current_line[] = $protocol->getDecisionIn() ? $protocol->getDecisionIn()->format("Y-m-d H:i") : "";
+                $current_line[] = $protocol->getMeeting() ? $protocol->getMeeting()->getSubject() : "";
+                $current_line[] = $protocol->getMonitoringAction() ? $protocol->getMonitoringAction()->getName() : "";
+                $current_line[] = $protocol->getMonitoringActionNextDate() ? $protocol->getMonitoringActionNextDate()->format("Y-m-d H:i") : "";
+                $csv_output[] = $current_line;
+            }
+
+            $response = new CSVResponse( $csv_output, 200, $csv_headers );
+            $response->setFilename( "proethos2-protocols.csv" );
+            return $response;
+        }
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
@@ -784,6 +820,29 @@ class CRUDController extends Controller
         }
 
         $output['users'] = $users;
+
+        // output parameter
+        $output_parameter = $request->query->get('output');
+        if($output_parameter == 'csv') {
+            $csv_headers = array('USERNAME', 'ID', 'EMAIL', 'ROLES', 'ACTIVE?', 'NAME', 'COUNTRY', 'INSTITUTION');
+            $csv_output = array();
+            foreach($users as $user) {
+                $current_line = array();
+                $current_line[] = $user->getId();
+                $current_line[] = $user->getUsername();
+                $current_line[] = $user->getEmail();
+                $current_line[] = implode(",", $user->getRolesSlug());
+                $current_line[] = $user->getIsActive() == 1 ? "YES" : "NO";
+                $current_line[] = $user->getName();
+                $current_line[] = $user->getCountry() ? $user->getCountry()->getName() : '';
+                $current_line[] = $user->getInstitution();
+                $csv_output[] = $current_line;
+            }
+
+            $response = new CSVResponse( $csv_output, 200, $csv_headers );
+            $response->setFilename( "proethos2-users.csv" );
+            return $response;
+        }
 
         $roles = $role_repository->findAll();
         $output['roles'] = $roles;

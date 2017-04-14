@@ -3,7 +3,7 @@
 {% block title %}{% trans %}Protocol options{% endtrans %}{% endblock %}
 
 {% block content %}
-    
+
     <div class="container-fluid main-content see-submission">
 
         <div class="row">
@@ -11,12 +11,12 @@
                 <h1 class="page-header">{% trans %}End Review{% endtrans %}</h1>
             </div>
         </div>
-        
+
         {% include 'Proethos2CoreBundle:Protocol:meta.html.twig' %}
 
         <!-- action -->
         <form method="POST" id='form-action' enctype="multipart/form-data" action="">
-            
+
             <div class='block'>
                 <div class='row'>
                     <div class="col-md-12">
@@ -27,13 +27,13 @@
                 <div class='row'>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="file-draft-opinion">Enviar draft opinion:</label> 
+                            <label for="file-draft-opinion">Enviar draft opinion:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 124} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='file' class='form-control' id='file-draft-opinion' name="draft-opinion" required>
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>
 
             <div class='block'>
                 <div class='row'>
@@ -45,7 +45,7 @@
                 <div class='row'>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="select-final-decision">Final decision:</label> 
+                            <label for="select-final-decision">Final decision:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 125} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <select class="form-control select2" id="select-final-decision" name="final-decision" required>
                                 <option value="">-</option>
@@ -60,7 +60,7 @@
                 <div class='row'>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="select-monitoring-period">{% trans %}Monitoring period{% endtrans %}:</label> 
+                            <label for="select-monitoring-period">{% trans %}Monitoring period{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 185} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <select class="form-control select2" id="select-monitoring-period" name="monitoring-period" required>
                                 <option value="">{% trans %}N/A{% endtrans %}</option>
@@ -72,21 +72,21 @@
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>
 
             <div class='row'>
                 <div class='submission-button-controls col-md-12'>
-                    <button type="button" class='btn btn-primary' data-toggle='modal' data-target='#modal-confirm'>{% trans %}Save decision and finalize process{% endtrans %}</button>
+                    <button type="button" class='btn btn-primary' data-toggle='modal' data-target='#modalConfirm'>{% trans %}Save decision and finalize process{% endtrans %}</button>
                 </div>
             </div>
         </form>
     </div>
 
     <!-- Modal confirm -->
-    <div class="modal fade" id="modal-confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                
+
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">{% trans %}Confirm?{% endtrans %}</h4>

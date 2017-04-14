@@ -135,6 +135,7 @@ class NewSubmissionControllerTest extends WebTestCase
             "goals" => "Goals",
         ));
 
+        // print $client->getResponse()->getContent();
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
     }
 
