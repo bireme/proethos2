@@ -6,12 +6,10 @@ If you have any questions, please [open an ticket here](https://github.com/birem
 
 - [Instructions to use Make shortcuts](make-shortcuts.md)
 - [Relations between Proethos2 and XML ICTRP](relations-between-proethos2-and-XML-ICTRP.md)
+- [Translation Guide](doc/translation-guide.md)
 - [How to migrate from Proethos1](how-to/how-to-migrate-from-proethos1.md)
 - [How to generate help messages in database to my new development](how-to/how-to-generate-help-messages-in-database-to-my-new-development.md)
 - [How to generate new database initial data from my dev environment](how-to/how-to-generate-new-database-initial-data-from-my-dev-environment.md)
-- [How to create label translations](how-to/how-to-create-translations.md)
-- [How to generate translation files](how-to/how-to-generate-new-translation-files.md)
-- [How to translate labels](how-to/how-to-translate.md)
 - [How to configure reCaptcha for registration form](how-to/how-to-configure-recaptcha-for-registration-form.md)
 - [How to add routines in crontab](how-to/how-to-add-routines-in-crontab.md)
 - [How to create custom fields](how-to/how-to-create-custom-fields.md)
