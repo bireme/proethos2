@@ -5,7 +5,7 @@ Continuous Integration
 
 The automatic build and test of proethos2 is hosted on [Codeship](https://codeship.com/).
 
-At the moment, the coverage was to branch master and any deployments are made.
+At the moment, the coverage tests are to branch master and any deployments are made.
 
 Exceptions
 ----------
