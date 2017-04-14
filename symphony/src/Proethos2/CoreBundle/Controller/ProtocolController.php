@@ -1005,7 +1005,7 @@ class ProtocolController extends Controller
         }
 
         $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
-        $configurations = $configuration_repository->find(array('key' => 'committee.name'));
+        $configurations = $configuration_repository->findOneBy(array('key' => 'committee.name'));
         $reg_name = $configurations->getValue();
 
         // var_dump($xml);
