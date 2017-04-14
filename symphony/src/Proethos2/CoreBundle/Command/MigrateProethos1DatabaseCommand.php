@@ -71,6 +71,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
             ->setDescription('Migrate all content from proethos1 to proethos2')
             ->addArgument('database', InputArgument::REQUIRED, 'Insert the database name that has proethos1 data.')
             ->addArgument('default_country', InputArgument::REQUIRED, 'Insert the default country for you users and protocols.')
+            ->addArgument('old_directory', InputArgument::REQUIRED, 'Insert the document directory from old proethos installation.')
         ;
     }
 
@@ -528,6 +529,12 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 $item->setMigratedFile($row2['filepath']);// TODO: Criar script depois que slugifica todos os arquivos importados, pq aqui salva slugificado
                 $item->setSubmissionNumber(1); // TODO: Não temos mapeado, então tem que cravar 1.
 
+                $old_filepath = $this->old_directory . "/" . $row2['filepath'];
+                if(!file_exists($old_filepath)) {
+                    $output->writeln('<error>ERROR: File "'. $row['id'] .'" skipped because we can\'t find in old installation.</error>');
+                    continue;
+                }
+                $item->setSimpleFile($old_filepath, $need_real_copy = true);
                 print "6\n";
                 $this->em->persist($item);
                 $this->em->flush();
@@ -637,6 +644,7 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
         $database_password = $this->getContainer()->getParameter('database_password');
 
         $this->default_country = -$input->getArgument('default_country');
+        $this->old_directory = $input->getArgument('old_directory');
 
         $mysql_connect = mysql_connect($database_host, $database_user, $database_password);
         $mysql_database = mysql_select_db($database_name, $mysql_connect);
