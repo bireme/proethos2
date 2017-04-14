@@ -350,7 +350,6 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 continue;
             }
 
-            print "1\n";
             // saving this protocol
             $this->em->persist($protocol);
             $this->em->flush();
@@ -432,7 +431,6 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                     if(strlen($value) != 10 or !is_numeric($value)) {
                         continue;
                     }
-                    print "$value\n";
                     $value = \DateTime::createFromFormat('d/m/Y', $value);
 
                 // set prior ethical approval
@@ -446,7 +444,6 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 $submission->{$p2_method}($value);
             }
 
-            print "2\n";
             $this->em->persist($submission);
             $this->em->flush();
 
@@ -464,7 +461,6 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 $item->setQuantity($row2['quantity']);
                 $item->setUnitCost($row2['unit_cost']);
 
-                print "3\n";
                 $this->em->persist($item);
                 $this->em->flush();
 
@@ -489,7 +485,6 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 $item->setCountry($current_country);
                 $item->setParticipants($row2['participants']);
 
-                print "4\n";
                 $this->em->persist($item);
                 $this->em->flush();
 
@@ -506,7 +501,6 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 $item->setInit(\DateTime::createFromFormat('Ym', $row2['init']));
                 $item->setEnd(\DateTime::createFromFormat('Ym', $row2['end']));
 
-                print "5\n";
                 $this->em->persist($item);
                 $this->em->flush();
 
@@ -535,14 +529,12 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                     continue;
                 }
                 $item->setSimpleFile($old_filepath, $need_real_copy = true);
-                print "6\n";
                 $this->em->persist($item);
                 $this->em->flush();
 
                 $submission->addAttachment($item);
             }
 
-            print "6\n";
             $this->em->persist($submission);
             $this->em->flush();
 
@@ -574,7 +566,6 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 // TODO: Achar forma de preencher answer
                 // TODO: Preencher final decision
                 //
-                print "7\n";
                 $this->em->persist($item);
                 $this->em->flush();
 
@@ -597,7 +588,6 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 $item->setMessage($row2['message']);
                 $item->setProtocol($protocol);
 
-                print "8\n";
                 $this->em->persist($item);
                 $this->em->flush();
 
@@ -616,14 +606,12 @@ class MigrateProethos1DatabaseCommand extends ContainerAwareCommand
                 $item->setProtocol($protocol);
                 $item->setMessage($row2['message']);
 
-                print "9\n";
                 $this->em->persist($item);
                 $this->em->flush();
 
                 $protocol->addHistory($item);
             }
 
-            print "10\n";
             $this->em->persist($protocol);
             $this->em->flush();
 
