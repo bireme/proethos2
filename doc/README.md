@@ -6,6 +6,7 @@ If you have any questions, please [open an ticket here](https://github.com/birem
 
 - [Instructions to use Make shortcuts](make-shortcuts.md)
 - [Relations between Proethos2 and XML ICTRP](relations-between-proethos2-and-XML-ICTRP.md)
+- [How to migrate from Proethos1](how-to/how-to-migrate-from-proethos1.md)
 - [How to generate help messages in database to my new development](how-to/how-to-generate-help-messages-in-database-to-my-new-development.md)
 - [How to generate new database initial data from my dev environment](how-to/how-to-generate-new-database-initial-data-from-my-dev-environment.md)
 - [How to create label translations](how-to/how-to-create-translations.md)
