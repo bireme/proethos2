@@ -11,20 +11,22 @@
                 <h1 class="page-header">
                     {% trans %}Show Protocol{% endtrans %}
 
-                    <div class='xml-buttons pull-right'>
-                        {% for xml in protocol.getXMLAvailable %}
-                            <a href='{{ path('protocol_xml', {protocol_id: protocol.id, language_code: xml}) }}'
-                               target="_blank"
-                               class='btn btn-xs btn-default'
-                               title="{% trans %}Click here to see this protocol in ICTRP/WHO XML format{% endtrans %}">
-                                {% trans %}See XML ICTRP/WHO in{% endtrans %}
-                                {% if xml == 'pt_BR' %}Português{% endif %}
-                                {% if xml == 'es_ES' %}Español{% endif %}
-                                {% if xml == 'en' %}English{% endif %}
-                                {% if xml == 'fr_FR' %}Français{% endif %}
-                            </a>
-                        {% endfor %}
-                    </div>
+                    {% if protocol.status == "A" %}
+                        <div class='xml-buttons pull-right'>
+                            {% for xml in protocol.getXMLAvailable %}
+                                <a href='{{ path('protocol_xml', {protocol_id: protocol.id, language_code: xml}) }}'
+                                   target="_blank"
+                                   class='btn btn-xs btn-default'
+                                   title="{% trans %}Click here to see this protocol in ICTRP/WHO XML format{% endtrans %}">
+                                    {% trans %}See XML ICTRP/WHO in{% endtrans %}
+                                    {% if xml == 'pt_BR' %}Português{% endif %}
+                                    {% if xml == 'es_ES' %}Español{% endif %}
+                                    {% if xml == 'en' %}English{% endif %}
+                                    {% if xml == 'fr_FR' %}Français{% endif %}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </h1>
             </div>
         </div>
