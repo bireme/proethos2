@@ -274,7 +274,7 @@ class CRUDController extends Controller
                 $current_line[] = $protocol->getStatusLabel();
                 $current_line[] = $protocol->getMainSubmission()->getPublicTitle();
                 $current_line[] = $protocol->getMainSubmission()->getIsClinicalTrial() ? "Clinical Trial" : "Research";
-                $current_line[] = $protocol->getMainSubmission()->getRecruitmentInitDate()->format("Y-m-d H:i");
+                $current_line[] = $protocol->getMainSubmission()->getRecruitmentInitDate() ? $protocol->getMainSubmission()->getRecruitmentInitDate()->format("Y-m-d H:i") : "";
                 $current_line[] = $protocol->getRejectReason();
                 $current_line[] = $protocol->getCommitteeScreening();
                 $current_line[] = $protocol->getOpinionRequired();
