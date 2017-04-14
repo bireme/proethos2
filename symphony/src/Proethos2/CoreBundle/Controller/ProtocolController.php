@@ -998,17 +998,27 @@ class ProtocolController extends Controller
 
         $xml = new \SimpleXMLElement('<trials><trial></trial></trials>');
 
+        $utrn = "";
+        if($submission->getClinicalTrial()) {
+            $trials = $submission->getClinicalTrial();
+            $utrn = $trials[0]->getNumber();
+        }
+
+        $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
+        $configurations = $configuration_repository->find(array('key' => 'committee.name'));
+        $reg_name = $configurations->getValue();
+
         // var_dump($xml);
         $main = $xml->addChild('main');
         $main->addChild('trial_id', $protocol->getCode());
-        $main->addChild('utrn', "");
-        $main->addChild('reg_name', "");
+        $main->addChild('utrn', $utrn);
+        $main->addChild('reg_name', $reg_name);
         $main->addChild('date_registration', $protocol->getCreated()->format("Y-m-d"));
         $main->addChild('primary_sponsor', $submission->getPrimarySponsor());
         $main->addChild('public_title', $submission->getPublicTitle());
         $main->addChild('acronym', $submission->getTitleAcronym());
         $main->addChild('scientific_title', $submission->getScientificTitle());
-        $main->addChild('scientific_acronym', "");
+        $main->addChild('scientific_acronym', $submission->getTitleAcronym());
         $main->addChild('date_enrolment', $protocol->getDateInformed()->format("Y-m-d"));
         $main->addChild('type_enrolment', "actual");
         $main->addChild('target_size', $submission->getSampleSize());
@@ -1018,7 +1028,7 @@ class ProtocolController extends Controller
         $main->addChild('study_design', $submission->getStudyDesign());
         $main->addChild('phase', "N/A");
         $main->addChild('hc_freetext', $submission->getHealthCondition());
-        $main->addChild('i_freetext', "");
+        $main->addChild('i_freetext', $submission->getInterventions());
 
         $contacts = $main->addChild('contacts');
         $contact = $contacts->addChild('contact');
