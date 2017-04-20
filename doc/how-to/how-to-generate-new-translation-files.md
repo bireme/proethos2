@@ -8,4 +8,4 @@ make generate_translations
 
 Then, commit the updated files.
 
-After this, [you will need to do the translation, in fact](how-to/how-to-translate.md). 
+After this, [you will need to do the translation, in fact](how-to-translate.md). 
