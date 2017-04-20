@@ -23,4 +23,4 @@ $translator = $this->get('translator');
 echo $translator->trans('No protocol found');
 ```
 
-After create a translation label, [you will need to regenerate the translation files](how-to/how-to-generate-new-translation-files.md).
+After create a translation label, [you will need to regenerate the translation files](how-to-generate-new-translation-files.md).
