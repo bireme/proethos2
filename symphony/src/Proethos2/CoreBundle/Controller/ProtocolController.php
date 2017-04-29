@@ -1001,7 +1001,11 @@ class ProtocolController extends Controller
         $utrn = "";
         if($submission->getClinicalTrial()) {
             $trials = $submission->getClinicalTrial();
-            $utrn = $trials[0]->getNumber();
+            foreach($trials as $trial) {
+                if($trial->getName()->getSlug() == "universal-trial-number") {
+                    $utrn = $trial->getNumber();
+                }
+            }
         }
 
         $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
