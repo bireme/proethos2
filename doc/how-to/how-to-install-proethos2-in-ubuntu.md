@@ -183,11 +183,13 @@ Now, we have to give the right permissions to all structure:
 $ cd ~/project/proethos2/git/symphony
 $ rm -rf app/cache/*
 $ rm -rf app/logs/*
+```
 
-$ chmod 777 app/cache
-$ chmod 777 app/logs
-$ chmod 777 uploads
-
+Remember that the directories below needs to have write permissions from apache:
+```
+app/cache
+app/logs
+uploads
 ```
 
 Software configuration
