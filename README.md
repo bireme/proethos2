@@ -14,7 +14,7 @@ Links
 
 * [Project License](LICENSE.txt)
 * [How to install](doc/how-to/how-to-install-proethos2-in-ubuntu.md)
-* [How to migrate from Proethos1](how-to/how-to-migrate-from-proethos1.md)
+* [How to migrate from Proethos1](doc/how-to/how-to-migrate-from-proethos1.md)
 * [Development Guide](doc/README.md)
 * [About Continuous Integration](doc/continuous-integration.md)
 * Mailing lists
