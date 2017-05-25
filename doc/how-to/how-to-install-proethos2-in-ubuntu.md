@@ -123,7 +123,8 @@ Now, we will setup the database and load the initial data:
 
 ```
 $ make load_initial
-
+or 
+$ make load_initial php5.6
 ```
 
 __TIP:__ See all the [Make commands](../continuous-integration.md), that certainly will help you.
