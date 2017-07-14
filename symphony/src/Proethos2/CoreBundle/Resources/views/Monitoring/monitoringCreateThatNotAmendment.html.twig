@@ -3,7 +3,7 @@
 {% block title %}{% trans %}Submit Monitoring Action{% endtrans %}{% endblock %}
 
 {% block content %}
-    
+
     <div class="container-fluid main-content see-submission">
 
         <div class="row">
@@ -11,13 +11,13 @@
                 <h1 class="page-header">{% trans %}Submit Monitoring Action{% endtrans %}</h1>
             </div>
         </div>
-        
+
         {% include 'Proethos2CoreBundle:Protocol:protocol_header.html.twig' %}
 
         <!-- action -->
         <form method="POST" id='form-action' action="">
             <input type="hidden" name="monitoring-action" value="{{ monitoring_action.id }}">
-            
+
             <div class='block action'>
                 <a name='action'></a>
                 <div class='row'>
@@ -29,7 +29,7 @@
                 <div class='row'>
                     <div class="col-md-12">
                         <div class="form-group required">
-                            <label for="select-monitoring-action">{% trans %}Monitoring Action{% endtrans %}:</label> 
+                            <label for="select-monitoring-action">{% trans %}Monitoring Action{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 99} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <select class='form-control' id="select-monitoring-action" required disabled>
                                 <option value="{{ monitoring_action.id }}">{{ monitoring_action.name }}</option>
@@ -48,7 +48,7 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <table class='table table-hover table-condensed' id='table-attachment'>
-                                
+
                                 <thead>
                                     <tr>
                                         <th>{% trans %}Type{% endtrans %}</th>
@@ -57,13 +57,13 @@
                                         <th>{% trans %}Actions{% endtrans %}</th>
                                     </tr>
                                 </thead>
-                                
+
                                 <tbody>
                                     {% for file in submission.attachments if file.isMonitoringAction %}
                                         <tr>
                                             <td>{{ file.uploadType }}</td>
-                                            <td>{{ file.filename }}</td> 
-                                            <td>{{ file.created|date("d/m/Y H:i") }}</td> 
+                                            <td>{{ file.filename }}</td>
+                                            <td>{{ file.created|date("d/m/Y H:i") }}</td>
                                             <td>
                                                 <a href='{{ asset(file.uri) }}' target="_blank" class='btn btn-default btn-xs' target="_blank">
                                                     <i class='glyphicon glyphicon-eye-open'></i>
@@ -71,7 +71,7 @@
                                                 <a href='#' class='btn btn-default btn-xs button-delete-attachment' data-id='{{ file.id }}' data-toggle="modal" data-target="#modal-delete-attachment">
                                                     <i class='glyphicon glyphicon-trash'></i>
                                                 </a>
-                                            </td> 
+                                            </td>
                                         </tr>
                                     {% else %}
                                         <tr><td colspan="4"><i>No have files</i></td></tr>
@@ -87,7 +87,7 @@
                 <div class='row'>
                     <div class="col-md-12">
                         <div class="form-group required">
-                            <label for="textarea-justification">{% trans %}Justification{% endtrans %}:</label> 
+                            <label for="textarea-justification">{% trans %}Justification{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 100} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <textarea class='form-control' id="textarea-justification" name="justification" required></textarea>
                         </div>
@@ -111,7 +111,7 @@
                 <input type="hidden" name="MAX_FILE_SIZE" value="{{ 10*1024*1024 }}" />
 
                 <div class="modal-content">
-                    
+
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">{% trans %}New Attachment{% endtrans %}</h4>
@@ -119,7 +119,7 @@
 
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="select-new-atachment-type">{% trans %}Type{% endtrans %}:</label> 
+                            <label for="select-new-atachment-type">{% trans %}Type{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 101} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <select class='form-control selectpicker' data-live-search="true" name='new-atachment-type' id='select-new-atachment-type' required>
                                 <option></option>
@@ -128,15 +128,15 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
-                            <label for="input-new-atachment-file">Arquivo:</label> 
+                            <label for="input-new-atachment-file">{% trans %}File{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 102} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='file' class='form-control' name='new-atachment-file' id='input-new-atachment-file' required>
                         </div>
-                        
+
                     </div>
-                    
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
                         <button type="submit" class="btn btn-primary">{% trans %}Send{% endtrans %}</button>
@@ -153,7 +153,7 @@
                 <input type="hidden" name="delete-attachment-id" id='hidden-delete-attachment' value="" />
 
                 <div class="modal-content">
-                    
+
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">{% trans %}Delete Attachment{% endtrans %}</h4>
@@ -162,7 +162,7 @@
                     <div class="modal-body">
                         <p>{% trans %}Do you confirm the exclusion of this attachment?{% endtrans %}</p>
                     </div>
-                    
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
                         <button type="submit" class="btn btn-danger">{% trans %}Confirm{% endtrans %}</button>
@@ -181,10 +181,10 @@
                 var id = $(this).data('id');
                 $("#hidden-delete-attachment").val(id);
             });
-        });    
+        });
 
         $('#modal-delete-attachment').on('hidden.bs.modal', function () {
             $("#hidden-delete-attachment").val("");
-        })    
+        })
     </script>
 {% endblock %}
