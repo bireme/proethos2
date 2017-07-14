@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
@@ -8,7 +8,7 @@
                 {% if render(controller('Proethos2CoreBundle:Index:getLogo')) %}
                 <li><a><img src='{{ render(controller('Proethos2CoreBundle:Index:getLogo')) }}' class='logo'></a></li>
                 {% endif %}
-                
+
                 {% if is_granted("ROLE_USER") and 'investigator' in app.user.rolesSlug %}
                     <li>
                         <p class="navbar-btn">
@@ -18,14 +18,14 @@
                 {% endif %}
 
                 <li class="active"><a href="{{ path("home") }}">{% trans %}Dashboard{% endtrans %}</a></li>
-                
+
                 {% if is_granted("ROLE_USER") and 'investigator' in app.user.rolesSlug %}
                     <li class=""><a href="{{ path("crud_investigator_protocol_list") }}">{% trans %}Protocols{% endtrans %}</a></li>
-                {% endif %}                
-                
+                {% endif %}
+
                 {% if is_granted("ROLE_USER") and ('secretary' in app.user.rolesSlug or 'member-of-committee' in app.user.rolesSlug or 'member-ad-hoc' in app.user.rolesSlug)  %}
                     <li class="dropdown">
-                        
+
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             {% trans %}Committee{% endtrans %} <span class="caret"></span>
                         </a>
@@ -48,7 +48,7 @@
                 {% if is_granted("ROLE_USER") %}
                     <li class=""><a href="{{ path('crud_document_list') }}">{% trans %}Documents{% endtrans %}</a></li>
                 {% endif %}
-                
+
                 <li class=""><a href="{{ path('crud_contact_list') }}">{% trans %}Contact{% endtrans %}</a></li>
 
                 {% if is_granted("ROLE_USER") and 'administrator' in app.user.rolesSlug %}
@@ -73,14 +73,14 @@
                             <li><a href="{{ path('crud_admin_configuration_list') }}">{% trans %}Configurations{% endtrans %}</a></li>
                         </ul>
                     </li>
-                {% endif %}                
+                {% endif %}
 
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <i class='glyphicon glyphicon-flag'></i> 
+                        <i class='glyphicon glyphicon-flag'></i>
                         {% if app.request.locale == 'pt_BR' %}Português{% endif %}
                         {% if app.request.locale == 'es_ES' %}Español{% endif %}
                         {% if app.request.locale == 'en' %}English{% endif %}
@@ -92,7 +92,7 @@
                         <li class='{% if app.request.locale == 'en' %}active{% endif %}'><a href="{{ path('change_locale', {locale: 'en'}) }}">{% trans %}English{% endtrans %}</a></li>
                         <li class='{% if app.request.locale == 'es_ES' %}active{% endif %}'><a href="{{ path('change_locale', {locale: 'es_ES'}) }}">{% trans %}Spanish{% endtrans %}</a></li>
                         <li class='{% if app.request.locale == 'fr_FR' %}active{% endif %}'><a href="{{ path('change_locale', {locale: 'fr_FR'}) }}">{% trans %}French{% endtrans %}</a></li>
-                    </ul>    
+                    </ul>
                 </li>
 
                 {% if is_granted("ROLE_USER") %}
@@ -104,8 +104,8 @@
                             <li><a href="{{ path('crud_user_profile_update') }}" data-toggle='modal' data-target='#modalBaseAjax'>{% trans %}Your Profile{% endtrans %}</a></li>
                             <li><a href="{{ path('security_change_password') }}" id='menuChangePassword' data-toggle='modal' data-target='#modalBaseAjax'>{% trans %}Change Password{% endtrans %}</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="{{ path('logout_route') }}">Logout</a></li>
-                        </ul>    
+                            <li><a href="{{ path('logout_route') }}">{% trans %}Logout{% endtrans %}</a></li>
+                        </ul>
                     </li>
                 {% endif %}
             </ul>
