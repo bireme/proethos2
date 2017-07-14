@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-11-22T19:21:53Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2017-06-14T12:21:26Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -244,11 +244,11 @@
       </trans-unit>
       <trans-unit id="f43dba5677dfd5e3e6793095b56bfab6f533b68f" resname="Committee">
         <source>Committee</source>
-        <target>Committee</target>
+        <target>Comitê</target>
       </trans-unit>
       <trans-unit id="4c5fc09da89297883dd5bec04bb40aef96b22971" resname="Committee Screening">
         <source>Committee Screening</source>
-        <target>Comissão de triagem</target>
+        <target>Triagem do Comitê</target>
       </trans-unit>
       <trans-unit id="1798b3ba42ee08ea09d9720b2d9c0181abbfe3e4" resname="Completed">
         <source>Completed</source>
@@ -292,7 +292,7 @@
       </trans-unit>
       <trans-unit id="c63d7dc26fc32ada5170c80598c4c75aefdcc105" resname="Controlled Lists">
         <source>Controlled Lists</source>
-        <target>Controlled Lists</target>
+        <target>Listas controladas</target>
       </trans-unit>
       <trans-unit id="dbdde514d0936490acaa48f4cd3708c58410a2da" resname="Cost description">
         <source>Cost description</source>
@@ -436,7 +436,7 @@
       </trans-unit>
       <trans-unit id="649df08a448ee3fa90f3746baaf6b0907df42c91" resname="English">
         <source>English</source>
-        <target>English</target>
+        <target>Inglês</target>
       </trans-unit>
       <trans-unit id="1507054e985d3fca0ad9862f4c2407ccaa09c4be" resname="English message">
         <source>English message</source>
@@ -484,7 +484,7 @@
       </trans-unit>
       <trans-unit id="03688ba6aa340b87549088aa5739944cb6b1dc73" resname="FAQ">
         <source>FAQ</source>
-        <target>FAQ</target>
+        <target>Perguntas mais frequentes</target>
       </trans-unit>
       <trans-unit id="7e31e3de14faae36e2214dae4bfad37026be9704" resname="Fair Participant Selection">
         <source>Fair Participant Selection</source>
@@ -584,7 +584,7 @@
       </trans-unit>
       <trans-unit id="44389f6a466eaabf5c1db729e369511134e2b03b" resname="French">
         <source>French</source>
-        <target>French</target>
+        <target>Francês</target>
       </trans-unit>
       <trans-unit id="cec7d6c2129c9fe6a0dc554c6a825727af0a1055" resname="French message">
         <source>French message</source>
@@ -664,7 +664,7 @@
       </trans-unit>
       <trans-unit id="a19399864f6b09c38217741719dbea234a5f688c" resname="Help Messages">
         <source>Help Messages</source>
-        <target>Help Messages</target>
+        <target>Mensagens de ajuda</target>
       </trans-unit>
       <trans-unit id="7ea305782f9c411ea93b2689186299fdf991e42a" resname="Help updated with success.">
         <source>Help updated with success.</source>
@@ -764,7 +764,7 @@
       </trans-unit>
       <trans-unit id="53ec6d7dfa2c6ed480e8ec1293af8d6b2cf0a512" resname="Label translations">
         <source>Label translations</source>
-        <target>Label translations</target>
+        <target>Traduções de etiquetas</target>
       </trans-unit>
       <trans-unit id="8351ebe53db2a3981a7e85ac4e1f58217f715944" resname="Last Update">
         <source>Last Update</source>
@@ -780,7 +780,7 @@
       </trans-unit>
       <trans-unit id="db2c64b012d82b90a8a5fac6c7b3a6bee2716058" resname="Legal disclaimer">
         <source>Legal disclaimer</source>
-        <target>Legal disclaimer</target>
+        <target>Renúncia ou responsabilidade</target>
       </trans-unit>
       <trans-unit id="c1fed26979361d06c848030502536d84a52e6a13" resname="Main Type">
         <source>Main Type</source>
@@ -1080,7 +1080,7 @@
       </trans-unit>
       <trans-unit id="5ef849c72cc4d216fc7f81d5be20df7369d797a0" resname="Pan American Health Organization, 2013. All rights reserved.">
         <source>Pan American Health Organization, 2013. All rights reserved.</source>
-        <target>Pan American Health Organization, 2013. All rights reserved.</target>
+        <target>Organização Pan-Americana da Saúde, 2013. Todos os direitos reservados</target>
       </trans-unit>
       <trans-unit id="cd56e0839d06af74923cd6ad99d6fc9e7dab8e3a" resname="Participants">
         <source>Participants</source>
@@ -1108,7 +1108,7 @@
       </trans-unit>
       <trans-unit id="23882c575954a0789bf02aba9e6dd01f539bc738" resname="Portuguese">
         <source>Portuguese</source>
-        <target>Portuguese</target>
+        <target>Português</target>
       </trans-unit>
       <trans-unit id="ad2d5a59cb269298a2e42b55b8d40bdc7b9a5da4" resname="Portuguese message">
         <source>Portuguese message</source>
@@ -1284,7 +1284,7 @@
       </trans-unit>
       <trans-unit id="e963907dac5cd5c017869b4c96c18021c9bd058b" resname="Remove">
         <source>Remove</source>
-        <target>Remove</target>
+        <target>Remover</target>
       </trans-unit>
       <trans-unit id="8e3396f89515f442389f76203853468f9afa8e95" resname="Remove this investigator.">
         <source>Remove this investigator.</source>
@@ -1504,7 +1504,7 @@
       </trans-unit>
       <trans-unit id="8df7f1b361b2af42d36011e00d22c0f9891ec0b0" resname="Spanish">
         <source>Spanish</source>
-        <target>Spanish</target>
+        <target>Espanhol</target>
       </trans-unit>
       <trans-unit id="78a6cdd537964b9aa552f2211ad316d5f9416c27" resname="Spanish message">
         <source>Spanish message</source>
@@ -1572,7 +1572,7 @@
       </trans-unit>
       <trans-unit id="b6b05aacb4d07a138b2f32456e6da19b65529491" resname="System Management">
         <source>System Management</source>
-        <target>System Management</target>
+        <target>Gestão do sistema</target>
       </trans-unit>
       <trans-unit id="9bfe48f8b037340d39eba12325d66f643d2b3730" resname="Target sample size">
         <source>Target sample size</source>
@@ -1588,7 +1588,7 @@
       </trans-unit>
       <trans-unit id="97738411d629b01052974cc98ddb83a2cb4f8182" resname="Terms of Use">
         <source>Terms of Use</source>
-        <target>Terms of Use</target>
+        <target>Termos de uso</target>
       </trans-unit>
       <trans-unit id="de167b40a093ce8babd605948823067f4b4de0f9" resname="The recruitment start date has to be subsequent to the date of protocol submission.">
         <source>The recruitment start date has to be subsequent to the date of protocol submission.</source>
@@ -1788,7 +1788,7 @@
       </trans-unit>
       <trans-unit id="21c7fe92b8e2c31b06b3e871a2c2e9c168813a64" resname="Your Profile">
         <source>Your Profile</source>
-        <target>Your Profile</target>
+        <target>Seu perfil</target>
       </trans-unit>
       <trans-unit id="82378d8f1e312930b2e019849c8ab441e3084827" resname="Your Protocols">
         <source>Your Protocols</source>
@@ -1796,7 +1796,7 @@
       </trans-unit>
       <trans-unit id="972ecffb6ef8ccde5aabf03f81c5fead85440f71" resname="Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized.">
         <source>Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized.</source>
-        <target>Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized.</target>
+        <target>O seu protocolo foi aceite para análise de ética. The committee's decision will be informed when the process is finalized. A decisão do Comitê será informada quando o processo for finalizado.</target>
       </trans-unit>
       <trans-unit id="60c9b18a70144cba44f474c1ce58d461a1c7a7e8" resname="Your protocol was rejected">
         <source>Your protocol was rejected</source>
@@ -1808,11 +1808,11 @@
       </trans-unit>
       <trans-unit id="5cb6f0688279d13a930b1c9f2abfafb390ad2cd3" resname="Your protocol was sent to review!">
         <source>Your protocol was sent to review!</source>
-        <target>Your protocol was sent to review!</target>
+        <target>O seu protocolo foi enviado para revisão!</target>
       </trans-unit>
       <trans-unit id="c5ce0b05f1b31931e06201587a1cd43a791f3c34" resname="Your protocol was sent to review. Access the link below">
         <source>Your protocol was sent to review. Access the link below</source>
-        <target>Your protocol was sent to review. Access the link below</target>
+        <target>O seu protocolo foi enviado para revisão. Acesse o link abaixo.</target>
       </trans-unit>
       <trans-unit id="2bb6b986c5d6fb26dd9dd1054b545ce022371b0c" resname="active">
         <source>active</source>
@@ -1824,7 +1824,7 @@
       </trans-unit>
       <trans-unit id="4c6dd761f24c4ac4fb95bb1bd183d4815802bfc7" resname="go on">
         <source>go on</source>
-        <target>Continue</target>
+        <target>Continuar</target>
       </trans-unit>
       <trans-unit id="d436a3f40e3ecce896010be99dcf00a577b909aa" resname="inactive">
         <source>inactive</source>
