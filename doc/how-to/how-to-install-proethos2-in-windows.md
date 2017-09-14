@@ -63,9 +63,6 @@ version of software.
 
 ![Screenshot 8](../attachments/windows-git-8.png)
 
-![Screenshot 9](../attachments/windows-git-9.png)
-
-
 Composer
 --------
 
