@@ -12,7 +12,15 @@ XAMPP for Windows.
 - Download the installer and execute it
 - Follow the screenshots below:
 
-TODO
+![Screenshot 1](../attachments/windows-xampp-1.png)
+![Screenshot 2](../attachments/windows-xampp-2.png)
+![Screenshot 3](../attachments/windows-xampp-3.png)
+![Screenshot 4](../attachments/windows-xampp-4.png)
+![Screenshot 5](../attachments/windows-xampp-5.png)
+![Screenshot 6](../attachments/windows-xampp-6.png)
+![Screenshot 7](../attachments/windows-xampp-7.png)
+![Screenshot 8](../attachments/windows-xampp-8.png)
+![Screenshot 9](../attachments/windows-xampp-9.png)
 
 - When instalation is done, open the XAMPP Control Panel and click in `Start` buttons to Apache and MySQL.
 - Now, click in `Admin` in MySQL. You will be redirected to PHPMyAdmin. 
@@ -50,7 +58,10 @@ cd c:/xampp/php
 wkhtmltopdf
 -----------
 
-TODO
+- Access the link [https://wkhtmltopdf.org/downloads.html](https://wkhtmltopdf.org/downloads.html) and
+download the last version according to your operating system.
+- Execute the Installation Wizard and finish the proccess.
+
 
 Creating the file structure and install Proethos2
 -------------------------------------------------
@@ -78,44 +89,98 @@ In the middle of process, you will be questioned by this questions below:
 - `locale (en):` Choose your default language locale. We will use `es_ES`
 - `secret (ThisTokenIsNotSoSecretChangeIt):` Choose an secret token for your application.
 
+Now, all system was installed. Let`s change some configs.
+
+In file `app/config/config.yml`, go to `knp_snappy` session and change `binary` option.
+Its need to be exact line the code below.
+```
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
+        options:    []
+```
+
 Now, we will setup the database. Execute the following command:
 
 ```
-$ c:/xampp/php/php.exe app/console doctrine:schema:update --force
+$ c:/xampp/php/php.exe console doctrine:schema:update --force
 ```
 
 Now, access again PHPMyAdmin, click in `proethos2` link in the left side, click in `Import` tab and
 import all files below:
 
 ```
-symphony/app/fixtures/data_list_clinical_trial_name.sql
-symphony/app/fixtures/data_list_country.sql
-symphony/app/fixtures/data_list_gender.sql
-symphony/app/fixtures/data_list_monitoring_action.sql
-symphony/app/fixtures/data_list_recruitment_status.sql
-symphony/app/fixtures/data_list_role.sql
-symphony/app/fixtures/data_upload_type_extension.sql
-symphony/app/fixtures/data_upload_type.sql
-symphony/app/fixtures/data_upload_type_upload_type_extension.sql
-symphony/app/fixtures/data_help.sql
-symphony/app/fixtures/data_faq.sql
-symphony/app/fixtures/data_ext_translations.sql
-symphony/app/fixtures/data_configuration.sql
-symphony/app/fixtures/data_user.sql
-symphony/app/fixtures/data_user_role.sql
+symphony/fixtures/data_list_clinical_trial_name.sql
+symphony/fixtures/data_list_country.sql
+symphony/fixtures/data_list_gender.sql
+symphony/fixtures/data_list_monitoring_action.sql
+symphony/fixtures/data_list_recruitment_status.sql
+symphony/fixtures/data_list_role.sql
+symphony/fixtures/data_upload_type_extension.sql
+symphony/fixtures/data_upload_type.sql
+symphony/fixtures/data_upload_type_upload_type_extension.sql
+symphony/fixtures/data_help.sql
+symphony/fixtures/data_faq.sql
+symphony/fixtures/data_ext_translations.sql
+symphony/fixtures/data_configuration.sql
+symphony/fixtures/data_user.sql
+symphony/fixtures/data_user_role.sql
 ```
 
 If you want to test the instalation, run this command:
 ```
-c:/xampp/php/php.exe app/console server:run -v 0.0.0.0:8000
+c:/xampp/php/php.exe console server:run -v 0.0.0.0:8000
 ```
 
 and now access the address `http://YOUR_IP_SERVER:8000/`. If you see the login page, means that you made all right!
 
+To guarantee that all system is working perfectly, we will install __phpunit__ and run
+all automated tests.
+
+```
+c:/xampp/php/php.exe c:/xampp/php/composer.phar global require "phpunit/phpunit=4.8.2"
+c:/xampp/php/php.exe c:/xampp/php/composer.phar install
+```
+
+Now, we will run the tests:
+```
+cd app/
+c:/xampp/php/php.exe c:/xampp/php/phpunit --stop-on-failure
+```
+
 Configuring the Apache2 to serve Proethos2
 ------------------------------------------
 
-TODO
+Now, we will configure the Apache2 to serve the Proethos2 in the 80 port.
+
+This is a model to you start. Feel free to modify as your needs:
+
+```
+<VirtualHost *:80>
+    ServerName www.youraddress.com
+
+    ServerAdmin adminemail@localhost
+    DocumentRoot C:\Users\<user>\Desktop\proethos2\symphony\web
+
+    DirectoryIndex index.php index.html index.htm
+
+    <Directory C:\Users\<user>\Desktop\proethos2\symphony\web\>
+        Options FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+We need to put this content on `/etc/apache2/sites-available/proethos2.conf`.
+Now, we have to disable the default conf that comes with apache2 and add our conf:
+
 
 Software configuration
 ======================
@@ -123,7 +188,7 @@ Software configuration
 SMTP and emails
 ---------------
 
-Go to `app/config/parameters.yml` and add/change these parameters, according to your e-mail service:
+Go to `config/parameters.yml` and add/change these parameters, according to your e-mail service:
 
 ```
 mailer_transport: smtp
