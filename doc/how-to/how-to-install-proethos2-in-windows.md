@@ -225,7 +225,16 @@ For more informations about this theme, access http://symfony.com/doc/2.7/email.
 Adding routines to crontab
 --------------------------
 
-TODO (???)
+Open the software `Task Scheduler` and click in "Create task":
+
+![Screenshot 1](../attachments/windows-crontab-1.png)
+
+After this, follow the screenshots:
+
+![Screenshot 2](../attachments/windows-crontab-2.png)
+
+![Screenshot 3](../attachments/windows-crontab-3.png)
+
 
 Other configurations and customizations
 ---------------------------------------
