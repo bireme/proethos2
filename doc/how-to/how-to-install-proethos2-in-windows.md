@@ -13,13 +13,21 @@ XAMPP for Windows.
 - Follow the screenshots below:
 
 ![Screenshot 1](../attachments/windows-xampp-1.png)
+
 ![Screenshot 2](../attachments/windows-xampp-2.png)
+
 ![Screenshot 3](../attachments/windows-xampp-3.png)
+
 ![Screenshot 4](../attachments/windows-xampp-4.png)
+
 ![Screenshot 5](../attachments/windows-xampp-5.png)
+
 ![Screenshot 6](../attachments/windows-xampp-6.png)
+
 ![Screenshot 7](../attachments/windows-xampp-7.png)
+
 ![Screenshot 8](../attachments/windows-xampp-8.png)
+
 ![Screenshot 9](../attachments/windows-xampp-9.png)
 
 - When instalation is done, open the XAMPP Control Panel and click in `Start` buttons to Apache and MySQL.
@@ -39,7 +47,24 @@ Git will be used to download de project.
 version of software.
 - Follow the screenshots below:
 
-TODO
+![Screenshot 1](../attachments/windows-git-1.png)
+
+![Screenshot 2](../attachments/windows-git-2.png)
+
+![Screenshot 3](../attachments/windows-git-3.png)
+
+![Screenshot 4](../attachments/windows-git-4.png)
+
+![Screenshot 5](../attachments/windows-git-5.png)
+
+![Screenshot 6](../attachments/windows-git-6.png)
+
+![Screenshot 7](../attachments/windows-git-7.png)
+
+![Screenshot 8](../attachments/windows-git-8.png)
+
+![Screenshot 9](../attachments/windows-git-9.png)
+
 
 Composer
 --------
