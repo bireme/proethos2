@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-11-22T19:21:55Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2017-07-14T11:59:57Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
+      <trans-unit id="8de96642efd9ae9c0eccd2531e35b20e762da0ee" resname="%total% member(s)">
+        <source>%total% member(s)</source>
+        <target>%total% membro(s)</target>
+      </trans-unit>
       <trans-unit id="f7fae9b58ef582a295b2bbe3ffcf73705281cd4b" resname="12 months">
         <source>12 months</source>
-        <target>12 meses</target>
+        <target>12 meses </target>
       </trans-unit>
       <trans-unit id="d2d2a163c8790997f0f1c324eaedf508d5000db7" resname="18 months">
         <source>18 months</source>
@@ -36,7 +40,7 @@
       </trans-unit>
       <trans-unit id="672ad18f88fdf1adf42fb9cb519228d360e468a5" resname="A new protocol needs your analysis. Access the link below">
         <source>A new protocol needs your analysis. Access the link below</source>
-        <target>Un nuevo protocolo necesita de su análisis. Aceda el enlace que sigue. </target>
+        <target>Un nuevo protocolo necesita de su análisis. Acceda el enlace que sigue. </target>
       </trans-unit>
       <trans-unit id="dc9fddafc66c1d0c41a9e7bee52e2f2768b6e2b5" resname="About Project">
         <source>About Project</source>
@@ -138,14 +142,17 @@
         <source>Approved</source>
         <target>Aprobado</target>
       </trans-unit>
+      <trans-unit id="d613d0e4117be8236c229e91f94bc3390ac931de" resname="Are you sure that you want to delete this protocol?">
+        <source>Are you sure that you want to delete this protocol?</source>
+        <target>Are you sure that you want to delete this protocol?</target>
+      </trans-unit>
       <trans-unit id="82a015d57a9b653f5938e233e81618c31955e00e" resname="Are you sure that you want to end this protocol evaluation?">
         <source>Are you sure that you want to end this protocol evaluation?</source>
         <target>¿Esta seguro que desea finalizar la evaluación de este protocolo?</target>
       </trans-unit>
       <trans-unit id="3d0e6589cf988b9b7df265be8361e1f5ee2d4692" resname="Are you sure that you want to go to the next step without any revisions?">
         <source>Are you sure that you want to go to the next step without any revisions?</source>
-        <target>¿Está seguro que desea pasar al siguiente paso sin ninguna revisión?
-</target>
+        <target>¿Está seguro que desea pasar al siguiente paso sin ninguna revisión?</target>
       </trans-unit>
       <trans-unit id="129d86112d0f124b04a96f1e06036d1b66e8e4b2" resname="Are you sure that you want to remove this member?">
         <source>Are you sure that you want to remove this member?</source>
@@ -178,6 +185,10 @@
       <trans-unit id="5fda23d62015b99fb2a9f86b38bcdf2bdf7609c8" resname="Author">
         <source>Author</source>
         <target>Autor</target>
+      </trans-unit>
+      <trans-unit id="b7b1912e68e770be70d934e37738c3ace052e09c" resname="Back to original to save and finish">
+        <source>Back to original to save and finish</source>
+        <target>Back to original to save and finish</target>
       </trans-unit>
       <trans-unit id="619d65e1ae1a2704aa306451ac2a75a0cde345a8" resname="Bibliography">
         <source>Bibliography</source>
@@ -214,6 +225,10 @@
       <trans-unit id="802718b260cba37555c0799ad7c73f3a3bcd15df" resname="Choose reviewers">
         <source>Choose reviewers</source>
         <target>Elegir revisores</target>
+      </trans-unit>
+      <trans-unit id="a82d99717eaefb42139199343b98fb7b77e78c47" resname="Click here to see this protocol in ICTRP/WHO XML format">
+        <source>Click here to see this protocol in ICTRP/WHO XML format</source>
+        <target>Click here to see this protocol in ICTRP/WHO XML format</target>
       </trans-unit>
       <trans-unit id="a4781b4e531e406a69c0092ff5dcf176feecc6dd" resname="Clinical Trial">
         <source>Clinical Trial</source>
@@ -293,7 +308,7 @@
       </trans-unit>
       <trans-unit id="c63d7dc26fc32ada5170c80598c4c75aefdcc105" resname="Controlled Lists">
         <source>Controlled Lists</source>
-        <target>Controlled Lists</target>
+        <target>Listas controladas</target>
       </trans-unit>
       <trans-unit id="dbdde514d0936490acaa48f4cd3708c58410a2da" resname="Cost description">
         <source>Cost description</source>
@@ -339,6 +354,14 @@
         <source><![CDATA[Date & Time]]></source>
         <target>Fecha y hora</target>
       </trans-unit>
+      <trans-unit id="326bd86d944893ec84500902f420f5d401f16813" resname="Dear investigator">
+        <source>Dear investigator</source>
+        <target>Dear investigator</target>
+      </trans-unit>
+      <trans-unit id="aad842d47d6db67a1a750559355d8e0e5938b4b3" resname="Dear investigator,">
+        <source>Dear investigator,</source>
+        <target>Dear investigator,</target>
+      </trans-unit>
       <trans-unit id="7f59a1f1d55a7cbd48c76e9f75723ccb6c63f3e0" resname="Decision">
         <source>Decision</source>
         <target>Decisión</target>
@@ -370,6 +393,10 @@
       <trans-unit id="0a0a90f6c5a99223b71ca992b6c52fb82feb64b5" resname="Delete User">
         <source>Delete User</source>
         <target>Eliminar usuario</target>
+      </trans-unit>
+      <trans-unit id="554ef4349173dacab93452646dea3c02d05060cc" resname="Delete this protocol.">
+        <source>Delete this protocol.</source>
+        <target>Delete this protocol.</target>
       </trans-unit>
       <trans-unit id="55f8ebc805e65b5b71ddafdae390e3be2bcd69af" resname="Description">
         <source>Description</source>
@@ -437,7 +464,7 @@
       </trans-unit>
       <trans-unit id="649df08a448ee3fa90f3746baaf6b0907df42c91" resname="English">
         <source>English</source>
-        <target>English</target>
+        <target>Inglés</target>
       </trans-unit>
       <trans-unit id="1507054e985d3fca0ad9862f4c2407ccaa09c4be" resname="English message">
         <source>English message</source>
@@ -475,6 +502,10 @@
         <source>Expedite approval</source>
         <target>Aprobación expedita</target>
       </trans-unit>
+      <trans-unit id="1feee0e7447f87b9466b1b883869ba5eeba023b3" resname="Export to CSV">
+        <source>Export to CSV</source>
+        <target>Export to CSV</target>
+      </trans-unit>
       <trans-unit id="659087d3ca23db6ae11e0a43579b5f4a260dda11" resname="Extension">
         <source>Extension</source>
         <target>Extensión</target>
@@ -485,7 +516,7 @@
       </trans-unit>
       <trans-unit id="03688ba6aa340b87549088aa5739944cb6b1dc73" resname="FAQ">
         <source>FAQ</source>
-        <target>FAQ</target>
+        <target>Preguntas frecuentes</target>
       </trans-unit>
       <trans-unit id="7e31e3de14faae36e2214dae4bfad37026be9704" resname="Fair Participant Selection">
         <source>Fair Participant Selection</source>
@@ -585,7 +616,7 @@
       </trans-unit>
       <trans-unit id="44389f6a466eaabf5c1db729e369511134e2b03b" resname="French">
         <source>French</source>
-        <target>French</target>
+        <target>Francés</target>
       </trans-unit>
       <trans-unit id="cec7d6c2129c9fe6a0dc554c6a825727af0a1055" resname="French message">
         <source>French message</source>
@@ -665,7 +696,7 @@
       </trans-unit>
       <trans-unit id="a19399864f6b09c38217741719dbea234a5f688c" resname="Help Messages">
         <source>Help Messages</source>
-        <target>Help Messages</target>
+        <target>Mensajes de ayuda</target>
       </trans-unit>
       <trans-unit id="7ea305782f9c411ea93b2689186299fdf991e42a" resname="Help updated with success.">
         <source>Help updated with success.</source>
@@ -765,7 +796,11 @@
       </trans-unit>
       <trans-unit id="53ec6d7dfa2c6ed480e8ec1293af8d6b2cf0a512" resname="Label translations">
         <source>Label translations</source>
-        <target>Label translations</target>
+        <target>Traducción de etiquetas</target>
+      </trans-unit>
+      <trans-unit id="89b86ab0e66f527166d98df92ddbcf5416ed58f6" resname="Language">
+        <source>Language</source>
+        <target>Language</target>
       </trans-unit>
       <trans-unit id="8351ebe53db2a3981a7e85ac4e1f58217f715944" resname="Last Update">
         <source>Last Update</source>
@@ -781,7 +816,11 @@
       </trans-unit>
       <trans-unit id="db2c64b012d82b90a8a5fac6c7b3a6bee2716058" resname="Legal disclaimer">
         <source>Legal disclaimer</source>
-        <target>Legal disclaimer</target>
+        <target>Descargo de responsabilidad</target>
+      </trans-unit>
+      <trans-unit id="e43d612e11f1568f2373e719d4c4b08dcecdc7cc" resname="Logout">
+        <source>Logout</source>
+        <target>Logout</target>
       </trans-unit>
       <trans-unit id="c1fed26979361d06c848030502536d84a52e6a13" resname="Main Type">
         <source>Main Type</source>
@@ -841,7 +880,7 @@
       </trans-unit>
       <trans-unit id="d378cd32935cd41425f00181812285372e78a72b" resname="Message sent to administrators.">
         <source>Message sent to administrators.</source>
-        <target>Se ha enviado mensaje a los administradores</target>
+        <target>Mensaje enviado a los administradores</target>
       </trans-unit>
       <trans-unit id="b509d96b1279b2d6e34627fce387a3fef5a59a74" resname="Methodology">
         <source>Methodology</source>
@@ -961,7 +1000,7 @@
       </trans-unit>
       <trans-unit id="18f799d1cd8870445a42463145ecd8b976bf884c" resname="New Upload Extension Type">
         <source>New Upload Extension Type</source>
-        <target>Nueva extensión de tipo de upload</target>
+        <target>Nuevo tipo de extensión de upload</target>
       </trans-unit>
       <trans-unit id="39c3df525d2967d3ff7b5cda53f16c6bfd413ebf" resname="New Upload Type">
         <source>New Upload Type</source>
@@ -1081,7 +1120,7 @@
       </trans-unit>
       <trans-unit id="5ef849c72cc4d216fc7f81d5be20df7369d797a0" resname="Pan American Health Organization, 2013. All rights reserved.">
         <source>Pan American Health Organization, 2013. All rights reserved.</source>
-        <target>Pan American Health Organization, 2013. All rights reserved.</target>
+        <target>Organización Panamericana de la Salud, 2013. Todos los derechos reservados. </target>
       </trans-unit>
       <trans-unit id="cd56e0839d06af74923cd6ad99d6fc9e7dab8e3a" resname="Participants">
         <source>Participants</source>
@@ -1099,6 +1138,10 @@
         <source>Passwords don't match.</source>
         <target>Las contraseñas no coinciden.</target>
       </trans-unit>
+      <trans-unit id="b5b07f718c694688f631936da9ccc95edaf5ca54" resname="Please access your account in the system to present your monitoring action.">
+        <source>Please access your account in the system to present your monitoring action.</source>
+        <target>Please access your account in the system to present your monitoring action.</target>
+      </trans-unit>
       <trans-unit id="68903d44f6608ff7603550f9ca7932e890daa328" resname="Please check and authorize this access.">
         <source>Please check and authorize this access.</source>
         <target>Por favor revise y autorice este acceso.</target>
@@ -1109,7 +1152,7 @@
       </trans-unit>
       <trans-unit id="23882c575954a0789bf02aba9e6dd01f539bc738" resname="Portuguese">
         <source>Portuguese</source>
-        <target>Portuguese</target>
+        <target>Portugués</target>
       </trans-unit>
       <trans-unit id="ad2d5a59cb269298a2e42b55b8d40bdc7b9a5da4" resname="Portuguese message">
         <source>Portuguese message</source>
@@ -1129,7 +1172,7 @@
       </trans-unit>
       <trans-unit id="efc7d6099e76ee26a4a11d103c47e19c66a1b08f" resname="Prior Ethical Approval">
         <source>Prior Ethical Approval</source>
-        <target>Aprobación ética anterior</target>
+        <target>Aprobación ética previa</target>
       </trans-unit>
       <trans-unit id="d1c3f33e6d81e5377d770db5cabd2b4a8b5263bc" resname="Problems generating PDF. Please contact the administrator.">
         <source>Problems generating PDF. Please contact the administrator.</source>
@@ -1186,6 +1229,10 @@
       <trans-unit id="ffdf4d462b48069706ac5c6bcf284b460a30f0c0" resname="Protocol was rejected by">
         <source>Protocol was rejected by</source>
         <target>Protocolo rechazado por</target>
+      </trans-unit>
+      <trans-unit id="2c56fcfbf450e4083ffc685ab1babb8c8a0b5f6f" resname="Protocol was removed with success!">
+        <source>Protocol was removed with success!</source>
+        <target>Protocol was removed with success!</target>
       </trans-unit>
       <trans-unit id="e76c7159e192d371590953e2b0d3cc660c24edfa" resname="Protocol was sent to comittee for initial analysis by %user%.">
         <source>Protocol was sent to comittee for initial analysis by %user%.</source>
@@ -1423,6 +1470,14 @@
         <source>See Protocol</source>
         <target>Ver protocolo</target>
       </trans-unit>
+      <trans-unit id="815a4f8039c1566a9205133ded359fa94458e71d" resname="See XML ICTRP/WHO in">
+        <source>See XML ICTRP/WHO in</source>
+        <target>See XML ICTRP/WHO in</target>
+      </trans-unit>
+      <trans-unit id="2fce269c0372ec6b495feaefdd72011592276c2f" resname="See original">
+        <source>See original</source>
+        <target>See original</target>
+      </trans-unit>
       <trans-unit id="f4a5757a3cee255c8368db475f449f74e306828c" resname="See protocol">
         <source>See protocol</source>
         <target>Ver protocolo</target>
@@ -1505,7 +1560,7 @@
       </trans-unit>
       <trans-unit id="8df7f1b361b2af42d36011e00d22c0f9891ec0b0" resname="Spanish">
         <source>Spanish</source>
-        <target>Spanish</target>
+        <target>Español</target>
       </trans-unit>
       <trans-unit id="78a6cdd537964b9aa552f2211ad316d5f9416c27" resname="Spanish message">
         <source>Spanish message</source>
@@ -1535,6 +1590,10 @@
         <source>Subject</source>
         <target>Tema</target>
       </trans-unit>
+      <trans-unit id="8d546420978213d489174be5f512f6925301318f" resname="Submission Language">
+        <source>Submission Language</source>
+        <target>Submission Language</target>
+      </trans-unit>
       <trans-unit id="bd371eb7282bccb49854f6af1c39ed182695e1af" resname="Submission of protocol.">
         <source>Submission of protocol.</source>
         <target>Presentación de protocolo</target>
@@ -1550,6 +1609,10 @@
       <trans-unit id="982b5577e8467617e896721e86fdf37e8fa2514d" resname="Submit monitoring action">
         <source>Submit monitoring action</source>
         <target>Presentar acción de monitoreo</target>
+      </trans-unit>
+      <trans-unit id="26d1f88262a3adb8154f09508b6ccd0f3f277ce9" resname="Submit translation">
+        <source>Submit translation</source>
+        <target>Submit translation</target>
       </trans-unit>
       <trans-unit id="2e00359b9802d1fa28aa05450482d8df1c0cf61f" resname="Submitted">
         <source>Submitted</source>
@@ -1573,7 +1636,7 @@
       </trans-unit>
       <trans-unit id="b6b05aacb4d07a138b2f32456e6da19b65529491" resname="System Management">
         <source>System Management</source>
-        <target>System Management</target>
+        <target>Administración del Sistema</target>
       </trans-unit>
       <trans-unit id="9bfe48f8b037340d39eba12325d66f643d2b3730" resname="Target sample size">
         <source>Target sample size</source>
@@ -1589,7 +1652,15 @@
       </trans-unit>
       <trans-unit id="97738411d629b01052974cc98ddb83a2cb4f8182" resname="Terms of Use">
         <source>Terms of Use</source>
-        <target>Terms of Use</target>
+        <target>Términos de uso</target>
+      </trans-unit>
+      <trans-unit id="6b50e31a7e1337db9ecb0e2fcb6e65ca27f57df5" resname="Thank you">
+        <source>Thank you</source>
+        <target>Thank you</target>
+      </trans-unit>
+      <trans-unit id="aa948c44989674ee930ddeca8104ee1ecf03e718" resname="The committee will now meet to review your protocol, and an official decision will be sent to you shortly.">
+        <source>The committee will now meet to review your protocol, and an official decision will be sent to you shortly.</source>
+        <target>The committee will now meet to review your protocol, and an official decision will be sent to you shortly.</target>
       </trans-unit>
       <trans-unit id="de167b40a093ce8babd605948823067f4b4de0f9" resname="The recruitment start date has to be subsequent to the date of protocol submission.">
         <source>The recruitment start date has to be subsequent to the date of protocol submission.</source>
@@ -1603,13 +1674,31 @@
         <source>Third step saved with sucess.</source>
         <target>Tercer paso guardado exitosamente</target>
       </trans-unit>
+      <trans-unit id="78fc494c31475a7f17fdbe46eac1691d1ae706d1" resname="This is a migrated protocol. You can edit some informations.">
+        <source>This is a migrated protocol. You can edit some informations.</source>
+        <target>This is a migrated protocol. You can edit some informations.</target>
+      </trans-unit>
+      <trans-unit id="57482c5aaff1ec5281be4a8390934b2a15263f7a" resname="This is a translated version.">
+        <source>This is a translated version.</source>
+        <target>This is a translated version.</target>
+      </trans-unit>
+      <trans-unit id="60ee41a6d8c54b4fcdf27977e61e995bf2aa4709" resname="This is to remind you that protocol &lt;b&gt;%protocol%&lt;/b&gt; has a pending&#10;                                                   monitoring action that is due on &lt;b&gt;%date%&lt;/b&gt;.">
+        <source><![CDATA[This is to remind you that protocol <b>%protocol%</b> has a pending
+                                                   monitoring action that is due on <b>%date%</b>.]]></source>
+        <target><![CDATA[This is to remind you that protocol <b>%protocol%</b> has a pending
+                                                   monitoring action that is due on <b>%date%</b>.]]></target>
+      </trans-unit>
       <trans-unit id="da372ea9fbc37de95b78e59d7ce18649f17f7682" resname="This is your first access! Please, for your security, you need to change your password.">
         <source>This is your first access! Please, for your security, you need to change your password.</source>
-        <target>Este es su primer acceso. Por favor, por su seguridad, cambie su contraseña.</target>
+        <target>Este es su primer acceso. Por su seguridad, por favor, cambie su contraseña.</target>
       </trans-unit>
       <trans-unit id="129c0fc1268fe11e4bea38a257012f307e2c3716" resname="This monitoring action will not be reviewed by the committee">
         <source>This monitoring action will not be reviewed by the committee</source>
         <target>Esta acción de monitoreo no será revisada por el comité</target>
+      </trans-unit>
+      <trans-unit id="2d3c3f23df3464e5dbaf126f28ad1aff8083735e" resname="This submission has translations">
+        <source>This submission has translations</source>
+        <target>This submission has translations</target>
       </trans-unit>
       <trans-unit id="768e0c1c69573fb588f61f1308a015c11468e05f" resname="Title">
         <source>Title</source>
@@ -1622,6 +1711,10 @@
       <trans-unit id="b25928c69902557b0ef0a628490a3a1768d7b82f" resname="Total">
         <source>Total</source>
         <target>Total</target>
+      </trans-unit>
+      <trans-unit id="2f69970f701ec2ba2bb90e16f97fe6bfcade6bce" resname="Total cost">
+        <source>Total cost</source>
+        <target>Total cost</target>
       </trans-unit>
       <trans-unit id="178a917f1ce61194cd25725183df7ef392e64f7c" resname="Total of Participants">
         <source>Total of Participants</source>
@@ -1763,6 +1856,10 @@
         <source>You don't have access to do this</source>
         <target>Usted no tiene acceso para hacer esto</target>
       </trans-unit>
+      <trans-unit id="e6db71f9a22af4ba3d27582f7210c70f81953220" resname="You have a pending monitoring action to %date%">
+        <source>You have a pending monitoring action to %date%</source>
+        <target>You have a pending monitoring action to %date%</target>
+      </trans-unit>
       <trans-unit id="826aeadaf1120376e6c7a61672b1a22590960db9" resname="You have pending reviews.">
         <source>You have pending reviews.</source>
         <target>Usted tiene revisiones pendientes</target>
@@ -1789,15 +1886,19 @@
       </trans-unit>
       <trans-unit id="21c7fe92b8e2c31b06b3e871a2c2e9c168813a64" resname="Your Profile">
         <source>Your Profile</source>
-        <target>Your Profile</target>
+        <target>Su perfil </target>
       </trans-unit>
       <trans-unit id="82378d8f1e312930b2e019849c8ab441e3084827" resname="Your Protocols">
         <source>Your Protocols</source>
         <target>Sus protocolos</target>
       </trans-unit>
+      <trans-unit id="8092bd9028a710bfe247f0db98090a52a18e4ac5" resname="Your protocol has been accepted for ethics review.">
+        <source>Your protocol has been accepted for ethics review.</source>
+        <target>Your protocol has been accepted for ethics review.</target>
+      </trans-unit>
       <trans-unit id="972ecffb6ef8ccde5aabf03f81c5fead85440f71" resname="Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized.">
         <source>Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized.</source>
-        <target>Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized.</target>
+        <target>Su protocolo ha sido aceptado para revisión ética. La decisión del comité se le informará cuando finalice el proceso. </target>
       </trans-unit>
       <trans-unit id="60c9b18a70144cba44f474c1ce58d461a1c7a7e8" resname="Your protocol was rejected">
         <source>Your protocol was rejected</source>
@@ -1807,13 +1908,21 @@
         <source>Your protocol was rejected. Access the link below for more details</source>
         <target>Su protocolo ha sido rechazado. Acceda el enlace que sigue para mas detalles</target>
       </trans-unit>
+      <trans-unit id="f968e313bb621c8bb24cb930cd94f3c0651ffeec" resname="Your protocol was sent to ethics review.">
+        <source>Your protocol was sent to ethics review.</source>
+        <target>Your protocol was sent to ethics review.</target>
+      </trans-unit>
       <trans-unit id="5cb6f0688279d13a930b1c9f2abfafb390ad2cd3" resname="Your protocol was sent to review!">
         <source>Your protocol was sent to review!</source>
-        <target>Your protocol was sent to review!</target>
+        <target>Su protocolo ha sido enviado a revisión.</target>
+      </trans-unit>
+      <trans-unit id="dbb193aea481b65e97293bd206513ac9d7eb6351" resname="Your protocol was sent to review.">
+        <source>Your protocol was sent to review.</source>
+        <target>Su protocolo ha sido enviado a revisión.</target>
       </trans-unit>
       <trans-unit id="c5ce0b05f1b31931e06201587a1cd43a791f3c34" resname="Your protocol was sent to review. Access the link below">
         <source>Your protocol was sent to review. Access the link below</source>
-        <target>Your protocol was sent to review. Access the link below</target>
+        <target>Su protocolo ha sido enviado a revisión. Acceda el enlace que sigue.</target>
       </trans-unit>
       <trans-unit id="2bb6b986c5d6fb26dd9dd1054b545ce022371b0c" resname="active">
         <source>active</source>
@@ -1825,19 +1934,19 @@
       </trans-unit>
       <trans-unit id="4c6dd761f24c4ac4fb95bb1bd183d4815802bfc7" resname="go on">
         <source>go on</source>
-        <target>Continue</target>
+        <target>Continuar</target>
       </trans-unit>
       <trans-unit id="d436a3f40e3ecce896010be99dcf00a577b909aa" resname="inactive">
         <source>inactive</source>
         <target>inactivo</target>
       </trans-unit>
-      <trans-unit id="34bf3783e8408d6e8bc09b5ec1decac161fbfdb6" resname="member(s)">
-        <source>member(s)</source>
-        <target>miembro(s)</target>
-      </trans-unit>
       <trans-unit id="fd1286353570c5703799ba76999323b7c7447b06" resname="no">
         <source>no</source>
         <target>no</target>
+      </trans-unit>
+      <trans-unit id="efd7fd7f2954713c1ee7facf9750fe53e8cf589c" resname="translation">
+        <source>translation</source>
+        <target>traducción</target>
       </trans-unit>
       <trans-unit id="6c8872c54edb32ec392c8c7110ab1fb2b1a4cec5" resname="with this justification:">
         <source>with this justification:</source>

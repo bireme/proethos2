@@ -6,17 +6,17 @@
 
     <h5>{% trans %}Decision{% endtrans %}</h5>
     <p>{{ protocol_revision.decision }}</p>
-    
+
     {% if protocol_revision.socialValue %}
         <h5>{% trans %}Social Value{% endtrans %}</h5>
         <p>{{ protocol_revision.socialValue }}</p>
     {% endif %}
-    
+
     {% if protocol_revision.sscientificValidity %}
         <h5>{% trans %}Scientific Validity{% endtrans %}</h5>
         <p>{{ protocol_revision.sscientificValidity }}</p>
     {% endif %}
-    
+
     {% if protocol_revision.fairParticipantSelection %}
         <h5>{% trans %}Fair Participant Selection{% endtrans %}</h5>
         <p>{{ protocol_revision.fairParticipantSelection }}</p>
@@ -24,26 +24,26 @@
     {% if protocol_revision.favorableBalance %}
         <h5>{% trans %}Favorable balance of benefits and risks{% endtrans %}</h5>
         <p>{{ protocol_revision.favorableBalance }}</p>
-        
+
     {% endif %}
-    
+
     {% if protocol_revision.informedConsent %}
         <h5>{% trans %}Informed Consent{% endtrans %}</h5>
         <p>{{ protocol_revision.informedConsent }}</p>
-        
+
     {% endif %}
-    
+
     {% if protocol_revision.respectForParticipants %}
         <h5>'{% trans %}Respect for participants{% endtrans %}'</h5>
         <p>{{ protocol_revision.respectForParticipants }}</p>
-        
+
     {% endif %}
-    
+
     {% if protocol_revision.otherComments %}
         <h5>{% trans %}Other Comments{% endtrans %}</h5>
         <p>{{ protocol_revision.otherComments }}</p>
     {% endif %}
-    
+
     {% if protocol_revision.suggestions %}
         <h5>{% trans %}Suggestions{% endtrans %}</h5>
         <p>{{ protocol_revision.suggestions }}</p>
@@ -51,5 +51,5 @@
 </div>
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
 </div>

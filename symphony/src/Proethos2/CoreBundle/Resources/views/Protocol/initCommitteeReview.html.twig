@@ -3,7 +3,7 @@
 {% block title %}{% trans %}Protocol options{% endtrans %}{% endblock %}
 
 {% block content %}
-    
+
     <div class="container-fluid main-content see-submission">
 
         <div class="row">
@@ -11,13 +11,13 @@
                 <h1 class="page-header">{% trans %}Initial committee review{% endtrans %}</h1>
             </div>
         </div>
-        
+
         {% include 'Proethos2CoreBundle:Protocol:meta.html.twig' %}
 
         <!-- action -->
         <form method="POST" id='form-action'>
             <input type="hidden" id="input-send-to" name="send-to" value="">
-            
+
             <div class='block action'>
                 <a name='action'></a>
                 <div class='row'>
@@ -29,7 +29,7 @@
                 <div class='row'>
                     <div class="col-md-12">
                         <div class="form-group" id='niec-manual'>
-                            <label for="input-opinion-required">{% trans %}Opinions Required{% endtrans %}:</label> 
+                            <label for="input-opinion-required">{% trans %}Opinions Required{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 122} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='number' class="form-control" id='input-opinion-required' name="opinion-required" min="0" value="{{ protocol.opinionRequired }}" required>
                         </div>
@@ -46,7 +46,7 @@
             <div class='row'>
                 <div class="col-md-12">
                     <table class='table table-hover table-condensed'>
-                        
+
                         <thead>
                             <tr>
                                 <th width="30%">{% trans %}Name{% endtrans %}</th>
@@ -58,21 +58,21 @@
                                 <th>{% trans %}Actions{% endtrans %}</th>
                             </tr>
                         </thead>
-                        
+
                         <tbody>
                             {% for revision in protocol.revision %}
                                 <tr>
-                                    <td>{{ revision.member.name }}</td> 
-                                    <td>{{ revision.member.institution }}</td> 
-                                    <td><a href='{{ revision.member.email }}'>{{ revision.member.email }}</a></td> 
-                                    <td>{{ revision.member.country }}</td> 
-                                    <td>{{ revision.created|date("d/m/Y") }}</td> 
+                                    <td>{{ revision.member.name }}</td>
+                                    <td>{{ revision.member.institution }}</td>
+                                    <td><a href='{{ revision.member.email }}'>{{ revision.member.email }}</a></td>
+                                    <td>{{ revision.member.country }}</td>
+                                    <td>{{ revision.created|date("d/m/Y") }}</td>
                                     <td>
                                         {% if revision.answered and not revision.isFinalRevision %}<span class='label label-primary'>{% trans %}Answered{% endtrans %}</span>{% endif %}
                                         {% if revision.isFinalRevision %}<span class='label label-success'>{% trans %}Final Revision{% endtrans %}</span>{% endif %}
                                         {% if not revision.answered %}<span class='label label-default'>{% trans %}Assigned{% endtrans %}</span>{% endif %}
-                                        
-                                    </td> 
+
+                                    </td>
                                     <td>
                                         <a href='{{ path("protocol_initial_committee_review_show_review", {protocol_id: protocol.id, protocol_revision_id: revision.id }) }}' data-toggle='modal' data-target='#modal-parecer-reviewer' class='btn btn-default btn-xs {% if not revision.decision %}disabled{% endif %}'><i class='glyphicon glyphicon-eye-open'></i></a>
                                         <a href='#' class='btn btn-default btn-xs' data-toggle="modal" data-target="#modal-remove-revisor" id='remove-revisor-{{ revision.id }}'><i class='glyphicon glyphicon-trash'></i></a>
@@ -97,7 +97,7 @@
                 <div class='row'>
                     <div class="col-md-12">
                         <div class="form-group" id='rejeitar-group'>
-                            <label for="select-meeting">{% trans %}Select meeting{% endtrans %}:</label> 
+                            <label for="select-meeting">{% trans %}Select meeting{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 123} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <select class='form-control selectpicker' id="select-meeting" name="meeting" data-live-search="true">
                                 <option></option>
@@ -109,7 +109,7 @@
                     </div>
                 </div>
             {% endif %}
-            
+
             <div class='row'>
                 <div class='submission-button-controls col-md-12'>
                     <button type="submit" class='btn btn-primary' id='button-save-and-wait-revisions'>{% trans %}Save and wait for comments{% endtrans %}</button>
@@ -124,7 +124,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <form class='form' method="POST">
                 <input type="hidden" name="type-of-members" value="members-of-committee">
-                
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -141,23 +141,23 @@
                                     <th>{% trans %}Country{% endtrans %}</th>
                                 </tr>
                             </thead>
-                            
+
                             <tbody>
                                 {% for member in users %}
                                     {% if role_member_of_committee in member.proethos2Roles %}
                                         <tr>
                                             <td><input type='checkbox' name="select-members-of-committee[]" value="{{ member.id }}"></td>
-                                            <td>{{ member.name }}</td> 
-                                            <td>{{ member.institution }}</td> 
-                                            <td><a href='{{ member.email }}'>{{ member.email }}</a></td> 
-                                            <td>{{ member.country }}</td> 
+                                            <td>{{ member.name }}</td>
+                                            <td>{{ member.institution }}</td>
+                                            <td><a href='{{ member.email }}'>{{ member.email }}</a></td>
+                                            <td>{{ member.country }}</td>
                                         </tr>
                                     {% endif %}
                                 {% endfor %}
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
                         <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
@@ -172,7 +172,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <form class='form' method="POST">
                 <input type="hidden" name="type-of-members" value="members-ad-hoc">
-                
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -189,23 +189,23 @@
                                     <th>{% trans %}Country{% endtrans %}</th>
                                 </tr>
                             </thead>
-                            
+
                             <tbody>
                                 {% for member in users %}
                                     {% if role_member_of_committee in member.proethos2Roles %}
                                         <tr>
                                             <td><input type='checkbox' name="select-members-of-committee[]" value="{{ member.id }}"></td>
-                                            <td>{{ member.name }}</td> 
-                                            <td>{{ member.institution }}</td> 
-                                            <td><a href='{{ member.email }}'>{{ member.email }}</a></td> 
-                                            <td>{{ member.country }}</td> 
+                                            <td>{{ member.name }}</td>
+                                            <td>{{ member.institution }}</td>
+                                            <td><a href='{{ member.email }}'>{{ member.email }}</a></td>
+                                            <td>{{ member.country }}</td>
                                         </tr>
                                     {% endif %}
                                 {% endfor %}
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
                         <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
@@ -227,7 +227,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <form class='form' method="POST" >
                 <input type="hidden" name="remove-member" value="">
-                
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -236,7 +236,7 @@
                     <div class="modal-body">
                         <p>{% trans %}Are you sure you want to remove this reviewer?{% endtrans %}</p>
                     </div>
-                    
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
                         <button type="submit" class="btn btn-danger">{% trans %}Remove{% endtrans %}</button>
@@ -245,7 +245,7 @@
             </form>
         </div>
     </div>
-    
+
     <!-- Modal confirm if that not revisions -->
     <div class="modal fade" id="modal-confirm-submit-without-revisions" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
@@ -257,7 +257,7 @@
                 <div class="modal-body">
                     <p>{% trans %}Are you sure that you want to go to the next step without any revisions?{% endtrans %}</p>
                 </div>
-                
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
                     <button type="button" class="btn btn-danger" id="button-confirm-submit-without-revisions">{% trans %}go on{% endtrans %}</button>
@@ -281,7 +281,7 @@
             });
 
             // binding revision id to remove member form
-            $("a[id^=remove-revisor-").on('keypress click', function(e){
+            $("a[id^=remove-revisor-]").on('keypress click', function(e){
                 var member_id = $(this).attr('id');
                 member_id = member_id.replace("remove-revisor-", "");
                 $("input[name=remove-member]").val(member_id);
@@ -296,7 +296,7 @@
                     $('#form-action').submit();
                 {% endif %}
             });
-            
+
             $('#button-confirm-submit-without-revisions').on('keypress click', function(e){
                 $('#form-action').submit();
             });

@@ -175,7 +175,7 @@ class NewSubmissionControllerTest extends WebTestCase
             "maximum-age" => "6",
             "inclusion-criteria" => "Inclusion criteria",
             "exclusion-criteria" => "Exclusion criteria",
-            "recruitment-init-date" => "2017-05-31",
+            "recruitment-init-date" => "2099-05-31",
             "recruitment-status" => "1",
             "country[0][country]" => "BR",
             "country[0][participants]" => "6",
