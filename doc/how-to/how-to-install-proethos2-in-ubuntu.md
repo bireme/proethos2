@@ -209,7 +209,8 @@ mailer_password: null
 
 ```
 
-For more informations about this theme, access http://symfony.com/doc/2.7/email.html.
+For more informations about email setup, access http://symfony.com/doc/2.7/email.html.
+If ProEthos platform is not sending e-mails after the instructions above, please, see the issue [#354](https://github.com/bireme/proethos2/issues/354)
 
 Adding routines to crontab
 --------------------------
