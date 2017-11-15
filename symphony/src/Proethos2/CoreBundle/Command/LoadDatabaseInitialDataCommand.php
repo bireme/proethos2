@@ -68,12 +68,12 @@ class LoadDatabaseInitialDataCommand extends ContainerAwareCommand
 
         $host = $database_host;
         if($database_port) {
-            $host .= ":$database_port";
+            $host .= " -p$database_port";
         }
 
         foreach($tables as $table) {
             $output->writeln("loading $table...");
-            $command = "mysql -h $host -u$database_user -p$database_password $database_name";
+            $command = "/Applications/MAMP/Library/bin/mysql -h $host -u$database_user -p$database_password $database_name";
             $command .= " < $fixtures_dir/data_$table.sql";
             exec($command);
 
