@@ -16,7 +16,7 @@ Links
 * [How to install in Ubuntu](doc/how-to/how-to-install-proethos2-in-ubuntu.md)
 * [How to install in Windows](doc/how-to/how-to-install-proethos2-in-windows.md)
 * [How to migrate from Proethos1](doc/how-to/how-to-migrate-from-proethos1.md)
-* [Development Guide](doc/README.md)
+* [Development Guide and How to Contribute](doc/README.md)
 * [About Continuous Integration](doc/continuous-integration.md)
 * Mailing lists
   * for developers (http://bit.ly/mailing-proethos-dev)
