@@ -79,7 +79,7 @@ This lib is used to generate the PDF files.
 
 ```
 $ cd /tmp
-$ wget http://download.gna.org/wkhtmltopdf/0.12/0.12.2.1/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
+$ wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.2.1/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
 $ sudo dpkg --install wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
 $ sudo apt-get --yes --fix-broken install
 $ sudo dpkg --install wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
@@ -123,7 +123,7 @@ Now, we will setup the database and load the initial data:
 
 ```
 $ make load_initial
-or 
+or
 $ make load_initial php5.6
 ```
 
