@@ -138,6 +138,9 @@ mkdir uploads/
 
 Remember that the directories below needs to have write permissions from apache:
 ```
+sudo chgrp www-data -R app/logs
+sudo chgrp www-data -R app/cache
+sudo chgrp www-data -R uploads
 chmod -R 0775 app/cache
 chmod -R 0775 app/logs
 chmod -R 0775 uploads
