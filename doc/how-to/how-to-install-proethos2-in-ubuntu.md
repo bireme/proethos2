@@ -118,7 +118,7 @@ In the middle of process, you will be questioned by this questions below:
 - `database_user (root):` Fill in with the user that we created. In this case `proethos2`.
 - `database_password (null):` Fill in with the database name that we created. In this case `choose_a_password!`.
 - `mailer_transport (smtp):` We will configure this options later, so, press enter for the SMTP options.
-- `locale (en):` Choose your default language locale. We will use `es_ES`
+- `locale (en):` Choose your default language locale. We will use `en_US`
 - `secret (ThisTokenIsNotSoSecretChangeIt):` Choose an secret token for your application.
 
 Now, we will setup the database and load the initial data:
