@@ -111,3 +111,5 @@ the following conditions has not been cured by  Licensee:
 (i) Licensee Uses or permits the Software or its updates to be used, in any manner  or for 
 any purpose not authorized hereunder; or
 (ii) Licensee is otherwise in breach of this License in any material respect.
+
+
