@@ -10,13 +10,15 @@ Remember some tips:
 and other tools;
 - This manual will help you under this conditions.
 
+(colocar notas sobre funcionamento de versiones PHP, MySQL)
+
 Dependencies
 ------------
 
 ### Dependencies that every ubuntu instalation should have.
 
 ```
-$ sudo apt-get install -y vim openssh-server
+$ sudo apt-get install -y vim openssh-server make   
 ```
 
 ### Git
@@ -129,6 +131,23 @@ $ make load_initial php5.6
 
 __TIP:__ See all the [Make commands](../continuous-integration.md), that certainly will help you.
 
+Remember to create the `uploads` directory:
+```
+mkdir uploads/
+```
+
+Remember that the directories below needs to have write permissions from apache:
+```
+chmod -R 0775 app/cache
+chmod -R 0775 app/logs
+chmod -R 0775 uploads
+```
+
+And now run all the tests to see if all is doing ok:
+```
+make test
+```
+
 If you want to test the instalation, run this command:
 
 ```
@@ -137,6 +156,7 @@ $ make runserver
 ```
 
 and now access the address `http://YOUR_IP_SERVER:8000/`. If you see the login page, means that you made all right!
+
 
 Configuring the Apache2 to serve Proethos2
 ------------------------------------------
@@ -184,13 +204,6 @@ Now, we have to give the right permissions to all structure:
 $ cd ~/project/proethos2/git/symphony
 $ rm -rf app/cache/*
 $ rm -rf app/logs/*
-```
-
-Remember that the directories below needs to have write permissions from apache:
-```
-app/cache
-app/logs
-uploads
 ```
 
 Software configuration
