@@ -42,7 +42,7 @@ $ sudo a2enmod rewrite
 ### PHP
 
 ```
-$ sudo apt-get install -y curl php5 php5-cli php5-mysql libapache2-mod-php5 php5-mcrypt php5-gd
+$ sudo apt-get install -y curl php5 php5-cli php5-mysql libapache2-mod-php5 php5-mcrypt php5-gd phpunit
 
 ```
 
