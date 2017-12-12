@@ -144,6 +144,24 @@
                     </div>
                 </div>
 
+              <div class='block'>
+                  <div class='row'>
+                      <div class="col-md-12">
+                          <h2 class='sub-header'>{% trans %}Abstract and Keywords{% endtrans %}</h2>
+                      </div>
+                  </div>
+              
+                  <div class='row'>
+                      <div class="col-md-12">
+                          <div class="form-group required">
+                              <label for="input_internal_protocol_number">{% trans %}Internal Protocol Number{% endtrans %}:</label>
+                              <a href="{{ path("crud_admin_help_show", {help_id: 198} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                              <input type="text" class="form-control" name='internal_protocol_number' id='input_internal_protocol_number' value='{{ submission.internalProtocolNumber }}' required>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
                 <div class='submission-button-controls'>
                     <button type='submit' class='btn btn-primary'>{% trans %}Save and next{% endtrans %}</button>
                 </div>

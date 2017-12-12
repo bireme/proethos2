@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-07-14T11:53:29Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2017-12-11T19:56:47Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -422,6 +422,10 @@
         <source>Draft</source>
         <target>Draft</target>
       </trans-unit>
+      <trans-unit id="cacd05fb0a808efa582e9264c3c8b99054426d8e" resname="Draft Opinion">
+        <source>Draft Opinion</source>
+        <target>Draft Opinion</target>
+      </trans-unit>
       <trans-unit id="0d01e2e86669e98441ab4dce5520696c318b7098" resname="E-mail">
         <source>E-mail</source>
         <target>E-mail</target>
@@ -757,6 +761,10 @@
       <trans-unit id="9233558115eef0fcfc733ff8993c4e6df7a62e86" resname="Instructions have been sent to your email.">
         <source>Instructions have been sent to your email.</source>
         <target>Instructions have been sent to your email.</target>
+      </trans-unit>
+      <trans-unit id="23dd6b23dbda14407d32b5b86459a25cdcdaf086" resname="Internal Protocol Number">
+        <source>Internal Protocol Number</source>
+        <target>Internal Protocol Number</target>
       </trans-unit>
       <trans-unit id="952103bb8973f96d62678656499879f262c97a6b" resname="Interventions">
         <source>Interventions</source>
@@ -1943,6 +1951,10 @@
       <trans-unit id="fd1286353570c5703799ba76999323b7c7447b06" resname="no">
         <source>no</source>
         <target>no</target>
+      </trans-unit>
+      <trans-unit id="b1824b569a7f6e1c580e3b02d2a02b83aa919421" resname="send draft opinion">
+        <source>send draft opinion</source>
+        <target>send draft opinion</target>
       </trans-unit>
       <trans-unit id="efd7fd7f2954713c1ee7facf9750fe53e8cf589c" resname="translation">
         <source>translation</source>
