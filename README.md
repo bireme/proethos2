@@ -1,7 +1,7 @@
 ![Build](https://codeship.com/projects/e61c3520-93d1-0134-acbe-426698f4d6ff/status?branch=master)
 
 
-Atención: Instancias de Proethos2 que se alojan en BIREME no estarán disponibles hasta 15/01/2018 para mantenimiento en el servidor
+Atención: Instancias de Proethos2 que se alojan en BIREME no estarán disponibles hasta 15/01/2018 para mantenimiento del servidor
 ================================
 
 Welcome to Proethos2 repository!
