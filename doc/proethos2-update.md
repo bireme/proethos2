@@ -22,4 +22,7 @@ Execute
 
 	make update php = php5.6
 
+Lastly
+
+	Restart apache webserver
  
