@@ -10,7 +10,7 @@ Execute the following commands
     git status [check the current state of the repository]
     git pull
 
-to compile and update the application
+to compile and update application
 
 Execute
 
