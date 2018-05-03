@@ -1,9 +1,11 @@
 Proethos2 application update via git
 
 Access directory 
-	htdocs/git/symphony /
+	htdocs/git/symphony/
+	
 
 Execute the following commands
+
     git checkout master
     git status [check the current state of the repository]
     git pull
@@ -11,10 +13,13 @@ Execute the following commands
 to compile and update the application
 
 Execute
+
 	make update
 
 If is installed in php 5.6
+
 Execute   
+
 	make update php = php5.6
 
  
