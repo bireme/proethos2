@@ -1,4 +1,5 @@
-Proethos2 application update via git
+PROETHOS2 application update via git
+------------------------------
 
 Access directory 
 	htdocs/git/symphony/
