@@ -67,10 +67,10 @@
                                     <label for="">{% trans %}Prior Ethical Approval{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 10} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <div class='radio'>
-                                        <label><input type='radio' name='prior-ethical-approval' id='radio-prior-ethical-approval-yes' value='Y' required> Sim</label>
+                                        <label><input type='radio' name='prior-ethical-approval' id='radio-prior-ethical-approval-yes' value='Y' required>{% trans %}Yes{% endif %}</label>
                                     </div>
                                     <div class='radio'>
-                                        <label><input type='radio' name='prior-ethical-approval' id="radio-prior-ethical-approval-no" value='N' required> Não</label>
+                                        <label><input type='radio' name='prior-ethical-approval' id="radio-prior-ethical-approval-no" value='N' required> {% trans %}No{% endtrans %}</label>
                                     </div>
                                 </div>
                             </div>
