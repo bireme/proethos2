@@ -224,7 +224,7 @@
                     string += "<td><input type='hidden' name='team_user[]' value='"+ id +"'>"+ user['name'] +"</td>"
                     string += "<td><a href='mailto:"+ user['email'] +"'>"+ user['email'] +"</a></td>"
                     string += "<td>"+ user['country'] +"</td>"
-                    string += "<td><label class='label label-default'>Não</label></td>"
+                    string += "<td><label class='label label-default'>{% trans %}No{% endtrans %}</label></td>"
                     string += "<td><a href='#' class='btn btn-default btn-xs button-remove-team'><i class='glyphicon glyphicon-trash'></i></a></td>"
                     string += "</tr>";
 
