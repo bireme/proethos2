@@ -916,7 +916,6 @@ class CRUDController extends Controller
 
             $send = $this->get('mailer')->send($message);
 
-
             $em->persist($user);
             $em->flush();
 
@@ -989,6 +988,8 @@ class CRUDController extends Controller
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
 
+        $util = new Util($this->container, $this->getDoctrine());
+
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
         $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
@@ -1009,6 +1010,8 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+            // user status
+            $user_status = $user->getIsActive();
 
             // getting post data
             $post_data = $request->request->all();
@@ -1034,6 +1037,31 @@ class CRUDController extends Controller
 
             $em->persist($user);
             $em->flush();
+
+            if(isset($post_data['status']) && !$user_status) {
+                $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                $url = $baseurl . $this->generateUrl('home');
+
+                $message = \Swift_Message::newInstance()
+                ->setSubject("[proethos2] " . $translator->trans("Confirmation of valid access to the Proethos2 platform"))
+                ->setFrom($util->getConfiguration('committee.email'))
+                ->setTo($user->getEmail())
+                ->setBody(
+                    $translator->trans("Hello! Your access has been validated in the ProEthos2 platform.") .
+                    "<br />" .
+                    "<br />" . $translator->trans("Access the link below") . ":" .
+                    "<br />" .
+                    "<br />$url" .
+                    "<br />" .
+                    "<br />". $translator->trans("Regards") . "," .
+                    "<br />" . $translator->trans("Proethos2 Team") .
+                    "<br /><br />"
+                    ,
+                    'text/html'
+                );
+
+                $send = $this->get('mailer')->send($message);
+            }
 
             $session->getFlashBag()->add('success', $translator->trans("User updated with success."));
             return $this->redirectToRoute('crud_committee_user_list', array(), 301);
