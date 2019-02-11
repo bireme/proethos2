@@ -815,6 +815,8 @@ class ProtocolController extends Controller
         );
         $output['finish_options'] = $finish_options;
 
+        $util = new Util($this->container, $this->getDoctrine());
+
         // getting the current submission
         $protocol = $protocol_repository->find($protocol_id);
         $submission = $protocol->getMainSubmission();
@@ -886,10 +888,39 @@ class ProtocolController extends Controller
             $em->persist($protocol->getMainSubmission());
             $em->flush();
 
-
             $protocol->setDecisionIn(new \DateTime());
             $em->persist($protocol);
             $em->flush();
+
+            $investigators = array();
+            $investigators[] = $protocol->getMainSubmission()->getOwner();
+            foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
+                $investigators[] = $investigator;
+            }
+            foreach($investigators as $investigator) {
+                $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
+                $message = \Swift_Message::newInstance()
+                ->setSubject("[proethos2] " . $translator->trans("The protocol review was finalized!"))
+                ->setFrom($util->getConfiguration('committee.email'))
+                ->setTo($investigator->getEmail())
+                ->setBody(
+                    $translator->trans("Dear investigator,") .
+                    "<br />" .
+                    "<br />" . $translator->trans("The protocol review has been finalized for ethics review.") .
+                    "<br />" .
+                    "<br />" . $translator->trans("Final decision:") . ' ' . $finish_options[$post_data['final-decision']] .
+                    "<br />" .
+                    "<br />" . $translator->trans("Regards") . "," .
+                    "<br />" . $translator->trans("Proethos2 Team") .
+                    "<br /><br />"
+                    ,
+                    'text/html'
+                );
+
+                $send = $this->get('mailer')->send($message);
+            }
 
             $session->getFlashBag()->add('success', $translator->trans("Protocol was finalized with success!"));
             return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
