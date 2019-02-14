@@ -1167,7 +1167,7 @@ class NewSubmissionController extends Controller
                         $pdf->getInternalGenerator()->setOption('margin-right', '20px');
 
                         // adding pdf to tmp file
-                        $filepath = "/tmp/" . date("Y-m-d") . "-submission.pdf";
+                        $filepath = "/tmp/" . date("Y-m-d-H\hi\ms\s") . "-submission.pdf";
                         file_put_contents($filepath, $pdf->getOutputFromHtml($html));
 
                         $submission_number = count($submission->getProtocol()->getSubmission());
@@ -1214,7 +1214,7 @@ class NewSubmissionController extends Controller
                             $pdf->getInternalGenerator()->setOption('margin-right', '20px');
 
                             // adding pdf to tmp file
-                            $filepath = "/tmp/" . date("Y-m-d") . "-submission-". $translation->getLanguage() .".pdf";
+                            $filepath = "/tmp/" . date("Y-m-d-H\hi\ms\s") . "-submission-". $translation->getLanguage() .".pdf";
                             file_put_contents($filepath, $pdf->getOutputFromHtml($html));
 
                             $upload_type = $upload_type_repository->findOneBy(array("slug" => "protocol"));
