@@ -510,6 +510,8 @@ class ProtocolController extends Controller
                     $submission_upload->setSubmissionNumber($protocol->getMainSubmission()->getNumber());
                     $submission_upload->setFile($file);
 
+                    $attachment = \Swift_Attachment::fromPath($submission_upload->getFilepath());
+
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($submission_upload);
                     $em->flush();
@@ -529,6 +531,41 @@ class ProtocolController extends Controller
                 $protocol_history->setMessage($translator->trans("Protocol was concluded as Exempt."));
                 $em->persist($protocol_history);
                 $em->flush();
+
+                $investigators = array();
+                $investigators[] = $protocol->getMainSubmission()->getOwner();
+                foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
+                    $investigators[] = $investigator;
+                }
+                foreach($investigators as $investigator) {
+                    $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                    $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
+                    $message = \Swift_Message::newInstance()
+                    ->setSubject("[proethos2] " . $translator->trans("Your protocol was concluded as Exempt."))
+                    ->setFrom($util->getConfiguration('committee.email'))
+                    ->setTo($investigator->getEmail())
+                    ->setBody(
+                        $translator->trans("Dear investigator,") .
+                        "<br />" .
+                        "<br />" . $translator->trans("We write to you in regards to your research proposal, which you recently submitted to PAHOERC for ethics review.") .
+                        "<br />" . $translator->trans("Attached you will find the official decision issued by the Committee for this proposal.") .
+                        "<br />" . $translator->trans("Thank you for your submission. We look forward to continue receiving your valuable contributions.") .
+                        "<br />" .
+                        "<br />". $translator->trans("Sincerely") . "," .
+                        "<br />". $translator->trans("PAHOERC Secretariat") .
+                        "<br />" . $translator->trans("pahoerc@paho.org") .
+                        "<br /><br />"
+                        ,
+                        'text/html'
+                    );
+
+                    if(!empty($file)) {
+                        $message->attach($attachment);
+                    }
+
+                    $send = $this->get('mailer')->send($message);
+                }
 
                 $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
                 return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
