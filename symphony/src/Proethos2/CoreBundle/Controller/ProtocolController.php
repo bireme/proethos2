@@ -876,6 +876,8 @@ class ProtocolController extends Controller
             $submission_upload->setSubmissionNumber($protocol->getMainSubmission()->getNumber());
             $submission_upload->setFile($file);
 
+            $attachment = \Swift_Attachment::fromPath($submission_upload->getFilepath());
+
             if(!empty($post_data['monitoring-period'])) {
                 $monitoring_action_next_date = new \DateTime();
                 $monitoring_action_next_date->modify('+'. $post_data['monitoring-period'] .' months');
@@ -923,16 +925,21 @@ class ProtocolController extends Controller
                 ->setBody(
                     $translator->trans("Dear investigator,") .
                     "<br />" .
-                    "<br />" . $translator->trans("The protocol review has been finalized for ethics review.") .
+                    "<br />" . $translator->trans("We write to you in regards to your research proposal, which you recently submitted to PAHOERC for ethics review.") .
+                    "<br />" . $translator->trans("Attached you will find the official decision issued by the Committee for this proposal.") .
+                    "<br />" . $translator->trans("Thank you for your submission. We look forward to continue receiving your valuable contributions.") .
                     "<br />" .
-                    "<br />" . $translator->trans("Final decision:") . ' ' . $finish_options[$post_data['final-decision']] .
-                    "<br />" .
-                    "<br />" . $translator->trans("Regards") . "," .
-                    "<br />" . $translator->trans("Proethos2 Team") .
+                    "<br />" . $translator->trans("Sincerely") . "," .
+                    "<br />" . $translator->trans("PAHOERC Secretariat") .
+                    "<br />" . $translator->trans("PAHOERC@paho.org") .
                     "<br /><br />"
                     ,
                     'text/html'
                 );
+
+                if(!empty($file)) {
+                    $message->attach($attachment);
+                }
 
                 $send = $this->get('mailer')->send($message);
             }
