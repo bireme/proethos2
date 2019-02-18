@@ -446,6 +446,29 @@ class ProtocolController extends Controller
                 $em->persist($protocol);
                 $em->flush();
 
+                if ( $post_data['committee-screening'] ) {
+                    $body = $translator->trans("Dear investigator,") .
+                        "<br />" .
+                        "<br />" . $translator->trans("PAHOERC conducted an initial review of your research proposal and determined it must pass through full ethics review before initiating the research.") .
+                        "<br />" . $translator->trans("PAHOERC meets on the second Tuesday of each month to review complete proposals. PAHOERC Observations are emailed to research teams shortly after each monthly meeting.") .
+                        "<br />" .
+                        "<br />" . $translator->trans("Initial committee screening:") . ' ' . $post_data['committee-screening'] .
+                        "<br />" .
+                        "<br />" . $translator->trans("Sincerely") . "," .
+                        "<br />" . $translator->trans("PAHOERC Secretariat") .
+                        "<br />" . $translator->trans("pahoerc@paho.org") .
+                        "<br /><br />";
+                } else {
+                    $body = $translator->trans("Dear investigator,") .
+                        "<br />" .
+                        "<br />" . $translator->trans("PAHOERC conducted an initial review of your research proposal and determined it must pass through full ethics review before initiating the research.") .
+                        "<br />" . $translator->trans("PAHOERC meets on the second Tuesday of each month to review complete proposals. PAHOERC Observations are emailed to research teams shortly after each monthly meeting.") .
+                        "<br />" .
+                        "<br />" . $translator->trans("Sincerely") . "," .
+                        "<br />" . $translator->trans("PAHOERC Secretariat") .
+                        "<br />" . $translator->trans("pahoerc@paho.org") .
+                        "<br /><br />";
+                }
                 $investigators = array();
                 $investigators[] = $protocol->getMainSubmission()->getOwner();
                 foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
@@ -460,13 +483,7 @@ class ProtocolController extends Controller
                     ->setFrom($util->getConfiguration('committee.email'))
                     ->setTo($investigator->getEmail())
                     ->setBody(
-                        $translator->trans("Dear investigator,") .
-                        "<br>" .
-                        "<br>" . $translator->trans("Your protocol has been accepted for ethics review.") .
-                        "<br>" . $translator->trans("The committee will now meet to review your protocol, and an official decision will be sent to you shortly.") .
-                        "<br>" .
-                        "<br>". $translator->trans("Thank you") . "," .
-                        "<br>" . $translator->trans("Proethos2 Team")
+                        $body
                         ,
                         'text/html'
                     );
@@ -512,8 +529,6 @@ class ProtocolController extends Controller
                 $protocol_history->setMessage($translator->trans("Protocol was concluded as Exempt."));
                 $em->persist($protocol_history);
                 $em->flush();
-
-
 
                 $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
                 return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
