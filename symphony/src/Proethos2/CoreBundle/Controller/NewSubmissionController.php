@@ -429,9 +429,9 @@ class NewSubmissionController extends Controller
                 $required_fields[] = 'gender';
                 $required_fields[] = 'sample-size';
                 $required_fields[] = 'minimum-age';
-                $required_fields[] = 'maximum-age';
+                // $required_fields[] = 'maximum-age';
                 $required_fields[] = 'recruitment-init-date';
-                $required_fields[] = 'recruitment-status';
+                // $required_fields[] = 'recruitment-status';
             }
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
