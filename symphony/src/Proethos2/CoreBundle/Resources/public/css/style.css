@@ -193,3 +193,15 @@ img.logo {
     border-bottom: 1px solid #fff;
     text-decoration: none;
 }
+
+#bs-example-navbar-collapse-1 ul.nav.navbar-nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+#bs-example-navbar-collapse-1 ul.nav.navbar-nav li:last-child ul.dropdown-menu {
+    left: auto;
+    right: 0;
+}

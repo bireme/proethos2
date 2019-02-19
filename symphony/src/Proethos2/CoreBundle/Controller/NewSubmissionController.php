@@ -35,8 +35,6 @@ use Proethos2\ModelBundle\Entity\Protocol;
 use Proethos2\ModelBundle\Entity\ProtocolHistory;
 use Proethos2\ModelBundle\Entity\SubmissionClinicalTrial;
 
-
-
 class NewSubmissionController extends Controller
 {
     /**
