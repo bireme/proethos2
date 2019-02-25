@@ -28,6 +28,8 @@
                 {% else %}
                     {% if protocol.mainSubmission.isClinicalTrial %}
                         {% trans %}Clinical Trial{% endtrans %}
+                    {% elseif protocol.mainSubmission.isConsultation %}
+                        {% trans %}Consultation{% endtrans %}
                     {% else %}
                         {% trans %}Research{% endtrans %}
                     {% endif %}

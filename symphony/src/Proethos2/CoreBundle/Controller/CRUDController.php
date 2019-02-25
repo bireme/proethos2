@@ -267,13 +267,18 @@ class CRUDController extends Controller
                 'DECISION IN', 'MEETING', 'MONITORING ACTION', 'NEXT DATE OF MONITORING ACTION');
             $csv_output = array();
             foreach($protocols as $protocol) {
+                $type = "Research";
+                if ( $protocol->getMainSubmission()->getIsClinicalTrial() ) { $type = "Clinical Trial"; }
+                if ( $protocol->getMainSubmission()->getIsConsultation() ) { $type = "Consultation"; }
+
                 $current_line = array();
                 $current_line[] = $protocol->getCode();
                 $current_line[] = $protocol->getId();
                 $current_line[] = $protocol->getOwner()->getUsername();
                 $current_line[] = $protocol->getStatusLabel();
                 $current_line[] = $protocol->getMainSubmission()->getPublicTitle();
-                $current_line[] = $protocol->getMainSubmission()->getIsClinicalTrial() ? "Clinical Trial" : "Research";
+                // $current_line[] = $protocol->getMainSubmission()->getIsClinicalTrial() ? "Clinical Trial" : "Research";
+                $current_line[] = $type;
                 $current_line[] = $protocol->getMainSubmission()->getRecruitmentInitDate() ? $protocol->getMainSubmission()->getRecruitmentInitDate()->format("Y-m-d H:i") : "";
                 $current_line[] = $protocol->getRejectReason();
                 $current_line[] = $protocol->getCommitteeScreening();

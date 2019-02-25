@@ -78,139 +78,143 @@
         <h2>{% trans %}Goals{% endtrans %}</h2>
         <p>{{ submission.goals }}</p>
 
-        <h2>{% trans %}Study Design{% endtrans %}</h2>
-        <p>{{ submission.studyDesign }}</p>
+        {% if not submission.isConsultation %}
 
-        <h2>{% trans %}Health Condition or Problem Studied{% endtrans %}</h2>
-        <p>{{ submission.healthCondition }}</p>
+            <h2>{% trans %}Study Design{% endtrans %}</h2>
+            <p>{{ submission.studyDesign }}</p>
 
-        <h2>{% trans %}Target sample size{% endtrans %}</h2>
-        <p>{{ submission.sampleSize }}</p>
+            <h2>{% trans %}Health Condition or Problem Studied{% endtrans %}</h2>
+            <p>{{ submission.healthCondition }}</p>
 
-        <h2>{% trans %}Inclusion criteria{% endtrans %}</h2>
-        <p>{{ submission.inclusionCriteria }}</p>
+            <h2>{% trans %}Target sample size{% endtrans %}</h2>
+            <p>{{ submission.sampleSize }}</p>
 
-        <h2>{% trans %}Exclusion criteria{% endtrans %}</h2>
-        <p>{{ submission.exclusionCriteria }}</p>
+            <h2>{% trans %}Inclusion criteria{% endtrans %}</h2>
+            <p>{{ submission.inclusionCriteria }}</p>
 
-        <h2>{% trans %}Estimated date of initial recruitment{% endtrans %}</h2>
-        <p>{{ submission.recruitmentInitDate|date("d/m/Y") }}</p>
+            <h2>{% trans %}Exclusion criteria{% endtrans %}</h2>
+            <p>{{ submission.exclusionCriteria }}</p>
 
-        <h2>{% trans %}Recruitment Status{% endtrans %}</h2>
-        <p>{{ submission.recruitmentStatus }}</p>
+            <h2>{% trans %}Estimated date of initial recruitment{% endtrans %}</h2>
+            <p>{{ submission.recruitmentInitDate|date("d/m/Y") }}</p>
 
-        <h2>{% trans %}Recruitment Country{% endtrans %}</h2>
-        <table>
-            <tr>
-                <th>{% trans %}Country{% endtrans %}</th>
-                <th>{% trans %}Total of Participants{% endtrans %}</th>
-            </tr>
+            <h2>{% trans %}Recruitment Status{% endtrans %}</h2>
+            <p>{{ submission.recruitmentStatus }}</p>
 
-            {% for item in submission.country %}
-                <tr>
-                    <td>{{ item.country }}</td>
-                    <td>{{ item.participants }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-
-        <h2>{% trans %}Interventions{% endtrans %}</h2>
-        <p>{{ submission.interventions }}</p>
-
-        <h2>{% trans %}Primary outcomes{% endtrans %}</h2>
-        <p>{{ submission.primaryOutcome }}</p>
-
-        <h2>{% trans %}Secondary outcomes{% endtrans %}</h2>
-        <p>{{ submission.secondaryOutcome }}</p>
-
-        <h2>{% trans %}General Procedures{% endtrans %}</h2>
-        <p>{{ submission.generalProcedures }}</p>
-
-        <h2>{% trans %}Analysis Plan{% endtrans %}</h2>
-        <p>{{ submission.analysisPlan }}</p>
-
-        {% if submission.isClinicalTrial %}
-            <h2>{% trans %}Clinical Trial{% endtrans %}</h2>
+            <h2>{% trans %}Recruitment Country{% endtrans %}</h2>
             <table>
                 <tr>
-                    <th>{% trans %}Registry Name{% endtrans %}</th>
-                    <th>{% trans %}Registry Number{% endtrans %}</th>
-                    <th>{% trans %}Date{% endtrans %}</th>
+                    <th>{% trans %}Country{% endtrans %}</th>
+                    <th>{% trans %}Total of Participants{% endtrans %}</th>
                 </tr>
 
-                {% for item in submission.clinicalTrial %}
+                {% for item in submission.country %}
                     <tr>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.number }}</td>
-                        <td>{{ item.date|date("d/m/Y") }}</td>
+                        <td>{{ item.country }}</td>
+                        <td>{{ item.participants }}</td>
                     </tr>
                 {% endfor %}
             </table>
 
-            <h2>{% trans %}Secondary Registry{% endtrans %}</h2>
-            <p>{{ submission.clinicalTrialSecondary }}</p>
+            <h2>{% trans %}Interventions{% endtrans %}</h2>
+            <p>{{ submission.interventions }}</p>
 
-        {% endif %}
+            <h2>{% trans %}Primary outcomes{% endtrans %}</h2>
+            <p>{{ submission.primaryOutcome }}</p>
 
-        <h2>{% trans %}Funding source{% endtrans %}</h2>
-        <p>{{ submission.fundingSource }}</p>
+            <h2>{% trans %}Secondary outcomes{% endtrans %}</h2>
+            <p>{{ submission.secondaryOutcome }}</p>
 
-        <h2>{% trans %}Primary Sponsor{% endtrans %}</h2>
-        <p>{{ submission.primarySponsor }}</p>
+            <h2>{% trans %}General Procedures{% endtrans %}</h2>
+            <p>{{ submission.generalProcedures }}</p>
 
-        <h2>{% trans %}Secondary Sponsor{% endtrans %}</h2>
-        <p>{{ submission.secondarySponsor }}</p>
+            <h2>{% trans %}Analysis Plan{% endtrans %}</h2>
+            <p>{{ submission.analysisPlan }}</p>
 
-        <h2>{% trans %}Schedule{% endtrans %}</h2>
-        <table>
-            <tr>
-                <th>{% trans %}Activity{% endtrans %}</th>
-                <th>{% trans %}Start{% endtrans %}</th>
-                <th>{% trans %}End{% endtrans %}</th>
-            </tr>
+            {% if submission.isClinicalTrial %}
+                <h2>{% trans %}Clinical Trial{% endtrans %}</h2>
+                <table>
+                    <tr>
+                        <th>{% trans %}Registry Name{% endtrans %}</th>
+                        <th>{% trans %}Registry Number{% endtrans %}</th>
+                        <th>{% trans %}Date{% endtrans %}</th>
+                    </tr>
 
-            {% for item in submission.schedule %}
-                <tr>
-                    <td>{{ item.description }}</td>
-                    <td>{{ item.init|date("d/m/Y") }}</td>
-                    <td>{{ item.end|date("d/m/Y") }}</td>
-                </tr>
-            {% endfor %}
-        </table>
+                    {% for item in submission.clinicalTrial %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.number }}</td>
+                            <td>{{ item.date|date("d/m/Y") }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
 
-        <h2>{% trans %}Budget{% endtrans %}</h2>
-        <table>
-            <tr>
-                <th>{% trans %}Description{% endtrans %}</th>
-                <th>{% trans %}Unit Cost{% endtrans %}</th>
-                <th>{% trans %}Quantity{% endtrans %}</th>
-                <th>{% trans %}Total{% endtrans %}</th>
-            </tr>
+                <h2>{% trans %}Secondary Registry{% endtrans %}</h2>
+                <p>{{ submission.clinicalTrialSecondary }}</p>
 
-            {% for item in submission.budget %}
-                <tr>
-                    <td>{{ item.description }}</td>
-                    <td>U$ {{ item.unitCost }}</td>
-                    <td>{{ item.quantity }}</td>
-                    <td>U$ {{ item.unitCost * item.quantity }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-
-        <h2>{% trans %}Bibliography{% endtrans %}</h2>
-        <p>{{ submission.bibliography }}</p>
-
-        <h2>{% trans %}Scientific Contact{% endtrans %}</h2>
-        <p>{{ submission.sscientificContact }}</p>
-
-        <h2>{% trans %}Prior Ethical Approval{% endtrans %}</h2>
-        <p>
-            {% if submission.priorEthicalApproval %}
-                {% trans %}yes{% endtrans %}
-            {% else %}
-                {% trans %}no{% endtrans %}
             {% endif %}
-        </p>
+
+            <h2>{% trans %}Funding source{% endtrans %}</h2>
+            <p>{{ submission.fundingSource }}</p>
+
+            <h2>{% trans %}Primary Sponsor{% endtrans %}</h2>
+            <p>{{ submission.primarySponsor }}</p>
+
+            <h2>{% trans %}Secondary Sponsor{% endtrans %}</h2>
+            <p>{{ submission.secondarySponsor }}</p>
+
+            <h2>{% trans %}Schedule{% endtrans %}</h2>
+            <table>
+                <tr>
+                    <th>{% trans %}Activity{% endtrans %}</th>
+                    <th>{% trans %}Start{% endtrans %}</th>
+                    <th>{% trans %}End{% endtrans %}</th>
+                </tr>
+
+                {% for item in submission.schedule %}
+                    <tr>
+                        <td>{{ item.description }}</td>
+                        <td>{{ item.init|date("d/m/Y") }}</td>
+                        <td>{{ item.end|date("d/m/Y") }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <h2>{% trans %}Budget{% endtrans %}</h2>
+            <table>
+                <tr>
+                    <th>{% trans %}Description{% endtrans %}</th>
+                    <th>{% trans %}Unit Cost{% endtrans %}</th>
+                    <th>{% trans %}Quantity{% endtrans %}</th>
+                    <th>{% trans %}Total{% endtrans %}</th>
+                </tr>
+
+                {% for item in submission.budget %}
+                    <tr>
+                        <td>{{ item.description }}</td>
+                        <td>U$ {{ item.unitCost }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>U$ {{ item.unitCost * item.quantity }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <h2>{% trans %}Bibliography{% endtrans %}</h2>
+            <p>{{ submission.bibliography }}</p>
+
+            <h2>{% trans %}Scientific Contact{% endtrans %}</h2>
+            <p>{{ submission.sscientificContact }}</p>
+
+            <h2>{% trans %}Prior Ethical Approval{% endtrans %}</h2>
+            <p>
+                {% if submission.priorEthicalApproval %}
+                    {% trans %}yes{% endtrans %}
+                {% else %}
+                    {% trans %}no{% endtrans %}
+                {% endif %}
+            </p>
+            
+        {% endif %}
 
         <h2>{% trans %}Upload Files{% endtrans %}</h2>
         <table>

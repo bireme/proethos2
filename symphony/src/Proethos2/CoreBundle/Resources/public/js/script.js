@@ -21,4 +21,39 @@ $(function(){
 
     // initters
     $('[data-toggle="tooltip"]').tooltip()
+
+    /* START: protocol first step */
+    $( "#radio_clinical_trial_yes" ).on( "click", function() {
+        $("input[name=is_consultation]").attr('disabled', true);
+    });
+
+    $( "#radio_clinical_trial_no" ).on( "click", function() {
+        $("input[name=is_consultation]").attr('disabled', false);
+    });
+
+    $( "#radio_consultation_yes" ).on( "click", function() {
+        $("input[name=is_clinical_trial]").attr('disabled', true);
+    });
+
+    $( "#radio_consultation_no" ).on( "click", function() {
+        $("input[name=is_clinical_trial]").attr('disabled', false);
+    });
+
+    $( "#first_step, #first_step_created_protocol" ).submit( function() {
+        $("input[name=is_clinical_trial]").attr('disabled', false);
+        $("input[name=is_consultation]").attr('disabled', false);
+
+    })
+
+    if( $("#first_step_created_protocol").length ) {
+        if( $('#radio_clinical_trial_yes').is(':checked') ) {
+            $("input[name=is_consultation]").attr('disabled', true);
+        }
+
+        if( $('#radio_consultation_yes').is(':checked') ) {
+            $("input[name=is_clinical_trial]").attr('disabled', true);
+        }
+    }
+    /* END: protocol first step */
+
 });

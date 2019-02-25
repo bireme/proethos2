@@ -17,23 +17,23 @@
 
             <div class='row'>
                 <div class='col-md-12'>
-                    <form class='form' method='POST' action='{{ path("submission_new_first_created_protocol_step", {submission_id: submission.id}) }}'>
-                    <fieldset>
-                        <legend>{% trans %}Language{% endtrans %}</legend>
-                        <div class="form-group required">
-                            <label for="select-language">{% trans %}Submission Language{% endtrans %}:</label>
-                            <a href="{{ path("crud_admin_help_show", {help_id: 198} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <select class='form-control select2' id='select-language' name='language'>
-                                <option value="">-</option>
-                                <option value="pt_BR" {% if submission.language == 'pt_BR' %}selected{% endif %}>Português</option>
-                                <option value="es_ES" {% if submission.language == 'es_ES' %}selected{% endif %}>Español</option>
-                                <option value="en" {% if submission.language == 'en' %}selected{% endif %}>English</option>
-                                <option value="fr_FR" {% if submission.language == 'fr_FR' %}selected{% endif %}>Français</option>
-                            </select>
-                        </div>
-                    </fieldset>
+                    <form id="first_step_created_protocol" class='form' method='POST' action='{{ path("submission_new_first_created_protocol_step", {submission_id: submission.id}) }}'>
+                        <fieldset>
+                            <legend>{% trans %}Language{% endtrans %}</legend>
+                            <div class="form-group required">
+                                <label for="select-language">{% trans %}Submission Language{% endtrans %}:</label>
+                                <a href="{{ path("crud_admin_help_show", {help_id: 198} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <select class='form-control select2' id='select-language' name='language'>
+                                    <option value="">-</option>
+                                    <option value="pt_BR" {% if submission.language == 'pt_BR' %}selected{% endif %}>Português</option>
+                                    <option value="es_ES" {% if submission.language == 'es_ES' %}selected{% endif %}>Español</option>
+                                    <option value="en" {% if submission.language == 'en' %}selected{% endif %}>English</option>
+                                    <option value="fr_FR" {% if submission.language == 'fr_FR' %}selected{% endif %}>Français</option>
+                                </select>
+                            </div>
+                        </fieldset>
 
-                    <fieldset>
+                        <fieldset>
                             <legend>{% trans %}Clinical Trial{% endtrans %}</legend>
                             <div class="form-group required">
                                 <label for="">{% trans %}Clinical Trial{% endtrans %}?</label>
@@ -41,6 +41,18 @@
                                 <div class="radio">
                                     <label><input type="radio" name="is_clinical_trial" id="radio_clinical_trial_yes" value="yes" required {% if submission.isClinicalTrial %}checked{% endif %}> {% trans %}Yes{% endtrans %}</label>
                                     <label><input type="radio" name="is_clinical_trial" id="radio_clinical_trial_no" value="no" required {% if not submission.isClinicalTrial %}checked{% endif %}> {% trans %}No{% endtrans %}</label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>{% trans %}Consultation{% endtrans %}</legend>
+                            <div class="form-group required">
+                                <label for="">{% trans %}Consultation{% endtrans %}?</label>
+                                <a href="{{ path("crud_admin_help_show", {help_id: 199} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <div class="radio">
+                                    <label><input type="radio" name="is_consultation" id="radio_consultation_yes" value="yes" required {% if submission.isConsultation %}checked{% endif %}> {% trans %}Yes{% endtrans %}</label>
+                                    <label><input type="radio" name="is_consultation" id="radio_consultation_no" value="no" required {% if not submission.isConsultation %}checked{% endif %}> {% trans %}No{% endtrans %}</label>
                                 </div>
                             </div>
                         </fieldset>

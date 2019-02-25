@@ -35,7 +35,7 @@
 
             <div class='row'>
                 <div class='col-md-12'>
-                    <form class='form' method='POST' action='{{ path("submission_new_first_step") }}'>
+                    <form id="first_step" class='form' method='POST' action='{{ path("submission_new_first_step") }}'>
                         <fieldset>
                             <legend>{% trans %}Language{% endtrans %}</legend>
                             <div class="form-group required">
@@ -58,7 +58,19 @@
                                 <a href="{{ path("crud_admin_help_show", {help_id: 13} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <div class="radio">
                                     <label><input type="radio" name="is_clinical_trial" id="radio_clinical_trial_yes" value="yes" required> {% trans %}Yes{% endtrans %}</label>
-                                    <label><input type="radio" name="is_clinical_trial" id="radio_clinical_trial_no" value="no" required> {% trans %}No{% endtrans %}</label>
+                                    <label><input type="radio" name="is_clinical_trial" id="radio_clinical_trial_no" value="no" required checked> {% trans %}No{% endtrans %}</label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>{% trans %}Consultation{% endtrans %}</legend>
+                            <div class="form-group required">
+                                <label for="">{% trans %}Consultation{% endtrans %}?</label>
+                                <a href="{{ path("crud_admin_help_show", {help_id: 199} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <div class="radio">
+                                    <label><input type="radio" name="is_consultation" id="radio_consultation_yes" value="yes" required> {% trans %}Yes{% endtrans %}</label>
+                                    <label><input type="radio" name="is_consultation" id="radio_consultation_no" value="no" required checked> {% trans %}No{% endtrans %}</label>
                                 </div>
                             </div>
                         </fieldset>

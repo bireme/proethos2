@@ -125,6 +125,14 @@ class Submission extends Base
     /**
      * @var boolean
      *
+     * @ORM\Column(name="is_consultation", type="boolean")
+     * @Assert\NotBlank
+     */
+    private $is_consultation;
+
+    /**
+     * @var boolean
+     *
      * @ORM\Column(name="is_sent", type="boolean")
      * @Assert\NotBlank
      */
@@ -529,6 +537,30 @@ class Submission extends Base
     public function getIsClinicalTrial()
     {
         return $this->is_clinical_trial;
+    }
+
+    /**
+     * Set isConsultation
+     *
+     * @param string $isConsultation
+     *
+     * @return Submission
+     */
+    public function setIsConsultation($isConsultation)
+    {
+        $this->is_consultation = $isConsultation;
+
+        return $this;
+    }
+
+    /**
+     * Get isConsultation
+     *
+     * @return string
+     */
+    public function getIsConsultation()
+    {
+        return $this->is_consultation;
     }
 
     /**
@@ -1657,5 +1689,29 @@ class Submission extends Base
             }
             return false;
         }
+    }
+
+    /**
+     * Add translation
+     *
+     * @param \Proethos2\ModelBundle\Entity\Submission $translation
+     *
+     * @return Submission
+     */
+    public function addTranslation(\Proethos2\ModelBundle\Entity\Submission $translation)
+    {
+        $this->translations[] = $translation;
+
+        return $this;
+    }
+
+    /**
+     * Remove translation
+     *
+     * @param \Proethos2\ModelBundle\Entity\Submission $translation
+     */
+    public function removeTranslation(\Proethos2\ModelBundle\Entity\Submission $translation)
+    {
+        $this->translations->removeElement($translation);
     }
 }

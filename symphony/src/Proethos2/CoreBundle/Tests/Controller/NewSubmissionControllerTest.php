@@ -58,11 +58,12 @@ class NewSubmissionControllerTest extends WebTestCase
         $route = $client->getContainer()->get('router')->generate('submission_new_first_step', array(), false);
 
         $client->request('POST', $route, array(
-            "language" => "en",
+            "language"          => "en",
             "is_clinical_trial" => "no",
-            "scientific_title" => "Cientitif Title",
-            "public_title" => "Public Title",
-            "title_acronym" => "Title Acronymous",
+            "is_consultation"   => "no",
+            "scientific_title"  => "Cientitif Title",
+            "public_title"      => "Public Title",
+            "title_acronym"     => "Title Acronymous",
         ));
 
         $this->assertEquals(301, $client->getResponse()->getStatusCode());
@@ -94,11 +95,12 @@ class NewSubmissionControllerTest extends WebTestCase
         $route = $client->getContainer()->get('router')->generate('submission_new_first_created_protocol_step', array("submission_id" => $submission_id), false);
 
         $client->request('POST', $route, array(
-            "language" => "en",
+            "language"          => "en",
             "is_clinical_trial" => "no",
-            "scientific_title" => "Cientitif Title",
-            "public_title" => "Public Title",
-            "title_acronym" => "Title Acronymous",
+            "is_consultation"   => "no",
+            "scientific_title"  => "Cientitif Title",
+            "public_title"      => "Public Title",
+            "title_acronym"     => "Title Acronymous",
         ));
 
         $this->assertEquals(301, $client->getResponse()->getStatusCode());

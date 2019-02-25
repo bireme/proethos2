@@ -57,7 +57,7 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
 
             // checking required files
-            foreach(array('scientific_title', 'public_title', 'is_clinical_trial', 'language') as $field) {
+            foreach(array('scientific_title', 'public_title', 'is_clinical_trial', 'is_consultation', 'language') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return array();
@@ -72,6 +72,7 @@ class NewSubmissionController extends Controller
 
             $submission = new Submission();
             $submission->setIsClinicalTrial(($post_data['is_clinical_trial'] == 'yes') ? true : false);
+            $submission->setIsConsultation(($post_data['is_consultation'] == 'yes') ? true : false);
             $submission->setPublicTitle($post_data['public_title']);
             $submission->setScientificTitle($post_data['scientific_title']);
             $submission->setTitleAcronym($post_data['title_acronym']);
@@ -131,7 +132,7 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
 
             // checking required files
-            foreach(array('scientific_title', 'public_title', 'is_clinical_trial', 'language') as $field) {
+            foreach(array('scientific_title', 'public_title', 'is_clinical_trial', 'is_consultation', 'language') as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -139,6 +140,7 @@ class NewSubmissionController extends Controller
             }
 
             $submission->setIsClinicalTrial(($post_data['is_clinical_trial'] == 'yes') ? true : false);
+            $submission->setIsConsultation(($post_data['is_consultation'] == 'yes') ? true : false);
             $submission->setPublicTitle($post_data['public_title']);
             $submission->setScientificTitle($post_data['scientific_title']);
             $submission->setTitleAcronym($post_data['title_acronym']);
@@ -202,6 +204,7 @@ class NewSubmissionController extends Controller
             $new_submission->setIsTranslation(true);
             $new_submission->setOriginalSubmission($submission);
             $new_submission->setIsClinicalTrial($submission->getIsClinicalTrial());
+            $new_submission->setIsConsultation($submission->getIsConsultation());
             $new_submission->setPublicTitle($post_data['public_title']);
             $new_submission->setScientificTitle($post_data['scientific_title']);
             $new_submission->setTitleAcronym($post_data['title_acronym']);
@@ -347,8 +350,9 @@ class NewSubmissionController extends Controller
             $em->persist($submission);
             $em->flush();
 
+            $route = ( $submission->getIsConsultation() ) ? 'submission_new_sixth_step' : 'submission_new_third_step';
             $session->getFlashBag()->add('success', $translator->trans("Second step saved with sucess."));
-            return $this->redirectToRoute('submission_new_third_step', array('submission_id' => $submission->getId()), 301);
+            return $this->redirectToRoute($route, array('submission_id' => $submission->getId()), 301);
         }
 
         return $output;
@@ -1032,109 +1036,113 @@ class NewSubmissionController extends Controller
         }
         $revisions[] = $item;
 
-        $text = $translator->trans('Study Design');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getStudyDesign())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
+        if ( ! $submission->getIsConsultation() ) {
 
-        $text = $translator->trans('Gender');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getGender())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
+            $text = $translator->trans('Study Design');
+            $item = array('text' => $text, 'status' => true);
+            if(empty($submission->getStudyDesign())) {
+                $item = array('text' => $text, 'status' => false);
+                $final_status = false;
+            }
+            $revisions[] = $item;
 
-        $text = $translator->trans('Minimum Age');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getMinimumAge())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
+            $text = $translator->trans('Gender');
+            $item = array('text' => $text, 'status' => true);
+            if(empty($submission->getGender())) {
+                $item = array('text' => $text, 'status' => false);
+                $final_status = false;
+            }
+            $revisions[] = $item;
 
-        $text = $translator->trans('Maximum Age');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getMaximumAge())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
+            $text = $translator->trans('Minimum Age');
+            $item = array('text' => $text, 'status' => true);
+            if(empty($submission->getMinimumAge())) {
+                $item = array('text' => $text, 'status' => false);
+                $final_status = false;
+            }
+            $revisions[] = $item;
 
-        $text = $translator->trans('Inclusion Criteria');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getInclusionCriteria())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
+            $text = $translator->trans('Maximum Age');
+            $item = array('text' => $text, 'status' => true);
+            if(empty($submission->getMaximumAge())) {
+                $item = array('text' => $text, 'status' => false);
+                $final_status = false;
+            }
+            $revisions[] = $item;
 
-        $text = $translator->trans('Exclusion Criteria');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getExclusionCriteria())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
+            $text = $translator->trans('Inclusion Criteria');
+            $item = array('text' => $text, 'status' => true);
+            if(empty($submission->getInclusionCriteria())) {
+                $item = array('text' => $text, 'status' => false);
+                $final_status = false;
+            }
+            $revisions[] = $item;
 
-        $text = $translator->trans('Inicial recruitment estimated date');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getRecruitmentInitDate())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
+            $text = $translator->trans('Exclusion Criteria');
+            $item = array('text' => $text, 'status' => true);
+            if(empty($submission->getExclusionCriteria())) {
+                $item = array('text' => $text, 'status' => false);
+                $final_status = false;
+            }
+            $revisions[] = $item;
 
-        $text = $translator->trans('Interventions');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getInterventions())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
+            $text = $translator->trans('Inicial recruitment estimated date');
+            $item = array('text' => $text, 'status' => true);
+            if(empty($submission->getRecruitmentInitDate())) {
+                $item = array('text' => $text, 'status' => false);
+                $final_status = false;
+            }
+            $revisions[] = $item;
 
-        $text = $translator->trans('Primary Outcome');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getPrimaryOutcome())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
+            $text = $translator->trans('Interventions');
+            $item = array('text' => $text, 'status' => true);
+            if(empty($submission->getInterventions())) {
+                $item = array('text' => $text, 'status' => false);
+                $final_status = false;
+            }
+            $revisions[] = $item;
 
-        $text = $translator->trans('Funding Source');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getFundingSource())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
+            $text = $translator->trans('Primary Outcome');
+            $item = array('text' => $text, 'status' => true);
+            if(empty($submission->getPrimaryOutcome())) {
+                $item = array('text' => $text, 'status' => false);
+                $final_status = false;
+            }
+            $revisions[] = $item;
 
-        $text = $translator->trans('Primary Sponsor');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getPrimarySponsor())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
+            $text = $translator->trans('Funding Source');
+            $item = array('text' => $text, 'status' => true);
+            if(empty($submission->getFundingSource())) {
+                $item = array('text' => $text, 'status' => false);
+                $final_status = false;
+            }
+            $revisions[] = $item;
 
-        $text = $translator->trans('Bibliography');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getBibliography())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
-        }
-        $revisions[] = $item;
+            $text = $translator->trans('Primary Sponsor');
+            $item = array('text' => $text, 'status' => true);
+            if(empty($submission->getPrimarySponsor())) {
+                $item = array('text' => $text, 'status' => false);
+                $final_status = false;
+            }
+            $revisions[] = $item;
 
-        $text = $translator->trans('Scientific Contact');
-        $item = array('text' => $text, 'status' => true);
-        if(empty($submission->getSscientificContact())) {
-            $item = array('text' => $text, 'status' => false);
-            $final_status = false;
+            $text = $translator->trans('Bibliography');
+            $item = array('text' => $text, 'status' => true);
+            if(empty($submission->getBibliography())) {
+                $item = array('text' => $text, 'status' => false);
+                $final_status = false;
+            }
+            $revisions[] = $item;
+
+            $text = $translator->trans('Scientific Contact');
+            $item = array('text' => $text, 'status' => true);
+            if(empty($submission->getSscientificContact())) {
+                $item = array('text' => $text, 'status' => false);
+                $final_status = false;
+            }
+            $revisions[] = $item;
+            
         }
-        $revisions[] = $item;
 
         $output['revisions'] = $revisions;
         $output['final_status'] = $final_status;
