@@ -1297,7 +1297,11 @@ class NewSubmissionController extends Controller
                                 "<br />" .
                                 "<br />" . $mail_translator->trans("A new monitoring action has been submitted. Access the link below for more details") . ":" .
                                 "<br />" .
-                                "<br />$url" .
+                                "<br />" . $mail_translator->trans("Protocol <b>%protocol%</b>: %url%",
+                                                    array(
+                                                        '%protocol%' => $protocol->getCode(),
+                                                        '%url%' => $url,
+                                                    )) .
                                 "<br />" .
                                 "<br />" . $mail_translator->trans("Sincerely") . "," .
                                 "<br />" . $mail_translator->trans("PAHOERC Secretariat") .
@@ -1312,6 +1316,10 @@ class NewSubmissionController extends Controller
 
                         $session->getFlashBag()->add('success', $translator->trans("Amendment submitted with success!"));
                     } else {
+                        // sending email
+                        $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                        $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
                         $recipients = array($protocol->getMainSubmission()->getOwner());
                         foreach($recipients as $recipient) {
                             $message = \Swift_Message::newInstance()
@@ -1323,6 +1331,14 @@ class NewSubmissionController extends Controller
                                 "<br />" .
                                 "<br />" . $mail_translator->trans("Your protocol was sent to ethics review.") .
                                 "<br />" . $mail_translator->trans("The committee will now meet to review your protocol, and an official decision will be sent to you shortly.") .
+                                "<br />" .
+                                "<br />" . $mail_translator->trans("Access the link below for more details.") .
+                                "<br />" .
+                                "<br />" . $mail_translator->trans("Protocol <b>%protocol%</b>: %url%",
+                                                    array(
+                                                        '%protocol%' => $protocol->getCode(),
+                                                        '%url%' => $url,
+                                                    )) .
                                 "<br />" .
                                 "<br />" . $mail_translator->trans("Sincerely") . "," .
                                 "<br />" . $mail_translator->trans("PAHOERC Secretariat") .

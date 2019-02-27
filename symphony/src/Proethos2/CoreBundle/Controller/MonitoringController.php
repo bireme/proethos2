@@ -108,7 +108,6 @@ class MonitoringController extends Controller
                 $em->persist($protocol_history);
                 $em->flush();
 
-                // // sending email
                 // $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
                 // $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
                 //
@@ -131,9 +130,9 @@ class MonitoringController extends Controller
                 //         "<br />" .
                 //         "<br />$url" .
                 //         "<br />" .
-                //         "<br>". $translator->trans("Sincerely") . "," .
-                //         "<br>". $translator->trans("PAHOERC Secretariat") .
-                //         "<br>" . $translator->trans("PAHOERC@paho.org")
+                //         "<br />" . $translator->trans("Sincerely") . "," .
+                //         "<br />" . $translator->trans("PAHOERC Secretariat") .
+                //         "<br />" . $translator->trans("PAHOERC@paho.org")
                 //         ,
                 //         'text/html'
                 //     );
@@ -317,7 +316,11 @@ class MonitoringController extends Controller
                     "<br />" .
                     "<br />" . $mail_translator->trans("A new monitoring action has been submitted. Access the link below for more details") . ":" .
                     "<br />" .
-                    "<br />$url" .
+                    "<br />" . $mail_translator->trans("Protocol <b>%protocol%</b>: %url%",
+                                                    array(
+                                                        '%protocol%' => $protocol->getCode(),
+                                                        '%url%' => $url,
+                                                    )) .
                     "<br />" .
                     "<br />" . $mail_translator->trans("Sincerely") . "," .
                     "<br />" . $mail_translator->trans("PAHOERC Secretariat") .

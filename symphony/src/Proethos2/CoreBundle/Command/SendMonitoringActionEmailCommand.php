@@ -107,6 +107,7 @@ class SendMonitoringActionEmailCommand extends ContainerAwareCommand
                                                        '%protocol%' => $code,
                                                        '%date%' => $date,
                                                    )) .
+                "<br />" .
                 "<br />" . $translator->trans("Please access your account in the system to present your monitoring action.") .
                 "<br />" .
                 "<br />" . $translator->trans("Sincerely") . "," .
