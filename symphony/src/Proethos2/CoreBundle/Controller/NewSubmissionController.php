@@ -953,6 +953,9 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
+        $mail_translator = $this->get('translator');
+        $mail_translator->setLocale($submission->getLanguage());
+
         if (!$submission or $submission->getCanBeEdited() == false) {
             if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
                 throw $this->createNotFoundException($translator->trans('No submission found'));
@@ -1273,7 +1276,6 @@ class NewSubmissionController extends Controller
                     $em->flush();
 
                     if($protocol->getMonitoringAction()) {
-
                         // sending email
                         $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
                         $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
@@ -1287,18 +1289,20 @@ class NewSubmissionController extends Controller
 
                         foreach($recipients as $recipient) {
                             $message = \Swift_Message::newInstance()
-                            ->setSubject("[proethos2] " . $translator->trans("A new monitoring action has been submitted."))
+                            ->setSubject("[proethos2] " . $mail_translator->trans("A new monitoring action has been submitted."))
                             ->setFrom($util->getConfiguration('committee.email'))
                             ->setTo($recipient->getEmail())
                             ->setBody(
-                                $translator->trans("Hello!") .
-                                "<br>" .
-                                "<br>" . $translator->trans("A new monitoring action has been submitted. Access the link below for more details") . ":" .
-                                "<br>" .
-                                "<br>$url" .
-                                "<br>" .
-                                "<br>". $translator->trans("Regards") . "," .
-                                "<br>" . $translator->trans("Proethos2 Team")
+                                $mail_translator->trans("Hello!") .
+                                "<br />" .
+                                "<br />" . $mail_translator->trans("A new monitoring action has been submitted. Access the link below for more details") . ":" .
+                                "<br />" .
+                                "<br />$url" .
+                                "<br />" .
+                                "<br />" . $mail_translator->trans("Sincerely") . "," .
+                                "<br />" . $mail_translator->trans("PAHOERC Secretariat") .
+                                "<br />" . $mail_translator->trans("PAHOERC@paho.org") .
+                                "<br /><br />"
                                 ,
                                 'text/html'
                             );
@@ -1308,21 +1312,22 @@ class NewSubmissionController extends Controller
 
                         $session->getFlashBag()->add('success', $translator->trans("Amendment submitted with success!"));
                     } else {
-
                         $recipients = array($protocol->getMainSubmission()->getOwner());
                         foreach($recipients as $recipient) {
                             $message = \Swift_Message::newInstance()
-                            ->setSubject("[proethos2] " . $translator->trans("Your protocol was sent to review."))
+                            ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was sent to review."))
                             ->setFrom($util->getConfiguration('committee.email'))
                             ->setTo($recipient->getEmail())
                             ->setBody(
-                                $translator->trans("Dear investigator") .
-                                ",<br>" .
-                                "<br>" . $translator->trans("Your protocol was sent to ethics review.") .
-                                "<br>" . $translator->trans("The committee will now meet to review your protocol, and an official decision will be sent to you shortly.") .
-                                "<br>" .
-                                "<br>". $translator->trans("Regards") . "," .
-                                "<br>" . $translator->trans("Proethos2 Team")
+                                $mail_translator->trans("Dear investigator") . "," .
+                                "<br />" .
+                                "<br />" . $mail_translator->trans("Your protocol was sent to ethics review.") .
+                                "<br />" . $mail_translator->trans("The committee will now meet to review your protocol, and an official decision will be sent to you shortly.") .
+                                "<br />" .
+                                "<br />" . $mail_translator->trans("Sincerely") . "," .
+                                "<br />" . $mail_translator->trans("PAHOERC Secretariat") .
+                                "<br />" . $mail_translator->trans("PAHOERC@paho.org") .
+                                "<br /><br />"
                                 ,
                                 'text/html'
                             );

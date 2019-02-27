@@ -163,6 +163,9 @@ class ProtocolController extends Controller
         $submission = $protocol->getMainSubmission();
         $output['protocol'] = $protocol;
 
+        $mail_translator = $this->get('translator');
+        $mail_translator->setLocale($submission->getLanguage());
+
         if (!$protocol or $protocol->getStatus() != "S") {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
@@ -186,18 +189,20 @@ class ProtocolController extends Controller
 
                 foreach($recipients as $recipient) {
                     $message = \Swift_Message::newInstance()
-                    ->setSubject("[proethos2] " . $translator->trans("Your protocol was rejected"))
+                    ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was rejected"))
                     ->setFrom($util->getConfiguration('committee.email'))
                     ->setTo($recipient->getEmail())
                     ->setBody(
-                        $translator->trans("Hello!") .
-                        "<br>" .
-                        "<br>" . $translator->trans("Your protocol was rejected. Access the link below for more details") . ":" .
-                        "<br>" .
-                        "<br>$url" .
-                        "<br>" .
-                        "<br>". $translator->trans("Regards") . "," .
-                        "<br>" . $translator->trans("Proethos2 Team")
+                        $mail_translator->trans("Hello!") .
+                        "<br />" .
+                        "<br />" . $mail_translator->trans("Your protocol was rejected. Access the link below for more details") . ":" .
+                        "<br />" .
+                        "<br />$url" .
+                        "<br />" .
+                        "<br />" . $mail_translator->trans("Sincerely") . "," .
+                        "<br />" . $mail_translator->trans("PAHOERC Secretariat") .
+                        "<br />" . $mail_translator->trans("pahoerc@paho.org") .
+                        "<br /><br />";
                         ,
                         'text/html'
                     );
@@ -295,18 +300,20 @@ class ProtocolController extends Controller
                             if(in_array($role, $member->getRolesSlug())) {
 
                                 $message = \Swift_Message::newInstance()
-                                ->setSubject("[proethos2] " . $translator->trans("A new protocol needs your analysis."))
+                                ->setSubject("[proethos2] " . $mail_translator->trans("A new protocol needs your analysis."))
                                 ->setFrom($util->getConfiguration('committee.email'))
                                 ->setTo($member->getEmail())
                                 ->setBody(
-                                    $translator->trans("Hello!") .
-                                    "<br>" .
-                                    "<br>" . $translator->trans("A new protocol needs your analysis. Access the link below") . ":" .
-                                    "<br>" .
-                                    "<br>$url" .
-                                    "<br>" .
-                                    "<br>". $translator->trans("Regards") . "," .
-                                    "<br>" . $translator->trans("Proethos2 Team")
+                                    $mail_translator->trans("Hello!") .
+                                    "<br />" .
+                                    "<br />" . $mail_translator->trans("A new protocol needs your analysis. Access the link below") . ":" .
+                                    "<br />" .
+                                    "<br />$url" .
+                                    "<br />" .
+                                    "<br />" . $mail_translator->trans("Sincerely") . "," .
+                                    "<br />" . $mail_translator->trans("PAHOERC Secretariat") .
+                                    "<br />" . $mail_translator->trans("pahoerc@paho.org") .
+                                    "<br /><br />";
                                     ,
                                     'text/html'
                                 );
@@ -345,18 +352,20 @@ class ProtocolController extends Controller
                         $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
 
                         $message = \Swift_Message::newInstance()
-                        ->setSubject("[proethos2] " . $translator->trans("Your protocol was sent to review!"))
+                        ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was sent to review!"))
                         ->setFrom($util->getConfiguration('committee.email'))
                         ->setTo($investigator->getEmail())
                         ->setBody(
-                            $translator->trans("Hello!") .
-                            "<br>" .
-                            "<br>" . $translator->trans("Your protocol was sent to review. Access the link below") . ":" .
-                            "<br>" .
-                            "<br>$url" .
-                            "<br>" .
-                            "<br>". $translator->trans("Regards") . "," .
-                            "<br>" . $translator->trans("Proethos2 Team")
+                            $mail_translator->trans("Hello!") .
+                            "<br />" .
+                            "<br />" . $mail_translator->trans("Your protocol was sent to review. Access the link below") . ":" .
+                            "<br />" .
+                            "<br />$url" .
+                            "<br />" .
+                            "<br />" . $mail_translator->trans("Sincerely") . "," .
+                            "<br />" . $mail_translator->trans("PAHOERC Secretariat") .
+                            "<br />" . $mail_translator->trans("pahoerc@paho.org") .
+                            "<br /><br />";
                             ,
                             'text/html'
                         );
@@ -418,6 +427,9 @@ class ProtocolController extends Controller
         $submission = $protocol->getMainSubmission();
         $output['protocol'] = $protocol;
 
+        $mail_translator = $this->get('translator');
+        $mail_translator->setLocale($submission->getLanguage());
+
         if (!$protocol or $protocol->getStatus() != "I") {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
@@ -447,26 +459,26 @@ class ProtocolController extends Controller
                 $em->flush();
 
                 if ( $post_data['committee-screening'] ) {
-                    $body = $translator->trans("Dear investigator,") .
+                    $body = $mail_translator->trans("Dear investigator,") .
                         "<br />" .
-                        "<br />" . $translator->trans("PAHOERC conducted an initial review of your research proposal and determined it must pass through full ethics review before initiating the research.") .
-                        "<br />" . $translator->trans("PAHOERC meets on the second Tuesday of each month to review complete proposals. PAHOERC Observations are emailed to research teams shortly after each monthly meeting.") .
+                        "<br />" . $mail_translator->trans("PAHOERC conducted an initial review of your research proposal and determined it must pass through full ethics review before initiating the research.") .
+                        "<br />" . $mail_translator->trans("PAHOERC meets on the second Tuesday of each month to review complete proposals. PAHOERC Observations are emailed to research teams shortly after each monthly meeting.") .
                         "<br />" .
-                        "<br />" . $translator->trans("Initial committee screening:") . ' ' . $post_data['committee-screening'] .
+                        "<br />" . $mail_translator->trans("Initial committee screening:") . ' ' . $post_data['committee-screening'] .
                         "<br />" .
-                        "<br />" . $translator->trans("Sincerely") . "," .
-                        "<br />" . $translator->trans("PAHOERC Secretariat") .
-                        "<br />" . $translator->trans("pahoerc@paho.org") .
+                        "<br />" . $mail_translator->trans("Sincerely") . "," .
+                        "<br />" . $mail_translator->trans("PAHOERC Secretariat") .
+                        "<br />" . $mail_translator->trans("pahoerc@paho.org") .
                         "<br /><br />";
                 } else {
-                    $body = $translator->trans("Dear investigator,") .
+                    $body = $mail_translator->trans("Dear investigator,") .
                         "<br />" .
-                        "<br />" . $translator->trans("PAHOERC conducted an initial review of your research proposal and determined it must pass through full ethics review before initiating the research.") .
-                        "<br />" . $translator->trans("PAHOERC meets on the second Tuesday of each month to review complete proposals. PAHOERC Observations are emailed to research teams shortly after each monthly meeting.") .
+                        "<br />" . $mail_translator->trans("PAHOERC conducted an initial review of your research proposal and determined it must pass through full ethics review before initiating the research.") .
+                        "<br />" . $mail_translator->trans("PAHOERC meets on the second Tuesday of each month to review complete proposals. PAHOERC Observations are emailed to research teams shortly after each monthly meeting.") .
                         "<br />" .
-                        "<br />" . $translator->trans("Sincerely") . "," .
-                        "<br />" . $translator->trans("PAHOERC Secretariat") .
-                        "<br />" . $translator->trans("pahoerc@paho.org") .
+                        "<br />" . $mail_translator->trans("Sincerely") . "," .
+                        "<br />" . $mail_translator->trans("PAHOERC Secretariat") .
+                        "<br />" . $mail_translator->trans("pahoerc@paho.org") .
                         "<br /><br />";
                 }
                 $investigators = array();
@@ -479,7 +491,7 @@ class ProtocolController extends Controller
                     $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
 
                     $message = \Swift_Message::newInstance()
-                    ->setSubject("[proethos2] " . $translator->trans("Your protocol was sent to review!"))
+                    ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was sent to review!"))
                     ->setFrom($util->getConfiguration('committee.email'))
                     ->setTo($investigator->getEmail())
                     ->setBody(
@@ -542,19 +554,19 @@ class ProtocolController extends Controller
                     $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
 
                     $message = \Swift_Message::newInstance()
-                    ->setSubject("[proethos2] " . $translator->trans("Your protocol was concluded as Exempt."))
+                    ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was concluded as Exempt."))
                     ->setFrom($util->getConfiguration('committee.email'))
                     ->setTo($investigator->getEmail())
                     ->setBody(
-                        $translator->trans("Dear investigator,") .
+                        $mail_translator->trans("Dear investigator,") .
                         "<br />" .
-                        "<br />" . $translator->trans("We write to you in regards to your research proposal, which you recently submitted to PAHOERC for ethics review.") .
-                        "<br />" . $translator->trans("Attached you will find the official decision issued by the Committee for this proposal.") .
-                        "<br />" . $translator->trans("Thank you for your submission. We look forward to continue receiving your valuable contributions.") .
+                        "<br />" . $mail_translator->trans("We write to you in regards to your research proposal, which you recently submitted to PAHOERC for ethics review.") .
+                        "<br />" . $mail_translator->trans("Attached you will find the official decision issued by the Committee for this proposal.") .
+                        "<br />" . $mail_translator->trans("Thank you for your submission. We look forward to continue receiving your valuable contributions.") .
                         "<br />" .
-                        "<br />". $translator->trans("Sincerely") . "," .
-                        "<br />". $translator->trans("PAHOERC Secretariat") .
-                        "<br />" . $translator->trans("pahoerc@paho.org") .
+                        "<br />" . $mail_translator->trans("Sincerely") . "," .
+                        "<br />" . $mail_translator->trans("PAHOERC Secretariat") .
+                        "<br />" . $mail_translator->trans("pahoerc@paho.org") .
                         "<br /><br />"
                         ,
                         'text/html'
@@ -624,6 +636,8 @@ class ProtocolController extends Controller
         $total_final_revisions = count($final_revisions);
         $output['total_final_revisions'] = $total_final_revisions;
 
+        $mail_translator = $this->get('translator');
+        $mail_translator->setLocale($submission->getLanguage());
 
         if (!$protocol or $protocol->getStatus() != "E") {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
@@ -669,18 +683,20 @@ class ProtocolController extends Controller
                             $url = $baseurl . $this->generateUrl('home');
 
                             $message = \Swift_Message::newInstance()
-                            ->setSubject("[proethos2] " . $translator->trans("You were assigned to review a protocol"))
+                            ->setSubject("[proethos2] " . $mail_translator->trans("You were assigned to review a protocol"))
                             ->setFrom($util->getConfiguration('committee.email'))
                             ->setTo($member->getEmail())
                             ->setBody(
-                                $translator->trans("Hello!") .
-                                "<br>" .
-                                "<br>" . $translator->trans("You were assigned to review a protocol. Please access the link below") . ":" .
-                                "<br>" .
-                                "<br>$url" .
-                                "<br>" .
-                                "<br>". $translator->trans("Regards") . "," .
-                                "<br>" . $translator->trans("Proethos2 Team")
+                                $mail_translator->trans("Hello!") .
+                                "<br />" .
+                                "<br />" . $mail_translator->trans("You were assigned to review a protocol. Please access the link below") . ":" .
+                                "<br />" .
+                                "<br />$url" .
+                                "<br />" .
+                                "<br />" . $mail_translator->trans("Sincerely") . "," .
+                                "<br />" . $mail_translator->trans("PAHOERC Secretariat") .
+                                "<br />" . $mail_translator->trans("pahoerc@paho.org") .
+                                "<br /><br />"
                                 ,
                                 'text/html'
                             );
@@ -874,6 +890,9 @@ class ProtocolController extends Controller
         $submission = $protocol->getMainSubmission();
         $output['protocol'] = $protocol;
 
+        $mail_translator = $this->get('translator');
+        $mail_translator->setLocale($submission->getLanguage());
+
         if (!$protocol or $protocol->getStatus() != "H") {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
@@ -956,19 +975,19 @@ class ProtocolController extends Controller
                 $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
 
                 $message = \Swift_Message::newInstance()
-                ->setSubject("[proethos2] " . $translator->trans("The protocol review was finalized!"))
+                ->setSubject("[proethos2] " . $mail_translator->trans("The protocol review was finalized!"))
                 ->setFrom($util->getConfiguration('committee.email'))
                 ->setTo($investigator->getEmail())
                 ->setBody(
-                    $translator->trans("Dear investigator,") .
+                    $mail_translator->trans("Dear investigator,") .
                     "<br />" .
-                    "<br />" . $translator->trans("We write to you in regards to your research proposal, which you recently submitted to PAHOERC for ethics review.") .
-                    "<br />" . $translator->trans("Attached you will find the official decision issued by the Committee for this proposal.") .
-                    "<br />" . $translator->trans("Thank you for your submission. We look forward to continue receiving your valuable contributions.") .
+                    "<br />" . $mail_translator->trans("We write to you in regards to your research proposal, which you recently submitted to PAHOERC for ethics review.") .
+                    "<br />" . $mail_translator->trans("Attached you will find the official decision issued by the Committee for this proposal.") .
+                    "<br />" . $mail_translator->trans("Thank you for your submission. We look forward to continue receiving your valuable contributions.") .
                     "<br />" .
-                    "<br />" . $translator->trans("Sincerely") . "," .
-                    "<br />" . $translator->trans("PAHOERC Secretariat") .
-                    "<br />" . $translator->trans("PAHOERC@paho.org") .
+                    "<br />" . $mail_translator->trans("Sincerely") . "," .
+                    "<br />" . $mail_translator->trans("PAHOERC Secretariat") .
+                    "<br />" . $mail_translator->trans("PAHOERC@paho.org") .
                     "<br /><br />"
                     ,
                     'text/html'

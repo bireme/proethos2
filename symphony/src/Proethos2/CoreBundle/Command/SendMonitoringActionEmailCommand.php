@@ -71,7 +71,7 @@ class SendMonitoringActionEmailCommand extends ContainerAwareCommand
             }
         }
 
-        // next 30 days
+        // next 7 days
         $protocols = $protocol_repository->createQueryBuilder('p')
             ->andWhere('p.monitoring_action_next_date > :date_start')
             ->andWhere('p.monitoring_action_next_date < :date_end')
@@ -92,6 +92,7 @@ class SendMonitoringActionEmailCommand extends ContainerAwareCommand
             $date = $protocol->getMonitoringActionNextDate()->format("d/m/Y");
             $email = $protocol->getMainSubmission()->getOwner()->getEmail();
             $code = $protocol->getCode();
+            $translator->setLocale($protocol->getMainSubmission()->getLanguage());
 
             $message = \Swift_Message::newInstance()
             ->setSubject("[proethos2] " . $translator->trans("You have a pending monitoring action to %date%", array("%date%" => $date)))
@@ -99,17 +100,19 @@ class SendMonitoringActionEmailCommand extends ContainerAwareCommand
             ->setTo($email)
             ->setBody(
                 $translator->trans("Dear investigator,") .
-                "<br>" .
-                "<br>" . $translator->trans("This is to remind you that protocol <b>%protocol%</b> has a pending
+                "<br />" .
+                "<br />" . $translator->trans("This is to remind you that protocol <b>%protocol%</b> has a pending
                                                    monitoring action that is due on <b>%date%</b>.",
                                                    array(
                                                        '%protocol%' => $code,
                                                        '%date%' => $date,
                                                    )) .
-                "<br>" . $translator->trans("Please access your account in the system to present your monitoring action.") .
-                "<br>" .
-                "<br>" . $translator->trans("Thank you") . "," .
-                "<br>" . $translator->trans("Proethos2 Team")
+                "<br />" . $translator->trans("Please access your account in the system to present your monitoring action.") .
+                "<br />" .
+                "<br />" . $translator->trans("Sincerely") . "," .
+                "<br />" . $translator->trans("PAHOERC Secretariat") .
+                "<br />" . $translator->trans("PAHOERC@paho.org") .
+                "<br /><br />"
                 ,
                 'text/html'
             );

@@ -199,13 +199,15 @@ class SecurityController extends Controller
             ->setTo($post_data['email'])
             ->setBody(
                 $translator->trans("Hello! You asked for a new password in Proethos2 platform.") .
-                "<br>" .
-                "<br>" . $translator->trans("Access the link below") . ":" .
-                "<br>" .
-                "<br>$url" .
-                "<br>" .
-                "<br>". $translator->trans("Regards") . "," .
-                "<br>" . $translator->trans("Proethos2 Team")
+                "<br />" .
+                "<br />" . $translator->trans("Access the link below") . ":" .
+                "<br />" .
+                "<br />$url" .
+                "<br />" .
+                "<br />" . $translator->trans("Sincerely") . "," .
+                "<br />" . $translator->trans("PAHOERC Secretariat") .
+                "<br />" . $translator->trans("PAHOERC@paho.org") .
+                "<br /><br />"
                 ,   
                 'text/html'
             );
@@ -393,11 +395,13 @@ class SecurityController extends Controller
             ->setTo($post_data['email'])
             ->setBody(
                 $translator->trans("Hello! You have been registered in the Proethos2 platform.") .
-                "<br>" .
-                "<br>" . $translator->trans("Please wait until your access has been validated. We will send you an email.") .
-                "<br>" .
-                "<br>". $translator->trans("Regards") . "," .
-                "<br>" . $translator->trans("Proethos2 Team")
+                "<br />" .
+                "<br />" . $translator->trans("Please wait until your access has been validated. We will send you an email.") .
+                "<br />" .
+                "<br />" . $translator->trans("Sincerely") . "," .
+                "<br />" . $translator->trans("PAHOERC Secretariat") .
+                "<br />" . $translator->trans("PAHOERC@paho.org") .
+                "<br /><br />"
                 ,   
                 'text/html'
             );
@@ -417,13 +421,15 @@ class SecurityController extends Controller
             ->setTo($secretaries_emails)
             ->setBody(
                 $translator->trans("Hello! There is a new user registered in the Proethos2 platform.") .
-                "<br>" .
-                "<br>" . $translator->trans("Please check and authorize this access.") .
-                "<br>" .
-                "<br>" . $baseurl .
-                "<br>" .
-                "<br>". $translator->trans("Regards") . "," .
-                "<br>" . $translator->trans("Proethos2 Team")
+                "<br />" .
+                "<br />" . $translator->trans("Please check and authorize this access.") .
+                "<br />" .
+                "<br />" . $baseurl .
+                "<br />" .
+                "<br />" . $translator->trans("Sincerely") . "," .
+                "<br />" . $translator->trans("PAHOERC Secretariat") .
+                "<br />" . $translator->trans("PAHOERC@paho.org") .
+                "<br /><br />"
                 ,   
                 'text/html'
             );

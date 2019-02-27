@@ -126,13 +126,14 @@ class MonitoringController extends Controller
                 //     ->setTo($recipient->getEmail())
                 //     ->setBody(
                 //         $translator->trans("Hello!") .
-                //         "<br>" .
-                //         "<br>" . $translator->trans("A new monitoring action has been submitted. Access the link below for more details") . ":" .
-                //         "<br>" .
-                //         "<br>$url" .
-                //         "<br>" .
-                //         "<br>". $translator->trans("Regards") . "," .
-                //         "<br>" . $translator->trans("Proethos2 Team")
+                //         "<br />" .
+                //         "<br />" . $translator->trans("A new monitoring action has been submitted. Access the link below for more details") . ":" .
+                //         "<br />" .
+                //         "<br />$url" .
+                //         "<br />" .
+                //         "<br>". $translator->trans("Sincerely") . "," .
+                //         "<br>". $translator->trans("PAHOERC Secretariat") .
+                //         "<br>" . $translator->trans("PAHOERC@paho.org")
                 //         ,
                 //         'text/html'
                 //     );
@@ -198,6 +199,8 @@ class MonitoringController extends Controller
         $upload_types = $upload_type_repository->findByStatus(true);
         $output['upload_types'] = $upload_types;
 
+        $mail_translator = $this->get('translator');
+        $mail_translator->setLocale($submission->getLanguage());
 
         if (!$monitoring_action) {
             throw $this->createNotFoundException($translator->trans('Monitoring action does not exist'));
@@ -306,18 +309,20 @@ class MonitoringController extends Controller
 
             foreach($recipients as $recipient) {
                 $message = \Swift_Message::newInstance()
-                ->setSubject("[proethos2] " . $translator->trans("A new monitoring action has been submitted."))
+                ->setSubject("[proethos2] " . $mail_translator->trans("A new monitoring action has been submitted."))
                 ->setFrom($util->getConfiguration('committee.email'))
                 ->setTo($recipient->getEmail())
                 ->setBody(
-                    $translator->trans("Hello!") .
-                    "<br>" .
-                    "<br>" . $translator->trans("A new monitoring action has been submitted. Access the link below for more details") . ":" .
-                    "<br>" .
-                    "<br>$url" .
-                    "<br>" .
-                    "<br>". $translator->trans("Regards") . "," .
-                    "<br>" . $translator->trans("Proethos2 Team")
+                    $mail_translator->trans("Hello!") .
+                    "<br />" .
+                    "<br />" . $mail_translator->trans("A new monitoring action has been submitted. Access the link below for more details") . ":" .
+                    "<br />" .
+                    "<br />$url" .
+                    "<br />" .
+                    "<br />" . $mail_translator->trans("Sincerely") . "," .
+                    "<br />" . $mail_translator->trans("PAHOERC Secretariat") .
+                    "<br />" . $mail_translator->trans("PAHOERC@paho.org") .
+                    "<br /><br />"
                     ,
                     'text/html'
                 );

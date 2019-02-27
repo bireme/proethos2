@@ -908,13 +908,15 @@ class CRUDController extends Controller
             ->setTo($post_data['email'])
             ->setBody(
                 $translator->trans("Hello! You have been registered in the ProEthos2 Platform. Please set your password:") .
-                "<br>" .
-                "<br>" . $translator->trans("Access the link below") . ":" .
-                "<br>" .
-                "<br>$url" .
-                "<br>" .
-                "<br>". $translator->trans("Regards") . "," .
-                "<br>" . $translator->trans("Proethos2 Team")
+                "<br />" .
+                "<br />" . $translator->trans("Access the link below") . ":" .
+                "<br />" .
+                "<br />$url" .
+                "<br />" .
+                "<br />" . $translator->trans("Sincerely") . "," .
+                "<br />" . $translator->trans("PAHOERC Secretariat") .
+                "<br />" . $translator->trans("PAHOERC@paho.org") .
+                "<br /><br />"
                 ,
                 'text/html'
             );
@@ -1058,8 +1060,9 @@ class CRUDController extends Controller
                     "<br />" .
                     "<br />$url" .
                     "<br />" .
-                    "<br />". $translator->trans("Regards") . "," .
-                    "<br />" . $translator->trans("Proethos2 Team") .
+                    "<br />" . $translator->trans("Sincerely") . "," .
+                    "<br />" . $translator->trans("PAHOERC Secretariat") .
+                    "<br />" . $translator->trans("PAHOERC@paho.org") .
                     "<br /><br />"
                     ,
                     'text/html'
@@ -1250,11 +1253,12 @@ class CRUDController extends Controller
             ->setTo($output['committee_email'])
             ->setBody(
                 $translator->trans("Hello! A message was sent to proethos2 administrator from plataform.") .
-                "<br>" .
-                "<br><b>User</b>: " . $post_data['name'] . " (" . $post_data['email'] . ")" .
-                "<br><b>Subject</b>: " . $post_data['subject'] .
-                "<br><b>Message</b>:<br>" .
-                nl2br($post_data['message'])
+                "<br />" .
+                "<br /><b>User</b>: " . $post_data['name'] . " (" . $post_data['email'] . ")" .
+                "<br /><b>Subject</b>: " . $post_data['subject'] .
+                "<br /><b>Message</b>:<br />" .
+                nl2br($post_data['message']) .
+                "<br /><br />"
                 ,
                 'text/html'
             );
