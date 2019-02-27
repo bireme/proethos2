@@ -197,11 +197,7 @@ class ProtocolController extends Controller
                         "<br />" .
                         "<br />" . $mail_translator->trans("Your protocol was rejected. Access the link below for more details") . ":" .
                         "<br />" .
-                        "<br />" . $mail_translator->trans("Protocol <b>%protocol%</b>: %url%",
-                                                    array(
-                                                        '%protocol%' => $protocol->getCode(),
-                                                        '%url%' => $url,
-                                                    )) .
+                        "<br />$url" .
                         "<br />" .
                         "<br />" . $mail_translator->trans("Sincerely") . "," .
                         "<br />" . $mail_translator->trans("PAHOERC Secretariat") .
