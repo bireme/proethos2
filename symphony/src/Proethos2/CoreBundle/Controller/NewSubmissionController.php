@@ -1332,13 +1332,9 @@ class NewSubmissionController extends Controller
                                 "<br />" . $mail_translator->trans("Your protocol was sent to ethics review.") .
                                 "<br />" . $mail_translator->trans("The committee will now meet to review your protocol, and an official decision will be sent to you shortly.") .
                                 "<br />" .
-                                "<br />" . $mail_translator->trans("Access the link below for more details.") .
+                                "<br />" . $mail_translator->trans("Access the link below for more details") . ":" .
                                 "<br />" .
-                                "<br />" . $mail_translator->trans("Protocol <b>%protocol%</b>: %url%",
-                                                    array(
-                                                        '%protocol%' => $protocol->getCode(),
-                                                        '%url%' => $url,
-                                                    )) .
+                                "<br />$url" .
                                 "<br />" .
                                 "<br />" . $mail_translator->trans("Sincerely") . "," .
                                 "<br />" . $mail_translator->trans("PAHOERC Secretariat") .
