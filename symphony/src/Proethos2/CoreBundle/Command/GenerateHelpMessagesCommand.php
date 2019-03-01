@@ -59,6 +59,7 @@ class GenerateHelpMessagesCommand extends ContainerAwareCommand
 
                             // create a new help text
                             $help = new Help();
+                            $help->setType('help');
                             $em->persist($help);
                             $em->flush();
 

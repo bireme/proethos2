@@ -58,6 +58,7 @@
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ path('crud_admin_help_list') }}">{% trans %}Help Messages{% endtrans %}</a></li>
+                            <li><a href="{{ path('crud_admin_mail_list') }}">{% trans %}Mail Messages{% endtrans %}</a></li>
 
                             {% if app.environment == "dev" %}
                                 <li><a href="/_trans">{% trans %}Label translations{% endtrans %}</a></li>

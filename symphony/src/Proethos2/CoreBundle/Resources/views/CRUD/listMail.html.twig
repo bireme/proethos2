@@ -1,0 +1,64 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}Mail{% endtrans %}{% endblock %}
+
+{% block content %}
+    
+    <div class="container-fluid main-content see-submission">
+
+        <div class="row">
+            <div class='col-md-12'>
+                <h1 class="page-header">{% trans %}Mail{% endtrans %}</h1>
+            </div>
+        </div>
+        
+        <div class='block'>
+            <div class='row'>
+                <div class="col-md-12">
+                    <table class='table table-hover table-condensed'>
+                        
+                        <thead>
+                            <tr>
+                                <th width="90%">{% trans %}Message{% endtrans %}</th>
+                                <th>{% trans %}Actions{% endtrans %}</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            {% for mail in mails %}
+                                <tr>
+                                    <td>{{ mail.message }}</td> 
+                                    <td>
+                                        <a href='{{ path('crud_admin_mail_show', {mail_id: mail.id} ) }}' data-toggle='modal' data-target='#modal-mail' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
+                                        <a href='{{ path('crud_admin_mail_update', {mail_id: mail.id} ) }}' data-toggle='modal' data-target='#modal-update-mail' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
+
+                                    </td> 
+                                </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+    
+    <!-- Modal Update Mail -->
+    <div class="modal fade" id="modal-update-mail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+            {% if app.request.get('id') %}
+                // opens the update modal for this id
+                var update_button = $("a[data-target='#modal-update-mail']");
+                update_button.trigger('click');
+            {% endif %}   
+        });
+    </script>
+{% endblock %}

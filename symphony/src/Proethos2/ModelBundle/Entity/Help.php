@@ -49,6 +49,12 @@ class Help extends Base implements Translatable
 
     /**
      * @Gedmo\Translatable
+     * @ORM\Column(type="string", length=32)
+     */
+    private $type;
+
+    /**
+     * @Gedmo\Translatable
      * @ORM\Column(type="text", nullable=true)
      */
     private $message;
@@ -133,5 +139,29 @@ class Help extends Base implements Translatable
     public function getMessage()
     {
         return $this->message;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Help
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

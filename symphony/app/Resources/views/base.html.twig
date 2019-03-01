@@ -71,6 +71,13 @@
         </div>
     </div>
 
+    <!-- Modal MAIL -->
+    <div class="modal fade" id="modal-mail" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
     <!-- Modal Base Ajax -->
     <div class="modal fade" id="modalBaseAjax" data-keyboard="false" data-backdrop="static"  role="dialog">
         <div class="modal-dialog modal-lg" role="document">
@@ -127,6 +134,27 @@
                     if(!data.status) {
                         {% if is_granted("ROLE_USER") and 'administrator' in app.user.rolesSlug %}
                             obj.addClass('help-text-undefined');
+                        {% else %}
+                            obj.hide();
+                        {% endif %}
+                    }
+                });
+            });
+
+            // actions in mail links
+            var mail_links = $('a[data-target="#modal-mail"]');
+            $.each(mail_links, function(id, link){
+
+                var obj = $(link);
+                var id = link.href.split("/")
+                id = id[id.length-1]
+                console.log('[mail] adding status to link ' + id + '...');
+
+                var url = link.href + "/check";
+                $.get(url, function(data){
+                    if(!data.status) {
+                        {% if is_granted("ROLE_USER") and 'administrator' in app.user.rolesSlug %}
+                            obj.addClass('mail-text-undefined');
                         {% else %}
                             obj.hide();
                         {% endif %}

@@ -1285,7 +1285,7 @@ class CRUDController extends Controller
 
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
 
-        $helps = $help_repository->findBy(array("status" => true));
+        $helps = $help_repository->findBy(array("status" => true, "type" => "help"));
 
         $id = $request->query->get('id');
         if($id) {
@@ -1409,6 +1409,152 @@ class CRUDController extends Controller
 
         $output['status'] = true;
         if(!$help->getMessage()) {
+            $output['status'] = false;
+        }
+        $response = new Response();
+        $response->setContent(json_encode($output));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    /**
+     * @Route("/admin/mail", name="crud_admin_mail_list")
+     * @Template()
+     */
+    public function listMailAction()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+
+        $mails = $help_repository->findBy(array("status" => true, "type" => "mail"));
+
+        $id = $request->query->get('id');
+        if($id) {
+            $mails = $help_repository->findBy(array("id" => $id));
+        }
+
+        $output['mails'] = $mails;
+        return $output;
+    }
+
+    /**
+     * @Route("/admin/mail/{mail_id}/update", name="crud_admin_mail_update")
+     * @Template()
+     */
+    public function updateMailAction($mail_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+
+        // getting the current mail
+        $mail = $help_repository->find($mail_id);
+        $output['mail'] = $mail;
+
+        if (!$mail) {
+            throw $this->createNotFoundException($translator->trans('No mail found'));
+        }
+
+        $translations = $trans_repository->findTranslations($mail);
+        $output['translations'] = $translations;
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            // checking required files
+            foreach(array('mail-message-en') as $field) {
+
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
+                    return $output;
+                }
+            }
+
+            $mail->setTranslatableLocale('en');
+            $mail->setMessage($post_data['mail-message-en']);
+            $mail->setStatus(true);
+
+            foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
+                if(!empty($post_data["mail-message-$locale"])) {
+                    $trans_repository = $trans_repository->translate($mail, 'message', $locale, $post_data["mail-message-$locale"]);
+                }
+            }
+
+            $em->persist($mail);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Help updated with success."));
+            return $this->redirectToRoute('crud_admin_mail_list', array(), 301);
+        }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/admin/mail/{mail_id}", name="crud_admin_mail_show")
+     * @Template()
+     */
+    public function showMailAction($mail_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+
+        // getting the current mail
+        $mail = $help_repository->find($mail_id);
+        $output['mail'] = $mail;
+
+        if (!$mail) {
+            throw $this->createNotFoundException($translator->trans('No mail found'));
+        }
+
+        $repository = $em->getRepository('Gedmo\Translatable\Entity\Translation');
+        $translations = $repository->findTranslations($mail);
+        $output['translations'] = $translations;
+
+        return $output;
+    }
+
+    /**
+     * @Route("/admin/mail/{mail_id}/check", name="crud_admin_mail_check")
+     */
+    public function checkMailAction($mail_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+
+        // getting the current mail
+        $mail = $help_repository->find($mail_id);
+
+        if (!$mail) {
+            throw $this->createNotFoundException($translator->trans('No mail found'));
+        }
+
+        $output['status'] = true;
+        if(!$mail->getMessage()) {
             $output['status'] = false;
         }
         $response = new Response();

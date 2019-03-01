@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="{% trans %}Close{% endtrans %}"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">{% trans %}Mail{% endtrans %}</h4>
+</div>
+<div class="modal-body">
+    {% if not mail.message %}
+        <i>{% trans %}There is no mail message set for this field.{% endtrans %}</i>
+    {% else %}
+        {{ mail }}
+    {% endif %}
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+    {% if is_granted("ROLE_USER") and 'administrator' in app.user.rolesSlug %}
+        <a href="{{ path('crud_admin_mail_list') }}?id={{ mail.id }}" type="button" class="btn btn-primary">{% trans %}Update this message{% endtrans %}</a>
+    {% endif %}
+</div>
