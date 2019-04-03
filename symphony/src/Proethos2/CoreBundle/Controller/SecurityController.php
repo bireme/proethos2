@@ -164,6 +164,11 @@ class SecurityController extends Controller
         $post_data = $request->request->all();
 
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+        // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
+        // $translations = $trans_repository->findTranslations($help[0]);
         
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
@@ -193,21 +198,21 @@ class SecurityController extends Controller
             // TODO need to get the relative path
             $url = $baseurl . "/public/account/reset_my_password?hashcode=" . $hashcode;
 
+            $locale = $request->getSession()->get('_locale');
+            $help = $help_repository->find(206);
+            $translations = $trans_repository->findTranslations($help);
+            $text = $translations[$locale];
+            $body = $text['message'];
+            $body = str_replace("%reset_password_url%", $url, $body);
+            $body = str_replace("\r\n", "<br />", $body);
+            $body .= "<br /><br />";
+
             $message = \Swift_Message::newInstance()
             ->setSubject("[proethos2] " . $translator->trans("Reset your password"))
             ->setFrom($util->getConfiguration('committee.email'))
             ->setTo($post_data['email'])
             ->setBody(
-                $translator->trans("Hello! You asked for a new password in Proethos2 platform.") .
-                "<br />" .
-                "<br />" . $translator->trans("Access the link below") . ":" .
-                "<br />" .
-                "<br />$url" .
-                "<br />" .
-                "<br />" . $translator->trans("Sincerely") . "," .
-                "<br />" . $translator->trans("PAHOERC Secretariat") .
-                "<br />" . $translator->trans("PAHOERC@paho.org") .
-                "<br /><br />"
+                $body
                 ,   
                 'text/html'
             );
@@ -300,6 +305,7 @@ class SecurityController extends Controller
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
         $util = new Util($this->container, $this->getDoctrine());
+        $locale = $request->getSession()->get('_locale');
 
         // getting post data
         $post_data = $request->request->all();
@@ -313,6 +319,11 @@ class SecurityController extends Controller
         $output['content'] = array();
 
         $output['recaptcha_secret'] = $util->getConfiguration('recaptcha.secret');
+
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+        // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
+        // $translations = $trans_repository->findTranslations($help[0]);
         
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
@@ -388,26 +399,34 @@ class SecurityController extends Controller
 
             $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
 
+            $help = $help_repository->find(207);
+            $translations = $trans_repository->findTranslations($help);
+            $text = $translations[$locale];
+            $body = $text['message'];
+            $body = str_replace("\r\n", "<br />", $body);
+            $body .= "<br /><br />";
+
             // send email to the user
             $message = \Swift_Message::newInstance()
             ->setSubject("[proethos2] " . $translator->trans("Welcome to the Proethos2 platform!"))
             ->setFrom($util->getConfiguration('committee.email'))
             ->setTo($post_data['email'])
             ->setBody(
-                $translator->trans("Hello! You have been registered in the Proethos2 platform.") .
-                "<br />" .
-                "<br />" . $translator->trans("Please wait until your access has been validated. We will send you an email.") .
-                "<br />" .
-                "<br />" . $translator->trans("Sincerely") . "," .
-                "<br />" . $translator->trans("PAHOERC Secretariat") .
-                "<br />" . $translator->trans("PAHOERC@paho.org") .
-                "<br /><br />"
+                $body
                 ,   
                 'text/html'
             );
             $send = $this->get('mailer')->send($message);
 
-            // send email to the secreataries
+            $help = $help_repository->find(208);
+            $translations = $trans_repository->findTranslations($help);
+            $text = $translations[$locale];
+            $body = $text['message'];
+            $body = str_replace("%home_url%", $baseurl, $body);
+            $body = str_replace("\r\n", "<br />", $body);
+            $body .= "<br /><br />";
+
+            // send email to the secretaries
             $secretaries_emails = array();
             foreach($user_repository->findAll() as $secretary) {
                 if(in_array('secretary', $secretary->getRolesSlug())) {
@@ -420,16 +439,7 @@ class SecurityController extends Controller
             ->setFrom($util->getConfiguration('committee.email'))
             ->setTo($secretaries_emails)
             ->setBody(
-                $translator->trans("Hello! There is a new user registered in the Proethos2 platform.") .
-                "<br />" .
-                "<br />" . $translator->trans("Please check and authorize this access.") .
-                "<br />" .
-                "<br />" . $baseurl .
-                "<br />" .
-                "<br />" . $translator->trans("Sincerely") . "," .
-                "<br />" . $translator->trans("PAHOERC Secretariat") .
-                "<br />" . $translator->trans("PAHOERC@paho.org") .
-                "<br /><br />"
+                $body
                 ,   
                 'text/html'
             );

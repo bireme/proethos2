@@ -812,9 +812,14 @@ class CRUDController extends Controller
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
         $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
 
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+        // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
+        // $translations = $trans_repository->findTranslations($help[0]);
+
         $users = $user_repository->findAll();
 
-        // serach parameter
+        // search parameter
         $search_query = $request->query->get('q');
         if($search_query) {
             $users = $user_repository->createQueryBuilder('m')
@@ -901,22 +906,22 @@ class CRUDController extends Controller
 
             // TODO need to get the relative path
             $url = $baseurl . "/public/account/reset_my_password?hashcode=" . $hashcode;
+            
+            $locale = $request->getSession()->get('_locale');
+            $help = $help_repository->find(203);
+            $translations = $trans_repository->findTranslations($help);
+            $text = $translations[$locale];
+            $body = $text['message'];
+            $body = str_replace("%reset_password_url%", $url, $body);
+            $body = str_replace("\r\n", "<br />", $body);
+            $body .= "<br /><br />";
 
             $message = \Swift_Message::newInstance()
             ->setSubject("[proethos2] " . $translator->trans("Set your password"))
             ->setFrom($util->getConfiguration('committee.email'))
             ->setTo($post_data['email'])
             ->setBody(
-                $translator->trans("Hello! You have been registered in the ProEthos2 Platform. Please set your password:") .
-                "<br />" .
-                "<br />" . $translator->trans("Access the link below") . ":" .
-                "<br />" .
-                "<br />$url" .
-                "<br />" .
-                "<br />" . $translator->trans("Sincerely") . "," .
-                "<br />" . $translator->trans("PAHOERC Secretariat") .
-                "<br />" . $translator->trans("PAHOERC@paho.org") .
-                "<br /><br />"
+                $body
                 ,
                 'text/html'
             );
@@ -1001,6 +1006,11 @@ class CRUDController extends Controller
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
         $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
 
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+        // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
+        // $translations = $trans_repository->findTranslations($help[0]);
+
         // getting the current user
         $user = $user_repository->find($user_id);
         $output['user'] = $user;
@@ -1049,21 +1059,21 @@ class CRUDController extends Controller
                 $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
                 $url = $baseurl . $this->generateUrl('home');
 
+                $locale = $request->getSession()->get('_locale');
+                $help = $help_repository->find(204);
+                $translations = $trans_repository->findTranslations($help);
+                $text = $translations[$locale];
+                $body = $text['message'];
+                $body = str_replace("%home_url%", $url, $body);
+                $body = str_replace("\r\n", "<br />", $body);
+                $body .= "<br /><br />";
+
                 $message = \Swift_Message::newInstance()
                 ->setSubject("[proethos2] " . $translator->trans("Confirmation of valid access to the Proethos2 platform"))
                 ->setFrom($util->getConfiguration('committee.email'))
                 ->setTo($user->getEmail())
                 ->setBody(
-                    $translator->trans("Hello! Your access has been validated in the ProEthos2 platform.") .
-                    "<br />" .
-                    "<br />" . $translator->trans("Access the link below") . ":" .
-                    "<br />" .
-                    "<br />$url" .
-                    "<br />" .
-                    "<br />" . $translator->trans("Sincerely") . "," .
-                    "<br />" . $translator->trans("PAHOERC Secretariat") .
-                    "<br />" . $translator->trans("PAHOERC@paho.org") .
-                    "<br /><br />"
+                    $body
                     ,
                     'text/html'
                 );
@@ -1232,6 +1242,11 @@ class CRUDController extends Controller
         $output['committee_address'] = $util->getConfiguration('committee.address');
         $output['committee_phones'] = $util->getConfiguration('committee.phones');
 
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+        // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
+        // $translations = $trans_repository->findTranslations($help[0]);
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -1240,25 +1255,30 @@ class CRUDController extends Controller
 
             // checking required files
             foreach(array('name', 'email', 'subject', 'message') as $field) {
-
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
             }
 
+            $locale = $request->getSession()->get('_locale');
+            $help = $help_repository->find(205);
+            $translations = $trans_repository->findTranslations($help);
+            $text = $translations[$locale];
+            $body = $text['message'];
+            $body = str_replace("%username%", $post_data['name'], $body);
+            $body = str_replace("%email%", $post_data['email'], $body);
+            $body = str_replace("%subject%", $post_data['subject'], $body);
+            $body = str_replace("%message%", nl2br($post_data['message']), $body);
+            $body = str_replace("\r\n", "<br />", $body);
+            $body .= "<br /><br />";
+
             $message = \Swift_Message::newInstance()
             ->setSubject("[proethos2] " . $translator->trans("Message from plataform."))
             ->setFrom($output['committee_email'])
             ->setTo($output['committee_email'])
             ->setBody(
-                $translator->trans("Hello! A message was sent to proethos2 administrator from plataform.") .
-                "<br />" .
-                "<br /><b>User</b>: " . $post_data['name'] . " (" . $post_data['email'] . ")" .
-                "<br /><b>Subject</b>: " . $post_data['subject'] .
-                "<br /><b>Message</b>:<br />" .
-                nl2br($post_data['message']) .
-                "<br /><br />"
+                $body
                 ,
                 'text/html'
             );
@@ -1477,7 +1497,6 @@ class CRUDController extends Controller
 
             // checking required files
             foreach(array('mail-message-en') as $field) {
-
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;

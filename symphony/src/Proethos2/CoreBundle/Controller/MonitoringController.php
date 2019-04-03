@@ -201,6 +201,11 @@ class MonitoringController extends Controller
         $mail_translator = $this->get('translator');
         $mail_translator->setLocale($submission->getLanguage());
 
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+        // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
+        // $translations = $trans_repository->findTranslations($help[0]);
+
         if (!$monitoring_action) {
             throw $this->createNotFoundException($translator->trans('Monitoring action does not exist'));
         }
@@ -299,6 +304,15 @@ class MonitoringController extends Controller
             $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
             $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
 
+            $help = $help_repository->find(217);
+            $translations = $trans_repository->findTranslations($help);
+            $text = $translations[$submission->getLanguage()];
+            $body = $text['message'];
+            $body = str_replace("%protocol_url%", $url, $body);
+            $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
+            $body = str_replace("\r\n", "<br />", $body);
+            $body .= "<br /><br />";
+
             $recipients = array();
             foreach($user_repository->findAll() as $secretary) {
                 if(in_array("secretary", $secretary->getRolesSlug())) {
@@ -312,20 +326,7 @@ class MonitoringController extends Controller
                 ->setFrom($util->getConfiguration('committee.email'))
                 ->setTo($recipient->getEmail())
                 ->setBody(
-                    $mail_translator->trans("Hello!") .
-                    "<br />" .
-                    "<br />" . $mail_translator->trans("A new monitoring action has been submitted. Access the link below for more details") . ":" .
-                    "<br />" .
-                    "<br />" . $mail_translator->trans("Protocol <b>%protocol%</b>: %url%",
-                                                    array(
-                                                        '%protocol%' => $protocol->getCode(),
-                                                        '%url%' => $url,
-                                                    )) .
-                    "<br />" .
-                    "<br />" . $mail_translator->trans("Sincerely") . "," .
-                    "<br />" . $mail_translator->trans("PAHOERC Secretariat") .
-                    "<br />" . $mail_translator->trans("PAHOERC@paho.org") .
-                    "<br /><br />"
+                    $body
                     ,
                     'text/html'
                 );
