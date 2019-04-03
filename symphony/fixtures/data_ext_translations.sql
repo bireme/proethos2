@@ -48,6 +48,205 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '183', 'Decision');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '184', 'Is this a confidential message?');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '185', 'Monitoring time frame');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '198', 'Submission Language');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '199', 'Does my project need ethics review?');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '201', 'Hello!
+
+A new monitoring action has been submitted.
+
+Access the link below for more details.
+
+Protocol <b>%protocol_code%</b>: %protocol_url%
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '202', 'Dear investigator,
+
+Your protocol was sent to ethics review.
+The committee will now meet to review your protocol, and an official decision will be sent to you shortly.
+
+Access the link below for more details:
+
+%protocol_url%
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '203', 'Hello!
+
+You have been registered in the ProEthos2 Platform.
+
+Please access the link below and set your password:
+
+%reset_password_url%
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '204', 'Hello!
+
+Your access has been validated in the ProEthos2 platform.
+
+Access the link below:
+
+%home_url%
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '205', 'Hello!
+
+A message was sent to Proethos2 administrator from plataform.
+
+<b>User</b>: %username% (%email%)
+<b>Subject</b>: %subject%
+<b>Message</b>:
+%message%
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '206', 'Hello!
+
+You asked for a new password in Proethos2 platform.
+
+Please access the link below to change your password:
+
+%reset_password_url%
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '207', 'Hello!
+
+You have been registered in the ProEthos2 Platform.
+Please wait until your access has been validated.
+We will send you an email.
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '208', 'Hello!
+
+There is a new user registered in the Proethos2 platform.
+
+Please check and authorize this access.
+
+%home_url%
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '209', 'Hello!
+
+Your protocol was rejected.
+
+Access the link below for more details.
+
+%protocol_url%
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '210', 'Hello!
+
+A new protocol needs your analysis.
+
+Access the link below for more details.
+
+Protocol <b>%protocol_code%</b>: %protocol_url%
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '211', 'Hello!
+
+Your protocol was sent to review.
+
+Access the link below.
+
+Protocol <b>%protocol_code%</b>: %protocol_url%
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '212', 'Dear investigator,
+
+PAHOERC conducted an initial review of your research proposal and determined it must pass through full ethics review before initiating the research.
+PAHOERC meets on the second Tuesday of each month to review complete proposals.
+PAHOERC Observations are emailed to research teams shortly after each monthly meeting.
+
+Initial committee screening: %committee_screening%
+
+Access the link below for more details.
+
+Protocol <b>%protocol_code%</b>: %protocol_url%
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '213', 'Dear investigator,
+
+PAHOERC conducted an initial review of your research proposal and determined it must pass through full ethics review before initiating the research.
+PAHOERC meets on the second Tuesday of each month to review complete proposals.
+PAHOERC Observations are emailed to research teams shortly after each monthly meeting.
+
+Access the link below for more details.
+
+Protocol <b>%protocol_code%</b>: %protocol_url%
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '214', 'Dear investigator,
+
+We write to you in regards to your research proposal, which you recently submitted to PAHOERC for ethics review.
+Attached you will find the official decision issued by the Committee for this proposal.
+Thank you for your submission. We look forward to continue receiving your valuable contributions.
+
+Access the link below for more details.
+
+Protocol <b>%protocol_code%</b>: %protocol_url%
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '215', 'Hello!
+
+You were assigned to review a protocol.
+
+Please access the link below.
+
+Protocol <b>%protocol_code%</b>: %protocol_url%
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '216', 'Dear investigator,
+
+We write to you in regards to your research proposal, which you recently submitted to PAHOERC for ethics review.
+Attached you will find the official decision issued by the Committee for this proposal.
+Thank you for your submission. We look forward to continue receiving your valuable contributions.
+
+Access the link below for more details.
+
+Protocol <b>%protocol_code%</b>: %protocol_url%
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '217', 'Hello!
+
+A new monitoring action has been submitted.
+
+Access the link below for more details.
+
+Protocol <b>%protocol_code%</b>: %protocol_url%
+
+Sincerely,
+PAHOERC Secretariat
+PAHOERC@paho.org');
 
 -- ---------------------
 -- ClinicalTrialName
@@ -114,7 +313,7 @@ research and it must obtain information from human subjects. Research is
 defined as any social science, biomedical, behavioral, or epidemiological
 activity that entails systematic collection or analysis of data, with the
 intent to develop generalizable knowledge. Human subjects are defined as human
-beings (i) who become individually identifiable through investigators
+beings (i) who become individually identifiable through investigator?s
 collection, preparation, or use of biological material or medical or other
 records, or (ii) who are exposed to manipulation, intervention, observation, or
 other interaction with investigators either directly or through alteration of
@@ -142,7 +341,7 @@ individuals cannot be established.</li></ul>
 health authority with the intent to prevent or control of disease or injury,
 including surveillance activities aimed only at the identification or control
 of a health problem. These are activities that seek the benefit of the
-participants or the participants communities, and do not intend to generate
+participants or the participants? communities, and do not intend to generate
 knowledge that is applicable to other populations.</li></ul>
 
 <ul><li>Quality assurance activities or program evaluations aimed
@@ -205,7 +404,7 @@ Do the potential benefits for society and individuals outweigh the risks?</li></
 participants accurate, clear, relevant and complete? Are the recruitment
 procedures, consent process and incentives appropriate for their culture and
 context? Is there an appropriate plan for obtaining permission for those that
-cant consent for themselves? Are the participants being made aware of their
+can?t consent for themselves? Are the participants being made aware of their
 right to refuse to participate and are they actually free to refuse?</li></ul>
 
 <ul><li>Respect for participants: How will the health and well-being
@@ -271,6 +470,18 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '183', 'Decisión');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '184', '¿Es este un mensaje confidencial?');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '185', 'Período de monitoreo');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '199', '¿Requiere este proyecto revisión ética?');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '201', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '202', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '203', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '204', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '205', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '206', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '207', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '208', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '209', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '210', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '211', '');
 
 -- ---------------------
 -- ClinicalTrialName
@@ -939,6 +1150,18 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '183', 'Decisão ');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '184', 'Esta é uma mensagem confidencial? ');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '185', 'Período de monitoramento ');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '199', 'Consulta');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '201', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '202', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '203', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '204', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '205', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '206', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '207', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '208', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '209', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '210', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '211', '');
 
 -- ---------------------
 -- ClinicalTrialName
@@ -1430,6 +1653,21 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 -- ====================================================
 -- fr_FR
 -- ====================================================
+
+-- ---------------------
+-- Help
+-- ---------------------
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '201', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '202', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '203', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '204', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '205', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '206', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '207', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '208', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '209', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '210', '');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '211', '');
 
 -- ---------------------
 -- ClinicalTrialName
