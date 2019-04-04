@@ -205,3 +205,9 @@ img.logo {
     left: auto;
     right: 0;
 }
+
+#info-mail {
+    font-size: 16px;
+    vertical-align: super;
+    cursor: pointer;
+}

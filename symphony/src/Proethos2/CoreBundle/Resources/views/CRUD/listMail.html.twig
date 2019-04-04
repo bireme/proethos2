@@ -8,7 +8,7 @@
 
         <div class="row">
             <div class='col-md-12'>
-                <h1 class="page-header">{% trans %}Mail{% endtrans %}</h1>
+                <h1 class="page-header">{% trans %}Mail{% endtrans %} <a id="info-mail" data-toggle="modal" data-target="#modal-info-mail"><i class='glyphicon glyphicon-question-sign'></i></a></h1>
             </div>
         </div>
         
@@ -16,14 +16,12 @@
             <div class='row'>
                 <div class="col-md-12">
                     <table class='table table-hover table-condensed'>
-                        
                         <thead>
                             <tr>
                                 <th width="90%">{% trans %}Message{% endtrans %}</th>
                                 <th>{% trans %}Actions{% endtrans %}</th>
                             </tr>
                         </thead>
-                        
                         <tbody>
                             {% for mail in mails %}
                                 <tr>
@@ -35,17 +33,43 @@
                                     </td> 
                                 </tr>
                             {% endfor %}
-                            
                         </tbody>
                     </table>
                 </div>
             </div>
+        </div>
     </div>
     
     <!-- Modal Update Mail -->
     <div class="modal fade" id="modal-update-mail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Modal Info Mail -->
+    <div class="modal fade" id="modal-info-mail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{% trans %}Close{% endtrans %}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{% trans %}Mail Tokens{% endtrans %}</h4>
+                </div>
+                <div class="modal-body">
+                    <p><code>%protocol_url%</code> - {% trans %}Protocol URL{% endtrans %}</p>
+                    <p><code>%protocol_code%</code> - {% trans %}Protocol code{% endtrans %}</p>
+                    <p><code>%home_url%</code> - {% trans %}Proethos URL{% endtrans %}</p>
+                    <p><code>%reset_password_url%</code> - {% trans %}Reset password URL{% endtrans %}</p>
+                    <p><code>%committee_screening%</code> - {% trans %}Initial commitee screening{% endtrans %}</p>
+                    <p><code>%username%</code> - {% trans %}User name{% endtrans %} ({% trans %}contact form{% endtrans %})</p>
+                    <p><code>%email%</code> - {% trans %}Email{% endtrans %} ({% trans %}contact form{% endtrans %})</p>
+                    <p><code>%subject%</code> - {% trans %}Subject{% endtrans %} ({% trans %}contact form{% endtrans %})</p>
+                    <p><code>%message%</code> - {% trans %}Message{% endtrans %} ({% trans %}contact form{% endtrans %})</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                </div>
+            </div>
         </div>
     </div>
 
