@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2019-04-03T16:15:30Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2019-04-04T18:29:37Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -717,6 +717,10 @@
         <source>Initial Committee Screening</source>
         <target>Revisão inicial do comitê</target>
       </trans-unit>
+      <trans-unit id="b91714208b2a583fc023ea1270476f75bcca4c41" resname="Initial commitee screening">
+        <source>Initial commitee screening</source>
+        <target>Initial commitee screening</target>
+      </trans-unit>
       <trans-unit id="1a3fae1a69fcdaab82d1737fcf3346a46cf50ac5" resname="Initial committee review">
         <source>Initial committee review</source>
         <target>Revisão inicial do comitê</target>
@@ -804,6 +808,10 @@
       <trans-unit id="25f75cffc491d4d188333ee940a57984e2391c73" resname="Mail Messages">
         <source>Mail Messages</source>
         <target>Mail Messages</target>
+      </trans-unit>
+      <trans-unit id="ab36f077bcc7c288b78e4d2231708f4a1526f9e8" resname="Mail Tokens">
+        <source>Mail Tokens</source>
+        <target>Mail Tokens</target>
       </trans-unit>
       <trans-unit id="c1fed26979361d06c848030502536d84a52e6a13" resname="Main Type">
         <source>Main Type</source>
@@ -1165,6 +1173,10 @@
         <source>Problems generating PDF. Please contact the administrator.</source>
         <target>Problemas de geração de PDF. Entre em contato com o administrador. </target>
       </trans-unit>
+      <trans-unit id="7cd20f264e9019fe3433cc7983b42977d5341a5e" resname="Proethos URL">
+        <source>Proethos URL</source>
+        <target>Proethos URL</target>
+      </trans-unit>
       <trans-unit id="f2f01e6249a5ad459e77f133a7e3b40627bb5617" resname="Project Title">
         <source>Project Title</source>
         <target>Título do projeto </target>
@@ -1177,9 +1189,17 @@
         <source>Protocol Type</source>
         <target>Tipo de protocolo</target>
       </trans-unit>
+      <trans-unit id="44e3634965bb62f4183e6d899dc917019e8f33d8" resname="Protocol URL">
+        <source>Protocol URL</source>
+        <target>Protocol URL</target>
+      </trans-unit>
       <trans-unit id="ed4d7084883b643c2fc1e2f41583751be3baa4fd" resname="Protocol accepted for review by %user% and investigators notified.">
         <source>Protocol accepted for review by %user% and investigators notified.</source>
         <target>Protocolo aceitado pelo %user% e os investigadores notificados. </target>
+      </trans-unit>
+      <trans-unit id="d80090c23fb5ce21ada4e04d747c32da5a0ec75c" resname="Protocol code">
+        <source>Protocol code</source>
+        <target>Protocol code</target>
       </trans-unit>
       <trans-unit id="06bf9594ee1763ecffe91609059d78947ce13591" resname="Protocol finalized by %user% under option &quot;%option%&quot;.">
         <source>Protocol finalized by %user% under option "%option%".</source>
@@ -1321,6 +1341,10 @@
       <trans-unit id="be601df25eea91eaaf0d5e80263930143af345be" resname="Research">
         <source>Research</source>
         <target>Pesquisa</target>
+      </trans-unit>
+      <trans-unit id="ddc3636f480fa963a0265568f99c14aea5fc8e88" resname="Reset password URL">
+        <source>Reset password URL</source>
+        <target>Reset password URL</target>
       </trans-unit>
       <trans-unit id="bf8804f07772036fc47c44e60c9c3ce7073e6891" resname="Reset your password">
         <source>Reset your password</source>
@@ -1802,6 +1826,10 @@
         <source>User deleted with success.</source>
         <target>Usuário excluído com sucesso </target>
       </trans-unit>
+      <trans-unit id="542fc71480dec743e60c20434ec6dd5838fc4b52" resname="User name">
+        <source>User name</source>
+        <target>User name</target>
+      </trans-unit>
       <trans-unit id="9c19f4469c4e6c88fd28c8a3d373329b43ba4a7d" resname="User updated with success.">
         <source>User updated with success.</source>
         <target>Usuário atualizado com sucesso </target>
@@ -1906,6 +1934,10 @@
       <trans-unit id="34356a0bb97032d85b905883f666dba5e56cfece" resname="clinical trial">
         <source>clinical trial</source>
         <target>Ensaio clínico </target>
+      </trans-unit>
+      <trans-unit id="b2ad1ca2e30fb080a5ad3d2c5549d502bc5e2236" resname="contact form">
+        <source>contact form</source>
+        <target>contact form</target>
       </trans-unit>
       <trans-unit id="4c6dd761f24c4ac4fb95bb1bd183d4815802bfc7" resname="go on">
         <source>go on</source>
