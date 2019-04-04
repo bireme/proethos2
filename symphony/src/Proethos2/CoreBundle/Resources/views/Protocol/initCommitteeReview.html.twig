@@ -192,7 +192,7 @@
 
                             <tbody>
                                 {% for member in users %}
-                                    {% if role_member_of_committee in member.proethos2Roles %}
+                                    {% if role_member_ad_hoc in member.proethos2Roles %}
                                         <tr>
                                             <td><input type='checkbox' name="select-members-of-committee[]" value="{{ member.id }}"></td>
                                             <td>{{ member.name }}</td>
