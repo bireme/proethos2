@@ -189,7 +189,7 @@ class ProtocolController extends Controller
 
                 $help = $help_repository->find(209);
                 $translations = $trans_repository->findTranslations($help);
-                $text = $translations[$locale];
+                $text = $translations[$submission->getLanguage()];
                 $body = $text['message'];
                 $body = str_replace("%protocol_url%", $url, $body);
                 $body = str_replace("\r\n", "<br />", $body);
@@ -302,7 +302,7 @@ class ProtocolController extends Controller
 
                     $help = $help_repository->find(210);
                     $translations = $trans_repository->findTranslations($help);
-                    $text = $translations[$locale];
+                    $text = $translations[$submission->getLanguage()];
                     $body = $text['message'];
                     $body = str_replace("%protocol_url%", $url, $body);
                     $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
@@ -358,7 +358,7 @@ class ProtocolController extends Controller
 
                         $help = $help_repository->find(211);
                         $translations = $trans_repository->findTranslations($help);
-                        $text = $translations[$locale];
+                        $text = $translations[$submission->getLanguage()];
                         $body = $text['message'];
                         $body = str_replace("%protocol_url%", $url, $body);
                         $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
@@ -474,7 +474,7 @@ class ProtocolController extends Controller
                 if ( $post_data['committee-screening'] ) {
                     $help = $help_repository->find(212);
                     $translations = $trans_repository->findTranslations($help);
-                    $text = $translations[$locale];
+                    $text = $translations[$submission->getLanguage()];
                     $body = $text['message'];
                     $body = str_replace("%protocol_url%", $url, $body);
                     $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
@@ -484,7 +484,7 @@ class ProtocolController extends Controller
                 } else {
                     $help = $help_repository->find(213);
                     $translations = $trans_repository->findTranslations($help);
-                    $text = $translations[$locale];
+                    $text = $translations[$submission->getLanguage()];
                     $body = $text['message'];
                     $body = str_replace("%protocol_url%", $url, $body);
                     $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
@@ -563,7 +563,7 @@ class ProtocolController extends Controller
 
                     $help = $help_repository->find(214);
                     $translations = $trans_repository->findTranslations($help);
-                    $text = $translations[$locale];
+                    $text = $translations[$submission->getLanguage()];
                     $body = $text['message'];
                     $body = str_replace("%protocol_url%", $url, $body);
                     $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
@@ -698,7 +698,7 @@ class ProtocolController extends Controller
 
                             $help = $help_repository->find(215);
                             $translations = $trans_repository->findTranslations($help);
-                            $text = $translations[$locale];
+                            $text = $translations[$submission->getLanguage()];
                             $body = $text['message'];
                             $body = str_replace("%protocol_url%", $url, $body);
                             $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
@@ -995,7 +995,7 @@ class ProtocolController extends Controller
 
                 $help = $help_repository->find(216);
                 $translations = $trans_repository->findTranslations($help);
-                $text = $translations[$locale];
+                $text = $translations[$submission->getLanguage()];
                 $body = $text['message'];
                 $body = str_replace("%protocol_url%", $url, $body);
                 $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
