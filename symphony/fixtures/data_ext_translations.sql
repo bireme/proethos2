@@ -58,9 +58,8 @@ Access the link below for more details.
 
 Protocol <b>%protocol_code%</b>: %protocol_url%
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
+Regards,
+Proethos2 Team');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '202', 'Dear investigator,
 
 Your protocol was sent to ethics review.
@@ -70,9 +69,8 @@ Access the link below for more details:
 
 %protocol_url%
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
+Regards,
+Proethos2 Team');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '203', 'Hello!
 
 You have been registered in the ProEthos2 Platform.
@@ -81,9 +79,8 @@ Please access the link below and set your password:
 
 %reset_password_url%
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
+Regards,
+Proethos2 Team');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '204', 'Hello!
 
 Your access has been validated in the ProEthos2 platform.
@@ -92,9 +89,8 @@ Access the link below:
 
 %home_url%
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
+Regards,
+Proethos2 Team');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '205', 'Hello!
 
 A message was sent to Proethos2 administrator from plataform.
@@ -104,9 +100,8 @@ A message was sent to Proethos2 administrator from plataform.
 <b>Message</b>:
 %message%
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
+Regards,
+Proethos2 Team');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '206', 'Hello!
 
 You asked for a new password in Proethos2 platform.
@@ -115,18 +110,16 @@ Please access the link below to change your password:
 
 %reset_password_url%
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
+Regards,
+Proethos2 Team');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '207', 'Hello!
 
 You have been registered in the ProEthos2 Platform.
 Please wait until your access has been validated.
 We will send you an email.
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
+Regards,
+Proethos2 Team');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '208', 'Hello!
 
 There is a new user registered in the Proethos2 platform.
@@ -135,9 +128,8 @@ Please check and authorize this access.
 
 %home_url%
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
+Regards,
+Proethos2 Team');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '209', 'Hello!
 
 Your protocol was rejected.
@@ -146,20 +138,16 @@ Access the link below for more details.
 
 %protocol_url%
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
-INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '210', 'Hello!
-
-A new protocol needs your analysis.
+Regards,
+Proethos2 Team');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '210', 'Hello! A new protocol needs your analysis.
 
 Access the link below for more details.
 
 Protocol <b>%protocol_code%</b>: %protocol_url%
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
+Regards,
+Proethos2 Team');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '211', 'Hello!
 
 Your protocol was sent to review.
@@ -168,14 +156,13 @@ Access the link below.
 
 Protocol <b>%protocol_code%</b>: %protocol_url%
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
+Regards,
+Proethos2 Team');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '212', 'Dear investigator,
 
-PAHOERC conducted an initial review of your research proposal and determined it must pass through full ethics review before initiating the research.
-PAHOERC meets on the second Tuesday of each month to review complete proposals.
-PAHOERC Observations are emailed to research teams shortly after each monthly meeting.
+Proethos2 team conducted an initial review of your research proposal and determined it must pass through full ethics review before initiating the research.
+Proethos2 team meets on the second Tuesday of each month to review complete proposals.
+Proethos2 team observations are emailed to research teams shortly after each monthly meeting.
 
 Initial committee screening: %committee_screening%
 
@@ -183,25 +170,23 @@ Access the link below for more details.
 
 Protocol <b>%protocol_code%</b>: %protocol_url%
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
+Regards,
+Proethos2 Team');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '213', 'Dear investigator,
 
-PAHOERC conducted an initial review of your research proposal and determined it must pass through full ethics review before initiating the research.
-PAHOERC meets on the second Tuesday of each month to review complete proposals.
-PAHOERC Observations are emailed to research teams shortly after each monthly meeting.
+Proethos2 team conducted an initial review of your research proposal and determined it must pass through full ethics review before initiating the research.
+Proethos2 team meets on the second Tuesday of each month to review complete proposals.
+Proethos2 team Observations are emailed to research teams shortly after each monthly meeting.
 
 Access the link below for more details.
 
 Protocol <b>%protocol_code%</b>: %protocol_url%
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
+Regards,
+Proethos2 Team');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '214', 'Dear investigator,
 
-We write to you in regards to your research proposal, which you recently submitted to PAHOERC for ethics review.
+We write to you in regards to your research proposal, which you recently submitted to Proethos2 team for ethics review.
 Attached you will find the official decision issued by the Committee for this proposal.
 Thank you for your submission. We look forward to continue receiving your valuable contributions.
 
@@ -209,9 +194,8 @@ Access the link below for more details.
 
 Protocol <b>%protocol_code%</b>: %protocol_url%
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
+Regards,
+Proethos2 Team');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '215', 'Hello!
 
 You were assigned to review a protocol.
@@ -220,12 +204,11 @@ Please access the link below.
 
 Protocol <b>%protocol_code%</b>: %protocol_url%
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
+Regards,
+Proethos2 Team');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '216', 'Dear investigator,
 
-We write to you in regards to your research proposal, which you recently submitted to PAHOERC for ethics review.
+We write to you in regards to your research proposal, which you recently submitted to Proethos2 team for ethics review.
 Attached you will find the official decision issued by the Committee for this proposal.
 Thank you for your submission. We look forward to continue receiving your valuable contributions.
 
@@ -233,9 +216,8 @@ Access the link below for more details.
 
 Protocol <b>%protocol_code%</b>: %protocol_url%
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
+Regards,
+Proethos2 Team');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '217', 'Hello!
 
 A new monitoring action has been submitted.
@@ -244,9 +226,8 @@ Access the link below for more details.
 
 Protocol <b>%protocol_code%</b>: %protocol_url%
 
-Sincerely,
-PAHOERC Secretariat
-PAHOERC@paho.org');
+Regards,
+Proethos2 Team');
 
 -- ---------------------
 -- ClinicalTrialName
