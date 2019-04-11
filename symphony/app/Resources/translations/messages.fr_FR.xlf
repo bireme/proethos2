@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2019-04-04T18:30:03Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2019-04-11T17:29:39Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -337,6 +337,10 @@
       <trans-unit id="de06a1fbeb64e7f4b184e68b9e8b95b2fb6469c0" resname="Created in">
         <source>Created in</source>
         <target>Created in</target>
+      </trans-unit>
+      <trans-unit id="e070de224434a2acd352b35cec46f34f9e08e1b2" resname="Currency">
+        <source>Currency</source>
+        <target>Currency</target>
       </trans-unit>
       <trans-unit id="d87f47b47e4d5794d53fe0734c49417bd046cde0" resname="Dashboard">
         <source>Dashboard</source>
@@ -954,6 +958,10 @@
         <source>New Country</source>
         <target>New Country</target>
       </trans-unit>
+      <trans-unit id="36d808c63f5b6c842dd61dde1e2f350bfb57b986" resname="New Currency">
+        <source>New Currency</source>
+        <target>New Currency</target>
+      </trans-unit>
       <trans-unit id="e69f5da60a4e048b153ac26a5f65b9bb0ea18b3f" resname="New Document">
         <source>New Document</source>
         <target>New Document</target>
@@ -1497,6 +1505,10 @@
       <trans-unit id="59ee76bad1c84ae8a74eecd124068c0d3c7d4924" resname="Select country">
         <source>Select country</source>
         <target>Select country</target>
+      </trans-unit>
+      <trans-unit id="a3303adc06a6bce088feeebba35b3ca0ab8b8a89" resname="Select currency">
+        <source>Select currency</source>
+        <target>Select currency</target>
       </trans-unit>
       <trans-unit id="f9bcd620ea43fcf001a1d4d0f2865f4c07a17471" resname="Select meeting">
         <source>Select meeting</source>
