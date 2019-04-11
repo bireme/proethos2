@@ -20,6 +20,7 @@ namespace Proethos2\CoreBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Intl\Intl;
 use Symfony\Component\HttpFoundation\Response;
 
 use Proethos2\CoreBundle\Util\Util;
@@ -1595,11 +1596,28 @@ class CRUDController extends Controller
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
 
+        $currencies = Intl::getCurrencyBundle()->getCurrencyNames();
+        $output['currencies'] = $currencies;
+
+        $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
+        $countries = $country_repository->findBy(array(), array('name' => 'asc'));
+        $output['countries'] = $countries;
+
         $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
-
         $configurations = $configuration_repository->findAll();
-
         $output['configurations'] = $configurations;
+
+        $country_locale = $configuration_repository->findBy(array('key' => 'country.locale'));
+        $country_code   = explode('|', $country_locale[0]->getValue())[0];
+        $currency_code  = explode('|', $country_locale[0]->getValue())[1];
+        $output['country_code']  = $country_code;
+        $output['currency_code'] = $currency_code;
+
+        $country  = $country_repository->findBy(array('code' => $country_code));
+        $currency_name = $currencies[$currency_code];
+        $output['country_name']  = $country[0]->getName();
+        $output['currency_name'] = $currency_name;
+
         return $output;
     }
 

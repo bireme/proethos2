@@ -29,7 +29,7 @@ generate_initial:
 	$(php) app/console proethos2:generate-database-translations > fixtures/data_ext_translations.sql
 
 generate_translations:
-
+	
 	# generating the files
 	$(php) app/console translation:extract pt_BR --dir=src --dir=app/Resources/views --output-dir=./app/Resources/translations
 	$(php) app/console translation:extract es_ES --dir=src --dir=app/Resources/views --output-dir=./app/Resources/translations

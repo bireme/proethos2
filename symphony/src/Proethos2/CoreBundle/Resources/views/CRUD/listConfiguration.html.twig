@@ -27,16 +27,20 @@
                         
                         <tbody>
                             {% for configuration in configurations %}
-                                <tr>
-                                    <td>{{ configuration.description }}</td> 
-                                    <td>{% if not configuration.value %}<i>(empty value)</i>{% else %}{{ configuration.value }}{% endif %}</td> 
-                                    <td>
-                                        <a href='{{ path("crud_admin_configuration_update", {configuration_id: configuration.id}) }}' data-toggle='modal' data-target='#modal-update-configuration' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
-
-                                    </td> 
-                                </tr>
+                                {% if configuration.key == 'country.locale' %}
+                                    <tr>
+                                        <td>{{ configuration.description }}</td>
+                                        <td>{% if not configuration.value %}<i>(empty value)</i>{% else %}{{ country_name }} | {{ currency_name }}{% endif %}</td>
+                                        <td><a href='#' data-toggle='modal' data-target='#modal-new-currency' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a></td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td>{{ configuration.description }}</td>
+                                        <td>{% if not configuration.value %}<i>(empty value)</i>{% else %}{{ configuration.value }}{% endif %}</td>
+                                        <td><a href='{{ path("crud_admin_configuration_update", {configuration_id: configuration.id}) }}' data-toggle='modal' data-target='#modal-update-configuration' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a></td>
+                                    </tr>
+                                {% endif %}
                             {% endfor %}
-                            
                         </tbody>
                     </table>
                 </div>
@@ -50,6 +54,57 @@
         </div>
     </div>
 
+    <!-- Modal Nova Moeda -->
+    <div class="modal fade" id="modal-new-currency" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <form class='form' id='form-currency' method='POST' action='{{ path("crud_admin_configuration_update", {configuration_id: 10}) }}'>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}New Currency{% endtrans %}</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="">{% trans %}Country{% endtrans %}:</label>
+                            <select class='form-control selectpicker' data-live-search="true" name='country' id='select-country' required>
+                                <option value="">{% trans %}Select country{% endtrans %}</option>
+                                {% for country in countries %}
+                                    {% if country.code == country_code %}
+                                        <option value="{{ country.code }}" selected>{{ country }}</option>
+                                    {% else %}
+                                        <option value="{{ country.code }}">{{ country }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <input type="hidden" id="input-configuration-value" name="configuration-value" value="">
+
+                        <div class="form-group">
+                            <label for="">{% trans %}Currency{% endtrans %}:</label>
+                            <select class='form-control selectpicker' data-live-search="true" name='currency' id='select-currency' required>
+                                <option value="">{% trans %}Select currency{% endtrans %}</option>
+                                {% for key, currency in currencies %}
+                                    {% if key == currency_code %}
+                                        <option value="{{ key }}" selected>{{ currency }}</option>
+                                    {% else %}
+                                        <option value="{{ key }}">{{ currency }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                        <button type="submit" id='submit-currency-form' class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block script %}
@@ -59,7 +114,15 @@
                 // opens the update modal for this id
                 var update_button = $("a[data-target='#modal-update-configuration']");
                 update_button.trigger('click');
-            {% endif %}   
+            {% endif %}
+
+            // modal currency submit action
+            $("#submit-currency-form").click(function(e){
+                // e.preventDefault();
+                var country = $("#select-country").val();
+                var currency = $("#select-currency").val();
+                $("#input-configuration-value").val(country+"|"+currency);
+            });
         });
     </script>
 {% endblock %}

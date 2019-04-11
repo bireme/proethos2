@@ -20,11 +20,13 @@ namespace Proethos2\CoreBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Intl\Intl;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 use Proethos2\CoreBundle\Util\Util;
+use Proethos2\CoreBundle\Util\CountryLocale;
 
 use Proethos2\ModelBundle\Entity\Submission;
 use Proethos2\ModelBundle\Entity\SubmissionCountry;
@@ -552,6 +554,15 @@ class NewSubmissionController extends Controller
         $submission_clinical_trial_repository = $em->getRepository('Proethos2ModelBundle:SubmissionClinicalTrial');
         $clinical_trial_name_repository = $em->getRepository('Proethos2ModelBundle:ClinicalTrialName');
 
+        $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
+        $country_locale = $configuration_repository->findBy(array('key' => 'country.locale'));
+        $country_code   = explode('|', $country_locale[0]->getValue())[0];
+        $currency_code  = explode('|', $country_locale[0]->getValue())[1];
+        $locale = CountryLocale::getLocaleByCountryCode($country_code);
+        $locale = explode(',', $locale)[0];
+        $symbol = Intl::getCurrencyBundle()->getCurrencySymbol($currency_code, $locale);
+        $output['symbol'] = $symbol;
+
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         // getting the current submission
@@ -960,6 +971,15 @@ class NewSubmissionController extends Controller
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
         // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
         // $translations = $trans_repository->findTranslations($help[0]);
+
+        $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
+        $country_locale = $configuration_repository->findBy(array('key' => 'country.locale'));
+        $country_code   = explode('|', $country_locale[0]->getValue())[0];
+        $currency_code  = explode('|', $country_locale[0]->getValue())[1];
+        $locale = CountryLocale::getLocaleByCountryCode($country_code);
+        $locale = explode(',', $locale)[0];
+        $symbol = Intl::getCurrencyBundle()->getCurrencySymbol($currency_code, $locale);
+        $output['symbol'] = $symbol;
 
         if (!$submission or $submission->getCanBeEdited() == false) {
             if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
@@ -1370,6 +1390,15 @@ class NewSubmissionController extends Controller
         $session = $request->getSession();
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
+
+        $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
+        $country_locale = $configuration_repository->findBy(array('key' => 'country.locale'));
+        $country_code   = explode('|', $country_locale[0]->getValue())[0];
+        $currency_code  = explode('|', $country_locale[0]->getValue())[1];
+        $locale = CountryLocale::getLocaleByCountryCode($country_code);
+        $locale = explode(',', $locale)[0];
+        $symbol = Intl::getCurrencyBundle()->getCurrencySymbol($currency_code, $locale);
+        $output['symbol'] = $symbol;
 
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         $user = $this->get('security.token_storage')->getToken()->getUser();

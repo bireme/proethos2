@@ -192,9 +192,9 @@
                 {% for item in submission.budget %}
                     <tr>
                         <td>{{ item.description }}</td>
-                        <td>U$ {{ item.unitCost }}</td>
+                        <td>{{ symbol }} {{ item.unitCost }}</td>
                         <td>{{ item.quantity }}</td>
-                        <td>U$ {{ item.unitCost * item.quantity }}</td>
+                        <td>{{ symbol }} {{ item.unitCost * item.quantity }}</td>
                     </tr>
                 {% endfor %}
             </table>
@@ -227,7 +227,7 @@
             {% for item in submission.attachments %}
                 <tr>
                     <td>{{ item.uploadType }}</td>
-                    <td>U$ {{ item.filename }}</td>
+                    <td>{{ item.filename }}</td>
                     <td>{{ item.created|date("d/m/Y H:i:s") }}</td>
                 </tr>
             {% endfor %}

@@ -98,15 +98,15 @@
                                             <input type='hidden' name='budget[{{ loop.index0 }}][unit_cost]' value='{{ cost.unitCost }}'>
 
                                             <td>{{ cost.description }}</td>
-                                            <td><label class='label label-default'>U$ <span class='unit-cost'>{{ cost.unitCost }}</span></label></td>
+                                            <td><label class='label label-default'>{{ symbol }} <span class='unit-cost'>{{ cost.unitCost }}</span></label></td>
                                             <td><label class='label label-default'>{{ cost.quantity }}</label></td>
-                                            <td><label class='label label-primary'>U$ <span class='total-cost'>{{ cost.quantity * cost.unitCost }}</span></label></td>
+                                            <td><label class='label label-primary'>{{ symbol }} <span class='total-cost'>{{ cost.quantity * cost.unitCost }}</span></label></td>
                                             <td><a href='#' class='btn btn-default btn-xs button-remove-cost'><i class='glyphicon glyphicon-trash'></i></a></td>
                                         </tr>
                                     {% endfor %}
                                     <tr>
                                         <th colspan="3">{% trans %}Total cost{% endtrans %}</th>
-                                        <th colspan="2">U$ <span id='span-total-budget'></span></th>
+                                        <th colspan="2">{{ symbol }} <span id='span-total-budget'></span></th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -315,7 +315,6 @@
         </div>
     </div>
 
-
 {% endblock %}
 
 {% block script %}
@@ -346,9 +345,9 @@
                 string +=    "<input type='hidden' name='budget["+ $total_budget +"][unit_cost]' value='"+ $unit_cost +"'>"
 
                 string +=    "<td>"+ $description +"</td> "
-                string +=    "<td><label class='label label-default'>U$ "+ $unit_cost +"</label></td> "
+                string +=    "<td><label class='label label-default'>{{ symbol }} "+ $unit_cost +"</label></td> "
                 string +=    "<td><label class='label label-default'>"+ $quantity +"</label></td> "
-                string +=    "<td><label class='label label-primary'>U$ <span class='total-cost'>"+ $total +"</span></label></td> "
+                string +=    "<td><label class='label label-primary'>{{ symbol }} <span class='total-cost'>"+ $total +"</span></label></td> "
                 string +=    "<td><a href='#' class='btn btn-default btn-xs button-remove-cost'><i class='glyphicon glyphicon-trash'></i></a></td> "
                 string += "</tr>"
 
@@ -468,7 +467,6 @@
             });
             $("#span-total-budget").text($total_cost);
         }
-
 
     </script>
 {% endblock %}
