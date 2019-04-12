@@ -263,7 +263,13 @@ class ProtocolController extends Controller
                 // setting protocool history
                 $protocol_history = new ProtocolHistory();
                 $protocol_history->setProtocol($protocol);
-                $protocol_history->setMessage($translator->trans("Protocol was rejected by") ." ". $user . ".");
+                // $protocol_history->setMessage($translator->trans("Protocol was rejected by") ." ". $user . ".");
+                $protocol_history->setMessage($translator->trans('Protocol was rejected by %user% with this justification "%justify%".',
+                    array(
+                        '%user%' => $user->getUsername(),
+                        '%justify%' => $post_data['reject-reason'],
+                    )
+                ));
                 $em->persist($protocol_history);
                 $em->flush();
 
@@ -527,8 +533,9 @@ class ProtocolController extends Controller
                     $submission_upload = new SubmissionUpload();
                     $submission_upload->setSubmission($protocol->getMainSubmission());
                     $submission_upload->setUploadType($upload_type);
-                    $submission_upload->setSubmissionNumber($protocol->getMainSubmission()->getNumber());
+                    $submission_upload->setUser($user);
                     $submission_upload->setFile($file);
+                    $submission_upload->setSubmissionNumber($protocol->getMainSubmission()->getNumber());
 
                     $attachment = \Swift_Attachment::fromPath($submission_upload->getFilepath());
 
@@ -948,8 +955,9 @@ class ProtocolController extends Controller
             $submission_upload = new SubmissionUpload();
             $submission_upload->setSubmission($protocol->getMainSubmission());
             $submission_upload->setUploadType($upload_type);
-            $submission_upload->setSubmissionNumber($protocol->getMainSubmission()->getNumber());
+            $submission_upload->setUser($user);
             $submission_upload->setFile($file);
+            $submission_upload->setSubmissionNumber($protocol->getMainSubmission()->getNumber());
 
             $attachment = \Swift_Attachment::fromPath($submission_upload->getFilepath());
 
