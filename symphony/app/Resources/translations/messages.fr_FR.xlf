@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2019-04-11T17:29:39Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2019-04-12T15:30:35Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -1234,9 +1234,9 @@
         <source>Protocol was finalized with success!</source>
         <target>Protocol was finalized with success!</target>
       </trans-unit>
-      <trans-unit id="ffdf4d462b48069706ac5c6bcf284b460a30f0c0" resname="Protocol was rejected by">
-        <source>Protocol was rejected by</source>
-        <target>Protocol was rejected by</target>
+      <trans-unit id="e8d168bb9ad0021a44854c5ff373769ca0aa4b1b" resname="Protocol was rejected by %user% with this justification &quot;%justify%&quot;.">
+        <source>Protocol was rejected by %user% with this justification "%justify%".</source>
+        <target>Protocol was rejected by %user% with this justification "%justify%".</target>
       </trans-unit>
       <trans-unit id="2c56fcfbf450e4083ffc685ab1babb8c8a0b5f6f" resname="Protocol was removed with success!">
         <source>Protocol was removed with success!</source>
