@@ -1681,7 +1681,7 @@ class Submission extends Base
      */
     public function getCanBeEdited()
     {
-        if($this->getProtocol()->getStatus() == "D" or $this->getProtocol()->getStatus() == "R") {
+        if(in_array($this->getProtocol()->getStatus(), array('D', 'R', 'C'))) {
             return true;
         } else {
             if($this->getProtocol()->getIsMigrated()) {
