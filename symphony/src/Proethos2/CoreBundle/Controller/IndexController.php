@@ -58,7 +58,7 @@ class IndexController extends Controller
         $output['revisions'] = $revisions;
         
         $submissions = array();
-        foreach($protocol_repository->findBy(array("owner" => $user)) as $submission) {
+        foreach($protocol_repository->findBy(array("owner" => $user), array('id' => 'DESC')) as $submission) {
             $submissions[] = $submission;
         }
         $output['submissions'] = $submissions;
