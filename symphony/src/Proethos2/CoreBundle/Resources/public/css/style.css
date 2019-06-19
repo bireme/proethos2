@@ -177,6 +177,7 @@ h5 {
 
 img.logo {
     max-width: 300px;
+    max-height: 140px;
 }
 .nav>li>a>img.logo {
     max-height: 18px;
