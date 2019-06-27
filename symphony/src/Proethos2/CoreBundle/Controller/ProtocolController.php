@@ -527,7 +527,7 @@ class ProtocolController extends Controller
                 if(!empty($file)) {
 
                     // getting the upload type
-                    $upload_type = $upload_type_repository->findOneBy(array("slug" => "draft-opinion"));
+                    $upload_type = $upload_type_repository->findOneBy(array("slug" => "opinion"));
 
                     // adding the file uploaded
                     $submission_upload = new SubmissionUpload();
