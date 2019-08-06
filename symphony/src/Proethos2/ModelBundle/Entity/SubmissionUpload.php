@@ -238,8 +238,21 @@ class SubmissionUpload extends Base
     }
 
     public function getUri() {
+        $dir = __DIR__.'/../../../..';
+        $uri = "/uploads/" . str_pad($this->getSubmission()->getId(), 5, '0', STR_PAD_LEFT) . "/" . $this->getFilename();
 
-        return "/uploads/" . str_pad($this->getSubmission()->getId(), 5, '0', STR_PAD_LEFT) . "/" . $this->getFilename();
+        if (!file_exists($dir.$uri)) {
+            foreach ( $this->getSubmission()->getProtocol()->getSubmission() as $submission ) {
+                $path = "/uploads/" . str_pad($submission->getId(), 5, '0', STR_PAD_LEFT) . "/" . $this->getFilename();
+
+                if (file_exists($dir.$path)) {
+                    $uri = $path;
+                    break;
+                }
+            }
+        }
+
+        return $uri;
     }
 
     /**
