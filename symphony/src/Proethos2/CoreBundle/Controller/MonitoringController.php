@@ -304,7 +304,7 @@ class MonitoringController extends Controller
             $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
             $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
 
-            $help = $help_repository->find(217);
+            $help = $help_repository->find(201);
             $translations = $trans_repository->findTranslations($help);
             $text = $translations[$submission->getLanguage()];
             $body = $text['message'];
