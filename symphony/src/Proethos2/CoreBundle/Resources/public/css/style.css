@@ -212,3 +212,27 @@ img.logo {
     vertical-align: super;
     cursor: pointer;
 }
+
+.logoNav {
+    width: 154px;
+    margin: 10px;
+    display: none;
+}
+
+@media (max-width: 772px) {
+    #bs-example-navbar-collapse-1 ul.nav.navbar-nav {
+        display: block;
+    }
+
+    .logoNav {
+        display: block;
+    }
+    
+    .logo {
+        display: none;
+    }
+    
+    .navbar-collapse {
+        max-height: none !important;
+    }
+}
