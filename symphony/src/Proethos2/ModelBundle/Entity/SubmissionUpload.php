@@ -81,8 +81,8 @@ class SubmissionUpload extends Base
     private $is_monitoring_action = false;
 
     public function __toString() {
-        $filename = substr($this->getFilename(), 14);
-        return $filename;
+        $filename = explode('_', $this->getFilename(), 2);
+        return end($filename);
     }
 
     /**
