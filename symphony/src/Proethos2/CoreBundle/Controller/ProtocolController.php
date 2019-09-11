@@ -249,7 +249,7 @@ class ProtocolController extends Controller
                     $new_translation->setNumber($translation->getNumber() + 1);
                     $em->persist($new_translation);
 
-                    $new_submission->addTranlsation($new_translation);
+                    $new_submission->addTranslation($new_translation);
                     $em->persist($new_submission);
                 }
                 $em->flush();

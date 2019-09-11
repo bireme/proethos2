@@ -87,9 +87,9 @@
                     {% for file in protocol.mainSubmission.attachments if not file.isMonitoringAction %}
                         <tr>
                             <td>{{ file.uploadType }}</td>
-                            <td>{{ file.submissionNumber }}</td> 
-                            <td>{{ file.user }}</td> 
-                            <td>{{ file.filename }}</td> 
+                            <td>{{ file.submissionNumber }}</td>
+                            <td>{{ file.user }}</td>
+                            <td>{% if file.uploadType.slug in ['protocol'] %}{{ file.filename }}{% else %}{{ file }}{% endif %}</td> 
                             <td>{{ file.created|date("d/m/Y H:i") }}</td> 
                             <td>
                                 <a href='{{ asset(file.uri) }}' target="_blank" class='btn btn-default btn-xs' target="_blank">

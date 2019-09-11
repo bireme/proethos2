@@ -80,6 +80,11 @@ class SubmissionUpload extends Base
      */
     private $is_monitoring_action = false;
 
+    public function __toString() {
+        $filename = substr($this->getFilename(), 14);
+        return $filename;
+    }
+
     /**
      * Get id
      *
@@ -204,7 +209,7 @@ class SubmissionUpload extends Base
         $submission_upload_directory = $this->getSubmissionDirectory();
 
         $filename_without_extension = str_replace("." . $file->getClientOriginalExtension(), "", $file->getClientOriginalName());
-        $filename = $slugify->slugify($filename_without_extension) . "." . $file->getClientOriginalExtension();
+        $filename = uniqid() . '_' . $slugify->slugify($filename_without_extension) . "." . $file->getClientOriginalExtension();
         $filepath = $submission_upload_directory . "/" . $filename;
         $file = $file->move($submission_upload_directory, $filename);
 
