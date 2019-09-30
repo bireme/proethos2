@@ -49,10 +49,17 @@ class ProtocolController extends Controller
         $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
 
+        $util = new Util($this->container, $this->getDoctrine());
+
         // getting the current submission
         $protocol = $protocol_repository->find($protocol_id);
         $submission = $protocol->getMainSubmission();
         $output['protocol'] = $protocol;
+
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+        // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
+        // $translations = $trans_repository->findTranslations($help[0]);
 
         if (!$protocol) {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
@@ -77,6 +84,35 @@ class ProtocolController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($comment);
                 $em->flush();
+
+                $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
+                $help = $help_repository->find(218);
+                $translations = $trans_repository->findTranslations($help);
+                $text = $translations[$submission->getLanguage()];
+                $body = $text['message'];
+                $body = str_replace("%protocol_url%", $url, $body);
+                $body = str_replace("\r\n", "<br />", $body);
+                $body .= "<br /><br />";
+
+                $secretaries_emails = array();
+                foreach($user_repository->findAll() as $secretary) {
+                    if(in_array("secretary", $secretary->getRolesSlug())) {
+                        $secretaries_emails[] = $secretary->getEmail();
+                    }
+                }
+                $message = \Swift_Message::newInstance()
+                ->setSubject("[LILACS] " . $translator->trans("New comment on Proethos2"))
+                ->setFrom($util->getConfiguration('committee.email'))
+                ->setTo($secretaries_emails)
+                ->setBody(
+                    $body
+                    ,
+                    'text/html'
+                );
+
+                $send = $this->get('mailer')->send($message);
 
                 $session->getFlashBag()->add('success', $translator->trans("Comment was created with sucess."));
             }
@@ -106,6 +142,11 @@ class ProtocolController extends Controller
         $submission = $protocol->getMainSubmission();
         $output['protocol'] = $protocol;
 
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+        // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
+        // $translations = $trans_repository->findTranslations($help[0]);
+
         if (!$protocol) {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
@@ -131,6 +172,35 @@ class ProtocolController extends Controller
 
             $em->persist($comment);
             $em->flush();
+
+            $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+            $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
+            $help = $help_repository->find(218);
+            $translations = $trans_repository->findTranslations($help);
+            $text = $translations[$submission->getLanguage()];
+            $body = $text['message'];
+            $body = str_replace("%protocol_url%", $url, $body);
+            $body = str_replace("\r\n", "<br />", $body);
+            $body .= "<br /><br />";
+
+            $secretaries_emails = array();
+            foreach($user_repository->findAll() as $secretary) {
+                if(in_array("secretary", $secretary->getRolesSlug())) {
+                    $secretaries_emails[] = $secretary->getEmail();
+                }
+            }
+            $message = \Swift_Message::newInstance()
+            ->setSubject("[LILACS] " . $translator->trans("New comment on Proethos2"))
+            ->setFrom($util->getConfiguration('committee.email'))
+            ->setTo($secretaries_emails)
+            ->setBody(
+                $body
+                ,
+                'text/html'
+            );
+
+            $send = $this->get('mailer')->send($message);
 
             $session->getFlashBag()->add('success', $translator->trans("Comment was created with sucess."));
         }
