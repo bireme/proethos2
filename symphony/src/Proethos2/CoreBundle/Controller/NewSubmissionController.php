@@ -556,12 +556,17 @@ class NewSubmissionController extends Controller
 
         $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
         $country_locale = $configuration_repository->findBy(array('key' => 'country.locale'));
-        $country_code   = explode('|', $country_locale[0]->getValue())[0];
-        $currency_code  = explode('|', $country_locale[0]->getValue())[1];
-        $locale = CountryLocale::getLocaleByCountryCode($country_code);
-        $locale = explode(',', $locale)[0];
-        $symbol = Intl::getCurrencyBundle()->getCurrencySymbol($currency_code, $locale);
-        $output['symbol'] = $symbol;
+
+        if ( $country_locale ) {
+            $country_code   = explode('|', $country_locale[0]->getValue())[0];
+            $currency_code  = explode('|', $country_locale[0]->getValue())[1];
+            $locale = CountryLocale::getLocaleByCountryCode($country_code);
+            $locale = explode(',', $locale)[0];
+            $symbol = Intl::getCurrencyBundle()->getCurrencySymbol($currency_code, $locale);
+            $output['symbol'] = $symbol;
+        } else {
+            $output['symbol'] = '$';
+        }
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -974,12 +979,17 @@ class NewSubmissionController extends Controller
 
         $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
         $country_locale = $configuration_repository->findBy(array('key' => 'country.locale'));
-        $country_code   = explode('|', $country_locale[0]->getValue())[0];
-        $currency_code  = explode('|', $country_locale[0]->getValue())[1];
-        $locale = CountryLocale::getLocaleByCountryCode($country_code);
-        $locale = explode(',', $locale)[0];
-        $symbol = Intl::getCurrencyBundle()->getCurrencySymbol($currency_code, $locale);
-        $output['symbol'] = $symbol;
+
+        if ( $country_locale ) {
+            $country_code   = explode('|', $country_locale[0]->getValue())[0];
+            $currency_code  = explode('|', $country_locale[0]->getValue())[1];
+            $locale = CountryLocale::getLocaleByCountryCode($country_code);
+            $locale = explode(',', $locale)[0];
+            $symbol = Intl::getCurrencyBundle()->getCurrencySymbol($currency_code, $locale);
+            $output['symbol'] = $symbol;
+        } else {
+            $output['symbol'] = '$';
+        }
 
         if (!$submission or $submission->getCanBeEdited() == false) {
             if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
@@ -1420,12 +1430,17 @@ class NewSubmissionController extends Controller
 
         $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
         $country_locale = $configuration_repository->findBy(array('key' => 'country.locale'));
-        $country_code   = explode('|', $country_locale[0]->getValue())[0];
-        $currency_code  = explode('|', $country_locale[0]->getValue())[1];
-        $locale = CountryLocale::getLocaleByCountryCode($country_code);
-        $locale = explode(',', $locale)[0];
-        $symbol = Intl::getCurrencyBundle()->getCurrencySymbol($currency_code, $locale);
-        $output['symbol'] = $symbol;
+
+        if ( $country_locale ) {
+            $country_code   = explode('|', $country_locale[0]->getValue())[0];
+            $currency_code  = explode('|', $country_locale[0]->getValue())[1];
+            $locale = CountryLocale::getLocaleByCountryCode($country_code);
+            $locale = explode(',', $locale)[0];
+            $symbol = Intl::getCurrencyBundle()->getCurrencySymbol($currency_code, $locale);
+            $output['symbol'] = $symbol;
+        } else {
+            $output['symbol'] = '$';
+        }
 
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         $user = $this->get('security.token_storage')->getToken()->getUser();
