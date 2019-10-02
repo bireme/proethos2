@@ -18,8 +18,12 @@
 namespace Proethos2\ModelBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo; // gedmo annotations
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Translatable\Translatable;
+
 
 /**
  * Configuration
@@ -27,7 +31,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="configuration")
  * @ORM\Entity
  */
-class Configuration extends Base
+class Configuration extends Base implements Translatable
 {
     /**
      * @var integer
@@ -44,6 +48,7 @@ class Configuration extends Base
     private $key;
 
     /**
+     * @Gedmo\Translatable
      * @ORM\Column(type="text", nullable=true)
      */
     private $value;
@@ -52,6 +57,22 @@ class Configuration extends Base
      * @ORM\Column(type="string", length=255)
      */
     private $description;
+
+    /**
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    private $locale;
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    public function getLocale(){
+        return $this->locale;
+    }
 
     public function __toString() {
         return $this->getValue();

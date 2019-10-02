@@ -1633,15 +1633,18 @@ class CRUDController extends Controller
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
 
-        $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
-
         // getting the current configuration
+        $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
         $configuration = $configuration_repository->find($configuration_id);
+        $output['configuration'] = $configuration;
+
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        $translations = $trans_repository->findTranslations($configuration);
+        $output['translations'] = $translations;
 
         if (!$configuration) {
             throw $this->createNotFoundException($translator->trans('No configuration found'));
         }
-        $output['configuration'] = $configuration;
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
@@ -1650,6 +1653,25 @@ class CRUDController extends Controller
             $post_data = $request->request->all();
 
             $configuration->setValue($post_data['configuration-value']);
+
+            if( $request->query->get('form') and 'translate' == $request->query->get('form') ) {
+                // checking required files
+                foreach(array('configuration-message-en') as $field) {
+                    if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                        $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
+                        return $output;
+                    }
+                }
+
+                $configuration->setTranslatableLocale('en');
+                $configuration->setValue($post_data['configuration-message-en']);
+
+                foreach(array('pt_BR', 'es_ES', 'fr_FR') as $locale) {
+                    if(!empty($post_data["configuration-message-$locale"])) {
+                        $trans_repository = $trans_repository->translate($configuration, 'value', $locale, $post_data["configuration-message-$locale"]);
+                    }
+                }
+            }
 
             $em->persist($configuration);
             $em->flush();
