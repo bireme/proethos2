@@ -120,7 +120,7 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('administrator', $user->getRolesSlug()))) {
+        if (!$submission or !$submission->getCanBeEdited() or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
@@ -1449,7 +1449,7 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
-        if (!$submission or ($submission->getCanBeEdited() and !in_array('administrator', $user->getRolesSlug()))) {
+        if (!$submission or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
 
