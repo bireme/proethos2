@@ -38,10 +38,10 @@
                                 </thead>
 
                                 <tbody>
-                                    {% for file in submission.attachments if file.uploadType.slug not in ['protocol'] %}
+                                    {% for file in submission.attachments %}
                                         <tr>
                                             <td>{{ file.uploadType }}</td>
-                                            <td>{{ file }}</td>
+                                            <td>{% if file.uploadType.slug in ['protocol'] %}{{ file.filename }}{% else %}{{ file }}{% endif %}</td>
                                             <td>{{ file.created|date("d/m/Y H:i") }}</td>
                                             <td>
                                                 <a href='{{ asset(file.uri) }}' target="_blank" class='btn btn-default btn-xs' target="_blank">
