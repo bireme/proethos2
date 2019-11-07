@@ -219,6 +219,12 @@ img.logo {
     display: none;
 }
 
+.modal { overflow-y: auto !important; }
+
+.panel-heading.note-toolbar {
+    position: static;
+}
+
 @media (max-width: 772px) {
     #bs-example-navbar-collapse-1 ul.nav.navbar-nav {
         display: block;

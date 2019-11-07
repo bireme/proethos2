@@ -105,6 +105,20 @@
     </div>
 </form>
 
-<script>
-    $('#form-update-question textarea').wysihtml5(); 
-</script>
+{% block script %}
+    <script>
+        $(function(){
+            // $('#form-update-question textarea').wysihtml5(); 
+            $('#form-update-question textarea').summernote({
+                height: 150,
+                dialogsInBody: true,
+                lang: '{% if 'en' == app.request.locale %}en-US{% else %}{{ app.request.locale|replace({ '_': '-' }) }}{% endif %}',
+                popover: {
+                    image: [],
+                    link: [],
+                    air: []
+                }
+            });
+        });
+    </script>
+{% endblock %}
