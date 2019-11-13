@@ -729,7 +729,7 @@ class ProtocolController extends Controller
         // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
         // $translations = $trans_repository->findTranslations($help[0]);
 
-        if (!$protocol or $protocol->getStatus() != "E") {
+        if (!$protocol or !in_array($protocol->getStatus(), array('E', 'H'))) {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
 
@@ -866,7 +866,7 @@ class ProtocolController extends Controller
         $submission = $protocol->getMainSubmission();
         $output['protocol'] = $protocol;
 
-        if (!$protocol or $protocol->getStatus() != "E") {
+        if (!$protocol or !in_array($protocol->getStatus(), array('E', 'H'))) {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
 

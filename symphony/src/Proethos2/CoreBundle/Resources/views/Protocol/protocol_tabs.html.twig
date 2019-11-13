@@ -8,19 +8,21 @@
                 <li {% if app.request.get('_route') == "protocol_initial_committee_screening" %}class='active'{% endif %}>
                     <a href="#">{% trans %}Initial committee screening{% endtrans %}</a>
                 </li>
-                <li {% if app.request.get('_route') == "protocol_initial_committee_review" %}class='active'{% endif %}>
-                    <a href="#">{% trans %}Initial committee review{% endtrans %}</a>
-                </li>
-                <li {% if app.request.get('_route') == "protocol_end_review" %}class='active'{% endif %}>
-                    <a href="#">{% trans %}End Review{% endtrans %}</a>
-                </li>
-                <!-- <li>
-                    <a href="#">Análise Finalizada</a>
-                </li>
-                <li>
-                    <a href="#">Pesquisa em andamento</a>
-                </li>
-                 -->
+                {% if app.request.get('_route') in ["protocol_initial_committee_review","protocol_end_review"] %}
+                    <li {% if app.request.get('_route') == "protocol_initial_committee_review" %}class='active'{% endif %}>
+                        <a href="{% if app.request.get('_route') == "protocol_initial_committee_review" %}#{% else %}{{ path('protocol_initial_committee_review', {'protocol_id': protocol.id }) }}{% endif %}">{% trans %}Initial committee review{% endtrans %}</a>
+                    </li>
+                    <li {% if app.request.get('_route') == "protocol_end_review" %}class='active'{% endif %}>
+                        <a href="{% if protocol.status == 'E' or app.request.get('_route') == "protocol_end_review" %}#{% else %}{{ path('protocol_end_review', {'protocol_id': protocol.id }) }}{% endif %}">{% trans %}End Review{% endtrans %}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="#">{% trans %}Initial committee review{% endtrans %}</a>
+                    </li>
+                    <li>
+                        <a href="#">{% trans %}End Review{% endtrans %}</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
