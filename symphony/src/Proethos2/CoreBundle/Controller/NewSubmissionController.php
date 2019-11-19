@@ -1389,7 +1389,7 @@ class NewSubmissionController extends Controller
                         }
 
                         $message = \Swift_Message::newInstance()
-                        ->setSubject("[LILACS] " . $mail_translator->trans("A new protocol has been submitted."))
+                        ->setSubject("[proethos2] " . $mail_translator->trans("A new protocol has been submitted."))
                         ->setFrom($util->getConfiguration('committee.email'))
                         ->setTo($secretaries_emails)
                         ->setBody(

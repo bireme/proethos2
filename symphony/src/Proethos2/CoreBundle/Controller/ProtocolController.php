@@ -103,7 +103,7 @@ class ProtocolController extends Controller
                     }
                 }
                 $message = \Swift_Message::newInstance()
-                ->setSubject("[LILACS] " . $translator->trans("New comment on Proethos2"))
+                ->setSubject("[proethos2] " . $translator->trans("New comment on Proethos2"))
                 ->setFrom($util->getConfiguration('committee.email'))
                 ->setTo($secretaries_emails)
                 ->setBody(
@@ -191,7 +191,7 @@ class ProtocolController extends Controller
                 }
             }
             $message = \Swift_Message::newInstance()
-            ->setSubject("[LILACS] " . $translator->trans("New comment on Proethos2"))
+            ->setSubject("[proethos2] " . $translator->trans("New comment on Proethos2"))
             ->setFrom($util->getConfiguration('committee.email'))
             ->setTo($secretaries_emails)
             ->setBody(
