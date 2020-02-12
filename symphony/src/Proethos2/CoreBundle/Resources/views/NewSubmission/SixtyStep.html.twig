@@ -72,7 +72,7 @@
     <div class="modal fade" id="modal-new-file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <form method="POST" id='form-new-attachment' enctype="multipart/form-data" action="{{ path("submission_new_sixth_step", {submission_id: submission.id}) }}">
-                <input type="hidden" name="MAX_FILE_SIZE" value="{{ 10*1024*1024 }}" />
+                <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
 
                 <div class="modal-content">
 
