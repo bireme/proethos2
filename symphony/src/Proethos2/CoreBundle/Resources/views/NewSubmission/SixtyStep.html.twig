@@ -68,7 +68,7 @@
         </div>
     </div>
 
-    <!-- Modal Novo Investigador -->
+    <!-- Modal Novo Arquivo -->
     <div class="modal fade" id="modal-new-file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <form method="POST" id='form-new-attachment' enctype="multipart/form-data" action="{{ path("submission_new_sixth_step", {submission_id: submission.id}) }}">
@@ -98,7 +98,6 @@
                             <a href="{{ path("crud_admin_help_show", {help_id: 12} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='file' class='form-control' name='new-atachment-file' id='input-new-atachment-file' required>
                         </div>
-
                     </div>
 
                     <div class="modal-footer">
@@ -145,10 +144,10 @@
                 var id = $(this).data('id');
                 $("#hidden-delete-attachment").val(id);
             });
-        });
 
-        $('#modal-delete-attachment').on('hidden.bs.modal', function () {
-            $("#hidden-delete-attachment").val("");
-        })
+            $('#modal-delete-attachment').on('hidden.bs.modal', function () {
+                $("#hidden-delete-attachment").val("");
+            });
+        });
     </script>
 {% endblock %}
