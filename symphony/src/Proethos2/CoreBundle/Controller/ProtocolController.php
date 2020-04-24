@@ -389,6 +389,7 @@ class ProtocolController extends Controller
 
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
+                    $protocol_history->setUser($user);
                     $protocol_history->setMessage($translator->trans('Monitoring action was rejected by %user% with this justification "%justify%".',
                         array(
                             '%user%' => $user->getUsername(),
@@ -434,6 +435,7 @@ class ProtocolController extends Controller
                 // setting protocool history
                 $protocol_history = new ProtocolHistory();
                 $protocol_history->setProtocol($protocol);
+                $protocol_history->setUser($user);
                 // $protocol_history->setMessage($translator->trans("Protocol was rejected by") ." ". $user . ".");
                 $protocol_history->setMessage($translator->trans('Protocol was rejected by %user% with this justification "%justify%".',
                     array(
@@ -469,6 +471,7 @@ class ProtocolController extends Controller
                     // setting protocool history
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
+                    $protocol_history->setUser($user);
                     $protocol_history->setMessage($translator->trans("Protocol was sent to comittee for initial analysis by %user%.", array("%user%" => $user->getUsername())));
                     $em->persist($protocol_history);
                     $em->flush();
@@ -517,6 +520,7 @@ class ProtocolController extends Controller
                     // setting protocool history
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
+                    $protocol_history->setUser($user);
                     $protocol_history->setMessage($translator->trans("Protocol accepted for review by %user% and investigators notified.", array("%user%" => $user->getUsername())));
                     $em->persist($protocol_history);
                     $em->flush();
@@ -567,6 +571,7 @@ class ProtocolController extends Controller
                     // setting protocool history
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
+                    $protocol_history->setUser($user);
                     $protocol_history->setMessage($translator->trans("Monitoring action was accepted by %user% as notification only.", array("%user%" => $user->getUsername())));
                     $em->persist($protocol_history);
                     $em->flush();
@@ -638,6 +643,7 @@ class ProtocolController extends Controller
                 // setting protocool history
                 $protocol_history = new ProtocolHistory();
                 $protocol_history->setProtocol($protocol);
+                $protocol_history->setUser($user);
                 $protocol_history->setMessage($translator->trans("Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized."));
                 $em->persist($protocol_history);
                 $em->flush();
@@ -726,6 +732,7 @@ class ProtocolController extends Controller
                 // setting protocool history
                 $protocol_history = new ProtocolHistory();
                 $protocol_history->setProtocol($protocol);
+                $protocol_history->setUser($user);
                 $protocol_history->setMessage($translator->trans("Protocol was concluded as Exempt."));
                 $em->persist($protocol_history);
                 $em->flush();
@@ -1144,6 +1151,7 @@ class ProtocolController extends Controller
 
             $protocol_history = new ProtocolHistory();
             $protocol_history->setProtocol($protocol);
+            $protocol_history->setUser($user);
             $protocol_history->setMessage($translator->trans(
                 'Protocol finalized by %user% under option "%option%".',
                 array(

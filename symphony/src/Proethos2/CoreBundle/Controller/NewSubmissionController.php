@@ -1304,7 +1304,7 @@ class NewSubmissionController extends Controller
 
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
-
+                    $protocol_history->setUser($user);
                     $protocol_history->setMessage($translator->trans("Submission of protocol."));
                     $em->persist($protocol_history);
                     $em->flush();
