@@ -1263,6 +1263,51 @@ class ProtocolController extends Controller
     }
 
     /**
+     * @Route("/protocol/{protocol_id}/report", name="protocol_generate_report")
+     * @Template()
+     */
+    public function showReportAction($protocol_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
+
+        // getting the current submission
+        $protocol = $protocol_repository->find($protocol_id);
+        $submission = $protocol->getMainSubmission();
+        $attachments = $submission->getAttachments();
+
+        $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+
+        $files = array();
+        foreach ($attachments as $file) {
+            $ext = end(explode(".", $file->getUri()));
+            if ( 'pdf' == $ext )
+                $files[] = ltrim($file->getUri(), '/');
+        }
+
+        $upload_directory = __DIR__.'/../../../../uploads';
+        $timestamp = date("Y-m-d-H\hi\ms\s");
+        $filepath = $upload_directory."/report.pdf";
+        $report_url = $baseurl."/uploads/report.pdf";
+
+        if ( file_exists($filepath) ) {
+            unlink($filepath);
+        }
+
+        // $cmd = "gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$filepath ".implode(' ', $files);
+        $cmd = "pdftk ".implode(' ', $files)." output $filepath";
+        $result = shell_exec($cmd);
+
+        // return new RedirectResponse($report_url);
+        return $this->redirect($report_url, 301);
+    }
+
+    /**
      * @Route("/protocol/{protocol_id}/xml/{language_code}", name="protocol_xml")
      * @Template()
      */
