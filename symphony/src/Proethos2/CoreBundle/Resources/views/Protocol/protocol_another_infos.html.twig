@@ -93,14 +93,22 @@
                             <td>{{ file.created|date("d/m/Y H:i") }}</td> 
                             <td>
                                 <a href='{{ asset(file.uri) }}' target="_blank" class='btn btn-default btn-xs' target="_blank">
-                                <i class='glyphicon glyphicon-eye-open'></i></a>
+                                    <i class='glyphicon glyphicon-eye-open'></i>
+                                </a>
+                                {% if is_granted("ROLE_USER") and 'secretary' in app.user.rolesSlug %}
+                                    <a href='#' class='btn btn-default btn-xs button-delete-attachment' data-id='{{ file.id }}' data-toggle="modal" data-target="#modal-delete-attachment">
+                                        <i class='glyphicon glyphicon-trash'></i>
+                                    </a>
+                                {% endif %}
                             </td> 
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-
-            <!-- <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-file">{% trans %}New Attachment{% endtrans %}</a> -->
+            
+            {% if is_granted("ROLE_USER") and 'secretary' in app.user.rolesSlug %}
+                <a href='{{ path("protocol_new_attachment", {'protocol_id': protocol.id }) }}' class='btn btn-default' data-toggle="modal" data-target="#modal-new-file">{% trans %}New Attachment{% endtrans %}</a>
+            {% endif %}
         </div>
     </div>
 </div>
@@ -233,6 +241,39 @@
     </div>
 </div>
 
+<!-- Modal Novo Arquivo -->
+<div class="modal fade" id="modal-new-file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"></div>
+    </div>
+</div>
+    
+<!-- Modal Confirmar Exclusão -->
+<div class="modal fade" id="modal-delete-attachment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form method="POST" id='form-delete-attachment' action="{{ path("protocol_new_attachment", {'protocol_id': protocol.id }) }}">
+            <input type="hidden" name="delete-attachment-id" id='hidden-delete-attachment' value="" />
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{% trans %}Delete Attachment{% endtrans %}</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>{% trans %}Do you confirm the exclusion of this attachment?{% endtrans %}</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                    <button type="submit" class="btn btn-danger">{% trans %}Confirm{% endtrans %}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 <script>
     // toggles de meta blocks
     $(function() {
@@ -258,6 +299,15 @@
         // hide all blocks on the load page
         $(".toggle-block").each(function(){
             $(this).trigger('click');     
+        });
+
+        $("#table-attachment").on("click", ".button-delete-attachment", function(e){
+            var id = $(this).data('id');
+            $("#hidden-delete-attachment").val(id);
+        });
+
+        $('#modal-delete-attachment').on('hidden.bs.modal', function () {
+            $("#hidden-delete-attachment").val("");
         });
     });
 </script>
