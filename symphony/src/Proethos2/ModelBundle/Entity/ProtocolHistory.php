@@ -51,6 +51,15 @@ class ProtocolHistory extends Base
     private $protocol;
 
     /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @Assert\NotBlank 
+     */
+    private $user;
+
+    /**
      * Get id
      *
      * @return integer
@@ -106,5 +115,29 @@ class ProtocolHistory extends Base
     public function getProtocol()
     {
         return $this->protocol;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Proethos2\ModelBundle\Entity\User $user
+     *
+     * @return ProtocolHistory
+     */
+    public function setUser(\Proethos2\ModelBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Proethos2\ModelBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

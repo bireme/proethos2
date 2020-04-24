@@ -104,6 +104,7 @@ class MonitoringController extends Controller
                 // setting protocool history
                 $protocol_history = new ProtocolHistory();
                 $protocol_history->setProtocol($protocol);
+                $protocol_history->setUser($user);
                 $protocol_history->setMessage($translator->trans("New amendment submited by") ." ". $user . ".");
                 $em->persist($protocol_history);
                 $em->flush();
@@ -296,6 +297,7 @@ class MonitoringController extends Controller
 
             $protocol_history = new ProtocolHistory();
             $protocol_history->setProtocol($protocol);
+            $protocol_history->setUser($user);
             $protocol_history->setMessage($message);
             $em->persist($protocol_history);
             $em->flush();
