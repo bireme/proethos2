@@ -58,7 +58,7 @@
 
             <div class='row'>
                 <div class='submission-button-controls col-md-12'>
-                    <button type="submit" class='btn btn-danger' id='button-reject-submission'>{% trans %}Send back to investigator{% endtrans %}</button>
+                    <button type="button" class='btn btn-danger' id='button-reject-submission' data-toggle='modal' data-target='#modal-reject'>{% trans %}Send back to investigator{% endtrans %}</button>
                     <button class='btn btn-primary' id='button-send-to-committee'>{% trans %}Send to committee to decide{% endtrans %}</button>
                     <button class='btn btn-primary' id='button-send-to-ethical-revision'>{% trans %}Send to ethical revision{% endtrans %}</button>
                     {% if protocol.monitoringAction %}
@@ -87,6 +87,27 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
                         <button type="button" class="btn btn-success" id='notification-submit'>{% trans %}Confirm{% endtrans %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Reject Submission -->
+    <div class="modal fade" id="modal-reject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}Reject Submission?{% endtrans %}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{% trans %}Are you sure that you want to reject this submission?{% endtrans %}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                        <button type="button" class="btn btn-danger" id='notification-reject'>{% trans %}Reject{% endtrans %}</button>
                     </div>
                 </form>
             </div>
@@ -123,12 +144,16 @@
                 $("#form-action").submit();
             });
 
+            $("body").on("click", "#notification-reject", function(e){
+                $("#form-action").submit();
+            });
+
             {% if protocol.monitoringAction %}
                 $("body").on("click", "#notification-submit", function(e){
                     $("#input-send-to").val('notification-only');
                     $("#input-is-reject").val('false');
                     $("#form-action").submit();
-                });
+                });                
             {% endif %}
         });
 
