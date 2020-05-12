@@ -10,7 +10,7 @@ At the moment, the coverage tests are to branch master and any deployments are m
 Exceptions
 ----------
 
-Because we can't install depedencies in codeship, at the build moment, we had to remove the test that envolves to create PDFs.
+Because we can't install dependencies in codeship, at the build moment, we had to remove the test that envolves to create PDFs.
 
 Codeship configurations
 -----------------------
