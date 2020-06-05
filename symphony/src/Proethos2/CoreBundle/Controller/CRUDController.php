@@ -875,6 +875,18 @@ class CRUDController extends Controller
                 }
             }
 
+            $user = $user_repository->findOneByUsername($post_data['username']);
+            if($user) {
+                $session->getFlashBag()->add('error', $translator->trans("Username already registered in platform."));
+                return $output;
+            }
+
+            $user = $user_repository->findOneByEmail($post_data['email']);
+            if($user) {
+                $session->getFlashBag()->add('error', $translator->trans("Email already registered in platform."));
+                return $output;
+            }
+
             $country = $country_repository->find($post_data['country']);
 
             $user = new User();

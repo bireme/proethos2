@@ -148,3 +148,31 @@
         </div><!-- /card-container -->
     </div><!-- /container -->
 {% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+            $("#input-username").on('blur', function() {
+                var val = $(this).val();
+                var slug = convertToSlug(val);
+                $(this).val(slug);
+            });
+        });
+
+        function convertToSlug(Text) {
+            var from = "ÁÄÂÀÃÅČÇĆĎÉĚËÈÊẼĔȆĞÍÌÎÏİŇÑÓÖÒÔÕØŘŔŠŞŤÚŮÜÙÛÝŸŽáäâàãåčçćďéěëèêẽĕȇğíìîïıňñóöòôõøðřŕšşťúůüùûýÿžþÞĐđßÆa";
+            var to   = "AAAAAACCCDEEEEEEEEGIIIIINNOOOOOORRSSTUUUUUYYZaaaaaacccdeeeeeeeegiiiiinnooooooorrsstuuuuuyyzbBDdBAa";
+
+            for (var i=0, l=from.length ; i<l ; i++) {
+                Text = Text.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+            }
+
+            return Text
+                .toLowerCase()
+                .replace(/ /g,'-')
+                .replace(/_/g,'-')
+                .replace(/[^\w-]+/g,'')
+                ;
+        }
+    </script>
+{% endblock %}
