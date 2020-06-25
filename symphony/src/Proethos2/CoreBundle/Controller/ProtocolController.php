@@ -1297,6 +1297,7 @@ class ProtocolController extends Controller
             if ( 'pdf' == $ext )
                 $files[] = ltrim($file->getUri(), '/');
         }
+        $files = array_reverse($files);
 
         $upload_directory = __DIR__.'/../../../../uploads';
         $timestamp = date("Y-m-d-H\hi\ms\s");
@@ -1307,8 +1308,8 @@ class ProtocolController extends Controller
             unlink($filepath);
         }
 
-        // $cmd = "gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$filepath ".implode(' ', $files);
-        $cmd = "pdftk ".implode(' ', $files)." output $filepath";
+        // $cmd = "pdftk ".implode(' ', $files)." output $filepath";
+        $cmd = "gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$filepath ".implode(' ', $files);
         $result = shell_exec($cmd);
 
         // return new RedirectResponse($report_url);
