@@ -987,11 +987,13 @@ class CRUDController extends Controller
                     return $this->redirect($referer, 301);
                 }
             }
-
-            $usr = $user_repository->findOneByEmail($post_data['email']);
-            if($usr) {
-                $session->getFlashBag()->add('error', $translator->trans("Email already registered"));
-                return $this->redirect($referer, 301);
+            
+            if ( $post_data['email'] != $user->getEmail() ) {
+                $usr = $user_repository->findOneByEmail($post_data['email']);
+                if($usr) {
+                    $session->getFlashBag()->add('error', $translator->trans("Email already registered"));
+                    return $this->redirect($referer, 301);
+                }
             }
 
             $country = $country_repository->find($post_data['country']);
@@ -1065,10 +1067,12 @@ class CRUDController extends Controller
                 }
             }
 
-            $usr = $user_repository->findOneByEmail($post_data['email']);
-            if($usr) {
-                $session->getFlashBag()->add('error', $translator->trans("Email already registered"));
-                return $this->redirectToRoute('crud_committee_user_list', array(), 301);
+            if ( $post_data['email'] != $user->getEmail() ) {
+                $usr = $user_repository->findOneByEmail($post_data['email']);
+                if($usr) {
+                    $session->getFlashBag()->add('error', $translator->trans("Email already registered"));
+                    return $this->redirectToRoute('crud_committee_user_list', array(), 301);
+                }
             }
 
             $country = $country_repository->find($post_data['country']);
