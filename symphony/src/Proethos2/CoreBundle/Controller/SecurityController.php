@@ -383,6 +383,7 @@ class SecurityController extends Controller
             $user = $user_repository->findOneByEmail($post_data['email']);
             if($user) {
                 $session->getFlashBag()->add('error', $translator->trans("Email already registered in platform."));
+                return $output;
             }
 
             $country = $country_repository->find($post_data['country']);
