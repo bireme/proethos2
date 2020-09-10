@@ -180,13 +180,15 @@ class SecurityController extends Controller
             foreach(array('email') as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
-                    return $this->redirectToRoute('login', array(), 301);
+                    return $output;
+                    // return $this->redirectToRoute('login', array(), 301);
                 }
             }
 
             $user = $user_repository->findOneByEmail($post_data['email']);
             if(!$user) {
                 $session->getFlashBag()->add('error', $translator->trans("Email not registered in platform."));
+                return $output;
             }
 
             $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
