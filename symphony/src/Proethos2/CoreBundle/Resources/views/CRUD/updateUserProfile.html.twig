@@ -19,6 +19,15 @@
         <div class='row'>
             <div class='col-md-12'>
                 <div class="form-group required">
+                    <label for="input-email">{% trans %}Email{% endtrans %}:</label> 
+                    <input type='email' class='form-control' id="input-email" name="email" value="{{ user.email }}" required>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group required">
                     <label for="select-country">{% trans %}Country{% endtrans %}:</label> 
                     <a href="{{ path("crud_admin_help_show", {help_id: 50} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <select class='form-control select-select2' id="select-country" name="country" required>

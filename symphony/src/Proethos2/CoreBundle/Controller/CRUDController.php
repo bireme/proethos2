@@ -951,6 +951,7 @@ class CRUDController extends Controller
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
 
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
         $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -959,6 +960,8 @@ class CRUDController extends Controller
         $countries = $country_repository->findBy(array(), array('name' => 'asc'));
         $output['countries'] = $countries;
 
+        $referer = $request->headers->get('referer');
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -966,24 +969,32 @@ class CRUDController extends Controller
             $post_data = $request->request->all();
 
             // checking required fields
-            foreach(array('name', 'country', ) as $field) {
+            foreach(array('name', 'email', 'country', ) as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
-                    return $output;
+                    return $this->redirect($referer, 301);
                 }
+            }
+
+            $usr = $user_repository->findOneByEmail($post_data['email']);
+            if($usr) {
+                $session->getFlashBag()->add('error', $translator->trans("Email already registered"));
+                return $this->redirect($referer, 301);
             }
 
             $country = $country_repository->find($post_data['country']);
 
             $user->setCountry($country);
             $user->setName($post_data['name']);
+            $user->setEmail($post_data['email']);
             $user->setInstitution($post_data['institution']);
 
             $em->persist($user);
             $em->flush();
 
             $session->getFlashBag()->add('success', $translator->trans("User updated with success."));
-            return $this->redirectToRoute('home', array(), 301);
+            return $this->redirect($referer, 301);
+            // return $this->redirectToRoute('home', array(), 301);
         }
 
         return $output;
@@ -1035,17 +1046,24 @@ class CRUDController extends Controller
             $post_data = $request->request->all();
 
             // checking required fields
-            foreach(array('name', 'country', ) as $field) {
+            foreach(array('name', 'email', 'country', ) as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
-                    return $output;
+                    return $this->redirectToRoute('crud_committee_user_list', array(), 301);
                 }
+            }
+
+            $usr = $user_repository->findOneByEmail($post_data['email']);
+            if($usr) {
+                $session->getFlashBag()->add('error', $translator->trans("Email already registered"));
+                return $this->redirectToRoute('crud_committee_user_list', array(), 301);
             }
 
             $country = $country_repository->find($post_data['country']);
 
             $user->setCountry($country);
             $user->setName($post_data['name']);
+            $user->setEmail($post_data['email']);
             $user->setInstitution($post_data['institution']);
 
             $user->setIsActive(false);
