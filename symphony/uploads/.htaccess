@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.* [NC]
+#RewriteRule ^(.*)$ %{REQUEST_SCHEME}://%{HTTP_HOST} [L,R]
+RewriteRule .* - [F]

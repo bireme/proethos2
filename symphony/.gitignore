@@ -13,5 +13,7 @@
 *~
 
 /src/Proethos2/CoreBundle/Resources/public/uploads/*
+!uploads/
 uploads/*
+!uploads/.htaccess
 web/phpmyadmin/
