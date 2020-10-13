@@ -26,6 +26,10 @@ security:
             pattern:   ^/locale/
             anonymous: ~
 
+        oauth2_firewall:
+            pattern:   ^/login/oauth2
+            anonymous: ~
+
         default:
             provider: our_db_provider
             pattern:    ^/
@@ -36,3 +40,7 @@ security:
             logout:
                 path:   /logout
                 target: /
+
+    # access_control:
+    #     - { path: ^/, role: ROLE_USER }
+    #     - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }

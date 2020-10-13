@@ -225,6 +225,10 @@ img.logo {
     position: static;
 }
 
+.btn-signin {
+    margin-top: 15px;
+}
+
 @media (max-width: 772px) {
     #bs-example-navbar-collapse-1 ul.nav.navbar-nav {
         display: block;
