@@ -16,5 +16,8 @@ parameters:
 
     locale:            en
 
+    # Authentication Type - default or oauth2
+    auth_type:         default
+
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
