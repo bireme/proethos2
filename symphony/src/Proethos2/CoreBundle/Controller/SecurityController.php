@@ -30,6 +30,7 @@ use TheNetworg\OAuth2\Client\Provider\Azure;
 
 use Proethos2\ModelBundle\Entity\User;
 use Proethos2\CoreBundle\Util\Util;
+use Proethos2\CoreBundle\Util\Security;
 
 use Cocur\Slugify\Slugify;
 
@@ -122,7 +123,7 @@ class SecurityController extends Controller
                     // Example of how to obtain an user:
                     $em = $this->getDoctrine()->getManager();
                     $user_repository = $em->getRepository('Proethos2ModelBundle:User');
-                    $user = $user_repository->findOneBy(array('email' => $data['mail']));
+                    $user = $user_repository->findOneBy(array('email' => Security::encrypt($data['mail'])));
 
                     if ( !$user ) { // create user
                         $em = $this->getDoctrine()->getManager();
@@ -139,7 +140,7 @@ class SecurityController extends Controller
                         $username = $slugify->slugify(array_pop($surname).$givenName[0]);
                         $username = substr($username, 0, 8);
                         
-                        $user = $user_repository->findOneBy(array('username' => $username));
+                        $user = $user_repository->findOneBy(array('username' => Security::encrypt($username)));
                         if ( $user ) {
                             $username = $slugify->slugify($givenName[0].array_pop($surname));
                         }
@@ -261,7 +262,7 @@ class SecurityController extends Controller
     /**
      * @Route("/login/oauth2", name="login_oauth2")
      */
-    public function loginAzureAction()
+    public function loginOauth2Action()
     {
         $auth_type = $this->container->getParameter('auth_type');
 
@@ -383,7 +384,7 @@ class SecurityController extends Controller
                 }
             }
 
-            $user = $user_repository->findOneByEmail($post_data['email']);
+            $user = $user_repository->findOneByEmail(Security::encrypt($post_data['email']));
             if(!$user) {
                 $session->getFlashBag()->add('error', $translator->trans("Email not registered in platform."));
                 return $output;
@@ -578,7 +579,7 @@ class SecurityController extends Controller
                 return $output;
             }
 
-            $user = $user_repository->findOneByEmail($post_data['email']);
+            $user = $user_repository->findOneByEmail(Security::encrypt($post_data['email']));
             if($user) {
                 $session->getFlashBag()->add('error', $translator->trans("Email already registered in platform."));
                 return $output;

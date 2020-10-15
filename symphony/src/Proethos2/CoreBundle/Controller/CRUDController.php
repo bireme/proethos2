@@ -25,6 +25,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Proethos2\CoreBundle\Util\Util;
 use Proethos2\CoreBundle\Util\CSVResponse;
+use Proethos2\CoreBundle\Util\Security;
 
 use Proethos2\ModelBundle\Entity\Meeting;
 use Proethos2\ModelBundle\Entity\Faq;
@@ -977,7 +978,7 @@ class CRUDController extends Controller
             }
             
             if ( $post_data['email'] != $user->getEmail() ) {
-                $usr = $user_repository->findOneByEmail($post_data['email']);
+                $usr = $user_repository->findOneByEmail(Security::encrypt($post_data['email']));
                 if($usr) {
                     $session->getFlashBag()->add('error', $translator->trans("Email already registered"));
                     return $this->redirect($referer, 301);
@@ -1056,7 +1057,7 @@ class CRUDController extends Controller
             }
 
             if ( $post_data['email'] != $user->getEmail() ) {
-                $usr = $user_repository->findOneByEmail($post_data['email']);
+                $usr = $user_repository->findOneByEmail(Security::encrypt($post_data['email']));
                 if($usr) {
                     $session->getFlashBag()->add('error', $translator->trans("Email already registered"));
                     return $this->redirectToRoute('crud_committee_user_list', array(), 301);
