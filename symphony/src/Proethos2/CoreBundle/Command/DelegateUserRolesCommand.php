@@ -74,7 +74,7 @@ class DelegateUserRolesCommand extends ContainerAwareCommand
             $em->flush();
 
             $output_roles = implode('|', array_keys($roles));
-            $output->writeln(sprintf("\n[DONE] user roles for '%s': %s\n", $email, $output_roles));
+            $output->writeln(sprintf("\n[INFO] user roles for '%s': %s\n", $email, $output_roles));
         } else {
             $output->writeln(sprintf("\n[ERROR] user email '%s' not found.\n", $email));
         }

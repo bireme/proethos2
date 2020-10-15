@@ -23,6 +23,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use Proethos2\CoreBundle\Util\Security;
+
+
 /**
  * User
  *
@@ -58,7 +61,7 @@ class User extends Base implements UserInterface, \Serializable
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=60, unique=true)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $username;
 
@@ -113,7 +116,7 @@ class User extends Base implements UserInterface, \Serializable
 
     public function getUsername()
     {
-        return $this->username;
+        return Security::decrypt($this->username);
     }
 
     public function getSalt()
@@ -180,7 +183,7 @@ class User extends Base implements UserInterface, \Serializable
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->email = Security::encrypt($email);
 
         return $this;
     }
@@ -192,7 +195,7 @@ class User extends Base implements UserInterface, \Serializable
      */
     public function getEmail()
     {
-        return $this->email;
+        return Security::decrypt($this->email);
     }
 
     /**
@@ -218,7 +221,7 @@ class User extends Base implements UserInterface, \Serializable
      */
     public function setUsername($username)
     {
-        $this->username = $username;
+        $this->username = Security::encrypt($username);
 
         return $this;
     }
@@ -280,7 +283,7 @@ class User extends Base implements UserInterface, \Serializable
      */
     public function setInstitution($institution)
     {
-        $this->institution = $institution;
+        $this->institution = Security::encrypt($institution);
 
         return $this;
     }
@@ -292,7 +295,7 @@ class User extends Base implements UserInterface, \Serializable
      */
     public function getInstitution()
     {
-        return $this->institution;
+        return Security::decrypt($this->institution);
     }
 
     /**

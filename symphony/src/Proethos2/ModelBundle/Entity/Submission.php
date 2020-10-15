@@ -21,6 +21,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use Proethos2\CoreBundle\Util\Security;
+
+
 /**
  * Submission
  *
@@ -1143,7 +1146,7 @@ class Submission extends Base
      */
     public function setFundingSource($fundingSource)
     {
-        $this->funding_source = $fundingSource;
+        $this->funding_source = Security::encrypt($fundingSource);
 
         return $this;
     }
@@ -1155,7 +1158,7 @@ class Submission extends Base
      */
     public function getFundingSource()
     {
-        return $this->funding_source;
+        return Security::decrypt($this->funding_source);
     }
 
     /**
@@ -1167,7 +1170,7 @@ class Submission extends Base
      */
     public function setPrimarySponsor($primarySponsor)
     {
-        $this->primary_sponsor = $primarySponsor;
+        $this->primary_sponsor = Security::encrypt($primarySponsor);
 
         return $this;
     }
@@ -1179,7 +1182,7 @@ class Submission extends Base
      */
     public function getPrimarySponsor()
     {
-        return $this->primary_sponsor;
+        return Security::decrypt($this->primary_sponsor);
     }
 
     /**
@@ -1191,7 +1194,7 @@ class Submission extends Base
      */
     public function setSecondarySponsor($secondarySponsor)
     {
-        $this->secondary_sponsor = $secondarySponsor;
+        $this->secondary_sponsor = Security::encrypt($secondarySponsor);
 
         return $this;
     }
@@ -1203,7 +1206,7 @@ class Submission extends Base
      */
     public function getSecondarySponsor()
     {
-        return $this->secondary_sponsor;
+        return Security::decrypt($this->secondary_sponsor);
     }
 
     /**
@@ -1307,7 +1310,7 @@ class Submission extends Base
      */
     public function setSscientificContact($sscientificContact)
     {
-        $this->sscientific_contact = $sscientificContact;
+        $this->sscientific_contact = Security::encrypt($sscientificContact);
 
         return $this;
     }
@@ -1319,7 +1322,7 @@ class Submission extends Base
      */
     public function getSscientificContact()
     {
-        return $this->sscientific_contact;
+        return Security::decrypt($this->sscientific_contact);
     }
 
     /**
