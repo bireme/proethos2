@@ -137,7 +137,7 @@ In the middle of process, you will be questioned by this questions below:
 - `database_password (null):` Fill in with the database name that we created. In this case `choose_a_password!`.
 - `mailer_transport (smtp):` We will configure this options later, so, press enter for the SMTP options.
 - `locale (en):` Choose your default language locale. We will use `en_US`
-- `auth_type (default):` Choose authentication type (default or oauth2).
+- `auth_type (default):` Choose authentication type (`default` or `oauth2`).
 - `secret (ThisTokenIsNotSoSecretChangeIt):` Choose an secret token for your application.
 
 Now, we will setup the database and load the initial data:
@@ -245,7 +245,7 @@ If ProEthos platform is not sending e-mails after the instructions above, please
 Oauth2 authentication (Azure AD)
 --------------------------------
 
-Create the .env file:
+Create the `.env` file:
 
 ```
 $ touch .env
