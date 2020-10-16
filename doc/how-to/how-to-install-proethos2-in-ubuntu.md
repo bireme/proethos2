@@ -46,6 +46,24 @@ $ sudo apt-get install -y curl php5 php5-cli php5-mysql libapache2-mod-php5 php5
 
 ```
 
+### Sodium (PHP < 7.2)
+
+```
+$ sudo apt-get install -y libsodium libsodium-dev php-sodium php-libsodium
+```
+
+Alternative:
+
+```
+$ sudo apt-get install -y php-pear
+$ sudo pecl install -f libsodium
+$ sudo echo "extension = sodium.so" > /etc/php/7.2/mods-available/sodium.ini
+$ sudo phpenmod sodium
+
+```
+
+__NOTE:__ Do not install if PHP >= 7.2, because this library has become a core extension in PHP.
+
 ### MySQL
 
 The next command block is to install MySQL server and to configure it.
@@ -119,6 +137,7 @@ In the middle of process, you will be questioned by this questions below:
 - `database_password (null):` Fill in with the database name that we created. In this case `choose_a_password!`.
 - `mailer_transport (smtp):` We will configure this options later, so, press enter for the SMTP options.
 - `locale (en):` Choose your default language locale. We will use `en_US`
+- `auth_type (default):` Choose authentication type (default or oauth2).
 - `secret (ThisTokenIsNotSoSecretChangeIt):` Choose an secret token for your application.
 
 Now, we will setup the database and load the initial data:
@@ -129,13 +148,7 @@ or
 $ make load_initial php=php5.6
 ```
 
-
 __TIP:__ See all the [Make commands](../continuous-integration.md), that certainly will help you.
-
-Remember to create the `uploads` directory:
-```
-mkdir uploads/
-```
 
 Remember that the directories below needs to have write permissions from apache:
 ```
@@ -159,7 +172,7 @@ $ make runserver
 
 ```
 
-and now access the address `http://YOUR_IP_SERVER:8000/`. If you see the login page, means that you made all right!
+And now access the address `http://YOUR_IP_SERVER:8000/`. If you see the login page, means that you made all right!
 
 
 Configuring the Apache2 to serve Proethos2
@@ -229,18 +242,58 @@ mailer_password: null
 For more informations about email setup, access http://symfony.com/doc/2.7/email.html.
 If ProEthos platform is not sending e-mails after the instructions above, please, see the issue [#354](https://github.com/bireme/proethos2/issues/354)
 
+Oauth2 authentication (Azure AD)
+--------------------------------
+
+Create the .env file:
+
+```
+$ touch .env
+```
+
+Open the `.env` file and add/change these parameters, according to your Azure app configuration (Client ID and Client Secret):
+
+```
+AZURE_CLIENT_ID: ??????????
+AZURE_CLIENT_SECRET: ??????????
+
+```
+
+__NOTE:__ This setting is mandatory only if you chose `oauth2` as `auth_type` during installation (confirm in `app/config/parameters.yml`)
+
+Encryption keys (required in ProEthos2 >= 1.6.0)
+------------------------------------------------
+
+Generate the `private_key`:
+
+```
+$ php -r 'echo base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES)); ?>'
+```
+
+Generate the `index_key`:
+
+```
+$ php -r 'echo base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES)); ?>'
+```
+
+Copy the keys, go to `app/config/parameters.yml` and add/change these parameters:
+
+```
+private_key: ??????????
+index_key: ??????????
+
+```
+
 Adding routines to crontab
 --------------------------
 
 See the page [How to add routines in crontab](how-to-add-routines-in-crontab.md).
-
 
 Other configurations and customizations
 ---------------------------------------
 
 The system comes with pre-stablished configuration. But, if you want to change or customize your instalation, make login
 as an admin role and access System Management > Configurations.
-
 
 That's it!
 
