@@ -262,7 +262,6 @@ AZURE_CLIENT_SECRET: ??????????
 __NOTES:__
 - This setting is mandatory only if you chose `oauth2` as `auth_type` during installation (confirm in `app/config/parameters.yml`)
 - For the first access, is required to create the admin user and delegate their roles. See the page [How to delegate user roles on the first access using Oauth2](how-to-delegate-user-roles-on-the-first-access-using-oauth2.md)
-- 
 
 Encryption keys (required if ProEthos2 >= 1.6.0)
 ------------------------------------------------
