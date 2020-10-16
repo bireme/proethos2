@@ -44,6 +44,6 @@ If you have any questions, please [open an ticket here](https://github.com/birem
 - [How to add routines in crontab](how-to/how-to-add-routines-in-crontab.md)
 - [How to create custom fields](how-to/how-to-create-custom-fields.md)
 - [How to change the Submission Flow](how-to/how-to-change-the-submission-flow.md)
-- [How to delegate user roles on the first access using Oauth2 authentication (Azure AD)](how-to-delegate-user-roles-on-the-first-access-using-oauth2.md)
-- [How to apply the encryption patch to the database (required if ProEthos2 >= 1.6.0)](how-to-apply-the-encryption-patch-to-the-database.md)
+- [How to delegate user roles on the first access using Oauth2 authentication (Azure AD)](how-to/how-to-delegate-user-roles-on-the-first-access-using-oauth2.md)
+- [How to apply the encryption patch to the database (required if ProEthos2 >= 1.6.0)](how-to/how-to-apply-the-encryption-patch-to-the-database.md)
 - [ProEthos data model](https://github.com/bireme/proethos2/blob/master/doc/img/erm-proethos2.png)
