@@ -15,7 +15,7 @@ and other tools;
 Dependencies
 ------------
 
-### Dependencies that every ubuntu instalation should have.
+### Dependencies that every Ubuntu instalation should have.
 
 ```
 $ sudo apt-get install -y vim openssh-server make   
@@ -46,7 +46,7 @@ $ sudo apt-get install -y curl php5 php5-cli php5-mysql libapache2-mod-php5 php5
 
 ```
 
-### Sodium (PHP < 7.2)
+### Sodium (required if PHP < 7.2)
 
 ```
 $ sudo apt-get install -y libsodium libsodium-dev php-sodium php-libsodium
@@ -259,9 +259,12 @@ AZURE_CLIENT_SECRET: ??????????
 
 ```
 
-__NOTE:__ This setting is mandatory only if you chose `oauth2` as `auth_type` during installation (confirm in `app/config/parameters.yml`)
+__NOTES:__
+- This setting is mandatory only if you chose `oauth2` as `auth_type` during installation (confirm in `app/config/parameters.yml`)
+- For the first access, is required to create the admin user and delegate their roles. See the page [How to delegate user roles on the first access using Oauth2](how-to-delegate-user-roles-on-the-first-access-using-oauth2.md)
+- 
 
-Encryption keys (required in ProEthos2 >= 1.6.0)
+Encryption keys (required if ProEthos2 >= 1.6.0)
 ------------------------------------------------
 
 Generate the `private_key`:
@@ -283,6 +286,8 @@ private_key: ??????????
 index_key: ??????????
 
 ```
+
+__NOTE:__ In case of updating a previous installation, it is necessary to apply the encryption patch to the database. See the page [How to apply the encryption patch to the database](how-to-apply-the-encryption-patch-to-the-database.md)
 
 Adding routines to crontab
 --------------------------
