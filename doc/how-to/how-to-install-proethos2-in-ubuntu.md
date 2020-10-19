@@ -269,13 +269,13 @@ Encryption keys (required if ProEthos2 >= 1.6.0)
 Generate the `private_key`:
 
 ```
-$ php -r 'echo base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES)); ?>'
+$ php -r 'echo base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES)) . PHP_EOL; ?>'
 ```
 
 Generate the `index_key`:
 
 ```
-$ php -r 'echo base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES)); ?>'
+$ php -r 'echo base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES)) . PHP_EOL; ?>'
 ```
 
 Copy the keys, go to `app/config/parameters.yml` and add/change these parameters:
