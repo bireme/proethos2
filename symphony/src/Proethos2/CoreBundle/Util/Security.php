@@ -50,6 +50,6 @@ class Security {
         $ciphertext = mb_substr($decoded, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, null, '8bit');
         $decoded    = sodium_crypto_secretbox_open($ciphertext, $nonce, $key);
 
-        return $decoded;
+        return mb_convert_encoding($decoded, 'UTF-8', 'ISO-8859-1');
     }
 }
