@@ -54,7 +54,7 @@ class SanitizeSensitiveDataCommand extends ContainerAwareCommand
         print "-- TABLE: user\n";
         print "-- ====================================================\n";
 
-        $sql = "SELECT `id`, `email`, `username`, `name`, `institution` FROM user;";
+        $sql = "SELECT `id`, `email`, `username`, `institution` FROM user;";
 
         $stmte = $pdo->prepare($sql);
         $executa = $stmte->execute();
@@ -68,7 +68,6 @@ class SanitizeSensitiveDataCommand extends ContainerAwareCommand
                 try {
                     $email = Security::decrypt($reg->email);
                     $username = Security::decrypt($reg->username);
-                    $name = Security::decrypt($reg->name);
                     $institution = Security::decrypt($reg->institution);
                 } catch (\Exception $e) {
                     $sanitize = false;
@@ -78,7 +77,6 @@ class SanitizeSensitiveDataCommand extends ContainerAwareCommand
                     if ( !$sanitize ) {
                         $email = Security::encrypt($reg->email);
                         $username = Security::encrypt($reg->username);
-                        $name = Security::encrypt($reg->name);
                         $institution = Security::encrypt($reg->institution);
                     } else {
                         print "-- [ERROR] Data already encrypted --\n";
@@ -87,19 +85,17 @@ class SanitizeSensitiveDataCommand extends ContainerAwareCommand
                 } else {
                     $email = Security::decrypt($reg->email);
                     $username = Security::decrypt($reg->username);
-                    $name = Security::decrypt($reg->name);
                     $institution = Security::decrypt($reg->institution);
                 }
 
                 $sql = "UPDATE user
-                        SET email = :email, username = :username, name = :name, institution = :institution
+                        SET email = :email, username = :username, institution = :institution
                         WHERE id = :id;";
 
                 $reg_stmte = $pdo->prepare($sql);
                 $reg_stmte->bindParam(":id", $reg->id, \PDO::PARAM_INT);
                 $reg_stmte->bindParam(":email", $email, \PDO::PARAM_STR);
                 $reg_stmte->bindParam(":username", $username, \PDO::PARAM_STR);
-                $reg_stmte->bindParam(":name", $name, \PDO::PARAM_STR);
                 $reg_stmte->bindParam(":institution", $institution, \PDO::PARAM_STR);
                 $reg_executa = $reg_stmte->execute();
 
