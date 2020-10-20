@@ -30,6 +30,10 @@ security:
             pattern:   ^/login/oauth2
             anonymous: ~
 
+        form_firewall:
+            pattern:   ^/login/sanitize
+            anonymous: ~
+
         default:
             provider: our_db_provider
             pattern:    ^/

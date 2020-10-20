@@ -77,16 +77,17 @@
                 {% else %}
                     <form class="form-signin" action="{{ path('login_check') }}" method="post">
                         <input type="hidden" name="_target_path" value="default_security_target" />
+                        <input type="hidden" id="inputUsername" name="_username" value="" />
 
                         <div class="form-group">
-                            <input type="text" name='_username' id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+                            <input type="text" name='_email' id="inputEmail" class="form-control" placeholder="Username" required autofocus>
                         </div>
                         <div class="form-group">
                             <input type="password" name='_password' id="inputPassword" class="form-control" placeholder="Password" required>
                         </div>
                         
                         <div class="form-group">
-                            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+                            <button class="btn btn-lg btn-primary btn-block btn-signin">Sign in</button>
                         </div>
                     </form><!-- /form -->
 
@@ -110,4 +111,28 @@
         </div>
 
     </div><!-- /container -->
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function(){
+            $('.btn-signin').on('click', function(e) {
+                e.preventDefault();
+                var val = $('#inputEmail').val();
+                $.ajax({
+                    url: "/login/sanitize",
+                    method: "POST",
+                    data: { "_username": val },
+                    success: function(data, text){
+                        response = $.parseJSON(data);
+                        $('#inputUsername').val(response._username);
+                        $('.form-signin').submit();
+                    },
+                    error: function (request, status, error) {
+                        alert(request.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock %}
