@@ -47,3 +47,4 @@ If you have any questions, please [open an ticket here](https://github.com/birem
 - [How to delegate user roles on the first access using Oauth2 authentication (Azure AD)](how-to/how-to-delegate-user-roles-on-the-first-access-using-oauth2.md)
 - [How to apply the encryption patch to the database (required if ProEthos2 >= 1.6.0)](how-to/how-to-apply-the-encryption-patch-to-the-database.md)
 - [ProEthos data model](https://github.com/bireme/proethos2/blob/master/doc/img/erm-proethos2.png)
+- [ProEthos architecture diagram](https://github.com/bireme/proethos2/blob/master/doc/img/architecture-diagram.jpg)
