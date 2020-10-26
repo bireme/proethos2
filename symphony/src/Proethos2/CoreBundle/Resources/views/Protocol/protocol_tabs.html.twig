@@ -3,7 +3,7 @@
         <div class='col-md-12'>
             <ul class="nav nav-tabs" id='tab-comite'>
                 <li {% if app.request.get('_route') == "protocol_analyze_protocol" %}class='active'{% endif %}>
-                    <a href="#action">{% trans %}Analyze{% endtrans %}</a>
+                    <a href="#">{% trans %}Analyze{% endtrans %}</a>
                 </li>
                 <li {% if app.request.get('_route') == "protocol_initial_committee_screening" %}class='active'{% endif %}>
                     <a href="#">{% trans %}Initial committee screening{% endtrans %}</a>
