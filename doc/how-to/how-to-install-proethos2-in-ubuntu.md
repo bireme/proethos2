@@ -251,9 +251,10 @@ Create the `.env` file:
 $ touch .env
 ```
 
-Open the `.env` file and add/change these parameters, according to your Azure app configuration (Client ID and Client Secret):
+Open the `.env` file and add/change these parameters, according to your Azure app configuration (Tenant ID, Client ID and Client Secret):
 
 ```
+AZURE_TENANT_ID: ??????????
 AZURE_CLIENT_ID: ??????????
 AZURE_CLIENT_SECRET: ??????????
 
