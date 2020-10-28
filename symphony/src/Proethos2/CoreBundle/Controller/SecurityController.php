@@ -42,9 +42,11 @@ class SecurityController extends Controller
         global $kernel;
         $env_dir = dirname($kernel->getRootDir());
 
-        // load enviroment variables
-        $dotenv = new Dotenv();
-        $dotenv->load($env_dir.'/.env');
+        if ( file_exists($env_dir.'/.env') ) {
+            // load enviroment variables
+            $dotenv = new Dotenv();
+            $dotenv->load($env_dir.'/.env');
+        }
     }
 
     /**
