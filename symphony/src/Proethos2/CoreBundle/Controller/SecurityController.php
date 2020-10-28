@@ -81,6 +81,7 @@ class SecurityController extends Controller
         if ( 'oauth2' == $auth_type ) {
             $router = $this->container->get('router');
             $redirect = $router->generate('login_route', array(), true);
+            $azureTenantId = ( $_ENV['AZURE_TENANT_ID'] ) ? $_ENV['AZURE_TENANT_ID'] : 'common';
             $azureClientId = ( $_ENV['AZURE_CLIENT_ID'] ) ? $_ENV['AZURE_CLIENT_ID'] : '';
             $azureClientSecret = ( $_ENV['AZURE_CLIENT_SECRET'] ) ? $_ENV['AZURE_CLIENT_SECRET'] : '';
 
@@ -89,6 +90,9 @@ class SecurityController extends Controller
                 'clientSecret' => $azureClientSecret,
                 'redirectUri'  => $redirect
             ]);
+
+            // Set tenant ID
+            $provider->tenant = $azureTenantId;
 
             // Set to use v2 API, skip the line or set the value to Azure::ENDPOINT_VERSION_1_0 if willing to use v1 API
             $provider->defaultEndPointVersion = Azure::ENDPOINT_VERSION_2_0;
@@ -269,6 +273,7 @@ class SecurityController extends Controller
         if ( 'oauth2' == $auth_type ) {
             $router = $this->container->get('router');
             $redirect = $router->generate('login_route', array(), true);
+            $azureTenantId = ( $_ENV['AZURE_TENANT_ID'] ) ? $_ENV['AZURE_TENANT_ID'] : 'common';
             $azureClientId = ( $_ENV['AZURE_CLIENT_ID'] ) ? $_ENV['AZURE_CLIENT_ID'] : '';
             $azureClientSecret = ( $_ENV['AZURE_CLIENT_SECRET'] ) ? $_ENV['AZURE_CLIENT_SECRET'] : '';
             
@@ -277,6 +282,9 @@ class SecurityController extends Controller
                 'clientSecret' => $azureClientSecret,
                 'redirectUri'  => $redirect
             ]);
+
+            // Set tenant ID
+            $provider->tenant = $azureTenantId;
 
             // Set to use v2 API, skip the line or set the value to Azure::ENDPOINT_VERSION_1_0 if willing to use v1 API
             $provider->defaultEndPointVersion = Azure::ENDPOINT_VERSION_2_0;
