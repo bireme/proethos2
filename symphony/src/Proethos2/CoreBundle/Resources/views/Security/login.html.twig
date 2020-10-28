@@ -114,25 +114,27 @@
 {% endblock %}
 
 {% block script %}
-    <script>
-        $(function(){
-            $('.btn-signin').on('click', function(e) {
-                e.preventDefault();
-                var val = $('#inputEmail').val();
-                $.ajax({
-                    url: "/login/sanitize",
-                    method: "POST",
-                    data: { "_username": val },
-                    success: function(data, text){
-                        response = $.parseJSON(data);
-                        $('#inputUsername').val(response._username);
-                        $('.form-signin').submit();
-                    },
-                    error: function (request, status, error) {
-                        alert(request.responseText);
-                    }
+    {% if auth_type == 'default' %}
+        <script>
+            $(function(){
+                $('.btn-signin').on('click', function(e) {
+                    e.preventDefault();
+                    var val = $('#inputEmail').val();
+                    $.ajax({
+                        url: "/login/sanitize",
+                        method: "POST",
+                        data: { "_username": val },
+                        success: function(data, text){
+                            response = $.parseJSON(data);
+                            $('#inputUsername').val(response._username);
+                            $('.form-signin').submit();
+                        },
+                        error: function (request, status, error) {
+                            alert(request.responseText);
+                        }
+                    });
                 });
             });
-        });
-    </script>
+        </script>
+    {% endif %}
 {% endblock %}
