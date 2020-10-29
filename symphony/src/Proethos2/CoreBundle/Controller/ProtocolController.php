@@ -376,7 +376,7 @@ class ProtocolController extends Controller
                 $body = str_replace("\r\n", "<br />", $body);
                 $body .= "<br /><br />";
 
-                $recipients = array($protocol->getOwner());
+                $recipients = array($protocol->getOwner()->getEmail());
                 foreach($protocol->getMainSubmission()->getTeam() as $team_member) {
                     $recipients[] = $team_member->getEmail();
                 }
@@ -542,7 +542,7 @@ class ProtocolController extends Controller
                     $em->flush();
 
                     $investigators = array();
-                    $investigators[] = $protocol->getMainSubmission()->getOwner();
+                    $investigators[] = $protocol->getMainSubmission()->getOwner()->getEmail();
                     foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
                         $investigators[] = $investigator->getEmail();
                     }
@@ -693,7 +693,7 @@ class ProtocolController extends Controller
                 }
 
                 $investigators = array();
-                $investigators[] = $protocol->getMainSubmission()->getOwner();
+                $investigators[] = $protocol->getMainSubmission()->getOwner()->getEmail();
                 foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
                     $investigators[] = $investigator->getEmail();
                 }
@@ -759,7 +759,7 @@ class ProtocolController extends Controller
                 $em->flush();
 
                 $investigators = array();
-                $investigators[] = $protocol->getMainSubmission()->getOwner();
+                $investigators[] = $protocol->getMainSubmission()->getOwner()->getEmail();
                 foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
                     $investigators[] = $investigator->getEmail();
                 }
@@ -1197,7 +1197,7 @@ class ProtocolController extends Controller
             $em->flush();
 
             $investigators = array();
-            $investigators[] = $protocol->getMainSubmission()->getOwner();
+            $investigators[] = $protocol->getMainSubmission()->getOwner()->getEmail();
             foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
                 $investigators[] = $investigator->getEmail();
             }
