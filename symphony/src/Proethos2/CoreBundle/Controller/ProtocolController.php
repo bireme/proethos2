@@ -72,6 +72,15 @@ class ProtocolController extends Controller
             $post_data = $request->request->all();
 
             // if has new comment
+            if(isset($post_data['contacts'])) {
+                $protocol->setContacts($post_data['contacts']);
+                $em->persist($protocol);
+                $em->flush();
+
+                $session->getFlashBag()->add('success', $translator->trans("Contacts updated with success."));
+            }
+
+            // if has new comment
             if(isset($post_data['new-comment-message'])) {
 
                 $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -191,6 +200,7 @@ class ProtocolController extends Controller
                     $secretaries_emails[] = $secretary->getEmail();
                 }
             }
+
             $message = \Swift_Message::newInstance()
             ->setSubject("[proethos2] " . $translator->trans("New comment on Proethos2"))
             ->setFrom($util->getConfiguration('committee.email'))
@@ -368,23 +378,26 @@ class ProtocolController extends Controller
 
                 $recipients = array($protocol->getOwner());
                 foreach($protocol->getMainSubmission()->getTeam() as $team_member) {
-                    $recipients[] = $team_member;
+                    $recipients[] = $team_member->getEmail();
                 }
 
-                foreach($recipients as $recipient) {
-                    $message = \Swift_Message::newInstance()
-                    ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was rejected"))
-                    ->setFrom($util->getConfiguration('committee.email'))
-                    ->setTo($recipient->getEmail())
-                    ->setBody(
-                        $body
-                        ,
-                        'text/html'
-                    );
-
-                    $send = $this->get('mailer')->send($message);
+                $contacts = $protocol->getContactsList();
+                if ($contacts) {
+                    $recipients = array_values(array_unique(array_merge($recipients, $contacts)));
                 }
 
+                $message = \Swift_Message::newInstance()
+                ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was rejected"))
+                ->setFrom($util->getConfiguration('committee.email'))
+                ->setTo($recipients)
+                ->setBody(
+                    $body
+                    ,
+                    'text/html'
+                );
+
+                $send = $this->get('mailer')->send($message);
+                
                 if($protocol->getMonitoringAction()) {
 
                     $protocol_history = new ProtocolHistory();
@@ -531,33 +544,37 @@ class ProtocolController extends Controller
                     $investigators = array();
                     $investigators[] = $protocol->getMainSubmission()->getOwner();
                     foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
-                        $investigators[] = $investigator;
+                        $investigators[] = $investigator->getEmail();
                     }
-                    foreach($investigators as $investigator) {
-                        $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
-                        $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
 
-                        $help = $help_repository->find(211);
-                        $translations = $trans_repository->findTranslations($help);
-                        $text = $translations[$submission->getLanguage()];
-                        $body = $text['message'];
-                        $body = str_replace("%protocol_url%", $url, $body);
-                        $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
-                        $body = str_replace("\r\n", "<br />", $body);
-                        $body .= "<br /><br />";
-
-                        $message = \Swift_Message::newInstance()
-                        ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was sent to review!"))
-                        ->setFrom($util->getConfiguration('committee.email'))
-                        ->setTo($investigator->getEmail())
-                        ->setBody(
-                            $body
-                            ,
-                            'text/html'
-                        );
-
-                        $send = $this->get('mailer')->send($message);
+                    $contacts = $protocol->getContactsList();
+                    if ($contacts) {
+                        $investigators = array_values(array_unique(array_merge($investigators, $contacts)));
                     }
+
+                    $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                    $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
+                    $help = $help_repository->find(211);
+                    $translations = $trans_repository->findTranslations($help);
+                    $text = $translations[$submission->getLanguage()];
+                    $body = $text['message'];
+                    $body = str_replace("%protocol_url%", $url, $body);
+                    $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
+                    $body = str_replace("\r\n", "<br />", $body);
+                    $body .= "<br /><br />";
+
+                    $message = \Swift_Message::newInstance()
+                    ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was sent to review!"))
+                    ->setFrom($util->getConfiguration('committee.email'))
+                    ->setTo($investigators)
+                    ->setBody(
+                        $body
+                        ,
+                        'text/html'
+                    );
+
+                    $send = $this->get('mailer')->send($message);
 
                     $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
                     return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
@@ -678,21 +695,25 @@ class ProtocolController extends Controller
                 $investigators = array();
                 $investigators[] = $protocol->getMainSubmission()->getOwner();
                 foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
-                    $investigators[] = $investigator;
+                    $investigators[] = $investigator->getEmail();
                 }
-                foreach($investigators as $investigator) {
-                    $message = \Swift_Message::newInstance()
-                    ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was sent to review!"))
-                    ->setFrom($util->getConfiguration('committee.email'))
-                    ->setTo($investigator->getEmail())
-                    ->setBody(
-                        $body
-                        ,
-                        'text/html'
-                    );
 
-                    $send = $this->get('mailer')->send($message);
+                $contacts = $protocol->getContactsList();
+                if ($contacts) {
+                    $investigators = array_values(array_unique(array_merge($investigators, $contacts)));
                 }
+
+                $message = \Swift_Message::newInstance()
+                ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was sent to review!"))
+                ->setFrom($util->getConfiguration('committee.email'))
+                ->setTo($investigators)
+                ->setBody(
+                    $body
+                    ,
+                    'text/html'
+                );
+
+                $send = $this->get('mailer')->send($message);
 
                 $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
                 return $this->redirectToRoute('protocol_initial_committee_review', array('protocol_id' => $protocol->getId()), 301);
@@ -740,37 +761,41 @@ class ProtocolController extends Controller
                 $investigators = array();
                 $investigators[] = $protocol->getMainSubmission()->getOwner();
                 foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
-                    $investigators[] = $investigator;
+                    $investigators[] = $investigator->getEmail();
                 }
-                foreach($investigators as $investigator) {
-                    $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
-                    $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
 
-                    $help = $help_repository->find(214);
-                    $translations = $trans_repository->findTranslations($help);
-                    $text = $translations[$submission->getLanguage()];
-                    $body = $text['message'];
-                    $body = str_replace("%protocol_url%", $url, $body);
-                    $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
-                    $body = str_replace("\r\n", "<br />", $body);
-                    $body .= "<br /><br />";
-
-                    $message = \Swift_Message::newInstance()
-                    ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was concluded as Exempt."))
-                    ->setFrom($util->getConfiguration('committee.email'))
-                    ->setTo($investigator->getEmail())
-                    ->setBody(
-                        $body
-                        ,
-                        'text/html'
-                    );
-
-                    if(!empty($file)) {
-                        $message->attach($attachment);
-                    }
-
-                    $send = $this->get('mailer')->send($message);
+                $contacts = $protocol->getContactsList();
+                if ($contacts) {
+                    $investigators = array_values(array_unique(array_merge($investigators, $contacts)));
                 }
+
+                $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
+                $help = $help_repository->find(214);
+                $translations = $trans_repository->findTranslations($help);
+                $text = $translations[$submission->getLanguage()];
+                $body = $text['message'];
+                $body = str_replace("%protocol_url%", $url, $body);
+                $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
+                $body = str_replace("\r\n", "<br />", $body);
+                $body .= "<br /><br />";
+
+                $message = \Swift_Message::newInstance()
+                ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was concluded as Exempt."))
+                ->setFrom($util->getConfiguration('committee.email'))
+                ->setTo($investigators)
+                ->setBody(
+                    $body
+                    ,
+                    'text/html'
+                );
+
+                if(!empty($file)) {
+                    $message->attach($attachment);
+                }
+
+                $send = $this->get('mailer')->send($message);
 
                 $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
                 return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
@@ -1174,37 +1199,41 @@ class ProtocolController extends Controller
             $investigators = array();
             $investigators[] = $protocol->getMainSubmission()->getOwner();
             foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
-                $investigators[] = $investigator;
+                $investigators[] = $investigator->getEmail();
             }
-            foreach($investigators as $investigator) {
-                $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
-                $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
 
-                $help = $help_repository->find(216);
-                $translations = $trans_repository->findTranslations($help);
-                $text = $translations[$submission->getLanguage()];
-                $body = $text['message'];
-                $body = str_replace("%protocol_url%", $url, $body);
-                $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
-                $body = str_replace("\r\n", "<br />", $body);
-                $body .= "<br /><br />";
-
-                $message = \Swift_Message::newInstance()
-                ->setSubject("[proethos2] " . $mail_translator->trans("The protocol review was finalized!"))
-                ->setFrom($util->getConfiguration('committee.email'))
-                ->setTo($investigator->getEmail())
-                ->setBody(
-                    $body
-                    ,
-                    'text/html'
-                );
-
-                if(!empty($file)) {
-                    $message->attach($attachment);
-                }
-
-                $send = $this->get('mailer')->send($message);
+            $contacts = $protocol->getContactsList();
+            if ($contacts) {
+                $investigators = array_values(array_unique(array_merge($investigators, $contacts)));
             }
+
+            $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+            $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
+            $help = $help_repository->find(216);
+            $translations = $trans_repository->findTranslations($help);
+            $text = $translations[$submission->getLanguage()];
+            $body = $text['message'];
+            $body = str_replace("%protocol_url%", $url, $body);
+            $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
+            $body = str_replace("\r\n", "<br />", $body);
+            $body .= "<br /><br />";
+
+            $message = \Swift_Message::newInstance()
+            ->setSubject("[proethos2] " . $mail_translator->trans("The protocol review was finalized!"))
+            ->setFrom($util->getConfiguration('committee.email'))
+            ->setTo($investigators)
+            ->setBody(
+                $body
+                ,
+                'text/html'
+            );
+
+            if(!empty($file)) {
+                $message->attach($attachment);
+            }
+
+            $send = $this->get('mailer')->send($message);
 
             $session->getFlashBag()->add('success', $translator->trans("Protocol was finalized with success!"));
             return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);

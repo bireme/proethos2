@@ -229,6 +229,18 @@ img.logo {
     margin-top: 15px;
 }
 
+.form-contacts .tagify {
+  --tag-bg                  : #2C93D9;
+  --tag-hover               : #CE0078;
+  --tag-text-color          : #FFF;
+  --tags-border-color       : silver;
+  --tag-text-color--edit    : #111;
+  --tag-remove-bg           : var(--tag-hover);
+  --tag-pad                 : .6em 1em;
+  --tag-inset-shadow-size   : 1.3em;
+  --tag-remove-btn-bg--hover: black;
+}
+
 @media (max-width: 772px) {
     #bs-example-navbar-collapse-1 ul.nav.navbar-nav {
         display: block;
