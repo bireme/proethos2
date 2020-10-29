@@ -76,6 +76,17 @@
                         </fieldset>
 
                         <fieldset>
+                            <legend>{% trans %}Is this a substudy of a larger project?{% endtrans %}</legend>
+                            <div class="form-group required">
+                                <label for="">{% trans %}Is this a substudy of a larger project?{% endtrans %}?</label>
+                                <div class="radio">
+                                    <label><input type="radio" name="is_substudy" id="radio_substudy_yes" value="yes" required> {% trans %}Yes{% endtrans %}</label>
+                                    <label><input type="radio" name="is_substudy" id="radio_substudy_no" value="no" required checked> {% trans %}No{% endtrans %}</label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
                             <legend>{% trans %}Project Title{% endtrans %}</legend>
 
                             <div class="form-group required">
