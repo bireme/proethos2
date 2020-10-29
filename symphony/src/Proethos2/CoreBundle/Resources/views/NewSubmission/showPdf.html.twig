@@ -35,7 +35,7 @@
             (<small>{% if submission.language == 'pt_BR' %}Português{% endif %}{% if submission.language == 'es_ES' %}Español{% endif %}{% if submission.language == 'en' %}English{% endif %}{% if submission.language == 'fr_FR' %}Français{% endif %}</small>)
         </h1>
 
-        <h3>{% trans %}Public Title{% endtrans %}</h3>
+        <h2>{% trans %}Public Title{% endtrans %}</h2>
         <p>{{ submission.publicTitle }}</p>
 
         <h2>{% trans %}Team{% endtrans %}</h2>
@@ -77,6 +77,15 @@
 
         <h2>{% trans %}Goals{% endtrans %}</h2>
         <p>{{ submission.goals }}</p>
+
+        <h2>{% trans %}Is this a substudy of a larger project?{% endtrans %}</h2>
+        <p>
+            {% if submission.isSubstudy %}
+                {% trans %}yes{% endtrans %}
+            {% else %}
+                {% trans %}no{% endtrans %}
+            {% endif %}
+        </p>
 
         {% if not submission.isConsultation %}
 

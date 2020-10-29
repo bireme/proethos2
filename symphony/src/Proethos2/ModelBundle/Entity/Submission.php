@@ -136,6 +136,14 @@ class Submission extends Base
     /**
      * @var boolean
      *
+     * @ORM\Column(name="is_substudy", type="boolean")
+     * @Assert\NotBlank
+     */
+    private $is_substudy;
+
+    /**
+     * @var boolean
+     *
      * @ORM\Column(name="is_sent", type="boolean")
      * @Assert\NotBlank
      */
@@ -1716,5 +1724,29 @@ class Submission extends Base
     public function removeTranslation(\Proethos2\ModelBundle\Entity\Submission $translation)
     {
         $this->translations->removeElement($translation);
+    }
+
+    /**
+     * Set isSubstudy
+     *
+     * @param boolean $isSubstudy
+     *
+     * @return Submission
+     */
+    public function setIsSubstudy($isSubstudy)
+    {
+        $this->is_substudy = $isSubstudy;
+
+        return $this;
+    }
+
+    /**
+     * Get isSubstudy
+     *
+     * @return boolean
+     */
+    public function getIsSubstudy()
+    {
+        return $this->is_substudy;
     }
 }
