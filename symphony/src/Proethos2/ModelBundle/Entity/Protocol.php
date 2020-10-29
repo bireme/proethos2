@@ -162,6 +162,13 @@ class Protocol extends Base
     private $monitoring_action_next_date;
 
     /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $contacts;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -753,4 +760,43 @@ class Protocol extends Base
 
         return $xml_available_list;
     }
+
+    /**
+     * Set contacts
+     *
+     * @param string $contacts
+     *
+     * @return Protocol
+     */
+    public function setContacts($contacts)
+    {
+        $this->contacts = $contacts;
+
+        return $this;
+    }
+
+    /**
+     * Get contacts
+     *
+     * @return string
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
+
+    public function getContactsList() {
+        $contacts = array();
+
+        if ( $this->contacts ) {
+            $contacts_list = json_decode($this->contacts);
+            
+            foreach($contacts_list as $contact) {
+                $contacts[] = $contact->value;
+            }
+        }
+
+        return $contacts;
+    }
+
 }

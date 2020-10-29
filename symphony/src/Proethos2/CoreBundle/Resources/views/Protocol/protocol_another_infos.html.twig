@@ -55,6 +55,33 @@
     </div>
 </div>
 
+{% if 'secretary' in app.user.getRolesSlug %}
+<div class='block'>
+    <div class='row'>
+        <div class="col-md-12">
+            <h2 class='sub-header toggle-block'>
+                <small class='pull-right'>
+                    <i class='glyphicon glyphicon-minus'></i>
+                </small>
+                
+                {% trans %}Contacts{% endtrans %}:
+            </h2>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class="col-md-12">
+            <form method="POST" id='form-contacts' action="">
+                <div class="form-group form-contacts">
+                    <input name="contacts" placeholder="{% trans %}insert emails here{% endtrans %}" value="{{ protocol.contacts }}">
+                </div>
+                <button type="submit" class="btn btn-default">{% trans %}Save Contacts{% endtrans %}</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+
 <div class='block'>
     <div class='row'>
         <div class="col-md-12">
@@ -280,6 +307,13 @@
 <script>
     // toggles de meta blocks
     $(function() {
+        // $('[name=contacts]').tagify();
+        var element = document.querySelector('[name=contacts]');
+        new Tagify(element, {
+            // email address validation
+            pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        });
+
         $("body").on("click", ".toggle-block", function(e){
 
             // find and toggle all rows of block
