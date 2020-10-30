@@ -75,6 +75,7 @@ class NewSubmissionController extends Controller
             $submission = new Submission();
             $submission->setIsClinicalTrial(($post_data['is_clinical_trial'] == 'yes') ? true : false);
             $submission->setIsConsultation(($post_data['is_consultation'] == 'yes') ? true : false);
+            $submission->setIsSubstudy(($post_data['is_substudy'] == 'yes') ? true : false);
             $submission->setPublicTitle($post_data['public_title']);
             $submission->setScientificTitle($post_data['scientific_title']);
             $submission->setTitleAcronym($post_data['title_acronym']);
@@ -143,6 +144,7 @@ class NewSubmissionController extends Controller
 
             $submission->setIsClinicalTrial(($post_data['is_clinical_trial'] == 'yes') ? true : false);
             $submission->setIsConsultation(($post_data['is_consultation'] == 'yes') ? true : false);
+            $submission->setIsSubstudy(($post_data['is_substudy'] == 'yes') ? true : false);
             $submission->setPublicTitle($post_data['public_title']);
             $submission->setScientificTitle($post_data['scientific_title']);
             $submission->setTitleAcronym($post_data['title_acronym']);
