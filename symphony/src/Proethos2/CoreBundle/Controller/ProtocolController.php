@@ -1263,7 +1263,7 @@ class ProtocolController extends Controller
         $protocol = $protocol_repository->find($protocol_id);
         $output['protocol'] = $protocol;
 
-        if (!$protocol or !(in_array('secretary', $user->getRolesSlug())) or !in_array($protocol->getStatus(), array('N', 'C'))) {
+        if (!$protocol or !(in_array('secretary', $user->getRolesSlug())) or !in_array($protocol->getStatus(), array('R', 'C'))) {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
 
@@ -1283,9 +1283,15 @@ class ProtocolController extends Controller
             }
 
             if($post_data['are-you-sure'] == 'yes') {
-                $protocol->setStatus("H");
-                $protocol->setMonitoringActionNextDate(NULL);
-                $protocol->setDecisionIn(NULL);
+                $status = $protocol->getStatus();
+
+                if ( 'R' == $status ) {
+                    $protocol->setStatus("S");
+                } else {
+                    $protocol->setStatus("H");
+                    $protocol->setMonitoringActionNextDate(NULL);
+                    $protocol->setDecisionIn(NULL);
+                }
                 $em->persist($protocol);
                 $em->flush();
 
