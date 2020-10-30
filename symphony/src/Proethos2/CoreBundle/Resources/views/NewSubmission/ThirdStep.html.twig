@@ -84,10 +84,10 @@
                             </div>
 
                             <div class="col-md-3">
-                                <div class="form-group">
+                                <div class="form-group required">
                                     <label for="input-maximum-age">{% trans %}Maximum Age{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 22} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <input type="number" class="form-control" placeholder="" min="0" value="{{ submission.maximumAge }}" name='maximum-age' id='input-maximum-age'>
+                                    <input type="number" class="form-control" placeholder="" min="0" value="{{ submission.maximumAge }}" name='maximum-age' id='input-maximum-age' required>
                                 </div>
                             </div>
                         </div>
