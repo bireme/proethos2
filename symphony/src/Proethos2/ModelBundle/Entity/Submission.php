@@ -1166,6 +1166,10 @@ class Submission extends Base
      */
     public function getFundingSource()
     {
+        if ( is_null($this->funding_source) ) {
+            return $this->funding_source;
+        }
+
         return Security::decrypt($this->funding_source);
     }
 
@@ -1190,6 +1194,10 @@ class Submission extends Base
      */
     public function getPrimarySponsor()
     {
+        if ( is_null($this->primary_sponsor) ) {
+            return $this->primary_sponsor;
+        }
+
         return Security::decrypt($this->primary_sponsor);
     }
 
@@ -1214,6 +1222,10 @@ class Submission extends Base
      */
     public function getSecondarySponsor()
     {
+        if ( is_null($this->secondary_sponsor) ) {
+            return $this->secondary_sponsor;
+        }
+
         return Security::decrypt($this->secondary_sponsor);
     }
 
@@ -1330,6 +1342,10 @@ class Submission extends Base
      */
     public function getSscientificContact()
     {
+        if ( is_null($this->sscientific_contact) ) {
+            return $this->sscientific_contact;
+        }
+
         return Security::decrypt($this->sscientific_contact);
     }
 
