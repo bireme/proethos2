@@ -295,6 +295,10 @@ class User extends Base implements UserInterface, \Serializable
      */
     public function getInstitution()
     {
+        if ( is_null($this->institution) ) {
+            return $this->institution;
+        }
+
         return Security::decrypt($this->institution);
     }
 
