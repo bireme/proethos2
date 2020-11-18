@@ -22,7 +22,7 @@ use Proethos2\CoreBundle\Util\Security;
 
 class Security {
 
-    public function encrypt($data)
+    public static function encrypt($data)
     {
         global $kernel;
         // $private_key = base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES));
@@ -38,7 +38,7 @@ class Security {
         return $encoded;
     }
 
-    public function decrypt($data)
+    public static function decrypt($data)
     {
         global $kernel;
         // $private_key = base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES));

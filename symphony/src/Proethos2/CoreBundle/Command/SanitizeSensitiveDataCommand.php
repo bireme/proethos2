@@ -60,54 +60,58 @@ class SanitizeSensitiveDataCommand extends ContainerAwareCommand
         $executa = $stmte->execute();
         // die(print_r($stmte->fetchAll(\PDO::FETCH_OBJ)));
 
-        if ( $executa and $stmte->rowCount() > 0 ) {
-            $count = 0;
-            while($reg = $stmte->fetch(\PDO::FETCH_OBJ)){ // Para recuperar um ARRAY utilize PDO::FETCH_ASSOC
-                $sanitize = true;
+        if ( $executa ) {
+            if ( $stmte->rowCount() > 0 ) {
+                $count = 0;
+                while($reg = $stmte->fetch(\PDO::FETCH_OBJ)){ // Para recuperar um ARRAY utilize PDO::FETCH_ASSOC
+                    $sanitize = true;
 
-                try {
-                    $email = Security::decrypt($reg->email);
-                    $username = Security::decrypt($reg->username);
-                    $institution = Security::decrypt($reg->institution);
-                } catch (\Exception $e) {
-                    $sanitize = false;
-                }
+                    try {
+                        $email = Security::decrypt($reg->email);
+                        $username = Security::decrypt($reg->username);
+                        $institution = Security::decrypt($reg->institution);
+                    } catch (\Exception $e) {
+                        $sanitize = false;
+                    }
 
-                if ( $input->getOption('rollback') != true ) {
-                    if ( !$sanitize ) {
-                        $email = Security::encrypt($reg->email);
-                        $username = Security::encrypt($reg->username);
-                        $institution = Security::encrypt($reg->institution);
+                    if ( $input->getOption('rollback') != true ) {
+                        if ( !$sanitize ) {
+                            $email = Security::encrypt($reg->email);
+                            $username = Security::encrypt($reg->username);
+                            $institution = Security::encrypt($reg->institution);
+                        } else {
+                            print "-- [ERROR] Data already encrypted --\n";
+                            break;
+                        }
                     } else {
-                        print "-- [ERROR] Data already encrypted --\n";
+                        $email = Security::decrypt($reg->email);
+                        $username = Security::decrypt($reg->username);
+                        $institution = Security::decrypt($reg->institution);
+                    }
+
+                    $sql = "UPDATE user
+                            SET email = :email, username = :username, institution = :institution
+                            WHERE id = :id;";
+
+                    $reg_stmte = $pdo->prepare($sql);
+                    $reg_stmte->bindParam(":id", $reg->id, \PDO::PARAM_INT);
+                    $reg_stmte->bindParam(":email", $email, \PDO::PARAM_STR);
+                    $reg_stmte->bindParam(":username", $username, \PDO::PARAM_STR);
+                    $reg_stmte->bindParam(":institution", $institution, \PDO::PARAM_STR);
+                    $reg_executa = $reg_stmte->execute();
+
+                    if ( $reg_executa and $reg_stmte->rowCount() > 0 ) {
+                        $count++;
+                    } else {
+                        $error = $reg_stmte->errorInfo();
+                        print "-- [ERROR] $error[2] --\n";
                         break;
                     }
-                } else {
-                    $email = Security::decrypt($reg->email);
-                    $username = Security::decrypt($reg->username);
-                    $institution = Security::decrypt($reg->institution);
                 }
-
-                $sql = "UPDATE user
-                        SET email = :email, username = :username, institution = :institution
-                        WHERE id = :id;";
-
-                $reg_stmte = $pdo->prepare($sql);
-                $reg_stmte->bindParam(":id", $reg->id, \PDO::PARAM_INT);
-                $reg_stmte->bindParam(":email", $email, \PDO::PARAM_STR);
-                $reg_stmte->bindParam(":username", $username, \PDO::PARAM_STR);
-                $reg_stmte->bindParam(":institution", $institution, \PDO::PARAM_STR);
-                $reg_executa = $reg_stmte->execute();
-
-                if ( $reg_executa and $reg_stmte->rowCount() > 0 ) {
-                    $count++;
-                } else {
-                    $error = $reg_stmte->errorInfo();
-                    print "-- [ERROR] $error[2] --\n";
-                    break;
-                }
+                print "-- [INFO] Affected lines: $count --\n";
+            } else {
+                print "-- [FAIL] Empty table --\n";
             }
-            print "-- [INFO] Affected lines: $count --\n";
         } else {
             $error = $stmte->errorInfo();
             print "-- [ERROR] $error[2] --\n";
@@ -123,58 +127,62 @@ class SanitizeSensitiveDataCommand extends ContainerAwareCommand
         $executa = $stmte->execute();
         // die(print_r($stmte->fetchAll(\PDO::FETCH_OBJ)));
 
-        if ( $executa and $stmte->rowCount() > 0 ) {
-            $count = 0;
-            while($reg = $stmte->fetch(\PDO::FETCH_OBJ)){ // Para recuperar um ARRAY utilize PDO::FETCH_ASSOC
-                $sanitize = true;
+        if ( $executa ) {
+            if ( $stmte->rowCount() > 0 ) {
+                $count = 0;
+                while($reg = $stmte->fetch(\PDO::FETCH_OBJ)){ // Para recuperar um ARRAY utilize PDO::FETCH_ASSOC
+                    $sanitize = true;
 
-                try {
-                    $funding_source = Security::decrypt($reg->funding_source);
-                    $primary_sponsor = Security::decrypt($reg->primary_sponsor);
-                    $secondary_sponsor = Security::decrypt($reg->secondary_sponsor);
-                    $sscientific_contact = Security::decrypt($reg->sscientific_contact);
-                } catch (\Exception $e) {
-                    $sanitize = false;
-                }
+                    try {
+                        $funding_source = Security::decrypt($reg->funding_source);
+                        $primary_sponsor = Security::decrypt($reg->primary_sponsor);
+                        $secondary_sponsor = Security::decrypt($reg->secondary_sponsor);
+                        $sscientific_contact = Security::decrypt($reg->sscientific_contact);
+                    } catch (\Exception $e) {
+                        $sanitize = false;
+                    }
 
-                if ( $input->getOption('rollback') != true ) {
-                    if ( !$sanitize ) {
-                        $funding_source = Security::encrypt($reg->funding_source);
-                        $primary_sponsor = Security::encrypt($reg->primary_sponsor);
-                        $secondary_sponsor = Security::encrypt($reg->secondary_sponsor);
-                        $sscientific_contact = Security::encrypt($reg->sscientific_contact);
+                    if ( $input->getOption('rollback') != true ) {
+                        if ( !$sanitize ) {
+                            $funding_source = Security::encrypt($reg->funding_source);
+                            $primary_sponsor = Security::encrypt($reg->primary_sponsor);
+                            $secondary_sponsor = Security::encrypt($reg->secondary_sponsor);
+                            $sscientific_contact = Security::encrypt($reg->sscientific_contact);
+                        } else {
+                            print "-- [ERROR] Data already encrypted --\n";
+                            break;
+                        }
                     } else {
-                        print "-- [ERROR] Data already encrypted --\n";
+                        $funding_source = Security::decrypt($reg->funding_source);
+                        $primary_sponsor = Security::decrypt($reg->primary_sponsor);
+                        $secondary_sponsor = Security::decrypt($reg->secondary_sponsor);
+                        $sscientific_contact = Security::decrypt($reg->sscientific_contact);
+                    }
+
+                    $sql = "UPDATE submission
+                            SET funding_source = :fs, primary_sponsor = :ps, secondary_sponsor = :ss, sscientific_contact = :sc
+                            WHERE id = :id;";
+
+                    $reg_stmte = $pdo->prepare($sql);
+                    $reg_stmte->bindParam(":id", $reg->id, \PDO::PARAM_INT);
+                    $reg_stmte->bindParam(":fs", $funding_source, \PDO::PARAM_STR);
+                    $reg_stmte->bindParam(":ps", $primary_sponsor, \PDO::PARAM_STR);
+                    $reg_stmte->bindParam(":ss", $secondary_sponsor, \PDO::PARAM_STR);
+                    $reg_stmte->bindParam(":sc", $sscientific_contact, \PDO::PARAM_STR);
+                    $reg_executa = $reg_stmte->execute();
+
+                    if ( $reg_executa and $reg_stmte->rowCount() > 0 ) {
+                        $count++;
+                    } else {
+                        $error = $reg_stmte->errorInfo();
+                        print "-- [ERROR] $error[2] --\n";
                         break;
                     }
-                } else {
-                    $funding_source = Security::decrypt($reg->funding_source);
-                    $primary_sponsor = Security::decrypt($reg->primary_sponsor);
-                    $secondary_sponsor = Security::decrypt($reg->secondary_sponsor);
-                    $sscientific_contact = Security::decrypt($reg->sscientific_contact);
                 }
-
-                $sql = "UPDATE submission
-                        SET funding_source = :fd, primary_sponsor = :ps, secondary_sponsor = :ss, sscientific_contact = :sc
-                        WHERE id = :id;";
-
-                $reg_stmte = $pdo->prepare($sql);
-                $reg_stmte->bindParam(":id", $reg->id, \PDO::PARAM_INT);
-                $reg_stmte->bindParam(":fd", $funding_source, \PDO::PARAM_STR);
-                $reg_stmte->bindParam(":ps", $primary_sponsor, \PDO::PARAM_STR);
-                $reg_stmte->bindParam(":ss", $secondary_sponsor, \PDO::PARAM_STR);
-                $reg_stmte->bindParam(":sc", $sscientific_contact, \PDO::PARAM_STR);
-                $reg_executa = $reg_stmte->execute();
-
-                if ( $reg_executa and $reg_stmte->rowCount() > 0 ) {
-                    $count++;
-                } else {
-                    $error = $reg_stmte->errorInfo();
-                    print "-- [ERROR] $error[2] --\n";
-                    break;
-                }
+                print "-- [INFO] Affected lines: $count --\n";
+            } else {
+                print "-- [FAIL] Empty table --\n";
             }
-            print "-- [INFO] Affected lines: $count --\n";
         } else {
             $error = $stmte->errorInfo();
             print "-- [ERROR] $error[2] --\n";
