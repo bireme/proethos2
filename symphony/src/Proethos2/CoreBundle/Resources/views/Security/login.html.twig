@@ -64,7 +64,7 @@
                 <p>{{ committee_description|raw }}</p>
             </div>
 
-            <div class="col-xs-4 card">
+            <div class="col-xs-4 form-card card">
                 
                 {% if error %}
                     <div class='alert alert-danger'>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -130,7 +130,8 @@
                             $('.form-signin').submit();
                         },
                         error: function (request, status, error) {
-                            alert(request.responseText);
+                            $('.alert-card').remove();
+                            $('.form-card').prepend("<div class='alert alert-danger alert-card'>"+error+"</div>");
                         }
                     });
                 });
