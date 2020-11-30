@@ -585,6 +585,7 @@ class CRUDController extends Controller
 
         $document_repository = $em->getRepository('Proethos2ModelBundle:Document');
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
+        $upload_type_extension_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
 
         $documents = $document_repository->findAll();
 
@@ -612,6 +613,16 @@ class CRUDController extends Controller
 
             if(empty($file)) {
                 $session->getFlashBag()->add('error', $translator->trans("Field 'file' is required."));
+                return $output;
+            }
+            
+            // getting the upload type extensions
+            $upload_type_extensions = $upload_type_extension_repository->findAll();
+
+            $file_ext = '.'.$file->getClientOriginalExtension();
+            $ext_formats = array_map(function($obj) { return $obj->getExtension(); }, $upload_type_extensions);
+            if ( !in_array($file_ext, $ext_formats) ) {
+                $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
                 return $output;
             }
 
