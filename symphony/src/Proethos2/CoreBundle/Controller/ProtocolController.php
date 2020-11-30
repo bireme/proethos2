@@ -271,13 +271,20 @@ class ProtocolController extends Controller
 
                 if(!isset($post_data['new-atachment-type']) or empty($post_data['new-atachment-type'])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field 'new-atachment-type' is required."));
-                    return $output;
+                    return $this->redirect($referer, 301);
                 }
 
                 $upload_type = $upload_type_repository->find($post_data['new-atachment-type']);
                 if (!$upload_type) {
                     throw $this->createNotFoundException($translator->trans('No upload type found'));
                     return $output;
+                }
+
+                $file_ext = '.'.$file->getClientOriginalExtension();
+                $ext_formats = $upload_type->getExtensionsFormat();
+                if ( !in_array($file_ext, $ext_formats) ) {
+                    $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                    return $this->redirect($referer, 301);
                 }
 
                 $submission_upload = new SubmissionUpload();
@@ -727,6 +734,13 @@ class ProtocolController extends Controller
                     // getting the upload type
                     $upload_type = $upload_type_repository->findOneBy(array("slug" => "opinion"));
 
+                    $file_ext = '.'.$file->getClientOriginalExtension();
+                    $ext_formats = $upload_type->getExtensionsFormat();
+                    if ( !in_array($file_ext, $ext_formats) ) {
+                        $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                        return $output;
+                    }
+
                     // adding the file uploaded
                     $submission_upload = new SubmissionUpload();
                     $submission_upload->setSubmission($protocol->getMainSubmission());
@@ -1147,12 +1161,19 @@ class ProtocolController extends Controller
                 return $output;
             }
 
+            // getting the upload type
+            $upload_type = $upload_type_repository->findOneBy(array("slug" => "opinion"));
+
+            $file_ext = '.'.$file->getClientOriginalExtension();
+            $ext_formats = $upload_type->getExtensionsFormat();
+            if ( !in_array($file_ext, $ext_formats) ) {
+                $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                return $output;
+            }
+
             // setting the Scheduled status
             $protocol->setStatus($post_data['final-decision']);
             $protocol->setMonitoringAction(NULL);
-
-            // getting the upload type
-            $upload_type = $upload_type_repository->findOneBy(array("slug" => "opinion"));
 
             // adding the file uploaded
             $submission_upload = new SubmissionUpload();

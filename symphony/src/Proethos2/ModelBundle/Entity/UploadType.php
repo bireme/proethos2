@@ -157,6 +157,15 @@ class UploadType extends Base
         return $this->extensions;
     }
 
+    public function getExtensionsFormat() {
+        $formats = array();
+        foreach($this->getExtensions() as $ext) {
+            $formats[] = $ext->getExtension();
+        }
+
+        return $formats;
+    }
+
     /**
      * Set slug
      *

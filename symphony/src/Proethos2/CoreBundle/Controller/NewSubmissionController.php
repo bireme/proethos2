@@ -909,6 +909,13 @@ class NewSubmissionController extends Controller
                     return $output;
                 }
 
+                $file_ext = '.'.$file->getClientOriginalExtension();
+                $ext_formats = $upload_type->getExtensionsFormat();
+                if ( !in_array($file_ext, $ext_formats) ) {
+                    $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                    return $output;
+                }
+
                 $submission_upload = new SubmissionUpload();
                 $submission_upload->setSubmission($submission);
                 $submission_upload->setUploadType($upload_type);
