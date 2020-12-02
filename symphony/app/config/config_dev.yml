@@ -55,16 +55,16 @@ assetic:
 
 swiftmailer:
     transport:          "smtp"
-    host:               "smtp.webfaction.com"
+    host:               "127.0.0.1"
     port:               587
-    username:           "contatoapp"
-    password:           "contatoapp123"
+    username:           ~
+    password:           ~
     auth_mode:          "login"
     encryption:         "tls"
     auth_mode:          "login"
-    delivery_address:   "moa.moda@gmail.com"
+    delivery_address:   ~
 
 parameters:
-    committee.name:   "BIREME/OPAS/OMS"
-    committee.prefix: "BIR"
-    committee.email:  "moa.moda@gmail.com"
+    committee.name:   ~
+    committee.prefix: ~
+    committee.email:  ~
