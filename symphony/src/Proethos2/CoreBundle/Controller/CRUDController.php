@@ -1546,12 +1546,6 @@ class CRUDController extends Controller
 
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
 
-        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
-        
-        if (!in_array('administrator', $user_logged->getRolesSlug())) {
-            throw $this->createNotFoundException($translator->trans('No help found'));
-        }
-
         // getting the current help
         $help = $help_repository->find($help_id);
         $output['help'] = $help;
