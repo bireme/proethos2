@@ -57,6 +57,12 @@ class CRUDController extends Controller
 
         $meetings = $meeting_repository->findBy(array(), array('date' => 'DESC'));
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No meeting found'));
+        }
+
         // serach parameter
         $search_query = $request->query->get('q');
         if($search_query) {
@@ -118,6 +124,12 @@ class CRUDController extends Controller
 
         $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No user found'));
+        }
+
         // getting the current meeting
         $meeting = $meeting_repository->find($meeting_id);
         $output['meeting'] = $meeting;
@@ -170,6 +182,12 @@ class CRUDController extends Controller
         $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
         $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No user found'));
+        }
+
         // getting the current meeting
         $meeting = $meeting_repository->find($meeting_id);
         $output['meeting'] = $meeting;
@@ -197,6 +215,12 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No user found'));
+        }
 
         // getting the current meeting
         $meeting = $meeting_repository->find($meeting_id);
@@ -374,6 +398,12 @@ class CRUDController extends Controller
         $faq_repository = $em->getRepository('Proethos2ModelBundle:Faq');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No FAQ found'));
+        }
+
         $faqs = $faq_repository->findAll();
 
         // serach parameter
@@ -448,6 +478,11 @@ class CRUDController extends Controller
         $faq_repository = $em->getRepository('Proethos2ModelBundle:Faq');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No FAQ found'));
+        }
 
         // getting the current faq
         $question = $faq_repository->find($faq_id);
@@ -519,6 +554,12 @@ class CRUDController extends Controller
 
         $faq_repository = $em->getRepository('Proethos2ModelBundle:Faq');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No FAQ found'));
+        }
+
         // getting the current faq
         $question = $faq_repository->find($faq_id);
         $output['question'] = $question;
@@ -586,6 +627,12 @@ class CRUDController extends Controller
         $document_repository = $em->getRepository('Proethos2ModelBundle:Document');
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
         $upload_type_extension_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No document found'));
+        }
 
         $documents = $document_repository->findAll();
 
@@ -673,6 +720,12 @@ class CRUDController extends Controller
         $document_repository = $em->getRepository('Proethos2ModelBundle:Document');
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No document found'));
+        }
+
         // getting the current document
         $document = $document_repository->find($document_id);
         $output['document'] = $document;
@@ -740,6 +793,12 @@ class CRUDController extends Controller
         $document_repository = $em->getRepository('Proethos2ModelBundle:Document');
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No document found'));
+        }
+
         // getting the current document
         $document = $document_repository->find($document_id);
         $output['document'] = $document;
@@ -787,6 +846,12 @@ class CRUDController extends Controller
         $document_repository = $em->getRepository('Proethos2ModelBundle:Document');
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No document found'));
+        }
+
         $documents = $document_repository->findAll();
 
         // serach parameter
@@ -829,6 +894,12 @@ class CRUDController extends Controller
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
         // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
         // $translations = $trans_repository->findTranslations($help[0]);
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No user found'));
+        }
 
         $users = $user_repository->findAll();
 
@@ -1037,6 +1108,12 @@ class CRUDController extends Controller
         // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
         // $translations = $trans_repository->findTranslations($help[0]);
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No user found'));
+        }
+
         // getting the current user
         $user = $user_repository->find($user_id);
         $output['user'] = $user;
@@ -1138,6 +1215,12 @@ class CRUDController extends Controller
 
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No user found'));
+        }
+
         // getting the current user
         $user = $user_repository->find($user_id);
         $output['user'] = $user;
@@ -1172,6 +1255,12 @@ class CRUDController extends Controller
 
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
         $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No user found'));
+        }
 
         // getting the current user
         $user = $user_repository->find($user_id);
@@ -1222,6 +1311,12 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No user found'));
+        }
 
         // getting the current user
         $user = $user_repository->find($user_id);
@@ -1340,6 +1435,12 @@ class CRUDController extends Controller
 
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No help found'));
+        }
+
         $helps = $help_repository->findBy(array("status" => true, "type" => "help"));
 
         $id = $request->query->get('id');
@@ -1365,6 +1466,12 @@ class CRUDController extends Controller
 
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No help found'));
+        }
 
         // getting the current help
         $help = $help_repository->find($help_id);
@@ -1427,6 +1534,12 @@ class CRUDController extends Controller
 
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No help found'));
+        }
+
         // getting the current help
         $help = $help_repository->find($help_id);
         $output['help'] = $help;
@@ -1454,6 +1567,12 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No help found'));
+        }
 
         // getting the current help
         $help = $help_repository->find($help_id);
@@ -1487,6 +1606,12 @@ class CRUDController extends Controller
 
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No mail found'));
+        }
+
         $mails = $help_repository->findBy(array("status" => true, "type" => "mail"));
 
         $id = $request->query->get('id');
@@ -1512,6 +1637,12 @@ class CRUDController extends Controller
 
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No mail found'));
+        }
 
         // getting the current mail
         $mail = $help_repository->find($mail_id);
@@ -1572,6 +1703,12 @@ class CRUDController extends Controller
 
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No mail found'));
+        }
+
         // getting the current mail
         $mail = $help_repository->find($mail_id);
         $output['mail'] = $mail;
@@ -1599,6 +1736,12 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No mail found'));
+        }
 
         // getting the current mail
         $mail = $help_repository->find($mail_id);
@@ -1629,6 +1772,12 @@ class CRUDController extends Controller
         $session = $request->getSession();
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No configuration found'));
+        }
 
         $currencies = Intl::getCurrencyBundle()->getCurrencyNames();
         $output['currencies'] = $currencies;
@@ -1675,6 +1824,12 @@ class CRUDController extends Controller
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
         $translations = $trans_repository->findTranslations($configuration);
         $output['translations'] = $translations;
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No help found'));
+        }
 
         if (!$configuration) {
             throw $this->createNotFoundException($translator->trans('No configuration found'));
@@ -1731,6 +1886,12 @@ class CRUDController extends Controller
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No configuration found'));
+        }
+
         $items = $item_repository->findAll();
         $output['items'] = $items;
 
@@ -1775,6 +1936,12 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No configuration found'));
+        }
 
         $item = $item_repository->find($item_id);
 
@@ -1828,6 +1995,12 @@ class CRUDController extends Controller
         $item_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
         $extensions_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No configuration found'));
+        }
 
         $items = $item_repository->findAll();
         $output['items'] = $items;
@@ -1894,6 +2067,12 @@ class CRUDController extends Controller
         $item_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
         $extensions_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No configuration found'));
+        }
 
         $item = $item_repository->find($item_id);
 
@@ -1972,6 +2151,12 @@ class CRUDController extends Controller
         $item_repository = $em->getRepository('Proethos2ModelBundle:RecruitmentStatus');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No configuration found'));
+        }
+
         $items = $item_repository->findAll();
         $output['items'] = $items;
 
@@ -2025,6 +2210,12 @@ class CRUDController extends Controller
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:RecruitmentStatus');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No configuration found'));
+        }
 
         $item = $item_repository->find($item_id);
 
@@ -2089,6 +2280,12 @@ class CRUDController extends Controller
         $item_repository = $em->getRepository('Proethos2ModelBundle:MonitoringAction');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No configuration found'));
+        }
+
         $items = $item_repository->findAll();
         $output['items'] = $items;
 
@@ -2142,6 +2339,12 @@ class CRUDController extends Controller
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:MonitoringAction');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No configuration found'));
+        }
 
         $item = $item_repository->find($item_id);
 
@@ -2206,6 +2409,12 @@ class CRUDController extends Controller
         $item_repository = $em->getRepository('Proethos2ModelBundle:ClinicalTrialName');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No configuration found'));
+        }
+
         $items = $item_repository->findAll();
         $output['items'] = $items;
 
@@ -2260,6 +2469,12 @@ class CRUDController extends Controller
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:ClinicalTrialName');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No configuration found'));
+        }
 
         $item = $item_repository->find($item_id);
 
@@ -2325,6 +2540,12 @@ class CRUDController extends Controller
         $item_repository = $em->getRepository('Proethos2ModelBundle:Gender');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No configuration found'));
+        }
+
         $items = $item_repository->findAll();
         $output['items'] = $items;
 
@@ -2378,6 +2599,12 @@ class CRUDController extends Controller
 
         $item_repository = $em->getRepository('Proethos2ModelBundle:Gender');
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No configuration found'));
+        }
 
         $item = $item_repository->find($item_id);
 
