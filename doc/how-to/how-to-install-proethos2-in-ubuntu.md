@@ -148,7 +148,7 @@ or
 $ make load_initial php=php5.6
 ```
 
-__TIP:__ See all the [Make commands](../continuous-integration.md), that certainly will help you.
+__TIP:__ See all the [Make commands](../make-shortcuts.md), that certainly will help you.
 
 Remember that the directories below needs to have write permissions from apache:
 ```
@@ -297,8 +297,10 @@ See the page [How to add routines in crontab](how-to-add-routines-in-crontab.md)
 Other configurations and customizations
 ---------------------------------------
 
-The system comes with pre-stablished configuration. But, if you want to change or customize your instalation, make login
-as an admin role and access System Management > Configurations.
+The system comes with pre-stablished configuration. But, if you want to change or customize your instalation, make login as an admin role and access `System Management > Configurations`.
+
+ProEthos2 default user/pass: `admin/admin`
+- We STRONGLY recommend that you change/remove the Proethos2 default user after installation
 
 That's it!
 
