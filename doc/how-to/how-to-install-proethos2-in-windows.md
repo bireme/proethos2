@@ -242,6 +242,8 @@ Other configurations and customizations
 The system comes with pre-stablished configuration. But, if you want to change or customize your instalation, make login
 as an admin role and access System Management > Configurations.
 
+ProEthos2 default user/pass: `admin/admin`
+- We STRONGLY recommend that you change/remove the Proethos2 default user after installation
 
 That's it!
 
