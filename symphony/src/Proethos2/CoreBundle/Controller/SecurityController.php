@@ -200,6 +200,9 @@ class SecurityController extends Controller
                         $em->flush();
                     }
 
+                    // Update the current session id with a newly generated one
+                    session_regenerate_id();
+
                     //Handle getting or creating the user entity likely with a posted form
                     // The third parameter "main" can change according to the name of your firewall in security.yml
                     //$token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
