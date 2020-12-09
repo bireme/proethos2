@@ -61,7 +61,7 @@
                 </h1>
                 
                 <h2>{{ committee_name }}</h2>
-                <p>{{ committee_description|raw }}</p>
+                <p>{% autoescape false %}{{ committee_description }}{% endautoescape %}</p>
             </div>
 
             <div class="col-xs-4 form-card card">
