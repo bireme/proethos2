@@ -92,6 +92,12 @@ class IndexController extends Controller
     {
         $request = $this->getRequest();
 
+        $_locale = array('en', 'pt_BR', 'es_ES', 'fr_FR');
+
+        if ( !in_array($locale, $_locale) ) {
+            $locale = 'en';
+        }
+
         // some logic to determine the $locale
         $request->getSession()->set('_locale', $locale);
 
