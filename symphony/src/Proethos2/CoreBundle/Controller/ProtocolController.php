@@ -73,6 +73,12 @@ class ProtocolController extends Controller
 
             // if has new comment
             if(isset($post_data['contacts'])) {
+                $submittedToken = $request->request->get('token');
+
+                if (!$this->isCsrfTokenValid('add-contacts', $submittedToken)) {
+                    throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+                }
+
                 $protocol->setContacts($post_data['contacts']);
                 $em->persist($protocol);
                 $em->flush();
@@ -82,6 +88,12 @@ class ProtocolController extends Controller
 
             // if has new comment
             if(isset($post_data['new-comment-message'])) {
+
+                $submittedToken = $request->request->get('token');
+
+                if (!$this->isCsrfTokenValid('add-comment', $submittedToken)) {
+                    throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+                }
 
                 $user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -165,6 +177,12 @@ class ProtocolController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('add-comment', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -269,6 +287,12 @@ class ProtocolController extends Controller
             $file = $request->files->get('new-atachment-file');
             if(!empty($file)) {
 
+                $submittedToken = $request->request->get('token');
+
+                if (!$this->isCsrfTokenValid('add-attachment', $submittedToken)) {
+                    throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+                }
+
                 if(!isset($post_data['new-atachment-type']) or empty($post_data['new-atachment-type'])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field 'new-atachment-type' is required."));
                     return $this->redirect($referer, 301);
@@ -308,6 +332,12 @@ class ProtocolController extends Controller
             }
 
             if(isset($post_data['delete-attachment-id']) and !empty($post_data['delete-attachment-id'])) {
+
+                $submittedToken = $request->request->get('token');
+
+                if (!$this->isCsrfTokenValid('delete-attachment', $submittedToken)) {
+                    throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+                }
 
                 $submission_upload = $submission_upload_repository->find($post_data['delete-attachment-id']);
                 if($submission_upload) {
@@ -365,6 +395,12 @@ class ProtocolController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('analyze-protocol', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -653,6 +689,12 @@ class ProtocolController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('initial-committee-screening', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -883,6 +925,12 @@ class ProtocolController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('initial-committee-review', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -1028,6 +1076,12 @@ class ProtocolController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('initial-committee-review-revisor', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -1142,6 +1196,12 @@ class ProtocolController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('end-review', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -1291,6 +1351,12 @@ class ProtocolController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('retrieve-protocol', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -1365,6 +1431,12 @@ class ProtocolController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('delete-protocol', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();

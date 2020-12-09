@@ -1,4 +1,5 @@
 <form enctype="multipart/form-data" class='form' method="POST" id='form-update-document' action='{{ path("crud_committee_document_update", {document_id: document.id}) }}'>
+    <input type="hidden" name="token" value="{{ csrf_token('update-document') }}"/>
     <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
     
     <div class="modal-header">

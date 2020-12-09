@@ -338,6 +338,12 @@ class SecurityController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('change-pass', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
             
@@ -400,6 +406,12 @@ class SecurityController extends Controller
         
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('forgot-pass', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -488,6 +500,12 @@ class SecurityController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('reset-pass', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
             
@@ -557,6 +575,12 @@ class SecurityController extends Controller
         
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('add-user', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();

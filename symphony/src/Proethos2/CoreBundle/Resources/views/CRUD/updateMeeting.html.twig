@@ -1,4 +1,7 @@
 <form class='form' method="POST" id='form-new-meeting' action="{{ path('crud_committee_meeting_update', {meeting_id: meeting.id} ) }}">
+
+    <input type="hidden" name="token" value="{{ csrf_token('update-meeting') }}"/>
+
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">{% trans %}Update Meeting{% endtrans %}</h4>

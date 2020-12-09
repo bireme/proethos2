@@ -16,6 +16,8 @@
 
         <!-- action -->
         <form method="POST" id='form-action'>
+            
+            <input type="hidden" name="token" value="{{ csrf_token('initial-committee-review-revisor') }}"/>
             <input type="hidden" id="input-is-final-revision" name="is-final-revision" value="false">
 
             <div class='block action'>
@@ -107,7 +109,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             
             <div class='row'>

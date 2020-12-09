@@ -18,6 +18,9 @@
             <div class='row'>
                 <div class='col-md-12'>
                     <form class='form' method='POST' action='{{ path("submission_new_first_translation_protocol_step", {submission_id: submission.id}) }}'>
+
+                        <input type="hidden" name="token" value="{{ csrf_token('submission-first-step-translation') }}"/>
+
                         <fieldset>
                             <legend>{% trans %}Language{% endtrans %}</legend>
                             <div class="form-group required">

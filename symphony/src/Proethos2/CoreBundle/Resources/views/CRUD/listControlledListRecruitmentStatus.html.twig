@@ -57,6 +57,8 @@
         <div class="modal-dialog modal-lg" role="item">
             <div class="modal-content">
                 <form class='form' method="POST" id='form-new-item'>
+
+                    <input type="hidden" name="token" value="{{ csrf_token('add-recruitment-status') }}"/>
                     
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

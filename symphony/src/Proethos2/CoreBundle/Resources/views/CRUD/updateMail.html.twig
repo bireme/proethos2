@@ -1,4 +1,7 @@
 <form class='form' method="POST" id='form-new-mail' action="{{ path('crud_admin_mail_update', {mail_id: mail.id} ) }}">
+
+    <input type="hidden" name="token" value="{{ csrf_token('update-mail') }}"/>
+
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">{% trans %}Update Mail{% endtrans %}</h4>

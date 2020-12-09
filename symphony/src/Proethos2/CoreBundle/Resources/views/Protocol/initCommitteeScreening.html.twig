@@ -16,6 +16,8 @@
 
         <!-- action -->
         <form method="POST" id='form-action' enctype="multipart/form-data">
+
+            <input type="hidden" name="token" value="{{ csrf_token('initial-committee-screening') }}"/>
             <input type="hidden" id="input-send-to" name="send-to" value="">
             
             <div class='block action'>
@@ -68,19 +70,17 @@
     <div class="modal fade" id="modal-confirm-exempt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">{% trans %}Confirm?{% endtrans %}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>{% trans %}Are you sure that you want to set this protocol as Exempt?{% endtrans %}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
-                        <button type="submit" class="btn btn-success" id='button-exempt-protocol'>{% trans %}Confirm{% endtrans %}</button>
-                    </div>
-                </form>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{% trans %}Confirm?{% endtrans %}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{% trans %}Are you sure that you want to set this protocol as Exempt?{% endtrans %}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                    <button type="submit" class="btn btn-success" id='button-exempt-protocol'>{% trans %}Confirm{% endtrans %}</button>
+                </div>
             </div>
         </div>
     </div>

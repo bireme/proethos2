@@ -15,6 +15,7 @@
         <div class='new-submission-tab-content'>
             <form class='form' method='POST' action='{{ path("submission_new_sixth_step", {submission_id: submission.id}) }}'>
 
+                <input type="hidden" name="token" value="{{ csrf_token('submission-sixty-step') }}"/>
                 <input type='hidden' name='submission_id' value='{{ submission.id }}'>
 
                 <div class='block'>
@@ -72,6 +73,8 @@
     <div class="modal fade" id="modal-new-file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <form method="POST" id='form-new-attachment' enctype="multipart/form-data" action="{{ path("submission_new_sixth_step", {submission_id: submission.id}) }}">
+
+                <input type="hidden" name="token" value="{{ csrf_token('submission-sixty-step') }}"/>
                 <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
 
                 <div class="modal-content">
@@ -113,6 +116,8 @@
     <div class="modal fade" id="modal-delete-attachment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <form method="POST" id='form-delete-attachment' action="{{ path("submission_new_sixth_step", {submission_id: submission.id}) }}">
+                
+                <input type="hidden" name="token" value="{{ csrf_token('submission-sixty-step') }}"/>
                 <input type="hidden" name="delete-attachment-id" id='hidden-delete-attachment' value="" />
 
                 <div class="modal-content">

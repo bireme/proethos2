@@ -18,6 +18,9 @@
             <div class='row'>
                 <div class='col-md-12'>
                     <form id="first_step_created_protocol" class='form' method='POST' action='{{ path("submission_new_first_created_protocol_step", {submission_id: submission.id}) }}'>
+
+                        <input type="hidden" name="token" value="{{ csrf_token('submission-first-step-created') }}"/>
+
                         <fieldset>
                             <legend>{% trans %}Language{% endtrans %}</legend>
                             <div class="form-group required">

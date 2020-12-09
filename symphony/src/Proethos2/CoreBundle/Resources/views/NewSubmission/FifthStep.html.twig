@@ -15,6 +15,7 @@
         <div class='new-submission-tab-content'>
             <form class='form' method='POST' action='{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}'>
 
+                <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}"/>
                 <input type='hidden' name='submission_id' value='{{ submission.id }}'>
 
                 <div class='block'>

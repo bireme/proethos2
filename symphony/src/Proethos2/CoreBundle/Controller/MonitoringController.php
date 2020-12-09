@@ -66,6 +66,12 @@ class MonitoringController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('add-monitoring', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -213,6 +219,12 @@ class MonitoringController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('add-monitoring', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();

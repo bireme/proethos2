@@ -72,6 +72,7 @@
     <div class='row'>
         <div class="col-md-12">
             <form method="POST" id='form-contacts' action="">
+                <input type="hidden" name="token" value="{{ csrf_token('add-contacts') }}"/>
                 <div class="form-group form-contacts">
                     <input name="contacts" placeholder="{% trans %}insert emails here{% endtrans %}" value="{{ protocol.contacts }}">
                 </div>
@@ -227,6 +228,9 @@
 <div class="modal fade" id="modal-new-comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <form method='POST' action='{{ path('protocol_new_comment', {protocol_id: protocol.id}) }}'>
+
+            <input type="hidden" name="token" value="{{ csrf_token('add-comment') }}"/>
+
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -282,6 +286,8 @@
 <div class="modal fade" id="modal-delete-attachment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <form method="POST" id='form-delete-attachment' action="{{ path("protocol_new_attachment", {'protocol_id': protocol.id }) }}">
+
+            <input type="hidden" name="token" value="{{ csrf_token('delete-attachment') }}"/>
             <input type="hidden" name="delete-attachment-id" id='hidden-delete-attachment' value="" />
 
             <div class="modal-content">

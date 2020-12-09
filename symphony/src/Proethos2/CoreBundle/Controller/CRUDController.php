@@ -79,11 +79,16 @@ class CRUDController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('add-meeting', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
             if(isset($post_data['new-meeting-date'])) {
-
 
                 // checking required fields
                 foreach(array('new-meeting-date', 'new-meeting-subject', 'new-meeting-content') as $field) {
@@ -140,6 +145,12 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('update-meeting', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -232,6 +243,12 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('delete-meeting', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -421,6 +438,12 @@ class CRUDController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('add-faq', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -498,6 +521,12 @@ class CRUDController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('update-faq', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -570,6 +599,12 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('delete-faq', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -653,6 +688,12 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('add-document', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -740,6 +781,12 @@ class CRUDController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('update-document', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -809,6 +856,12 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('delete-document', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -947,6 +1000,12 @@ class CRUDController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('add-user', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -1048,6 +1107,12 @@ class CRUDController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('update-user-profile', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -1130,6 +1195,13 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('update-user', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // user status
             $user_status = $user->getIsActive();
 
@@ -1276,6 +1348,12 @@ class CRUDController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('update-user-role', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -1329,6 +1407,12 @@ class CRUDController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('delete-user', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -1379,6 +1463,12 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('contact-form', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -1487,6 +1577,12 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('update-help', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -1651,6 +1747,12 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('update-mail', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -1832,6 +1934,12 @@ class CRUDController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('update-config', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -1892,6 +2000,12 @@ class CRUDController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('add-upload-type-extension', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -1934,7 +2048,7 @@ class CRUDController extends Controller
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
         if (!in_array('administrator', $user_logged->getRolesSlug())) {
-            throw $this->createNotFoundException($translator->trans('No configuration found'));
+            throw $this->createNotFoundException($translator->trans('No extension found'));
         }
 
         $item = $item_repository->find($item_id);
@@ -1946,6 +2060,12 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('update-upload-type-extension', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -2004,6 +2124,12 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('add-upload-type', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -2065,7 +2191,7 @@ class CRUDController extends Controller
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
         if (!in_array('administrator', $user_logged->getRolesSlug())) {
-            throw $this->createNotFoundException($translator->trans('No configuration found'));
+            throw $this->createNotFoundException($translator->trans('No type found'));
         }
 
         $item = $item_repository->find($item_id);
@@ -2083,6 +2209,12 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('update-upload-type', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -2157,6 +2289,12 @@ class CRUDController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('add-recruitment-status', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -2208,7 +2346,7 @@ class CRUDController extends Controller
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
         if (!in_array('administrator', $user_logged->getRolesSlug())) {
-            throw $this->createNotFoundException($translator->trans('No configuration found'));
+            throw $this->createNotFoundException($translator->trans('No item found'));
         }
 
         $item = $item_repository->find($item_id);
@@ -2223,6 +2361,12 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('update-recruitment-status', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -2286,6 +2430,12 @@ class CRUDController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('add-monitoring-action', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -2337,7 +2487,7 @@ class CRUDController extends Controller
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
         if (!in_array('administrator', $user_logged->getRolesSlug())) {
-            throw $this->createNotFoundException($translator->trans('No configuration found'));
+            throw $this->createNotFoundException($translator->trans('No item found'));
         }
 
         $item = $item_repository->find($item_id);
@@ -2352,6 +2502,12 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('update-monitoring-action', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -2414,6 +2570,12 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('add-clinical-trial-name', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -2483,6 +2645,12 @@ class CRUDController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('update-clinical-trial-name', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -2545,6 +2713,12 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('add-gender', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -2612,6 +2786,12 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('update-gender', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
