@@ -16,6 +16,8 @@
 
         <!-- action -->
         <form method="POST" id='form-action'>
+            
+            <input type="hidden" name="token" value="{{ csrf_token('initial-committee-review') }}"/>
             <input type="hidden" id="input-send-to" name="send-to" value="">
 
             <div class='block action'>
@@ -123,6 +125,8 @@
     <div class="modal fade" id="modal-select-members-of-commitee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <form class='form' method="POST">
+                
+                <input type="hidden" name="token" value="{{ csrf_token('initial-committee-review') }}"/>
                 <input type="hidden" name="type-of-members" value="members-of-committee">
 
                 <div class="modal-content">
@@ -171,6 +175,8 @@
     <div class="modal fade" id="modal-select-members-ad-hoc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <form class='form' method="POST">
+                
+                <input type="hidden" name="token" value="{{ csrf_token('initial-committee-review') }}"/>
                 <input type="hidden" name="type-of-members" value="members-ad-hoc">
 
                 <div class="modal-content">
@@ -226,6 +232,8 @@
     <div class="modal fade" id="modal-remove-revisor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <form class='form' method="POST" >
+                
+                <input type="hidden" name="token" value="{{ csrf_token('initial-committee-review') }}"/>
                 <input type="hidden" name="remove-member" value="">
 
                 <div class="modal-content">

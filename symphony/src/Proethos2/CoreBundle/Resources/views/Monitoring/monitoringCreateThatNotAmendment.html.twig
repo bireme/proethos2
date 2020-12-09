@@ -16,6 +16,8 @@
 
         <!-- action -->
         <form method="POST" id='form-action' action="">
+            
+            <input type="hidden" name="token" value="{{ csrf_token('add-monitoring') }}"/>
             <input type="hidden" name="monitoring-action" value="{{ monitoring_action.id }}">
 
             <div class='block action'>
@@ -104,10 +106,12 @@
         </form>
     </div>
 
-    <!-- Modal Novo Investigador -->
+    <!-- Modal New Attachment -->
     <div class="modal fade" id="modal-new-file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <form method="POST" id='form-new-attachment' enctype="multipart/form-data" action="">
+                
+                <input type="hidden" name="token" value="{{ csrf_token('add-monitoring') }}"/>
                 <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
 
                 <div class="modal-content">
@@ -150,6 +154,8 @@
     <div class="modal fade" id="modal-delete-attachment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <form method="POST" id='form-delete-attachment'>
+                
+                <input type="hidden" name="token" value="{{ csrf_token('add-monitoring') }}"/>
                 <input type="hidden" name="delete-attachment-id" id='hidden-delete-attachment' value="" />
 
                 <div class="modal-content">

@@ -1,5 +1,8 @@
 {% if app.request.get('field') not in ['committee.name', 'committee.description'] %}
     <form class='form' method="POST" id='form-new-configuration' action="{{ path('crud_admin_configuration_update', {configuration_id: configuration.id} ) }}">
+
+        <input type="hidden" name="token" value="{{ csrf_token('update-config') }}"/>
+
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">{% trans %}Update Configuration{% endtrans %}</h4>
@@ -24,6 +27,9 @@
     </form>
 {% else %}
     <form class='form' method="POST" id='form-new-configuration' action="{{ path('crud_admin_configuration_update', {configuration_id: configuration.id} ) }}?form=translate">
+
+        <input type="hidden" name="token" value="{{ csrf_token('update-config') }}"/>
+
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">{% trans %}Update Configuration{% endtrans %}</h4>

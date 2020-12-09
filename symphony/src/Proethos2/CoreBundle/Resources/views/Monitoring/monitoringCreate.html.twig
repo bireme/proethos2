@@ -1,5 +1,7 @@
 <form class='form' method="POST" id='form-submit-monitoring-action' action='{{ path("protocol_new_monitoring", { protocol_id: protocol.id }) }}'>
     
+    <input type="hidden" name="token" value="{{ csrf_token('add-monitoring') }}"/>
+
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">{% trans %}Submit monitoring action{% endtrans %}</h4>

@@ -14,6 +14,9 @@
 
         <div class="block">
             <form class='form' method="POST">
+                
+                <input type="hidden" name="token" value="{{ csrf_token('contact-form') }}"/>
+                
                 <div class='row'>
                     <div class="col-md-12">
                         <p>{% trans %}Send us a message by entering the fields below, or write to us at{% endtrans %} {{ committee_email }}.</p>

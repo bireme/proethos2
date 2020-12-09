@@ -55,6 +55,12 @@ class NewSubmissionController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('submission-first-step', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -131,6 +137,12 @@ class NewSubmissionController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('submission-first-step-created', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -190,6 +202,12 @@ class NewSubmissionController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('submission-first-step-translation', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -294,6 +312,12 @@ class NewSubmissionController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('submission-second-step', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -427,6 +451,12 @@ class NewSubmissionController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('submission-third-step', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -608,6 +638,12 @@ class NewSubmissionController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('submission-fourth-step', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -801,6 +837,12 @@ class NewSubmissionController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('submission-fifth-step', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
             // getting post data
             $post_data = $request->request->all();
 
@@ -891,6 +933,12 @@ class NewSubmissionController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('submission-sixty-step', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();
@@ -1195,6 +1243,12 @@ class NewSubmissionController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('submission-seventy-step', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
 
             // getting post data
             $post_data = $request->request->all();

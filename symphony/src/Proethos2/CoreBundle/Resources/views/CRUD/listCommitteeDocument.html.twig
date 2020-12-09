@@ -86,6 +86,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <form enctype="multipart/form-data" class='form' method="POST" id='form-new-document'>
+                    <input type="hidden" name="token" value="{{ csrf_token('add-document') }}"/>
                     <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
                     
                     <div class="modal-header">

@@ -1,4 +1,6 @@
 <form method="POST" id='form-new-attachment' enctype="multipart/form-data" action="{{ path("protocol_new_attachment", {'protocol_id': protocol.id }) }}">
+    
+    <input type="hidden" name="token" value="{{ csrf_token('add-attachment') }}"/>
     <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
 
     <div class="modal-header">
