@@ -67,7 +67,7 @@
                     <h2 class='sub-header'>[{{ committee_prefix }}] {{ committee_name }}</h2>
                     
                     <p>{{ committee_address }}</p>
-                    <p>{{ committee_phones|raw }}</p>
+                    <p>{% autoescape false %}{{ committee_phones }}{% endautoescape %}</p>
                 </div>
             </div>    
         </div>
