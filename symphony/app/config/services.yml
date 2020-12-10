@@ -10,6 +10,11 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
+    app.response_listener:
+        class: Proethos2\CoreBundle\EventListener\ResponseListener
+        tags:
+           - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
     twig.text_extension:
         class: Twig_Extensions_Extension_Text
         tags:
