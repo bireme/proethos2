@@ -14,3 +14,7 @@ services:
         class: Twig_Extensions_Extension_Text
         tags:
             - name: twig.extension
+
+    logout_success_handler:
+        class: Proethos2\CoreBundle\Services\LogoutSuccessHandler
+        arguments: ['@security.http_utils']

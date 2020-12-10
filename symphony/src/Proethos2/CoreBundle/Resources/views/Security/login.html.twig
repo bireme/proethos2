@@ -67,7 +67,11 @@
             <div class="col-xs-4 form-card card">
                 
                 {% if error %}
-                    <div class='alert alert-danger'>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    <div class='alert alert-danger text-center'>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.request.get('error') == 'inactive' %}
+                    <div class='alert alert-danger text-center'>{% trans %}Inactive account. Please try again later.{% endtrans %}</div>
                 {% endif %}
                 
                 {% if auth_type == 'oauth2' %}
@@ -131,7 +135,7 @@
                         },
                         error: function (request, status, error) {
                             $('.alert-card').remove();
-                            $('.form-card').prepend("<div class='alert alert-danger alert-card'>"+error+"</div>");
+                            $('.form-card').prepend("<div class='alert alert-danger alert-card text-center'>"+error+"</div>");
                         }
                     });
                 });

@@ -256,16 +256,23 @@ class SecurityController extends Controller
      */
     public function loggedAction()
     {
-        // if secretary, send to committee home
         $user = $this->get('security.token_storage')->getToken()->getUser();
-        $roles = array('secretary', 'member-of-committee', 'member-ad-hoc');
-        $roles_intersect = array_intersect($roles, $user->getRolesSlug());
+        $isActive = $user->getIsActive();
 
-        if($roles_intersect) {
-            return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
+        $roles = array('investigator', 'secretary', 'member-of-committee', 'member-ad-hoc', 'administrator');
+        $roles_intersect = array_intersect($roles, $user->getRolesSlug());
+        $_roles = array('secretary', 'member-of-committee', 'member-ad-hoc');
+        $_roles_intersect = array_intersect($_roles, $user->getRolesSlug());
+
+        if($roles_intersect && $isActive) {
+            if($_roles_intersect) {
+                return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
+            }
+            
+            return $this->redirectToRoute('crud_investigator_protocol_list', array(), 301);
+        } else {
+            return $this->redirectToRoute('logout_route', array('error' => 'inactive'), 301);
         }
-        
-        return $this->redirectToRoute('crud_investigator_protocol_list', array(), 301);
     }
 
     /**
