@@ -44,6 +44,7 @@ security:
             logout:
                 path:   /logout
                 target: /
+                success_handler: logout_success_handler
 
     # access_control:
     #     - { path: ^/, role: ROLE_USER }
