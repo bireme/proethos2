@@ -25,5 +25,6 @@ class ResponseListener
     {
         $event->getResponse()->headers->set('X-Frame-Options', 'deny');
         $event->getResponse()->headers->set('X-Content-Type-Options', 'nosniff');
+        $event->getResponse()->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
     }
 }
