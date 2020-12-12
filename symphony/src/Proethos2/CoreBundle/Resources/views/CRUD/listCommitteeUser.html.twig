@@ -10,7 +10,9 @@
             <div class='col-md-12'>
                 <h1 class="page-header">
                     {% trans %}Users{% endtrans %}
-                    <a href='#' class='btn btn-primary' data-toggle='modal' data-target='#modal-new-user'>{% trans %}New User{% endtrans %}</a>
+                    {% if auth_type != 'oauth2' %}
+                        <a href='#' class='btn btn-primary' data-toggle='modal' data-target='#modal-new-user'>{% trans %}New User{% endtrans %}</a>
+                    {% endif %}
                 </h1>
             </div>
         </div>

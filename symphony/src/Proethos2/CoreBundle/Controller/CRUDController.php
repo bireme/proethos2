@@ -954,6 +954,9 @@ class CRUDController extends Controller
             throw $this->createNotFoundException($translator->trans('No user found'));
         }
 
+        $auth_type = $this->container->getParameter('auth_type');
+        $output['auth_type'] = $auth_type;
+
         $users = $user_repository->findAll();
 
         // search parameter
@@ -999,6 +1002,10 @@ class CRUDController extends Controller
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            if ( 'oauth2' == $auth_type ) {
+                throw $this->createNotFoundException($translator->trans('Authentication type not valid'));
+            }
 
             $submittedToken = $request->request->get('token');
 
