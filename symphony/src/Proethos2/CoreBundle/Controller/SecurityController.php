@@ -342,6 +342,12 @@ class SecurityController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
+        $auth_type = $this->container->getParameter('auth_type');
+
+        if ( 'oauth2' == $auth_type ) {
+            throw $this->createNotFoundException($translator->trans('Authentication type not valid'));
+        }
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -410,6 +416,12 @@ class SecurityController extends Controller
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
         // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
         // $translations = $trans_repository->findTranslations($help[0]);
+
+        $auth_type = $this->container->getParameter('auth_type');
+
+        if ( 'oauth2' == $auth_type ) {
+            throw $this->createNotFoundException($translator->trans('Authentication type not valid'));
+        }
         
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
@@ -504,6 +516,12 @@ class SecurityController extends Controller
             throw $this->createNotFoundException($translator->trans('No user found'));
         }
 
+        $auth_type = $this->container->getParameter('auth_type');
+
+        if ( 'oauth2' == $auth_type ) {
+            throw $this->createNotFoundException($translator->trans('Authentication type not valid'));
+        }
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -582,6 +600,12 @@ class SecurityController extends Controller
         
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
+
+            $auth_type = $this->container->getParameter('auth_type');
+
+            if ( 'oauth2' == $auth_type ) {
+                throw $this->createNotFoundException($translator->trans('Authentication type not valid'));
+            }
 
             $submittedToken = $request->request->get('token');
 

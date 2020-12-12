@@ -114,7 +114,9 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ path('crud_user_profile_update') }}" data-toggle='modal' data-target='#modalBaseAjax'>{% trans %}Your Profile{% endtrans %}</a></li>
-                            <li><a href="{{ path('security_change_password') }}" id='menuChangePassword' data-toggle='modal' data-target='#modalBaseAjax'>{% trans %}Change Password{% endtrans %}</a></li>
+                            {% if auth_type != 'oauth2' %}
+                                <li><a href="{{ path('security_change_password') }}" id='menuChangePassword' data-toggle='modal' data-target='#modalBaseAjax'>{% trans %}Change Password{% endtrans %}</a></li>
+                            {% endif %}
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ path('logout_route') }}">{% trans %}Logout{% endtrans %}</a></li>
                         </ul>
