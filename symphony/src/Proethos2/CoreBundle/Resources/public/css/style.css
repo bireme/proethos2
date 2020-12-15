@@ -228,6 +228,9 @@ img.logo {
 .btn-signin {
     margin-top: 15px;
 }
+.main-footer .logo-footer {
+    max-width: 500px;
+}
 
 .form-contacts .tagify {
   --tag-bg                  : #2C93D9;

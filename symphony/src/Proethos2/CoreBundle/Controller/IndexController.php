@@ -109,10 +109,24 @@ class IndexController extends Controller
     {   
         $util = new Util($this->container, $this->getDoctrine());
         $committee_logourl = $util->getConfiguration("committee.logourl");
+        $committee_logourl = explode("\n", $committee_logourl);
 
-        if(!empty($committee_logourl))
-            return new Response($committee_logourl);
-        
+        if( $committee_logourl )
+            return new Response($committee_logourl[0]);
+
+        return new Response();
+
+    }
+
+    public function getLogoFooterAction()
+    {   
+        $util = new Util($this->container, $this->getDoctrine());
+        $committee_logourl = $util->getConfiguration("committee.logourl");
+        $committee_logourl = explode("\n", $committee_logourl);
+
+        if( $committee_logourl && count($committee_logourl) == 2 )
+            return new Response($committee_logourl[1]);
+
         return new Response();
 
     }
