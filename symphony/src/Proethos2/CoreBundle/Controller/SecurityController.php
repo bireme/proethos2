@@ -68,6 +68,7 @@ class SecurityController extends Controller
         $committee_name = $util->getConfiguration("committee.name");
         $committee_description = $util->getConfiguration("committee.description");
         $committee_logourl = $util->getConfiguration("committee.logourl");
+        $committee_logourl = explode("\n", $committee_logourl);
 
         $auth_type = $this->container->getParameter('auth_type');
 
@@ -77,7 +78,7 @@ class SecurityController extends Controller
             'auth_type'             => $auth_type,
             'committee_name'        => $committee_name,
             'committee_description' => $committee_description,
-            'committee_logourl'     => $committee_logourl,
+            'committee_logourl'     => $committee_logourl[0],
         );
 
         if ( 'oauth2' == $auth_type ) {

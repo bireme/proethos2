@@ -58,6 +58,13 @@
     {% endblock %}
 
     <footer class="navbar main-footer">
+        {% if render(controller('Proethos2CoreBundle:Index:getLogoFooter')) %}
+        <div class='row'>
+            <div class='col-sm-12'>
+                <img class="logo-footer" src="{{ render(controller('Proethos2CoreBundle:Index:getLogoFooter')) }}" alt="logo footer">
+            </div>
+        </div>
+        {% endif %}
         <div class='row'>
             <div class='col-sm-12'>
                 <a href="https://github.com/bireme/proethos2/raw/master/doc/legal/legal-disclaimer-es_ES.pdf" target="_blank">{% trans %}Legal disclaimer{% endtrans %}</a> |
