@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2019-04-12T15:30:07Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2020-12-16T21:43:13Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -29,6 +29,14 @@
       <trans-unit id="fe1f2c4d494fc40392e39bec35686602dd971e3b" resname="A new monitoring action has been submitted.">
         <source>A new monitoring action has been submitted.</source>
         <target>Foi submetida a uma nova ação de monitoramento</target>
+      </trans-unit>
+      <trans-unit id="1f600d46238750ea594dbc864764b6f1814e3d88" resname="A new monitoring action has been submitted..">
+        <source>A new monitoring action has been submitted..</source>
+        <target>A new monitoring action has been submitted..</target>
+      </trans-unit>
+      <trans-unit id="c3b86b82b4c77804aa9a19fad71c2c5cf5e769c6" resname="A new protocol has been submitted.">
+        <source>A new protocol has been submitted.</source>
+        <target>A new protocol has been submitted.</target>
       </trans-unit>
       <trans-unit id="fbc04efd70447c17074755d3b22ef86b113cd74f" resname="A new protocol needs your analysis.">
         <source>A new protocol needs your analysis.</source>
@@ -143,9 +151,17 @@
         <source>Are you sure that you want to go to the next step without any revisions?</source>
         <target>Tem certeza que quer ir para a próxima etapa sem quaisquer revisões?</target>
       </trans-unit>
+      <trans-unit id="dd6b9d135d02dd80558c1ab472b0b7ca16db0fd0" resname="Are you sure that you want to reject this submission?">
+        <source>Are you sure that you want to reject this submission?</source>
+        <target>Are you sure that you want to reject this submission?</target>
+      </trans-unit>
       <trans-unit id="129d86112d0f124b04a96f1e06036d1b66e8e4b2" resname="Are you sure that you want to remove this member?">
         <source>Are you sure that you want to remove this member?</source>
         <target>Tem certeza que deseja remover este membro?</target>
+      </trans-unit>
+      <trans-unit id="c05de78ff03d6119a9bb424fe41352f61c3ba2e0" resname="Are you sure that you want to retrieve this protocol?">
+        <source>Are you sure that you want to retrieve this protocol?</source>
+        <target>Are you sure that you want to retrieve this protocol?</target>
       </trans-unit>
       <trans-unit id="c9cfdfefe700ad0c6ce8167a78d04e7cfc305a3e" resname="Are you sure that you want to set this protocol as Exempt?">
         <source>Are you sure that you want to set this protocol as Exempt?</source>
@@ -171,6 +187,10 @@
         <source>Attached Files</source>
         <target>Arquivos anexados</target>
       </trans-unit>
+      <trans-unit id="6e89f4e5fd8a00366a1ce436153a6bcc3f939578" resname="Authentication type not valid">
+        <source>Authentication type not valid</source>
+        <target>Authentication type not valid</target>
+      </trans-unit>
       <trans-unit id="5fda23d62015b99fb2a9f86b38bcdf2bdf7609c8" resname="Author">
         <source>Author</source>
         <target>Autor</target>
@@ -190,6 +210,10 @@
       <trans-unit id="b1e5da235d7d370c1a64e8c1181cecbe419bdbce" resname="Bugdet">
         <source>Bugdet</source>
         <target>Orçamento</target>
+      </trans-unit>
+      <trans-unit id="de3b994d22deb924dfef0da44d5ab981fccb8f0d" resname="CSRF token not valid">
+        <source>CSRF token not valid</source>
+        <target>CSRF token not valid</target>
       </trans-unit>
       <trans-unit id="77dfd2135f4db726c47299bb55be26f7f4525a46" resname="Cancel">
         <source>Cancel</source>
@@ -299,6 +323,10 @@
         <source>Contacts</source>
         <target>Contatos</target>
       </trans-unit>
+      <trans-unit id="210a39e4784afc8e24d9a33930a903c63ed1c22f" resname="Contacts updated with success.">
+        <source>Contacts updated with success.</source>
+        <target>Contacts updated with success.</target>
+      </trans-unit>
       <trans-unit id="4f9be057f0ea5d2ba72fd2c810e8d7b9aa98b469" resname="Content">
         <source>Content</source>
         <target>Conteúdo</target>
@@ -322,6 +350,10 @@
       <trans-unit id="a18c88be99735cca7be4fbae031e40387c909692" resname="Create PDF">
         <source>Create PDF</source>
         <target>Criar PDF</target>
+      </trans-unit>
+      <trans-unit id="446ee714891ab85c5e9451271539e1f7ca59c8e3" resname="Create Report">
+        <source>Create Report</source>
+        <target>Create Report</target>
       </trans-unit>
       <trans-unit id="3f4f547d73646d774e8f690b36333e8c9572894b" resname="Create an account">
         <source>Create an account</source>
@@ -391,6 +423,10 @@
         <source>Delete User</source>
         <target>Excluir usuário</target>
       </trans-unit>
+      <trans-unit id="368aa83024d92e0fb42c4f22b737283c8e621ef3" resname="Delete this protocol">
+        <source>Delete this protocol</source>
+        <target>Delete this protocol</target>
+      </trans-unit>
       <trans-unit id="554ef4349173dacab93452646dea3c02d05060cc" resname="Delete this protocol.">
         <source>Delete this protocol.</source>
         <target>Exclua este protocolo</target>
@@ -447,6 +483,14 @@
       <trans-unit id="84add5b2952787581cb9a8851eef63d1ec75d22b" resname="Email">
         <source>Email</source>
         <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="384e05cd4ae1fdea062631985ba89e818de0c74c" resname="Email already registered">
+        <source>Email already registered</source>
+        <target>Email already registered</target>
+      </trans-unit>
+      <trans-unit id="362d89094c1e98ea30a0aa49c2156a209d863afe" resname="Email already registered in platform.">
+        <source>Email already registered in platform.</source>
+        <target>Email already registered in platform.</target>
       </trans-unit>
       <trans-unit id="74b613213d25264324d85f0a3f84765ad3a37e4c" resname="Email not registered in platform.">
         <source>Email not registered in platform.</source>
@@ -564,6 +608,10 @@
       <trans-unit id="2c3cafa4db3f3e1e51b3dff4303502dbe42b7a89" resname="File">
         <source>File</source>
         <target>Arquivo</target>
+      </trans-unit>
+      <trans-unit id="0c5472914bcf454c54852dc5ee8c21edcb5267e2" resname="File extension not allowed">
+        <source>File extension not allowed</source>
+        <target>File extension not allowed</target>
       </trans-unit>
       <trans-unit id="09979a78c9954035af250cb7f4619ed9d606f0ef" resname="File name">
         <source>File name</source>
@@ -697,6 +745,10 @@
         <source>Identification</source>
         <target>Identificação</target>
       </trans-unit>
+      <trans-unit id="013dcdb66b14b0fbb2f5393c8f52a72509f21819" resname="Inactive account. Please try again later.">
+        <source>Inactive account. Please try again later.</source>
+        <target>Inactive account. Please try again later.</target>
+      </trans-unit>
       <trans-unit id="2fdb81fca373978977fa7a7c7e39620597be5e49" resname="Inclusion Criteria">
         <source>Inclusion Criteria</source>
         <target>Critérios de inclusão</target>
@@ -753,9 +805,21 @@
         <source>Invalid hashcode</source>
         <target>Hashcode inválido</target>
       </trans-unit>
+      <trans-unit id="7c5e840da8b6c77ca27eb105a9a320224b963d2b" resname="Invalid login.">
+        <source>Invalid login.</source>
+        <target>Invalid login.</target>
+      </trans-unit>
+      <trans-unit id="92ad62b2d524bb2844f4351853e093b20a61022c" resname="Invalid state.">
+        <source>Invalid state.</source>
+        <target>Invalid state.</target>
+      </trans-unit>
       <trans-unit id="76a38180859b3024f9cb90bc039aee77b0e5e7d5" resname="Is this a confidential comment?">
         <source>Is this a confidential comment?</source>
         <target>Isto é um comentário confidencial?</target>
+      </trans-unit>
+      <trans-unit id="73679e6a10b448d3204beb98e97da822f5e344c4" resname="Is this a substudy of a larger project?">
+        <source>Is this a substudy of a larger project?</source>
+        <target>Este é um subestudo de um projeto maior?</target>
       </trans-unit>
       <trans-unit id="a0c82c52808e161cd5b44fc9a52ce3065f662a50" resname="Item created with success.">
         <source>Item created with success.</source>
@@ -1013,6 +1077,10 @@
         <source>New amendment submited by</source>
         <target>Nova alteração submetida por</target>
       </trans-unit>
+      <trans-unit id="bb960e9c73715c458a976bd2d21ad295b133a9bf" resname="New comment on Proethos2">
+        <source>New comment on Proethos2</source>
+        <target>New comment on Proethos2</target>
+      </trans-unit>
       <trans-unit id="ef6ea36555a0cdabeb198f18ec5fff831703ed00" resname="New cost">
         <source>New cost</source>
         <target>Novo custo</target>
@@ -1221,6 +1289,18 @@
         <source>Protocol rejected with success!</source>
         <target>Protocolo rejeitado com sucesso </target>
       </trans-unit>
+      <trans-unit id="f2addc686d3878185008574091c9964e979bef5b" resname="Protocol status has been modified.">
+        <source>Protocol status has been modified.</source>
+        <target>Protocol status has been modified.</target>
+      </trans-unit>
+      <trans-unit id="e2141289ac47479a8194695fda72688c9182998f" resname="Protocol status modified by %user%.">
+        <source>Protocol status modified by %user%.</source>
+        <target>Protocol status modified by %user%.</target>
+      </trans-unit>
+      <trans-unit id="f417fd0e63f97067b9c90c8f783710736870d3b2" resname="Protocol submitted with success!">
+        <source>Protocol submitted with success!</source>
+        <target>Protocol submitted with success!</target>
+      </trans-unit>
       <trans-unit id="c0f8ba868ce23737ee8ecafb7cec8f068a952512" resname="Protocol submitted with sucess!">
         <source>Protocol submitted with sucess!</source>
         <target>Protocolo enviado com sucesso </target>
@@ -1330,9 +1410,17 @@
         <source>Registry Number</source>
         <target>Número de registro </target>
       </trans-unit>
+      <trans-unit id="2b03b59293b6fc7101306f5d9ae1e96327bb419a" resname="Reject">
+        <source>Reject</source>
+        <target>Reject</target>
+      </trans-unit>
       <trans-unit id="819133f871d8e86af4cc2f170e04112a94a8799d" resname="Reject Submission">
         <source>Reject Submission</source>
         <target>Rejeitar a apresentação </target>
+      </trans-unit>
+      <trans-unit id="90b778a9cf57418e64290c77c0ce18430305be64" resname="Reject Submission?">
+        <source>Reject Submission?</source>
+        <target>Reject Submission?</target>
       </trans-unit>
       <trans-unit id="27eeb7a291bfc566447d9cd928e98caf90f70ee6" resname="Rejected">
         <source>Rejected</source>
@@ -1366,6 +1454,10 @@
         <source>Result</source>
         <target>Resultado</target>
       </trans-unit>
+      <trans-unit id="340e4bb0fcfb2161a642765a21a3fbec435383a9" resname="Retrieve protocol">
+        <source>Retrieve protocol</source>
+        <target>Retrieve protocol</target>
+      </trans-unit>
       <trans-unit id="a5c6c50c2aa87d3ca138c44ec18716e67238d29e" resname="Return reason">
         <source>Return reason</source>
         <target>Razão para retornar</target>
@@ -1397,6 +1489,10 @@
       <trans-unit id="efc007a393f66cdb14d57d385822a3d9e36ef873" resname="Save">
         <source>Save</source>
         <target>Salvar</target>
+      </trans-unit>
+      <trans-unit id="c9761c1fe44aef569665d67fed5af291ed610fca" resname="Save Contacts">
+        <source>Save Contacts</source>
+        <target>Save Contacts</target>
       </trans-unit>
       <trans-unit id="d891b939ebd30c077be9b8947d719284d03aae02" resname="Save and finish">
         <source>Save and finish</source>
@@ -1854,6 +1950,10 @@
         <source>Username</source>
         <target>Nome de usuário</target>
       </trans-unit>
+      <trans-unit id="8fe9a019356478836db4287818ec28852a6f7507" resname="Username already registered in platform.">
+        <source>Username already registered in platform.</source>
+        <target>Username already registered in platform.</target>
+      </trans-unit>
       <trans-unit id="57f2b181d0a5e79a147ea1cdf41457f58dbbb3c9" resname="Users">
         <source>Users</source>
         <target>Usuários</target>
@@ -1958,6 +2058,10 @@
       <trans-unit id="d436a3f40e3ecce896010be99dcf00a577b909aa" resname="inactive">
         <source>inactive</source>
         <target>Inativo </target>
+      </trans-unit>
+      <trans-unit id="5e702195fbd279923cccf2c77b4bcf2d6b286ceb" resname="insert emails here">
+        <source>insert emails here</source>
+        <target>insert emails here</target>
       </trans-unit>
       <trans-unit id="fd1286353570c5703799ba76999323b7c7447b06" resname="no">
         <source>no</source>
