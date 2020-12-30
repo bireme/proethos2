@@ -115,12 +115,11 @@
     <!-- Modal New User -->
     <div class="modal fade" id="modal-new-user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         
-        <input type="hidden" name="token" value="{{ csrf_token('add-user') }}"/>
         
         <div class="modal-dialog modal-lg" role="user">
             <div class="modal-content">
                 <form enctype="multipart/form-data" class='form' method="POST" id='form-new-user'>
-
+                    <input type="hidden" name="token" value="{{ csrf_token('add-user') }}"/>
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">{% trans %}New User{% endtrans %}</h4>
