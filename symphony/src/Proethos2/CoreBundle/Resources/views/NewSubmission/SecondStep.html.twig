@@ -262,5 +262,20 @@
                 form.submit();
             });
         });
+
+        // investigators list order by ascending
+        $(function(){
+            $('#select-team-email').on('loaded.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+                var options = $(this).find("option");
+
+                options.sort(function(a,b) {
+                    if (a.text > b.text) return 1;
+                    else if (a.text < b.text) return -1;
+                    else return 0;
+                });
+
+                $(this).empty().append(options).selectpicker("refresh");
+            });
+        });
     </script>
 {% endblock %}
