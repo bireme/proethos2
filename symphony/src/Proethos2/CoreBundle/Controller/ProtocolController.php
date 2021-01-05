@@ -219,6 +219,17 @@ class ProtocolController extends Controller
                 }
             }
 
+            if ( !$post_data['new-comment-is-confidential'] ) {
+                $investigators = array();
+                $investigators[] = $protocol->getMainSubmission()->getOwner()->getEmail();
+
+                foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
+                    $investigators[] = $investigator->getEmail();
+                }
+
+                $secretaries_emails = array_values(array_unique(array_merge($secretaries_emails, $investigators)));
+            }
+
             $message = \Swift_Message::newInstance()
             ->setSubject("[proethos2] " . $translator->trans("New comment on Proethos2"))
             ->setFrom($util->getConfiguration('committee.email'))
