@@ -1412,16 +1412,19 @@ class NewSubmissionController extends Controller
                         $home_url = $baseurl . $this->generateUrl('home');
                         $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
 
-                        $help = $help_repository->find(202);
-                        $translations = $trans_repository->findTranslations($help);
-                        $text = $translations[$submission->getLanguage()];
-                        $body = $text['message'];
-                        $body = str_replace("%protocol_url%", $url, $body);
-                        $body = str_replace("\r\n", "<br />", $body);
-                        $body .= "<br /><br />";
-
-                        $recipients = array($protocol->getMainSubmission()->getOwner());
-                        foreach($recipients as $recipient) {
+                        // sending message to investigator
+                        $total_submissions = count($protocol->getSubmission());
+                        if ( $total_submissions == 1 ) {
+                            $help = $help_repository->find(202);
+                            $translations = $trans_repository->findTranslations($help);
+                            $text = $translations[$submission->getLanguage()];
+                            $body = $text['message'];
+                            $body = str_replace("%protocol_url%", $url, $body);
+                            $body = str_replace("\r\n", "<br />", $body);
+                            $body .= "<br /><br />";
+                        
+                            $recipient = $protocol->getMainSubmission()->getOwner();
+                            
                             $message = \Swift_Message::newInstance()
                             ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was sent to review."))
                             ->setFrom($util->getConfiguration('committee.email'))
