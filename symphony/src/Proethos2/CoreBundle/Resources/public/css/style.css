@@ -222,7 +222,11 @@ img.logo {
 .modal { overflow-y: auto !important; }
 
 .panel-heading.note-toolbar {
-    position: static;
+    position: static !important;
+}
+
+.note-editable {
+    margin-top: 0 !important;
 }
 
 .btn-signin {

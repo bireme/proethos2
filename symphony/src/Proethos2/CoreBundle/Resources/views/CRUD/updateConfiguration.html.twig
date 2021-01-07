@@ -1,4 +1,4 @@
-{% if app.request.get('field') not in ['committee.name', 'committee.description'] %}
+{% if app.request.get('field') not in ['committee.name', 'committee.description', 'protocol.checklist'] %}
     <form class='form' method="POST" id='form-new-configuration' action="{{ path('crud_admin_configuration_update', {configuration_id: configuration.id} ) }}">
 
         <input type="hidden" name="token" value="{{ csrf_token('update-config') }}"/>
@@ -26,7 +26,7 @@
         </div>
     </form>
 {% else %}
-    <form class='form' method="POST" id='form-new-configuration' action="{{ path('crud_admin_configuration_update', {configuration_id: configuration.id} ) }}?form=translate">
+    <form class='form {% if app.request.get('field') == 'protocol.checklist' %}checklist{% endif %}' method="POST" id='form-new-configuration' action="{{ path('crud_admin_configuration_update', {configuration_id: configuration.id} ) }}?form=translate">
 
         <input type="hidden" name="token" value="{{ csrf_token('update-config') }}"/>
 
@@ -79,3 +79,21 @@
         </div>
     </form>
 {% endif %}
+
+{% block script %}
+    <script>
+        $(function(){
+            // $('#form-new-configuration.checklist textarea').wysihtml5(); 
+            $('#form-new-configuration.checklist textarea').summernote({
+                height: 150,
+                dialogsInBody: true,
+                lang: '{% if 'en' == app.request.locale %}en-US{% else %}{{ app.request.locale|replace({ '_': '-' }) }}{% endif %}',
+                popover: {
+                    image: [],
+                    link: [],
+                    air: []
+                }
+            });
+        });
+    </script>
+{% endblock %}
