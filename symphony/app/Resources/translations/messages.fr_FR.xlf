@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2020-12-16T20:33:29Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2021-01-07T19:49:18Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -41,6 +41,10 @@
       <trans-unit id="fbc04efd70447c17074755d3b22ef86b113cd74f" resname="A new protocol needs your analysis.">
         <source>A new protocol needs your analysis.</source>
         <target>A new protocol needs your analysis.</target>
+      </trans-unit>
+      <trans-unit id="62fc7a08a7e646a4c046a04e427c1edb39e5149f" resname="A new protocol review was submitted">
+        <source>A new protocol review was submitted</source>
+        <target>A new protocol review was submitted</target>
       </trans-unit>
       <trans-unit id="dc9fddafc66c1d0c41a9e7bee52e2f2768b6e2b5" resname="About Project">
         <source>About Project</source>
@@ -165,6 +169,10 @@
       <trans-unit id="c9cfdfefe700ad0c6ce8167a78d04e7cfc305a3e" resname="Are you sure that you want to set this protocol as Exempt?">
         <source>Are you sure that you want to set this protocol as Exempt?</source>
         <target>Are you sure that you want to set this protocol as Exempt?</target>
+      </trans-unit>
+      <trans-unit id="74d22a651602592712ef60007e9f27aa943e3551" resname="Are you sure that you want to withdraw this protocol?">
+        <source>Are you sure that you want to withdraw this protocol?</source>
+        <target>Are you sure that you want to withdraw this protocol?</target>
       </trans-unit>
       <trans-unit id="8de6e73ba7b7e7a2c5f18e2bc38d0a44a17be1d3" resname="Are you sure you want to continue?">
         <source>Are you sure you want to continue?</source>
@@ -1258,6 +1266,10 @@
         <source>Protocol</source>
         <target>Protocol</target>
       </trans-unit>
+      <trans-unit id="ae5a2f232ea1d568ed630dedbe448ace8256dd9d" resname="Protocol Checklist">
+        <source>Protocol Checklist</source>
+        <target>Protocol Checklist</target>
+      </trans-unit>
       <trans-unit id="ca6929afd5559b55d064c4c355cb0fd91b905470" resname="Protocol Type">
         <source>Protocol Type</source>
         <target>Protocol Type</target>
@@ -1325,6 +1337,10 @@
       <trans-unit id="e76c7159e192d371590953e2b0d3cc660c24edfa" resname="Protocol was sent to comittee for initial analysis by %user%.">
         <source>Protocol was sent to comittee for initial analysis by %user%.</source>
         <target>Protocol was sent to comittee for initial analysis by %user%.</target>
+      </trans-unit>
+      <trans-unit id="4bea7947798fd846780936ca8c6f733addadeb61" resname="Protocol withdrawn by %user%.">
+        <source>Protocol withdrawn by %user%.</source>
+        <target>Protocol withdrawn by %user%.</target>
       </trans-unit>
       <trans-unit id="2a6e3082f7bd2a56b001fbb1624e361e5599002d" resname="Protocols">
         <source>Protocols</source>
@@ -1968,6 +1984,14 @@
         <source>Welcome to the Proethos2 platform!</source>
         <target>Welcome to the Proethos2 platform!</target>
       </trans-unit>
+      <trans-unit id="47e564194604f80cad82e984d6cd5bd05bfa5033" resname="Withdraw">
+        <source>Withdraw</source>
+        <target>Withdraw</target>
+      </trans-unit>
+      <trans-unit id="145fb491e7ccb187f698e7d149384f913ed72df9" resname="Withdraw protocol">
+        <source>Withdraw protocol</source>
+        <target>Withdraw protocol</target>
+      </trans-unit>
       <trans-unit id="5397e0583f14f6c88de06b1ef28f460a1fb5b0ae" resname="Yes">
         <source>Yes</source>
         <target>Yes</target>
@@ -2015,6 +2039,10 @@
       <trans-unit id="972ecffb6ef8ccde5aabf03f81c5fead85440f71" resname="Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized.">
         <source>Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized.</source>
         <target>Your protocol has been accepted for ethics review. The committee's decision will be informed when the process is finalized.</target>
+      </trans-unit>
+      <trans-unit id="009e91b9210234e1b75af929e9099e40f5f331cd" resname="Your protocol has been withdrawn">
+        <source>Your protocol has been withdrawn</source>
+        <target>Your protocol has been withdrawn</target>
       </trans-unit>
       <trans-unit id="a7f43023c76df13d79a9fb65e60db865f8af8002" resname="Your protocol was concluded as Exempt.">
         <source>Your protocol was concluded as Exempt.</source>
