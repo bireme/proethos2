@@ -40,6 +40,7 @@
                                 <option value="I" {% if app.request.get('status') == "I" %}selected{% endif %}>{% trans %}Waiting for initial evaluation{% endtrans %}</option>
                                 <option value="E" {% if app.request.get('status') == "E" %}selected{% endif %}>{% trans %}Waiting for Committee{% endtrans %}</option>
                                 <option value="H" {% if app.request.get('status') == "H" %}selected{% endif %}>{% trans %}Scheduled{% endtrans %}</option>
+                                <option value="T" {% if app.request.get('status') == "T" %}selected{% endif %}>{% trans %}Withdraw{% endtrans %}</option>
                             </select>
                         </div>
                     </div>
@@ -104,6 +105,7 @@
                                         {% if protocol.status == "H" and 'secretary' in app.user.getRolesSlug %}<a href='{{ path("protocol_end_review", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}End protocol review{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>{% endif %}
                                         {% if 'administrator' in app.user.getRolesSlug %}<span data-toggle="tooltip" data-placement="top" title="{% trans %}Delete this protocol{% endtrans %}"><a href='{{ path("protocol_delete", {protocol_id: protocol.id} ) }}' class='btn btn-danger btn-xs' data-toggle='modal' data-target='#modalBaseAjax'><i class='glyphicon glyphicon-trash'></i></a></span>{% endif %}
                                         {% if protocol.status in ["R","C"] and 'secretary' in app.user.getRolesSlug %}<span data-toggle="tooltip" data-placement="top" title="{% trans %}Retrieve protocol{% endtrans %}"><a href='{{ path("protocol_retrieve", {protocol_id: protocol.id} ) }}' class='btn btn-default btn-xs' data-toggle='modal' data-target='#modalBaseAjax'><i class='glyphicon glyphicon-transfer'></i></a></span>{% endif %}
+                                        {% if protocol.status in ["S","I","E","H"] and 'secretary' in app.user.getRolesSlug %}<span data-toggle="tooltip" data-placement="top" title="{% trans %}Withdraw protocol{% endtrans %}"><a href='{{ path("protocol_withdraw", {protocol_id: protocol.id} ) }}' class='btn btn-default btn-xs' data-toggle='modal' data-target='#modalBaseAjax'><i class='glyphicon glyphicon-stop'></i></a></span>{% endif %}
                                         {% if protocol.status in ["E","H"] and app.user in protocol.revisionUsers %}<a href='{{ path("protocol_initial_committee_review_revisor", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Send protocol revision{% endtrans %}"><i class='glyphicon glyphicon-list-alt'></i></a>{% endif %}
                                     </td>
                                 </tr>
