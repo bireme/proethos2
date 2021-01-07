@@ -363,10 +363,25 @@ class CRUDController extends Controller
         $session = $request->getSession();
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
+        $locale = $request->getSession()->get('_locale');
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
+
+        $protocol_checklist = $configuration_repository->findBy(array('key' => 'protocol.checklist'));
+        $translations = $trans_repository->findTranslations($protocol_checklist[0]);
+        $text = $translations[$locale];
+        $output['protocol_checklist'] = $text['value'];
+
+        $show_protocol_checklist = $session->get('show_protocol_checklist');
+        if ( NULL === $show_protocol_checklist ) {
+            $session->set('show_protocol_checklist', true);
+        } else {
+            $session->set('show_protocol_checklist', false);
+        }
 
         // serach  and status parameter
         $status_array = array('D', 'S', 'R', 'I', 'E', 'H', 'F', 'A', 'N', 'C', 'X');
