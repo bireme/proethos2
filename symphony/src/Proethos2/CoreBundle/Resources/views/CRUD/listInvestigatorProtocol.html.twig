@@ -33,12 +33,13 @@
                             <a href="{{ path("crud_admin_help_show", {help_id: 73} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <select class='form-control selectpicker submit-on-change' id="select-filter-status" name="status" data-live-search="true">
                                 <option value="" {% if app.request.get('status') == "" %}selected{% endif %}>{% trans %}All{% endtrans %}</option>
-                                <option value="S" {% if app.request.get('status') == "D" %}selected{% endif %}>{% trans %}Draft{% endtrans %}</option>
+                                <option value="D" {% if app.request.get('status') == "D" %}selected{% endif %}>{% trans %}Draft{% endtrans %}</option>
                                 <option value="S" {% if app.request.get('status') == "S" %}selected{% endif %}>{% trans %}Submitted{% endtrans %}</option>
                                 <option value="R" {% if app.request.get('status') == "R" %}selected{% endif %}>{% trans %}Rejected{% endtrans %}</option>
                                 <option value="I" {% if app.request.get('status') == "I" %}selected{% endif %}>{% trans %}Waiting for initial evaluation{% endtrans %}</option>
                                 <option value="E" {% if app.request.get('status') == "E" %}selected{% endif %}>{% trans %}Waiting for Committee{% endtrans %}</option>
                                 <option value="H" {% if app.request.get('status') == "H" %}selected{% endif %}>{% trans %}Scheduled{% endtrans %}</option>
+                                <option value="T" {% if app.request.get('status') == "T" %}selected{% endif %}>{% trans %}Withdraw{% endtrans %}</option>
                             </select>
                         </div>
                     </div>
