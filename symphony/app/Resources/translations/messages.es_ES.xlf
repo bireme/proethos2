@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2021-01-07T20:32:25Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2021-01-07T23:13:38Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -1984,13 +1984,13 @@
         <source>Welcome to the Proethos2 platform!</source>
         <target>¡Bienvenido a la plataforma ProEthos2!</target>
       </trans-unit>
-      <trans-unit id="47e564194604f80cad82e984d6cd5bd05bfa5033" resname="Withdraw">
-        <source>Withdraw</source>
-        <target>Retirado</target>
-      </trans-unit>
       <trans-unit id="145fb491e7ccb187f698e7d149384f913ed72df9" resname="Withdraw protocol">
         <source>Withdraw protocol</source>
         <target>Retirar protocolo</target>
+      </trans-unit>
+      <trans-unit id="ab014c3271737b4543fd454e943e9e1066532f7a" resname="Withdrawn">
+        <source>Withdrawn</source>
+        <target>Retirado</target>
       </trans-unit>
       <trans-unit id="5397e0583f14f6c88de06b1ef28f460a1fb5b0ae" resname="Yes">
         <source>Yes</source>
