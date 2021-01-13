@@ -36,6 +36,7 @@ use Proethos2\ModelBundle\Entity\SubmissionUpload;
 use Proethos2\ModelBundle\Entity\Protocol;
 use Proethos2\ModelBundle\Entity\ProtocolHistory;
 use Proethos2\ModelBundle\Entity\SubmissionClinicalTrial;
+use Proethos2\ModelBundle\Entity\SubmissionClinicalStudy;
 
 class NewSubmissionController extends Controller
 {
@@ -404,6 +405,7 @@ class NewSubmissionController extends Controller
         $gender_repository = $em->getRepository('Proethos2ModelBundle:Gender');
         $recruitment_status_repository = $em->getRepository('Proethos2ModelBundle:RecruitmentStatus');
         $country_repository = $em->getRepository('Proethos2ModelBundle:Country');
+        $submission_clinical_study_repository = $em->getRepository('Proethos2ModelBundle:SubmissionClinicalStudy');
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -415,9 +417,13 @@ class NewSubmissionController extends Controller
         $genders = $gender_repository->findByStatus(true);
         $output['genders'] = $genders;
 
-        // getting recruitment_statuses list
+        // getting recruitment status list
         $recruitment_statuses = $recruitment_status_repository->findByStatus(true);
         $output['recruitment_statuses'] = $recruitment_statuses;
+        
+        // getting submission clinical study
+        $submission_clinical_study = $submission_clinical_study_repository->findBy(array('submission' => $submission));
+        $output['submission_clinical_study'] = $submission_clinical_study;
 
         $countries = $country_repository->findBy(array(), array('name' => 'asc'));
         $output['countries'] = $countries;
@@ -461,16 +467,82 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
+            if(isset($post_data['activity-gender'])) {
+
+                // checking required files
+                $required_fields = array('description', 'inclusion-criteria', 'exclusion-criteria');
+                
+                if(!$submission->getIsTranslation()) {
+                    $required_fields[] = 'activity-gender';
+                    $required_fields[] = 'sample-size';
+                    $required_fields[] = 'minimum-age';
+                    $required_fields[] = 'maximum-age';
+                    $required_fields[] = 'recruitment-init-date';
+                    // $required_fields[] = 'recruitment-status';
+                }
+
+                foreach($required_fields as $field) {
+                    if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                        $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
+                        return $output;
+                    }
+                }
+
+                if(!$submission->getIsTranslation()) {
+                    $recruitment_init_date = new \DateTime($post_data['recruitment-init-date']);
+                    if(new \DateTime('NOW') > $recruitment_init_date) {
+                        $session->getFlashBag()->add('error', $translator->trans("The recruitment start date has to be subsequent to the date of protocol submission."));
+                        return $output;
+                    }
+                }
+
+                // adding fields to model
+                $activity = new SubmissionClinicalStudy();
+                $activity->setSubmission($submission);
+                $activity->setDescription($post_data['description']);
+                $activity->setInclusionCriteria($post_data['inclusion-criteria']);
+                $activity->setExclusionCriteria($post_data['exclusion-criteria']);
+
+                if(!$submission->getIsTranslation()) {
+                    $activity->setSampleSize($post_data['sample-size']);
+                    $activity->setMinimumAge($post_data['minimum-age']);
+                    $activity->setMaximumAge($post_data['maximum-age']);
+                    $activity->setRecruitmentInitDate(new \DateTime($post_data['recruitment-init-date']));
+
+                    // gender
+                    $selected_gender = $gender_repository->find($post_data['activity-gender']);
+                    $activity->setGender($selected_gender);
+
+                    // recruitment status
+                    $selected_recruitment_status = $recruitment_status_repository->find($post_data['recruitment-status']);
+                    $activity->setRecruitmentStatus($selected_recruitment_status);
+                }
+
+                $em->persist($activity);
+                $em->flush();
+
+                $session->getFlashBag()->add('success', $translator->trans("Activity created with success."));
+                return $this->redirectToRoute('submission_new_third_step', array('submission_id' => $submission->getId()), 301);
+
+            }
+
             // checking required files
-            $required_fields = array('study-design', 'inclusion-criteria', 'exclusion-criteria', 'interventions', 'primary-outcome');
-            if(!$submission->getIsTranslation()) {
+            $required_fields = array('study-design', 'interventions', 'primary-outcome');
+
+            if('no' == $post_data['is_multiple_clinical_study']) {
+                $required_fields[] = 'inclusion-criteria';
+                $required_fields[] = 'exclusion-criteria';
+            }
+            
+            if(!$submission->getIsTranslation() && 'no' == $post_data['is_multiple_clinical_study']) {
                 $required_fields[] = 'gender';
                 $required_fields[] = 'sample-size';
                 $required_fields[] = 'minimum-age';
-                // $required_fields[] = 'maximum-age';
+                $required_fields[] = 'maximum-age';
                 $required_fields[] = 'recruitment-init-date';
                 // $required_fields[] = 'recruitment-status';
             }
+
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
@@ -478,7 +550,7 @@ class NewSubmissionController extends Controller
                 }
             }
 
-            if(!$submission->getIsTranslation()) {
+            if(!$submission->getIsTranslation() && 'no' == $post_data['is_multiple_clinical_study']) {
                 $recruitment_init_date = new \DateTime($post_data['recruitment-init-date']);
                 if(new \DateTime('NOW') > $recruitment_init_date) {
                     $session->getFlashBag()->add('error', $translator->trans("The recruitment start date has to be subsequent to the date of protocol submission."));
@@ -486,11 +558,17 @@ class NewSubmissionController extends Controller
                 }
             }
 
+            if('yes' == $post_data['is_multiple_clinical_study'] && count($submission_clinical_study) == 0) {
+                $session->getFlashBag()->add('error', $translator->trans("Please submit at least one clinical study activity"));
+                return $output;
+            }
+
             // adding fields to model
             $submission->setStudyDesign($post_data['study-design']);
             $submission->setHealthCondition($post_data['health-condition']);
             $submission->setInclusionCriteria($post_data['inclusion-criteria']);
             $submission->setExclusionCriteria($post_data['exclusion-criteria']);
+            $submission->setIsMultipleClinicalStudy(($post_data['is_multiple_clinical_study'] == 'yes') ? true : false);
 
             if(!$submission->getIsTranslation()) {
                 $submission->setSampleSize($post_data['sample-size']);
@@ -506,7 +584,7 @@ class NewSubmissionController extends Controller
                 $selected_recruitment_status = $recruitment_status_repository->find($post_data['recruitment-status']);
                 $submission->setRecruitmentStatus($selected_recruitment_status);
 
-                // removing all team to readd
+                // removing all team to read
                 foreach($submission->getCountry() as $country) {
                     $submission->removeCountry($country);
                     $em->remove($country);
@@ -524,8 +602,6 @@ class NewSubmissionController extends Controller
                         'submission' => $submission,
                         'country' => $country_obj,
                     ));
-
-                    // var_dump($post_data);die;
 
                     // if not exists, create the new submission_country
                     if(!$submission_country) {
@@ -1140,53 +1216,78 @@ class NewSubmissionController extends Controller
             }
             $revisions[] = $item;
 
-            $text = $translator->trans('Gender');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getGender())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
+            if ( ! $submission->getIsMultipleClinicalStudy() ) {
 
-            $text = $translator->trans('Minimum Age');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getMinimumAge())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
+                $text = $translator->trans('Gender');
+                $item = array('text' => $text, 'status' => true);
+                if(empty($submission->getGender())) {
+                    $item = array('text' => $text, 'status' => false);
+                    $final_status = false;
+                }
+                $revisions[] = $item;
 
-            $text = $translator->trans('Maximum Age');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getMaximumAge())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
+                $text = $translator->trans('Target sample size');
+                $item = array('text' => $text, 'status' => true);
+                if(empty($submission->getSampleSize())) {
+                    $item = array('text' => $text, 'status' => false);
+                    $final_status = false;
+                }
+                $revisions[] = $item;
 
-            $text = $translator->trans('Inclusion Criteria');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getInclusionCriteria())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
+                $text = $translator->trans('Minimum Age');
+                $item = array('text' => $text, 'status' => true);
+                if(empty($submission->getMinimumAge())) {
+                    $item = array('text' => $text, 'status' => false);
+                    $final_status = false;
+                }
+                $revisions[] = $item;
 
-            $text = $translator->trans('Exclusion Criteria');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getExclusionCriteria())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
+                $text = $translator->trans('Maximum Age');
+                $item = array('text' => $text, 'status' => true);
+                if(empty($submission->getMaximumAge())) {
+                    $item = array('text' => $text, 'status' => false);
+                    $final_status = false;
+                }
+                $revisions[] = $item;
 
-            $text = $translator->trans('Inicial recruitment estimated date');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getRecruitmentInitDate())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
+                $text = $translator->trans('Inclusion Criteria');
+                $item = array('text' => $text, 'status' => true);
+                if(empty($submission->getInclusionCriteria())) {
+                    $item = array('text' => $text, 'status' => false);
+                    $final_status = false;
+                }
+                $revisions[] = $item;
+
+                $text = $translator->trans('Exclusion Criteria');
+                $item = array('text' => $text, 'status' => true);
+                if(empty($submission->getExclusionCriteria())) {
+                    $item = array('text' => $text, 'status' => false);
+                    $final_status = false;
+                }
+                $revisions[] = $item;
+
+                $text = $translator->trans('Inicial recruitment estimated date');
+                $item = array('text' => $text, 'status' => true);
+                if(empty($submission->getRecruitmentInitDate())) {
+                    $item = array('text' => $text, 'status' => false);
+                    $final_status = false;
+                }
+                $revisions[] = $item;
+
+            } else {
+
+                $submission_clinical_study_repository = $em->getRepository('Proethos2ModelBundle:SubmissionClinicalStudy');
+                $submission_clinical_study = $submission_clinical_study_repository->findBy(array('submission' => $submission));
+
+                $text = $translator->trans('Clinical study activity');
+                $item = array('text' => $text, 'status' => true);
+                if(count($submission_clinical_study) == 0) {
+                    $item = array('text' => $text, 'status' => false);
+                    $final_status = false;
+                }
+                $revisions[] = $item;
+
             }
-            $revisions[] = $item;
 
             $text = $translator->trans('Interventions');
             $item = array('text' => $text, 'status' => true);
@@ -1494,6 +1595,8 @@ class NewSubmissionController extends Controller
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
 
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
         $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
         $country_locale = $configuration_repository->findBy(array('key' => 'country.locale'));
 
@@ -1508,12 +1611,15 @@ class NewSubmissionController extends Controller
             $output['symbol'] = '$';
         }
 
-        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-
         // getting the current submission
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
+
+        // getting submission clinical study
+        $submission_clinical_study_repository = $em->getRepository('Proethos2ModelBundle:SubmissionClinicalStudy');
+        $submission_clinical_study = $submission_clinical_study_repository->findBy(array('submission' => $submission));
+        $output['submission_clinical_study'] = $submission_clinical_study;
 
         if (!$submission or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
@@ -1532,12 +1638,202 @@ class NewSubmissionController extends Controller
         $pdf->getInternalGenerator()->setOption('margin-left', '20px');
         $pdf->getInternalGenerator()->setOption('margin-right', '20px');
 
+        // return $output;
+
         return new Response(
             $pdf->getOutputFromHtml($html),
             200,
             array(
-                'Content-Type'          => 'application/pdf'
+                'Content-Type' => 'application/pdf'
             )
         );
+    }
+
+    /**
+     * @Route("/submission/activity/{activity_id}/show", name="submission_show_activity")
+     * @Template()
+     */
+    public function showActivityAction($activity_id)
+    {
+
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $submission_clinical_study_repository = $em->getRepository('Proethos2ModelBundle:SubmissionClinicalStudy');
+        
+        // getting submission clinical study
+        $activity = $submission_clinical_study_repository->find($activity_id);
+        $output['activity'] = $activity;
+
+        if (!$activity) {
+            throw $this->createNotFoundException($translator->trans('No activity found'));
+        }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/submission/{submission_id}/activity/{activity_id}", name="submission_update_activity")
+     * @Template()
+     */
+    public function updateActivityAction($submission_id, $activity_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        // getting the current submission
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $submission = $submission_repository->find($submission_id);
+        $output['submission'] = $submission;
+
+        // getting submission clinical study
+        $submission_clinical_study_repository = $em->getRepository('Proethos2ModelBundle:SubmissionClinicalStudy');
+        $activity = $submission_clinical_study_repository->find($activity_id);
+        $output['activity'] = $activity;
+
+        // getting gender list
+        $gender_repository = $em->getRepository('Proethos2ModelBundle:Gender');
+        $genders = $gender_repository->findByStatus(true);
+        $output['genders'] = $genders;
+
+        // getting recruitment status list
+        $recruitment_status_repository = $em->getRepository('Proethos2ModelBundle:RecruitmentStatus');
+        $recruitment_statuses = $recruitment_status_repository->findByStatus(true);
+        $output['recruitment_statuses'] = $recruitment_statuses;
+
+        if (!$activity) {
+            throw $this->createNotFoundException($translator->trans('No activity found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('update-activity', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            // checking required files
+            $required_fields = array('description', 'inclusion-criteria', 'exclusion-criteria');
+            
+            if(!$submission->getIsTranslation()) {
+                $required_fields[] = 'gender';
+                $required_fields[] = 'sample-size';
+                $required_fields[] = 'minimum-age';
+                $required_fields[] = 'maximum-age';
+                $required_fields[] = 'recruitment-init-date';
+                // $required_fields[] = 'recruitment-status';
+            }
+
+            foreach($required_fields as $field) {
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
+                    return $output;
+                }
+            }
+
+            if(!$submission->getIsTranslation()) {
+                $recruitment_init_date = new \DateTime($post_data['recruitment-init-date']);
+                if(new \DateTime('NOW') > $recruitment_init_date) {
+                    $session->getFlashBag()->add('error', $translator->trans("The recruitment start date has to be subsequent to the date of protocol submission."));
+                    return $output;
+                }
+            }
+
+            $activity->setDescription($post_data['description']);
+            $activity->setInclusionCriteria($post_data['inclusion-criteria']);
+            $activity->setExclusionCriteria($post_data['exclusion-criteria']);
+
+            if(!$submission->getIsTranslation()) {
+                $activity->setSampleSize($post_data['sample-size']);
+                $activity->setMinimumAge($post_data['minimum-age']);
+                $activity->setMaximumAge($post_data['maximum-age']);
+                $activity->setRecruitmentInitDate(new \DateTime($post_data['recruitment-init-date']));
+
+                // gender
+                $selected_gender = $gender_repository->find($post_data['gender']);
+                $activity->setGender($selected_gender);
+
+                // recruitment status
+                $selected_recruitment_status = $recruitment_status_repository->find($post_data['recruitment-status']);
+                $activity->setRecruitmentStatus($selected_recruitment_status);
+            }
+
+            $em->persist($activity);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Activity updated with success."));
+            return $this->redirectToRoute('submission_new_third_step', array('submission_id' => $submission->getId()), 301);
+        }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/submission/{submission_id}/activity/{activity_id}/delete", name="submission_delete_activity")
+     * @Template()
+     */
+    public function deleteActivityAction($submission_id, $activity_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        // getting the current submission
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $submission = $submission_repository->find($submission_id);
+        $output['submission'] = $submission;
+
+        // getting submission clinical study
+        $submission_clinical_study_repository = $em->getRepository('Proethos2ModelBundle:SubmissionClinicalStudy');
+        $activity = $submission_clinical_study_repository->find($activity_id);
+        $output['activity'] = $activity;
+
+        if (!$activity) {
+            throw $this->createNotFoundException($translator->trans('No activity found'));
+        }
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('delete-activity', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            // checking required files
+            foreach(array('activity-delete') as $field) {
+                if(!isset($post_data[$field]) or empty($post_data[$field])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
+                    return $output;
+                }
+            }
+
+            $em->remove($activity);
+            $em->flush();
+
+            $session->getFlashBag()->add('success', $translator->trans("Activity deleted with success."));
+            return $this->redirectToRoute('submission_new_third_step', array('submission_id' => $submission->getId()), 301);
+        }
+
+        return $output;
     }
 }

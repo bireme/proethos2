@@ -54,7 +54,7 @@
                                     <td>{{ meeting.date|date("d/m/Y") }}</td> 
                                     <td>{{ meeting.subject }}</td> 
                                     <td>
-                                        <a href='{{ path("crud_committee_meeting_show", {meeting_id: meeting.id} ) }}' data-toggle='modal' data-target='#modal-delete-meeting' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
+                                        <a href='{{ path("crud_committee_meeting_show", {meeting_id: meeting.id} ) }}' data-toggle='modal' data-target='#modal-show-meeting' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
                                         <a href='{{ path("crud_committee_meeting_update", {meeting_id: meeting.id} ) }}' data-toggle='modal' data-target='#modal-update-meeting' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
                                         <a href='{{ path("crud_committee_meeting_delete", {meeting_id: meeting.id} ) }}' data-toggle='modal' data-target='#modal-delete-meeting' class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a>
                                     </td> 
@@ -140,6 +140,13 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Show Meeting -->
+    <div class="modal fade" id="modal-show-meeting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
     
     <!-- Modal Update Meeting -->
     <div class="modal fade" id="modal-update-meeting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -155,8 +162,6 @@
         </div>
     </div>
 
-
-
 {% endblock %}
 
 {% block script %}
@@ -165,7 +170,5 @@
             
            
         });
-
-        
     </script>
 {% endblock %}

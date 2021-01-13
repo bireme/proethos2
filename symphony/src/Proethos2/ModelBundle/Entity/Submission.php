@@ -144,6 +144,14 @@ class Submission extends Base
     /**
      * @var boolean
      *
+     * @ORM\Column(name="is_multiple_clinical_study", type="boolean")
+     * @Assert\NotBlank
+     */
+    private $is_multiple_clinical_study = false;
+
+    /**
+     * @var boolean
+     *
      * @ORM\Column(name="is_sent", type="boolean")
      * @Assert\NotBlank
      */
@@ -1764,5 +1772,29 @@ class Submission extends Base
     public function getIsSubstudy()
     {
         return $this->is_substudy;
+    }
+
+    /**
+     * Set isMultipleClinicalStudy
+     *
+     * @param boolean $isMultipleClinicalStudy
+     *
+     * @return Submission
+     */
+    public function setIsMultipleClinicalStudy($isMultipleClinicalStudy)
+    {
+        $this->is_multiple_clinical_study = $isMultipleClinicalStudy;
+
+        return $this;
+    }
+
+    /**
+     * Get isMultipleClinicalStudy
+     *
+     * @return boolean
+     */
+    public function getIsMultipleClinicalStudy()
+    {
+        return $this->is_multiple_clinical_study;
     }
 }

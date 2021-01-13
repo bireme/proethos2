@@ -1,0 +1,114 @@
+<form class='form' method="POST" id='form-new-activity' action="{{ path("submission_update_activity", {submission_id: submission.id, activity_id: activity.id} ) }}">
+
+    <input type="hidden" name="token" value="{{ csrf_token('update-activity') }}"/>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{% trans %}Update Activity{% endtrans %}</h4>
+    </div>
+    <div class="modal-body">
+
+        <div class='row'>
+            <div class="col-md-12">
+                <div class="form-group required">
+                    <label for="input-description">{% trans %}Description{% endtrans %}:</label>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 221} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <input type="text" class="form-control" name='description' id='input-description' value="{{ activity.description }}" required>
+                </div>
+            </div>
+        </div>
+        
+        {% if not submission.isTranslation %}
+            <div class='row'>
+                <div class="col-md-12">
+                    <div class="form-group required">
+                        <label for="select-gender">{% trans %}Gender{% endtrans %}:</label>
+                        <a href="{{ path("crud_admin_help_show", {help_id: 19} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                        <select class='form-control' id='select-activity-gender' name='gender' required>
+                            <option value="">-</option>
+                            {% for gender in genders %}
+                                <option value="{{ gender.id }}" {% if activity.gender == gender %}selected{% endif %}>{{ gender.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group required">
+                        <label for="input-sample-size">{% trans %}Target sample size{% endtrans %}:</label>
+                        <a href="{{ path("crud_admin_help_show", {help_id: 20} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                        <input type="number" class="form-control" placeholder="" min="1" value="{{ activity.sampleSize }}" id='input-activity-sample-size' name='sample-size' required>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group required">
+                        <label for="input-minimum-age">{% trans %}Minimum Age{% endtrans %}:</label>
+                        <a href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                        <input type="number" class="form-control" placeholder="" min="0" value="{{ activity.minimumAge }}" name='minimum-age' id='input-activity-minimum-age' required>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group required">
+                        <label for="input-maximum-age">{% trans %}Maximum Age{% endtrans %}:</label>
+                        <a href="{{ path("crud_admin_help_show", {help_id: 22} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                        <input type="number" class="form-control" placeholder="" min="0" value="{{ activity.maximumAge }}" name='maximum-age' id='input-activity-maximum-age' required>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class='row'>
+            <div class="col-md-12">
+                <div class="form-group required">
+                    <label for="textarea-inclusion-criteria">{% trans %}Inclusion criteria{% endtrans %}:</label>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 23} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <textarea rows="5" class="form-control" id='textarea-activity-inclusion-criteria' name='inclusion-criteria' required>{{ activity.inclusionCriteria }}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class="col-md-12">
+                <div class="form-group required">
+                    <label for="textarea-exclusion-criteria">{% trans %}Exclusion criteria{% endtrans %}:</label>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 24} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <textarea rows="5" class="form-control" id='textarea-activity-exclusion-criteria' name='exclusion-criteria' required>{{ activity.exclusionCriteria }}</textarea>
+                </div>
+            </div>
+        </div>
+
+        {% if not submission.isTranslation %}
+            <div class='row'>
+                <div class="col-md-12">
+                    <div class="form-group required">
+                        <label for="input-recruitment-init-date">{% trans %}Estimated date of initial recruitment{% endtrans %}:</label>
+                        <a href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                        <input type="text" class='form-control datepicker' id='input-activity-recruitment-init-date' name='recruitment-init-date' value='{{ activity.recruitmentInitDate|date("Y-m-d") }}' required>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="select-recruitment-status">{% trans %}Recruitment Status{% endtrans %}:</label>
+                        <a href="{{ path("crud_admin_help_show", {help_id: 26} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                        <select class='form-control' id='select-activity-recruitment-status' name='recruitment-status'>
+                            <option value="">-</option>
+                            {% for status in recruitment_statuses %}
+                                <option value="{{ status.id }}" {% if status == activity.recruitmentStatus %}selected{% endif %}>{{ status.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+        <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
+    </div>
+</form>

@@ -5,7 +5,7 @@
             h1 {
                 text-align: center;
             }
-            h2 {
+            h2, h3 {
                 border-top: 2px solid #000;
                 margin: 30px 0 10px 0;
             }
@@ -95,20 +95,56 @@
             <h2>{% trans %}Health Condition or Problem Studied{% endtrans %}</h2>
             <p>{{ submission.healthCondition }}</p>
 
-            <h2>{% trans %}Target sample size{% endtrans %}</h2>
-            <p>{{ submission.sampleSize }}</p>
+            {% if not submission.getIsMultipleClinicalStudy %}
 
-            <h2>{% trans %}Inclusion criteria{% endtrans %}</h2>
-            <p>{{ submission.inclusionCriteria }}</p>
+                <h2>{% trans %}Target sample size{% endtrans %}</h2>
+                <p>{{ submission.sampleSize }}</p>
 
-            <h2>{% trans %}Exclusion criteria{% endtrans %}</h2>
-            <p>{{ submission.exclusionCriteria }}</p>
+                <h2>{% trans %}Inclusion criteria{% endtrans %}</h2>
+                <p>{{ submission.inclusionCriteria }}</p>
 
-            <h2>{% trans %}Estimated date of initial recruitment{% endtrans %}</h2>
-            <p>{{ submission.recruitmentInitDate|date("d/m/Y") }}</p>
+                <h2>{% trans %}Exclusion criteria{% endtrans %}</h2>
+                <p>{{ submission.exclusionCriteria }}</p>
 
-            <h2>{% trans %}Recruitment Status{% endtrans %}</h2>
-            <p>{{ submission.recruitmentStatus }}</p>
+                <h2>{% trans %}Estimated date of initial recruitment{% endtrans %}</h2>
+                <p>{{ submission.recruitmentInitDate|date("d/m/Y") }}</p>
+
+                <h2>{% trans %}Recruitment Status{% endtrans %}</h2>
+                <p>{{ submission.recruitmentStatus }}</p>
+
+            {% else %}
+
+                {% if submission_clinical_study %}
+
+                    <h2>{% trans %}Clinical Study Activities{% endtrans %}</h2>
+
+                    {% for activity in submission_clinical_study %}
+
+                        <h3>{% trans %}Activity{% endtrans %} {{ loop.index }}</h3>
+
+                        <h4>{% trans %}Description{% endtrans %}</h4>
+                        <p>{{ activity.description }}</p>
+
+                        <h4>{% trans %}Target sample size{% endtrans %}</h4>
+                        <p>{{ activity.sampleSize }}</p>
+
+                        <h4>{% trans %}Inclusion criteria{% endtrans %}</h4>
+                        <p>{{ activity.inclusionCriteria }}</p>
+
+                        <h4>{% trans %}Exclusion criteria{% endtrans %}</h4>
+                        <p>{{ activity.exclusionCriteria }}</p>
+
+                        <h4>{% trans %}Estimated date of initial recruitment{% endtrans %}</h4>
+                        <p>{{ activity.recruitmentInitDate|date("d/m/Y") }}</p>
+
+                        <h4>{% trans %}Recruitment Status{% endtrans %}</h4>
+                        <p>{{ activity.recruitmentStatus }}</p>
+
+                    {% endfor %}
+                
+                {% endif %}
+
+            {% endif %}
 
             <h2>{% trans %}Recruitment Country{% endtrans %}</h2>
             <table>
