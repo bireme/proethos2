@@ -1,0 +1,58 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">{% trans %}Activity{% endtrans %}</h4>
+</div>
+
+<div class="modal-body">    
+    <div class='row'>
+        <div class='col-md-12'>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <b>{% trans %}Description{% endtrans %}</b>: 
+                    {{ activity.description }}
+                </li>
+                <li class="list-group-item">
+                    <b>{% trans %}Gender{% endtrans %}</b>: 
+                    {{ activity.gender.name }}
+                </li>
+                <li class="list-group-item">
+                    <b>{% trans %}Target sample size{% endtrans %}</b>: 
+                    {{ activity.sampleSize }}
+                </li>
+                <li class="list-group-item">
+                    <b>{% trans %}Minimum Age{% endtrans %}</b>: 
+                    {{ activity.minimumAge }}
+                </li>
+                <li class="list-group-item">
+                    <b>{% trans %}Maximum Age{% endtrans %}</b>: 
+                    {{ activity.maximumAge }}
+                </li>
+
+                <li class="list-group-item">
+                    <b>{% trans %}Inclusion criteria{% endtrans %}</b>: 
+                    <p>
+                        {{ activity.inclusionCriteria|nl2br }}
+                    </p>
+                </li>
+                <li class="list-group-item">
+                    <b>{% trans %}Exclusion criteria{% endtrans %}</b>: 
+                    <p>
+                        {{ activity.exclusionCriteria|nl2br }}
+                    </p>
+                </li>
+                <li class="list-group-item">
+                    <b>{% trans %}Estimated date of initial recruitment{% endtrans %}</b>: 
+                    {{ activity.recruitmentInitDate|date("Y-m-d") }}
+                </li>
+                <li class="list-group-item">
+                    <b>{% trans %}Recruitment Status{% endtrans %}</b>: 
+                    {{ activity.recruitmentStatus.name }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+</div>

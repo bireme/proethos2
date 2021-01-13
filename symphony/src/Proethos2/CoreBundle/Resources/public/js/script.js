@@ -56,4 +56,20 @@ $(function(){
     }
     /* END: protocol first step */
 
+    /* START: protocol third step */
+    $( "#radio_multiple_clinical_study_yes" ).on( "click", function() {
+        $("#default-clinical-study").hide();
+        $("#multiple-clinical-study").show();
+        $("#default-clinical-study input").prop('required',false);
+        $("#default-clinical-study select[name!=recruitment-status]").prop('required',false);
+    });
+
+    $( "#radio_multiple_clinical_study_no" ).on( "click", function() {
+        $("#default-clinical-study").show();
+        $("#multiple-clinical-study").hide();
+        $("#default-clinical-study input").prop('required',true);
+        $("#default-clinical-study select[name!=recruitment-status]").prop('required',true);
+    });
+    /* END: protocol third step */
+
 });

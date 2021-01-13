@@ -157,7 +157,6 @@ class CRUDController extends Controller
 
             // checking required files
             foreach(array('new-meeting-date', 'new-meeting-subject', 'new-meeting-content') as $field) {
-
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
