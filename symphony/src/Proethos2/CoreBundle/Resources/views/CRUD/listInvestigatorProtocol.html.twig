@@ -136,7 +136,7 @@
 {% block script %}
     <script>
         $(function(){
-            {% if app.request.session.get('show_protocol_checklist') %}
+            {% if app.request.session.get('show_protocol_checklist') and protocol_checklist %}
                 $('#modal-protocol-checklist').modal('show');
             {% endif %}
         });
