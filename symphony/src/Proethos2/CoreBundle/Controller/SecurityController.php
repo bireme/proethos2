@@ -156,6 +156,7 @@ class SecurityController extends Controller
                         $user->setName($data['givenName'].' '.$data['surname']);
                         $user->setUsername($username);
                         $user->setEmail($data['mail']);
+                        $user->setInstitution(NULL);
                         $user->setFirstAccess(false);
                         $user->setIsActive(false);
 

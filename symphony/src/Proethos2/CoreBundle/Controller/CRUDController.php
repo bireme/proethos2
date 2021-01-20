@@ -370,10 +370,15 @@ class CRUDController extends Controller
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
         $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
 
-        $protocol_checklist = $configuration_repository->findBy(array('key' => 'protocol.checklist'));
-        $translations = $trans_repository->findTranslations($protocol_checklist[0]);
+        $protocol_checklist = $configuration_repository->findOneBy(array('key' => 'protocol.checklist'));
+        $translations = $trans_repository->findTranslations($protocol_checklist);
         $text = $translations[$locale];
-        $output['protocol_checklist'] = $text['value'];
+
+        if ( $text ) {
+            $output['protocol_checklist'] = $text['value'];
+        } else {
+            $output['protocol_checklist'] = $protocol_checklist->getValue();
+        }
 
         $show_protocol_checklist = $session->get('show_protocol_checklist');
         if ( NULL === $show_protocol_checklist ) {

@@ -70,6 +70,8 @@ class DelegateUserRolesCommand extends ContainerAwareCommand
                 $user->addProethos2Role($role_repository->findOneBy(array('slug' => $role)));
             }
 
+            $user->setIsActive(true);
+
             $em->persist($user);
             $em->flush();
 
