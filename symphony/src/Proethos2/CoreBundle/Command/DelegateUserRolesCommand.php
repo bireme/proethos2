@@ -24,6 +24,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Proethos2\CoreBundle\Util\Util;
+use Proethos2\CoreBundle\Util\Security;
 
 
 class DelegateUserRolesCommand extends ContainerAwareCommand
@@ -64,6 +65,11 @@ class DelegateUserRolesCommand extends ContainerAwareCommand
 
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
         $user = $user_repository->findOneBy(array('email' => $email));
+
+        if ( !$user ) {
+            $_email = Security::encrypt($email);
+            $user = $user_repository->findOneBy(array('email' => $_email));
+        }
 
         if ( $user ) {
             foreach ($roles as $role => $role_id) {
