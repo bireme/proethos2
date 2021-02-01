@@ -48,7 +48,6 @@ clear_cache:
 	mv app/cache/prod app/cache/$(dt)-prod
 	mv app/cache/dev app/cache/$(dt)-dev
 	rm -rf app/cache/*
-	sed -i 's/.*strict_types/\/\/&/' app/cache/prod/classes.php
 
 set_permissions:
 	find -type f -name "*.xlf" | xargs chmod 0777
