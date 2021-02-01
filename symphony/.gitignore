@@ -10,6 +10,7 @@
 /vendor/
 /bin/
 /composer.phar
+/composer.lock
 *~
 
 /src/Proethos2/CoreBundle/Resources/public/uploads/*
