@@ -8,12 +8,12 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.6.*",
+        "symfony/symfony": "2.8.52",
         "doctrine/orm": "~2.2",
         "doctrine/doctrine-bundle": "~1.2",
         "twig/extensions": "~1.0",
         "symfony/assetic-bundle": "~2.3",
-        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/swiftmailer-bundle": "~2.6",
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~3.0.12",
         "sensio/framework-extra-bundle": "~3.0",
@@ -25,7 +25,8 @@
         "gedmo/doctrine-extensions": "^2.4",
         "h4cc/wkhtmltopdf-amd64": "~0.12.3",
         "thenetworg/oauth2-azure": "^2.0",
-        "symfony/dotenv": "^5.1"
+        "symfony/dotenv": "^5.1",
+        "paragonie/random_compat": "~2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
