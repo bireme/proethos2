@@ -143,13 +143,13 @@ class SecurityController extends Controller
 
                         $slugify = new Slugify();
                         $givenName = explode(' ', $data['givenName']);
-                        $surname = explode(' ', $data['surname']);
-                        $username = $slugify->slugify(array_pop($surname).$givenName[0]);
-                        $username = substr($username, 0, 8);
+                        $surname = end(explode(' ', $data['surname']));
+                        $username = $slugify->slugify($surname.$givenName[0]);
+                        $username = ( strlen($surname) > 7 ) ? $slugify->slugify($surname) : substr($username, 0, 8);
                         
                         $user = $user_repository->findOneBy(array('username' => Security::encrypt($username)));
                         if ( $user ) {
-                            $username = $slugify->slugify($givenName[0].array_pop($surname));
+                            $username = $slugify->slugify($givenName[0].$surname);
                         }
 
                         $user = new User();
