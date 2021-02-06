@@ -1,1 +1,0 @@
-REPLACE INTO `user` (`id`, `email`, `password`, `username`, `is_active`, `name`, `created`, `updated`, `institution`, `country_id`, `first_access`, `hashcode`) VALUES (1,'admin@proethos2.com','$2y$13$FSoxdS5S4XKYa7C0la22YublIJPV3s8/bpqwreOsW5F1.ZYQxNKnC','admin',1,'Proethos2 Admin','2016-01-01 00:00:00','2016-01-01 00:00:00','BIREME',NULL,0,NULL);

@@ -54,8 +54,6 @@ class GenerateDatabaseInitialDataCommand extends ContainerAwareCommand
             'list_role',
             'upload_type',
             'help',
-            'user',
-            'user_role',
             'faq',
         );
 
