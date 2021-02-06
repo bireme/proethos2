@@ -62,8 +62,6 @@ class LoadDatabaseInitialDataCommand extends ContainerAwareCommand
 
         if($input->getOption('update') != true) {
             $tables[] = 'configuration';
-            $tables[] = 'user';
-            $tables[] = 'user_role';
         }
 
         $host = $database_host;
