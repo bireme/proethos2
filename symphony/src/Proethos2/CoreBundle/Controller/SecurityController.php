@@ -150,6 +150,12 @@ class SecurityController extends Controller
                         $user = $user_repository->findOneBy(array('username' => Security::encrypt($username)));
                         if ( $user ) {
                             $username = $slugify->slugify($givenName[0].$surname);
+                            $user = $user_repository->findOneBy(array('username' => Security::encrypt($username)));
+                            
+                            if ( $user ) {
+                                $output['error'] = $translator->trans("Invalid state.");
+                                return $output;
+                            }
                         }
 
                         $user = new User();
