@@ -55,6 +55,10 @@ class SecurityController extends Controller
      */
     public function loginAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $translator = $this->get('translator');
+        $locale = $request->getSession()->get('_locale');
+        
         $util = new Util($this->container, $this->getDoctrine());
         
         $authenticationUtils = $this->get('security.authentication_utils');
@@ -128,14 +132,10 @@ class SecurityController extends Controller
                     }
 
                     // Example of how to obtain an user:
-                    $em = $this->getDoctrine()->getManager();
                     $user_repository = $em->getRepository('Proethos2ModelBundle:User');
                     $user = $user_repository->findOneBy(array('email' => Security::encrypt($data['mail'])));
 
                     if ( !$user ) { // create user
-                        $em = $this->getDoctrine()->getManager();
-                        $translator = $this->get('translator');
-                        $locale = $request->getSession()->get('_locale');
                         $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
                         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
                         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
