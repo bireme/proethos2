@@ -241,7 +241,7 @@ Other configurations and customizations
 
 The system comes with pre-stablished configuration. But, if you want to change or customize your instalation, make login as an admin role and access `System Management > Configurations`.
 
-__NOTE:__: As of version 1.5.0, there have been major changes in the system (oauth2 authentication and database encryption) that require further configuration adjustments. If you want to use a system version with fewer features, but with easier installation, just install any release <= 1.4.0
+__NOTE:__ As of version 1.5.0, there have been major changes in the system (oauth2 authentication and database encryption) that require further configuration adjustments. If you want to use a system version with fewer features, but with easier installation, just install any release <= 1.4.0
 
 That's it!
 
