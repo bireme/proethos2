@@ -303,7 +303,7 @@ The system comes with pre-stablished configuration. But, if you want to change o
 
 To create the admin user using ProEthos2 default authentication, see the page [How to create the admin user](how-to-create-the-admin-user.md)
 
-__NOTE:__: As of version 1.5.0, there have been major changes in the system (oauth2 authentication and database encryption) that require further configuration adjustments. If you want to use a system version with fewer features, but with easier installation, just install any release <= 1.4.0
+__NOTE:__ As of version 1.5.0, there have been major changes in the system (oauth2 authentication and database encryption) that require further configuration adjustments. If you want to use a system version with fewer features, but with easier installation, just install any release <= 1.4.0
 
 That's it!
 
