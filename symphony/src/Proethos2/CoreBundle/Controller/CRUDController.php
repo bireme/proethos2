@@ -2049,11 +2049,18 @@ class CRUDController extends Controller
 
             // checking required files
             foreach(array('extension') as $field) {
-
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
                 }
+            }
+
+            // upload type extensions blacklist regex
+            $blacklist_regex = '/(\.|\/)(php([0-9])?|html|htm|phtml|phtm|shtml|shtm|pwml|inc|asp|aspx|ascx|cfm|cfc|asis|bat|exe|cmd|sh|pl|cgi|386|dll|com|torrent|js|app|jar|pif|vb|vbscript|wsf|cer|csr|jsp|drv|sys|ade|adp|bas|chm|cpl|crt|csh|fxp|hlp|hta|inf|ins|isp|jse|htaccess|htpasswd|ksh|lnk|mdb|mde|mdt|mdw|msc|msi|msp|mst|ops|pcd|prg|reg|scr|sct|shb|shs|url|vbe|vbs|wsc|wsf|wsh)$/i';
+
+            if(preg_match($blacklist_regex, $post_data['extension'])) {
+                $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                return $output;
             }
 
             $item = new UploadTypeExtension();
