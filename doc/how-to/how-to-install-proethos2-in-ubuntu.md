@@ -121,6 +121,8 @@ In the middle of process, you will be questioned by this questions below:
 - `locale (en):` Choose your default language locale. We will use `en_US`
 - `secret (ThisTokenIsNotSoSecretChangeIt):` Choose an secret token for your application.
 
+__NOTE:__ If the error ```proc_open(): fork failed errors``` occurs during installation, access [here](https://getcomposer.org/doc/articles/troubleshooting.md#proc-open-fork-failed-errors) to fix it.
+
 Now, we will setup the database and load the initial data:
 
 ```
@@ -239,8 +241,9 @@ Other configurations and customizations
 
 The system comes with pre-stablished configuration. But, if you want to change or customize your instalation, make login as an admin role and access `System Management > Configurations`.
 
-ProEthos2 default user/pass: `admin/admin`
-- We STRONGLY recommend that you change/remove the Proethos2 default user after installation
+To create the admin user using ProEthos2 default authentication, see the page [How to create the admin user](how-to-create-the-admin-user.md)
+
+__NOTE:__: As of version 1.5.0, there have been major changes in the system (oauth2 authentication and database encryption) that require further configuration adjustments. If you want to use a system version with fewer features, but with easier installation, just install any release <= 1.4.0
 
 
 That's it!
