@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">{% trans %}Protocol Checklist{% endtrans %}</h4>
+</div>
+<div class="modal-body">
+    <p>{{ protocol_checklist|raw }}</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+    {% if is_granted("ROLE_USER") and 'secretary' in app.user.rolesSlug %}
+        <a href='{{ path("crud_admin_configuration_update", {configuration_id: configuration.id}) }}?field={{ configuration.key }}' data-toggle='modal' data-target='#modal-update-protocol-checklist' class='btn btn-primary'>{% trans %}Update{% endtrans %}</a>
+    {% endif %}
+</div>
