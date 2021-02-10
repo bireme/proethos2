@@ -1959,9 +1959,18 @@ class CRUDController extends Controller
         $translations = $trans_repository->findTranslations($configuration);
         $output['translations'] = $translations;
 
+        $router = $this->get('router');
+        $config_route = $router->generate('crud_admin_configuration_list', array(), true);
+        $referer = $request->headers->get('referer');
+        $user_role = 'secretary';
+
+        if ( $referer == $config_route ) {
+            $user_role = 'administrator';
+        }
+
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
-        if (!in_array('administrator', $user_logged->getRolesSlug())) {
+        if (!in_array($user_role, $user_logged->getRolesSlug())) {
             throw $this->createNotFoundException($translator->trans('No help found'));
         }
 
@@ -2005,9 +2014,51 @@ class CRUDController extends Controller
             $em->persist($configuration);
             $em->flush();
 
-            $session->getFlashBag()->add('success', $translator->trans("Configuration updated with success."));
-            return $this->redirectToRoute('crud_admin_configuration_list', array(), 301);
+            if ( $referer == $config_route ) {
+                $session->getFlashBag()->add('success', $translator->trans("Configuration updated with success."));
+                return $this->redirectToRoute('crud_admin_configuration_list', array(), 301);
+            } else {
+                $session->getFlashBag()->add('success', $translator->trans("Protocol checklist updated with success."));
+                return $this->redirect($referer, 301);
+            }
         }
+
+        return $output;
+    }
+
+    /**
+     * @Route("/committee/protocol-checklist/show", name="crud_committee_protocol_checklist_show")
+     * @Template()
+     */
+    public function showProtocolChecklist()
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+        $locale = $request->getSession()->get('_locale');
+
+        $user_logged = $this->get('security.token_storage')->getToken()->getUser();
+        
+        if (!in_array('secretary', $user_logged->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No configuration found'));
+        }
+
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
+
+        $protocol_checklist = $configuration_repository->findOneBy(array('key' => 'protocol.checklist'));
+        $translations = $trans_repository->findTranslations($protocol_checklist);
+        $text = $translations[$locale];
+
+        if ( $text ) {
+            $output['protocol_checklist'] = $text['value'];
+        } else {
+            $output['protocol_checklist'] = $protocol_checklist->getValue();
+        }
+
+        $output['configuration'] = $protocol_checklist;
 
         return $output;
     }
