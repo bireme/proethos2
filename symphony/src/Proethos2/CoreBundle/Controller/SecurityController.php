@@ -123,19 +123,20 @@ class SecurityController extends Controller
                     ]);
 
                     // Verify token
-                    //$token->getToken()
                     $data = $provider->get($provider->getRootMicrosoftGraphUri($token) . '/v1.0/me', $token);
-
                     if ( !$data ) {
                         $output['error'] = $translator->trans("Invalid login.");
                         return $output;
                     }
 
-                    // Example of how to obtain an user:
-                    $user_repository = $em->getRepository('Proethos2ModelBundle:User');
-                    $user = $user_repository->findOneBy(array('email' => Security::encrypt($data['mail'])));
+                    // echo "<pre>"; print_r($data); echo "</pre>"; die();
 
-                    if ( !$user ) { // create user
+                    $email = ( $data['mail'] ) ? $data['mail'] : $data['userPrincipalName'];
+                    $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+                    $user = $user_repository->findOneBy(array('email' => Security::encrypt($email)));
+
+                    // Create user
+                    if ( !$user ) {
                         $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
                         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
                         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
@@ -150,6 +151,7 @@ class SecurityController extends Controller
                         $user = $user_repository->findOneBy(array('username' => Security::encrypt($username)));
                         if ( $user ) {
                             $username = $slugify->slugify($givenName[0].$surname);
+                            $username = ( strlen($givenName[0]) > 7 ) ? $slugify->slugify($givenName[0]) : substr($username, 0, 8);
                             $user = $user_repository->findOneBy(array('username' => Security::encrypt($username)));
                             
                             if ( $user ) {
@@ -161,7 +163,7 @@ class SecurityController extends Controller
                         $user = new User();
                         $user->setName($data['givenName'].' '.$data['surname']);
                         $user->setUsername($username);
-                        $user->setEmail($data['mail']);
+                        $user->setEmail($email);
                         $user->setInstitution(NULL);
                         $user->setFirstAccess(false);
                         $user->setIsActive(false);
@@ -185,7 +187,7 @@ class SecurityController extends Controller
                         $body = str_replace("\r\n", "<br />", $body);
                         $body .= "<br /><br />";
 
-                        // send email to the secretaries
+                        // Send email to the secretaries
                         $secretaries_emails = array();
                         foreach($user_repository->findAll() as $secretary) {
                             if(in_array('secretary', $secretary->getRolesSlug())) {
