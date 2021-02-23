@@ -35,9 +35,9 @@
             (<small>{% if submission.language == 'pt_BR' %}Português{% endif %}{% if submission.language == 'es_ES' %}Español{% endif %}{% if submission.language == 'en' %}English{% endif %}{% if submission.language == 'fr_FR' %}Français{% endif %}</small>)
         </h1>
 
-        {% if submission.protocol.code %}
+        {% if protocol_code %}
             <h2>{% trans %}Protocol Code{% endtrans %}</h2>
-            <p>{{ submission.protocol.code }}</p>
+            <p>{{ protocol_code }}</p>
         {% endif %}
 
         <h2>{% trans %}Public Title{% endtrans %}</h2>
