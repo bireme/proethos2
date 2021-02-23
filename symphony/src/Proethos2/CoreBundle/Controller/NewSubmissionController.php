@@ -1596,6 +1596,7 @@ class NewSubmissionController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
+        $util = new Util($this->container, $this->getDoctrine());
 
         $configuration_repository = $em->getRepository('Proethos2ModelBundle:Configuration');
         $country_locale = $configuration_repository->findBy(array('key' => 'country.locale'));
@@ -1615,6 +1616,12 @@ class NewSubmissionController extends Controller
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
+
+        $protocol = $submission->getProtocol();
+        $committee_prefix = $util->getConfiguration('committee.prefix');
+        $total_submissions = count($protocol->getSubmission());
+        $protocol_code = sprintf('%s.%04d.%02d', $committee_prefix, $protocol->getId(), $total_submissions);
+        $output['protocol_code'] = $protocol_code;
 
         // getting submission clinical study
         $submission_clinical_study_repository = $em->getRepository('Proethos2ModelBundle:SubmissionClinicalStudy');
@@ -1793,18 +1800,10 @@ class NewSubmissionController extends Controller
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
 
-        $util = new Util($this->container, $this->getDoctrine());
-
         // getting the current submission
         $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
-
-        $protocol = $submission->getProtocol();
-        $committee_prefix = $util->getConfiguration('committee.prefix');
-        $total_submissions = count($protocol->getSubmission());
-        $protocol_code = sprintf('%s.%04d.%02d', $committee_prefix, $protocol->getId(), $total_submissions);
-        $output['protocol_code'] = $protocol_code;
 
         // getting submission clinical study
         $submission_clinical_study_repository = $em->getRepository('Proethos2ModelBundle:SubmissionClinicalStudy');
