@@ -27,6 +27,10 @@
                 text-align: right;
                 font-size: 9pt;
             }
+            div p {
+                line-height: 1 !important;
+                margin: 0 !important;
+            }
         </style>
     </head>
     <body>
@@ -69,19 +73,19 @@
         </table>
 
         <h2>{% trans %}Abstract{% endtrans %}</h2>
-        <p>{{ submission.abstract }}</p>
+        <div>{{ submission.abstract|raw }}</div>
 
         <h2>{% trans %}Keywords{% endtrans %}</h2>
         <p>{{ submission.keywords }}</p>
 
         <h2>{% trans %}Introduction{% endtrans %}</h2>
-        <p>{{ submission.introduction }}</p>
+        <div>{{ submission.introduction|raw }}</div>
 
         <h2>{% trans %}Justification{% endtrans %}</h2>
-        <p>{{ submission.justification }}</p>
+        <div>{{ submission.justification|raw }}</div>
 
         <h2>{% trans %}Goals{% endtrans %}</h2>
-        <p>{{ submission.goals }}</p>
+        <div>{{ submission.goals|raw }}</div>
 
         <h2>{% trans %}Is this a substudy of a larger project?{% endtrans %}</h2>
         <p>
@@ -95,10 +99,10 @@
         {% if not submission.isConsultation %}
 
             <h2>{% trans %}Study Design{% endtrans %}</h2>
-            <p>{{ submission.studyDesign }}</p>
+            <div>{{ submission.studyDesign|raw }}</div>
 
             <h2>{% trans %}Health Condition or Problem Studied{% endtrans %}</h2>
-            <p>{{ submission.healthCondition }}</p>
+            <div>{{ submission.healthCondition|raw }}</div>
 
             {% if not submission.getIsMultipleClinicalStudy %}
 
@@ -106,10 +110,10 @@
                 <p>{{ submission.sampleSize }}</p>
 
                 <h2>{% trans %}Inclusion criteria{% endtrans %}</h2>
-                <p>{{ submission.inclusionCriteria }}</p>
+                <div>{{ submission.inclusionCriteria|raw }}</div>
 
                 <h2>{% trans %}Exclusion criteria{% endtrans %}</h2>
-                <p>{{ submission.exclusionCriteria }}</p>
+                <div>{{ submission.exclusionCriteria|raw }}</div>
 
                 <h2>{% trans %}Estimated date of initial recruitment{% endtrans %}</h2>
                 <p>{{ submission.recruitmentInitDate|date("d/m/Y") }}</p>
@@ -134,10 +138,10 @@
                         <p>{{ activity.sampleSize }}</p>
 
                         <h4>{% trans %}Inclusion criteria{% endtrans %}</h4>
-                        <p>{{ activity.inclusionCriteria }}</p>
+                        <div>{{ activity.inclusionCriteria|raw }}</div>
 
                         <h4>{% trans %}Exclusion criteria{% endtrans %}</h4>
-                        <p>{{ activity.exclusionCriteria }}</p>
+                        <div>{{ activity.exclusionCriteria|raw }}</div>
 
                         <h4>{% trans %}Estimated date of initial recruitment{% endtrans %}</h4>
                         <p>{{ activity.recruitmentInitDate|date("d/m/Y") }}</p>
@@ -167,19 +171,19 @@
             </table>
 
             <h2>{% trans %}Interventions{% endtrans %}</h2>
-            <p>{{ submission.interventions }}</p>
+            <div>{{ submission.interventions|raw }}</div>
 
             <h2>{% trans %}Primary outcomes{% endtrans %}</h2>
-            <p>{{ submission.primaryOutcome }}</p>
+            <div>{{ submission.primaryOutcome|raw }}</div>
 
             <h2>{% trans %}Secondary outcomes{% endtrans %}</h2>
-            <p>{{ submission.secondaryOutcome }}</p>
+            <div>{{ submission.secondaryOutcome|raw }}</div>
 
             <h2>{% trans %}General Procedures{% endtrans %}</h2>
-            <p>{{ submission.generalProcedures }}</p>
+            <div>{{ submission.generalProcedures|raw }}</div>
 
             <h2>{% trans %}Analysis Plan{% endtrans %}</h2>
-            <p>{{ submission.analysisPlan }}</p>
+            <div>{{ submission.analysisPlan|raw }}</div>
 
             {% if submission.isClinicalTrial %}
                 <h2>{% trans %}Clinical Trial{% endtrans %}</h2>
@@ -250,7 +254,7 @@
             </table>
 
             <h2>{% trans %}Bibliography{% endtrans %}</h2>
-            <p>{{ submission.bibliography }}</p>
+            <div>{{ submission.bibliography|raw }}</div>
 
             <h2>{% trans %}Scientific Contact{% endtrans %}</h2>
             <p>{{ submission.sscientificContact }}</p>

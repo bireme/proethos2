@@ -577,5 +577,32 @@
                 });
             {% endif %}
         });
+
+        // WYSIWYG fields
+        $(function(){
+            // $('#form-submission textarea[name!=ethical-considerations]').wysihtml5();
+            $('#form-submission textarea[name!=ethical-considerations]').summernote({
+                height: 150,
+                dialogsInBody: true,
+                lang: '{% if 'en' == app.request.locale %}en-US{% else %}{{ app.request.locale|replace({ '_': '-' }) }}{% endif %}',
+                popover: {
+                    image: [],
+                    link: [],
+                    air: []
+                }
+            });
+
+            // $('#form-new-activity textarea').wysihtml5(); 
+            $('#form-new-activity textarea').summernote({
+                height: 150,
+                dialogsInBody: true,
+                lang: '{% if 'en' == app.request.locale %}en-US{% else %}{{ app.request.locale|replace({ '_': '-' }) }}{% endif %}',
+                popover: {
+                    image: [],
+                    link: [],
+                    air: []
+                }
+            });
+        });
     </script>
 {% endblock %}

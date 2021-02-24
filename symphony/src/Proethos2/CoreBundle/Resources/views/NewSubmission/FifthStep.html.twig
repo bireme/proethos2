@@ -13,7 +13,7 @@
         {% include 'Proethos2CoreBundle:NewSubmission:meta.html.twig' %}
 
         <div class='new-submission-tab-content'>
-            <form class='form' method='POST' action='{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}'>
+            <form class='form' method='POST' id='form-fifth' action='{{ path("submission_new_fifth_step", {submission_id: submission.id}) }}'>
 
                 <input type="hidden" name="token" value="{{ csrf_token('submission-fifth-step') }}"/>
                 <input type='hidden' name='submission_id' value='{{ submission.id }}'>
@@ -90,7 +90,19 @@
 
 {% block script %}
     <script>
-
-
+        // WYSIWYG fields
+        $(function(){
+            // $('#form-fifth textarea#textarea-bibliography').wysihtml5(); 
+            $('#form-fifth textarea#textarea-bibliography').summernote({
+                height: 150,
+                dialogsInBody: true,
+                lang: '{% if 'en' == app.request.locale %}en-US{% else %}{{ app.request.locale|replace({ '_': '-' }) }}{% endif %}',
+                popover: {
+                    image: [],
+                    link: [],
+                    air: []
+                }
+            });
+        });
     </script>
 {% endblock %}
