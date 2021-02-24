@@ -17,8 +17,10 @@
                 
                 <thead>
                     <tr>
-                        <th width="50%">{% trans %}Name{% endtrans %}</th>
+                        <th width="40%">{% trans %}Name{% endtrans %}</th>
                         <th>{% trans %}E-mail{% endtrans %}</th>
+                        <th>{% trans %}Institution{% endtrans %}</th>
+                        <th>{% trans %}Role{% endtrans %}</th>
                         <th>{% trans %}Country{% endtrans %}</th>
                         <th>{% trans %}Main?{% endtrans %}</th>
                         <!-- <th>{% trans %}Actions{% endtrans %}</th> -->
@@ -27,10 +29,12 @@
                 
                 <tbody>
                     <tr>
-                        <td>{{ protocol.mainSubmission.owner.name }}</td> 
-                        <td><a href='{{ protocol.mainSubmission.owner.email }}'>{{ protocol.mainSubmission.owner.email }}</a></td> 
-                        <td>{{ protocol.mainSubmission.owner.country }}</td> 
-                        <td><label class='label label-success'>{% trans %}Yes{% endtrans %}</label></td> 
+                        <td>{{ protocol.mainSubmission.owner.name }}</td>
+                        <td><a href='{{ protocol.mainSubmission.owner.email }}'>{{ protocol.mainSubmission.owner.email }}</a></td>
+                        <td>{{ protocol.mainSubmission.owner.institution }}</td>
+                        <td>{{ protocol.mainSubmission.owner.submissionTeamRole(protocol.mainSubmission) }}</td>
+                        <td>{{ protocol.mainSubmission.owner.country }}</td>
+                        <td><label class='label label-success'>{% trans %}Yes{% endtrans %}</label></td>
                         <!-- <td>-</td>  -->
                     </tr>
                     {% for team_user in protocol.mainSubmission.team %}
@@ -39,9 +43,11 @@
                                 <input type='hidden' name='team_user[]' value='{{ team_user.id }}'>
                                 {{ team_user.name }}
                             </td> 
-                            <td><a href='{{ team_user.email }}'>{{ team_user.email }}</a></td> 
-                            <td>{{ team_user.country }}</td> 
-                            <td><label class='label label-default'>{% trans %}No{% endtrans %}</label></td> 
+                            <td><a href='{{ team_user.email }}'>{{ team_user.email }}</a></td>
+                            <td>{{ team_user.institution }}</td>
+                            <td>{{ team_user.submissionTeamRole(protocol.mainSubmission) }}</td>
+                            <td>{{ team_user.country }}</td>
+                            <td><label class='label label-default'>{% trans %}No{% endtrans %}</label></td>
                             <!-- <td><a href='#' class='btn btn-default btn-xs button-remove-team'><i class='glyphicon glyphicon-trash'></i></a></td>  -->
                         </tr>
                     {% endfor %}

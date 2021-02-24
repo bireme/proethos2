@@ -220,6 +220,7 @@ class Submission extends Base
      * @ORM\JoinColumn(name="gender_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $gender;
+    
     /**
      * @var integer
      *

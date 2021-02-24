@@ -33,8 +33,10 @@
 
                                 <thead>
                                     <tr>
-                                        <th width="50%">{% trans %}Name{% endtrans %}</th>
+                                        <th width="40%">{% trans %}Name{% endtrans %}</th>
                                         <th>{% trans %}E-mail{% endtrans %}</th>
+                                        <th>{% trans %}Institution{% endtrans %}</th>
+                                        <th>{% trans %}Role{% endtrans %}</th>
                                         <th>{% trans %}Country{% endtrans %}</th>
                                         <th>{% trans %}Main?{% endtrans %}</th>
                                         <th>{% trans %}Actions{% endtrans %}</th>
@@ -45,6 +47,8 @@
                                     <tr>
                                         <td>{{ submission.owner.name }}</td>
                                         <td><a href='{{ submission.owner.email }}'>{{ submission.owner.email }}</a></td>
+                                        <td>{{ submission.owner.institution }}</td>
+                                        <td>{{ submission.owner.submissionTeamRole(submission) }}</td>
                                         <td>{{ submission.owner.country }}</td>
                                         <td><label class='label label-success'>{% trans %}Yes{% endtrans %}</label></td>
                                         <td>-</td>
@@ -56,6 +60,11 @@
                                                 {{ team_user.name }}
                                             </td>
                                             <td><a href='{{ team_user.email }}'>{{ team_user.email }}</a></td>
+                                            <td>{{ team_user.institution }}</td>
+                                            <td>
+                                                <input type='hidden' name='team_role[{{ team_user.id }}]' value='{{ team_user.submissionTeamRole(submission) }}'>
+                                                {{ team_user.submissionTeamRole(submission) }}
+                                            </td>
                                             <td>{{ team_user.country }}</td>
                                             <td><label class='label label-default'>{% trans %}No{% endtrans %}</label></td>
                                             <td>
@@ -169,7 +178,9 @@
                             <select class='form-control selectpicker' data-live-search="true" name='team-email' id='select-team-email'>
                                 <option value="">-</option>
                                 {% for user in users %}
-                                    <option value="{{ user.id }}||{{ user.name }}||{{ user.country }}">{{ user.email }}</option>
+                                    {% if submission.owner.email != user.email and user not in submission.team %}
+                                        <option value="{{ user.id }}||{{ user.name }}||{{ user.country }}||{{ user.institution }}">{{ user.email }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                         </div>
@@ -178,6 +189,18 @@
                             <label for="">{% trans %}Name{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 7} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type='text' class='form-control' name='team-name' readonly="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">{% trans %}Institution{% endtrans %}:</label>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 8} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='text' class='form-control' name='team-institution' readonly="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">{% trans %}Role{% endtrans %}:</label>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 9} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <input type='text' class='form-control' name='team-role' value="">
                         </div>
                     </div>
 
@@ -207,10 +230,12 @@
                     id = parseInt(user[0]);
                     name = user[1];
                     country = user[2];
+                    institution = user[3];
 
-                    $team[id] = {name: name, email: email, country: country};
+                    $team[id] = {name: name, email: email, country: country, institution: institution};
 
                     $("#form-team input[name='team-name']").val(name);
+                    $("#form-team input[name='team-institution']").val(institution);
                     $("#team-submit").removeClass('disabled');
                 }
             });
@@ -220,10 +245,13 @@
 
                 for(id in $team) {
                     user = $team[id];
+                    team_role = $("#form-team input[name='team-role']").val();
 
                     string =  "<tr>"
                     string += "<td><input type='hidden' name='team_user[]' value='"+ id +"'>"+ user['name'] +"</td>"
                     string += "<td><a href='mailto:"+ user['email'] +"'>"+ user['email'] +"</a></td>"
+                    string += "<td>"+ user['institution'] +"</td>"
+                    string += "<td><input type='hidden' name='team_role["+ id +"]' value='"+ team_role +"'>"+ team_role +"</td>"
                     string += "<td>"+ user['country'] +"</td>"
                     string += "<td><label class='label label-default'>{% trans %}No{% endtrans %}</label></td>"
                     string += "<td><a href='#' class='btn btn-default btn-xs button-remove-team'><i class='glyphicon glyphicon-trash'></i></a></td>"
