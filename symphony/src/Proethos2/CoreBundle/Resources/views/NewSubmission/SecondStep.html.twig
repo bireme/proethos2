@@ -305,5 +305,20 @@
                 $(this).empty().append(options).selectpicker("refresh");
             });
         });
+
+        // WYSIWYG fields
+        $(function(){
+            // $('#form-second textarea').wysihtml5(); 
+            $('#form-second textarea').summernote({
+                height: 150,
+                dialogsInBody: true,
+                lang: '{% if 'en' == app.request.locale %}en-US{% else %}{{ app.request.locale|replace({ '_': '-' }) }}{% endif %}',
+                popover: {
+                    image: [],
+                    link: [],
+                    air: []
+                }
+            });
+        });
     </script>
 {% endblock %}
