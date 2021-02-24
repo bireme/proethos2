@@ -37,6 +37,8 @@ use Proethos2\ModelBundle\Entity\Protocol;
 use Proethos2\ModelBundle\Entity\ProtocolHistory;
 use Proethos2\ModelBundle\Entity\SubmissionClinicalTrial;
 use Proethos2\ModelBundle\Entity\SubmissionClinicalStudy;
+use Proethos2\ModelBundle\Entity\SubmissionTeam;
+
 
 class NewSubmissionController extends Controller
 {
@@ -272,8 +274,9 @@ class NewSubmissionController extends Controller
         $translator = $this->get('translator');
         $em = $this->getDoctrine()->getManager();
 
-        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $submission_team_repository = $em->getRepository('Proethos2ModelBundle:SubmissionTeam');
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -323,22 +326,46 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
+            // echo "<pre>"; print_r($post_data); echo "</pre>"; die();
+
             // removing all team to readd
             foreach($submission->getTeam() as $team_user) {
                 $submission->removeTeam($team_user);
+                
+                $submission_team = $submission_team_repository->findOneBy(array(
+                    'team_member' => $team_user,
+                    'submission' => $submission,
+                ));
+
+                if ( $submission_team ) {
+                    $em->remove($submission_team);
+                    $em->flush();
+                }                
             }
 
             // readd
             if(isset($post_data['team_user'])) {
-                foreach($post_data['team_user'] as $team_user) {
-                    $team_user = $user_repository->find($team_user);
+                foreach($post_data['team_user'] as $team_user_id) {
+                    $team_role = $post_data['team_role'][$team_user_id];
+                    $team_user = $user_repository->find($team_user_id);
                     $submission->addTeam($team_user);
+
+                    $submission_team = new SubmissionTeam();
+                    $submission_team->setSubmission($submission);
+                    $submission_team->setTeamMember($team_user);
+                    $submission_team->setRole($team_role);
+                    $em->persist($submission_team);
+                    $em->flush();
+
+                    $team_user->addSubmissionTeam($submission_team);
+                    $em->persist($team_user);
+                    $em->flush();
                 }
             }
 
             // new owner
             if(isset($post_data['team-new-owner'])) {
-                $new_owner = $user_repository->find($team_user);
+                $new_owner = $user_repository->find($post_data['team-new-owner']);
                 if($new_owner) {
                     $old_owner = $submission->getOwner();
                     $submission->setOwner($new_owner);

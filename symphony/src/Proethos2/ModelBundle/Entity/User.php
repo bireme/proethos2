@@ -100,6 +100,14 @@ class User extends Base implements UserInterface, \Serializable
      */
     private $first_access = true;
 
+    /**
+     * @var SubmissionTeam
+     * @ORM\OneToMany(targetEntity="SubmissionTeam", mappedBy="team_member", cascade={"persist"})
+     * @ORM\JoinTable(name="submission_team")
+     */
+    private $submission_team;
+
+
     public function __toString()
     {
         return $this->getName();
@@ -427,5 +435,55 @@ class User extends Base implements UserInterface, \Serializable
     public function getHashcode()
     {
         return $this->hashcode;
+    }
+
+    /**
+     * Add submissionTeam
+     *
+     * @param \Proethos2\ModelBundle\Entity\SubmissionTeam $submissionTeam
+     *
+     * @return User
+     */
+    public function addSubmissionTeam(\Proethos2\ModelBundle\Entity\SubmissionTeam $submissionTeam)
+    {
+        $this->submission_team[] = $submissionTeam;
+
+        return $this;
+    }
+
+    /**
+     * Remove submissionTeam
+     *
+     * @param \Proethos2\ModelBundle\Entity\SubmissionTeam $submissionTeam
+     */
+    public function removeSubmissionTeam(\Proethos2\ModelBundle\Entity\SubmissionTeam $submissionTeam)
+    {
+        $this->submission_team->removeElement($submissionTeam);
+    }
+
+    /**
+     * Get submissionTeam
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSubmissionTeam()
+    {
+        return $this->submission_team;
+    }
+
+    public function getSubmissionTeamRole(\Proethos2\ModelBundle\Entity\Submission $submission) {
+
+        $submission_team_role = '';
+
+        if ( $submission ) {
+            foreach($this->getSubmissionTeam() as $submission_team) {
+                if ( $submission_team->getSubmission() == $submission ) {
+                    $submission_team_role = $submission_team->getRole();
+                    break;
+                }
+            }
+        }
+
+        return $submission_team_role;
     }
 }
