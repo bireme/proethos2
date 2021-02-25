@@ -2107,11 +2107,22 @@ class CRUDController extends Controller
             }
 
             // upload type extensions blacklist regex
-            $blacklist_regex = '/(\.|\/)(php([0-9])?|html|htm|phtml|phtm|shtml|shtm|pwml|inc|asp|aspx|ascx|cfm|cfc|asis|bat|exe|cmd|sh|pl|cgi|386|dll|com|torrent|js|app|jar|pif|vb|vbscript|wsf|cer|csr|jsp|drv|sys|ade|adp|bas|chm|cpl|crt|csh|fxp|hlp|hta|inf|ins|isp|jse|htaccess|htpasswd|ksh|lnk|mdb|mde|mdt|mdw|msc|msi|msp|mst|ops|pcd|prg|reg|scr|sct|shb|shs|url|vbe|vbs|wsc|wsf|wsh)$/i';
+            $blacklist_regex = '/(\.|\/)(php([0-9])?|html|htm|phar|pht|phtm|phtml|sht|shtm|shtml|pwml|inc|asp|aspx|ascx|cfm|cfc|asis|bat|exe|cmd|sh|pl|cgi|386|dll|com|torrent|js|app|jar|pif|vb|vbscript|wsf|cer|csr|jsp|drv|sys|ade|adp|bas|chm|cpl|crt|csh|fxp|hlp|hta|inf|ins|isp|jse|htaccess|htpasswd|ksh|lnk|mdb|mde|mdt|mdw|msc|msi|msp|mst|ops|pcd|prg|reg|scr|sct|shb|shs|url|vbe|vbs|wsc|wsf|wsh)$/i';
 
-            if(preg_match($blacklist_regex, $post_data['extension'])) {
+            if( preg_match($blacklist_regex, $post_data['extension']) ) {
                 $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
                 return $output;
+            }
+
+            if( strlen($post_data['extension']) < 2 or '.' != $post_data['extension']{0} ) {
+                $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                return $this->redirectToRoute('crud_admin_controlled_list_upload_type_extension_list', array(), 301);
+            }
+
+            $extension = explode('.', $post_data['extension']);
+            if( count($extension) > 2 ) {
+                $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                return $this->redirectToRoute('crud_admin_controlled_list_upload_type_extension_list', array(), 301);
             }
 
             $item = new UploadTypeExtension();
@@ -2152,6 +2163,7 @@ class CRUDController extends Controller
         if (!$item) {
             throw $this->createNotFoundException($translator->trans('No extension found'));
         }
+
         $output['item'] = $item;
 
         // checking if was a post request
@@ -2168,14 +2180,33 @@ class CRUDController extends Controller
 
             // checking required files
             foreach(array('extension') as $field) {
-
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
-                    return $output;
+                    return $this->redirectToRoute('crud_admin_controlled_list_upload_type_extension_list', array(), 301);
                 }
             }
 
+            // upload type extensions blacklist regex
+            $blacklist_regex = '/(\.|\/)(php([0-9])?|html|htm|phar|pht|phtm|phtml|sht|shtm|shtml|pwml|inc|asp|aspx|ascx|cfm|cfc|asis|bat|exe|cmd|sh|pl|cgi|386|dll|com|torrent|js|app|jar|pif|vb|vbscript|wsf|cer|csr|jsp|drv|sys|ade|adp|bas|chm|cpl|crt|csh|fxp|hlp|hta|inf|ins|isp|jse|htaccess|htpasswd|ksh|lnk|mdb|mde|mdt|mdw|msc|msi|msp|mst|ops|pcd|prg|reg|scr|sct|shb|shs|url|vbe|vbs|wsc|wsf|wsh)$/i';
+
+            if( preg_match($blacklist_regex, $post_data['extension']) ) {
+                $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                return $this->redirectToRoute('crud_admin_controlled_list_upload_type_extension_list', array(), 301);
+            }
+
+            if( strlen($post_data['extension']) < 2 or '.' != $post_data['extension']{0} ) {
+                $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                return $this->redirectToRoute('crud_admin_controlled_list_upload_type_extension_list', array(), 301);
+            }
+
+            $extension = explode('.', $post_data['extension']);
+            if( count($extension) > 2 ) {
+                $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                return $this->redirectToRoute('crud_admin_controlled_list_upload_type_extension_list', array(), 301);
+            }
+
             $item->setExtension($post_data['extension']);
+
             if(isset($post_data['status']) and $post_data['status'] == "true") {
                 $item->setStatus(true);
             }
