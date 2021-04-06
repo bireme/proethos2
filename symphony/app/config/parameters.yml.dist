@@ -21,3 +21,7 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    # Private and Index keys to database encryptation
+    private_key:
+    index_key:

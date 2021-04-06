@@ -90,6 +90,13 @@ class CreateSuperUserCommand extends ContainerAwareCommand
         if ( $user ) {
             $io->warning('User already exists.');
             exit;
+        } else {
+            $_email = Security::encrypt($email);
+            $user = $user_repository->findOneBy(array('email' => $_email));
+            if ( $user ) {
+                $io->warning('User already exists.');
+                exit;
+            }
         }
 
         $user = $user_repository->findOneBy(array('username' => $username));
