@@ -86,6 +86,7 @@
                     <form class="form-signin" action="{{ path('login_check') }}" method="post">
                         <input type="hidden" name="_target_path" value="default_security_target" />
                         <input type="hidden" id="inputUsername" name="_username" value="" />
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
 
                         <div class="form-group">
                             <input type="text" name='_email' id="inputEmail" class="form-control" placeholder="Username" required autofocus>
