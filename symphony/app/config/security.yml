@@ -9,6 +9,9 @@ security:
                 class: Proethos2ModelBundle:User
                 property: username
 
+        user_checker_provider:
+            id: app.user_checker_provider
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt|error)|css|images|js)/
@@ -35,7 +38,7 @@ security:
             anonymous: ~
 
         default:
-            provider: our_db_provider
+            provider: user_checker_provider
             pattern:    ^/
             http_basic: ~
             form_login:

@@ -85,11 +85,10 @@
                 {% else %}
                     <form class="form-signin" action="{{ path('login_check') }}" method="post">
                         <input type="hidden" name="_target_path" value="default_security_target" />
-                        <input type="hidden" id="inputUsername" name="_username" value="" />
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
 
                         <div class="form-group">
-                            <input type="text" name='_email' id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+                            <input type="text" name='_username' id="inputUsername" class="form-control" placeholder="Username" required autofocus>
                         </div>
                         <div class="form-group">
                             <input type="password" name='_password' id="inputPassword" class="form-control" placeholder="Password" required>
@@ -123,28 +122,9 @@
 {% endblock %}
 
 {% block script %}
-    {% if auth_type == 'default' %}
-        <script>
-            $(function(){
-                $('.btn-signin').on('click', function(e) {
-                    e.preventDefault();
-                    var val = $('#inputEmail').val();
-                    $.ajax({
-                        url: "/login/sanitize",
-                        method: "POST",
-                        data: { "_username": val },
-                        success: function(data, text){
-                            response = $.parseJSON(data);
-                            $('#inputUsername').val(response._username);
-                            $('.form-signin').submit();
-                        },
-                        error: function (request, status, error) {
-                            $('.alert-card').remove();
-                            $('.form-card').prepend("<div class='alert alert-danger alert-card text-center'>"+error+"</div>");
-                        }
-                    });
-                });
-            });
-        </script>
-    {% endif %}
+    <script>
+        $(function(){
+        
+        });
+    </script>
 {% endblock %}
