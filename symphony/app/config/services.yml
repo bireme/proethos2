@@ -23,3 +23,6 @@ services:
     logout_success_handler:
         class: Proethos2\CoreBundle\Services\LogoutSuccessHandler
         arguments: ['@security.http_utils']
+
+    app.user_checker_provider:
+        class: Proethos2\CoreBundle\Security\UserCheckerProvider

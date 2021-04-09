@@ -323,22 +323,6 @@ class SecurityController extends Controller
     }
 
     /**
-     * @Route("/login/sanitize", name="login_sanitize")
-     * @Template()
-     */
-    public function loginSanitizeAction(Request $request)
-    {
-        if ( $request->request->all() ) {
-            $_username = $request->request->get('_username');
-            $username = Security::encrypt($_username);
-            $data = array('_username' => $username);
-            die(json_encode($data));
-        } else {
-            return $this->redirectToRoute('login_route', array(), 301);
-        }
-    }
-
-    /**
      * @Route("/account/change_password", name="security_change_password")
      * @Template()
      */
