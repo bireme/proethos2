@@ -1394,11 +1394,13 @@ class NewSubmissionController extends Controller
 
                         $pdf = $this->get('knp_snappy.pdf');
 
-                        // setting margins
-                        $pdf->getInternalGenerator()->setOption('margin-top', '50px');
-                        $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
-                        $pdf->getInternalGenerator()->setOption('margin-left', '20px');
-                        $pdf->getInternalGenerator()->setOption('margin-right', '20px');
+                        if ( version_compare(PHP_VERSION, '7.3.0') < 0 ) {
+                            // setting margins
+                            $pdf->getInternalGenerator()->setOption('margin-top', '50px');
+                            $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
+                            $pdf->getInternalGenerator()->setOption('margin-left', '20px');
+                            $pdf->getInternalGenerator()->setOption('margin-right', '20px');
+                        }
 
                         // adding pdf to tmp file
                         $filepath = "/tmp/" . date("Y-m-d-H\hi\ms\s") . "-submission.pdf";
@@ -1441,11 +1443,13 @@ class NewSubmissionController extends Controller
 
                             $pdf = $this->get('knp_snappy.pdf');
 
-                            // setting margins
-                            $pdf->getInternalGenerator()->setOption('margin-top', '50px');
-                            $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
-                            $pdf->getInternalGenerator()->setOption('margin-left', '20px');
-                            $pdf->getInternalGenerator()->setOption('margin-right', '20px');
+                            if ( version_compare(PHP_VERSION, '7.3.0') < 0 ) {
+                                // setting margins
+                                $pdf->getInternalGenerator()->setOption('margin-top', '50px');
+                                $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
+                                $pdf->getInternalGenerator()->setOption('margin-left', '20px');
+                                $pdf->getInternalGenerator()->setOption('margin-right', '20px');
+                            }
 
                             // adding pdf to tmp file
                             $filepath = "/tmp/" . date("Y-m-d-H\hi\ms\s") . "-submission-". $translation->getLanguage() .".pdf";
@@ -1666,13 +1670,13 @@ class NewSubmissionController extends Controller
 
         $pdf = $this->get('knp_snappy.pdf');
 
-        // setting margins
-        $pdf->getInternalGenerator()->setOption('margin-top', '50px');
-        $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
-        $pdf->getInternalGenerator()->setOption('margin-left', '20px');
-        $pdf->getInternalGenerator()->setOption('margin-right', '20px');
-
-        // return $output;
+        if ( version_compare(PHP_VERSION, '7.3.0') < 0 ) {
+            // setting margins
+            $pdf->getInternalGenerator()->setOption('margin-top', '50px');
+            $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
+            $pdf->getInternalGenerator()->setOption('margin-left', '20px');
+            $pdf->getInternalGenerator()->setOption('margin-right', '20px');
+        }
 
         return new Response(
             $pdf->getOutputFromHtml($html),
