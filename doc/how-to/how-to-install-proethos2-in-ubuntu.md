@@ -88,6 +88,8 @@ $ sudo dpkg --install wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
 
 ```
 
+__NOTE:__ For lastest Ubuntu versions, access [here](https://wkhtmltopdf.org/downloads.html) to download the correct package for your installation.
+
 Creating the file structure and install Proethos2
 -------------------------------------------------
 
