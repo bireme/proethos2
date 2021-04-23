@@ -120,8 +120,12 @@ In the middle of process, you will be questioned by this questions below:
 - `mailer_transport (smtp):` We will configure this options later, so, press enter for the SMTP options.
 - `locale (en):` Choose your default language locale. We will use `en_US`
 - `secret (ThisTokenIsNotSoSecretChangeIt):` Choose an secret token for your application.
+- `private_key (null):` Fill in with the private key for database encryption (click [here](how-to-install-proethos2-in-ubuntu.md#encryption-keys-required-if-proethos2--160) to generate the private key).
+- `index_key (null):` Fill in with the index key for database encryption (click [here](how-to-install-proethos2-in-ubuntu.md#encryption-keys-required-if-proethos2--160) to generate the index key).
 
-__NOTE:__ If the error ```proc_open(): fork failed errors``` occurs during installation, access [here](https://getcomposer.org/doc/articles/troubleshooting.md#proc-open-fork-failed-errors) to fix it.
+__NOTES:__
+- If the error ```proc_open(): fork failed errors``` occurs during installation, access [here](https://getcomposer.org/doc/articles/troubleshooting.md#proc-open-fork-failed-errors) to fix it.
+- In PHP 7.2+, if the error ```Warning: "continue" targeting switch is equivalent to "break". Did you mean to use "continue 2"?``` occurs during installation, access [here](how-to-fix-error-during-installation.md) to fix it.
 
 Now, we will setup the database and load the initial data:
 
