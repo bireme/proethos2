@@ -77,7 +77,7 @@
 
     <div class='row'>
         <div class="col-md-12">
-            <form method="POST" id='form-contacts' action="">
+            <form method="POST" id='form-contacts' action="{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}'">
                 <input type="hidden" name="token" value="{{ csrf_token('add-contacts') }}"/>
                 <div class="form-group form-contacts">
                     <input name="contacts" placeholder="{% trans %}insert emails here{% endtrans %}" value="{{ protocol.contacts }}">

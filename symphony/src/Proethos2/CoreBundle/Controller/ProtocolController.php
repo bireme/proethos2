@@ -61,6 +61,8 @@ class ProtocolController extends Controller
         // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
         // $translations = $trans_repository->findTranslations($help[0]);
 
+        $referer = $request->headers->get('referer');
+
         if (!$protocol) {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
@@ -84,6 +86,7 @@ class ProtocolController extends Controller
                 $em->flush();
 
                 $session->getFlashBag()->add('success', $translator->trans("Contacts updated with success."));
+                return $this->redirect($referer, 301);
             }
 
             // if has new comment
