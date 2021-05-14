@@ -13,7 +13,7 @@
         {% include 'Proethos2CoreBundle:NewSubmission:meta.html.twig' %}
 
         <div class='new-submission-tab-content'>
-            <form class='form' method='POST' id='form-submission' action='{{ path("submission_new_third_step", {submission_id: submission.id}) }}'>
+            <form class='form' method='POST' id='form-submission' action='{{ path("submission_new_third_step", {submission_id: submission.id}) }}' novalidate>
 
                 <input type="hidden" name="token" value="{{ csrf_token('submission-third-step') }}"/>
                 <input type='hidden' name='submission_id' value='{{ submission.id }}'>
@@ -30,7 +30,7 @@
                             <div class="form-group required">
                                 <label for="textarea-study-design">{% trans %}Study design{% endtrans %}</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 17} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="4" class="form-control" name='study-design' id='textarea-study-design' required>{{ submission.studyDesign }}</textarea>
+                                <textarea rows="4" class="form-control summernote" name='study-design' id='textarea-study-design' required>{{ submission.studyDesign }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label for="textarea-health-condition">{% trans %}Health Condition or Problem Studied{% endtrans %}</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 18} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="4" class="form-control" name='health-condition' id='textarea-health-condition'>{{ submission.healthCondition }}</textarea>
+                                <textarea rows="4" class="form-control summernote" name='health-condition' id='textarea-health-condition'>{{ submission.healthCondition }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -57,21 +57,30 @@
                         <div class="form-group required">
                             <label for="">{% trans %}More than one activity{% endtrans %}?</label>
                             <div class="radio">
-                                <label><input type="radio" name="is_multiple_clinical_study" id="radio_multiple_clinical_study_yes" value="yes" required {% if submission.isMultipleClinicalStudy %}checked{% endif %}> {% trans %}Yes{% endtrans %}</label>
-                                <label><input type="radio" name="is_multiple_clinical_study" id="radio_multiple_clinical_study_no" value="no" required {% if not submission.isMultipleClinicalStudy %}checked{% endif %}> {% trans %}No{% endtrans %}</label>
+                                {% if is_multiple_clinical_study %}
+                                    <label><input type="radio" name="is_multiple_clinical_study" id="radio_multiple_clinical_study_yes" value="yes" required {% if 'yes' == is_multiple_clinical_study %}checked{% endif %}> {% trans %}Yes{% endtrans %}</label>
+                                    <label><input type="radio" name="is_multiple_clinical_study" id="radio_multiple_clinical_study_no" value="no" required {% if 'no' == is_multiple_clinical_study %}checked{% endif %}> {% trans %}No{% endtrans %}</label>
+                                {% else %}
+                                    <label><input type="radio" name="is_multiple_clinical_study" id="radio_multiple_clinical_study_yes" value="yes" required {% if submission.isMultipleClinicalStudy %}checked{% endif %}> {% trans %}Yes{% endtrans %}</label>
+                                    <label><input type="radio" name="is_multiple_clinical_study" id="radio_multiple_clinical_study_no" value="no" required {% if not submission.isMultipleClinicalStudy %}checked{% endif %}> {% trans %}No{% endtrans %}</label>
+                                {% endif %}
                             </div>
                         </div>
                     </fieldset>
                 </div>
 
+                {% if is_multiple_clinical_study %}
+                <div id="default-clinical-study" class='block' {% if 'yes' == is_multiple_clinical_study %}style="display: none;"{% endif %}>
+                {% else %}
                 <div id="default-clinical-study" class='block' {% if submission.isMultipleClinicalStudy %}style="display: none;"{% endif %}>
+                {% endif %}
                     {% if not submission.isTranslation %}
                         <div class='row'>
                             <div class="col-md-3">
                                 <div class="form-group required">
                                     <label for="select-gender">{% trans %}Gender{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 19} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <select class='form-control' id='select-gender' name='gender' required>
+                                    <select class='form-control' id='select-gender' name='gender' {% if not submission.isMultipleClinicalStudy %}required{% endif %}>
                                         <option value="">-</option>
                                         {% for gender in genders %}
                                             <option value="{{ gender.id }}" {% if submission.gender == gender %}selected{% endif %}>{{ gender.name }}</option>
@@ -84,7 +93,7 @@
                                 <div class="form-group required">
                                     <label for="input-sample-size">{% trans %}Target sample size{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 20} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <input type="number" class="form-control" placeholder="" min="1" value="{{ submission.sampleSize }}" id='input-sample-size' name='sample-size' required>
+                                    <input type="number" class="form-control" placeholder="" min="1" value="{{ submission.sampleSize }}" id='input-sample-size' name='sample-size' {% if not submission.isMultipleClinicalStudy %}required{% endif %}>
                                 </div>
                             </div>
 
@@ -92,7 +101,7 @@
                                 <div class="form-group required">
                                     <label for="input-minimum-age">{% trans %}Minimum Age{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <input type="number" class="form-control" placeholder="" min="0" value="{{ submission.minimumAge }}" name='minimum-age' id='input-minimum-age' required>
+                                    <input type="number" class="form-control" placeholder="" min="0" value="{{ submission.minimumAge }}" name='minimum-age' id='input-minimum-age' {% if not submission.isMultipleClinicalStudy %}required{% endif %}>
                                 </div>
                             </div>
 
@@ -100,7 +109,7 @@
                                 <div class="form-group required">
                                     <label for="input-maximum-age">{% trans %}Maximum Age{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 22} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <input type="number" class="form-control" placeholder="" min="0" value="{{ submission.maximumAge }}" name='maximum-age' id='input-maximum-age' required>
+                                    <input type="number" class="form-control" placeholder="" min="0" value="{{ submission.maximumAge }}" name='maximum-age' id='input-maximum-age' {% if not submission.isMultipleClinicalStudy %}required{% endif %}>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +120,7 @@
                             <div class="form-group required">
                                 <label for="textarea-inclusion-criteria">{% trans %}Inclusion criteria{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 23} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="5" class="form-control" id='textarea-inclusion-criteria' name='inclusion-criteria' required>{{ submission.inclusionCriteria }}</textarea>
+                                <textarea rows="5" class="form-control summernote" id='textarea-inclusion-criteria' name='inclusion-criteria' {% if not submission.isMultipleClinicalStudy %}required{% endif %}>{{ submission.inclusionCriteria }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -121,7 +130,7 @@
                             <div class="form-group required">
                                 <label for="textarea-exclusion-criteria">{% trans %}Exclusion criteria{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 24} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="5" class="form-control" id='textarea-exclusion-criteria' name='exclusion-criteria' required>{{ submission.exclusionCriteria }}</textarea>
+                                <textarea rows="5" class="form-control summernote" id='textarea-exclusion-criteria' name='exclusion-criteria' {% if not submission.isMultipleClinicalStudy %}required{% endif %}>{{ submission.exclusionCriteria }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -132,7 +141,7 @@
                                 <div class="form-group required">
                                     <label for="input-recruitment-init-date">{% trans %}Estimated date of initial recruitment{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <input type="text" class='form-control datepicker' id='input-recruitment-init-date' name='recruitment-init-date' value='{{ submission.recruitmentInitDate|date("Y-m-d") }}' required>
+                                    <input type="text" class='form-control datepicker' id='input-recruitment-init-date' name='recruitment-init-date' value='{{ submission.recruitmentInitDate|date("Y-m-d") }}' {% if not submission.isMultipleClinicalStudy %}required{% endif %}>
                                 </div>
                             </div>
                         </div>
@@ -154,7 +163,11 @@
                     {% endif %}
                 </div>
 
+                {% if is_multiple_clinical_study %}
+                <div id="multiple-clinical-study" class='block' {% if 'no' == is_multiple_clinical_study %}style="display: none;"{% endif %}>
+                {% else %}
                 <div id="multiple-clinical-study" class='block' {% if not submission.isMultipleClinicalStudy %}style="display: none;"{% endif %}>
+                {% endif %}
                     <div class='row'>
                         <div class="col-md-12">
                             <table class='table table-hover table-condensed'>
@@ -238,7 +251,7 @@
                             <div class="form-group required">
                                 <label for="textarea-interventions">{% trans %}Interventions{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 27} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="4" class="form-control" id='textarea-interventions' name='interventions' required>{{ submission.interventions }}</textarea>
+                                <textarea rows="4" class="form-control summernote" id='textarea-interventions' name='interventions' required>{{ submission.interventions }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -256,7 +269,7 @@
                             <div class="form-group required">
                                 <label for="textarea-primary-outcome">{% trans %}Primary outcomes{% endtrans %}</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 28} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="4" class="form-control" id='textarea-primary-outcome' name='primary-outcome' required>{{ submission.primaryOutcome }}</textarea>
+                                <textarea rows="4" class="form-control summernote" id='textarea-primary-outcome' name='primary-outcome' required>{{ submission.primaryOutcome }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -266,7 +279,7 @@
                             <div class="form-group">
                                 <label for="textarea-secondary-outcome">{% trans %}Secondary outcomes{% endtrans %}</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 29} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="4" class="form-control" id='textarea-secondary-outcome' name='secondary-outcome'>{{ submission.secondaryOutcome }}</textarea>
+                                <textarea rows="4" class="form-control summernote" id='textarea-secondary-outcome' name='secondary-outcome'>{{ submission.secondaryOutcome }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -284,7 +297,7 @@
                             <div class="form-group">
                                 <label for="textarea-general-procedures">{% trans %}General Procedures{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 30} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="4" class="form-control" id='textarea-general-procedures' name='general-procedures'>{{ submission.generalProcedures }}</textarea>
+                                <textarea rows="4" class="form-control summernote" id='textarea-general-procedures' name='general-procedures'>{{ submission.generalProcedures }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -294,7 +307,7 @@
                             <div class="form-group">
                                 <label for="textarea-analysis-plan">{% trans %}Analysis Plan{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 31} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="4" class="form-control" id='textarea-analysis-plan' name='analysis-plan'>{{ submission.analysisPlan }}</textarea>
+                                <textarea rows="4" class="form-control summernote" id='textarea-analysis-plan' name='analysis-plan'>{{ submission.analysisPlan }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -319,7 +332,7 @@
                 </div>
 
                 <div class='submission-button-controls'>
-                    <button type='submit' class='btn btn-primary'>{% trans %}Save and next{% endtrans %}</button>
+                    <button type='submit' id="form-submission-submit" class='btn btn-primary'>{% trans %}Save and next{% endtrans %}</button>
                 </div>
             </form>
         </div>
@@ -367,9 +380,11 @@
     <div class="modal fade" id="modal-new-activity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form class='form' method="POST" id='form-new-activity'>
+                <form class='form' method="POST" id='form-new-activity' novalidate>
 
                     <input type="hidden" name="token" value="{{ csrf_token('submission-third-step') }}"/>
+                    <input type="hidden" id="activity-study-design" name="study-design" value=""/>
+                    <input type="hidden" id="activity-health-condition" name="health-condition" value=""/>
 
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -434,7 +449,7 @@
                                 <div class="form-group required">
                                     <label for="textarea-inclusion-criteria">{% trans %}Inclusion criteria{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 23} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <textarea rows="5" class="form-control" id='textarea-activity-inclusion-criteria' name='inclusion-criteria' required></textarea>
+                                    <textarea rows="5" class="form-control summernote" id='textarea-activity-inclusion-criteria' name='inclusion-criteria' required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -444,7 +459,7 @@
                                 <div class="form-group required">
                                     <label for="textarea-exclusion-criteria">{% trans %}Exclusion criteria{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 24} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <textarea rows="5" class="form-control" id='textarea-activity-exclusion-criteria' name='exclusion-criteria' required></textarea>
+                                    <textarea rows="5" class="form-control summernote" id='textarea-activity-exclusion-criteria' name='exclusion-criteria' required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -479,7 +494,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
-                        <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
+                        <button type="submit" id="form-new-activity-submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
                     </div>
                 </form>
             </div>
@@ -542,7 +557,7 @@
             });
 
             {% if not submission.isTranslation %}
-                $("#form-submission").submit(function(e){
+                $("#form-submission-submit").on('click', function(e){
                     var radio =  $('input[name=is_multiple_clinical_study]:checked', '#form-submission').val();
                     var today = new Date();
                     var recruitment_date = $("#form-submission #input-recruitment-init-date").val();
@@ -559,11 +574,16 @@
                     }
                 });
 
-                $("#form-new-activity").submit(function(e){
+                $("#form-new-activity-submit").on('click', function(e){
                     var radio =  $('input[name=is_multiple_clinical_study]:checked', '#form-submission').val();
                     var today = new Date();
                     var recruitment_date = $("#form-new-activity #input-activity-recruitment-init-date").val();
                     recruitment_date = new Date(recruitment_date);
+
+                    var study_design = $('#textarea-study-design').summernote('code');
+                    var health_condition = $('#textarea-health-condition').summernote('code');
+                    $('#activity-study-design').val(study_design);
+                    $('#activity-health-condition').val(health_condition);
 
                     if ( radio == 'yes' ) {
                         if(recruitment_date > today) {
@@ -580,8 +600,8 @@
 
         // WYSIWYG fields
         $(function(){
-            // $('#form-submission textarea[name!=ethical-considerations]').wysihtml5();
-            $('#form-submission textarea[name!=ethical-considerations]').summernote({
+            // $('#form-submission .summernote').wysihtml5();
+            $('#form-submission .summernote').summernote({
                 height: 150,
                 dialogsInBody: true,
                 lang: '{% if 'en' == app.request.locale %}en-US{% else %}{{ app.request.locale|replace({ '_': '-' }) }}{% endif %}',
@@ -592,8 +612,8 @@
                 }
             });
 
-            // $('#form-new-activity textarea').wysihtml5(); 
-            $('#form-new-activity textarea').summernote({
+            // $('#form-new-activity .summernote').wysihtml5(); 
+            $('#form-new-activity .summernote').summernote({
                 height: 150,
                 dialogsInBody: true,
                 lang: '{% if 'en' == app.request.locale %}en-US{% else %}{{ app.request.locale|replace({ '_': '-' }) }}{% endif %}',

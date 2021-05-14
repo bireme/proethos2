@@ -63,3 +63,4 @@ REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VA
 
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (220,'2019-02-21 15:42:08','2019-02-21 15:42:08',1,'help','Clinical study activity');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (221,'2019-02-21 15:42:08','2019-02-21 15:42:08',1,'help','Activity description');
+REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (222,'2019-02-21 15:42:08','2019-02-21 15:42:08',1,'help','Budget description');
