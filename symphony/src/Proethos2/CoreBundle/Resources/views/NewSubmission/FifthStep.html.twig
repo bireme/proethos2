@@ -30,7 +30,7 @@
                             <div class="form-group required">
                                 <label for="textarea-bibliography">{% trans %}Bibliography{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 8} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="5" class="form-control" id='textarea-bibliography' name='bibliography' required>{{ submission.bibliography }}</textarea>
+                                <textarea rows="5" class="form-control summernote" id='textarea-bibliography' name='bibliography' required>{{ submission.bibliography }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -92,8 +92,8 @@
     <script>
         // WYSIWYG fields
         $(function(){
-            // $('#form-fifth textarea#textarea-bibliography').wysihtml5(); 
-            $('#form-fifth textarea#textarea-bibliography').summernote({
+            // $('#form-fifth .summernote').wysihtml5(); 
+            $('#form-fifth .summernote').summernote({
                 height: 150,
                 dialogsInBody: true,
                 lang: '{% if 'en' == app.request.locale %}en-US{% else %}{{ app.request.locale|replace({ '_': '-' }) }}{% endif %}',

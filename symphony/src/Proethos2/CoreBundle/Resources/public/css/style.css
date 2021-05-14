@@ -236,6 +236,29 @@ img.logo {
     max-width: 500px;
 }
 
+.alert-error {
+    color: #b94a48;
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    border-width: 1px;
+}
+
+.valid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 1em;
+    color: #198754;
+}
+
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 1em;
+    color: #dc3545;
+}
+
 .form-contacts .tagify {
   --tag-bg                  : #2C93D9;
   --tag-hover               : #CE0078;

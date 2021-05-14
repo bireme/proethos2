@@ -1,4 +1,4 @@
-<form class='form' method="POST" id='form-new-activity' action="{{ path("submission_update_activity", {submission_id: submission.id, activity_id: activity.id} ) }}">
+<form class='form' method="POST" id='form-update-activity' action="{{ path("submission_update_activity", {submission_id: submission.id, activity_id: activity.id} ) }}" novalidate>
 
     <input type="hidden" name="token" value="{{ csrf_token('update-activity') }}"/>
 
@@ -64,7 +64,7 @@
                 <div class="form-group required">
                     <label for="textarea-inclusion-criteria">{% trans %}Inclusion criteria{% endtrans %}:</label>
                     <a href="{{ path("crud_admin_help_show", {help_id: 23} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                    <textarea rows="5" class="form-control" id='textarea-activity-inclusion-criteria' name='inclusion-criteria' required>{{ activity.inclusionCriteria }}</textarea>
+                    <textarea rows="5" class="form-control summernote" id='textarea-activity-inclusion-criteria' name='inclusion-criteria' required>{{ activity.inclusionCriteria }}</textarea>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
                 <div class="form-group required">
                     <label for="textarea-exclusion-criteria">{% trans %}Exclusion criteria{% endtrans %}:</label>
                     <a href="{{ path("crud_admin_help_show", {help_id: 24} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                    <textarea rows="5" class="form-control" id='textarea-activity-exclusion-criteria' name='exclusion-criteria' required>{{ activity.exclusionCriteria }}</textarea>
+                    <textarea rows="5" class="form-control summernote" id='textarea-activity-exclusion-criteria' name='exclusion-criteria' required>{{ activity.exclusionCriteria }}</textarea>
                 </div>
             </div>
         </div>
@@ -112,3 +112,22 @@
         <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
     </div>
 </form>
+
+{% block script %}
+    <script>
+        // WYSIWYG fields
+        $(function(){
+            // $('#form-update-activity textarea').wysihtml5(); 
+            $('#form-update-activity textarea').summernote({
+                height: 150,
+                dialogsInBody: true,
+                lang: '{% if 'en' == app.request.locale %}en-US{% else %}{{ app.request.locale|replace({ '_': '-' }) }}{% endif %}',
+                popover: {
+                    image: [],
+                    link: [],
+                    air: []
+                }
+            });
+        });
+    </script>
+{% endblock %}

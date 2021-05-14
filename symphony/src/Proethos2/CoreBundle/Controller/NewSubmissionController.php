@@ -326,8 +326,13 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
-            // echo "<pre>"; print_r($post_data); echo "</pre>"; die();
-
+            // sanitize WYSIWYG fields
+            array_walk($post_data, function(&$value){
+                if ( '<p><br></p>' == $value )
+                    $value = '';
+                return $value;
+            });
+            
             // removing all team to readd
             foreach($submission->getTeam() as $team_user) {
                 $submission->removeTeam($team_user);
@@ -494,6 +499,13 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
+            // sanitize WYSIWYG fields
+            array_walk($post_data, function(&$value){
+                if ( '<p><br></p>' == $value )
+                    $value = '';
+                return $value;
+            });
+
             if(isset($post_data['activity-gender'])) {
 
                 // checking required files
@@ -511,6 +523,7 @@ class NewSubmissionController extends Controller
                 foreach($required_fields as $field) {
                     if(!isset($post_data[$field]) or empty($post_data[$field])) {
                         $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
+                        $output['is_multiple_clinical_study'] = 'yes';
                         return $output;
                     }
                 }
@@ -548,6 +561,14 @@ class NewSubmissionController extends Controller
                 $em->persist($activity);
                 $em->flush();
 
+                // adding fields to model
+                $submission->setStudyDesign($post_data['study-design']);
+                $submission->setHealthCondition($post_data['health-condition']);
+                $submission->setIsMultipleClinicalStudy(true);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($submission);
+                $em->flush();
+
                 $session->getFlashBag()->add('success', $translator->trans("Activity created with success."));
                 return $this->redirectToRoute('submission_new_third_step', array('submission_id' => $submission->getId()), 301);
 
@@ -555,11 +576,6 @@ class NewSubmissionController extends Controller
 
             // checking required files
             $required_fields = array('study-design', 'interventions', 'primary-outcome');
-
-            if('no' == $post_data['is_multiple_clinical_study']) {
-                $required_fields[] = 'inclusion-criteria';
-                $required_fields[] = 'exclusion-criteria';
-            }
             
             if(!$submission->getIsTranslation() && 'no' == $post_data['is_multiple_clinical_study']) {
                 $required_fields[] = 'gender';
@@ -570,9 +586,15 @@ class NewSubmissionController extends Controller
                 // $required_fields[] = 'recruitment-status';
             }
 
+            if('no' == $post_data['is_multiple_clinical_study']) {
+                $required_fields[] = 'inclusion-criteria';
+                $required_fields[] = 'exclusion-criteria';
+            }
+
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
+                    $output['is_multiple_clinical_study'] = 'no';
                     return $output;
                 }
             }
@@ -949,8 +971,12 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
-            // print '<pre>';
-            // var_dump($post_data);die;
+            // sanitize WYSIWYG fields
+            array_walk($post_data, function(&$value){
+                if ( '<p><br></p>' == $value )
+                    $value = '';
+                return $value;
+            });
 
             // checking required files
             $required_fields = array('bibliography', 'sscientific-contact');
@@ -1747,6 +1773,8 @@ class NewSubmissionController extends Controller
         $recruitment_statuses = $recruitment_status_repository->findByStatus(true);
         $output['recruitment_statuses'] = $recruitment_statuses;
 
+        $referer = $request->headers->get('referer');
+
         if (!$activity) {
             throw $this->createNotFoundException($translator->trans('No activity found'));
         }
@@ -1763,6 +1791,13 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
+            // sanitize WYSIWYG fields
+            array_walk($post_data, function(&$value){
+                if ( '<p><br></p>' == $value )
+                    $value = '';
+                return $value;
+            });
+
             // checking required files
             $required_fields = array('description', 'inclusion-criteria', 'exclusion-criteria');
             
@@ -1778,7 +1813,8 @@ class NewSubmissionController extends Controller
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
-                    return $output;
+                    return $this->redirect($referer, 301);
+                    // return $output;
                 }
             }
 
@@ -1786,7 +1822,8 @@ class NewSubmissionController extends Controller
                 $recruitment_init_date = new \DateTime($post_data['recruitment-init-date']);
                 if(new \DateTime('NOW') > $recruitment_init_date) {
                     $session->getFlashBag()->add('error', $translator->trans("The recruitment start date has to be subsequent to the date of protocol submission."));
-                    return $output;
+                    return $this->redirect($referer, 301);
+                    // return $output;
                 }
             }
 

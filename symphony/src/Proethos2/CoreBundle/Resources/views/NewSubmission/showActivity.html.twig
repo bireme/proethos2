@@ -31,13 +31,13 @@
                 <li class="list-group-item">
                     <b>{% trans %}Inclusion criteria{% endtrans %}</b>: 
                     <p>
-                        {{ activity.inclusionCriteria|nl2br }}
+                        {{ activity.inclusionCriteria|raw }}
                     </p>
                 </li>
                 <li class="list-group-item">
                     <b>{% trans %}Exclusion criteria{% endtrans %}</b>: 
                     <p>
-                        {{ activity.exclusionCriteria|nl2br }}
+                        {{ activity.exclusionCriteria|raw }}
                     </p>
                 </li>
                 <li class="list-group-item">
