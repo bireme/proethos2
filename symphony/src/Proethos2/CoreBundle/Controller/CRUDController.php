@@ -1247,7 +1247,7 @@ class CRUDController extends Controller
             $post_data = $request->request->all();
 
             // checking required fields
-            foreach(array('name', 'email', 'country', ) as $field) {
+            foreach(array('username', 'name', 'email', 'country', ) as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $this->redirectToRoute('crud_committee_user_list', array(), 301);
@@ -1265,6 +1265,7 @@ class CRUDController extends Controller
             $country = $country_repository->find($post_data['country']);
 
             $user->setCountry($country);
+            $user->setUsername($post_data['username']);
             $user->setName($post_data['name']);
             $user->setEmail($post_data['email']);
             $user->setInstitution($post_data['institution']);

@@ -11,8 +11,18 @@
         <div class='row'>
             <div class='col-md-12'>
                 <div class="form-group required">
-                    <label for="input-name">{% trans %}Name{% endtrans %}:</label> 
+                    <label for="input-username">{% trans %}Username{% endtrans %}:</label>
                     <a href="{{ path("crud_admin_help_show", {help_id: 74} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <input type='text' class='form-control' id="input_username" name="username" value="{{ user.username }}" required>
+                </div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group required">
+                    <label for="input-name">{% trans %}Name{% endtrans %}:</label> 
+                    <a href="{{ path("crud_admin_help_show", {help_id: 75} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <input type='text' class='form-control' id="input-name" name="name" value="{{ user.name }}" required>
                 </div>
             </div>
@@ -31,7 +41,7 @@
             <div class='col-md-12'>
                 <div class="form-group required">
                     <label for="select-country">{% trans %}Country{% endtrans %}:</label> 
-                    <a href="{{ path("crud_admin_help_show", {help_id: 75} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 76} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <select class='form-control select-select2' id="select-country" name="country" required>
                         <option value="">{% trans %}Select country{% endtrans %}</option>
                         {% for country in countries %}
@@ -46,7 +56,7 @@
             <div class='col-md-12'>
                 <div class="form-group">
                     <label for="input-institution">{% trans %}Institution{% endtrans %}:</label> 
-                    <a href="{{ path("crud_admin_help_show", {help_id: 76} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 77} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <input type='text' class='form-control' id="input-institution" name="institution" value="{{ user.institution }}">
                 </div>
             </div>
@@ -58,7 +68,7 @@
                     <div class="checkbox">
                         <label for="input-status">
                             <input type="checkbox" id='input-status' name='status' value="true" {% if user.isActive %}checked{% endif %}> {% trans %}Active?{% endtrans %}
-                            <a href="{{ path("crud_admin_help_show", {help_id: 77} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <a href="{{ path("crud_admin_help_show", {help_id: 78} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                         </label>
                     </div>
                 </div>
@@ -71,3 +81,31 @@
         <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
     </div>
 </form>
+
+{% block script %}
+    <script>
+        $(function(){
+            $("#input_username").on('blur', function() {
+                var val = $(this).val();
+                var slug = convertToSlug(val);
+                $(this).val(slug);
+            });
+        });
+
+        function convertToSlug(Text) {
+            var from = "ÁÄÂÀÃÅČÇĆĎÉĚËÈÊẼĔȆĞÍÌÎÏİŇÑÓÖÒÔÕØŘŔŠŞŤÚŮÜÙÛÝŸŽáäâàãåčçćďéěëèêẽĕȇğíìîïıňñóöòôõøðřŕšşťúůüùûýÿžþÞĐđßÆa";
+            var to   = "AAAAAACCCDEEEEEEEEGIIIIINNOOOOOORRSSTUUUUUYYZaaaaaacccdeeeeeeeegiiiiinnooooooorrsstuuuuuyyzbBDdBAa";
+
+            for (var i=0, l=from.length ; i<l ; i++) {
+                Text = Text.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+            }
+
+            return Text
+                .toLowerCase()
+                .replace(/ /g,'-')
+                .replace(/_/g,'-')
+                .replace(/[^\w-]+/g,'')
+                ;
+        }
+    </script>
+{% endblock %}
