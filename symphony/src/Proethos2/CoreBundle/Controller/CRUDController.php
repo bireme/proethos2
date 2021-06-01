@@ -920,9 +920,9 @@ class CRUDController extends Controller
 
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
-        if (!in_array('secretary', $user_logged->getRolesSlug())) {
-            throw $this->createNotFoundException($translator->trans('No document found'));
-        }
+        // if (!in_array('secretary', $user_logged->getRolesSlug())) {
+        //     throw $this->createNotFoundException($translator->trans('No document found'));
+        // }
 
         $documents = $document_repository->findAll();
 
