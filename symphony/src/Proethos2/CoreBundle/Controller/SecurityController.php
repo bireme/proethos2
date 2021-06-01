@@ -573,6 +573,21 @@ class SecurityController extends Controller
         $em = $this->getDoctrine()->getManager();
         $util = new Util($this->container, $this->getDoctrine());
         $locale = $request->getSession()->get('_locale');
+        
+        $_locale = array(
+            'en' => 'en',
+            'pt_BR' => 'pt-BR',
+            'es_ES' => 'es',
+            'fr_FR' => 'fr'
+        );
+        
+        if ( array_key_exists($locale, $_locale) ) {
+            $hl = $_locale[$locale];
+        } else {
+            $hl = 'en';
+        }
+        
+        $output['hl'] = $hl;
 
         // getting post data
         $post_data = $request->request->all();
