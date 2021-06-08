@@ -75,7 +75,7 @@ class MonitoringController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
-            if(!$protocol->getMainSubmission()->isOwner($user)) {
+            if(!$protocol->getMainSubmission()->isOwner($user) and !in_array('administrator', $user->getRolesSlug())) {
                 throw $this->createNotFoundException($translator->trans('You don\'t have access to do this'));
             }
 
@@ -157,13 +157,14 @@ class MonitoringController extends Controller
                     array('protocol_id' => $protocol->getId(), 'monitoring_action_id' => $monitoring_action->getId()),
                     301
                 );
+
             }
         }
 
         return $output;
     }
 
-        /**
+    /**
      * @Route("/protocol/{protocol_id}/monitoring/{monitoring_action_id}", name="protocol_new_monitoring_that_not_amendment")
      * @Template()
      */
@@ -192,7 +193,7 @@ class MonitoringController extends Controller
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
 
-        if(!$protocol->getMainSubmission()->isOwner($user)) {
+        if(!$protocol->getMainSubmission()->isOwner($user) and !in_array('administrator', $user->getRolesSlug())) {
             throw $this->createNotFoundException($translator->trans('You don\'t have access to do this'));
         }
 
@@ -347,7 +348,6 @@ class MonitoringController extends Controller
 
                 $send = $this->get('mailer')->send($message);
             }
-
 
             $session->getFlashBag()->add('success', $translator->trans("Amendment submitted with success!"));
             return $this->redirectToRoute('crud_investigator_protocol_list', array(), 301);
