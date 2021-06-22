@@ -76,6 +76,7 @@ class CreateSuperUserCommand extends ContainerAwareCommand
 
         if ( strlen($password) < 8 ) {
             $io->error('Password must be at least 8 characters.');
+            exit;
         }
 
         $roles = array(
