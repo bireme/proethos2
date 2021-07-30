@@ -102,7 +102,7 @@
                             <label for="select-meeting">{% trans %}Select meeting{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 123} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <select class='form-control selectpicker' id="select-meeting" name="meeting" data-live-search="true">
-                                <option></option>
+                                <option value="">-</option>
                                 {% for meeting in meetings %}
                                     <option value="{{ meeting.id }}" {% if protocol.meeting == meeting %}selected{% endif %}>{{ meeting.date|date("d/m/Y") }} - {{ meeting.subject }}</option>
                                 {% endfor %}

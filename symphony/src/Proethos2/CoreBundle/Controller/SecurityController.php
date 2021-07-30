@@ -85,6 +85,13 @@ class SecurityController extends Controller
             'committee_logourl'     => $committee_logourl[0],
         );
 
+        $private_key = $this->container->getParameter('private_key');
+        $index_key = $this->container->getParameter('index_key');
+
+        if ( !$private_key or !$index_key ) {
+            throw $this->createNotFoundException($translator->trans('The private_key and index_key are required in the parameters.yml file'));
+        }
+
         if ( 'oauth2' == $auth_type ) {
             $router = $this->container->get('router');
             $redirect = $router->generate('login_route', array(), true);
