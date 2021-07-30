@@ -965,8 +965,17 @@ class ProtocolController extends Controller
                     $em->flush();
                 }
 
+                // saving meeting
+                if(isset($post_data['meeting'])) {
+                    $meeting = $meeting_repository->find($post_data['meeting']);
+                    $protocol->setMeeting($meeting);
+                    $em->persist($protocol);
+                    $em->flush();
+                }
+
                 $session->getFlashBag()->add('success', $translator->trans("Options have been saved with success!"));
                 return $this->redirectToRoute('protocol_initial_committee_review', array('protocol_id' => $protocol->getId()), 301);
+                
             }
 
             // check if form used is adding members

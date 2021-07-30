@@ -129,7 +129,7 @@
                                 <a href='{{ asset(file.uri) }}' target="_blank" class='btn btn-default btn-xs' target="_blank">
                                     <i class='glyphicon glyphicon-eye-open'></i>
                                 </a>
-                                {% if is_granted("ROLE_USER") and 'secretary' in app.user.rolesSlug %}
+                                {% if is_granted("ROLE_USER") and 'secretary' in app.user.rolesSlug and file.uploadType.slug == 'others' %}
                                     <a href='#' class='btn btn-default btn-xs button-delete-attachment' data-id='{{ file.id }}' data-toggle="modal" data-target="#modal-delete-attachment">
                                         <i class='glyphicon glyphicon-trash'></i>
                                     </a>
