@@ -1538,11 +1538,12 @@ class NewSubmissionController extends Controller
                         $help = $help_repository->find(201);
                         $translations = $trans_repository->findTranslations($help);
                         $text = $translations[$submission->getLanguage()];
-                        $body = $text['message'];
+                        $body = ( $text ) ? $text['message'] : $help->getMessage();
                         $body = str_replace("%protocol_url%", $url, $body);
                         $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
                         $body = str_replace("\r\n", "<br />", $body);
                         $body .= "<br /><br />";
+                        $body = $util->linkify($body);
 
                         $secretaries_emails = array();
                         foreach($user_repository->findAll() as $secretary) {
@@ -1576,11 +1577,12 @@ class NewSubmissionController extends Controller
                             $help = $help_repository->find(202);
                             $translations = $trans_repository->findTranslations($help);
                             $text = $translations[$submission->getLanguage()];
-                            $body = $text['message'];
+                            $body = ( $text ) ? $text['message'] : $help->getMessage();
                             $body = str_replace("%protocol_url%", $url, $body);
                             $body = str_replace("\r\n", "<br />", $body);
                             $body .= "<br /><br />";
-                        
+                            $body = $util->linkify($body);
+
                             $recipient = $protocol->getMainSubmission()->getOwner();
                             
                             $message = \Swift_Message::newInstance()
@@ -1599,11 +1601,12 @@ class NewSubmissionController extends Controller
                         $help = $help_repository->find(217);
                         $translations = $trans_repository->findTranslations($help);
                         $text = $translations[$submission->getLanguage()];
-                        $body = $text['message'];
+                        $body = ( $text ) ? $text['message'] : $help->getMessage();
                         $body = str_replace("%home_url%", $home_url, $body);
                         $body = str_replace("%protocol_url%", $url, $body);
                         $body = str_replace("\r\n", "<br />", $body);
                         $body .= "<br /><br />";
+                        $body = $util->linkify($body);
 
                         $secretaries_emails = array();
                         foreach($user_repository->findAll() as $secretary) {

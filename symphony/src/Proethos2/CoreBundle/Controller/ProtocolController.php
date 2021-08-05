@@ -114,11 +114,11 @@ class ProtocolController extends Controller
 
                 $help = $help_repository->find(218);
                 $translations = $trans_repository->findTranslations($help);
-                $text = $translations[$submission->getLanguage()];
-                $body = $text['message'];
+                $body = ( $text ) ? $text['message'] : $help->getMessage();
                 $body = str_replace("%protocol_url%", $url, $body);
                 $body = str_replace("\r\n", "<br />", $body);
                 $body .= "<br /><br />";
+                $body = $util->linkify($body);
 
                 $secretaries_emails = array();
                 foreach($user_repository->findAll() as $secretary) {
@@ -210,10 +210,11 @@ class ProtocolController extends Controller
             $help = $help_repository->find(218);
             $translations = $trans_repository->findTranslations($help);
             $text = $translations[$submission->getLanguage()];
-            $body = $text['message'];
+            $body = ( $text ) ? $text['message'] : $help->getMessage();
             $body = str_replace("%protocol_url%", $url, $body);
             $body = str_replace("\r\n", "<br />", $body);
             $body .= "<br /><br />";
+            $body = $util->linkify($body);
 
             $secretaries_emails = array();
             foreach($user_repository->findAll() as $secretary) {
@@ -428,10 +429,11 @@ class ProtocolController extends Controller
                 $help = $help_repository->find(209);
                 $translations = $trans_repository->findTranslations($help);
                 $text = $translations[$submission->getLanguage()];
-                $body = $text['message'];
+                $body = ( $text ) ? $text['message'] : $help->getMessage();
                 $body = str_replace("%protocol_url%", $url, $body);
                 $body = str_replace("\r\n", "<br />", $body);
                 $body .= "<br /><br />";
+                $body = $util->linkify($body);
 
                 $recipients = array($protocol->getOwner()->getEmail());
                 foreach($protocol->getMainSubmission()->getTeam() as $team_member) {
@@ -553,11 +555,12 @@ class ProtocolController extends Controller
                     $help = $help_repository->find(210);
                     $translations = $trans_repository->findTranslations($help);
                     $text = $translations[$submission->getLanguage()];
-                    $body = $text['message'];
+                    $body = ( $text ) ? $text['message'] : $help->getMessage();
                     $body = str_replace("%protocol_url%", $url, $body);
                     $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
                     $body = str_replace("\r\n", "<br />", $body);
                     $body .= "<br /><br />";
+                    $body = $util->linkify($body);
 
                     foreach($user_repository->findAll() as $member) {
                         foreach(array("members-of-committee") as $role) {
@@ -618,11 +621,12 @@ class ProtocolController extends Controller
                         $help = $help_repository->find(211);
                         $translations = $trans_repository->findTranslations($help);
                         $text = $translations[$submission->getLanguage()];
-                        $body = $text['message'];
+                        $body = ( $text ) ? $text['message'] : $help->getMessage();
                         $body = str_replace("%protocol_url%", $url, $body);
                         $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
                         $body = str_replace("\r\n", "<br />", $body);
                         $body .= "<br /><br />";
+                        $body = $util->linkify($body);
 
                         $message = \Swift_Message::newInstance()
                         ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was sent to review!"))
@@ -745,21 +749,23 @@ class ProtocolController extends Controller
                         $help = $help_repository->find(212);
                         $translations = $trans_repository->findTranslations($help);
                         $text = $translations[$submission->getLanguage()];
-                        $body = $text['message'];
+                        $body = ( $text ) ? $text['message'] : $help->getMessage();
                         $body = str_replace("%protocol_url%", $url, $body);
                         $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
                         $body = str_replace("%committee_screening%", $post_data['committee-screening'], $body);
                         $body = str_replace("\r\n", "<br />", $body);
                         $body .= "<br /><br />";
+                        $body = $util->linkify($body);
                     } else {
                         $help = $help_repository->find(213);
                         $translations = $trans_repository->findTranslations($help);
                         $text = $translations[$submission->getLanguage()];
-                        $body = $text['message'];
+                        $body = ( $text ) ? $text['message'] : $help->getMessage();
                         $body = str_replace("%protocol_url%", $url, $body);
                         $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
                         $body = str_replace("\r\n", "<br />", $body);
                         $body .= "<br /><br />";
+                        $body = $util->linkify($body);
                     }
 
                     $investigators = array();
@@ -853,11 +859,12 @@ class ProtocolController extends Controller
                 $help = $help_repository->find(214);
                 $translations = $trans_repository->findTranslations($help);
                 $text = $translations[$submission->getLanguage()];
-                $body = $text['message'];
+                $body = ( $text ) ? $text['message'] : $help->getMessage();
                 $body = str_replace("%protocol_url%", $url, $body);
                 $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
                 $body = str_replace("\r\n", "<br />", $body);
                 $body .= "<br /><br />";
+                $body = $util->linkify($body);
 
                 $message = \Swift_Message::newInstance()
                 ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was concluded as Exempt."))
@@ -1002,11 +1009,12 @@ class ProtocolController extends Controller
                             $help = $help_repository->find(215);
                             $translations = $trans_repository->findTranslations($help);
                             $text = $translations[$submission->getLanguage()];
-                            $body = $text['message'];
+                            $body = ( $text ) ? $text['message'] : $help->getMessage();
                             $body = str_replace("%protocol_url%", $url, $body);
                             $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
                             $body = str_replace("\r\n", "<br />", $body);
                             $body .= "<br /><br />";
+                            $body = $util->linkify($body);
 
                             $message = \Swift_Message::newInstance()
                             ->setSubject("[proethos2] " . $mail_translator->trans("You were assigned to review a protocol"))
@@ -1164,11 +1172,12 @@ class ProtocolController extends Controller
                     $help = $help_repository->find(219);
                     $translations = $trans_repository->findTranslations($help);
                     $text = $translations[$submission->getLanguage()];
-                    $body = $text['message'];
+                    $body = ( $text ) ? $text['message'] : $help->getMessage();
                     $body = str_replace("%protocol_url%", $url, $body);
                     $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
                     $body = str_replace("\r\n", "<br />", $body);
                     $body .= "<br /><br />";
+                    $body = $util->linkify($body);
 
                     $secretaries_emails = array();
                     foreach($user_repository->findAll() as $secretary) {
@@ -1391,11 +1400,12 @@ class ProtocolController extends Controller
             $help = $help_repository->find(216);
             $translations = $trans_repository->findTranslations($help);
             $text = $translations[$submission->getLanguage()];
-            $body = $text['message'];
+            $body = ( $text ) ? $text['message'] : $help->getMessage();
             $body = str_replace("%protocol_url%", $url, $body);
             $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
             $body = str_replace("\r\n", "<br />", $body);
             $body .= "<br /><br />";
+            $body = $util->linkify($body);
 
             $message = \Swift_Message::newInstance()
             ->setSubject("[proethos2] " . $mail_translator->trans("The protocol review was finalized!"))

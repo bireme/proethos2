@@ -48,7 +48,6 @@ class Help extends Base implements Translatable
     private $status = false;
 
     /**
-     * @Gedmo\Translatable
      * @ORM\Column(type="string", length=32)
      */
     private $type;
