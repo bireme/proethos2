@@ -1080,10 +1080,11 @@ class CRUDController extends Controller
             $help = $help_repository->find(203);
             $translations = $trans_repository->findTranslations($help);
             $text = $translations[$locale];
-            $body = $text['message'];
+            $body = ( $text ) ? $text['message'] : $help->getMessage();
             $body = str_replace("%reset_password_url%", $url, $body);
             $body = str_replace("\r\n", "<br />", $body);
             $body .= "<br /><br />";
+            $body = $util->linkify($body);
 
             $message = \Swift_Message::newInstance()
             ->setSubject("[proethos2] " . $translator->trans("Set your password"))
@@ -1274,10 +1275,11 @@ class CRUDController extends Controller
                 $help = $help_repository->find(204);
                 $translations = $trans_repository->findTranslations($help);
                 $text = $translations[$locale];
-                $body = $text['message'];
+                $body = ( $text ) ? $text['message'] : $help->getMessage();
                 $body = str_replace("%home_url%", $url, $body);
                 $body = str_replace("\r\n", "<br />", $body);
                 $body .= "<br /><br />";
+                $body = $util->linkify($body);
 
                 $message = \Swift_Message::newInstance()
                 ->setSubject("[proethos2] " . $translator->trans("Confirmation of valid access to the Proethos2 platform"))
@@ -1512,7 +1514,7 @@ class CRUDController extends Controller
             $help = $help_repository->find(205);
             $translations = $trans_repository->findTranslations($help);
             $text = $translations[$locale];
-            $body = $text['message'];
+            $body = ( $text ) ? $text['message'] : $help->getMessage();
             $body = str_replace("%username%", $post_data['name'], $body);
             $body = str_replace("%email%", $post_data['email'], $body);
             $body = str_replace("%subject%", $post_data['subject'], $body);

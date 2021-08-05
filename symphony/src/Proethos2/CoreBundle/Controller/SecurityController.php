@@ -189,10 +189,11 @@ class SecurityController extends Controller
                         $help = $help_repository->find(208);
                         $translations = $trans_repository->findTranslations($help);
                         $text = $translations[$locale];
-                        $body = $text['message'];
+                        $body = ( $text ) ? $text['message'] : $help->getMessage();
                         $body = str_replace("%home_url%", $baseurl, $body);
                         $body = str_replace("\r\n", "<br />", $body);
                         $body .= "<br /><br />";
+                        $body = $util->linkify($body);
 
                         // Send email to the secretaries
                         $secretaries_emails = array();
@@ -464,10 +465,11 @@ class SecurityController extends Controller
             $help = $help_repository->find(206);
             $translations = $trans_repository->findTranslations($help);
             $text = $translations[$locale];
-            $body = $text['message'];
+            $body = ( $text ) ? $text['message'] : $help->getMessage();
             $body = str_replace("%reset_password_url%", $url, $body);
             $body = str_replace("\r\n", "<br />", $body);
             $body .= "<br /><br />";
+            $body = $util->linkify($body);
 
             $message = \Swift_Message::newInstance()
             ->setSubject("[proethos2] " . $translator->trans("Reset your password"))
@@ -715,7 +717,7 @@ class SecurityController extends Controller
             $help = $help_repository->find(207);
             $translations = $trans_repository->findTranslations($help);
             $text = $translations[$locale];
-            $body = $text['message'];
+            $body = ( $text ) ? $text['message'] : $help->getMessage();
             $body = str_replace("\r\n", "<br />", $body);
             $body .= "<br /><br />";
 
@@ -734,10 +736,11 @@ class SecurityController extends Controller
             $help = $help_repository->find(208);
             $translations = $trans_repository->findTranslations($help);
             $text = $translations[$locale];
-            $body = $text['message'];
+            $body = ( $text ) ? $text['message'] : $help->getMessage();
             $body = str_replace("%home_url%", $baseurl, $body);
             $body = str_replace("\r\n", "<br />", $body);
             $body .= "<br /><br />";
+            $body = $util->linkify($body);
 
             // send email to the secretaries
             $secretaries_emails = array();
