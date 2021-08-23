@@ -76,6 +76,11 @@ class SubmissionUpload extends Base
     private $submission_number;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $flag;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     private $is_monitoring_action = false;
@@ -330,5 +335,29 @@ class SubmissionUpload extends Base
     public function getIsMonitoringAction()
     {
         return $this->is_monitoring_action;
+    }
+
+    /**
+     * Set flag
+     *
+     * @param integer $flag
+     *
+     * @return SubmissionUpload
+     */
+    public function setFlag($flag)
+    {
+        $this->flag = $flag;
+
+        return $this;
+    }
+
+    /**
+     * Get flag
+     *
+     * @return integer
+     */
+    public function getFlag()
+    {
+        return $this->flag;
     }
 }
