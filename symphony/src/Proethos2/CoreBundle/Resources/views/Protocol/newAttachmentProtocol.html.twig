@@ -10,9 +10,9 @@
 
     <div class="modal-body">
         <div class="form-group">
-            <label for="select-new-atachment-type">{% trans %}Type{% endtrans %}:</label>
+            <label for="select-new-attachment-type">{% trans %}Type{% endtrans %}:</label>
             <a href="{{ path("crud_admin_help_show", {help_id: 11} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-            <select class='form-control' data-live-search="true" name='new-atachment-type' id='select-new-atachment-type' required>
+            <select class='form-control' data-live-search="true" name='new-attachment-type' id='select-new-attachment-type' required>
                 <option></option>
                 {% for type in upload_types %}
                     <option value="{{ type.id }}">{{ type.name }}</option>
@@ -21,9 +21,9 @@
         </div>
 
         <div class="form-group">
-            <label for="input-new-atachment-file">{% trans %}File{% endtrans %}:</label> 
+            <label for="input-new-attachment-file">{% trans %}File{% endtrans %}:</label> 
             <a href="{{ path("crud_admin_help_show", {help_id: 12} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-            <input type='file' class='form-control' name='new-atachment-file' id='input-new-atachment-file' required>
+            <input type='file' class='form-control' name='new-attachment-file' id='input-new-attachment-file' required>
         </div>
     </div>
 
@@ -36,7 +36,7 @@
 {% block script %}
     <script>
         $(function(){
-            $("#select-new-atachment-type").selectpicker();
+            $("#select-new-attachment-type").selectpicker();
         });
     </script>
 {% endblock %}

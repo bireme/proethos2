@@ -299,7 +299,7 @@ class ProtocolController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
-            $file = $request->files->get('new-atachment-file');
+            $file = $request->files->get('new-attachment-file');
             if(!empty($file)) {
 
                 $submittedToken = $request->request->get('token');
@@ -308,12 +308,12 @@ class ProtocolController extends Controller
                     throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
                 }
 
-                if(!isset($post_data['new-atachment-type']) or empty($post_data['new-atachment-type'])) {
+                if(!isset($post_data['new-attachment-type']) or empty($post_data['new-attachment-type'])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field 'new-atachment-type' is required."));
                     return $this->redirect($referer, 301);
                 }
 
-                $upload_type = $upload_type_repository->find($post_data['new-atachment-type']);
+                $upload_type = $upload_type_repository->find($post_data['new-attachment-type']);
                 if (!$upload_type) {
                     throw $this->createNotFoundException($translator->trans('No upload type found'));
                     return $output;
@@ -342,7 +342,7 @@ class ProtocolController extends Controller
                 $em->persist($submission);
                 $em->flush();
 
-                $session->getFlashBag()->add('success', $translator->trans("File uploaded with sucess."));
+                $session->getFlashBag()->add('success', $translator->trans("File uploaded with success."));
 
             }
 
@@ -356,12 +356,29 @@ class ProtocolController extends Controller
 
                 $submission_upload = $submission_upload_repository->find($post_data['delete-attachment-id']);
                 if($submission_upload) {
-
                     $em->remove($submission_upload);
                     $em->flush();
-                    $session->getFlashBag()->add('success', $translator->trans("File removed with sucess."));
+                    $session->getFlashBag()->add('success', $translator->trans("File removed with success."));
                 }
                 
+            }
+
+            if(isset($post_data['add-attachment-flag-id']) and !empty($post_data['add-attachment-flag-id'])) {
+
+                $submittedToken = $request->request->get('token');
+
+                if (!$this->isCsrfTokenValid('add-attachment-flag', $submittedToken)) {
+                    throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+                }
+
+                $submission_upload = $submission_upload_repository->find($post_data['add-attachment-flag-id']);
+                if($submission_upload) {
+                    $submission_upload->setFlag($post_data['add-attachment-flag']);
+                    $em->persist($submission_upload);
+                    $em->flush();
+                    $session->getFlashBag()->add('success', $translator->trans("Flag added with success."));
+                }
+
             }
 
             return $this->redirect($referer, 301);
