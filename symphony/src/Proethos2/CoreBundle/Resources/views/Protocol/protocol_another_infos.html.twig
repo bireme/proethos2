@@ -113,6 +113,7 @@
                         <th>{% trans %}Submitted by{% endtrans %}</th>
                         <th>{% trans %}File name{% endtrans %}</th>
                         <th>{% trans %}Date & Time{% endtrans %}</th>
+                        <th>{% trans %}Reading{% endtrans %}</th>
                         <th>{% trans %}Actions{% endtrans %}</th>
                     </tr>
                 </thead>
@@ -121,18 +122,29 @@
                     {% for file in protocol.mainSubmission.attachments if not file.isMonitoringAction %}
                         {% set class = '' %}
                         {% if file.flag == 1 %}
-                            {% set class = 'attachment-danger' %}
+                            {% set class = 'text-danger' %}
                         {% elseif file.flag == 2 %}
-                            {% set class = 'attachment-warning' %}
+                            {% set class = 'text-warning' %}
                         {% elseif file.flag == 3 %}
-                            {% set class = 'attachment-primary' %}
+                            {% set class = 'text-primary' %}
                         {% endif %}
+
+                        {% set text = '' %}
+                        {% if file.flag == 1 %}
+                            {% set text = 'Mandatory read' %}
+                        {% elseif file.flag == 2 %}
+                            {% set text = 'Optional read' %}
+                        {% elseif file.flag == 3 %}
+                            {% set text = 'Reference only' %}
+                        {% endif %}
+
                         <tr>
-                            <td class="{{ class }}">{{ file.uploadType }}</td>
+                            <td>{{ file.uploadType }}</td>
                             <td>{{ file.submissionNumber }}</td>
                             <td>{{ file.user }}</td>
                             <td>{% if file.uploadType.slug in ['protocol'] %}{{ file.filename }}{% else %}{{ file }}{% endif %}</td> 
-                            <td>{{ file.created|date("d/m/Y H:i") }}</td> 
+                            <td>{{ file.created|date("d/m/Y H:i") }}</td>
+                            <td class="{{ class }}">{{ text|trans }}</td>
                             <td>
                                 <a href='{{ asset(file.uri) }}' target="_blank" class='btn btn-default btn-xs' target="_blank">
                                     <i class='glyphicon glyphicon-eye-open'></i>
@@ -349,9 +361,9 @@
                         <label for="select-add-attachment-flag">{% trans %}Flag{% endtrans %}:</label>
                         <select class='form-control' name='add-attachment-flag' id='select-add-attachment-flag'>
                             <option value="">-</option>
-                            <option value="1" style="border-left: 6px solid #d63638;">{% trans %}Mandatory read{% endtrans %}</option>
-                            <option value="2" style="border-left: 6px solid #dba617;">{% trans %}Optional read{% endtrans %}</option>
-                            <option value="3" style="border-left: 6px solid #72aee6;">{% trans %}Reference only{% endtrans %}</option>
+                            <option value="1">{% trans %}Mandatory read{% endtrans %}</option>
+                            <option value="2">{% trans %}Optional read{% endtrans %}</option>
+                            <option value="3">{% trans %}Reference only{% endtrans %}</option>
                         </select>
                     </div>
                 </div>
