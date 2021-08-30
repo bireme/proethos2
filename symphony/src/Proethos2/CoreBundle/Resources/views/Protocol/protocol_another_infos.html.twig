@@ -233,6 +233,7 @@
                     <tr>
                         <th width="15%">{% trans %}Date & Time{% endtrans %}</th>
                         <th width="15%">{% trans %}Author{% endtrans %}</th>
+                        <th width="15%">{% trans %}Confidential{% endtrans %}</th>
                         <th>{% trans %}Message{% endtrans %}</th>
                     </tr>
                 </thead>
@@ -243,6 +244,7 @@
                             <tr>
                                <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
                                <td>{{ comment.owner }}</td> 
+                               <td>{% if comment.isConfidential %}<i class='glyphicon glyphicon-ok'></i>{% endif %}</td>
                                <td>{{ comment.message }}</td> 
                             </tr>
                         {% endif %}
@@ -250,7 +252,9 @@
                 </tbody>
             </table>
 
-            <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-comment">{% trans %}New Comment{% endtrans %}</a>
+            {% if 'administrator' in app.user.getRolesSlug or 'secretary' in app.user.getRolesSlug or 'investigator' in app.user.getRolesSlug %}
+                <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-comment">{% trans %}New Comment{% endtrans %}</a>
+            {% endif %}
         </div>
     </div>
 </div>
