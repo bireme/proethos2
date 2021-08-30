@@ -76,7 +76,7 @@ class SubmissionUpload extends Base
     private $submission_number;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $flag;
 

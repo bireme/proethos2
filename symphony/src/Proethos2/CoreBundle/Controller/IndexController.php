@@ -46,6 +46,10 @@ class IndexController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
+        if ( count($user->getRolesSlug()) == 1 and 'administrator' == $user->getRolesSlug()[0] ) {
+            return $this->redirectToRoute('crud_admin_configuration_list', array(), 301);
+        }
+
         $revisions = array();
         foreach($protocol_revision_repository->findBy(array("member" => $user)) as $revision) {
             if($revision->getProtocol()->getStatus() == 'E') {
