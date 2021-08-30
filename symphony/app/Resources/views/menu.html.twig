@@ -29,7 +29,9 @@
                     </li>
                 {% endif %}
 
-                <li class="active"><a href="{{ path("home") }}">{% trans %}Dashboard{% endtrans %}</a></li>
+                {% if 'investigator' in app.user.rolesSlug or 'secretary' in app.user.rolesSlug or 'member-of-committee' in app.user.rolesSlug or 'member-ad-hoc' in app.user.rolesSlug %}
+                    <li class="active"><a href="{{ path("home") }}">{% trans %}Dashboard{% endtrans %}</a></li>
+                {% endif %}
 
                 {% if is_granted("ROLE_USER") and 'investigator' in app.user.rolesSlug %}
                     <li class=""><a href="{{ path("crud_investigator_protocol_list") }}">{% trans %}Protocols{% endtrans %}</a></li>

@@ -283,6 +283,10 @@ class SecurityController extends Controller
         $_roles_intersect = array_intersect($_roles, $user->getRolesSlug());
 
         if($roles_intersect && $isActive) {
+            if ( count($user->getRolesSlug()) == 1 and 'administrator' == $user->getRolesSlug()[0] ) {
+                return $this->redirectToRoute('crud_admin_configuration_list', array(), 301);
+            }
+            
             if($_roles_intersect) {
                 return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);
             }

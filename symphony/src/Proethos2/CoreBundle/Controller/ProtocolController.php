@@ -1504,7 +1504,7 @@ class ProtocolController extends Controller
         $protocol = $protocol_repository->find($protocol_id);
         $output['protocol'] = $protocol;
 
-        if (!$protocol or !(in_array('secretary', $user->getRolesSlug())) or !in_array($protocol->getStatus(), array('R', 'C'))) {
+        if (!$protocol or !(in_array('secretary', $user->getRolesSlug()) or in_array($protocol->getStatus(), array('R', 'C')))) {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
 
@@ -1584,7 +1584,7 @@ class ProtocolController extends Controller
         $protocol = $protocol_repository->find($protocol_id);
         $output['protocol'] = $protocol;
 
-        if (!$protocol or !(in_array('secretary', $user->getRolesSlug())) or !in_array($protocol->getStatus(), array('S', 'I', 'E', 'H'))) {
+        if (!$protocol or !(in_array('secretary', $user->getRolesSlug()) or in_array($protocol->getStatus(), array('S', 'I', 'E', 'H')))) {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
 

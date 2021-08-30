@@ -113,7 +113,7 @@
                         <th>{% trans %}Submitted by{% endtrans %}</th>
                         <th>{% trans %}File name{% endtrans %}</th>
                         <th>{% trans %}Date & Time{% endtrans %}</th>
-                        <th>{% trans %}Reading{% endtrans %}</th>
+                        <th>{% trans %}Priority{% endtrans %}</th>
                         <th>{% trans %}Actions{% endtrans %}</th>
                     </tr>
                 </thead>
@@ -131,9 +131,9 @@
 
                         {% set text = '' %}
                         {% if file.flag == 1 %}
-                            {% set text = 'Mandatory read' %}
+                            {% set text = 'Required' %}
                         {% elseif file.flag == 2 %}
-                            {% set text = 'Optional read' %}
+                            {% set text = 'Supporting document' %}
                         {% elseif file.flag == 3 %}
                             {% set text = 'Reference only' %}
                         {% endif %}
@@ -144,7 +144,7 @@
                             <td>{{ file.user }}</td>
                             <td>{% if file.uploadType.slug in ['protocol'] %}{{ file.filename }}{% else %}{{ file }}{% endif %}</td> 
                             <td>{{ file.created|date("d/m/Y H:i") }}</td>
-                            <td class="{{ class }}">{{ text|trans }}</td>
+                            <td class="{{ class }}"><b>{{ text|trans }}</b></td>
                             <td>
                                 <a href='{{ asset(file.uri) }}' target="_blank" class='btn btn-default btn-xs' target="_blank">
                                     <i class='glyphicon glyphicon-eye-open'></i>
@@ -293,7 +293,6 @@
                                 </div>
                             </div>
                         {% endif %}
-                        
                     </form>
                 </div>
                 
@@ -350,7 +349,6 @@
             <input type="hidden" name="add-attachment-flag-id" id='hidden-attachment-flag' value="" />
 
             <div class="modal-content">
-
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">{% trans %}Add Flag{% endtrans %}</h4>
@@ -361,8 +359,8 @@
                         <label for="select-add-attachment-flag">{% trans %}Flag{% endtrans %}:</label>
                         <select class='form-control' name='add-attachment-flag' id='select-add-attachment-flag'>
                             <option value="">-</option>
-                            <option value="1">{% trans %}Mandatory read{% endtrans %}</option>
-                            <option value="2">{% trans %}Optional read{% endtrans %}</option>
+                            <option value="1">{% trans %}Required{% endtrans %}</option>
+                            <option value="2">{% trans %}Supporting document{% endtrans %}</option>
                             <option value="3">{% trans %}Reference only{% endtrans %}</option>
                         </select>
                     </div>
