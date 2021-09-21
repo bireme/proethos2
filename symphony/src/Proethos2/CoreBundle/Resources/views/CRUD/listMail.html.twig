@@ -18,6 +18,7 @@
                     <table class='table table-hover table-condensed'>
                         <thead>
                             <tr>
+                                {% if not app.request.get('id') %}<th>ID</th>{% endif %}
                                 <th width="90%">{% trans %}Message{% endtrans %}</th>
                                 <th>{% trans %}Actions{% endtrans %}</th>
                             </tr>
@@ -25,6 +26,7 @@
                         <tbody>
                             {% for mail in mails %}
                                 <tr>
+                                    {% if not app.request.get('id') %}<td>{{ loop.index }}</td>{% endif %} 
                                     <td>{{ mail.message }}</td> 
                                     <td>
                                         <a href='{{ path('crud_admin_mail_show', {mail_id: mail.id} ) }}' data-toggle='modal' data-target='#modal-mail' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>

@@ -47,6 +47,11 @@ class SendMonitoringActionEmailCommand extends ContainerAwareCommand
         $util = new Util($container, $doctrine);
         $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
 
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+        // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
+        // $translations = $trans_repository->findTranslations($help[0]);
+
         $protocols_to_send = array();
         $today = new \DateTime();
         $next_7_days = new \DateTime();
@@ -87,39 +92,39 @@ class SendMonitoringActionEmailCommand extends ContainerAwareCommand
             }
         }
 
-        foreach($protocols_to_send as $protocol) {
+        if ( $protocols_to_send ) {
+            foreach($protocols_to_send as $protocol) {
 
-            $date = $protocol->getMonitoringActionNextDate()->format("d/m/Y");
-            $email = $protocol->getMainSubmission()->getOwner()->getEmail();
-            $code = $protocol->getCode();
-            $translator->setLocale($protocol->getMainSubmission()->getLanguage());
+                $date = $protocol->getMonitoringActionNextDate()->format("d/m/Y");
+                $email = $protocol->getMainSubmission()->getOwner()->getEmail();
+                $code = $protocol->getCode();
+                $translator->setLocale($protocol->getMainSubmission()->getLanguage());
 
-            $message = \Swift_Message::newInstance()
-            ->setSubject("[proethos2] " . $translator->trans("You have a pending monitoring action to %date%", array("%date%" => $date)))
-            ->setFrom($util->getConfiguration('committee.email'))
-            ->setTo($email)
-            ->setBody(
-                $translator->trans("Dear investigator,") .
-                "<br />" .
-                "<br />" . $translator->trans("This is to remind you that protocol <b>%protocol%</b> has a pending
-                                                   monitoring action that is due on <b>%date%</b>.",
-                                                   array(
-                                                       '%protocol%' => $code,
-                                                       '%date%' => $date,
-                                                   )) .
-                "<br />" .
-                "<br />" . $translator->trans("Please access your account in the system to present your monitoring action.") .
-                "<br />" .
-                "<br />" . $translator->trans("Sincerely") . "," .
-                "<br />" . $translator->trans("PAHOERC Secretariat") .
-                "<br />" . $translator->trans("PAHOERC@paho.org") .
-                "<br /><br />"
-                ,
-                'text/html'
-            );
+                $help = $help_repository->find(223);
+                $translations = $trans_repository->findTranslations($help);
+                $text = $translations[$protocol->getMainSubmission()->getLanguage()];
+                $body = ( $text ) ? $text['message'] : $help->getMessage();
+                $body = str_replace("%monitoring_date%", $date, $body);
+                $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
+                $body = str_replace("\r\n", "<br />", $body);
+                $body .= "<br /><br />";
+                $body = $util->linkify($body);
 
-            $send = $container->get('mailer')->send($message);
-            $output->writeln(sprintf("[%s] remaind sent to '%s'.", $code, $email));
+                $message = \Swift_Message::newInstance()
+                ->setSubject("[proethos2] " . $translator->trans("You have a pending monitoring action to %monitoring_date%", array("%monitoring_date%" => $date)))
+                ->setFrom($util->getConfiguration('committee.email'))
+                ->setTo($email)
+                ->setBody(
+                    $body
+                    ,
+                    'text/html'
+                );
+
+                $send = $container->get('mailer')->send($message);
+                $output->writeln(sprintf("[%s] remaind sent to '%s'.", $code, $email));
+            }
+        } else {
+            $output->writeln("[INFO] No protocols with pending monitoring action.");
         }
     }
 }
