@@ -19,6 +19,7 @@
                         
                         <thead>
                             <tr>
+                                {% if not app.request.get('id') %}<th>ID</th>{% endif %}
                                 <th width="90%">{% trans %}Message{% endtrans %}</th>
                                 <th>{% trans %}Actions{% endtrans %}</th>
                             </tr>
@@ -27,6 +28,7 @@
                         <tbody>
                             {% for help in helps %}
                                 <tr>
+                                    {% if not app.request.get('id') %}<td>{{ loop.index }}</td>{% endif %} 
                                     <td>{{ help.message }}</td> 
                                     <td>
                                         <a href='{{ path('crud_admin_help_show', {help_id: help.id} ) }}' data-toggle='modal' data-target='#modal-help' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
