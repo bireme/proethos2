@@ -119,7 +119,7 @@
             </div>
         {% endif %}
 
-        {% if 'secretary' in app.user.rolesSlug %}
+        {% if 'secretary' in app.user.rolesSlug or 'member-of-committee' in app.user.rolesSlug %}
             <div class='block'>
                 <div class='row'>
                     <div class="col-md-12">
