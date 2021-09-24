@@ -194,7 +194,7 @@ class CRUDController extends Controller
 
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
-        if (!in_array('secretary', $user_logged->getRolesSlug()) and !in_array('members-of-committee', $user_logged->getRolesSlug())) {
+        if (!in_array('secretary', $user_logged->getRolesSlug()) and !in_array('member-of-committee', $user_logged->getRolesSlug())) {
             throw $this->createNotFoundException($translator->trans('No user found'));
         }
 
