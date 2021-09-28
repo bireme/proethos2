@@ -170,7 +170,7 @@ chmod -R 0775 uploads
 
 And now run all the tests to see if all is doing ok:
 ```
-make test
+$ make test
 ```
 
 If you want to test the instalation, run this command:
@@ -292,6 +292,13 @@ Copy the keys, go to `app/config/parameters.yml` and add/change these parameters
 ```
 private_key: ??????????
 index_key: ??????????
+
+```
+
+Run this command to refresh the settings:
+
+```
+$ make update
 
 ```
 
