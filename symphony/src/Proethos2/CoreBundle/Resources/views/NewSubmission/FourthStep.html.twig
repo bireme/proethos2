@@ -13,7 +13,7 @@
         {% include 'Proethos2CoreBundle:NewSubmission:meta.html.twig' %}
 
         <div class='new-submission-tab-content'>
-            <form class='form' method='POST' action='{{ path("submission_new_fourth_step", {submission_id: submission.id}) }}'>
+            <form class='form' method='POST' id='form-fourth' action='{{ path("submission_new_fourth_step", {submission_id: submission.id}) }}'>
 
                 <input type="hidden" name="token" value="{{ csrf_token('submission-fourth-step') }}"/>
                 <input type='hidden' name='submission_id' value='{{ submission.id }}'>
@@ -115,12 +115,14 @@
                         </div>
                     </div>
 
+                    <div class='row submission-meta'></div>
+
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
                                 <label for="textarea-funding-source">{% trans %}Funding source{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 36} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="4" class="form-control" id='textarea-funding-source' name='funding-source' required>{{ submission.fundingSource }}</textarea>
+                                <textarea rows="4" class="form-control" id='textarea-funding-source' name='funding-source'>{{ submission.fundingSource }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -130,7 +132,7 @@
                             <div class="form-group required">
                                 <label for="textarea-primary-sponsor">{% trans %}Primary Sponsor{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 37} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="4" class="form-control" id='textarea-primary-sponsor' name='primary-sponsor' required>{{ submission.primarySponsor }}</textarea>
+                                <textarea rows="4" class="form-control" id='textarea-primary-sponsor' name='primary-sponsor'>{{ submission.primarySponsor }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -320,6 +322,26 @@
 
 {% block script %}
     <script>
+
+        $(function(){
+            $('#form-fourth').on('submit', function(e) {
+                if ( !$('#textarea-funding-source').val() ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#textarea-funding-source');
+                    return false;
+                }
+
+                if ( !$('#textarea-primary-sponsor').val() ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#textarea-primary-sponsor');
+                    return false;
+                }
+            });
+        });
 
         // scripts to manage cost modal
         $(function(){

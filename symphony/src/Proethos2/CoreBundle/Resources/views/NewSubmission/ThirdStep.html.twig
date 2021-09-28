@@ -13,7 +13,7 @@
         {% include 'Proethos2CoreBundle:NewSubmission:meta.html.twig' %}
 
         <div class='new-submission-tab-content'>
-            <form class='form' method='POST' id='form-submission' action='{{ path("submission_new_third_step", {submission_id: submission.id}) }}' novalidate>
+            <form class='form' method='POST' id='form-third' action='{{ path("submission_new_third_step", {submission_id: submission.id}) }}' novalidate>
 
                 <input type="hidden" name="token" value="{{ csrf_token('submission-third-step') }}"/>
                 <input type='hidden' name='submission_id' value='{{ submission.id }}'>
@@ -25,12 +25,14 @@
                         </div>
                     </div>
 
+                    <div id="anchor-textarea-study-design"></div>
+
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
                                 <label for="textarea-study-design">{% trans %}Study design{% endtrans %}</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 17} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="4" class="form-control summernote" name='study-design' id='textarea-study-design' required>{{ submission.studyDesign }}</textarea>
+                                <textarea rows="4" class="form-control summernote" name='study-design' id='textarea-study-design'>{{ submission.studyDesign }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -58,11 +60,11 @@
                             <label for="">{% trans %}More than one activity{% endtrans %}?</label>
                             <div class="radio">
                                 {% if is_multiple_clinical_study %}
-                                    <label><input type="radio" name="is_multiple_clinical_study" id="radio_multiple_clinical_study_yes" value="yes" required {% if 'yes' == is_multiple_clinical_study %}checked{% endif %}> {% trans %}Yes{% endtrans %}</label>
-                                    <label><input type="radio" name="is_multiple_clinical_study" id="radio_multiple_clinical_study_no" value="no" required {% if 'no' == is_multiple_clinical_study %}checked{% endif %}> {% trans %}No{% endtrans %}</label>
+                                    <label><input type="radio" name="is_multiple_clinical_study" id="radio_multiple_clinical_study_yes" value="yes" {% if 'yes' == is_multiple_clinical_study %}checked{% endif %}> {% trans %}Yes{% endtrans %}</label>
+                                    <label><input type="radio" name="is_multiple_clinical_study" id="radio_multiple_clinical_study_no" value="no" {% if 'no' == is_multiple_clinical_study %}checked{% endif %}> {% trans %}No{% endtrans %}</label>
                                 {% else %}
-                                    <label><input type="radio" name="is_multiple_clinical_study" id="radio_multiple_clinical_study_yes" value="yes" required {% if submission.isMultipleClinicalStudy %}checked{% endif %}> {% trans %}Yes{% endtrans %}</label>
-                                    <label><input type="radio" name="is_multiple_clinical_study" id="radio_multiple_clinical_study_no" value="no" required {% if not submission.isMultipleClinicalStudy %}checked{% endif %}> {% trans %}No{% endtrans %}</label>
+                                    <label><input type="radio" name="is_multiple_clinical_study" id="radio_multiple_clinical_study_yes" value="yes" {% if submission.isMultipleClinicalStudy %}checked{% endif %}> {% trans %}Yes{% endtrans %}</label>
+                                    <label><input type="radio" name="is_multiple_clinical_study" id="radio_multiple_clinical_study_no" value="no" {% if not submission.isMultipleClinicalStudy %}checked{% endif %}> {% trans %}No{% endtrans %}</label>
                                 {% endif %}
                             </div>
                         </div>
@@ -93,7 +95,7 @@
                                 <div class="form-group required">
                                     <label for="input-sample-size">{% trans %}Target sample size{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 20} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <input type="number" class="form-control" placeholder="" min="1" value="{{ submission.sampleSize }}" id='input-sample-size' name='sample-size' {% if not submission.isMultipleClinicalStudy %}required{% endif %}>
+                                    <input type="number" class="form-control" placeholder="" min="0" value="{{ submission.sampleSize }}" id='input-sample-size' name='sample-size' {% if not submission.isMultipleClinicalStudy %}required{% endif %}>
                                 </div>
                             </div>
 
@@ -246,12 +248,16 @@
                         </div>
                     {% endif %}
 
+                    <div class='row submission-meta'></div>
+
+                    <div id="anchor-textarea-interventions"></div>
+
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
                                 <label for="textarea-interventions">{% trans %}Interventions{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 27} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="4" class="form-control summernote" id='textarea-interventions' name='interventions' required>{{ submission.interventions }}</textarea>
+                                <textarea rows="4" class="form-control summernote" id='textarea-interventions' name='interventions'>{{ submission.interventions }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -264,12 +270,14 @@
                         </div>
                     </div>
 
+                    <div id="anchor-textarea-primary-outcome"></div>
+
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
                                 <label for="textarea-primary-outcome">{% trans %}Primary outcomes{% endtrans %}</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 28} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="4" class="form-control summernote" id='textarea-primary-outcome' name='primary-outcome' required>{{ submission.primaryOutcome }}</textarea>
+                                <textarea rows="4" class="form-control summernote" id='textarea-primary-outcome' name='primary-outcome'>{{ submission.primaryOutcome }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -383,8 +391,8 @@
                 <form class='form' method="POST" id='form-new-activity' novalidate>
 
                     <input type="hidden" name="token" value="{{ csrf_token('submission-third-step') }}"/>
-                    <input type="hidden" id="activity-study-design" name="study-design" value=""/>
-                    <input type="hidden" id="activity-health-condition" name="health-condition" value=""/>
+                    <input type="hidden" id="new-activity" name="new-activity" value="true"/>
+                    <input type="hidden" id="form-data" name="form-data" value=""/>                    
 
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -396,9 +404,9 @@
                         <div class='row'>
                             <div class="col-md-12">
                                 <div class="form-group required">
-                                    <label for="input-description">{% trans %}Description{% endtrans %}:</label>
+                                    <label for="input-new-activity-description">{% trans %}Description{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 221} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <input type="text" class="form-control" name='description' id='input-description' value="{{ submission.description }}" required>
+                                    <input type="text" class="form-control" name='activity-description' id='input-new-activity-description' value="{{ submission.description }}" required>
                                 </div>
                             </div>
                         </div>
@@ -407,9 +415,9 @@
                             <div class='row'>
                                 <div class="col-md-12">
                                     <div class="form-group required">
-                                        <label for="select-gender">{% trans %}Gender{% endtrans %}:</label>
+                                        <label for="select-new-activity-gender">{% trans %}Gender{% endtrans %}:</label>
                                         <a href="{{ path("crud_admin_help_show", {help_id: 19} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                        <select class='form-control' id='select-activity-gender' name='activity-gender' required>
+                                        <select class='form-control' id='select-new-activity-gender' name='activity-gender' required>
                                             <option value="">-</option>
                                             {% for gender in genders %}
                                                 <option value="{{ gender.id }}">{{ gender.name }}</option>
@@ -417,49 +425,59 @@
                                         </select>
                                     </div>
                                 </div>
+                            </div>
 
+                            <div class='row'>
                                 <div class="col-md-12">
                                     <div class="form-group required">
-                                        <label for="input-sample-size">{% trans %}Target sample size{% endtrans %}:</label>
+                                        <label for="input-new-activity-sample-size">{% trans %}Target sample size{% endtrans %}:</label>
                                         <a href="{{ path("crud_admin_help_show", {help_id: 20} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                        <input type="number" class="form-control" placeholder="" min="1" value="" id='input-activity-sample-size' name='sample-size' required>
+                                        <input type="number" class="form-control" placeholder="" min="0" value="" id='input-new-activity-sample-size' name='activity-sample-size' required>
                                     </div>
                                 </div>
+                            </div>
 
+                            <div class='row'>
                                 <div class="col-md-12">
                                     <div class="form-group required">
-                                        <label for="input-minimum-age">{% trans %}Minimum Age{% endtrans %}:</label>
+                                        <label for="input-new-activity-minimum-age">{% trans %}Minimum Age{% endtrans %}:</label>
                                         <a href="{{ path("crud_admin_help_show", {help_id: 21} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                        <input type="number" class="form-control" placeholder="" min="0" value="" name='minimum-age' id='input-activity-minimum-age' required>
+                                        <input type="number" class="form-control" placeholder="" min="0" value="" name='activity-minimum-age' id='input-new-activity-minimum-age' required>
                                     </div>
                                 </div>
+                            </div>
 
+                            <div class='row'>
                                 <div class="col-md-12">
                                     <div class="form-group required">
-                                        <label for="input-maximum-age">{% trans %}Maximum Age{% endtrans %}:</label>
+                                        <label for="input-new-activity-maximum-age">{% trans %}Maximum Age{% endtrans %}:</label>
                                         <a href="{{ path("crud_admin_help_show", {help_id: 22} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                        <input type="number" class="form-control" placeholder="" min="0" value="" name='maximum-age' id='input-activity-maximum-age' required>
+                                        <input type="number" class="form-control" placeholder="" min="0" value="" name='activity-maximum-age' id='input-new-activity-maximum-age' required>
                                     </div>
                                 </div>
                             </div>
                         {% endif %}
 
-                        <div class='row'>
-                            <div class="col-md-12">
-                                <div class="form-group required">
-                                    <label for="textarea-inclusion-criteria">{% trans %}Inclusion criteria{% endtrans %}:</label>
-                                    <a href="{{ path("crud_admin_help_show", {help_id: 23} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <textarea rows="5" class="form-control summernote" id='textarea-activity-inclusion-criteria' name='inclusion-criteria' required></textarea>
-                                </div>
-                            </div>
-                        </div>
+                        <div id="anchor-textarea-new-activity-inclusion-criteria"></div>
 
                         <div class='row'>
                             <div class="col-md-12">
                                 <div class="form-group required">
-                                    <label for="textarea-exclusion-criteria">{% trans %}Exclusion criteria{% endtrans %}:</label>
+                                    <label for="textarea-new-activity-inclusion-criteria">{% trans %}Inclusion criteria{% endtrans %}:</label>
+                                    <a href="{{ path("crud_admin_help_show", {help_id: 23} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <textarea rows="5" class="form-control summernote" id='textarea-new-activity-inclusion-criteria' name='activity-inclusion-criteria' required></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="anchor-textarea-new-activity-inclusion-criteria"></div>
+
+                        <div class='row'>
+                            <div class="col-md-12">
+                                <div class="form-group required">
+                                    <label for="textarea-new-activity-exclusion-criteria">{% trans %}Exclusion criteria{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 24} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    <textarea rows="5" class="form-control summernote" id='textarea-activity-exclusion-criteria' name='exclusion-criteria' required></textarea>
+                                    <textarea rows="5" class="form-control summernote" id='textarea-new-activity-exclusion-criteria' name='activity-exclusion-criteria' required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -468,9 +486,9 @@
                             <div class='row'>
                                 <div class="col-md-12">
                                     <div class="form-group required">
-                                        <label for="input-recruitment-init-date">{% trans %}Estimated date of initial recruitment{% endtrans %}:</label>
+                                        <label for="input-new-activity-recruitment-init-date">{% trans %}Estimated date of initial recruitment{% endtrans %}:</label>
                                         <a href="{{ path("crud_admin_help_show", {help_id: 25} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                        <input type="text" class='form-control datepicker' id='input-activity-recruitment-init-date' name='recruitment-init-date' value='' required>
+                                        <input type="text" class='form-control datepicker' id='input-new-activity-recruitment-init-date' name='activity-recruitment-init-date' value='' required>
                                     </div>
                                 </div>
                             </div>
@@ -478,9 +496,9 @@
                             <div class='row'>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="select-recruitment-status">{% trans %}Recruitment Status{% endtrans %}:</label>
+                                        <label for="select-activity-recruitment-status">{% trans %}Recruitment Status{% endtrans %}:</label>
                                         <a href="{{ path("crud_admin_help_show", {help_id: 26} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                        <select class='form-control' id='select-activity-recruitment-status' name='recruitment-status'>
+                                        <select class='form-control' id='select-activity-recruitment-status' name='activity-recruitment-status'>
                                             <option value="">-</option>
                                             {% for status in recruitment_statuses %}
                                                 <option value="{{ status.id }}" {% if status == submission.recruitmentStatus %}selected{% endif %}>{{ status.name }}</option>
@@ -555,44 +573,51 @@
                 parent = $(this).parents('tr');
                 parent.remove();
             });
+        });
 
+        $(function(){
             {% if not submission.isTranslation %}
                 $("#form-submission-submit").on('click', function(e){
-                    var radio =  $('input[name=is_multiple_clinical_study]:checked', '#form-submission').val();
+                    e.preventDefault();
+                    
+                    var radio =  $('input[name=is_multiple_clinical_study]:checked', '#form-third').val();
                     var today = new Date();
-                    var recruitment_date = $("#form-submission #input-recruitment-init-date").val();
+                    var recruitment_date = $("#form-third #input-recruitment-init-date").val();
                     recruitment_date = new Date(recruitment_date);
 
                     if ( radio == 'no' ) {
                         if(recruitment_date > today) {
-                            $("#form-submission").submit();
+                            $("#form-third").submit();
                         } else {
-                            e.preventDefault();
-                            $("#form-submission #input-recruitment-init-date").focus();
+                            $("#form-third #input-recruitment-init-date").focus();
                             alert("{% trans %}ERROR. The initial recruitment date needs to be subsequent to today's date.{% endtrans %}");
                         }
+                    } else {
+                        $("#form-third").submit();
                     }
                 });
 
                 $("#form-new-activity-submit").on('click', function(e){
-                    var radio =  $('input[name=is_multiple_clinical_study]:checked', '#form-submission').val();
-                    var today = new Date();
-                    var recruitment_date = $("#form-new-activity #input-activity-recruitment-init-date").val();
-                    recruitment_date = new Date(recruitment_date);
+                    e.preventDefault();
 
-                    var study_design = $('#textarea-study-design').summernote('code');
-                    var health_condition = $('#textarea-health-condition').summernote('code');
-                    $('#activity-study-design').val(study_design);
-                    $('#activity-health-condition').val(health_condition);
+                    var data = $('#form-third').serializeArray();
+                    data = JSON.stringify(data);
+                    $("#form-data").val(data);
+
+                    var radio =  $('input[name=is_multiple_clinical_study]:checked', '#form-third').val();
+                    var today = new Date();
+                    var recruitment_date = $("#form-new-activity #input-new-activity-recruitment-init-date").val();
+                    recruitment_date = new Date(recruitment_date);
 
                     if ( radio == 'yes' ) {
                         if(recruitment_date > today) {
                             $("#form-new-activity").submit();
                         } else {
-                            e.preventDefault();
-                            $("#form-new-activity #input-activity-recruitment-init-date").focus();
+                            $("#form-new-activity #input-new-activity-recruitment-init-date").focus();
                             alert("{% trans %}ERROR: The initial recruitment date needs to be subsequent to today's date.{% endtrans %}");
                         }
+                    } else {
+                        $("#form-new-activity").submit();
                     }
                 });
             {% endif %}
@@ -600,8 +625,8 @@
 
         // WYSIWYG fields
         $(function(){
-            // $('#form-submission .summernote').wysihtml5();
-            $('#form-submission .summernote').summernote({
+            // $('#form-third .summernote').wysihtml5();
+            $('#form-third .summernote').summernote({
                 height: 150,
                 dialogsInBody: true,
                 lang: '{% if 'en' == app.request.locale %}en-US{% else %}{{ app.request.locale|replace({ '_': '-' }) }}{% endif %}',
@@ -621,6 +646,146 @@
                     image: [],
                     link: [],
                     air: []
+                }
+            });
+        });
+
+        $(function(){
+            $('#form-third').on('submit', function(e) {
+                var radio =  $('input[name=is_multiple_clinical_study]:checked', '#form-third').val();
+
+                if ( $('#textarea-study-design').summernote('isEmpty') ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#textarea-study-design', 'sn');
+                    return false;
+                }
+
+                if ( $('#textarea-interventions').summernote('isEmpty') ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#textarea-interventions', 'sn');
+                    return false;
+                }
+
+                if ( radio == 'no' ) {
+                    if ( !$('#select-gender').val() ) {
+                        // cancel submit
+                        e.preventDefault();
+                        alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                        highlight_input_field('#select-gender');
+                        return false;
+                    }
+
+                    if ( $('#input-sample-size').val() == 0 ) {
+                        // cancel submit
+                        e.preventDefault();
+                        alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                        highlight_input_field('#input-sample-size');
+                        return false;
+                    }
+
+                    if ( $('#input-minimum-age').val() == 0 ) {
+                        // cancel submit
+                        e.preventDefault();
+                        alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                        highlight_input_field('#input-minimum-age');
+                        return false;
+                    }
+
+                    if ( $('#input-maximum-age').val() == 0 ) {
+                        // cancel submit
+                        e.preventDefault();
+                        alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                        highlight_input_field('#input-maximum-age');
+                        return false;
+                    }
+
+                    if ( $('#textarea-inclusion-criteria').summernote('isEmpty') ) {
+                        // cancel submit
+                        e.preventDefault();
+                        alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                        highlight_input_field('#textarea-inclusion-criteria', 'sn');
+                        return false;
+                    }
+
+                    if ( $('#textarea-exclusion-criteria').summernote('isEmpty') ) {
+                        // cancel submit
+                        e.preventDefault();
+                        alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                        highlight_input_field('#textarea-exclusion-criteria', 'sn');
+                        return false;
+                    }
+                }
+
+                if ( $('#textarea-primary-outcome').summernote('isEmpty') ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#textarea-primary-outcome', 'sn');
+                    return false;
+                }
+            });
+        });
+
+        $(function(){
+            $('#form-new-activity').on('submit', function(e) {
+                if ( !$('#input-new-activity-description').val() ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#input-new-activity-description');
+                    return false;
+                }
+
+                if ( !$('#select-new-activity-gender').val() ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#select-new-activity-gender');
+                    return false;
+                }
+
+                if ( $('#input-new-activity-sample-size').val() == 0 ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#input-new-activity-sample-size');
+                    return false;
+                }
+
+                if ( $('#input-new-activity-minimum-age').val() == 0 ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#input-new-activity-minimum-age');
+                    return false;
+                }
+
+                if ( $('#input-new-activity-maximum-age').val() == 0 ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#input-new-activity-maximum-age');
+                    return false;
+                }
+
+                if ( $('#textarea-new-activity-inclusion-criteria').summernote('isEmpty') ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#textarea-new-activity-inclusion-criteria', 'sn');
+                    return false;
+                }
+
+                if ( $('#textarea-new-activity-exclusion-criteria').summernote('isEmpty') ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#textarea-new-activity-exclusion-criteria', 'sn');
+                    return false;
                 }
             });
         });

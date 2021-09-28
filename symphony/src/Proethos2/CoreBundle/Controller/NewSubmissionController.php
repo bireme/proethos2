@@ -506,18 +506,18 @@ class NewSubmissionController extends Controller
                 return $value;
             });
 
-            if(isset($post_data['activity-gender'])) {
+            if(isset($post_data['new-activity'])) {
 
                 // checking required files
-                $required_fields = array('description', 'inclusion-criteria', 'exclusion-criteria');
+                $required_fields = array('activity-description', 'activity-inclusion-criteria', 'activity-exclusion-criteria');
                 
                 if(!$submission->getIsTranslation()) {
                     $required_fields[] = 'activity-gender';
-                    $required_fields[] = 'sample-size';
-                    $required_fields[] = 'minimum-age';
-                    $required_fields[] = 'maximum-age';
-                    $required_fields[] = 'recruitment-init-date';
-                    // $required_fields[] = 'recruitment-status';
+                    $required_fields[] = 'activity-sample-size';
+                    $required_fields[] = 'activity-minimum-age';
+                    $required_fields[] = 'activity-maximum-age';
+                    $required_fields[] = 'activity-recruitment-init-date';
+                    // $required_fields[] = 'activity-recruitment-status';
                 }
 
                 foreach($required_fields as $field) {
@@ -529,7 +529,7 @@ class NewSubmissionController extends Controller
                 }
 
                 if(!$submission->getIsTranslation()) {
-                    $recruitment_init_date = new \DateTime($post_data['recruitment-init-date']);
+                    $recruitment_init_date = new \DateTime($post_data['activity-recruitment-init-date']);
                     if(new \DateTime('NOW') > $recruitment_init_date) {
                         $session->getFlashBag()->add('error', $translator->trans("The recruitment start date has to be subsequent to the date of protocol submission."));
                         return $output;
@@ -539,22 +539,22 @@ class NewSubmissionController extends Controller
                 // adding fields to model
                 $activity = new SubmissionClinicalStudy();
                 $activity->setSubmission($submission);
-                $activity->setDescription($post_data['description']);
-                $activity->setInclusionCriteria($post_data['inclusion-criteria']);
-                $activity->setExclusionCriteria($post_data['exclusion-criteria']);
+                $activity->setDescription($post_data['activity-description']);
+                $activity->setInclusionCriteria($post_data['activity-inclusion-criteria']);
+                $activity->setExclusionCriteria($post_data['activity-exclusion-criteria']);
 
                 if(!$submission->getIsTranslation()) {
-                    $activity->setSampleSize($post_data['sample-size']);
-                    $activity->setMinimumAge($post_data['minimum-age']);
-                    $activity->setMaximumAge($post_data['maximum-age']);
-                    $activity->setRecruitmentInitDate(new \DateTime($post_data['recruitment-init-date']));
+                    $activity->setSampleSize($post_data['activity-sample-size']);
+                    $activity->setMinimumAge($post_data['activity-minimum-age']);
+                    $activity->setMaximumAge($post_data['activity-maximum-age']);
+                    $activity->setRecruitmentInitDate(new \DateTime($post_data['activity-recruitment-init-date']));
 
                     // gender
                     $selected_gender = $gender_repository->find($post_data['activity-gender']);
                     $activity->setGender($selected_gender);
 
                     // recruitment status
-                    $selected_recruitment_status = $recruitment_status_repository->find($post_data['recruitment-status']);
+                    $selected_recruitment_status = $recruitment_status_repository->find($post_data['activity-recruitment-status']);
                     $activity->setRecruitmentStatus($selected_recruitment_status);
                 }
 
@@ -562,13 +562,103 @@ class NewSubmissionController extends Controller
                 $em->flush();
 
                 // adding fields to model
-                $submission->setStudyDesign($post_data['study-design']);
-                $submission->setHealthCondition($post_data['health-condition']);
-                $submission->setIsMultipleClinicalStudy(true);
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($submission);
                 $em->flush();
 
+                if (isset($post_data['form-data'])) {
+
+                    $form_data = json_decode($post_data['form-data'], true);
+                    $post_data = array_column($form_data, 'value', 'name');
+
+                    // sanitize WYSIWYG fields
+                    array_walk($post_data, function(&$value){
+                        if ( '<p><br></p>' == $value )
+                            $value = '';
+                        return $value;
+                    });
+
+                    if(!$submission->getIsTranslation()) {
+                        // removing all team to read
+                        foreach($submission->getCountry() as $country) {
+                            $submission->removeCountry($country);
+                            $em->remove($country);
+                            $em->flush();
+                        }
+                    }
+
+                    $country_data = array_filter($post_data, function($key) {
+                        return strpos($key, 'country') === 0;
+                    }, ARRAY_FILTER_USE_KEY);
+
+                    if ( isset($country_data) ) {
+                        $country_ids = array_filter($country_data, function($value, $key) {
+                            if ( strpos($key, 'country_id') !== false ) return $value;
+                        }, ARRAY_FILTER_USE_BOTH);
+
+                        $country_participants = array_filter($country_data, function($value, $key) {
+                            if ( strpos($key, 'participants') !== false ) return $value;
+                        }, ARRAY_FILTER_USE_BOTH);
+
+                        $country_data = array_map(function($a, $b) { return $a . '|' . $b; }, $country_ids, $country_participants);
+
+                        $submission_country_data = array();
+                        foreach ($country_data as $cd) {
+                            $data = explode('|', $cd);
+                            $submission_country_data[] = array(
+                                'country_id' => $data[0],
+                                'participants' => $data[1]
+                            );
+                        }
+
+                        if(isset($submission_country_data)) {
+                            foreach($submission_country_data as $key => $country) {
+
+                                $country_obj = $country_repository->find($country['country_id']);
+
+                                // check if exists
+                                $submission_country = $submission_country_repository->findOneBy(array(
+                                    'submission' => $submission,
+                                    'country' => $country_obj,
+                                ));
+
+                                // if not exists, create the new submission_country
+                                if(!$submission_country) {
+                                    $submission_country = new SubmissionCountry();
+                                    $submission_country->setSubmission($submission);
+                                    $submission_country->setCountry($country_obj);
+                                    $submission_country->setParticipants($country['participants']);
+                                } else {
+                                    $submission_country->setParticipants($country['participants']);
+                                }
+
+                                $em = $this->getDoctrine()->getManager();
+                                $em->persist($submission_country);
+                                $em->flush();
+
+                                // add in submission
+                                $submission->addCountry($submission_country);
+                            }
+                        }
+                    }
+
+                    // adding fields to model
+                    $submission->setStudyDesign($post_data['study-design']);
+                    $submission->setHealthCondition($post_data['health-condition']);
+                    $submission->setInterventions($post_data['interventions']);
+                    $submission->setPrimaryOutcome($post_data['primary-outcome']);
+                    $submission->setSecondaryOutcome($post_data['secondary-outcome']);
+                    $submission->setGeneralProcedures($post_data['general-procedures']);
+                    $submission->setAnalysisPlan($post_data['analysis-plan']);
+                    $submission->setEthicalConsiderations($post_data['ethical-considerations']);
+                    $submission->setIsMultipleClinicalStudy(true);
+
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($submission);
+                    $em->flush();
+
+                }
+                
                 $session->getFlashBag()->add('success', $translator->trans("Activity created with success."));
                 return $this->redirectToRoute('submission_new_third_step', array('submission_id' => $submission->getId()), 301);
 
@@ -612,13 +702,6 @@ class NewSubmissionController extends Controller
                 return $output;
             }
 
-            // adding fields to model
-            $submission->setStudyDesign($post_data['study-design']);
-            $submission->setHealthCondition($post_data['health-condition']);
-            $submission->setInclusionCriteria($post_data['inclusion-criteria']);
-            $submission->setExclusionCriteria($post_data['exclusion-criteria']);
-            $submission->setIsMultipleClinicalStudy(($post_data['is_multiple_clinical_study'] == 'yes') ? true : false);
-
             if(!$submission->getIsTranslation()) {
                 $submission->setSampleSize($post_data['sample-size']);
                 $submission->setMinimumAge($post_data['minimum-age']);
@@ -658,7 +741,6 @@ class NewSubmissionController extends Controller
                         $submission_country->setSubmission($submission);
                         $submission_country->setCountry($country_obj);
                         $submission_country->setParticipants($country['participants']);
-
                     } else {
                         $submission_country->setParticipants($country['participants']);
                     }
@@ -672,14 +754,18 @@ class NewSubmissionController extends Controller
                 }
             }
 
+            // adding fields to model
+            $submission->setStudyDesign($post_data['study-design']);
+            $submission->setHealthCondition($post_data['health-condition']);
+            $submission->setInclusionCriteria($post_data['inclusion-criteria']);
+            $submission->setExclusionCriteria($post_data['exclusion-criteria']);
             $submission->setInterventions($post_data['interventions']);
-
             $submission->setPrimaryOutcome($post_data['primary-outcome']);
             $submission->setSecondaryOutcome($post_data['secondary-outcome']);
-
             $submission->setGeneralProcedures($post_data['general-procedures']);
             $submission->setAnalysisPlan($post_data['analysis-plan']);
             $submission->setEthicalConsiderations($post_data['ethical-considerations']);
+            $submission->setIsMultipleClinicalStudy(($post_data['is_multiple_clinical_study'] == 'yes') ? true : false);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($submission);
@@ -1849,6 +1935,8 @@ class NewSubmissionController extends Controller
                 $activity->setRecruitmentStatus($selected_recruitment_status);
             }
 
+            $submission->setIsMultipleClinicalStudy(true);
+
             $em->persist($activity);
             $em->flush();
 
@@ -1904,6 +1992,8 @@ class NewSubmissionController extends Controller
                     return $output;
                 }
             }
+
+            $submission->setIsMultipleClinicalStudy(true);
 
             $em->remove($activity);
             $em->flush();

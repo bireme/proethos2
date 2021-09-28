@@ -200,7 +200,7 @@
                                 {% for member in users %}
                                     {% if role_member_ad_hoc in member.proethos2Roles %}
                                         <tr>
-                                            <td><input type='checkbox' name="select-members-of-committee[]" value="{{ member.id }}"></td>
+                                            <td><input type='checkbox' name="select-members-ad-hoc[]" value="{{ member.id }}"></td>
                                             <td>{{ member.name }}</td>
                                             <td>{{ member.institution }}</td>
                                             <td><a href='{{ member.email }}'>{{ member.email }}</a></td>
