@@ -580,7 +580,7 @@ class ProtocolController extends Controller
                     $body = $util->linkify($body);
 
                     foreach($user_repository->findAll() as $member) {
-                        foreach(array("members-of-committee") as $role) {
+                        foreach(array("member-of-committee") as $role) {
                             if(in_array($role, $member->getRolesSlug())) {
 
                                 $message = \Swift_Message::newInstance()
@@ -1043,7 +1043,7 @@ class ProtocolController extends Controller
 
                 foreach(array("select-members-of-committee", "select-members-ad-hoc") as $input_name) {
                     if(isset($post_data[$input_name])) {
-                        foreach($post_data['select-members-of-committee'] as $member) {
+                        foreach($post_data[$input_name] as $member) {
                             $member = $user_repository->findOneById($member);
 
                             $revision = $protocol_revision_repository->findOneBy(array('member' => $member, "protocol" => $protocol));

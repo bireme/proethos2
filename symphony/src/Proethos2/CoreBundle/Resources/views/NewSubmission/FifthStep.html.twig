@@ -25,12 +25,14 @@
                         </div>
                     </div>
 
+                    <div id="anchor-textarea-bibliography"></div>
+
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
                                 <label for="textarea-bibliography">{% trans %}Bibliography{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 8} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="5" class="form-control summernote" id='textarea-bibliography' name='bibliography' required>{{ submission.bibliography }}</textarea>
+                                <textarea rows="5" class="form-control summernote" id='textarea-bibliography' name='bibliography'>{{ submission.bibliography }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -48,7 +50,7 @@
                             <div class="form-group required">
                                 <label for="textarea-sscientific-contact">{% trans %}Scientific Contact{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 9} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="5" class="form-control" id='textarea-sscientific-contact' name='sscientific-contact' required>{{ submission.sscientificContact }}</textarea>
+                                <textarea rows="5" class="form-control" id='textarea-sscientific-contact' name='sscientific-contact'>{{ submission.sscientificContact }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -68,10 +70,10 @@
                                     <label for="">{% trans %}Prior Ethical Approval{% endtrans %}:</label>
                                     <a href="{{ path("crud_admin_help_show", {help_id: 10} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                     <div class='radio'>
-                                        <label><input type='radio' name='prior-ethical-approval' id='radio-prior-ethical-approval-yes' value='Y' required>{% trans %}Yes{% endtrans %}</label>
+                                        <label><input type='radio' name='prior-ethical-approval' id='radio-prior-ethical-approval-yes' value='Y'>{% trans %}Yes{% endtrans %}</label>
                                     </div>
                                     <div class='radio'>
-                                        <label><input type='radio' name='prior-ethical-approval' id="radio-prior-ethical-approval-no" value='N' required> {% trans %}No{% endtrans %}</label>
+                                        <label><input type='radio' name='prior-ethical-approval' id="radio-prior-ethical-approval-no" value='N'> {% trans %}No{% endtrans %}</label>
                                     </div>
                                 </div>
                             </div>
@@ -101,6 +103,34 @@
                     image: [],
                     link: [],
                     air: []
+                }
+            });
+        });
+
+        $(function(){
+            $('#form-fifth').on('submit', function(e) {
+                if ( $('#textarea-bibliography').summernote('isEmpty') ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#textarea-bibliography', 'sn');
+                    return false;
+                }
+
+                if ( !$('#textarea-sscientific-contact').val() ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#textarea-sscientific-contact');
+                    return false;
+                }
+
+                if ( $("input[name='prior-ethical-approval']:checked").length == 0 ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#radio-prior-ethical-approval-yes');
+                    return false;
                 }
             });
         });

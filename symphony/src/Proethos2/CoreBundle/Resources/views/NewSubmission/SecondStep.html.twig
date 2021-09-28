@@ -94,13 +94,15 @@
                             <h2 class='sub-header'>{% trans %}Abstract and Keywords{% endtrans %}</h2>
                         </div>
                     </div>
+                    
+                    <div id="anchor-textarea-abstract"></div>
 
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
                                 <label for="textarea-abstract">{% trans %}Abstract{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 1} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea class="form-control summernote" name='abstract' id='textarea-abstract' required>{{ submission.abstract }}</textarea>
+                                <textarea class="form-control summernote" name='abstract' id='textarea-abstract'>{{ submission.abstract }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -110,7 +112,7 @@
                             <div class="form-group required">
                                 <label for="input-keywords">{% trans %}Keywords{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 2} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <input type="text" class="form-control" placeholder="" id='input-keywords' name='keywords' value='{{ submission.keywords }}' required>
+                                <input type="text" class="form-control" placeholder="" id='input-keywords' name='keywords' value='{{ submission.keywords }}'>
                             </div>
                         </div>
                     </div>
@@ -123,32 +125,38 @@
                         </div>
                     </div>
 
+                    <div id="anchor-textarea-introduction"></div>
+
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
                                 <label for="textarea-introduction">{% trans %}Introduction{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 3} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="6" class="form-control summernote" name='introduction' id='textarea-introduction' required>{{ submission.introduction }}</textarea>
+                                <textarea rows="6" class="form-control summernote" name='introduction' id='textarea-introduction'>{{ submission.introduction }}</textarea>
                             </div>
                         </div>
                     </div>
+
+                    <div id="anchor-textarea-justify"></div>
 
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
                                 <label for="textarea-justify">{% trans %}Justify{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 4} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="3" class="form-control summernote" name='justify' id='textarea-justify' required>{{ submission.justification }}</textarea>
+                                <textarea rows="3" class="form-control summernote" name='justify' id='textarea-justify'>{{ submission.justification }}</textarea>
                             </div>
                         </div>
                     </div>
+
+                    <div id="anchor-textarea-goals"></div>
 
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
                                 <label for="textarea-goals">{% trans %}Goals{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 5} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                <textarea rows="3" class="form-control summernote" name='goals' id='textarea-goals' required>{{ submission.goals }}</textarea>
+                                <textarea rows="3" class="form-control summernote" name='goals' id='textarea-goals'>{{ submission.goals }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -317,6 +325,50 @@
                     image: [],
                     link: [],
                     air: []
+                }
+            });
+        });
+
+        $(function(){
+            $('#form-second').on('submit', function(e) {
+                if ( $('#textarea-abstract').summernote('isEmpty') ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#textarea-abstract', 'sn');
+                    return false;
+                }
+
+                if ( !$('#input-keywords').val() ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#input-keywords');
+                    return false;
+                }
+
+                if ( $('#textarea-introduction').summernote('isEmpty') ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#textarea-introduction', 'sn');
+                    return false;
+                }
+
+                if ( $('#textarea-justify').summernote('isEmpty') ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#textarea-justify', 'sn');
+                    return false;
+                }
+
+                if ( $('#textarea-goals').summernote('isEmpty') ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#textarea-goals', 'sn');
+                    return false;
                 }
             });
         });

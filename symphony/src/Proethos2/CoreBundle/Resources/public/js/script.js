@@ -73,3 +73,19 @@ $(function(){
     /* END: protocol third step */
 
 });
+
+function highlight_input_field(selector, type) {
+    if ( 'sn' == type ) { // summernote
+        $('#anchor-'+selector.substring(1)).attr("tabindex",-1).focus();
+        $(selector).summernote('focus');
+    } else if ( 'cb' == type ) { // checkbox
+        $('#anchor-'+selector.substring(1)).attr("tabindex",-1).focus();
+        $(selector).focus();
+    } else {
+        $(selector).focus();
+    }
+
+    $(selector).closest('.row').removeClass('del-highlight').addClass('add-highlight').delay(1000).queue(function(){
+        $(this).removeClass('add-highlight').addClass('del-highlight').dequeue();
+    });
+}
