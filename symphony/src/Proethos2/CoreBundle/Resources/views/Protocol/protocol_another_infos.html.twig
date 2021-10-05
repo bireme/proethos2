@@ -282,7 +282,7 @@
                         {# code that discover if should show the confidential option #}
                         {% set is_show_confiential_field = false %}
                         {% for role in app.user.getRolesSlug %}
-                            {% if role in ['secretary', 'member-of-committee', 'member-ad-hoc'] %}
+                            {% if role in ['secretary'] %}
                                 {% set is_show_confiential_field = true %}
                             {% endif %}
                         {% endfor %}
