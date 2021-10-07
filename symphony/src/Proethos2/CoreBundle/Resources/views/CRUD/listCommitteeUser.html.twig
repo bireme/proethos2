@@ -233,15 +233,15 @@
             });
         });
 
-        function convertToSlug(Text) {
+        function convertToSlug(text) {
             var from = "ÁÄÂÀÃÅČÇĆĎÉĚËÈÊẼĔȆĞÍÌÎÏİŇÑÓÖÒÔÕØŘŔŠŞŤÚŮÜÙÛÝŸŽáäâàãåčçćďéěëèêẽĕȇğíìîïıňñóöòôõøðřŕšşťúůüùûýÿžþÞĐđßÆa";
             var to   = "AAAAAACCCDEEEEEEEEGIIIIINNOOOOOORRSSTUUUUUYYZaaaaaacccdeeeeeeeegiiiiinnooooooorrsstuuuuuyyzbBDdBAa";
 
             for (var i=0, l=from.length ; i<l ; i++) {
-                Text = Text.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+                text = text.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
             }
 
-            return Text
+            return text
                 .toLowerCase()
                 .replace(/ /g,'-')
                 .replace(/_/g,'-')
