@@ -580,7 +580,7 @@ class ProtocolController extends Controller
                     $body = $util->linkify($body);
 
                     foreach($user_repository->findAll() as $member) {
-                        foreach(array("member-of-committee") as $role) {
+                        foreach(array("secretary") as $role) {
                             if(in_array($role, $member->getRolesSlug())) {
 
                                 $message = \Swift_Message::newInstance()
@@ -597,6 +597,39 @@ class ProtocolController extends Controller
                             }
                         }
                     }
+
+                    $help = $help_repository->find(211);
+                    $translations = $trans_repository->findTranslations($help);
+                    $text = $translations[$submission->getLanguage()];
+                    $body = ( $text ) ? $text['message'] : $help->getMessage();
+                    $body = str_replace("%protocol_url%", $url, $body);
+                    $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
+                    $body = str_replace("\r\n", "<br />", $body);
+                    $body .= "<br /><br />";
+                    $body = $util->linkify($body);
+
+                    $investigators = array();
+                    $investigators[] = $protocol->getMainSubmission()->getOwner()->getEmail();
+                    foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
+                        $investigators[] = $investigator->getEmail();
+                    }
+
+                    $contacts = $protocol->getContactsList();
+                    if ($contacts) {
+                        $investigators = array_values(array_unique(array_merge($investigators, $contacts)));
+                    }
+
+                    $message = \Swift_Message::newInstance()
+                    ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was sent to review!"))
+                    ->setFrom($util->getConfiguration('committee.email'))
+                    ->setTo($investigators)
+                    ->setBody(
+                        $body
+                        ,
+                        'text/html'
+                    );
+
+                    $send = $this->get('mailer')->send($message);
 
                     $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
                     return $this->redirectToRoute('protocol_initial_committee_screening', array('protocol_id' => $protocol->getId()), 301);
