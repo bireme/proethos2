@@ -153,7 +153,7 @@
                                     <a href='#' class='btn btn-default btn-xs button-add-attachment-flag' data-id='{{ file.id }}' data-toggle="modal" data-target="#modal-add-attachment-flag">
                                         <i class='glyphicon glyphicon-tag'></i>
                                     </a>
-                                    {% if file.uploadType.slug == 'others' %}
+                                    {% if file.uploadType.slug not in ['protocol', 'opinion'] %}
                                         <a href='#' class='btn btn-default btn-xs button-delete-attachment' data-id='{{ file.id }}' data-toggle="modal" data-target="#modal-delete-attachment">
                                             <i class='glyphicon glyphicon-trash'></i>
                                         </a>
