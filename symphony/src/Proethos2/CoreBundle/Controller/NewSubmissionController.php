@@ -1158,15 +1158,15 @@ class NewSubmissionController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
-            $file = $request->files->get('new-atachment-file');
+            $file = $request->files->get('new-attachment-file');
             if(!empty($file)) {
 
-                if(!isset($post_data['new-atachment-type']) or empty($post_data['new-atachment-type'])) {
-                    $session->getFlashBag()->add('error', $translator->trans("Field 'new-atachment-type' is required."));
+                if(!isset($post_data['new-attachment-type']) or empty($post_data['new-attachment-type'])) {
+                    $session->getFlashBag()->add('error', $translator->trans("Field 'new-attachment-type' is required."));
                     return $output;
                 }
 
-                $upload_type = $upload_type_repository->find($post_data['new-atachment-type']);
+                $upload_type = $upload_type_repository->find($post_data['new-attachment-type']);
                 if (!$upload_type) {
                     throw $this->createNotFoundException($translator->trans('No upload type found'));
                     return $output;
