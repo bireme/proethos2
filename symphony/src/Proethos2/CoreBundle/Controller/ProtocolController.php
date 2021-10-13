@@ -568,7 +568,7 @@ class ProtocolController extends Controller
                     $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
                     // $url = $baseurl . $this->generateUrl('home');
                     $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
-
+/*
                     $help = $help_repository->find(210);
                     $translations = $trans_repository->findTranslations($help);
                     $text = $translations[$submission->getLanguage()];
@@ -597,7 +597,7 @@ class ProtocolController extends Controller
                             }
                         }
                     }
-
+*/
                     $help = $help_repository->find(211);
                     $translations = $trans_repository->findTranslations($help);
                     $text = $translations[$submission->getLanguage()];
