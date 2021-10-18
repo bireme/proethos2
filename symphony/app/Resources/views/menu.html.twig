@@ -37,7 +37,7 @@
                     <li class=""><a href="{{ path("crud_investigator_protocol_list") }}">{% trans %}Protocols{% endtrans %}</a></li>
                 {% endif %}
 
-                {% if is_granted("ROLE_USER") and ('secretary' in app.user.rolesSlug or 'member-of-committee' in app.user.rolesSlug or 'member-ad-hoc' in app.user.rolesSlug)  %}
+                {% if is_granted("ROLE_USER") and ('secretary' in app.user.rolesSlug or 'member-of-committee' in app.user.rolesSlug)  %}
                     <li class="dropdown">
 
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
