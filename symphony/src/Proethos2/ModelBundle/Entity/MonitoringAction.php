@@ -94,7 +94,10 @@ class MonitoringAction extends Base
         $slugify = new Slugify();
 
         $this->name = $name;
-        $this->slug = $slugify->slugify($name);
+
+        if ( !$this->slug ) {
+            $this->setSlug($slugify->slugify($name));
+        }
 
         return $this;
     }

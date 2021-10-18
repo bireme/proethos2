@@ -108,7 +108,10 @@ class UploadType extends Base
         $slugify = new Slugify();
 
         $this->name = $name;
-        $this->setSlug($slugify->slugify($name));
+
+        if ( !$this->slug ) {
+            $this->setSlug($slugify->slugify($name));
+        }
 
         return $this;
     }
