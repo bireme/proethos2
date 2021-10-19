@@ -109,14 +109,28 @@ class IndexController extends Controller
         return new RedirectResponse($referer);
     }
 
+    public function getGoogleAnalyticsCodeAction()
+    {   
+        $util = new Util($this->container, $this->getDoctrine());
+        $ga = $util->getConfiguration("google.analytics");
+
+        if( $ga ) {
+            return new Response($ga);
+        }
+
+        return new Response();
+
+    }
+
     public function getLogoAction()
     {   
         $util = new Util($this->container, $this->getDoctrine());
         $committee_logourl = $util->getConfiguration("committee.logourl");
         $committee_logourl = explode("\n", $committee_logourl);
 
-        if( $committee_logourl )
+        if( $committee_logourl ) {
             return new Response($committee_logourl[0]);
+        }
 
         return new Response();
 
@@ -128,8 +142,9 @@ class IndexController extends Controller
         $committee_logourl = $util->getConfiguration("committee.logourl");
         $committee_logourl = explode("\n", $committee_logourl);
 
-        if( $committee_logourl && count($committee_logourl) == 2 )
+        if( $committee_logourl && count($committee_logourl) == 2 ) {
             return new Response($committee_logourl[1]);
+        }
 
         return new Response();
 
