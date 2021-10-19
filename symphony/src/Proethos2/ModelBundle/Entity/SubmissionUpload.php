@@ -230,13 +230,14 @@ class SubmissionUpload extends Base
         $submission_upload_directory = $this->getSubmissionDirectory();
 
         $pathinfo = pathinfo($filepath);
-        $new_filepath = $submission_upload_directory . "/" . $pathinfo['basename'];
+        $filename = uniqid() . '_' . $pathinfo['basename'];
+        $new_filepath = $submission_upload_directory . "/" . $filename;
 
         if($need_real_copy) {
             $file = copy($filepath, $new_filepath);
         }
 
-        $this->setFilename($pathinfo['basename']);
+        $this->setFilename($filename);
         $this->setFilepath($new_filepath);
 
         return $this;

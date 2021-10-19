@@ -142,7 +142,7 @@
                             <td>{{ file.uploadType }}</td>
                             <td>{{ file.submissionNumber }}</td>
                             <td>{{ file.user }}</td>
-                            <td>{% if file.uploadType.slug in ['protocol'] %}{{ file.filename }}{% else %}{{ file }}{% endif %}</td> 
+                            <td>{{ file }}</td> 
                             <td>{{ file.created|date("d/m/Y H:i") }}</td>
                             <td class="{{ class }}"><b>{{ text|trans }}</b></td>
                             <td>
