@@ -49,9 +49,9 @@ class Util {
 
     public function linkify($string) {
         // regex filter
-        $reg_pattern = '!(http|ftp|scp)(s)?:\/\/[a-zA-Z0-9.?&_/]+!';
+        $reg_pattern = '!(http|ftp|scp)(s)?:\/\/[a-zA-Z0-9.?&_/=]+!';
 
         // make the urls to hyperlinks
-        return preg_replace($reg_pattern, "<a href=\"\\0\" target=\"_blank\" rel=\"noopener noreferrer\">\\0</a>",$string);
+        return preg_replace($reg_pattern, "<a href=\"\\0\" target=\"_blank\" rel=\"noopener noreferrer\">\\0</a>", $string);
     }
 }
