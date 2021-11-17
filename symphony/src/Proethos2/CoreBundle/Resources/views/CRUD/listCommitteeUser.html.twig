@@ -94,9 +94,11 @@
                                             <span data-toggle='tooltip' data-placement='top' title="{% trans %}Edit user's information{% endtrans %}">
                                                 <a href="{{ path("crud_committee_user_update", {user_id: user.id}) }}" data-toggle="modal" data-target="#modal-ajax-user" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
                                             </span>
-                                            <span data-toggle='tooltip' data-placement='top' title="{% trans %}Get user's link to change password{% endtrans %}">
-                                                <a href="{{ path("crud_committee_user_get_key_to_change_password", {user_id: user.id}) }}" data-toggle="modal" data-target="#modal-ajax-user" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-lock"></i></a>
-                                            </span>
+                                            {% if auth_type != 'oauth2' %}
+                                                <span data-toggle='tooltip' data-placement='top' title="{% trans %}Get user's link to change password{% endtrans %}">
+                                                    <a href="{{ path("crud_committee_user_get_key_to_change_password", {user_id: user.id}) }}" data-toggle="modal" data-target="#modal-ajax-user" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-lock"></i></a>
+                                                </span>
+                                            {% endif %}
                                             <span data-toggle='tooltip' data-placement='top' title="{% trans %}Exclude user{% endtrans %}">
                                                 <a href="{{ path("crud_committee_user_delete", {user_id: user.id}) }}" data-toggle="modal" data-target="#modal-ajax-user" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
                                             </span>

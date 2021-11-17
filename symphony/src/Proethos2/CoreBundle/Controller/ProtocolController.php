@@ -56,6 +56,13 @@ class ProtocolController extends Controller
         $submission = $protocol->getMainSubmission();
         $output['protocol'] = $protocol;
 
+        $submission_team_repository = $em->getRepository('Proethos2ModelBundle:SubmissionTeam');
+        $submission_team = $submission_team_repository->findBy(array(
+            'team_member' => null,
+            'submission' => $submission,
+        ));
+        $output['submission_team'] = $submission_team;
+
         $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
         // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
@@ -114,6 +121,7 @@ class ProtocolController extends Controller
 
                 $help = $help_repository->find(218);
                 $translations = $trans_repository->findTranslations($help);
+                $text = $translations[$submission->getLanguage()];
                 $body = ( $text ) ? $text['message'] : $help->getMessage();
                 $body = str_replace("%protocol_url%", $url, $body);
                 $body = str_replace("\r\n", "<br />", $body);

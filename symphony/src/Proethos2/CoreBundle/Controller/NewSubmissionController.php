@@ -284,6 +284,12 @@ class NewSubmissionController extends Controller
         $submission = $submission_repository->find($submission_id);
         $output['submission'] = $submission;
 
+        $submission_team = $submission_team_repository->findBy(array(
+            'team_member' => null,
+            'submission' => $submission,
+        ));
+        $output['submission_team'] = $submission_team;
+
         if (!$submission or $submission->getCanBeEdited() == false) {
             if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
                 throw $this->createNotFoundException($translator->trans('No submission found'));
@@ -330,22 +336,36 @@ class NewSubmissionController extends Controller
             array_walk($post_data, function(&$value){
                 if ( '<p><br></p>' == $value )
                     $value = '';
-                return $value;
+                return trim($value);
             });
+
+            // check duplicated team members
+            $unique = array_unique($post_data['team_email']);
+            $duplicates = array_diff_assoc($post_data['team_email'], $unique);
+            if ( $duplicates ) {
+                $session->getFlashBag()->add('error', $translator->trans("Email already added to investigator team."));
+                return $output;
+            }
             
             // removing all team to readd
             foreach($submission->getTeam() as $team_user) {
                 $submission->removeTeam($team_user);
-                
-                $submission_team = $submission_team_repository->findOneBy(array(
+
+                $st = $submission_team_repository->findOneBy(array(
                     'team_member' => $team_user,
                     'submission' => $submission,
                 ));
 
-                if ( $submission_team ) {
-                    $em->remove($submission_team);
+                if ( $st ) {
+                    $em->remove($st);
                     $em->flush();
-                }                
+                }           
+            }
+
+            // removing all team to readd
+            foreach($submission_team as $team_user) {
+                $em->remove($team_user);
+                $em->flush();
             }
 
             // readd
@@ -364,6 +384,26 @@ class NewSubmissionController extends Controller
 
                     $team_user->addSubmissionTeam($submission_team);
                     $em->persist($team_user);
+                    $em->flush();
+                }
+            }
+
+            // readd
+            if(isset($post_data['new_team_user'])) {
+                foreach($post_data['new_team_user'] as $team_user_id) {
+                    $team_email = $post_data['team_email'][$team_user_id];
+                    $team_name = $post_data['team_name'][$team_user_id];
+                    $team_institution = $post_data['team_institution'][$team_user_id];
+                    $team_role = $post_data['team_role'][$team_user_id];
+
+                    $submission_team = new SubmissionTeam();
+                    $submission_team->setSubmission($submission);
+                    $submission_team->setEmail($team_email);
+                    $submission_team->setName($team_name);
+                    $submission_team->setInstitution($team_institution);
+                    $submission_team->setRole($team_role);
+
+                    $em->persist($submission_team);
                     $em->flush();
                 }
             }
@@ -1773,6 +1813,13 @@ class NewSubmissionController extends Controller
         $submission_clinical_study_repository = $em->getRepository('Proethos2ModelBundle:SubmissionClinicalStudy');
         $submission_clinical_study = $submission_clinical_study_repository->findBy(array('submission' => $submission));
         $output['submission_clinical_study'] = $submission_clinical_study;
+
+        $submission_team_repository = $em->getRepository('Proethos2ModelBundle:SubmissionTeam');
+        $submission_team = $submission_team_repository->findBy(array(
+            'team_member' => null,
+            'submission' => $submission,
+        ));
+        $output['submission_team'] = $submission_team;
 
         if (!$submission or ($submission->getCanBeEdited() and !in_array('investigator', $user->getRolesSlug()))) {
             throw $this->createNotFoundException($translator->trans('No submission found'));

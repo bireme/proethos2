@@ -236,6 +236,10 @@ img.logo {
     max-width: 500px;
 }
 
+.modal .nav-tabs {
+    margin-bottom: 15px;
+}
+
 .alert-error {
     color: #b94a48;
     background-color: #f2dede;
