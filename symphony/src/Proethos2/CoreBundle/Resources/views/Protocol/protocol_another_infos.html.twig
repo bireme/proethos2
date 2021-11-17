@@ -51,6 +51,21 @@
                             <!-- <td><a href='#' class='btn btn-default btn-xs button-remove-team'><i class='glyphicon glyphicon-trash'></i></a></td>  -->
                         </tr>
                     {% endfor %}
+                    {% for team_user in submission_team %}
+                        {% set unique_id = '_' ~ random() %}
+                        <tr>
+                            <td>
+                                <input type='hidden' name='new_team_user[]' value='{{ unique_id }}'>
+                                {{ team_user.name }}
+                            </td> 
+                            <td><a href='{{ team_user.email }}'>{{ team_user.email }}</a></td>
+                            <td>{{ team_user.institution }}</td>
+                            <td>{{ team_user.role }}</td>
+                            <td></td>
+                            <td><label class='label label-default'>{% trans %}No{% endtrans %}</label></td>
+                            <!-- <td><a href='#' class='btn btn-default btn-xs button-remove-team'><i class='glyphicon glyphicon-trash'></i></a></td>  -->
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
 

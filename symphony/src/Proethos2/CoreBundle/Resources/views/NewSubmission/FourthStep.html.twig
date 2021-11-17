@@ -205,7 +205,6 @@
                         <h4 class="modal-title" id="myModalLabel">{% trans %}New Cost{% endtrans %}</h4>
                     </div>
                     <div class="modal-body">
-
                         <div class="form-group">
                             <label for="input-cost-description">{% trans %}Description{% endtrans %}:</label>
                             <a href="{{ path("crud_admin_help_show", {help_id: 39} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
@@ -223,8 +222,6 @@
                             <a href="{{ path("crud_admin_help_show", {help_id: 41} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                             <input type="text" class='form-control mask-money' required="required" id='input-cost-unit-cost' name="cost-unit-cost" />
                         </div>
-
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
