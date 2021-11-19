@@ -51,3 +51,7 @@ REPLACE INTO `upload_type_upload_type_extension` VALUES (39,3);
 REPLACE INTO `upload_type_upload_type_extension` VALUES (40,1);
 REPLACE INTO `upload_type_upload_type_extension` VALUES (40,2);
 REPLACE INTO `upload_type_upload_type_extension` VALUES (40,3);
+REPLACE INTO `upload_type_upload_type_extension` VALUES (41,1);
+REPLACE INTO `upload_type_upload_type_extension` VALUES (41,2);
+REPLACE INTO `upload_type_upload_type_extension` VALUES (41,3);
+REPLACE INTO `upload_type_upload_type_extension` VALUES (42,1);
