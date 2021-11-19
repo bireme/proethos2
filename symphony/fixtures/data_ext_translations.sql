@@ -283,6 +283,8 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '38', 'Adverse event report');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '39', 'Executive Summary');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '40', 'Informed consent');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '41', 'Protocol');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '42', 'Opinion');
 
 -- ---------------------
 -- Faq
@@ -951,6 +953,8 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '38', 'Reporte de evento adverso');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '39', 'Resumen ejecutivo');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '40', 'Consentimiento informado');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '41', 'Protocolo');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('es_ES', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '42', 'Opinión');
 
 -- ---------------------
 -- Faq
@@ -1630,6 +1634,8 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '38', 'Relatório de evento adverso');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '39', 'Resumo executivo');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '40', 'Consentimento informado ');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '41', 'Protocolo');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('pt_BR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '42', 'Opinião');
 
 -- ====================================================
 -- fr_FR
@@ -2102,3 +2108,5 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '37', 'Protocole avec animaux');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '38', 'Rapport d\'un événement adverse');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '39', 'Résumé exécutif');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '41', 'Protocole');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('fr_FR', 'Proethos2\\ModelBundle\\Entity\\UploadType', 'name', '42', 'Opinion');

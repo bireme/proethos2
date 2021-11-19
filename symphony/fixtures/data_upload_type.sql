@@ -16,3 +16,5 @@ REPLACE INTO `upload_type` (`id`, `created`, `updated`, `name`, `slug`, `status`
 REPLACE INTO `upload_type` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (38,'1970-01-01 00:00:00','1970-01-01 00:00:00','Adverse event report','adverse-event-report',1);
 REPLACE INTO `upload_type` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (39,'1970-01-01 00:00:00','1970-01-01 00:00:00','Executive Summary','executive-summary',1);
 REPLACE INTO `upload_type` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (40,'1970-01-01 00:00:00','1970-01-01 00:00:00','Informed consent','informed-consent',1);
+REPLACE INTO `upload_type` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (41,'1970-01-01 00:00:00','1970-01-01 00:00:00','Protocol','protocol-sup',1);
+REPLACE INTO `upload_type` (`id`, `created`, `updated`, `name`, `slug`, `status`) VALUES (42,'1970-01-01 00:00:00','1970-01-01 00:00:00','Opinion','opinion-sup',1);
