@@ -243,7 +243,6 @@
     <div class='row'>
         <div class="col-md-12">
             <table class='table table-hover table-condensed'>
-                
                 <thead>
                     <tr>
                         <th width="15%">{% trans %}Date & Time{% endtrans %}</th>
@@ -255,13 +254,15 @@
                  
                 <tbody>
                     {% for comment in protocol.comment %}
-                        {% if not comment.isConfidential or 'investigator' not in app.user.getRolesSlug or not protocol.mainSubmission.isOwner(app.user) %}
-                            <tr>
-                               <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
-                               <td>{{ comment.owner }}</td> 
-                               <td>{% if comment.isConfidential %}<i class='glyphicon glyphicon-ok'></i>{% endif %}</td>
-                               <td>{{ comment.message }}</td> 
-                            </tr>
+                        {% if 'member-of-committee' != comment.role %}
+                            {% if not comment.isConfidential or 'investigator' not in app.user.getRolesSlug or not protocol.mainSubmission.isOwner(app.user) %}
+                                <tr>
+                                   <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
+                                   <td>{{ comment.owner }}</td> 
+                                   <td>{% if comment.isConfidential %}<i class='glyphicon glyphicon-ok'></i>{% endif %}</td>
+                                   <td>{{ comment.message }}</td> 
+                                </tr>
+                            {% endif %}
                         {% endif %}
                     {% endfor %}
                 </tbody>
@@ -274,12 +275,57 @@
     </div>
 </div>
 
-<!-- Modal Novo Comentário -->
+{% if 'member-of-committee' in app.user.getRolesSlug %}
+    <div class='block'>
+        <div class='row'>
+            <div class="col-md-12">
+                <h2 class='sub-header toggle-block'>
+                    <small class='pull-right'>
+                        <i class='glyphicon glyphicon-minus'></i>
+                    </small>
+                    
+                    {% trans %}Committee Communication Section{% endtrans %}
+                </h2>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class="col-md-12">
+                <table class='table table-hover table-condensed'>
+                    <thead>
+                        <tr>
+                            <th width="15%">{% trans %}Date & Time{% endtrans %}</th>
+                            <th width="15%">{% trans %}Author{% endtrans %}</th>
+                            <th>{% trans %}Message{% endtrans %}</th>
+                        </tr>
+                    </thead>
+                     
+                    <tbody>
+                        {% for comment in protocol.comment %}
+                            {% if 'member-of-committee' == comment.role %}
+                                <tr>
+                                   <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
+                                   <td>{{ comment.owner }}</td> 
+                                   <td>{{ comment.message }}</td> 
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-committee-comment">{% trans %}New Comment{% endtrans %}</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+<!-- Modal New Comment -->
 <div class="modal fade" id="modal-new-comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <form method='POST' action='{{ path('protocol_new_comment', {protocol_id: protocol.id}) }}'>
 
             <input type="hidden" name="token" value="{{ csrf_token('add-comment') }}"/>
+            <input type="hidden" name="new-comment-role" value=""/>
 
             <div class="modal-content">
                 <div class="modal-header">
@@ -312,6 +358,38 @@
                                 </div>
                             </div>
                         {% endif %}
+                    </form>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                    <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal New Comment - Committee Communication Section -->
+<div class="modal fade" id="modal-new-committee-comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form method='POST' action='{{ path('protocol_new_comment', {protocol_id: protocol.id}) }}'>
+
+            <input type="hidden" name="token" value="{{ csrf_token('add-comment') }}"/>
+            <input type="hidden" name="new-comment-role" value="member-of-committee"/>
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{% trans %}New Comment{% endtrans %}</h4>
+                </div>
+                <div class="modal-body">
+                    <form class='form'>
+                        <div class="form-group">
+                            <label for="textarea-new-comment-message">{% trans %}Message{% endtrans %}:</label> 
+                            <a href="{{ path("crud_admin_help_show", {help_id: 126} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                            <textarea class='form-control' rows='4' name='new-comment-message' id='textarea-new-comment-message' required></textarea>
+                        </div>
                     </form>
                 </div>
                 

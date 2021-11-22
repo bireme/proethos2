@@ -110,6 +110,7 @@ class ProtocolController extends Controller
                 $comment = new ProtocolComment();
                 $comment->setProtocol($protocol);
                 $comment->setOwner($user);
+                $comment->setRole($post_data['new-comment-role']);
                 $comment->setMessage($post_data['new-comment-message']);
 
                 $em = $this->getDoctrine()->getManager();
@@ -203,6 +204,7 @@ class ProtocolController extends Controller
             $comment = new ProtocolComment();
             $comment->setProtocol($protocol);
             $comment->setOwner($user);
+            $comment->setRole($post_data['new-comment-role']);
             $comment->setMessage($post_data['new-comment-message']);
 
             if(isset($post_data['new-comment-is-confidential']) and $post_data['new-comment-is-confidential'] == "yes") {
