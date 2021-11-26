@@ -260,7 +260,7 @@
                                    <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
                                    <td>{{ comment.owner }}</td> 
                                    <td>{% if comment.isConfidential %}<i class='glyphicon glyphicon-ok'></i>{% endif %}</td>
-                                   <td>{{ comment.message }}</td> 
+                                   <td>{{ comment.message|nl2br }}</td> 
                                 </tr>
                             {% endif %}
                         {% endif %}
@@ -306,7 +306,7 @@
                                 <tr>
                                    <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
                                    <td>{{ comment.owner }}</td> 
-                                   <td>{{ comment.message }}</td> 
+                                   <td>{{ comment.message|nl2br }}</td> 
                                 </tr>
                             {% endif %}
                         {% endfor %}
