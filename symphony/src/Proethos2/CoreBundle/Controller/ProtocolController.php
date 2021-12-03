@@ -117,35 +117,37 @@ class ProtocolController extends Controller
                 $em->persist($comment);
                 $em->flush();
 
-                $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
-                $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+                if ( empty($post_data['new-comment-role']) ) {
+                    $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                    $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
 
-                $help = $help_repository->find(218);
-                $translations = $trans_repository->findTranslations($help);
-                $text = $translations[$submission->getLanguage()];
-                $body = ( $text ) ? $text['message'] : $help->getMessage();
-                $body = str_replace("%protocol_url%", $url, $body);
-                $body = str_replace("\r\n", "<br />", $body);
-                $body .= "<br /><br />";
-                $body = $util->linkify($body);
+                    $help = $help_repository->find(218);
+                    $translations = $trans_repository->findTranslations($help);
+                    $text = $translations[$submission->getLanguage()];
+                    $body = ( $text ) ? $text['message'] : $help->getMessage();
+                    $body = str_replace("%protocol_url%", $url, $body);
+                    $body = str_replace("\r\n", "<br />", $body);
+                    $body .= "<br /><br />";
+                    $body = $util->linkify($body);
 
-                $secretaries_emails = array();
-                foreach($user_repository->findAll() as $secretary) {
-                    if(in_array("secretary", $secretary->getRolesSlug())) {
-                        $secretaries_emails[] = $secretary->getEmail();
+                    $secretaries_emails = array();
+                    foreach($user_repository->findAll() as $secretary) {
+                        if(in_array("secretary", $secretary->getRolesSlug())) {
+                            $secretaries_emails[] = $secretary->getEmail();
+                        }
                     }
-                }
-                $message = \Swift_Message::newInstance()
-                ->setSubject("[proethos2] " . $translator->trans("New comment on Proethos2"))
-                ->setFrom($util->getConfiguration('committee.email'))
-                ->setTo($secretaries_emails)
-                ->setBody(
-                    $body
-                    ,
-                    'text/html'
-                );
+                    $message = \Swift_Message::newInstance()
+                    ->setSubject("[proethos2] " . $translator->trans("New comment on Proethos2"))
+                    ->setFrom($util->getConfiguration('committee.email'))
+                    ->setTo($secretaries_emails)
+                    ->setBody(
+                        $body
+                        ,
+                        'text/html'
+                    );
 
-                $send = $this->get('mailer')->send($message);
+                    $send = $this->get('mailer')->send($message);
+                }
 
                 $session->getFlashBag()->add('success', $translator->trans("Comment was created with sucess."));
             }
@@ -214,47 +216,49 @@ class ProtocolController extends Controller
             $em->persist($comment);
             $em->flush();
 
-            $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
-            $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+            if ( empty($post_data['new-comment-role']) ) {
+                $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+                $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
 
-            $help = $help_repository->find(218);
-            $translations = $trans_repository->findTranslations($help);
-            $text = $translations[$submission->getLanguage()];
-            $body = ( $text ) ? $text['message'] : $help->getMessage();
-            $body = str_replace("%protocol_url%", $url, $body);
-            $body = str_replace("\r\n", "<br />", $body);
-            $body .= "<br /><br />";
-            $body = $util->linkify($body);
+                $help = $help_repository->find(218);
+                $translations = $trans_repository->findTranslations($help);
+                $text = $translations[$submission->getLanguage()];
+                $body = ( $text ) ? $text['message'] : $help->getMessage();
+                $body = str_replace("%protocol_url%", $url, $body);
+                $body = str_replace("\r\n", "<br />", $body);
+                $body .= "<br /><br />";
+                $body = $util->linkify($body);
 
-            $secretaries_emails = array();
-            foreach($user_repository->findAll() as $secretary) {
-                if(in_array("secretary", $secretary->getRolesSlug())) {
-                    $secretaries_emails[] = $secretary->getEmail();
-                }
-            }
-
-            if ( !$post_data['new-comment-is-confidential'] ) {
-                $investigators = array();
-                $investigators[] = $protocol->getMainSubmission()->getOwner()->getEmail();
-
-                foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
-                    $investigators[] = $investigator->getEmail();
+                $secretaries_emails = array();
+                foreach($user_repository->findAll() as $secretary) {
+                    if(in_array("secretary", $secretary->getRolesSlug())) {
+                        $secretaries_emails[] = $secretary->getEmail();
+                    }
                 }
 
-                $secretaries_emails = array_values(array_unique(array_merge($secretaries_emails, $investigators)));
+                if ( !$post_data['new-comment-is-confidential'] ) {
+                    $investigators = array();
+                    $investigators[] = $protocol->getMainSubmission()->getOwner()->getEmail();
+
+                    foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
+                        $investigators[] = $investigator->getEmail();
+                    }
+
+                    $secretaries_emails = array_values(array_unique(array_merge($secretaries_emails, $investigators)));
+                }
+
+                $message = \Swift_Message::newInstance()
+                ->setSubject("[proethos2] " . $translator->trans("New comment on Proethos2"))
+                ->setFrom($util->getConfiguration('committee.email'))
+                ->setTo($secretaries_emails)
+                ->setBody(
+                    $body
+                    ,
+                    'text/html'
+                );
+
+                $send = $this->get('mailer')->send($message);
             }
-
-            $message = \Swift_Message::newInstance()
-            ->setSubject("[proethos2] " . $translator->trans("New comment on Proethos2"))
-            ->setFrom($util->getConfiguration('committee.email'))
-            ->setTo($secretaries_emails)
-            ->setBody(
-                $body
-                ,
-                'text/html'
-            );
-
-            $send = $this->get('mailer')->send($message);
 
             $session->getFlashBag()->add('success', $translator->trans("Comment was created with sucess."));
         }

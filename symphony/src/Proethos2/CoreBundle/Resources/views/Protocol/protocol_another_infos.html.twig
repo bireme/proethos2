@@ -235,7 +235,11 @@
                     <i class='glyphicon glyphicon-minus'></i>
                 </small>
                 
-                {% trans %}Comments{% endtrans %}
+                {% if 'member-of-committee' in app.user.getRolesSlug %}
+                    {% trans %}Correspondence{% endtrans %} ({% trans %}for use by investigators only{% endtrans %})
+                {% else %}
+                    {% trans %}Correspondence{% endtrans %}
+                {% endif %}
             </h2>
         </div>
     </div>
@@ -275,7 +279,7 @@
     </div>
 </div>
 
-{% if 'member-of-committee' in app.user.getRolesSlug %}
+{% if 'member-of-committee' in app.user.getRolesSlug or 'secretary' in app.user.getRolesSlug or 'administrator' in app.user.getRolesSlug %}
     <div class='block'>
         <div class='row'>
             <div class="col-md-12">
@@ -284,7 +288,11 @@
                         <i class='glyphicon glyphicon-minus'></i>
                     </small>
                     
-                    {% trans %}Committee Communication Section{% endtrans %}
+                    {% if 'member-of-committee' in app.user.getRolesSlug %}
+                        {% trans %}Committee Communication Section{% endtrans %} ({% trans %}for use by committee members only - not visible to investigators{% endtrans %})
+                    {% else %}
+                        {% trans %}Committee Communication Section{% endtrans %}
+                    {% endif %}
                 </h2>
             </div>
         </div>
@@ -313,7 +321,9 @@
                     </tbody>
                 </table>
 
-                <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-committee-comment">{% trans %}New Comment{% endtrans %}</a>
+                {% if 'member-of-committee' in app.user.getRolesSlug %}
+                    <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-committee-comment">{% trans %}New Comment{% endtrans %}</a>
+                {% endif %}
             </div>
         </div>
     </div>
