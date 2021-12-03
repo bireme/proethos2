@@ -1734,6 +1734,10 @@ class ProtocolController extends Controller
                 $em->remove($protocol);
                 $em->flush();
 
+                // user activity log
+                $logger = $this->get('monolog.logger.security');
+                $logger->info('Protocol deleted successfully by ' . $user->getUsername(), array('protocol' => $protocol->getId()));
+
                 $session->getFlashBag()->add('success', $translator->trans("Protocol was removed with success!"));
                 if(in_array('administrator', $user->getRolesSlug())) {
                     return $this->redirectToRoute('crud_committee_protocol_list', array(), 301);

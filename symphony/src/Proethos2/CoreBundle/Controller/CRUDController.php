@@ -1110,6 +1110,10 @@ class CRUDController extends Controller
 
             $send = $this->get('mailer')->send($message);
 
+            // user activity log
+            $logger = $this->get('monolog.logger.security');
+            $logger->info('User created successfully.', array('username' => $user->getUsername()));
+
             $em->persist($user);
             $em->flush();
 
@@ -1305,6 +1309,10 @@ class CRUDController extends Controller
                 $send = $this->get('mailer')->send($message);
             }
 
+            // user activity log
+            $logger = $this->get('monolog.logger.security');
+            $logger->info('User profile updated successfully by ' . $user_logged->getUsername(), array('username' => $user->getUsername()));
+
             $session->getFlashBag()->add('success', $translator->trans("User updated with success."));
             return $this->redirectToRoute('crud_committee_user_list', array(), 301);
 
@@ -1405,9 +1413,13 @@ class CRUDController extends Controller
                 }
             }
 
-            // var_dump($post_data);die;
             $em->persist($user);
             $em->flush();
+
+            // user activity log
+            unset($post_data['token']);
+            $logger = $this->get('monolog.logger.security');
+            $logger->info('User roles updated successfully by ' . $user_logged->getUsername(), array('username' => $user->getUsername(), 'roles' => array_keys($post_data)));
 
             $session->getFlashBag()->add('success', $translator->trans("User updated with success."));
             return $this->redirectToRoute('crud_committee_user_list', array(), 301);
@@ -1466,6 +1478,10 @@ class CRUDController extends Controller
 
             $em->remove($user);
             $em->flush();
+
+            // user activity log
+            $logger = $this->get('monolog.logger.security');
+            $logger->info('User deleted successfully by ' . $user_logged->getUsername(), array('username' => $user->getUsername()));
 
             $session->getFlashBag()->add('success', $translator->trans("User deleted with success."));
             return $this->redirectToRoute('crud_committee_user_list', array(), 301);
@@ -2012,6 +2028,10 @@ class CRUDController extends Controller
                     }
                 }
             }
+
+            // user activity log
+            $logger = $this->get('monolog.logger.security');
+            $logger->info('Settings updated successfully.', array('username' => $user_logged->getUsername()));
 
             $em->persist($configuration);
             $em->flush();

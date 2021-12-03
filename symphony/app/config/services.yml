@@ -26,3 +26,9 @@ services:
 
     app.user_checker_provider:
         class: Proethos2\CoreBundle\Security\UserCheckerProvider
+
+    app.logging_listener:
+        class: Proethos2\CoreBundle\EventListener\LoggerListener
+        arguments: [@security.context, @logger, @service_container]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
