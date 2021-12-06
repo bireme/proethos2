@@ -289,7 +289,7 @@
                     </small>
                     
                     {% if 'member-of-committee' in app.user.getRolesSlug %}
-                        {% trans %}Committee Communication Section{% endtrans %} ({% trans %}for use by committee members only - not visible to investigators{% endtrans %})
+                        {% trans %}Committee Communication Section{% endtrans %} ({% trans %}for use by committee members only{% endtrans %} - {% trans %}not visible to investigators{% endtrans %})
                     {% else %}
                         {% trans %}Committee Communication Section{% endtrans %}
                     {% endif %}
