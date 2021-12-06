@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2021-11-17T19:31:57Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2021-12-06T18:29:05Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -290,13 +290,13 @@
         <source>Comment was created with sucess.</source>
         <target>Comentario creado exitosamente</target>
       </trans-unit>
-      <trans-unit id="fce06e20e5f7f74aacccab40b59b75a56c8f7305" resname="Comments">
-        <source>Comments</source>
-        <target>Comentarios</target>
-      </trans-unit>
       <trans-unit id="f43dba5677dfd5e3e6793095b56bfab6f533b68f" resname="Committee">
         <source>Committee</source>
         <target>Comité</target>
+      </trans-unit>
+      <trans-unit id="5dbbf201f973a927fcdcec4658502a03ae657452" resname="Committee Communication Section">
+        <source>Committee Communication Section</source>
+        <target>Sección de Comunicación del Comité</target>
       </trans-unit>
       <trans-unit id="4c5fc09da89297883dd5bec04bb40aef96b22971" resname="Committee Screening">
         <source>Committee Screening</source>
@@ -308,7 +308,7 @@
       </trans-unit>
       <trans-unit id="4f853c5181e0db9a73f6340bed7dcb766c6f9051" resname="Confidential">
         <source>Confidential</source>
-        <target>Confidential</target>
+        <target>Confidencial</target>
       </trans-unit>
       <trans-unit id="fe94b8af05dd4894d73db1b0d03998be2568e24c" resname="Configuration updated with success.">
         <source>Configuration updated with success.</source>
@@ -357,6 +357,10 @@
       <trans-unit id="c63d7dc26fc32ada5170c80598c4c75aefdcc105" resname="Controlled Lists">
         <source>Controlled Lists</source>
         <target>Listas controladas</target>
+      </trans-unit>
+      <trans-unit id="f3eecae04edf94fec2f91e4696b4cd5866dfd32c" resname="Correspondence">
+        <source>Correspondence</source>
+        <target>Correspondencia</target>
       </trans-unit>
       <trans-unit id="dbdde514d0936490acaa48f4cd3708c58410a2da" resname="Cost description">
         <source>Cost description</source>
@@ -2147,6 +2151,14 @@
         <source>contact form</source>
         <target>contact form</target>
       </trans-unit>
+      <trans-unit id="03c7078ee2228760ed880e1697245eed11ee575a" resname="for use by committee members only">
+        <source>for use by committee members only</source>
+        <target>para uso exclusivo de los miembros del comité</target>
+      </trans-unit>
+      <trans-unit id="7bc7865710459a64103ba1b9b0f12d3aea3cb378" resname="for use by investigators only">
+        <source>for use by investigators only</source>
+        <target>para uso exclusivo de investigadores</target>
+      </trans-unit>
       <trans-unit id="4c6dd761f24c4ac4fb95bb1bd183d4815802bfc7" resname="go on">
         <source>go on</source>
         <target>Continuar</target>
@@ -2162,6 +2174,10 @@
       <trans-unit id="fd1286353570c5703799ba76999323b7c7447b06" resname="no">
         <source>no</source>
         <target>no</target>
+      </trans-unit>
+      <trans-unit id="50c8dc211ca93db00159fe7938dc7addb8117972" resname="not visible to investigators">
+        <source>not visible to investigators</source>
+        <target>no visible para los investigadores</target>
       </trans-unit>
       <trans-unit id="b1824b569a7f6e1c580e3b02d2a02b83aa919421" resname="send draft opinion">
         <source>send draft opinion</source>
