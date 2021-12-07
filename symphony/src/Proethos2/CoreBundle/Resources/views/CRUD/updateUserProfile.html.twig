@@ -22,7 +22,7 @@
             <div class='col-md-12'>
                 <div class="form-group required">
                     <label for="input-email">{% trans %}Email{% endtrans %}:</label> 
-                    <input type='email' class='form-control' id="input-email" name="email" value="{{ user.email }}" required>
+                    <input type='email' class='form-control' id="input-email" name="email" value="{{ user.email }}" required {% if auth_type == 'oauth2' %}disabled{% endif %}>
                 </div>
             </div>
         </div>
