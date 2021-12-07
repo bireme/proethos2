@@ -1145,6 +1145,9 @@ class CRUDController extends Controller
         $countries = $country_repository->findBy(array(), array('name' => 'asc'));
         $output['countries'] = $countries;
 
+        $auth_type = $this->container->getParameter('auth_type');
+        $output['auth_type'] = $auth_type;
+
         $referer = $request->headers->get('referer');
 
         // checking if was a post request
@@ -1159,8 +1162,11 @@ class CRUDController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
+            $required_fields = array('email', 'name', 'country');
+            if ( 'oauth2' == $auth_type ) array_shift($required_fields);
+
             // checking required fields
-            foreach(array('name', 'email', 'country', ) as $field) {
+            foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $this->redirect($referer, 301);
@@ -1179,8 +1185,8 @@ class CRUDController extends Controller
 
             $user->setCountry($country);
             $user->setName($post_data['name']);
-            $user->setEmail($post_data['email']);
             $user->setInstitution($post_data['institution']);
+            if ( 'oauth2' != $auth_type ) $user->setEmail($post_data['email']);
 
             $em->persist($user);
             $em->flush();
@@ -1236,6 +1242,9 @@ class CRUDController extends Controller
         $countries = $country_repository->findBy(array(), array('name' => 'asc'));
         $output['countries'] = $countries;
 
+        $auth_type = $this->container->getParameter('auth_type');
+        $output['auth_type'] = $auth_type;
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -1251,8 +1260,11 @@ class CRUDController extends Controller
             // getting post data
             $post_data = $request->request->all();
 
+            $required_fields = array('email', 'name', 'country');
+            if ( 'oauth2' == $auth_type ) array_shift($required_fields);
+
             // checking required fields
-            foreach(array('name', 'email', 'country', ) as $field) {
+            foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $this->redirectToRoute('crud_committee_user_list', array(), 301);
@@ -1271,8 +1283,8 @@ class CRUDController extends Controller
 
             $user->setCountry($country);
             $user->setName($post_data['name']);
-            $user->setEmail($post_data['email']);
             $user->setInstitution($post_data['institution']);
+            if ( 'oauth2' != $auth_type ) $user->setEmail($post_data['email']);
 
             $user->setIsActive(false);
             if(isset($post_data['status'])) {
