@@ -261,7 +261,7 @@ class MonitoringController extends Controller
                 $em->persist($submission);
                 $em->flush();
 
-                $session->getFlashBag()->add('success', $translator->trans("File uploaded with sucess."));
+                $session->getFlashBag()->add('success', $translator->trans("File uploaded with success."));
                 return $this->redirectToRoute('protocol_new_monitoring_that_not_amendment',
                     array(
                         'protocol_id' => $protocol_id,
@@ -275,7 +275,7 @@ class MonitoringController extends Controller
                 if($submission_upload) {
                     $em->remove($submission_upload);
                     $em->flush();
-                    $session->getFlashBag()->add('success', $translator->trans("File removed with sucess."));
+                    $session->getFlashBag()->add('success', $translator->trans("File removed with success."));
                     return $output;
                 }
             }

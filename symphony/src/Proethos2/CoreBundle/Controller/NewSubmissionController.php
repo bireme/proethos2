@@ -185,7 +185,7 @@ class NewSubmissionController extends Controller
             $em->persist($submission);
             $em->flush();
 
-            $session->getFlashBag()->add('success', $translator->trans("First step saved with sucess."));
+            $session->getFlashBag()->add('success', $translator->trans("First step saved with success."));
             return $this->redirectToRoute('submission_new_second_step', array('submission_id' => $submission->getId()), 301);
         }
 
@@ -272,7 +272,7 @@ class NewSubmissionController extends Controller
             $em->persist($submission);
             $em->flush();
 
-            $session->getFlashBag()->add('success', $translator->trans("First step saved with sucess."));
+            $session->getFlashBag()->add('success', $translator->trans("First step saved with success."));
             return $this->redirectToRoute('submission_new_second_step', array('submission_id' => $new_submission->getId()), 301);
         }
 
@@ -469,7 +469,7 @@ class NewSubmissionController extends Controller
             $em->flush();
 
             $route = ( $submission->getIsConsultation() ) ? 'submission_new_sixth_step' : 'submission_new_third_step';
-            $session->getFlashBag()->add('success', $translator->trans("Second step saved with sucess."));
+            $session->getFlashBag()->add('success', $translator->trans("Second step saved with success."));
             return $this->redirectToRoute($route, array('submission_id' => $submission->getId()), 301);
         }
 
@@ -828,7 +828,7 @@ class NewSubmissionController extends Controller
             $em->persist($submission);
             $em->flush();
 
-            $session->getFlashBag()->add('success', $translator->trans("Third step saved with sucess."));
+            $session->getFlashBag()->add('success', $translator->trans("Third step saved with success."));
             return $this->redirectToRoute('submission_new_fourth_step', array('submission_id' => $submission->getId()), 301);
         }
 
@@ -1046,7 +1046,7 @@ class NewSubmissionController extends Controller
             $em->persist($submission);
             $em->flush();
 
-            $session->getFlashBag()->add('success', $translator->trans("Fourth step saved with sucess."));
+            $session->getFlashBag()->add('success', $translator->trans("Fourth step saved with success."));
             return $this->redirectToRoute('submission_new_fifth_step', array('submission_id' => $submission->getId()), 301);
         }
 
@@ -1144,7 +1144,7 @@ class NewSubmissionController extends Controller
             $em->persist($submission);
             $em->flush();
 
-            $session->getFlashBag()->add('success', $translator->trans("Fifth step saved with sucess."));
+            $session->getFlashBag()->add('success', $translator->trans("Fifth step saved with success."));
             return $this->redirectToRoute('submission_new_sixth_step', array('submission_id' => $submission->getId()), 301);
         }
 
@@ -1298,7 +1298,7 @@ class NewSubmissionController extends Controller
                 }
             }
 
-            $session->getFlashBag()->add('success', $translator->trans("Sixth step saved with sucess."));
+            $session->getFlashBag()->add('success', $translator->trans("Sixth step saved with success."));
             return $this->redirectToRoute('submission_new_seventh_step', array('submission_id' => $submission->getId()), 301);
         }
 
@@ -1680,7 +1680,7 @@ class NewSubmissionController extends Controller
                         $em->persist($submission);
                         $em->flush();
 
-                        $session->getFlashBag()->add('success', $translator->trans("Protocol submitted with sucess!"));
+                        $session->getFlashBag()->add('success', $translator->trans("Protocol submitted with success!"));
                         return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $submission->getProtocol()->getId()), 301);
                     }
 

@@ -149,7 +149,7 @@ class ProtocolController extends Controller
                     $send = $this->get('mailer')->send($message);
                 }
 
-                $session->getFlashBag()->add('success', $translator->trans("Comment was created with sucess."));
+                $session->getFlashBag()->add('success', $translator->trans("Comment was created with success."));
             }
         }
 
@@ -260,7 +260,7 @@ class ProtocolController extends Controller
                 $send = $this->get('mailer')->send($message);
             }
 
-            $session->getFlashBag()->add('success', $translator->trans("Comment was created with sucess."));
+            $session->getFlashBag()->add('success', $translator->trans("Comment was created with success."));
         }
 
         return $this->redirect($referer, 301);
