@@ -17,9 +17,15 @@ monolog:
             type:         fingers_crossed
             action_level: error
             handler:      nested
+            channels: ['!security']
         nested:
             type:  stream
             path:  "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
         console:
-            type:  console
+            type: console
+        security:
+            type:     stream
+            path:     "%kernel.logs_dir%/security.log"
+            level:    info
+            channels: [security]
