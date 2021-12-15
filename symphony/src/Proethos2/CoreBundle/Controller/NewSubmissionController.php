@@ -24,9 +24,14 @@ use Symfony\Component\Intl\Intl;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Dotenv\Dotenv;
 
 use Proethos2\CoreBundle\Util\Util;
 use Proethos2\CoreBundle\Util\CountryLocale;
+
+use Swagger\Client\Configuration as SwaggerConfiguration;
+use Swagger\Client\Api\ScanApi as SwaggerScanApi;
+use GuzzleHttp\Client as GuzzleClient;
 
 use Proethos2\ModelBundle\Entity\Submission;
 use Proethos2\ModelBundle\Entity\SubmissionCountry;
@@ -42,6 +47,18 @@ use Proethos2\ModelBundle\Entity\SubmissionTeam;
 
 class NewSubmissionController extends Controller
 {
+    public function __construct()
+    {
+        global $kernel;
+        $env_dir = dirname($kernel->getRootDir());
+
+        if ( file_exists($env_dir.'/.env') ) {
+            // load enviroment variables
+            $dotenv = new Dotenv();
+            $dotenv->load($env_dir.'/.env');
+        }
+    }
+
     /**
      * @Route("/submission/new/first", name="submission_new_first_step")
      * @Template()
@@ -1219,6 +1236,35 @@ class NewSubmissionController extends Controller
                     return $output;
                 }
 
+                // Scan file for viruses
+                $cloudmersive_apikey = ( $_ENV['CLOUDMERSIVE_APIKEY'] ) ? $_ENV['CLOUDMERSIVE_APIKEY'] : '';
+                $cloudmersive_max_filesize = ( $_ENV['CLOUDMERSIVE_MAX_FILESIZE'] ) ? intval($_ENV['CLOUDMERSIVE_MAX_FILESIZE']) : 3;
+                if ( !empty($cloudmersive_apikey) ) {
+                    if ( $file->getSize() > $cloudmersive_max_filesize*1024*1024 ) {
+                        $session->getFlashBag()->add('error', $translator->trans("Maximum file size allowed: %maxfilesize%MB", array("%maxfilesize%" => $cloudmersive_max_filesize)));
+                        return $output;
+                    }
+
+                    // Configure API key authorization: Apikey
+                    $config = SwaggerConfiguration::getDefaultConfiguration()->setApiKey('Apikey', $cloudmersive_apikey);
+                    $apiInstance = new SwaggerScanApi(
+                        new GuzzleClient(),
+                        $config
+                    );
+
+                    $input_file = $file->getRealPath(); // \SplFileObject | Input file to perform the operation on.
+                    $result = $apiInstance->scanFile($input_file);
+                    try {
+                        $result = $apiInstance->scanFile($input_file);
+                    } catch (Exception $e) {
+                        throw $this->createNotFoundException("Exception when calling ScanApi->scanFile: " . $e->getMessage());
+                    }
+
+                    if ( !$result->getCleanResult() ) {
+                        throw $this->createNotFoundException($translator->trans('File contains viruses'));
+                    }
+                }
+
                 $submission_upload = new SubmissionUpload();
                 $submission_upload->setSubmission($submission);
                 $submission_upload->setUploadType($upload_type);
@@ -1235,7 +1281,7 @@ class NewSubmissionController extends Controller
                 $em->persist($submission);
                 $em->flush();
 
-                $session->getFlashBag()->add('success', $translator->trans("File uploaded with sucess."));
+                $session->getFlashBag()->add('success', $translator->trans("File uploaded with success."));
                 return $this->redirectToRoute('submission_new_sixth_step', array('submission_id' => $submission->getId()), 301);
 
             }
@@ -1247,11 +1293,12 @@ class NewSubmissionController extends Controller
 
                     $em->remove($submission_upload);
                     $em->flush();
-                    $session->getFlashBag()->add('success', $translator->trans("File removed with sucess."));
+                    $session->getFlashBag()->add('success', $translator->trans("File removed with success."));
                     return $this->redirectToRoute('submission_new_sixth_step', array('submission_id' => $submission->getId()), 301);
                 }
             }
 
+            $session->getFlashBag()->add('success', $translator->trans("Sixth step saved with sucess."));
             return $this->redirectToRoute('submission_new_seventh_step', array('submission_id' => $submission->getId()), 301);
         }
 
