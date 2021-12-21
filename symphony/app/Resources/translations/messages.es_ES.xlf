@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2021-12-15T15:58:14Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2021-12-21T19:59:14Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -72,7 +72,7 @@
       </trans-unit>
       <trans-unit id="e58f7f889902c81b8879128fede278022f0e459c" resname="Activities">
         <source>Activities</source>
-        <target>Activities</target>
+        <target>Actividades</target>
       </trans-unit>
       <trans-unit id="81c0d915fa6d82fd30661c5e66e204cea52bb2b5" resname="Activity">
         <source>Activity</source>
@@ -1024,7 +1024,7 @@
       </trans-unit>
       <trans-unit id="a8340df91d4902853f9b9a165113c6c1d889c739" resname="More than one activity">
         <source>More than one activity</source>
-        <target>More than one activity</target>
+        <target>Más de una actividad</target>
       </trans-unit>
       <trans-unit id="08d2e98e6754af941484848930ccbaddfefe13d6" resname="N/A">
         <source>N/A</source>
@@ -1052,7 +1052,7 @@
       </trans-unit>
       <trans-unit id="f8bc95de88b5c5493a38ad5f37790637721990d0" resname="New Activity">
         <source>New Activity</source>
-        <target>New Activity</target>
+        <target>Nueva Actividad</target>
       </trans-unit>
       <trans-unit id="fb373941a47807ada47e699f5a809b28bf546761" resname="New Attachment">
         <source>New Attachment</source>
