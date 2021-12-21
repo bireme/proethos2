@@ -64,7 +64,7 @@ class IndexController extends Controller
         }
         $output['submissions'] = $submissions;
 
-        $now = new \DateTime();
+        $now = new \DateTime('yesterday');
         $twoMonths = new \DateTime();
         $twoMonths = $twoMonths->add(new \DateInterval("P60D"));
         
