@@ -56,9 +56,6 @@ class IndexController extends Controller
                 $revisions[] = $revision->getProtocol();
             }
         }
-        foreach($protocol_repository->findBy(array("status" => "I")) as $protocol) {
-            $revisions[] = $protocol;
-        }
         $output['revisions'] = $revisions;
         
         $submissions = array();
