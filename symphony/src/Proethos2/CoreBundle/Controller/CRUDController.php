@@ -1245,6 +1245,8 @@ class CRUDController extends Controller
         $auth_type = $this->container->getParameter('auth_type');
         $output['auth_type'] = $auth_type;
 
+        $referer = $request->headers->get('referer');
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -1326,7 +1328,9 @@ class CRUDController extends Controller
             $logger->info('User profile updated successfully by ' . $user_logged->getUsername(), array('username' => $user->getUsername()));
 
             $session->getFlashBag()->add('success', $translator->trans("User updated with success."));
-            return $this->redirectToRoute('crud_committee_user_list', array(), 301);
+            // return $this->redirectToRoute('crud_committee_user_list', array(), 301);
+            $_fragment = $post_data['_fragment'];
+            return $this->redirect($referer.$_fragment, 301);
 
         }
 
@@ -1405,6 +1409,8 @@ class CRUDController extends Controller
         $roles = $role_repository->findAll();
         $output['roles'] = $roles;
 
+        $referer = $request->headers->get('referer');
+
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
@@ -1434,7 +1440,9 @@ class CRUDController extends Controller
             $logger->info('User roles updated successfully by ' . $user_logged->getUsername(), array('username' => $user->getUsername(), 'roles' => array_keys($post_data)));
 
             $session->getFlashBag()->add('success', $translator->trans("User updated with success."));
-            return $this->redirectToRoute('crud_committee_user_list', array(), 301);
+            // return $this->redirectToRoute('crud_committee_user_list', array(), 301);
+            $_fragment = $post_data['_fragment'];
+            return $this->redirect($referer.$_fragment, 301);
         }
 
         return $output;
