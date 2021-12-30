@@ -1,6 +1,7 @@
 <form class='form' method="POST" id='form-update-user' action='{{ path("crud_committee_user_role_update", {user_id: user.id}) }}'>
     
     <input type="hidden" name="token" value="{{ csrf_token('update-user-role') }}"/>
+    <input type="hidden" name="_fragment" value="#user{{ user.id }}"/>
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
