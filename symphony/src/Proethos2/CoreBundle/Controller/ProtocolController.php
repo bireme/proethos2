@@ -1047,7 +1047,7 @@ class ProtocolController extends Controller
         // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
         // $translations = $trans_repository->findTranslations($help[0]);
 
-        if (!$protocol or !in_array($protocol->getStatus(), array('E', 'H'))) {
+        if (!$protocol or !(in_array('secretary', $user->getRolesSlug()) or in_array($protocol->getStatus(), array('E', 'H')))) {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
 
@@ -1214,7 +1214,7 @@ class ProtocolController extends Controller
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
 
-        // getting the protocol_revisiion
+        // getting the protocol_revision
         $protocol_revision = $protocol_revision_repository->findOneBy(array("protocol" => $protocol, "member" => $user));
         $output['protocol_revision'] = $protocol_revision;
 
@@ -1325,9 +1325,14 @@ class ProtocolController extends Controller
 
         $protocol_revision_repository = $em->getRepository('Proethos2ModelBundle:ProtocolRevision');
 
-        // getting the current submission
+        // getting the protocol_revision
         $protocol_revision = $protocol_revision_repository->find($protocol_revision_id);
         $output['protocol_revision'] = $protocol_revision;
+
+        $roles = array('secretary', 'member-of-committee', 'administrator');
+        if (!$protocol_revision or !array_intersect($roles, $user->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No protocol found'));
+        }
 
         return $output;
     }
@@ -1793,6 +1798,55 @@ class ProtocolController extends Controller
 
         // return new RedirectResponse($report_url);
         return $this->redirect($report_url, 301);
+    }
+
+    /**
+     * @Route("/protocol/{protocol_id}/review/{protocol_revision_id}/pdf", name="protocol_generate_review_pdf")
+     * @Template()
+     */
+    public function showReviewPdfAction($protocol_id, $protocol_revision_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $protocol_revision_repository = $em->getRepository('Proethos2ModelBundle:ProtocolRevision');
+
+        // getting the protocol_revision
+        $protocol_revision = $protocol_revision_repository->find($protocol_revision_id);
+        $output['protocol_revision'] = $protocol_revision;
+
+        $roles = array('secretary', 'member-of-committee', 'administrator');
+        if (!$protocol_revision or !array_intersect($roles, $user->getRolesSlug())) {
+            throw $this->createNotFoundException($translator->trans('No protocol found'));
+        }
+
+        $html = $this->renderView(
+            'Proethos2CoreBundle:Protocol:showReviewPdf.html.twig',
+            $output
+        );
+
+        $pdf = $this->get('knp_snappy.pdf');
+
+        if ( version_compare(PHP_VERSION, '7.3.0') < 0 ) {
+            // setting margins
+            $pdf->getInternalGenerator()->setOption('margin-top', '50px');
+            $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
+            $pdf->getInternalGenerator()->setOption('margin-left', '20px');
+            $pdf->getInternalGenerator()->setOption('margin-right', '20px');
+        }
+
+        return new Response(
+            $pdf->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type' => 'application/pdf'
+            )
+        );
     }
 
     /**

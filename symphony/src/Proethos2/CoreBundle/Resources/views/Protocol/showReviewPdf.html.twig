@@ -1,0 +1,111 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            .modal {
+                font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+                font-size: 14px;
+                line-height: 1.42857143;
+            }
+            .modal-header {
+                padding: 15px;
+                border-bottom: 1px solid #e5e5e5;
+            }
+            .modal-title {
+                margin: 0;
+                text-align: center;
+            }
+            .modal-body {
+                padding: 20px;
+            }
+            .modal-footer {
+                padding: 20px;
+                text-align: right;
+                border-top: 1px solid #e5e5e5;
+            }
+            h3, .h3 {
+                font-size: 24px;
+            }
+            h4, .h4 {
+                font-size: 18px;
+            }
+            h5, .h5 {
+                border-bottom: 1px solid #e5e5e5;
+                font-size: 12pt;
+                padding-bottom: 5px;
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+            }
+            p {
+                margin: 0 0 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="modal" id="modal-parecer-reviewer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">{% trans %}Reviewer's evaluation{% endtrans %} -  {{ protocol_revision.protocol.code }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h5>{% trans %}Name{% endtrans %}</h5>
+                        <p>{{ protocol_revision.member.name }}</p>
+
+                        <h5>{% trans %}E-mail{% endtrans %}</h5>
+                        <p>{{ protocol_revision.member.email }}</p>
+
+                        <h5>{% trans %}Recruitment Date{% endtrans %}</h5>
+                        <p>{{ protocol_revision.created|date("d/m/Y") }}</p>
+
+                        <h5>{% trans %}Decision{% endtrans %}</h5>
+                        <p>{{ protocol_revision.decision }}</p>
+
+                        {% if protocol_revision.socialValue %}
+                            <h5>{% trans %}Social Value{% endtrans %}</h5>
+                            <p>{{ protocol_revision.socialValue }}</p>
+                        {% endif %}
+
+                        {% if protocol_revision.sscientificValidity %}
+                            <h5>{% trans %}Scientific Validity{% endtrans %}</h5>
+                            <p>{{ protocol_revision.sscientificValidity }}</p>
+                        {% endif %}
+
+                        {% if protocol_revision.fairParticipantSelection %}
+                            <h5>{% trans %}Fair Participant Selection{% endtrans %}</h5>
+                            <p>{{ protocol_revision.fairParticipantSelection }}</p>
+                        {% endif %}
+
+                        {% if protocol_revision.favorableBalance %}
+                            <h5>{% trans %}Favorable balance of benefits and risks{% endtrans %}</h5>
+                            <p>{{ protocol_revision.favorableBalance }}</p>
+                        {% endif %}
+
+                        {% if protocol_revision.informedConsent %}
+                            <h5>{% trans %}Informed Consent{% endtrans %}</h5>
+                            <p>{{ protocol_revision.informedConsent }}</p>
+                        {% endif %}
+
+                        {% if protocol_revision.respectForParticipants %}
+                            <h5>{% trans %}Respect for participants{% endtrans %}</h5>
+                            <p>{{ protocol_revision.respectForParticipants }}</p>
+                        {% endif %}
+
+                        {% if protocol_revision.oh5erComments %}
+                            <h5>{% trans %}Oh5er Comments{% endtrans %}</h5>
+                            <p>{{ protocol_revision.oh5erComments }}</p>
+                        {% endif %}
+
+                        {% if protocol_revision.suggestions %}
+                            <h5>{% trans %}Suggestions{% endtrans %}</h5>
+                            <p>{{ protocol_revision.suggestions }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                        {% trans %}Created in{% endtrans %} {{ "now"|date("d/m/Y H:i:s") }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
