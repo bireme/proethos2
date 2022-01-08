@@ -2,8 +2,8 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title" id="myModalLabel">{% trans %}Reviewer's evaluation{% endtrans %}</h4>
 </div>
-<div class="modal-body">
 
+<div id="modal-print" class="modal-body">
     <h5>{% trans %}Decision{% endtrans %}</h5>
     <p>{{ protocol_revision.decision }}</p>
 
@@ -21,22 +21,20 @@
         <h5>{% trans %}Fair Participant Selection{% endtrans %}</h5>
         <p>{{ protocol_revision.fairParticipantSelection }}</p>
     {% endif %}
+
     {% if protocol_revision.favorableBalance %}
         <h5>{% trans %}Favorable balance of benefits and risks{% endtrans %}</h5>
         <p>{{ protocol_revision.favorableBalance }}</p>
-
     {% endif %}
 
     {% if protocol_revision.informedConsent %}
         <h5>{% trans %}Informed Consent{% endtrans %}</h5>
         <p>{{ protocol_revision.informedConsent }}</p>
-
     {% endif %}
 
     {% if protocol_revision.respectForParticipants %}
-        <h5>'{% trans %}Respect for participants{% endtrans %}'</h5>
+        <h5>{% trans %}Respect for participants{% endtrans %}</h5>
         <p>{{ protocol_revision.respectForParticipants }}</p>
-
     {% endif %}
 
     {% if protocol_revision.otherComments %}
@@ -51,5 +49,36 @@
 </div>
 
 <div class="modal-footer">
+    <a href='{{ path("protocol_generate_review_pdf", {protocol_id: protocol_revision.protocol.id, protocol_revision_id: protocol_revision.id}) }}' class='btn btn-primary pull-left' target='_blank'>{% trans %}Create PDF{% endtrans %}</a>
     <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
 </div>
+
+{% block script %}
+    <script>
+        function printContent(elem){
+            var width = 1200;
+            var height = 800;
+            var left = (screen.width - width) / 2;
+            var top = (screen.height - height) / 4;
+            var label = "{% trans %}Reviewer's evaluation{% endtrans %}";
+            var title = '{{ protocol_revision.protocol.mainSubmission.publicTitle }}';
+            var code = '{{ protocol_revision.protocol.code }}';
+            var _window = window.open('', 'PRINT', 'height='+height+',width='+width+',top='+top+',left='+left);
+
+            _window.document.write('<html><head><title>' + document.title  + '</title>');
+            _window.document.write('</head><body >');
+            _window.document.write('<h2>' + label + '</h2>');
+            _window.document.write('<h3>{% trans %}Protocol{% endtrans %} ' + code + ': ' + title + '</h3>');
+            _window.document.write(document.getElementById(elem).innerHTML);
+            _window.document.write('</body></html>');
+
+            _window.document.close(); // necessary for IE >= 10
+            _window.focus(); // necessary for IE >= 10*/
+
+            _window.print();
+            _window.close();
+
+            return true;
+        }
+    </script>
+{% endblock %}

@@ -14,6 +14,47 @@
         
         {% include 'Proethos2CoreBundle:Protocol:meta.html.twig' %}
 
+        {% if 'member-of-committee' in app.user.getRolesSlug or 'secretary' in app.user.getRolesSlug or 'administrator' in app.user.getRolesSlug %}
+            <div class='row'>
+                <div class="col-md-12">
+                    <h2 class='sub-header'>{% trans %}Reviewers{% endtrans %}:</h2>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class="col-md-12">
+                    <table class='table table-hover table-condensed'>
+                        <thead>
+                            <tr>
+                                <th width="30%">{% trans %}Name{% endtrans %}</th>
+                                <th>{% trans %}Institution{% endtrans %}</th>
+                                <th>{% trans %}E-mail{% endtrans %}</th>
+                                <th>{% trans %}Country{% endtrans %}</th>
+                                <th>{% trans %}Recruitment Date{% endtrans %}</th>
+                                <th>{% trans %}Actions{% endtrans %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for revision in protocol.revision %}
+                                {% if 'member-ad-hoc' in revision.member.getRolesSlug and revision.isFinalRevision %}
+                                    <tr>
+                                        <td>{{ revision.member.name }}</td>
+                                        <td>{{ revision.member.institution }}</td>
+                                        <td><a href='{{ revision.member.email }}'>{{ revision.member.email }}</a></td>
+                                        <td>{{ revision.member.country }}</td>
+                                        <td>{{ revision.created|date("d/m/Y") }}</td>
+                                        <td>
+                                            <a href='{{ path("protocol_initial_committee_review_show_review", {protocol_id: protocol.id, protocol_revision_id: revision.id }) }}' data-toggle='modal' data-target='#modal-parecer-reviewer' class='btn btn-default btn-xs {% if not revision.decision %}disabled{% endif %}'><i class='glyphicon glyphicon-eye-open'></i></a>
+                                        </td
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endif %}
+
         <!-- action -->
         <form method="POST" id='form-action'>
             
@@ -122,7 +163,12 @@
         </form>
     </div>
 
-    
+    <!-- Modal Visualizar Parecer do Reviewer -->
+    <div class="modal fade" id="modal-parecer-reviewer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>    
 
 {% endblock %}
 
