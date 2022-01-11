@@ -42,6 +42,7 @@
                                 <option value="T" {% if app.request.get('status') == "T" %}selected{% endif %}>{% trans %}Withdrawn{% endtrans %}</option>
                                 <option value="A" {% if app.request.get('status') == "A" %}selected{% endif %}>{% trans %}Approved{% endtrans %}</option>
                                 <option value="N" {% if app.request.get('status') == "N" %}selected{% endif %}>{% trans %}Not approved{% endtrans %}</option>
+                                <option value="C" {% if app.request.get('status') == "C" %}selected{% endif %}>{% trans %}Observations to address{% endtrans %}</option>
                             </select>
                         </div>
                     </div>
