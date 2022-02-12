@@ -22,9 +22,14 @@ framework:
     trusted_proxies: ~
     session:
         # handler_id set to null will use default session handler from php.ini
-        handler_id:  ~
-        cookie_secure: true
+        handler_id: session.handler.native_file
+        # save_path: '%kernel.root_dir%/sessions'
+        cookie_secure: false
         cookie_httponly: true
+        cookie_lifetime: 0     # cookie is destroyed when the browser is closed
+        gc_divisor: 100        # garbage collector process on each request (100/100)
+        gc_probability: 100    # garbage collector process on each request (100/100)
+        gc_maxlifetime: 172800 # session is destroyed after lifetime of user idle
     fragments:       ~
     http_method_override: true
 
@@ -34,6 +39,7 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         auth_type: '%auth_type%'
+        session_lifetime: 172800 # set to the same value as gc_maxlifetime
 
 # Assetic Configuration
 assetic:

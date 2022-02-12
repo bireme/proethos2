@@ -126,6 +126,11 @@
         </div>
     </div>
 
+    <!-- Modal Session Timeout Alert -->
+    {% if is_granted("ROLE_USER") and session_lifetime %}
+        {% include 'sessionTimeoutAlert.html.twig' %}
+    {% endif %}
+
     <script>
         $('body').on('hidden.bs.modal', '.modal', function () {
             $(this).removeData('bs.modal');
