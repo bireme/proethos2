@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2021-12-21T20:15:59Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2022-02-12T01:05:45Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -100,7 +100,7 @@
       </trans-unit>
       <trans-unit id="a2421868fe8236aad53139846d03d6c6b9563e4d" resname="Add Investigator">
         <source>Add Investigator</source>
-        <target>Add Investigator</target>
+        <target>Adicionar Investigador</target>
       </trans-unit>
       <trans-unit id="e86236c36d191296130926022e655c7aca7ee34a" resname="Add a monitoring action">
         <source>Add a monitoring action</source>
