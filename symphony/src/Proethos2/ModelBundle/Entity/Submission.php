@@ -344,7 +344,7 @@ class Submission extends Base
     /**
      * @var string
      *
-     * @ORM\Column(name="paho_unit", type="string", length=510)
+     * @ORM\Column(name="paho_unit", type="string", length=510, nullable=true)
      * @Assert\NotBlank
      */
     private $paho_unit;
