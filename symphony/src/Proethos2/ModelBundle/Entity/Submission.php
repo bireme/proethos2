@@ -342,6 +342,14 @@ class Submission extends Base
     private $clinical_trial_secondary;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="paho_unit", type="string", length=510)
+     * @Assert\NotBlank
+     */
+    private $paho_unit;
+
+    /**
      * @var text
      *
      * @ORM\Column(type="text", nullable=true)
@@ -1797,5 +1805,29 @@ class Submission extends Base
     public function getIsMultipleClinicalStudy()
     {
         return $this->is_multiple_clinical_study;
+    }
+
+    /**
+     * Set pahoUnit
+     *
+     * @param string $pahoUnit
+     *
+     * @return Submission
+     */
+    public function setPahoUnit($pahoUnit)
+    {
+        $this->paho_unit = $pahoUnit;
+
+        return $this;
+    }
+
+    /**
+     * Get pahoUnit
+     *
+     * @return string
+     */
+    public function getPahoUnit()
+    {
+        return $this->paho_unit;
     }
 }

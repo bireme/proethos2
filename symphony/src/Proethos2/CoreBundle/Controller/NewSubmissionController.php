@@ -1004,6 +1004,7 @@ class NewSubmissionController extends Controller
                 }
             }
 
+            $submission->setPahoUnit($post_data['paho-unit']);
             $submission->setFundingSource($post_data['funding-source']);
             $submission->setPrimarySponsor($post_data['primary-sponsor']);
             $submission->setSecondarySponsor($post_data['secondary-sponsor']);
