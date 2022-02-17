@@ -154,7 +154,7 @@
             
             <div class='row'>
                 <div class='submission-button-controls col-md-12'>
-                    <button type="submit" class='btn btn-primary' id='button-save' {% if protocol_revision.isFinalRevision %}disabled{% endif %}>{% trans %}Save{% endtrans %}</button>
+                    <button type="submit" class='btn btn-primary' id='button-save' {% if protocol_revision.isFinalRevision %}disabled{% endif %}>{% trans %}Save as draft{% endtrans %}</button>
                     <button type="button" class='btn btn-primary' id='button-save-and-finish' {% if not protocol_revision.decision or protocol_revision.isFinalRevision %}disabled{% endif %}>
                         {% trans %}Save and mark as final revision{% endtrans %}
                     </button>
