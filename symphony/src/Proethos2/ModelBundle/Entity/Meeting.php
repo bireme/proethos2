@@ -21,6 +21,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use Cocur\Slugify\Slugify;
+
 /**
  * Meeting
  *
@@ -52,6 +54,55 @@ class Meeting extends Base
      * @ORM\Column(type="text")
      */
     private $content;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $filename;
+
+    /**
+     * @ORM\Column(type="string", length=1023, nullable=true)
+     */
+    private $filepath;
+
+    public function __toString() {
+        return $this->getDate() . " - " . $this->getSubject();
+    }
+
+    public function getRealFilename() {
+        $filename = explode('_', $this->getFilename(), 2);
+        return end($filename);
+    }
+
+    public function getUploadDirectory() {
+        $upload_directory = __DIR__.'/../../../../uploads/meeting';
+
+        if(!is_dir($upload_directory)) {
+            mkdir($upload_directory);
+        }
+
+        return $upload_directory;
+    }
+
+    public function setFile($file) {
+        $slugify = new Slugify();
+        $upload_directory = $this->getUploadDirectory();
+
+        $filename_without_extension = str_replace("." . $file->getClientOriginalExtension(), "", $file->getClientOriginalName());
+        $filename = uniqid() . '_' . $slugify->slugify($filename_without_extension) . "." . $file->getClientOriginalExtension();
+        $filepath = $upload_directory . "/" . $filename;
+        $file = $file->move($upload_directory, $filename);
+
+        $this->setFilename($filename);
+        $this->setFilepath($filepath);
+
+        return $this;
+    }
+
+    public function getUri() {
+
+        return "/uploads/meeting/" . $this->getFilename();
+    }
 
     /**
      * Get id
@@ -135,7 +186,51 @@ class Meeting extends Base
         return $this->content;
     }
 
-    public function __toString() {
-        return $this->getDate() . " - " . $this->getSubject();
+    /**
+     * Set filename
+     *
+     * @param string $filename
+     *
+     * @return Meeting
+     */
+    public function setFilename($filename)
+    {
+        $this->filename = $filename;
+
+        return $this;
+    }
+
+    /**
+     * Get filename
+     *
+     * @return string
+     */
+    public function getFilename()
+    {
+        return $this->filename;
+    }
+
+    /**
+     * Set filepath
+     *
+     * @param string $filepath
+     *
+     * @return Meeting
+     */
+    public function setFilepath($filepath)
+    {
+        $this->filepath = $filepath;
+
+        return $this;
+    }
+
+    /**
+     * Get filepath
+     *
+     * @return string
+     */
+    public function getFilepath()
+    {
+        return $this->filepath;
     }
 }

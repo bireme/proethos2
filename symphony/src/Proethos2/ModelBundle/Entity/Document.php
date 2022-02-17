@@ -76,7 +76,6 @@ class Document extends Base
     }
 
     public function getUploadDirectory() {
-        
         $upload_directory = __DIR__.'/../../../../uploads/documents';
         
         if(!is_dir($upload_directory)) {
@@ -87,7 +86,6 @@ class Document extends Base
     }
 
     public function setFile($file) {
-        
         $slugify = new Slugify();
         $upload_directory = $this->getUploadDirectory();
 
@@ -106,7 +104,6 @@ class Document extends Base
 
         return "/uploads/documents/" . $this->getFilename();
     }
-
 
     /**
      * Get id
