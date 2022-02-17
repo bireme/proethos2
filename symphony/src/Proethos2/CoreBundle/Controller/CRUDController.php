@@ -128,6 +128,7 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
+        $upload_type_extension_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
 
         $user_logged = $this->get('security.token_storage')->getToken()->getUser();
         
@@ -154,6 +155,24 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
+            // echo "<pre>"; print_r($post_data); echo "</pre>"; die();
+
+            $file = $request->files->get('file');
+            // echo "<pre>"; print_r($file); echo "</pre>"; die();
+
+            if ( $file ) {
+                // getting the upload type extensions
+                $upload_type_extensions = $upload_type_extension_repository->findAll();
+
+                $file_ext = '.'.$file->getClientOriginalExtension();
+                $ext_formats = array_map(function($obj) { return $obj->getExtension(); }, $upload_type_extensions);
+                if ( !in_array($file_ext, $ext_formats) ) {
+                    $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                    return $output;
+                }
+
+                $meeting->setFile($file);
+            }
 
             // checking required files
             foreach(array('new-meeting-date', 'new-meeting-subject', 'new-meeting-content') as $field) {
@@ -208,6 +227,34 @@ class CRUDController extends Controller
 
         $protocols = $protocol_repository->findBy(array('meeting' => $meeting));
         $output['protocols'] = $protocols;
+
+        $referer = $request->headers->get('referer');
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('delete-attachment', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            // echo "<pre>"; print_r($post_data); echo "</pre>"; die();
+
+            if ( 'yes' == $post_data['delete-attachment'] ) {
+                $meeting->setFilename(NULL);
+                $meeting->setFilepath(NULL);
+
+                $em->persist($meeting);
+                $em->flush();
+
+                $session->getFlashBag()->add('success', $translator->trans("File removed with success."));
+                return $this->redirect($referer, 301);
+            }
+        }
 
         return $output;
     }
@@ -716,7 +763,10 @@ class CRUDController extends Controller
 
             // getting post data
             $post_data = $request->request->all();
+            // echo "<pre>"; print_r($post_data); echo "</pre>"; die();
+
             $file = $request->files->get('file');
+            // echo "<pre>"; print_r($file); echo "</pre>"; die();
 
             if(empty($file)) {
                 $session->getFlashBag()->add('error', $translator->trans("Field 'file' is required."));

@@ -21,10 +21,27 @@
                         {{ meeting.content|nl2br }}
                     </p>
                 </li>
-                
+                {% if meeting.filename %}
+                    <li class="list-group-item">
+                        <b>{% trans %}File{% endtrans %}</b>: 
+                        {{ meeting.realFilename }}
+
+                        <div class="pull-right">
+                            <a href='{{ asset(meeting.uri) }}' target="_blank" class='btn btn-default btn-xs' target="_blank">
+                                <i class='glyphicon glyphicon-eye-open'></i>
+                            </a>
+                            {% if 'secretary' in app.user.rolesSlug %}
+                                <a href='#' class='btn btn-default btn-xs button-delete-attachment' data-toggle="modal" data-target="#modal-delete-attachment">
+                                    <i class='glyphicon glyphicon-trash'></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
+
     <div class='row'>
         <div class='col-md-12'>
             <table class='table table-striped table-condensed'>
@@ -54,3 +71,38 @@
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
 </div>
+
+<!-- Modal Confirmar Exclusão -->
+<div class="modal fade" id="modal-delete-attachment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form class='form' method="POST" id='form-delete-attachment' action="{{ path("crud_committee_meeting_show", {meeting_id: meeting.id} ) }}">
+
+            <input type="hidden" name="token" value="{{ csrf_token('delete-attachment') }}"/>
+            <input type="hidden" name="delete-attachment" id='hidden-delete-attachment' value="yes" />
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{% trans %}Delete Attachment{% endtrans %}</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>{% trans %}Do you confirm the exclusion of this attachment?{% endtrans %}</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                    <button type="submit" class="btn btn-danger">{% trans %}Confirm{% endtrans %}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% block script %}
+    <script>
+        $(function(){
+
+        });
+    </script>
+{% endblock %}

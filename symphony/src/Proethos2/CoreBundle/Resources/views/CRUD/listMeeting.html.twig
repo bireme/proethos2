@@ -43,7 +43,8 @@
                         <thead>
                             <tr>
                                 <th width="10%">{% trans %}Date{% endtrans %}</th>
-                                <th width="80%">{% trans %}Subject{% endtrans %}</th>
+                                <th width="50%">{% trans %}Subject{% endtrans %}</th>
+                                <th width="30%">{% trans %}File name{% endtrans %}</th>
                                 <th>{% trans %}Actions{% endtrans %}</th>
                             </tr>
                         </thead>
@@ -51,8 +52,9 @@
                         <tbody>
                             {% for meeting in meetings %}
                                 <tr>
-                                    <td>{{ meeting.date|date("d/m/Y") }}</td> 
-                                    <td>{{ meeting.subject }}</td> 
+                                    <td>{{ meeting.date|date("d/m/Y") }}</td>
+                                    <td>{{ meeting.subject }}</td>
+                                    <td>{{ meeting.realFilename }}</td>
                                     <td>
                                         <a href='{{ path("crud_committee_meeting_show", {meeting_id: meeting.id} ) }}' data-toggle='modal' data-target='#modal-show-meeting' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
                                         <a href='{{ path("crud_committee_meeting_update", {meeting_id: meeting.id} ) }}' data-toggle='modal' data-target='#modal-update-meeting' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
@@ -60,7 +62,6 @@
                                     </td> 
                                 </tr>
                             {% endfor %}
-                            
                         </tbody>
                     </table>
                 </div>
