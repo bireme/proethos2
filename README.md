@@ -1,17 +1,17 @@
 ![Build](https://codeship.com/projects/e61c3520-93d1-0134-acbe-426698f4d6ff/status?branch=master)
 
+Welcome to PAHO's ProEthos repository!
+======================================
 
+ProEthos is a web-based platform for the ethics review of human subjects research. Developed by the Pan American Health Organization (PAHO) and the Latin American and Caribbean Center on Health Sciences Information (BIREME) in collaboration with the Pontifical Catholic University of Paraná (Brazil), ProEthos aims to improve the quality of the ethics review process, ultimately enhancing protections for research participants.
 
-================================
+ProEthos allows researchers to submit their studies to for ethics review electronically. Committees then review protocols with the help of tools and processes built into the platform. They can also monitor approved studies, report to external entities, and feed clinical trial registries.
 
-Welcome to Proethos2 repository!
-================================
+Institutions must download their own secure version of ProEthos to their own server or cloud-based server (instructions and code detailed below). This gives institutions full control over their users and data, along with the ability to modify the platform or integrate it with other systems as needed.
 
-ProEthos is an innovative platform for ethics review of human subjects research and it was developed by PAHO in collaboration with the Pontifical Catholic University of Paraná (Brazil) to facilitate the review process of ethics committees. This platform improves the quality of ethics review and the accountability, transparency and efficiency of review processes, and ultimately improves the protection of research participants and catalyzes ethical research.
+PAHO/BIREME does not offer individualized technical support to institutions that install ProEthos, but releases periodic updates to fix bugs and improve usability. Questions and/or bugs can be posted to the network of ProEthos users in the GitHub issues forum (which includes answers to many commonly-asked installation questions).
 
-It is an online system that allows researchers to submit their studies for ethics review electronically. Committees then conduct the ethics review with the help of the tools included in the system that, in turn keeps track of every step of the review process. Finally, ProEthos allows committees to monitor approved studies.
-
-ProEthos is free and adapts easily to the processes of each committee. It can be downloaded into each institution’s server or used on a cloud server. The information uploaded in the system is 100% confidential as no one but the entity downloading the system will have access to it.
+Please visit PAHO's ProEthos site for a more detailed description of the platform, introductory videos and FAQs: https://www.paho.org/en/bioethics/proethos
 
 Links
 -----
