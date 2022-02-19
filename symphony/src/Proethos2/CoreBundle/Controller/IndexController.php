@@ -64,10 +64,13 @@ class IndexController extends Controller
         }
         $output['submissions'] = $submissions;
 
-        $now = new \DateTime('yesterday');
+        $now = new \DateTime('today');
+        $yesterday = new \DateTime('yesterday');
+        $past = new \DateTime('2000/01/01');
         $twoMonths = new \DateTime();
         $twoMonths = $twoMonths->add(new \DateInterval("P60D"));
-        
+
+        // next meetings
         $qb = $meeting_repository->createQueryBuilder('m');
         $query = $qb->add('where', $qb->expr()->between(
                 'm.date',
@@ -78,9 +81,24 @@ class IndexController extends Controller
             ->setParameters(array('from' => $now, 'to' => $twoMonths))
             ->getQuery();
 
-        $meetings = $query->getResult();
+        $next_meetings = $query->getResult();
 
-        $output['meetings'] = $meetings;
+        $output['next_meetings'] = $next_meetings;
+
+        // past meetings
+        $qb = $meeting_repository->createQueryBuilder('m');
+        $query = $qb->add('where', $qb->expr()->between(
+                'm.date',
+                ':from',
+                ':to'
+            )
+        )
+            ->setParameters(array('from' => $past, 'to' => $yesterday))
+            ->getQuery();
+
+        $past_meetings = $query->getResult();
+
+        $output['past_meetings'] = $past_meetings;
         
         return $output;
     }

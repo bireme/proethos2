@@ -82,7 +82,7 @@
 
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="modal-inner close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">{% trans %}Delete Attachment{% endtrans %}</h4>
                 </div>
 
@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                    <button type="button" class="btn btn-default modal-inner">{% trans %}Close{% endtrans %}</button>
                     <button type="submit" class="btn btn-danger">{% trans %}Confirm{% endtrans %}</button>
                 </div>
             </div>
@@ -102,7 +102,9 @@
 {% block script %}
     <script>
         $(function(){
-
+            $(document).on('click', 'button.modal-inner', function(){
+                $('#modal-delete-attachment').modal('hide');
+            });
         });
     </script>
 {% endblock %}
