@@ -42,7 +42,7 @@ $ sudo a2enmod rewrite
 ### PHP
 
 ```
-$ sudo apt-get install -y curl php5 php5-cli php5-mysql libapache2-mod-php5 php5-mcrypt php5-gd phpunit
+$ sudo apt-get install -y curl php php-cli php-mysql libapache2-mod-php php-mcrypt php-gd phpunit
 
 ```
 
@@ -152,8 +152,6 @@ Now, we will setup the database and load the initial data:
 
 ```
 $ make load_initial
-or
-$ make load_initial php=php5.6
 ```
 
 __TIP:__ See all the [Make commands](../make-shortcuts.md), that certainly will help you.
