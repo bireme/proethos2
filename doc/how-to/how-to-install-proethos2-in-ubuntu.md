@@ -15,7 +15,7 @@ and other tools;
 Dependencies
 ------------
 
-### Dependencies that every ubuntu instalation should have.
+### Dependencies that every Ubuntu instalation should have.
 
 ```
 $ sudo apt-get install -y vim openssh-server make   
@@ -45,6 +45,24 @@ $ sudo a2enmod rewrite
 $ sudo apt-get install -y curl php5 php5-cli php5-mysql libapache2-mod-php5 php5-mcrypt php5-gd phpunit
 
 ```
+
+### Sodium (required if PHP < 7.2)
+
+```
+$ sudo apt-get install -y libsodium libsodium-dev php-sodium php-libsodium
+```
+
+Alternative:
+
+```
+$ sudo apt-get install -y php-pear
+$ sudo pecl install -f libsodium
+$ sudo echo "extension = sodium.so" > /etc/php/7.2/mods-available/sodium.ini
+$ sudo phpenmod sodium
+
+```
+
+__NOTE:__ Do not install if PHP >= 7.2, because this library has become a core extension in PHP.
 
 ### MySQL
 
@@ -121,6 +139,7 @@ In the middle of process, you will be questioned by this questions below:
 - `database_password (null):` Fill in with the database name that we created. In this case `choose_a_password!`.
 - `mailer_transport (smtp):` We will configure this options later, so, press enter for the SMTP options.
 - `locale (en):` Choose your default language locale. We will use `en_US`
+- `auth_type (default):` Choose authentication type (`default` or `oauth2`).
 - `secret (ThisTokenIsNotSoSecretChangeIt):` Choose an secret token for your application.
 - `private_key (null):` Fill in with the private key for database encryption (click [here](how-to-install-proethos2-in-ubuntu.md#encryption-keys-required-if-proethos2--160) to generate the private key).
 - `index_key (null):` Fill in with the index key for database encryption (click [here](how-to-install-proethos2-in-ubuntu.md#encryption-keys-required-if-proethos2--160) to generate the index key).
@@ -139,11 +158,6 @@ $ make load_initial php=php5.6
 
 __TIP:__ See all the [Make commands](../make-shortcuts.md), that certainly will help you.
 
-Remember to create the `uploads` directory:
-```
-mkdir uploads/
-```
-
 Remember that the directories below needs to have write permissions from apache:
 ```
 sudo chgrp www-data -R app/logs
@@ -156,7 +170,7 @@ chmod -R 0775 uploads
 
 And now run all the tests to see if all is doing ok:
 ```
-make test
+$ make test
 ```
 
 If you want to test the instalation, run this command:
@@ -166,7 +180,7 @@ $ make runserver
 
 ```
 
-and now access the address `http://YOUR_IP_SERVER:8000/`. If you see the login page, means that you made all right!
+And now access the address `http://YOUR_IP_SERVER:8000/`. If you see the login page, means that you made all right!
 
 
 Configuring the Apache2 to serve Proethos2
@@ -236,11 +250,64 @@ mailer_password: null
 For more informations about email setup, access http://symfony.com/doc/2.7/email.html.
 If ProEthos platform is not sending e-mails after the instructions above, please, see the issue [#354](https://github.com/bireme/proethos2/issues/354)
 
+Oauth2 authentication (Azure AD)
+--------------------------------
+
+Create the `.env` file:
+
+```
+$ touch .env
+```
+
+Open the `.env` file and add/change these parameters, according to your Azure app configuration (Tenant ID, Client ID and Client Secret):
+
+```
+AZURE_TENANT_ID: ??????????
+AZURE_CLIENT_ID: ??????????
+AZURE_CLIENT_SECRET: ??????????
+
+```
+
+__NOTES:__
+- This setting is mandatory only if you chose `oauth2` as `auth_type` during installation (confirm in `app/config/parameters.yml`)
+- For the first access, is required to create the admin user and delegate their roles. See the page [How to delegate user roles on the first access using Oauth2](how-to-delegate-user-roles-on-the-first-access-using-oauth2.md)
+
+Encryption keys (required if ProEthos2 >= 1.6.0)
+------------------------------------------------
+
+Generate the `private_key`:
+
+```
+$ php -r 'echo base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES)) . PHP_EOL; ?>'
+```
+
+Generate the `index_key`:
+
+```
+$ php -r 'echo base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES)) . PHP_EOL; ?>'
+```
+
+Copy the keys, go to `app/config/parameters.yml` and add/change these parameters:
+
+```
+private_key: ??????????
+index_key: ??????????
+
+```
+
+Run this command to refresh the settings:
+
+```
+$ make update
+
+```
+
+__NOTE:__ In case of updating a previous installation, it is necessary to apply the encryption patch to the database. See the page [How to apply the encryption patch to the database](how-to-apply-the-encryption-patch-to-the-database.md)
+
 Adding routines to crontab
 --------------------------
 
 See the page [How to add routines in crontab](how-to-add-routines-in-crontab.md).
-
 
 Other configurations and customizations
 ---------------------------------------
@@ -250,7 +317,6 @@ The system comes with pre-stablished configuration. But, if you want to change o
 To create the admin user using ProEthos2 default authentication, see the page [How to create the admin user](how-to-create-the-admin-user.md)
 
 __NOTE:__ As of version 1.5.0, there have been major changes in the system (oauth2 authentication and database encryption) that require further configuration adjustments. If you want to use a system version with fewer features, but with easier installation, just install any release <= 1.4.0
-
 
 That's it!
 
