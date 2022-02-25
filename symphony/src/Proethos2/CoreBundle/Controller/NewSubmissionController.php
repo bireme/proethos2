@@ -1532,6 +1532,14 @@ class NewSubmissionController extends Controller
             }
             $revisions[] = $item;
 
+            $text = $translator->trans('PAHO Unit');
+            $item = array('text' => $text, 'status' => true);
+            if(empty($submission->getPahoUnit())) {
+                $item = array('text' => $text, 'status' => false);
+                $final_status = false;
+            }
+            $revisions[] = $item;
+
             $text = $translator->trans('Funding Source');
             $item = array('text' => $text, 'status' => true);
             if(empty($submission->getFundingSource())) {
