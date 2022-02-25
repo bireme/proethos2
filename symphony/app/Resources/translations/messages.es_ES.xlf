@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-02-17T01:35:14Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2022-02-25T13:29:03Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -80,15 +80,15 @@
       </trans-unit>
       <trans-unit id="a473bc4a280b36a39bf82f587caa9ba097d77971" resname="Activity created with success.">
         <source>Activity created with success.</source>
-        <target>Activity created with success.</target>
+        <target>Activity created successfully.</target>
       </trans-unit>
       <trans-unit id="8fbfdacd78973894a420a13874c0d96483dd07e2" resname="Activity deleted with success.">
         <source>Activity deleted with success.</source>
-        <target>Activity deleted with success.</target>
+        <target>Activity successfully deleted.</target>
       </trans-unit>
       <trans-unit id="8a8308748f6fa0b92cd7515efe625e4b79380992" resname="Activity updated with success.">
         <source>Activity updated with success.</source>
-        <target>Activity updated with success.</target>
+        <target>Activity successfully updated.</target>
       </trans-unit>
       <trans-unit id="61cc55aa0453184734c3fa0b621eda6fa874bd83" resname="Add">
         <source>Add</source>
@@ -208,7 +208,7 @@
       </trans-unit>
       <trans-unit id="875e271607d431fe62a7af9ec0e009f087ae3cdd" resname="Attached Files">
         <source>Attached Files</source>
-        <target>Archivos adjuntos</target>
+        <target>Adjuntar archivos</target>
       </trans-unit>
       <trans-unit id="6e89f4e5fd8a00366a1ce436153a6bcc3f939578" resname="Authentication type not valid">
         <source>Authentication type not valid</source>
@@ -288,7 +288,7 @@
       </trans-unit>
       <trans-unit id="79b3d2121da50bcf4bb954b4c3e8b821da058fef" resname="Comment was created with success.">
         <source>Comment was created with success.</source>
-        <target>Comment was created with success.</target>
+        <target>Comment was successfully created.</target>
       </trans-unit>
       <trans-unit id="f43dba5677dfd5e3e6793095b56bfab6f533b68f" resname="Committee">
         <source>Committee</source>
@@ -344,7 +344,7 @@
       </trans-unit>
       <trans-unit id="210a39e4784afc8e24d9a33930a903c63ed1c22f" resname="Contacts updated with success.">
         <source>Contacts updated with success.</source>
-        <target>Contacts updated with success.</target>
+        <target>Contacts successfully updated.</target>
       </trans-unit>
       <trans-unit id="4f9be057f0ea5d2ba72fd2c810e8d7b9aa98b469" resname="Content">
         <source>Content</source>
@@ -632,7 +632,7 @@
       </trans-unit>
       <trans-unit id="86c8dc33250a9cfdbb164a6b52e2712adf345c87" resname="Fifth step saved with success.">
         <source>Fifth step saved with success.</source>
-        <target>Fifth step saved with success.</target>
+        <target>Fifth step successfully saved.</target>
       </trans-unit>
       <trans-unit id="2c3cafa4db3f3e1e51b3dff4303502dbe42b7a89" resname="File">
         <source>File</source>
@@ -652,7 +652,7 @@
       </trans-unit>
       <trans-unit id="429cb83fb83160c1eacc97d001b80d0930b15ee8" resname="File removed with success.">
         <source>File removed with success.</source>
-        <target>File removed with success.</target>
+        <target>File successfully removed.</target>
       </trans-unit>
       <trans-unit id="014776fef86e430eda7cf9fc73a0619d4870f73e" resname="File submission">
         <source>File submission</source>
@@ -660,7 +660,7 @@
       </trans-unit>
       <trans-unit id="647519f4a3c1523cb00f8ce1fa2221e927a5c4f0" resname="File uploaded with success.">
         <source>File uploaded with success.</source>
-        <target>File uploaded with success.</target>
+        <target>File successfully uploaded.</target>
       </trans-unit>
       <trans-unit id="a9660077b2bf17b83d5eb8b6dcc2a608c2102572" resname="Final Revision">
         <source>Final Revision</source>
@@ -684,7 +684,7 @@
       </trans-unit>
       <trans-unit id="e6aa62241a28ff638a1f8e537203ff4d5f651876" resname="First step saved with success.">
         <source>First step saved with success.</source>
-        <target>First step saved with success.</target>
+        <target>First step successfully saved.</target>
       </trans-unit>
       <trans-unit id="a774409a00c21de377cf8ed5c6a56b8547973042" resname="Flag">
         <source>Flag</source>
@@ -704,7 +704,7 @@
       </trans-unit>
       <trans-unit id="e43268269e7edeb3cfcac1024e0ff4c1cb9363a6" resname="Fourth step saved with success.">
         <source>Fourth step saved with success.</source>
-        <target>Fourth step saved with success.</target>
+        <target>Fourth step successfully saved.</target>
       </trans-unit>
       <trans-unit id="44389f6a466eaabf5c1db729e369511134e2b03b" resname="French">
         <source>French</source>
@@ -1254,9 +1254,9 @@
         <source>Outcomes</source>
         <target>Resultados</target>
       </trans-unit>
-      <trans-unit id="e97ea05573e67539b6b4d2bfbcec5e5fbe601044" resname="PAHO Unit">
-        <source>PAHO Unit</source>
-        <target>PAHO Unit</target>
+      <trans-unit id="93c75e6dea003c40d5fe21818e035bdfc157fb6e" resname="PAHO Department">
+        <source>PAHO Department</source>
+        <target>Departamento de la OPS</target>
       </trans-unit>
       <trans-unit id="5ef849c72cc4d216fc7f81d5be20df7369d797a0" resname="Pan American Health Organization, 2013. All rights reserved.">
         <source>Pan American Health Organization, 2013. All rights reserved.</source>
@@ -1277,6 +1277,10 @@
       <trans-unit id="58e560f56b367ca7ebfe67edb43ea3397b28a406" resname="Passwords don't match.">
         <source>Passwords don't match.</source>
         <target>Las contraseñas no coinciden.</target>
+      </trans-unit>
+      <trans-unit id="7b3221a8dfe25e905630f70a89e7c84e6f807223" resname="Past meetings">
+        <source>Past meetings</source>
+        <target>Past meetings</target>
       </trans-unit>
       <trans-unit id="5c84308509269e1f27a380b053ebbdb7825435df" resname="Please submit at least one clinical study activity">
         <source>Please submit at least one clinical study activity</source>
@@ -1348,7 +1352,7 @@
       </trans-unit>
       <trans-unit id="60618464d0e228199bb5056dcd89efa413f1c209" resname="Protocol checklist updated with success.">
         <source>Protocol checklist updated with success.</source>
-        <target>Protocol checklist updated with success.</target>
+        <target>Protocol checklist updated.</target>
       </trans-unit>
       <trans-unit id="d80090c23fb5ce21ada4e04d747c32da5a0ec75c" resname="Protocol code">
         <source>Protocol code</source>
@@ -1376,7 +1380,7 @@
       </trans-unit>
       <trans-unit id="f417fd0e63f97067b9c90c8f783710736870d3b2" resname="Protocol submitted with success!">
         <source>Protocol submitted with success!</source>
-        <target>Protocol submitted with success!</target>
+        <target>Protocol successfully submitted!</target>
       </trans-unit>
       <trans-unit id="890d8149df67798f79ecd13beaacdc815b30c201" resname="Protocol updated with success!">
         <source>Protocol updated with success!</source>
@@ -1648,7 +1652,7 @@
       </trans-unit>
       <trans-unit id="74453d8d1933ee6bbcb1602df730b0cd1e8b7fb2" resname="Second step saved with success.">
         <source>Second step saved with success.</source>
-        <target>Second step saved with success.</target>
+        <target>Second step successfully saved.</target>
       </trans-unit>
       <trans-unit id="bd52d5e0a933dcdd7cffc46f94402e939a2635f2" resname="Secondary Registry">
         <source>Secondary Registry</source>
@@ -1765,7 +1769,7 @@
       </trans-unit>
       <trans-unit id="da581f85e0b26a16cba2c19d07dc95d9cdc81d4f" resname="Sixth step saved with success.">
         <source>Sixth step saved with success.</source>
-        <target>Sixth step saved with success.</target>
+        <target>Sixth step successfully saved.</target>
       </trans-unit>
       <trans-unit id="ebc53bf2b48ba5c9a92abced07c57ae6fce40fe6" resname="Social Value">
         <source>Social Value</source>
@@ -1893,7 +1897,7 @@
       </trans-unit>
       <trans-unit id="f7aa244befd5f0608d69214b90bbdd3cd00b3b82" resname="Third step saved with success.">
         <source>Third step saved with success.</source>
-        <target>Third step saved with success.</target>
+        <target>Third step successfully saved.</target>
       </trans-unit>
       <trans-unit id="78fc494c31475a7f17fdbe46eac1691d1ae706d1" resname="This is a migrated protocol. You can edit some informations.">
         <source>This is a migrated protocol. You can edit some informations.</source>

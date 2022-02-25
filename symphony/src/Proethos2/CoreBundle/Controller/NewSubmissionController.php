@@ -1532,7 +1532,7 @@ class NewSubmissionController extends Controller
             }
             $revisions[] = $item;
 
-            $text = $translator->trans('PAHO Unit');
+            $text = $translator->trans('PAHO Department');
             $item = array('text' => $text, 'status' => true);
             if(empty($submission->getPahoUnit())) {
                 $item = array('text' => $text, 'status' => false);
