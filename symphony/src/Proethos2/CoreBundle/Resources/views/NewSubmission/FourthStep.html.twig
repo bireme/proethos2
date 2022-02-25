@@ -119,7 +119,7 @@
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="input-paho-unit">{% trans %}PAHO Unit{% endtrans %}:</label>
                                 <input type="text" class="form-control" placeholder="" id='input-paho-unit' name='paho-unit' value='{{ submission.pahoUnit }}'>
                             </div>
@@ -331,6 +331,14 @@
 
         $(function(){
             $('#form-fourth').on('submit', function(e) {
+                if ( !$('#input-paho-unit').val() ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#input-paho-unit');
+                    return false;
+                }
+
                 if ( !$('#textarea-funding-source').val() ) {
                     // cancel submit
                     e.preventDefault();
