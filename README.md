@@ -24,7 +24,20 @@ Las instituciones deben descargar su versión segura de ProEthos en su propio se
 
 La OPS/BIREME no brinda soporte técnico individualizado a las instituciones que instalan ProEthos, pero realiza actualizaciones periódicas para corregir errores y mejorar la usabilidad. Se pueden publicar preguntas y/o comentar errores en la red de usuarios de ProEthos, específicamente en el [foro de problemas de GitHub](https://github.com/bireme/proethos2/issues) (que incluye respuestas a muchas preguntas frecuentes sobre la instalación).
 
-Por favor, visite el sitio de ProEthos de la OPS para una descripción más detallada de la plataforma, [videos tutoriales](https://www.youtube.com/watch?v=PABUusmbqcM) y preguntas frecuentes: https://www.paho.org/en/bioethics/proethos
+Por favor, visite el sitio de ProEthos de la OPS para una descripción más detallada de la plataforma, [videos tutoriales](https://www.youtube.com/watch?v=PABUusmbqcM) y preguntas frecuentes: https://www.paho.org/es/bioetica/proethos
+
+Bem-vindo ao repositório ProEthos da OPAS!
+==========================================
+
+O ProEthos é uma plataforma baseada na web para a revisão ética da pesquisa com seres humanos. Desenvolvido pela Organização Pan-Americana da Saúde (OPAS) e pelo Centro Latino-Americano e do Caribe de Informação em Ciências da Saúde (BIREME) em colaboração com a Pontifícia Universidade Católica do Paraná (Brasil), o ProEthos visa melhorar a qualidade do processo de revisão ética, aumentando as proteções para os participantes da pesquisa.
+
+O ProEthos permite que pesquisadores enviem seus estudos para revisão ética eletronicamente. Os comitês então revisam os protocolos com a ajuda de ferramentas e processos integrados à plataforma. Eles também podem monitorar estudos aprovados, reportar a entidades externas e alimentar registros de ensaios clínicos.
+
+As instituições devem baixar sua própria versão segura do ProEthos para seu próprio servidor ou servidor baseado em nuvem (instruções e código detalhados abaixo). Isso dá às instituições controle total sobre seus usuários e dados, além da capacidade de modificar a plataforma ou integrá-la a outros sistemas conforme necessário.
+
+A OPAS/BIREME não oferece suporte técnico individualizado às instituições que instalam o ProEthos, mas lança atualizações periódicas para corrigir bugs e melhorar a usabilidade. Perguntas e/ou bugs podem ser postados na rede de usuários do ProEthos no [fórum de problemas do GitHub](https://github.com/bireme/proethos2/issues) (que inclui respostas para muitas perguntas comuns de instalação).
+
+Visite o site ProEthos da OPAS para obter uma descrição mais detalhada da plataforma, [vídeos tutoriais](https://www.youtube.com/watch?v=PABUusmbqcM) e perguntas frequentes: https://www.paho.org/es/bioetica/proethos
 
 Links
 -----
