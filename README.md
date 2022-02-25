@@ -3,7 +3,7 @@
 Welcome to PAHO's ProEthos repository!
 ======================================
 
-ProEthos is a web-based platform for the ethics review of human subjects research. Developed by the Pan American Health Organization (PAHO) and the Latin American and Caribbean Center on Health Sciences Information (BIREME) in collaboration with the Pontifical Catholic University of Paraná (Brazil), ProEthos aims to improve the quality of the ethics review process, ultimately enhancing protections for research participants.
+ProEthos is a web-based platform for the ethics review of human subjects research. Developed by the Pan American Health Organization (PAHO) and the Latin American and Caribbean Center on Health Sciences Information (BIREME) in collaboration with the Pontifical Catholic University of Paraná (PUCPR), ProEthos aims to improve the quality of the ethics review process, ultimately enhancing protections for research participants.
 
 ProEthos allows researchers to submit their studies to for ethics review electronically. Committees then review protocols with the help of tools and processes built into the platform. They can also monitor approved studies, report to external entities, and feed clinical trial registries.
 
@@ -13,10 +13,10 @@ PAHO/BIREME does not offer individualized technical support to institutions that
 
 Please visit PAHO's ProEthos site for a more detailed description of the platform, [introductory videos](https://www.youtube.com/watch?v=-Y6ja2zcU0g) and FAQs: https://www.paho.org/en/bioethics/proethos
 
-¡Bienvenido al repositorio digital ProEthos de la OPS!
-======================================================
+¡Bienvenido al repositorio ProEthos de la OPS!
+==============================================
 
-ProEthos es una plataforma web para la revisión ética de la investigación con seres humanos. Desarrollado por la Organización Panamericana de la Salud (OPS) y el Centro Latinoamericano y del Caribe de Información en Ciencias de la Salud (BIREME) en colaboración con la Pontificia Universidad Católica de Paraná (Brasil), ProEthos busca mejorar la calidad del proceso de revisión ética, y, por último, reforzar las protecciones para los participantes en investigaciones.
+ProEthos es una plataforma web para la revisión ética de la investigación con seres humanos. Desarrollado por la Organización Panamericana de la Salud (OPS) y el Centro Latinoamericano y del Caribe de Información en Ciencias de la Salud (BIREME) en colaboración con la Pontificia Universidad Católica de Paraná (PUCPR), ProEthos busca mejorar la calidad del proceso de revisión ética, y, por último, reforzar las protecciones para los participantes en investigaciones.
 
 ProEthos permite a los investigadores presentar sus estudios en línea para su revisión ética. Luego, los comités revisan los protocolos con la ayuda de herramientas y procesos integrados en la plataforma. También pueden supervisar los estudios aprobados, informar a entidades externas y alimentar los registros de ensayos clínicos.
 
@@ -29,7 +29,7 @@ Por favor, visite el sitio de ProEthos de la OPS para una descripción más deta
 Bem-vindo ao repositório ProEthos da OPAS!
 ==========================================
 
-O ProEthos é uma plataforma baseada na web para a revisão ética da pesquisa com seres humanos. Desenvolvido pela Organização Pan-Americana da Saúde (OPAS) e pelo Centro Latino-Americano e do Caribe de Informação em Ciências da Saúde (BIREME) em colaboração com a Pontifícia Universidade Católica do Paraná (Brasil), o ProEthos visa melhorar a qualidade do processo de revisão ética, aumentando as proteções para os participantes da pesquisa.
+O ProEthos é uma plataforma baseada na web para a revisão ética da pesquisa com seres humanos. Desenvolvido pela Organização Pan-Americana da Saúde (OPAS) e pelo Centro Latino-Americano e do Caribe de Informação em Ciências da Saúde (BIREME) em colaboração com a Pontifícia Universidade Católica do Paraná (PUCPR), o ProEthos visa melhorar a qualidade do processo de revisão ética, aumentando as proteções para os participantes da pesquisa.
 
 O ProEthos permite que pesquisadores enviem seus estudos para revisão ética eletronicamente. Os comitês então revisam os protocolos com a ajuda de ferramentas e processos integrados à plataforma. Eles também podem monitorar estudos aprovados, reportar a entidades externas e alimentar registros de ensaios clínicos.
 
