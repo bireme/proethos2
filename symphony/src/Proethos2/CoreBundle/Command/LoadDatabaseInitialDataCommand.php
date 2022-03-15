@@ -58,6 +58,7 @@ class LoadDatabaseInitialDataCommand extends ContainerAwareCommand
             'help',
             'faq',
             'ext_translations',
+            'config',
         );
 
         if($input->getOption('update') != true) {
