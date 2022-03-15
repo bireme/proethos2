@@ -1,29 +1,26 @@
-PROETHOS2 application update via git
-------------------------------
+PROETHOS2 application update
+----------------------------
 
-Access directory 
-	htdocs/git/symphony/
-	
+Access the directory `htdocs/git/symphony/`
 
-Execute the following commands
+    $ cd htdocs/git/symphony/
 
-    git checkout master
-    git status [check the current state of the repository]
-    git pull
+Execute the following commands:
 
-to compile and update application
+    $ git checkout master
+    $ git status [check the current state of the repository]
+    $ git pull
 
-Execute
+To compile and update the application, execute the following command:
 
-	make update
+    $ make update
 
-If is installed in php 5.6
+To update the database, execute the following command:
 
-Execute   
+    $ make load_initial --update
 
-	make update php = php5.6
+Lastly:
 
-Lastly
-
-	Restart apache webserver
- 
+    $ service apache2 restart
+    or
+    $ systemctl restart apache2
