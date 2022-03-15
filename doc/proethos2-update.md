@@ -17,7 +17,7 @@ To compile and update the application, execute the following command:
 
 To update the database, execute the following command:
 
-    $ make load_initial --update
+    $ make update_initial
 
 Lastly:
 
