@@ -22,7 +22,6 @@ $ sudo apt-get install -y openssh-server make unzip
 ```
 $ git config --global user.name "Your github name"
 $ git config --global user.email yourgithub@email.com
-
 ```
 
 ### Install Apache2
@@ -59,7 +58,6 @@ exit
 ```
 $ sudo apt update
 $ sudo apt install -y libapache2-mod-php php-mysql php-gd phpunit php-curl
-
 ```
 
 
@@ -70,7 +68,6 @@ $ cd ~ && curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
 $ HASH=`curl -sS https://composer.github.io/installer.sig`
 $ php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 $ sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
-
 ```
 
 
@@ -82,7 +79,6 @@ This lib is used to generate the PDF files.
 ```
 $ cd ~ && wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb
 $ sudo apt install ./wkhtmltox_0.12.6-1.focal_amd64.deb
-
 ```
 
 __NOTE:__ For lastest Ubuntu versions, access [here](https://wkhtmltopdf.org/downloads.html) to download the correct package for your installation.
@@ -101,9 +97,9 @@ $ git clone https://github.com/bireme/proethos2.git proethos2
 ```
 
 Now, we have to install all the software dependencies and the software as well:
-(It can take some minutes)
+(It can take some minutes, if it takes very long time make sure you installed php-curl & unzip packages.)
 
-Before installing the dependencies using composer generate your private and index keys for encryption. 
+Before installing the dependencies using composer generate your `privat`e and `index keys` for encryption. 
 After generating copy the keys, you'll past them when prompted on the installation process.
 
 ```
