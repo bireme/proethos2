@@ -25,4 +25,5 @@ or
 $ php app/console proethos2:sanitize-sensitive-data -r
 ```
 
-__NOTE:__ It is highly recommended to backup the database before running these commands.
+__NOTE 1:__ It is highly recommended to backup the database before running these commands.
+__NOTE 2:__ For the command to work correctly, it is necessary to generate and configure the encryption keys (click [here](how-to-install-proethos2-in-ubuntu.md#encryption-keys-required-if-proethos2--160) to find out how to apply the encryption keys)

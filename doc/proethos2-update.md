@@ -24,3 +24,5 @@ Lastly:
     $ service apache2 restart
     or
     $ systemctl restart apache2
+
+__NOTE:__ In case of updating a previous installation, it is necessary to apply the encryption patch to the database. See the page [How to apply the encryption patch to the database](how-to-apply-the-encryption-patch-to-the-database.md)
