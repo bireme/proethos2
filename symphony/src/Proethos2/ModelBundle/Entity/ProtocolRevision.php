@@ -36,9 +36,13 @@ class ProtocolRevision extends Base
      */
     private $id;
 
-    /** 
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="members") 
-     */ 
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="member_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @Assert\NotBlank
+     */
     private $member;
 
     /**

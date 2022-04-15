@@ -1720,7 +1720,7 @@ class NewSubmissionController extends Controller
                         $body = $util->linkify($body);
 
                         $secretaries_emails = array();
-                        foreach($user_repository->findAll() as $secretary) {
+                        foreach($user_repository->findByIsActive(true) as $secretary) {
                             if(in_array("secretary", $secretary->getRolesSlug())) {
                                 $secretaries_emails[] = $secretary->getEmail();
                             }
@@ -1783,7 +1783,7 @@ class NewSubmissionController extends Controller
                         $body = $util->linkify($body);
 
                         $secretaries_emails = array();
-                        foreach($user_repository->findAll() as $secretary) {
+                        foreach($user_repository->findByIsActive(true) as $secretary) {
                             if(in_array("secretary", $secretary->getRolesSlug())) {
                                 $secretaries_emails[] = $secretary->getEmail();
                             }
