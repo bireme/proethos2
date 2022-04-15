@@ -66,6 +66,15 @@
             </div>
         </div>
 
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <h5>{% trans %}Roles{% endtrans %}:</h5>
+                    {{ app.user.rolesName|join(', ') }}
+                </div>
+            </div>
+        </div>
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
