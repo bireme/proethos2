@@ -197,7 +197,7 @@ class SecurityController extends Controller
 
                         // Send email to the secretaries
                         $secretaries_emails = array();
-                        foreach($user_repository->findAll() as $secretary) {
+                        foreach($user_repository->findByIsActive(true) as $secretary) {
                             if(in_array('secretary', $secretary->getRolesSlug())) {
                                 $secretaries_emails[] = $secretary->getEmail();
                             }
@@ -752,7 +752,7 @@ class SecurityController extends Controller
 
             // send email to the secretaries
             $secretaries_emails = array();
-            foreach($user_repository->findAll() as $secretary) {
+            foreach($user_repository->findByIsActive(true) as $secretary) {
                 if(in_array('secretary', $secretary->getRolesSlug())) {
                     $secretaries_emails[] = $secretary->getEmail();
                 }

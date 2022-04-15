@@ -119,7 +119,7 @@ class MonitoringController extends Controller
                 // $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
                 //
                 // $recipients = array();
-                // foreach($user_repository->findAll() as $secretary) {
+                // foreach($user_repository->findByIsActive(true) as $secretary) {
                 //     if(in_array("secretary", $secretary->getRolesSlug())) {
                 //         $recipients[] = $secretary;
                 //     }
@@ -330,7 +330,7 @@ class MonitoringController extends Controller
             $body = $util->linkify($body);
 
             $recipients = array();
-            foreach($user_repository->findAll() as $secretary) {
+            foreach($user_repository->findByIsActive(true) as $secretary) {
                 if(in_array("secretary", $secretary->getRolesSlug())) {
                     $recipients[] = $secretary;
                 }
