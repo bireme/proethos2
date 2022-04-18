@@ -149,9 +149,24 @@ class SecurityController extends Controller
                         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
                         // $role_repository = $em->getRepository('Proethos2ModelBundle:Role');
 
+                        $displayName = preg_replace('/\([^)]*\)/', '', $data['displayName']); // removes text within parentheses
+                        $displayName = preg_replace('/[^A-Za-z0-9 ]/', '', $displayName); // removes special chars
+                        $displayName = trim($displayName); // removes whitespace from both sides of string
+                        $displayName = explode(' ', trim($displayName), 2);
+
+                        if ( $data['givenName'] ) {
+                            $givenName = explode(' ', $data['givenName']);
+                        } else {
+                            $givenName = explode(' ', $displayName[1]);
+                        }
+
+                        if ( $data['surname'] ) {
+                            $surname = end(explode(' ', $data['surname']));
+                        } else {
+                            $surname = end(explode(' ', $displayName[0]));
+                        }
+                        
                         $slugify = new Slugify();
-                        $givenName = explode(' ', $data['givenName']);
-                        $surname = end(explode(' ', $data['surname']));
                         $username = $slugify->slugify($surname.$givenName[0]);
                         $username = ( strlen($surname) > 7 ) ? $slugify->slugify($surname) : substr($username, 0, 8);
                         
