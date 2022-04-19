@@ -165,6 +165,11 @@ class SecurityController extends Controller
                         } else {
                             $surname = end(explode(' ', $displayName[0]));
                         }
+
+                        if ( !$givenName || !$surname ) {
+                            $output['error'] = $translator->trans("Invalid login.");
+                            return $output;
+                        }
                         
                         $slugify = new Slugify();
                         $username = $slugify->slugify($surname.$givenName[0]);
