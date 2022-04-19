@@ -81,6 +81,7 @@ footer {
 }
 .search-button {
     margin-top: 25px;
+    white-space: normal;
 }
 #pagination {
     text-align: center;
