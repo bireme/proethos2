@@ -42,6 +42,14 @@ class SanitizeSensitiveDataCommand extends ContainerAwareCommand
     {
         $em = $this->getContainer()->get('doctrine')->getEntityManager();
 
+        $private_key = $this->container->getParameter('private_key');
+        $index_key = $this->container->getParameter('index_key');
+
+        if ( !$private_key or !$index_key ) {
+            print "-- [ERROR] The private_key and index_key are required in the parameters.yml file --\n";
+            exit;
+        }
+
         $database_host = $this->getContainer()->getParameter('database_host');
         $database_port = $this->getContainer()->getParameter('database_port');
         $database_name = $this->getContainer()->getParameter('database_name');
