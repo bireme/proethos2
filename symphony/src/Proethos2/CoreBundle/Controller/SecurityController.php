@@ -183,12 +183,17 @@ class SecurityController extends Controller
                         }
 
                         $user = new User();
-                        $user->setName($data['givenName'].' '.$data['surname']);
                         $user->setUsername($username);
                         $user->setEmail($email);
                         $user->setInstitution(NULL);
                         $user->setFirstAccess(false);
                         $user->setIsActive(false);
+
+                        if ( $data['givenName'] && $data['surname'] ) {
+                            $user->setName($data['givenName'].' '.$data['surname']);
+                        } else {
+                            $user->setName($displayName[1].' '.$displayName[0]);
+                        }
 
                         // adding user role
                         // $user->addProethos2Role($role_repository->findOneBy(array('slug' => 'investigator')));
