@@ -97,11 +97,11 @@ $ git clone https://github.com/bireme/proethos2.git proethos2
 
 Now, we have to install all the software dependencies and the software as well (it can take some minutes, if it takes very long time make sure you installed `php-curl` and `unzip` packages).
 
-Before installing the dependencies using composer generate your `private_key` and `index_key` for encryption. After generating copy the keys, you'll past them when prompted on the installation process:
+Before installing the dependencies using Composer, generate the `private_key` and `index_key` for encryption. After generating copy the keys, you'll past them when prompted on the installation process:
 
 ```
-$ php -r 'echo base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES)) . PHP_EOL; ?>'
-$ php -r 'echo base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES)) . PHP_EOL; ?>'
+$ php -r 'echo base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES)) . PHP_EOL; ?>' # private_key
+$ php -r 'echo base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES)) . PHP_EOL; ?>' # index_key
 ```
 
 Install Proethos2 dependencies:
