@@ -1,16 +1,12 @@
-How to install Proethos2 in Ubuntu 14.04 LTS
+How to install Proethos2 in Ubuntu 20.04 LTS
 ============================================
 
-This document will help you how install Proethos2 platform in a Ubuntu Server 16.04 standard installation.
+This document will help you how install Proethos2 platform in a Ubuntu Server 20.04 standard installation.
 
 Remember some tips:
-- We STRONGLY recommend that you use Proethos2 in a Linux Server;
-- We recommend that you use Proethos2 in Ubuntu Server;
-- We STRONGLY recommend that you use Proethos2 in dedicated server. Nowadays it's possible with virtualization, docker,
-and other tools;
-- This manual will help you under this conditions.
-
-(colocar notas sobre funcionamento de versiones PHP, MySQL)
+- We STRONGLY recommend that you use Proethos2 in a GNU Linux Server, Debian distro such as Ubuntu;
+- This manual a step-by-step guide on installing Proethos2 on an Ubuntu Server 20.04.4 LTS version.
+- It's recomended that you have a sudo'er account to accomplish most of the tasks.
 
 Dependencies
 ------------
@@ -18,95 +14,75 @@ Dependencies
 ### Dependencies that every Ubuntu instalation should have.
 
 ```
-$ sudo apt-get install -y vim openssh-server make   
+$ sudo apt-get install -y openssh-server make unzip   
 ```
 
-### Git
+### Configure Git
 
 ```
-$ sudo apt-get update
-$ sudo apt-get install -y git
 $ git config --global user.name "Your github name"
 $ git config --global user.email yourgithub@email.com
-
 ```
 
-### Apache2
+### Install Apache2
 
 ```
-$ sudo apt-get install -y apache2
-$ sudo a2enmod rewrite
-
+$ sudo apt update
+$ sudo apt install -y apache2 
 ```
 
-### PHP
-
-```
-$ sudo apt-get install -y curl php php-cli php-mysql libapache2-mod-php php-mcrypt php-gd phpunit
-
-```
-
-### Sodium (required if PHP < 7.2)
-
-```
-$ sudo apt-get install -y libsodium libsodium-dev php-sodium php-libsodium
-```
-
-Alternative:
-
-```
-$ sudo apt-get install -y php-pear
-$ sudo pecl install -f libsodium
-$ sudo echo "extension = sodium.so" > /etc/php/7.2/mods-available/sodium.ini
-$ sudo phpenmod sodium
-
-```
-
-__NOTE:__ Do not install if PHP >= 7.2, because this library has become a core extension in PHP.
-
-### MySQL
+### Install MySQL
 
 The next command block is to install MySQL server and to configure it.
 
 ```
-$ sudo apt-get install -y mysql-server libapache2-mod-auth-mysql
+$ sudo apt update
+$ sudo apt install -y mysql-server
 $ sudo mysql_secure_installation
 $ sudo mysql_install_db
-
 ```
 
-Now, we have to create the user and database that proethos2 will have access.
-Type `mysql -uroot -p` and then type the following codes:
+Now, we have to create a user and a database that proethos2 will have access to.
+Type `sudo mysql` and then type the following codes:
 
 ```
 CREATE USER 'proethos2'@'localhost' IDENTIFIED BY 'choose_a_password!';
 CREATE DATABASE proethos2;
 GRANT ALL PRIVILEGES ON proethos2.* to proethos2@localhost;
+exit
+```
+
+
+### PHP
 
 ```
+$ sudo apt update
+$ sudo apt install -y libapache2-mod-php php-mysql php-gd phpunit php-curl
+```
+
 
 ### Composer
 
 ```
-$ cd /tmp
-$ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
-
+$ cd ~ && curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+$ HASH=`curl -sS https://composer.github.io/installer.sig`
+$ php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+$ sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 ```
+
+
 
 ### wkhtmltopdf
 
 This lib is used to generate the PDF files.
 
 ```
-$ cd /tmp
-$ wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.2.1/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
-$ sudo dpkg --install wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
-$ sudo apt-get --yes --fix-broken install
-$ sudo dpkg --install wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
-
+$ cd ~ && wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb
+$ sudo apt install ./wkhtmltox_0.12.6-1.focal_amd64.deb
 ```
 
 __NOTE:__ For lastest Ubuntu versions, access [here](https://wkhtmltopdf.org/downloads.html) to download the correct package for your installation.
+
 
 Creating the file structure and install Proethos2
 -------------------------------------------------
@@ -114,17 +90,27 @@ Creating the file structure and install Proethos2
 We have to create the file structure and download the code:
 
 ```
-$ mkdir -p project/proethos2
-$ cd project/proethos2
-$ git clone https://github.com/bireme/proethos2.git git
+$ mkdir -p proethos2
+$ cd proethos2
+$ git clone https://github.com/bireme/proethos2.git proethos2
 
 ```
 
 Now, we have to install all the software dependencies and the software as well:
-(It can take some minutes)
+(It can take some minutes, if it takes very long time make sure you installed php-curl & unzip packages.)
+
+Before installing the dependencies using composer generate your `privat`e and `index keys` for encryption. 
+After generating copy the keys, you'll past them when prompted on the installation process.
 
 ```
-$ cd project/proethos2/git/symphony
+$ php -r 'echo base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES)) . PHP_EOL; ?>'
+$ php -r 'echo base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES)) . PHP_EOL; ?>'
+```
+
+Install Proethos2 dependencies 
+
+```
+$ cd proethos2/symphony
 $ composer install
 
 ```
@@ -143,6 +129,8 @@ In the middle of process, you will be questioned by this questions below:
 - `secret (ThisTokenIsNotSoSecretChangeIt):` Choose an secret token for your application.
 - `private_key (null):` Fill in with the private key for database encryption (click [here](how-to-install-proethos2-in-ubuntu.md#encryption-keys-required-if-proethos2--160) to generate the private key).
 - `index_key (null):` Fill in with the index key for database encryption (click [here](how-to-install-proethos2-in-ubuntu.md#encryption-keys-required-if-proethos2--160) to generate the index key).
+- If you get an error `Warning: "continue" targeting switch is equivalent to "break". Did you mean to use "continue 2"?` run `cd ../tools && chmod a+x fix-doctrine-orm.sh && ./fix-doctrine-orm.sh`
+- Run `composer install` again.
 
 __NOTES:__
 - If the error ```proc_open(): fork failed errors``` occurs during installation, access [here](https://getcomposer.org/doc/articles/troubleshooting.md#proc-open-fork-failed-errors) to fix it.
@@ -151,6 +139,7 @@ __NOTES:__
 Now, we will setup the database and load the initial data:
 
 ```
+$ cd proethos2/symphony
 $ make load_initial
 ```
 
@@ -179,21 +168,30 @@ $ make runserver
 ```
 
 And now access the address `http://YOUR_IP_SERVER:8000/`. If you see the login page, means that you made all right!
+If phpunit isn't or google.analytics isn't set properly, you may get an error page. In this case move to the next page and try to run the application
+from Apache server.
 
 
 Configuring the Apache2 to serve Proethos2
 ------------------------------------------
 
-Now, we will configure the Apache2 to serve the Proethos2 in the 80 port.
+Now, we will configure Apache2 to serve the Proethos2 in the 80 port.
 
-This is a model to you start. Feel free to modify as your needs:
+We need to create and put the apache configuration lines in to `/etc/apache2/sites-available/proethos2.conf`.
+
+Using `nano` of your favorite text editor create a file:
+
+```
+sudo nano /etc/apache2/sites-available/proethos2.conf
+```
+The copy the following text. __Make sure the file path `/home/<username>/proethos2/symphony/web` is properly set__.
 
 ```
 <VirtualHost *:80>
     ServerName www.youraddress.com
 
     ServerAdmin adminemail@localhost
-    DocumentRoot /home/<serveruser>/project/proethos2/git/symphony/web
+    DocumentRoot /home/<username>/proethos2/symphony/web
 
     DirectoryIndex index.php index.html index.htm
 
@@ -210,7 +208,7 @@ This is a model to you start. Feel free to modify as your needs:
 </VirtualHost>
 ```
 
-We need to put this content on `/etc/apache2/sites-available/proethos2.conf`.
+
 Now, we have to disable the default conf that comes with apache2 and add our conf:
 
 ```
@@ -224,9 +222,16 @@ $ sudo service apache2 restart
 Now, we have to give the right permissions to all structure:
 
 ```
-$ cd ~/project/proethos2/git/symphony
+$ cd ~/proethos2/symphony
 $ rm -rf app/cache/*
 $ rm -rf app/logs/*
+```
+
+Now, try accessing your installation by vising your server from a web browser. If you get a login screen, use the following command to 
+create a user with admin privileges.
+
+```
+php app/console proethos2:createsuperuser --email=EMAIL --username=USERNAME --password=PASSWORD
 ```
 
 Software configuration
