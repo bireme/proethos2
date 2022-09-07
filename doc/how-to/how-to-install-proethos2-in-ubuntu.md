@@ -5,7 +5,7 @@ This document will help you how install Proethos2 platform in a Ubuntu Server 20
 
 Remember some tips:
 - We STRONGLY recommend that you use Proethos2 in a GNU Linux Server, Debian distro such as Ubuntu;
-- This manual a step-by-step guide on installing Proethos2 on an Ubuntu Server 20.04.4 LTS version.
+- This manual a step-by-step guide on installing Proethos2 on an Ubuntu Server 20.04.4 LTS version;
 - It's recomended that you have a sudo'er account to accomplish most of the tasks.
 
 Dependencies
@@ -37,7 +37,7 @@ The next command block is to install MySQL server and to configure it.
 
 ```
 $ sudo apt update
-$ sudo apt install -y mysql-server
+$ sudo apt install -y mysql-server libapache2-mod-auth-mysql
 $ sudo mysql_secure_installation
 $ sudo mysql_install_db
 ```
@@ -71,7 +71,6 @@ $ sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=compo
 ```
 
 
-
 ### wkhtmltopdf
 
 This lib is used to generate the PDF files.
@@ -99,7 +98,7 @@ $ git clone https://github.com/bireme/proethos2.git proethos2
 Now, we have to install all the software dependencies and the software as well:
 (It can take some minutes, if it takes very long time make sure you installed php-curl & unzip packages.)
 
-Before installing the dependencies using composer generate your `privat`e and `index keys` for encryption. 
+Before installing the dependencies using composer generate your `private` and `index keys` for encryption. 
 After generating copy the keys, you'll past them when prompted on the installation process.
 
 ```
@@ -129,12 +128,16 @@ In the middle of process, you will be questioned by this questions below:
 - `secret (ThisTokenIsNotSoSecretChangeIt):` Choose an secret token for your application.
 - `private_key (null):` Fill in with the private key for database encryption (click [here](how-to-install-proethos2-in-ubuntu.md#encryption-keys-required-if-proethos2--160) to generate the private key).
 - `index_key (null):` Fill in with the index key for database encryption (click [here](how-to-install-proethos2-in-ubuntu.md#encryption-keys-required-if-proethos2--160) to generate the index key).
-- If you get an error `Warning: "continue" targeting switch is equivalent to "break". Did you mean to use "continue 2"?` run `cd ../tools && chmod a+x fix-doctrine-orm.sh && ./fix-doctrine-orm.sh`
-- Run `composer install` again.
 
 __NOTES:__
 - If the error ```proc_open(): fork failed errors``` occurs during installation, access [here](https://getcomposer.org/doc/articles/troubleshooting.md#proc-open-fork-failed-errors) to fix it.
-- In PHP 7.2+, if the error ```Warning: "continue" targeting switch is equivalent to "break". Did you mean to use "continue 2"?``` occurs during installation, access [here](how-to-fix-error-during-installation.md) to fix it.
+- If you get an error `Warning: "continue" targeting switch is equivalent to "break". Did you mean to use "continue 2"?`, run the following commands:
+```
+$ cd ../tools
+$ chmod a+x fix-doctrine-orm.sh && ./fix-doctrine-orm.sh
+$ cd ../symphony
+$ composer install
+```
 
 Now, we will setup the database and load the initial data:
 
