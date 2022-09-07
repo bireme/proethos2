@@ -169,8 +169,8 @@ $ make runserver
 ```
 
 And now access the address `http://YOUR_IP_SERVER:8000/`. If you see the login page, means that you made all right!
-If phpunit isn't or google.analytics isn't set properly, you may get an error page. In this case move to the next page and try to run the application
-from Apache server.
+
+If `phpunit` isn't or `google.analytics` isn't set properly, you may get an error page. In this case, move to the next page and try to run the application from Apache server.
 
 
 Configuring the Apache2 to serve Proethos2
