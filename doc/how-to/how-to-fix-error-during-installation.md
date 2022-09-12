@@ -10,6 +10,6 @@ This is due to an incompatibility between Doctrine ORM libraries and PHP 7.2+
 To fix it, just run the next commands:
 
 ```
-$ cd ~/project/proethos2/git/tools
+$ cd ~/proethos2/git/tools
 $ ./fix-doctrine-orm.sh
 ```
