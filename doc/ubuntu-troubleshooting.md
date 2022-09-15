@@ -24,7 +24,9 @@ $ composer install
 
    Run the following command to update Composer to version 2.2.9:
 
-    composer self-update 2.2.9
+```
+$ composer self-update 2.2.9
+```
 
 ---
 
@@ -44,7 +46,9 @@ framework:
 
    This error occurs in environment with PHP 8. To fix it, install PHP 7 (or earlier) running the command below:
 
-    $ sudo apt install php php-mysql php-gd php-mbstring php-phar php-cli apache2-mod_php7
+```
+$ sudo apt install php php-mysql php-gd php-mbstring php-phar php-cli apache2-mod_php7
+```
 
 ---
 
@@ -52,4 +56,6 @@ framework:
 
    Install all required Sodium libraries running the following command:
 
-    $ sudo apt install libsodium libsodium-dev php-sodium php-libsodium
+```
+$ sudo apt install libsodium libsodium-dev php-sodium php-libsodium
+```
