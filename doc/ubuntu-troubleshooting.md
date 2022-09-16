@@ -1,5 +1,5 @@
-Troubleshooting (Ubuntu distro)
--------------------------------
+Troubleshooting (Ubuntu)
+------------------------
 
 1. Error `proc_open(): fork failed errors` occurs during installation
 

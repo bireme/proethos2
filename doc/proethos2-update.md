@@ -1,5 +1,9 @@
-PROETHOS2 application update
-----------------------------
+[Español](doc/proethos2-update-es.md)
+
+---
+
+How to update ProEthos2
+-----------------------
 
 Access the directory `htdocs/git/symphony/`
 

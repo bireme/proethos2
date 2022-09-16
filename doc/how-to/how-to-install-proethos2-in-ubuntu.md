@@ -1,3 +1,7 @@
+[Español](doc/how-to/how-to-install-proethos2-in-ubuntu-es.md)
+
+---
+
 How to install Proethos2 in Ubuntu 20.04 LTS
 ============================================
 
@@ -52,14 +56,12 @@ GRANT ALL PRIVILEGES ON proethos2.* to proethos2@localhost;
 exit
 ```
 
-
 ### PHP
 
 ```
 $ sudo apt update
 $ sudo apt install -y libapache2-mod-php php-mysql php-gd phpunit php-curl
 ```
-
 
 ### Composer
 
@@ -69,7 +71,6 @@ $ HASH=`curl -sS https://composer.github.io/installer.sig`
 $ php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 $ sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 ```
-
 
 ### wkhtmltopdf
 
@@ -119,7 +120,7 @@ In the middle of process, you will be questioned by this questions below:
 - `database_port (null):` We use a default port, so, press enter.
 - `database_name (symfony):` Fill in with the database name that we created. In this case `proethos2`.
 - `database_user (root):` Fill in with the user that we created. In this case `proethos2`.
-- `database_password (null):` Fill in with the database name that we created. In this case `choose_a_password!`.
+- `database_password (null):` Fill in with the database password that we created. In this case `choose_a_password!`.
 - `mailer_transport (smtp):` We will configure this options later, so, press enter for the SMTP options.
 - `locale (en):` Choose your default language locale. We will use `en_US`
 - `auth_type (default):` Choose authentication type (`default` or `oauth2`).
@@ -129,7 +130,7 @@ In the middle of process, you will be questioned by this questions below:
 
 __NOTES:__
 - If the error ```proc_open(): fork failed errors``` occurs during installation, access [here](https://getcomposer.org/doc/articles/troubleshooting.md#proc-open-fork-failed-errors) to fix it.
-- If you get an error `Warning: "continue" targeting switch is equivalent to "break". Did you mean to use "continue 2"?`, run the following commands:
+- If the error `Warning: "continue" targeting switch is equivalent to "break". Did you mean to use "continue 2"?` occurs during installation, run the following commands:
 ```
 $ cd ../tools
 $ chmod a+x fix-doctrine-orm.sh && ./fix-doctrine-orm.sh
@@ -146,7 +147,7 @@ $ make load_initial
 
 __TIP:__ See all the [Make commands](../make-shortcuts.md), that certainly will help you.
 
-Remember that the directories below needs to have write permissions from apache:
+Remember that the directories below needs to have write permissions from Apache:
 ```
 sudo chgrp www-data -R app/logs
 sudo chgrp www-data -R app/cache
@@ -228,8 +229,7 @@ $ rm -rf app/cache/*
 $ rm -rf app/logs/*
 ```
 
-Now, try accessing your installation by vising your server from a web browser. If you get a login screen, use the following command to 
-create a user with admin privileges.
+Now, try accessing your installation by vising your server from a web browser. If you get a login screen, use the following command to create a user with admin privileges:
 
 ```
 php app/console proethos2:createsuperuser --email=EMAIL --username=USERNAME --password=PASSWORD
