@@ -1,4 +1,4 @@
-[Español](doc/proethos2-update-es.md)
+[Español](proethos2-update-es.md)
 
 ---
 

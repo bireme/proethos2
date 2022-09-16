@@ -1,4 +1,4 @@
-[English](doc/how-to/how-to-install-proethos2-in-ubuntu.md)
+[English](how-to-install-proethos2-in-ubuntu.md)
 
 ---
 
