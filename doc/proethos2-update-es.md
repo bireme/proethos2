@@ -29,4 +29,4 @@ Por último:
     o
     $ systemctl restart apache2
 
-__NOTA:__ En caso de actualizar una instalación anterior (ProEthos2 < 1.5.0), es necesario aplicar el patch de encriptación a la base de datos. Consulte la página [Cómo aplicar el parche de cifrado a la base de datos](how-to/how-to-apply-the-encryption-patch-to-the-database.md)
+__NOTA:__ En caso de actualizar una instalación anterior (ProEthos2 < 1.5.0), es necesario aplicar el patch de encriptación a la base de datos. Consulte la página [Cómo aplicar el patch de encriptación a la base de datos](how-to/how-to-apply-the-encryption-patch-to-the-database.md)
