@@ -48,3 +48,10 @@ If you have any questions, please [open an ticket here](https://github.com/birem
 - [How to apply the encryption patch to the database (required if ProEthos2 >= 1.6.0)](how-to/how-to-apply-the-encryption-patch-to-the-database.md)
 - [ProEthos data model](https://github.com/bireme/proethos2/blob/master/doc/img/erm-proethos2.png)
 - [ProEthos architecture diagram](https://github.com/bireme/proethos2/blob/master/doc/img/architecture-diagram.jpg)
+
+More Information
+----------------
+
+- [ProEthos2 (English)](https://www.paho.org/en/bioethics) | [ProEthos2 (Español)](https://www.paho.org/es/bioetica)
+- [Regional Program on Bioethics](https://www.paho.org/en/bioethics/proethos) | [Programa Regional de Bioética](https://www.paho.org/es/bioetica/proethos)
+- [How does ProEthos help research ethics committees?](https://www.youtube.com/watch?v=-Y6ja2zcU0g) | [¿Cómo ayuda ProEthos a los comités de ética de la investigación?](https://www.youtube.com/watch?v=PABUusmbqcM)
