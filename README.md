@@ -45,6 +45,7 @@ Links
 -----
 
 * [Project License](LICENSE.txt)
+- [How does ProEthos help research ethics committees?](https://www.youtube.com/watch?v=-Y6ja2zcU0g) | [¿Cómo ayuda ProEthos a los comités de ética de la investigación?](https://www.youtube.com/watch?v=PABUusmbqcM)
 * [How to install in Ubuntu](doc/how-to/how-to-install-proethos2-in-ubuntu.md) | [Cómo instalar en Ubuntu](doc/how-to/how-to-install-proethos2-in-ubuntu-es.md)
 * [Troubleshooting (Ubuntu)](doc/ubuntu-troubleshooting.md)
 * [How to install in Windows](doc/how-to/how-to-install-proethos2-in-windows.md)
@@ -56,10 +57,3 @@ Links
 * Mailing lists
   * for developers (http://bit.ly/mailing-proethos-dev)
   * for end-users (http://bit.ly/mailing-proethos-committee)
-
-More Information
-----------------
-
-- [ProEthos2 (English)](https://www.paho.org/en/bioethics) | [ProEthos2 (Español)](https://www.paho.org/es/bioetica)
-- [Regional Program on Bioethics](https://www.paho.org/en/bioethics/proethos) | [Programa Regional de Bioética](https://www.paho.org/es/bioetica/proethos)
-- [How does ProEthos help research ethics committees?](https://www.youtube.com/watch?v=-Y6ja2zcU0g) | [¿Cómo ayuda ProEthos a los comités de ética de la investigación?](https://www.youtube.com/watch?v=PABUusmbqcM)
