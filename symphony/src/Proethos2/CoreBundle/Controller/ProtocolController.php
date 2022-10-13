@@ -170,6 +170,7 @@ class ProtocolController extends Controller
 
         $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        $upload_type_extension_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
 
         $util = new Util($this->container, $this->getDoctrine());
 
@@ -211,6 +212,23 @@ class ProtocolController extends Controller
 
             if(isset($post_data['new-comment-is-confidential']) and $post_data['new-comment-is-confidential'] == "yes") {
                 $comment->setIsConfidential(true);
+            }
+
+            $file = $request->files->get('file');
+            // echo "<pre>"; print_r($file); echo "</pre>"; die();
+
+            if ( $file ) {
+                // getting the upload type extensions
+                $upload_type_extensions = $upload_type_extension_repository->findAll();
+
+                $file_ext = '.'.$file->getClientOriginalExtension();
+                $ext_formats = array_map(function($obj) { return $obj->getExtension(); }, $upload_type_extensions);
+                if ( !in_array($file_ext, $ext_formats) ) {
+                    $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                    return $output;
+                }
+
+                $comment->setFile($file);
             }
 
             $em->persist($comment);
