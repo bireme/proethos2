@@ -253,6 +253,7 @@
                         <th width="15%">{% trans %}Author{% endtrans %}</th>
                         <th width="15%">{% trans %}Confidential{% endtrans %}</th>
                         <th>{% trans %}Message{% endtrans %}</th>
+                        <th>{% trans %}Actions{% endtrans %}</th>
                     </tr>
                 </thead>
                  
@@ -261,10 +262,17 @@
                         {% if 'member-of-committee' != comment.role %}
                             {% if not comment.isConfidential or 'investigator' not in app.user.getRolesSlug or not protocol.mainSubmission.isOwner(app.user) %}
                                 <tr>
-                                   <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
-                                   <td>{{ comment.owner }}</td> 
-                                   <td>{% if comment.isConfidential %}<i class='glyphicon glyphicon-ok'></i>{% endif %}</td>
-                                   <td>{{ comment.message|nl2br }}</td> 
+                                    <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
+                                    <td>{{ comment.owner }}</td> 
+                                    <td>{% if comment.isConfidential %}<i class='glyphicon glyphicon-ok'></i>{% endif %}</td>
+                                    <td>{{ comment.message|nl2br }}</td> 
+                                    <td>
+                                        {% if comment.filename %}
+                                            <a href='{{ asset(comment.uri) }}' target="_blank" class='btn btn-default btn-xs' target="_blank">
+                                                <i class='glyphicon glyphicon-eye-open'></i>
+                                            </a>
+                                        {% endif %}
+                                    </td>
                                 </tr>
                             {% endif %}
                         {% endif %}
@@ -305,6 +313,7 @@
                             <th width="15%">{% trans %}Date & Time{% endtrans %}</th>
                             <th width="15%">{% trans %}Author{% endtrans %}</th>
                             <th>{% trans %}Message{% endtrans %}</th>
+                            <th>{% trans %}Actions{% endtrans %}</th>
                         </tr>
                     </thead>
                      
@@ -315,6 +324,13 @@
                                    <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
                                    <td>{{ comment.owner }}</td> 
                                    <td>{{ comment.message|nl2br }}</td> 
+                                   <td>
+                                        {% if comment.filename %}
+                                            <a href='{{ asset(comment.uri) }}' target="_blank" class='btn btn-default btn-xs' target="_blank">
+                                                <i class='glyphicon glyphicon-eye-open'></i>
+                                            </a>
+                                        {% endif %}
+                                    </td> 
                                 </tr>
                             {% endif %}
                         {% endfor %}
@@ -332,10 +348,11 @@
 <!-- Modal New Comment -->
 <div class="modal fade" id="modal-new-comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <form method='POST' action='{{ path('protocol_new_comment', {protocol_id: protocol.id}) }}'>
+        <form enctype="multipart/form-data" method="POST" action='{{ path('protocol_new_comment', {protocol_id: protocol.id}) }}'>
 
             <input type="hidden" name="token" value="{{ csrf_token('add-comment') }}"/>
             <input type="hidden" name="new-comment-role" value=""/>
+            <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
 
             <div class="modal-content">
                 <div class="modal-header">
@@ -343,32 +360,35 @@
                     <h4 class="modal-title" id="myModalLabel">{% trans %}New Comment{% endtrans %}</h4>
                 </div>
                 <div class="modal-body">
-                    <form class='form'>
-                        <div class="form-group">
-                            <label for="textarea-new-comment-message">{% trans %}Message{% endtrans %}:</label> 
-                            <a href="{{ path("crud_admin_help_show", {help_id: 126} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <textarea class='form-control' rows='4' name='new-comment-message' id='textarea-new-comment-message' required></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="textarea-new-comment-message">{% trans %}Message{% endtrans %}:</label> 
+                        <a href="{{ path("crud_admin_help_show", {help_id: 126} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                        <textarea class='form-control' rows='4' name='new-comment-message' id='textarea-new-comment-message' required></textarea>
+                    </div>
 
-                        {# code that discover if should show the confidential option #}
-                        {% set is_show_confiential_field = false %}
-                        {% for role in app.user.getRolesSlug %}
-                            {% if role in ['secretary'] %}
-                                {% set is_show_confiential_field = true %}
-                            {% endif %}
-                        {% endfor %}
+                    <div class="form-group">
+                        <label for="input-file-1">{% trans %}File{% endtrans %}:</label> 
+                        <input type='file' class='form-control' id="input-file-1" name="file">
+                    </div>
 
-                        {% if is_show_confiential_field and not protocol.mainSubmission.isOwner(app.user) %}
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label for="checkbox-new-comment-is-confidential">
-                                        <input type="checkbox" name='new-comment-is-confidential' id='checkbox-new-comment-is-confidential' value="yes">{% trans %}Is this a confidential comment?{% endtrans %}
-                                        <a href="{{ path("crud_admin_help_show", {help_id: 184} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                                    </label>
-                                </div>
-                            </div>
+                    {# code that discover if should show the confidential option #}
+                    {% set is_show_confiential_field = false %}
+                    {% for role in app.user.getRolesSlug %}
+                        {% if role in ['secretary'] %}
+                            {% set is_show_confiential_field = true %}
                         {% endif %}
-                    </form>
+                    {% endfor %}
+
+                    {% if is_show_confiential_field and not protocol.mainSubmission.isOwner(app.user) %}
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label for="checkbox-new-comment-is-confidential">
+                                    <input type="checkbox" name='new-comment-is-confidential' id='checkbox-new-comment-is-confidential' value="yes">{% trans %}Is this a confidential comment?{% endtrans %}
+                                    <a href="{{ path("crud_admin_help_show", {help_id: 184} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                </label>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
                 
                 <div class="modal-footer">
@@ -383,10 +403,11 @@
 <!-- Modal New Comment - Committee Communication Section -->
 <div class="modal fade" id="modal-new-committee-comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <form method='POST' action='{{ path('protocol_new_comment', {protocol_id: protocol.id}) }}'>
+        <form enctype="multipart/form-data" method="POST" action='{{ path('protocol_new_comment', {protocol_id: protocol.id}) }}'>
 
             <input type="hidden" name="token" value="{{ csrf_token('add-comment') }}"/>
             <input type="hidden" name="new-comment-role" value="member-of-committee"/>
+            <input type="hidden" name="MAX_FILE_SIZE" value="{{ 50*1024*1024 }}" />
 
             <div class="modal-content">
                 <div class="modal-header">
@@ -394,13 +415,16 @@
                     <h4 class="modal-title" id="myModalLabel">{% trans %}New Comment{% endtrans %}</h4>
                 </div>
                 <div class="modal-body">
-                    <form class='form'>
-                        <div class="form-group">
-                            <label for="textarea-new-comment-message">{% trans %}Message{% endtrans %}:</label> 
-                            <a href="{{ path("crud_admin_help_show", {help_id: 126} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
-                            <textarea class='form-control' rows='4' name='new-comment-message' id='textarea-new-comment-message' required></textarea>
-                        </div>
-                    </form>
+                    <div class="form-group">
+                        <label for="textarea-new-comment-message">{% trans %}Message{% endtrans %}:</label> 
+                        <a href="{{ path("crud_admin_help_show", {help_id: 126} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                        <textarea class='form-control' rows='4' name='new-comment-message' id='textarea-new-comment-message' required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="input-file-2">{% trans %}File{% endtrans %}:</label> 
+                        <input type='file' class='form-control' id="input-file-2" name="file">
+                    </div>
                 </div>
                 
                 <div class="modal-footer">
