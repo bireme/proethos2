@@ -77,18 +77,16 @@ class ProtocolComment extends Base
      */
     private $filepath;
 
-    public function __toString() {
-        return $this->getDate() . " - " . $this->getSubject();
-    }
-
     public function getRealFilename() {
         $filename = explode('_', $this->getFilename(), 2);
         return end($filename);
     }
 
     public function getUploadDirectory() {
+
         $upload_directory = __DIR__.'/../../../../uploads/comments';
-        
+        $upload_directory = $upload_directory . "/" . str_pad($this->getProtocol()->getId(), 5, '0', STR_PAD_LEFT);
+
         if(!is_dir($upload_directory)) {
             mkdir($upload_directory);
         }
@@ -113,7 +111,7 @@ class ProtocolComment extends Base
 
     public function getUri() {
 
-        return "/uploads/comments/" . $this->getFilename();
+        return "/uploads/comments/" . str_pad($this->getProtocol()->getId(), 5, '0', STR_PAD_LEFT) . "/" . $this->getFilename();
     }
 
     /**
