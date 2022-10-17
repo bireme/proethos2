@@ -265,12 +265,10 @@
                                     <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
                                     <td>{{ comment.owner }}</td> 
                                     <td>{% if comment.isConfidential %}<i class='glyphicon glyphicon-ok'></i>{% endif %}</td>
-                                    <td>{{ comment.message|nl2br }}</td> 
+                                    <td>{{ comment.message|nl2br }}</td>
                                     <td>
                                         {% if comment.filename %}
-                                            <a href='{{ asset(comment.uri) }}' target="_blank" class='btn btn-default btn-xs' target="_blank">
-                                                <i class='glyphicon glyphicon-eye-open'></i>
-                                            </a>
+                                            <a href='{{ asset(comment.uri) }}' target="_blank" class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{{ comment.realFilename }}" target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
                                         {% endif %}
                                     </td>
                                 </tr>
@@ -321,14 +319,12 @@
                         {% for comment in protocol.comment %}
                             {% if 'member-of-committee' == comment.role %}
                                 <tr>
-                                   <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
-                                   <td>{{ comment.owner }}</td> 
-                                   <td>{{ comment.message|nl2br }}</td> 
-                                   <td>
+                                    <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
+                                    <td>{{ comment.owner }}</td> 
+                                    <td>{{ comment.message|nl2br }}</td>
+                                    <td>
                                         {% if comment.filename %}
-                                            <a href='{{ asset(comment.uri) }}' target="_blank" class='btn btn-default btn-xs' target="_blank">
-                                                <i class='glyphicon glyphicon-eye-open'></i>
-                                            </a>
+                                            <a href='{{ asset(comment.uri) }}' target="_blank" class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{{ comment.realFilename }}" target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
                                         {% endif %}
                                     </td> 
                                 </tr>
