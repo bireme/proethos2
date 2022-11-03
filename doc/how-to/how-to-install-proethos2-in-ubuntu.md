@@ -157,12 +157,12 @@ chmod -R 0775 app/logs
 chmod -R 0775 uploads
 ```
 
-And now run all the tests to see if all is doing ok:
+And now run all the tests to see if all is doing OK (optional):
 ```
 $ make test
 ```
 
-If you want to test the instalation, run this command:
+If you want to test the instalation, run this command (optional):
 
 ```
 $ make runserver
