@@ -229,6 +229,8 @@ class ProtocolController extends Controller
                 }
 
                 $comment->setFile($file);
+
+                $attachment = \Swift_Attachment::fromPath($comment->getFilepath());
             }
 
             $em->persist($comment);
@@ -243,6 +245,7 @@ class ProtocolController extends Controller
                 $text = $translations[$submission->getLanguage()];
                 $body = ( $text ) ? $text['message'] : $help->getMessage();
                 $body = str_replace("%protocol_url%", $url, $body);
+                $body = str_replace("%comment%", $post_data['new-comment-message'], $body);
                 $body = str_replace("\r\n", "<br />", $body);
                 $body .= "<br /><br />";
                 $body = $util->linkify($body);
@@ -274,6 +277,10 @@ class ProtocolController extends Controller
                     ,
                     'text/html'
                 );
+
+                if(!empty($file)) {
+                    $message->attach($attachment);
+                }
 
                 $send = $this->get('mailer')->send($message);
             }
