@@ -245,12 +245,46 @@ SMTP y correos electrónicos
 
 Vaya a `app/config/parameters.yml` y agregue/cambie estos parámetros, según su servicio de correo electrónico:
 
+### SMTP
+
 ```
 mailer_transport: smtp
+mailer_host: 127.0.0.1 # Host SMTP
+mailer_user: null      # Usuario del host SMTP
+mailer_password: null  # Contrasenã del host SMTP
+
+```
+
+### PHP mail() Funtion
+
+```
+mailer_transport: mail
 mailer_host: 127.0.0.1
 mailer_user: null
 mailer_password: null
 
+```
+
+__NOTA__: For this mail settings to work correctly, you need to install the following packages:
+
+```
+$ sudo apt install php-mail postfix
+```
+
+### sendmail
+
+```
+mailer_transport: sendmail
+mailer_host: /usr/bin/sendmail # donde sea que esté tu correo
+mailer_user: null
+mailer_password: null
+
+```
+
+__NOTA__: For this mail settings to work correctly, you need to install the following packages:
+
+```
+$ sudo apt install sendmail postfix
 ```
 
 Para obtener más información sobre la configuración del correo electrónico, acceda a http://symfony.com/doc/2.7/email.html.
