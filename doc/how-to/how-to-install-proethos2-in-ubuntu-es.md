@@ -265,7 +265,7 @@ mailer_password: null
 
 ```
 
-__NOTA__: For this mail settings to work correctly, you need to install the following packages:
+__NOTA__: Para que esta configuración de correo funcione correctamente, debe instalar los siguientes paquetes:
 
 ```
 $ sudo apt install php-mail postfix
@@ -281,7 +281,7 @@ mailer_password: null
 
 ```
 
-__NOTA__: For this mail settings to work correctly, you need to install the following packages:
+__NOTA__: Para que esta configuración de correo funcione correctamente, debe instalar los siguientes paquetes:
 
 ```
 $ sudo apt install sendmail postfix
