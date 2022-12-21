@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-12-21T04:30:16Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2022-12-21T04:49:49Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -265,7 +265,7 @@
       </trans-unit>
       <trans-unit id="7f1d7aa4d71d36805df7779ba1c9ca2fe4880708" resname="Clinical Study Activities">
         <source>Clinical Study Activities</source>
-        <target>Clinical Study Activities</target>
+        <target>Atividades de estudos clínicos</target>
       </trans-unit>
       <trans-unit id="a4781b4e531e406a69c0092ff5dcf176feecc6dd" resname="Clinical Trial">
         <source>Clinical Trial</source>
@@ -277,7 +277,7 @@
       </trans-unit>
       <trans-unit id="129b75efbe1aa3511af82a50c70849bad1d76450" resname="Clinical study activity">
         <source>Clinical study activity</source>
-        <target>Clinical study activity</target>
+        <target>Atividade de estudo clínico</target>
       </trans-unit>
       <trans-unit id="bbfa773e5a63a5ea58c9b6207e608ca0120e592a" resname="Close">
         <source>Close</source>
@@ -1295,7 +1295,7 @@
       </trans-unit>
       <trans-unit id="5c84308509269e1f27a380b053ebbdb7825435df" resname="Please submit at least one clinical study activity">
         <source>Please submit at least one clinical study activity</source>
-        <target>Please submit at least one clinical study activity</target>
+        <target>Favor enviar ao menos uma atividade de estudo clínico</target>
       </trans-unit>
       <trans-unit id="23882c575954a0789bf02aba9e6dd01f539bc738" resname="Portuguese">
         <source>Portuguese</source>
@@ -1820,7 +1820,7 @@
       </trans-unit>
       <trans-unit id="fe81f8ed2c47477ad468ecdbadccc5cc1b3a7970" resname="Study Information">
         <source>Study Information</source>
-        <target>Informação de estudo</target>
+        <target>Informação do estudo</target>
       </trans-unit>
       <trans-unit id="5ff385feb261a37fbd763f19e3129a0e9a17bb27" resname="Study design">
         <source>Study design</source>
