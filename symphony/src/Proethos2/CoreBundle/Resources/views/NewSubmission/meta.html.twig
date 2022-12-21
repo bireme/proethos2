@@ -50,12 +50,12 @@
     <div class='col-md-12'>
         <ul class="nav nav-tabs" id='new-submission-tab'>
             <!-- <li role="presentation">
-                <a href="javascript:void(0)" title="{% trans %}First Information{% endtrans %}">
-                    {% trans %}First Information{% endtrans %}
+                <a href="javascript:void(0)" title="{% trans %}Primary Information{% endtrans %}">
+                    {% trans %}Primary Information{% endtrans %}
                 </a>
             </li> -->
             <li role="presentation" {% if app.request.get('_route') == "submission_new_first_created_protocol_step" %}class='active'{% endif %}>
-                <a href="{{ path('submission_new_first_created_protocol_step', {'submission_id': submission.id }) }}" title="{% trans %}First Information{% endtrans %}">{% trans %}First Information{% endtrans %}</a>
+                <a href="{{ path('submission_new_first_created_protocol_step', {'submission_id': submission.id }) }}" title="{% trans %}Primary Information{% endtrans %}">{% trans %}Primary Information{% endtrans %}</a>
             </li>
             <li role="presentation" {% if app.request.get('_route') == "submission_new_second_step" %}class='active'{% endif %}>
                 <a href="{{ path('submission_new_second_step', {'submission_id': submission.id }) }}" title="{% trans %}About Project{% endtrans %}">{% trans %}About Project{% endtrans %}</a>
