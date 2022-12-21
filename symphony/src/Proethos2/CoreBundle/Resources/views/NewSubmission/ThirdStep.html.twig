@@ -120,6 +120,16 @@
                     <div class='row'>
                         <div class="col-md-12">
                             <div class="form-group required">
+                                <label for="textarea-sample-size-justify">{% trans %}Justify sample size{% endtrans %}:</label>
+                                <a href="{{ path("crud_admin_help_show", {help_id: 225} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="5" class="form-control summernote" id='textarea-sample-size-justify' name='sample-size-justify' {% if not submission.isMultipleClinicalStudy %}required{% endif %}>{{ submission.sampleSizeJustify }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group required">
                                 <label for="textarea-inclusion-criteria">{% trans %}Inclusion criteria{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 23} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="5" class="form-control summernote" id='textarea-inclusion-criteria' name='inclusion-criteria' {% if not submission.isMultipleClinicalStudy %}required{% endif %}>{{ submission.inclusionCriteria }}</textarea>
@@ -337,6 +347,16 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class='row'>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea-limitations">{% trans %}Limitations{% endtrans %}:</label>
+                                <a href="{{ path("crud_admin_help_show", {help_id: 226} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                <textarea rows="4" class="form-control" id='textarea-limitations' name='limitations'>{{ submission.limitations }}</textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class='submission-button-controls'>
@@ -458,6 +478,18 @@
                             </div>
                         {% endif %}
 
+                        <div id="anchor-textarea-new-activity-sample-size-justify"></div>
+
+                        <div class='row'>
+                            <div class="col-md-12">
+                                <div class="form-group required">
+                                    <label for="textarea-new-activity-sample-size-justify">{% trans %}Justify sample size{% endtrans %}:</label>
+                                    <a href="{{ path("crud_admin_help_show", {help_id: 225} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                                    <textarea rows="5" class="form-control summernote" id='textarea-new-activity-sample-size-justify' name='activity-sample-size-justify' required></textarea>
+                                </div>
+                            </div>
+                        </div>
+
                         <div id="anchor-textarea-new-activity-inclusion-criteria"></div>
 
                         <div class='row'>
@@ -470,7 +502,7 @@
                             </div>
                         </div>
 
-                        <div id="anchor-textarea-new-activity-inclusion-criteria"></div>
+                        <div id="anchor-textarea-new-activity-exclusion-criteria"></div>
 
                         <div class='row'>
                             <div class="col-md-12">
@@ -703,6 +735,14 @@
                         return false;
                     }
 
+                    if ( $('#textarea-sample-size-justify').summernote('isEmpty') ) {
+                        // cancel submit
+                        e.preventDefault();
+                        alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                        highlight_input_field('#textarea-sample-size-justify', 'sn');
+                        return false;
+                    }
+
                     if ( $('#textarea-inclusion-criteria').summernote('isEmpty') ) {
                         // cancel submit
                         e.preventDefault();
@@ -769,6 +809,14 @@
                     e.preventDefault();
                     alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
                     highlight_input_field('#input-new-activity-maximum-age');
+                    return false;
+                }
+
+                if ( $('#textarea-new-activity-sample-size-justify').summernote('isEmpty') ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#textarea-new-activity-sample-size-justify', 'sn');
                     return false;
                 }
 

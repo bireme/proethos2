@@ -65,6 +65,18 @@
             </div>
         {% endif %}
 
+        <div id="anchor-textarea-update-activity-sample-size-justify"></div>
+
+        <div class='row'>
+            <div class="col-md-12">
+                <div class="form-group required">
+                    <label for="textarea-update-activity-sample-size-justify">{% trans %}Justify sample size{% endtrans %}:</label>
+                    <a href="{{ path("crud_admin_help_show", {help_id: 225} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
+                    <textarea rows="5" class="form-control summernote" id='textarea-update-activity-sample-size-justify' name='sample-size-justify' required>{{ submission.sampleSizeJustify }}</textarea>
+                </div>
+            </div>
+        </div>
+
         <div id="anchor-textarea-update-activity-inclusion-criteria"></div>
 
         <div class='row'>
@@ -199,6 +211,14 @@
                     e.preventDefault();
                     alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
                     highlight_input_field('#input-update-activity-maximum-age');
+                    return false;
+                }
+
+                if ( $('#textarea-update-activity-sample-size-justify').summernote('isEmpty') ) {
+                    // cancel submit
+                    e.preventDefault();
+                    alert('{% trans %}Notice: Please complete all required fields.{% endtrans %}');
+                    highlight_input_field('#textarea-update-activity-sample-size-justify', 'sn');
                     return false;
                 }
 

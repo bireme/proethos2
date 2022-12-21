@@ -268,7 +268,7 @@ class NewSubmissionController extends Controller
             $em->persist($new_submission);
             $em->flush();
 
-            $submission->addTranlsation($new_submission);
+            $submission->addTranslation($new_submission);
             $em->persist($submission);
             $em->flush();
 
@@ -566,7 +566,7 @@ class NewSubmissionController extends Controller
             if(isset($post_data['new-activity'])) {
 
                 // checking required files
-                $required_fields = array('activity-description', 'activity-inclusion-criteria', 'activity-exclusion-criteria');
+                $required_fields = array('activity-description', 'activity-sample-size-justify', 'activity-inclusion-criteria', 'activity-exclusion-criteria');
                 
                 if(!$submission->getIsTranslation()) {
                     $required_fields[] = 'activity-gender';
@@ -597,6 +597,7 @@ class NewSubmissionController extends Controller
                 $activity = new SubmissionClinicalStudy();
                 $activity->setSubmission($submission);
                 $activity->setDescription($post_data['activity-description']);
+                $activity->setSampleSizeJustify($post_data['activity-sample-size-justify']);
                 $activity->setInclusionCriteria($post_data['activity-inclusion-criteria']);
                 $activity->setExclusionCriteria($post_data['activity-exclusion-criteria']);
 
@@ -708,6 +709,7 @@ class NewSubmissionController extends Controller
                     $submission->setGeneralProcedures($post_data['general-procedures']);
                     $submission->setAnalysisPlan($post_data['analysis-plan']);
                     $submission->setEthicalConsiderations($post_data['ethical-considerations']);
+                    $submission->setLimitations($post_data['limitations']);
                     $submission->setIsMultipleClinicalStudy(true);
 
                     $em = $this->getDoctrine()->getManager();
@@ -734,6 +736,7 @@ class NewSubmissionController extends Controller
             }
 
             if('no' == $post_data['is_multiple_clinical_study']) {
+                $required_fields[] = 'sample-size-justify';
                 $required_fields[] = 'inclusion-criteria';
                 $required_fields[] = 'exclusion-criteria';
             }
@@ -814,6 +817,7 @@ class NewSubmissionController extends Controller
             // adding fields to model
             $submission->setStudyDesign($post_data['study-design']);
             $submission->setHealthCondition($post_data['health-condition']);
+            $submission->setSampleSizeJustify($post_data['sample-size-justify']);
             $submission->setInclusionCriteria($post_data['inclusion-criteria']);
             $submission->setExclusionCriteria($post_data['exclusion-criteria']);
             $submission->setInterventions($post_data['interventions']);
@@ -822,6 +826,7 @@ class NewSubmissionController extends Controller
             $submission->setGeneralProcedures($post_data['general-procedures']);
             $submission->setAnalysisPlan($post_data['analysis-plan']);
             $submission->setEthicalConsiderations($post_data['ethical-considerations']);
+            $submission->setLimitations($post_data['limitations']);
             $submission->setIsMultipleClinicalStudy(($post_data['is_multiple_clinical_study'] == 'yes') ? true : false);
 
             $em = $this->getDoctrine()->getManager();
@@ -1477,6 +1482,14 @@ class NewSubmissionController extends Controller
                 }
                 $revisions[] = $item;
 
+                $text = $translator->trans('Justify sample size');
+                $item = array('text' => $text, 'status' => true);
+                if(empty($submission->getSampleSizeJustify())) {
+                    $item = array('text' => $text, 'status' => false);
+                    $final_status = false;
+                }
+                $revisions[] = $item;
+
                 $text = $translator->trans('Inclusion Criteria');
                 $item = array('text' => $text, 'status' => true);
                 if(empty($submission->getInclusionCriteria())) {
@@ -1983,7 +1996,7 @@ class NewSubmissionController extends Controller
             });
 
             // checking required files
-            $required_fields = array('description', 'inclusion-criteria', 'exclusion-criteria');
+            $required_fields = array('description', 'sample-size-justify', 'inclusion-criteria', 'exclusion-criteria');
             
             if(!$submission->getIsTranslation()) {
                 $required_fields[] = 'gender';
@@ -2012,6 +2025,7 @@ class NewSubmissionController extends Controller
             }
 
             $activity->setDescription($post_data['description']);
+            $activity->setSampleSizeJustify($post_data['sample-size-justify']);
             $activity->setInclusionCriteria($post_data['inclusion-criteria']);
             $activity->setExclusionCriteria($post_data['exclusion-criteria']);
 

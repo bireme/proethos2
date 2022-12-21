@@ -29,6 +29,12 @@
                 </li>
 
                 <li class="list-group-item">
+                    <b>{% trans %}Justify sample size{% endtrans %}</b>: 
+                    <p>
+                        {{ activity.sampleSizeJustify|raw }}
+                    </p>
+                </li>
+                <li class="list-group-item">
                     <b>{% trans %}Inclusion criteria{% endtrans %}</b>: 
                     <p>
                         {{ activity.inclusionCriteria|raw }}

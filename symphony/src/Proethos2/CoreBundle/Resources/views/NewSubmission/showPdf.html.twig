@@ -117,6 +117,9 @@
                 <h2>{% trans %}Target sample size{% endtrans %}</h2>
                 <p>{{ submission.sampleSize }}</p>
 
+                <h2>{% trans %}Justify sample size{% endtrans %}</h2>
+                <div>{{ submission.sampleSizeJustify|raw }}</div>
+
                 <h2>{% trans %}Inclusion criteria{% endtrans %}</h2>
                 <div>{{ submission.inclusionCriteria|raw }}</div>
 
@@ -144,6 +147,9 @@
 
                         <h4>{% trans %}Target sample size{% endtrans %}</h4>
                         <p>{{ activity.sampleSize }}</p>
+
+                        <h4>{% trans %}Justify sample size{% endtrans %}</h4>
+                        <div>{{ activity.sampleSizeJustify|raw }}</div>
 
                         <h4>{% trans %}Inclusion criteria{% endtrans %}</h4>
                         <div>{{ activity.inclusionCriteria|raw }}</div>
@@ -192,6 +198,12 @@
 
             <h2>{% trans %}Analysis Plan{% endtrans %}</h2>
             <div>{{ submission.analysisPlan|raw }}</div>
+
+            <h2>{% trans %}Ethical Considerations{% endtrans %}</h2>
+            <div>{{ submission.ethicalConsiderations|raw }}</div>
+
+            <h2>{% trans %}Limitations{% endtrans %}</h2>
+            <div>{{ submission.limitations|raw }}</div>
 
             {% if submission.isClinicalTrial %}
                 <h2>{% trans %}Clinical Trial{% endtrans %}</h2>

@@ -247,6 +247,13 @@ class Submission extends Base
      *
      * @ORM\Column(type="text", nullable=true)
      */
+    private $sample_size_justify;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
     private $inclusion_criteria;
 
     /**
@@ -319,6 +326,13 @@ class Submission extends Base
      * @ORM\Column(type="text", nullable=true)
      */
     private $ethical_considerations;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $limitations;
 
     /**
      * @var SubmissionCost
@@ -1627,30 +1641,6 @@ class Submission extends Base
     }
 
     /**
-     * Add tranlsation
-     *
-     * @param \Proethos2\ModelBundle\Entity\Submission $tranlsation
-     *
-     * @return Submission
-     */
-    public function addTranlsation(\Proethos2\ModelBundle\Entity\Submission $tranlsation)
-    {
-        $this->translations[] = $tranlsation;
-
-        return $this;
-    }
-
-    /**
-     * Remove tranlsation
-     *
-     * @param \Proethos2\ModelBundle\Entity\Submission $tranlsation
-     */
-    public function removeTranlsation(\Proethos2\ModelBundle\Entity\Submission $tranlsation)
-    {
-        $this->translations->removeElement($tranlsation);
-    }
-
-    /**
      * Get translations
      *
      * @return \Doctrine\Common\Collections\Collection
@@ -1829,5 +1819,53 @@ class Submission extends Base
     public function getPahoUnit()
     {
         return $this->paho_unit;
+    }
+
+    /**
+     * Set sampleSizeJustify
+     *
+     * @param string $sampleSizeJustify
+     *
+     * @return Submission
+     */
+    public function setSampleSizeJustify($sampleSizeJustify)
+    {
+        $this->sample_size_justify = $sampleSizeJustify;
+
+        return $this;
+    }
+
+    /**
+     * Get sampleSizeJustify
+     *
+     * @return string
+     */
+    public function getSampleSizeJustify()
+    {
+        return $this->sample_size_justify;
+    }
+
+    /**
+     * Set limitations
+     *
+     * @param string $limitations
+     *
+     * @return Submission
+     */
+    public function setLimitations($limitations)
+    {
+        $this->limitations = $limitations;
+
+        return $this;
+    }
+
+    /**
+     * Get limitations
+     *
+     * @return string
+     */
+    public function getLimitations()
+    {
+        return $this->limitations;
     }
 }

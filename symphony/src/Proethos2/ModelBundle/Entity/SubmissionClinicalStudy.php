@@ -81,6 +81,13 @@ class SubmissionClinicalStudy extends Base
      *
      * @ORM\Column(type="text", nullable=true)
      */
+    private $sample_size_justify;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
     private $inclusion_criteria;
 
     /**
@@ -361,5 +368,29 @@ class SubmissionClinicalStudy extends Base
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set sampleSizeJustify
+     *
+     * @param string $sampleSizeJustify
+     *
+     * @return SubmissionClinicalStudy
+     */
+    public function setSampleSizeJustify($sampleSizeJustify)
+    {
+        $this->sample_size_justify = $sampleSizeJustify;
+
+        return $this;
+    }
+
+    /**
+     * Get sampleSizeJustify
+     *
+     * @return string
+     */
+    public function getSampleSizeJustify()
+    {
+        return $this->sample_size_justify;
     }
 }
