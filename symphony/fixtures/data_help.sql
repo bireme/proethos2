@@ -44,6 +44,8 @@ REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VA
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (221,'2019-02-21 15:42:08','2019-02-21 15:42:08',1,'help','Activity description');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (222,'2019-02-21 15:42:08','2019-02-21 15:42:08',1,'help','Budget description');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (224,'2019-02-21 15:42:08','2019-02-21 15:42:08',1,'help','Indicate the PI and PAHO focal point. If not in this list, accounts must be created for them in ProEthos before proceeding. Other members of the research team may be entered manually.');
+REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (225,'2016-06-16 14:11:29','2016-06-16 14:11:29',1,'help','Justify sample size');
+REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (226,'2016-06-16 14:11:29','2016-06-16 14:11:29',1,'help','Limitations');
 
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (200,'2019-02-21 15:42:08','2019-02-21 15:42:08',1,'mail','Dear investigator,\r\n\r\nPAHOERC has accepted this monitoring action as a notification. It will not be reviewed by the committee.\r\n\r\nProtocol <b>%protocol_code%</b>: %protocol_url%\r\n\r\nRegards,\r\nPAHOERC');
 REPLACE INTO `help` (`id`, `created`, `updated`, `status`, `type`, `message`) VALUES (201,'2019-02-21 15:42:08','2019-02-21 15:42:08',1,'mail','Hello!\r\n\r\nA new monitoring action has been submitted.\r\n\r\nAccess the link below for more details.\r\n\r\nProtocol <b>%protocol_code%</b>: %protocol_url%\r\n\r\nRegards,\r\nPAHOERC');
