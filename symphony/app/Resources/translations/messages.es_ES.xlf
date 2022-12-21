@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-02-25T13:41:10Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2022-12-21T04:35:57Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -682,10 +682,6 @@
         <source>First Author</source>
         <target>Primer autor</target>
       </trans-unit>
-      <trans-unit id="b57630c26c6a3296fe0fb80c16699e6920e6ec65" resname="First Information">
-        <source>First Information</source>
-        <target>Información inicial</target>
-      </trans-unit>
       <trans-unit id="e6aa62241a28ff638a1f8e537203ff4d5f651876" resname="First step saved with success.">
         <source>First step saved with success.</source>
         <target>First step saved with success.</target>
@@ -882,6 +878,10 @@
         <source>Justify</source>
         <target>Justificar</target>
       </trans-unit>
+      <trans-unit id="a0ed1e5e58139589af6c988d36cb0e7fee64eb03" resname="Justify sample size">
+        <source>Justify sample size</source>
+        <target>Justificar tamaño de muestra</target>
+      </trans-unit>
       <trans-unit id="f530db58b3e5088dc7412c6d2298ba3f8456bdeb" resname="Keywords">
         <source>Keywords</source>
         <target>Palabras clave</target>
@@ -909,6 +909,10 @@
       <trans-unit id="db2c64b012d82b90a8a5fac6c7b3a6bee2716058" resname="Legal disclaimer">
         <source>Legal disclaimer</source>
         <target>Descargo de responsabilidad</target>
+      </trans-unit>
+      <trans-unit id="a7c04c64ed3f2a9374590c76c50d3b7f1b18e3da" resname="Limitations">
+        <source>Limitations</source>
+        <target>Limitaciones</target>
       </trans-unit>
       <trans-unit id="e43d612e11f1568f2373e719d4c4b08dcecdc7cc" resname="Logout">
         <source>Logout</source>
@@ -1230,6 +1234,10 @@
         <source>Number</source>
         <target>Número</target>
       </trans-unit>
+      <trans-unit id="24d50592b70a997e82a3839de9c69ef0c75660a9" resname="Objectives">
+        <source>Objectives</source>
+        <target>Objetivos</target>
+      </trans-unit>
       <trans-unit id="18015e598e5c3b536f5800eeb4ce0150fc0c602f" resname="Observations to address">
         <source>Observations to address</source>
         <target>Observations to address</target>
@@ -1298,6 +1306,10 @@
         <source>Portuguese message</source>
         <target>Mensaje en portugués</target>
       </trans-unit>
+      <trans-unit id="0eef4b1dd6727001840ab63f6462f0ab3e85976c" resname="Primary Information">
+        <source>Primary Information</source>
+        <target>Información primaria</target>
+      </trans-unit>
       <trans-unit id="5234c002584ebfe77f162ef7672f9048a7be53bc" resname="Primary Outcome">
         <source>Primary Outcome</source>
         <target>Resultado principal</target>
@@ -1361,6 +1373,10 @@
       <trans-unit id="d80090c23fb5ce21ada4e04d747c32da5a0ec75c" resname="Protocol code">
         <source>Protocol code</source>
         <target>Protocol code</target>
+      </trans-unit>
+      <trans-unit id="8c03e480414bcce176fdb8dcf4ab2073b01d26f9" resname="Protocol comment">
+        <source>Protocol comment</source>
+        <target>Protocol comment</target>
       </trans-unit>
       <trans-unit id="06bf9594ee1763ecffe91609059d78947ce13591" resname="Protocol finalized by %user% under option &quot;%option%&quot;.">
         <source>Protocol finalized by %user% under option "%option%".</source>
@@ -1805,7 +1821,7 @@
       </trans-unit>
       <trans-unit id="fe81f8ed2c47477ad468ecdbadccc5cc1b3a7970" resname="Study Information">
         <source>Study Information</source>
-        <target>Study Information</target>
+        <target>Información del estudio</target>
       </trans-unit>
       <trans-unit id="5ff385feb261a37fbd763f19e3129a0e9a17bb27" resname="Study design">
         <source>Study design</source>
