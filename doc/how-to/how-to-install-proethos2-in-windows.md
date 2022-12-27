@@ -126,6 +126,7 @@ knp_snappy:
 Now, we will setup the database. Execute the following command:
 
 ```
+$ cd app/
 $ c:/xampp/php/php.exe console doctrine:schema:update --force
 ```
 
