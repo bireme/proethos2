@@ -38,6 +38,9 @@ use Proethos2\ModelBundle\Entity\MonitoringAction;
 use Proethos2\ModelBundle\Entity\ClinicalTrialName;
 use Proethos2\ModelBundle\Entity\Gender;
 
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+
 
 class CRUDController extends Controller
 {
@@ -257,6 +260,37 @@ class CRUDController extends Controller
         }
 
         return $output;
+    }
+
+    /**
+     * @Route("/committee/meeting/{meeting_id}/upload", name="crud_committee_meeting_upload")
+     * @Template()
+     */
+    public function meetingUploadAction($meeting_id) {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
+
+        $util = new Util($this->container, $this->getDoctrine());
+
+        $meeting = $meeting_repository->find($meeting_id);
+        $root_dir = $this->get('kernel')->getRootDir();
+        $filepath = $root_dir.'/..'.$meeting->getUri();
+        $filename = end(explode('_', $meeting->getFilename(), 2));
+        // $file_ext = strtolower(substr(strrchr($meeting->getFilename(), '.'), 1));
+
+        $response = new BinaryFileResponse($filepath);
+        // Content-Disposition: DISPOSITION_INLINE (browser) or DISPOSITION_ATTACHMENT (download)
+        $response->setContentDisposition(
+            ResponseHeaderBag::DISPOSITION_INLINE,
+            $filename
+        );
+
+        return $response;
     }
 
     /**
@@ -995,6 +1029,36 @@ class CRUDController extends Controller
         $output['roles'] = $roles;
 
         return $output;
+    }
+
+    /**
+     * @Route("/document/{document_id}/upload", name="crud_document_upload")
+     * @Template()
+     */
+    public function documentUploadAction($document_id) {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $document_repository = $em->getRepository('Proethos2ModelBundle:Document');
+
+        $util = new Util($this->container, $this->getDoctrine());
+
+        $document = $document_repository->find($document_id);
+        $root_dir = $this->get('kernel')->getRootDir();
+        $filepath = $root_dir.'/..'.$document->getUri();
+        // $file_ext = strtolower(substr(strrchr($document->getFilename(), '.'), 1));
+
+        $response = new BinaryFileResponse($filepath);
+        // Content-Disposition: DISPOSITION_INLINE (browser) or DISPOSITION_ATTACHMENT (download)
+        $response->setContentDisposition(
+            ResponseHeaderBag::DISPOSITION_INLINE,
+            $document->getFilename()
+        );
+
+        return $response;
     }
 
     /**

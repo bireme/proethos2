@@ -83,7 +83,6 @@ class ProtocolComment extends Base
     }
 
     public function getUploadDirectory() {
-
         $upload_directory = __DIR__.'/../../../../uploads/comments';
         $upload_directory = $upload_directory . "/" . str_pad($this->getProtocol()->getId(), 5, '0', STR_PAD_LEFT);
 
@@ -110,7 +109,6 @@ class ProtocolComment extends Base
     }
 
     public function getUri() {
-
         return "/uploads/comments/" . str_pad($this->getProtocol()->getId(), 5, '0', STR_PAD_LEFT) . "/" . $this->getFilename();
     }
 

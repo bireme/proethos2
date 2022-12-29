@@ -31,6 +31,10 @@ use Proethos2\ModelBundle\Entity\ProtocolRevision;
 use Proethos2\ModelBundle\Entity\Submission;
 use Proethos2\ModelBundle\Entity\SubmissionUpload;
 
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+
+
 class ProtocolController extends Controller
 {
     /**
@@ -1811,7 +1815,7 @@ class ProtocolController extends Controller
         $upload_directory = __DIR__.'/../../../../uploads';
         $timestamp = date("Y-m-d-H\hi\ms\s");
         $filepath = $upload_directory."/report.pdf";
-        $report_url = $baseurl."/uploads/report.pdf";
+        // $report_url = $baseurl."/uploads/report.pdf";
 
         if ( file_exists($filepath) ) {
             unlink($filepath);
@@ -1821,8 +1825,14 @@ class ProtocolController extends Controller
         $cmd = "pdftk ".implode(' ', $files)." output $filepath";
         $result = shell_exec($cmd);
 
-        // return new RedirectResponse($report_url);
-        return $this->redirect($report_url, 301);
+        $response = new BinaryFileResponse($filepath);
+        // Content-Disposition: DISPOSITION_INLINE (browser) or DISPOSITION_ATTACHMENT (download)
+        $response->setContentDisposition(
+            ResponseHeaderBag::DISPOSITION_INLINE,
+            'report.pdf'
+        );
+
+        return $response;
     }
 
     /**
@@ -2031,8 +2041,71 @@ class ProtocolController extends Controller
             $xml->asXML(),
             200,
             array(
-                'Content-Type'          => 'application/xml'
+                'Content-Type' => 'application/xml'
             )
         );
     }
+
+    /**
+     * @Route("/protocol/upload/{upload_id}", name="protocol_upload")
+     * @Template()
+     */
+    public function protocolUploadAction($upload_id) {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $submission_upload_repository = $em->getRepository('Proethos2ModelBundle:SubmissionUpload');
+
+        $util = new Util($this->container, $this->getDoctrine());
+
+        $submission_upload = $submission_upload_repository->find($upload_id);
+        $root_dir = $this->get('kernel')->getRootDir();
+        $filepath = $root_dir.'/..'.$submission_upload->getUri();
+        $filename = end(explode('_', $submission_upload->getFilename(), 2));
+        // $file_ext = strtolower(substr(strrchr($submission_upload->getFilename(), '.'), 1));
+
+        $response = new BinaryFileResponse($filepath);
+        // Content-Disposition: DISPOSITION_INLINE (browser) or DISPOSITION_ATTACHMENT (download)
+        $response->setContentDisposition(
+            ResponseHeaderBag::DISPOSITION_INLINE,
+            $filename
+        );
+
+        return $response;
+    }
+
+    /**
+     * @Route("/protocol/comment/{comment_id}/upload", name="protocol_comment_upload")
+     * @Template()
+     */
+    public function commentUploadAction($comment_id) {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $protocol_comment_repository = $em->getRepository('Proethos2ModelBundle:ProtocolComment');
+
+        $util = new Util($this->container, $this->getDoctrine());
+
+        $comment = $protocol_comment_repository->find($comment_id);
+        $root_dir = $this->get('kernel')->getRootDir();
+        $filepath = $root_dir.'/..'.$comment->getUri();
+        $filename = end(explode('_', $comment->getFilename(), 2));
+        // $file_ext = strtolower(substr(strrchr($comment->getFilename(), '.'), 1));
+
+        $response = new BinaryFileResponse($filepath);
+        // Content-Disposition: DISPOSITION_INLINE (browser) or DISPOSITION_ATTACHMENT (download)
+        $response->setContentDisposition(
+            ResponseHeaderBag::DISPOSITION_INLINE,
+            $filename
+        );
+
+        return $response;
+    }
+
 }

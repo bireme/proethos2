@@ -27,9 +27,7 @@
                         {{ meeting.realFilename }}
 
                         <div class="pull-right">
-                            <a href='{{ asset(meeting.uri) }}' target="_blank" class='btn btn-default btn-xs' target="_blank">
-                                <i class='glyphicon glyphicon-eye-open'></i>
-                            </a>
+                            <a href='{{ path("crud_committee_meeting_upload", {'meeting_id': meeting.id }) }}' class='btn btn-default btn-xs' target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
                             {% if 'secretary' in app.user.rolesSlug %}
                                 <a href='#' class='btn btn-default btn-xs button-delete-attachment' data-toggle="modal" data-target="#modal-delete-attachment">
                                     <i class='glyphicon glyphicon-trash'></i>
