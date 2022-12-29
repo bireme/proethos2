@@ -23,7 +23,7 @@
                             <ul>
                                 {% for document in documents %}
                                     {% if role in document.roles %}
-                                        <li><a href="{{ document.uri }}">
+                                        <li><a href="{{ path("crud_document_upload", {'document_id': document.id }) }}" target="_blank">
                                             <span data-toggle="tooltip" data-placement="top" title="{{ document.description }}">
                                                 {{ document.title }}
                                             </span>

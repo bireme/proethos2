@@ -161,7 +161,7 @@
                             <td>{{ file.created|date("d/m/Y H:i") }}</td>
                             <td class="{{ class }}"><b>{{ text|trans }}</b></td>
                             <td>
-                                <a href='{{ asset(file.uri) }}' target="_blank" class='btn btn-default btn-xs' target="_blank">
+                                <a href='{{ path("protocol_upload", {'upload_id': file.id }) }}' class='btn btn-default btn-xs' target="_blank">
                                     <i class='glyphicon glyphicon-eye-open'></i>
                                 </a>
                                 {% if is_granted("ROLE_USER") and 'secretary' in app.user.rolesSlug %}
@@ -268,7 +268,8 @@
                                     <td>{{ comment.message|nl2br }}</td>
                                     <td>
                                         {% if comment.filename %}
-                                            <a href='{{ asset(comment.uri) }}' target="_blank" class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{{ comment.realFilename }}" target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
+                                            {% set filehash = comment.filename|split('_')[0] %}
+                                            <a href='{{ path("protocol_comment_upload", {'comment_id': comment.id }) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{{ comment.realFilename }}" target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
                                         {% endif %}
                                     </td>
                                 </tr>
@@ -324,7 +325,7 @@
                                     <td>{{ comment.message|nl2br }}</td>
                                     <td>
                                         {% if comment.filename %}
-                                            <a href='{{ asset(comment.uri) }}' target="_blank" class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{{ comment.realFilename }}" target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
+                                            <a href='{{ path("protocol_comment_upload", {'comment_id': comment.id }) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{{ comment.realFilename }}" target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
                                         {% endif %}
                                     </td> 
                                 </tr>

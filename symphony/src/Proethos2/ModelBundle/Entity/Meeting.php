@@ -100,7 +100,6 @@ class Meeting extends Base
     }
 
     public function getUri() {
-
         return "/uploads/meeting/" . $this->getFilename();
     }
 
