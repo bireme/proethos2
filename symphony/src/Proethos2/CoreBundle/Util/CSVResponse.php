@@ -36,6 +36,9 @@ class CSVResponse extends Response
     {
         $output = fopen('php://temp', 'r+');
 
+        // Write BOM character sequence to fix UTF-8 in Excel
+        fputs( $output, $bom = chr(0xEF) . chr(0xBB) . chr(0xBF) );
+
         // putting headers in csv file
         if($headers) {
             fputcsv($output, $headers);
