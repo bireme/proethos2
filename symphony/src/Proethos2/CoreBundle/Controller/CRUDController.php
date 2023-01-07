@@ -57,6 +57,7 @@ class CRUDController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $meeting_repository = $em->getRepository('Proethos2ModelBundle:Meeting');
+        $upload_type_extension_repository = $em->getRepository('Proethos2ModelBundle:UploadTypeExtension');
 
         $meetings = $meeting_repository->findBy(array(), array('date' => 'DESC'));
 
@@ -105,6 +106,23 @@ class CRUDController extends Controller
                 $meeting->setDate(new \DateTime($post_data['new-meeting-date']));
                 $meeting->setSubject($post_data['new-meeting-subject']);
                 $meeting->setContent($post_data['new-meeting-content']);
+
+                $file = $request->files->get('file');
+                // echo "<pre>"; print_r($file); echo "</pre>"; die();
+
+                if ( $file ) {
+                    // getting the upload type extensions
+                    $upload_type_extensions = $upload_type_extension_repository->findAll();
+
+                    $file_ext = '.'.$file->getClientOriginalExtension();
+                    $ext_formats = array_map(function($obj) { return $obj->getExtension(); }, $upload_type_extensions);
+                    if ( !in_array($file_ext, $ext_formats) ) {
+                        $session->getFlashBag()->add('error', $translator->trans("File extension not allowed"));
+                        return $output;
+                    }
+
+                    $meeting->setFile($file);
+                }
 
                 $em->persist($meeting);
                 $em->flush();
@@ -174,6 +192,12 @@ class CRUDController extends Controller
                     return $output;
                 }
 
+                // delete old file
+                if ( $meeting->getFilename() ) {
+                    unlink($meeting->getFilepath());
+                }
+
+                // set new file
                 $meeting->setFile($file);
             }
 
