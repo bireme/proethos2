@@ -272,8 +272,9 @@ class CRUDController extends Controller
             // echo "<pre>"; print_r($post_data); echo "</pre>"; die();
 
             if ( 'yes' == $post_data['delete-attachment'] ) {
-                $meeting->setFilename(NULL);
+                unlink($meeting->getFilepath());
                 $meeting->setFilepath(NULL);
+                $meeting->setFilename(NULL);
 
                 $em->persist($meeting);
                 $em->flush();
