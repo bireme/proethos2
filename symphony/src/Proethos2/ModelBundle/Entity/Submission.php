@@ -1176,6 +1176,16 @@ class Submission extends Base
         return $this->country;
     }
 
+    public function getCountryList() {
+
+        $countries = array();
+        foreach($this->getCountry() as $country) {
+            $countries[] = $country->getCountry()->getName();
+        }
+
+        return $countries;
+    }
+
     /**
      * Set fundingSource
      *
@@ -1613,6 +1623,17 @@ class Submission extends Base
      */
     public function getLanguage()
     {
+        return $this->language;
+    }
+
+    public function getLanguageLabel()
+    {
+        switch ($this->language) {
+            case 'en':    return "English"; break;
+            case 'pt_BR': return "Portuguese"; break;
+            case 'es_ES': return "Spanish"; break;
+            case 'fr_FR': return "French"; break;
+        }
         return $this->language;
     }
 
