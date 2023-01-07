@@ -63,6 +63,10 @@ class Gender extends Base
      */
     private $locale;
 
+    public function __toString() {
+        return $this->getName();
+    }
+
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
