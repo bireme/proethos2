@@ -301,6 +301,13 @@ img.logo {
     transition: all 1s ease-in-out;
 }
 
+.export-format {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin: 0 auto;
+}
+
 .form-contacts .tagify {
   --tag-bg                  : #2C93D9;
   --tag-hover               : #CE0078;
