@@ -1608,24 +1608,42 @@ class NewSubmissionController extends Controller
 
                     // gerando um novo pdf da submission original
                     try {
+                        $committee_prefix = $util->getConfiguration('committee.prefix');
+                        $total_submissions = count($submission->getProtocol()->getSubmission());
+                        $protocol_code = sprintf('%s.%04d.%02d', $committee_prefix, $submission->getProtocol()->getId(), $total_submissions);
+                        $output['protocol_code'] = $protocol_code;
+
                         $html = $this->renderView(
                             'Proethos2CoreBundle:NewSubmission:showPdf.html.twig',
                             $output
                         );
 
+                        $footer = $this->renderView(
+                            'Proethos2CoreBundle:NewSubmission:footerPdf.html.twig',
+                            $output
+                        );
+
+                        // $header = $this->renderView(
+                        //     'Proethos2CoreBundle:NewSubmission:headerPdf.html.twig',
+                        //     $output
+                        // );
+
                         $pdf = $this->get('knp_snappy.pdf');
 
-                        if ( version_compare(PHP_VERSION, '7.3.0') < 0 ) {
-                            // setting margins
-                            $pdf->getInternalGenerator()->setOption('margin-top', '50px');
-                            $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
-                            $pdf->getInternalGenerator()->setOption('margin-left', '20px');
-                            $pdf->getInternalGenerator()->setOption('margin-right', '20px');
-                        }
+                        // setting margins
+                        $pdf->setOption('margin-top', '50px');
+                        $pdf->setOption('margin-bottom', '50px');
+                        $pdf->setOption('margin-left', '20px');
+                        $pdf->setOption('margin-right', '20px');
+
+                        $options = array(
+                            // 'header-html' => $header,
+                            'footer-html' => $footer,
+                        );
 
                         // adding pdf to tmp file
                         $filepath = "/tmp/" . date("Y-m-d-H\hi\ms\s") . "-submission.pdf";
-                        file_put_contents($filepath, $pdf->getOutputFromHtml($html));
+                        file_put_contents($filepath, $pdf->getOutputFromHtml($html, $options));
 
                         $submission_number = count($submission->getProtocol()->getSubmission());
 
@@ -1655,6 +1673,11 @@ class NewSubmissionController extends Controller
                         $new_output = $output;
                         $new_output['submission'] = $translation;
 
+                        $committee_prefix = $util->getConfiguration('committee.prefix');
+                        $total_submissions = count($translation->getProtocol()->getSubmission());
+                        $protocol_code = sprintf('%s.%04d.%02d', $committee_prefix, $translation->getProtocol()->getId(), $total_submissions);
+                        $new_output['protocol_code'] = $protocol_code;
+
                         // gerando um novo pdf
                         try {
                             $html = $this->renderView(
@@ -1662,19 +1685,32 @@ class NewSubmissionController extends Controller
                                 $new_output
                             );
 
+                            $footer = $this->renderView(
+                                'Proethos2CoreBundle:NewSubmission:footerPdf.html.twig',
+                                $new_output
+                            );
+
+                            // $header = $this->renderView(
+                            //     'Proethos2CoreBundle:NewSubmission:headerPdf.html.twig',
+                            //     $new_output
+                            // );
+
                             $pdf = $this->get('knp_snappy.pdf');
 
-                            if ( version_compare(PHP_VERSION, '7.3.0') < 0 ) {
-                                // setting margins
-                                $pdf->getInternalGenerator()->setOption('margin-top', '50px');
-                                $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
-                                $pdf->getInternalGenerator()->setOption('margin-left', '20px');
-                                $pdf->getInternalGenerator()->setOption('margin-right', '20px');
-                            }
+                            // setting margins
+                            $pdf->setOption('margin-top', '50px');
+                            $pdf->setOption('margin-bottom', '50px');
+                            $pdf->setOption('margin-left', '20px');
+                            $pdf->setOption('margin-right', '20px');
+
+                            $options = array(
+                                // 'header-html' => $header,
+                                'footer-html' => $footer,
+                            );
 
                             // adding pdf to tmp file
                             $filepath = "/tmp/" . date("Y-m-d-H\hi\ms\s") . "-submission-". $translation->getLanguage() .".pdf";
-                            file_put_contents($filepath, $pdf->getOutputFromHtml($html));
+                            file_put_contents($filepath, $pdf->getOutputFromHtml($html, $options));
 
                             $upload_type = $upload_type_repository->findOneBy(array("slug" => "protocol"));
 
@@ -1711,6 +1747,13 @@ class NewSubmissionController extends Controller
                     $protocol->setStatus("S");
                     $protocol->setDateInformed(new \DateTime());
                     $protocol->setUpdatedIn(new \DateTime());
+
+                    // generate the code
+                    $committee_prefix = $util->getConfiguration('committee.prefix');
+                    $total_submissions = count($protocol->getSubmission());
+                    $protocol_code = sprintf('%s.%04d.%02d', $committee_prefix, $protocol->getId(), $total_submissions);
+                    $protocol->setCode($protocol_code);
+
                     $em->persist($protocol);
                     $em->flush();
 
@@ -1899,18 +1942,31 @@ class NewSubmissionController extends Controller
             $output
         );
 
+        $footer = $this->renderView(
+            'Proethos2CoreBundle:NewSubmission:footerPdf.html.twig',
+            $output
+        );
+
+        // $header = $this->renderView(
+        //     'Proethos2CoreBundle:NewSubmission:headerPdf.html.twig',
+        //     $output
+        // );
+
         $pdf = $this->get('knp_snappy.pdf');
 
-        if ( version_compare(PHP_VERSION, '7.3.0') < 0 ) {
-            // setting margins
-            $pdf->getInternalGenerator()->setOption('margin-top', '50px');
-            $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
-            $pdf->getInternalGenerator()->setOption('margin-left', '20px');
-            $pdf->getInternalGenerator()->setOption('margin-right', '20px');
-        }
+        // setting margins
+        $pdf->setOption('margin-top', '50px');
+        $pdf->setOption('margin-bottom', '50px');
+        $pdf->setOption('margin-left', '20px');
+        $pdf->setOption('margin-right', '20px');
+
+        $options = array(
+            // 'header-html' => $header,
+            'footer-html' => $footer,
+        );
 
         return new Response(
-            $pdf->getOutputFromHtml($html),
+            $pdf->getOutputFromHtml($html, $options),
             200,
             array(
                 'Content-Type' => 'application/pdf'

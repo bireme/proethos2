@@ -590,10 +590,12 @@ class ProtocolController extends Controller
             } else {
 
                 // generate the code
-                $committee_prefix = $util->getConfiguration('committee.prefix');
-                $total_submissions = count($protocol->getSubmission());
-                $protocol_code = sprintf('%s.%04d.%02d', $committee_prefix, $protocol->getId(), $total_submissions);
-                $protocol->setCode($protocol_code);
+                if ( !$protocol->getCode() ) {
+                    $committee_prefix = $util->getConfiguration('committee.prefix');
+                    $total_submissions = count($protocol->getSubmission());
+                    $protocol_code = sprintf('%s.%04d.%02d', $committee_prefix, $protocol->getId(), $total_submissions);
+                    $protocol->setCode($protocol_code);
+                }
 
                 if($post_data['send-to'] == "comittee") {
 
@@ -1868,13 +1870,11 @@ class ProtocolController extends Controller
 
         $pdf = $this->get('knp_snappy.pdf');
 
-        if ( version_compare(PHP_VERSION, '7.3.0') < 0 ) {
-            // setting margins
-            $pdf->getInternalGenerator()->setOption('margin-top', '50px');
-            $pdf->getInternalGenerator()->setOption('margin-bottom', '50px');
-            $pdf->getInternalGenerator()->setOption('margin-left', '20px');
-            $pdf->getInternalGenerator()->setOption('margin-right', '20px');
-        }
+        // setting margins
+        $pdf->setOption('margin-top', '50px');
+        $pdf->setOption('margin-bottom', '50px');
+        $pdf->setOption('margin-left', '20px');
+        $pdf->setOption('margin-right', '20px');
 
         return new Response(
             $pdf->getOutputFromHtml($html),
