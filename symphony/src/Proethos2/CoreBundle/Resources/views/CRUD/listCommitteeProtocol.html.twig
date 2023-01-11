@@ -15,10 +15,10 @@
         </div>
 
         <div class='block'>
-
-
             <form class="form-group" id='form-search'>
+
                 <input type="hidden" name="output" id="input-output" value="html" />
+                <input type="hidden" name="export-format" id="input-export-format" value="" />
 
                 <div class='row'>
                     <div class="col-md-7">
@@ -50,7 +50,7 @@
 
                     <div class="col-md-1 search-button">
                         <div class="form-group">
-                            <a href="#" class='btn btn-warning' id="export-to-csv-button">{% trans %}Export to CSV{% endtrans %}</a>
+                            <a href="#" class='btn btn-warning' id="export-to-csv-button" data-toggle="modal" data-target="#modal-export-csv">{% trans %}Export to CSV{% endtrans %}</a>
                         </div>
                     </div>
 
@@ -119,13 +119,44 @@
             </div>
     </div>
 
+    <!-- Modal Export CSV -->
+    <div class="modal fade" id="modal-export-csv" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="modal-inner close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{% trans %}Export to CSV{% endtrans %}</h4>
+                </div>
+
+                <div class="modal-body text-center">
+                    <p>{% trans %}Which CSV file format would you like to export?{% endtrans %}</p>
+                    <div class="export-format">
+                        <a href="#" class='btn btn-warning' id="simple-export-to-csv-button">{% trans %}Simple File{% endtrans %}</a>
+                        <a href="#" class='btn btn-warning' id="full-export-to-csv-button">{% trans %}Full File{% endtrans %}</a>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default modal-inner" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block script %}
     <script>
         $(function(){
-            $("#export-to-csv-button").click(function(){
+            $("#simple-export-to-csv-button").click(function(){
                 $("#input-output").val('csv');
+                $("#input-export-format").val('simple');
+                $("#form-search").submit();
+            });
+
+            $("#full-export-to-csv-button").click(function(){
+                $("#input-output").val('csv');
+                $("#input-export-format").val('full');
                 $("#form-search").submit();
             });
 

@@ -455,60 +455,100 @@ class CRUDController extends Controller
                 'PRIMARY OUTCOMES',
                 'PRIMARY SPONSOR',
             );
+
+            $simple_csv_headers = array(
+                'CODE',
+                'TYPE',
+                'STATUS',
+                'ACCEPTED IN',
+                'UPDATED IN',
+                'REVISED IN',
+                'DECISION IN',
+                'RECRUITING',
+                'OWNER',
+                'EMAIL',
+                'INSTITUTION',
+                'ROLES',
+                'COUNTRY',
+                'PUBLIC TITLE',
+            );
+
             $csv_output = array();
             foreach($protocols as $protocol) {
                 $type = "Research";
                 if ( $protocol->getMainSubmission()->getIsClinicalTrial() ) { $type = "Clinical Trial"; }
                 if ( $protocol->getMainSubmission()->getIsConsultation() ) { $type = "Consultation"; }
 
-                if ( ! $protocol->getMainSubmission()->getIsMultipleClinicalStudy() ) {
-                    $csv_headers = array_merge($csv_headers, $substudy_headers);
+                $export_format_parameter = $request->query->get('export-format');
+                if ( 'full' == $export_format_parameter ) {
+                    if ( !$protocol->getMainSubmission()->getIsMultipleClinicalStudy() ) {
+                        $csv_headers = array_merge($csv_headers, $substudy_headers);
+                    }
+
+                    $current_line = array();
+                    $current_line[] = $protocol->getCode();
+                    $current_line[] = $type;
+                    $current_line[] = $protocol->getStatusLabel();
+                    $current_line[] = $protocol->getDateInformed() ? $protocol->getDateInformed()->format("Y-m-d H:i") : "";
+                    $current_line[] = $protocol->getUpdatedIn() ? $protocol->getUpdatedIn()->format("Y-m-d H:i") : "";
+                    $current_line[] = $protocol->getRevisedIn() ? $protocol->getRevisedIn()->format("Y-m-d H:i") : "";
+                    $current_line[] = $protocol->getDecisionIn() ? $protocol->getDecisionIn()->format("Y-m-d H:i") : "";
+                    $current_line[] = $protocol->getMainSubmission()->getRecruitmentInitDate() ? $protocol->getMainSubmission()->getRecruitmentInitDate()->format("Y-m-d H:i") : "";
+                    $current_line[] = $protocol->getOwner()->getUsername();
+                    $current_line[] = $protocol->getOwner()->getEmail();
+                    $current_line[] = $protocol->getOwner()->getInstitution();
+                    $current_line[] = implode(",", $protocol->getOwner()->getRolesSlug());
+                    $current_line[] = $protocol->getOwner()->getCountry() ? $protocol->getOwner()->getCountry()->getName() : '';
+
+                    $current_line[] = $protocol->getMainSubmission()->getLanguageLabel();
+                    $current_line[] = ( $protocol->getMainSubmission()->getIsSubstudy() ) ? 'Yes' : 'No';
+                    $current_line[] = $protocol->getMainSubmission()->getScientificTitle();
+                    $current_line[] = $protocol->getMainSubmission()->getPublicTitle();
+                    $current_line[] = $protocol->getMainSubmission()->getTitleAcronym();
+                    $current_line[] = strip_tags($protocol->getMainSubmission()->getAbstract());
+                    $current_line[] = $protocol->getMainSubmission()->getKeywords();
+                    $current_line[] = strip_tags($protocol->getMainSubmission()->getGoals());
+
+                    $current_line[] = ( $protocol->getMainSubmission()->getIsMultipleClinicalStudy() ) ? 'Yes' : 'No';
+                    if ( ! $protocol->getMainSubmission()->getIsMultipleClinicalStudy() ) {
+                        $current_line[] = $protocol->getMainSubmission()->getGender();
+                        $current_line[] = $protocol->getMainSubmission()->getSampleSize();
+                        $current_line[] = $protocol->getMainSubmission()->getMinimumAge();
+                        $current_line[] = $protocol->getMainSubmission()->getMaximumAge();
+                        $current_line[] = implode(",", $protocol->getMainSubmission()->getCountryList());
+                        $current_line[] = strip_tags($protocol->getMainSubmission()->getInterventions());
+                        $current_line[] = strip_tags($protocol->getMainSubmission()->getPrimaryOutcome());
+                        $current_line[] = $protocol->getMainSubmission()->getPrimarySponsor();
+                    }
+    /*
+                    $current_line[] = $protocol->getRejectReason();
+                    $current_line[] = $protocol->getCommitteeScreening();
+                    $current_line[] = $protocol->getOpinionRequired();
+                    $current_line[] = $protocol->getMeeting() ? $protocol->getMeeting()->getSubject() : "";
+                    $current_line[] = $protocol->getMonitoringAction() ? $protocol->getMonitoringAction()->getName() : "";
+                    $current_line[] = $protocol->getMonitoringActionNextDate() ? $protocol->getMonitoringActionNextDate()->format("Y-m-d H:i") : "";
+    */
+                    $csv_output[] = $current_line;
+                } else {
+                    $csv_headers = $simple_csv_headers;
+
+                    $current_line = array();
+                    $current_line[] = $protocol->getCode();
+                    $current_line[] = $type;
+                    $current_line[] = $protocol->getStatusLabel();
+                    $current_line[] = $protocol->getDateInformed() ? $protocol->getDateInformed()->format("Y-m-d H:i") : "";
+                    $current_line[] = $protocol->getUpdatedIn() ? $protocol->getUpdatedIn()->format("Y-m-d H:i") : "";
+                    $current_line[] = $protocol->getRevisedIn() ? $protocol->getRevisedIn()->format("Y-m-d H:i") : "";
+                    $current_line[] = $protocol->getDecisionIn() ? $protocol->getDecisionIn()->format("Y-m-d H:i") : "";
+                    $current_line[] = $protocol->getMainSubmission()->getRecruitmentInitDate() ? $protocol->getMainSubmission()->getRecruitmentInitDate()->format("Y-m-d H:i") : "";
+                    $current_line[] = $protocol->getOwner()->getUsername();
+                    $current_line[] = $protocol->getOwner()->getEmail();
+                    $current_line[] = $protocol->getOwner()->getInstitution();
+                    $current_line[] = implode(",", $protocol->getOwner()->getRolesSlug());
+                    $current_line[] = $protocol->getOwner()->getCountry() ? $protocol->getOwner()->getCountry()->getName() : '';
+                    $current_line[] = $protocol->getMainSubmission()->getPublicTitle();
+                    $csv_output[] = $current_line;
                 }
-
-                $current_line = array();
-                $current_line[] = $protocol->getCode();
-                $current_line[] = $type;
-                $current_line[] = $protocol->getStatusLabel();
-                $current_line[] = $protocol->getDateInformed() ? $protocol->getDateInformed()->format("Y-m-d H:i") : "";
-                $current_line[] = $protocol->getUpdatedIn() ? $protocol->getUpdatedIn()->format("Y-m-d H:i") : "";
-                $current_line[] = $protocol->getRevisedIn() ? $protocol->getRevisedIn()->format("Y-m-d H:i") : "";
-                $current_line[] = $protocol->getDecisionIn() ? $protocol->getDecisionIn()->format("Y-m-d H:i") : "";
-                $current_line[] = $protocol->getMainSubmission()->getRecruitmentInitDate() ? $protocol->getMainSubmission()->getRecruitmentInitDate()->format("Y-m-d H:i") : "";
-                $current_line[] = $protocol->getOwner()->getUsername();
-                $current_line[] = $protocol->getOwner()->getEmail();
-                $current_line[] = $protocol->getOwner()->getInstitution();
-                $current_line[] = implode(",", $protocol->getOwner()->getRolesSlug());
-                $current_line[] = $protocol->getOwner()->getCountry() ? $protocol->getOwner()->getCountry()->getName() : '';
-
-                $current_line[] = $protocol->getMainSubmission()->getLanguageLabel();
-                $current_line[] = ( $protocol->getMainSubmission()->getIsSubstudy() ) ? 'Yes' : 'No';
-                $current_line[] = $protocol->getMainSubmission()->getScientificTitle();
-                $current_line[] = $protocol->getMainSubmission()->getPublicTitle();
-                $current_line[] = $protocol->getMainSubmission()->getTitleAcronym();
-                $current_line[] = strip_tags($protocol->getMainSubmission()->getAbstract());
-                $current_line[] = $protocol->getMainSubmission()->getKeywords();
-                $current_line[] = strip_tags($protocol->getMainSubmission()->getGoals());
-
-                $current_line[] = ( $protocol->getMainSubmission()->getIsMultipleClinicalStudy() ) ? 'Yes' : 'No';
-                if ( ! $protocol->getMainSubmission()->getIsMultipleClinicalStudy() ) {
-                    $current_line[] = $protocol->getMainSubmission()->getGender();
-                    $current_line[] = $protocol->getMainSubmission()->getSampleSize();
-                    $current_line[] = $protocol->getMainSubmission()->getMinimumAge();
-                    $current_line[] = $protocol->getMainSubmission()->getMaximumAge();
-                    $current_line[] = implode(",", $protocol->getMainSubmission()->getCountryList());
-                    $current_line[] = strip_tags($protocol->getMainSubmission()->getInterventions());
-                    $current_line[] = strip_tags($protocol->getMainSubmission()->getPrimaryOutcome());
-                    $current_line[] = $protocol->getMainSubmission()->getPrimarySponsor();
-                }
-/*
-                $current_line[] = $protocol->getRejectReason();
-                $current_line[] = $protocol->getCommitteeScreening();
-                $current_line[] = $protocol->getOpinionRequired();
-                $current_line[] = $protocol->getMeeting() ? $protocol->getMeeting()->getSubject() : "";
-                $current_line[] = $protocol->getMonitoringAction() ? $protocol->getMonitoringAction()->getName() : "";
-                $current_line[] = $protocol->getMonitoringActionNextDate() ? $protocol->getMonitoringActionNextDate()->format("Y-m-d H:i") : "";
-*/
-                $csv_output[] = $current_line;
             }
 
             $response = new CSVResponse( $csv_output, 200, $csv_headers );
