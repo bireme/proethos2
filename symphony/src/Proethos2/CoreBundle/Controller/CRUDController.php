@@ -412,7 +412,7 @@ class CRUDController extends Controller
         // output parameter
         $output_parameter = $request->query->get('output');
         if( $output_parameter == 'csv' ) {
-            $csv_headers = array(
+            $full_csv_headers = array(
                 'CODE',
                 'TYPE',
                 'STATUS',
@@ -437,15 +437,6 @@ class CRUDController extends Controller
                 'GOALS',
                 'MORE THAN ONE ACTIVITY?',
 
-                // 'REJECT REASON',
-                // 'COMMITTEE SCREENING',
-                // 'OPINIONS REQUIRED',
-                // 'MEETING',
-                // 'MONITORING ACTION',
-                // 'NEXT DATE OF MONITORING ACTION',
-            );
-
-            $substudy_headers = array(
                 'GENDER',
                 'TARGET SAMPLE SIZE',
                 'MINIMUM AGE',
@@ -454,6 +445,13 @@ class CRUDController extends Controller
                 'INTERVENTIONS',
                 'PRIMARY OUTCOMES',
                 'PRIMARY SPONSOR',
+
+                // 'REJECT REASON',
+                // 'COMMITTEE SCREENING',
+                // 'OPINIONS REQUIRED',
+                // 'MEETING',
+                // 'MONITORING ACTION',
+                // 'NEXT DATE OF MONITORING ACTION',
             );
 
             $simple_csv_headers = array(
@@ -473,18 +471,20 @@ class CRUDController extends Controller
                 'PUBLIC TITLE',
             );
 
+            $export_format_parameter = $request->query->get('export-format');
+            if ( 'full' == $export_format_parameter ) {
+                $csv_headers = $full_csv_headers;
+            } else {
+                $csv_headers = $simple_csv_headers;
+            }
+
             $csv_output = array();
             foreach($protocols as $protocol) {
                 $type = "Research";
                 if ( $protocol->getMainSubmission()->getIsClinicalTrial() ) { $type = "Clinical Trial"; }
                 if ( $protocol->getMainSubmission()->getIsConsultation() ) { $type = "Consultation"; }
 
-                $export_format_parameter = $request->query->get('export-format');
                 if ( 'full' == $export_format_parameter ) {
-                    if ( !$protocol->getMainSubmission()->getIsMultipleClinicalStudy() ) {
-                        $csv_headers = array_merge($csv_headers, $substudy_headers);
-                    }
-
                     $current_line = array();
                     $current_line[] = $protocol->getCode();
                     $current_line[] = $type;
@@ -501,7 +501,7 @@ class CRUDController extends Controller
                     $current_line[] = $protocol->getOwner()->getCountry() ? $protocol->getOwner()->getCountry()->getName() : '';
 
                     $current_line[] = $protocol->getMainSubmission()->getLanguageLabel();
-                    $current_line[] = ( $protocol->getMainSubmission()->getIsSubstudy() ) ? 'Yes' : 'No';
+                    $current_line[] = ( $protocol->getMainSubmission()->getIsSubstudy() ) ? $translator->trans('Yes') : $translator->trans('No');
                     $current_line[] = $protocol->getMainSubmission()->getScientificTitle();
                     $current_line[] = $protocol->getMainSubmission()->getPublicTitle();
                     $current_line[] = $protocol->getMainSubmission()->getTitleAcronym();
@@ -509,8 +509,8 @@ class CRUDController extends Controller
                     $current_line[] = $protocol->getMainSubmission()->getKeywords();
                     $current_line[] = strip_tags($protocol->getMainSubmission()->getGoals());
 
-                    $current_line[] = ( $protocol->getMainSubmission()->getIsMultipleClinicalStudy() ) ? 'Yes' : 'No';
-                    if ( ! $protocol->getMainSubmission()->getIsMultipleClinicalStudy() ) {
+                    $current_line[] = ( $protocol->getMainSubmission()->getIsMultipleClinicalStudy() ) ? $translator->trans('Yes') : $translator->trans('No');
+                    if ( !$protocol->getMainSubmission()->getIsMultipleClinicalStudy() ) {
                         $current_line[] = $protocol->getMainSubmission()->getGender();
                         $current_line[] = $protocol->getMainSubmission()->getSampleSize();
                         $current_line[] = $protocol->getMainSubmission()->getMinimumAge();
@@ -530,8 +530,6 @@ class CRUDController extends Controller
     */
                     $csv_output[] = $current_line;
                 } else {
-                    $csv_headers = $simple_csv_headers;
-
                     $current_line = array();
                     $current_line[] = $protocol->getCode();
                     $current_line[] = $type;
