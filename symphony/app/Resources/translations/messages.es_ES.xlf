@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2022-12-21T04:52:10Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2023-01-12T20:14:30Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -717,6 +717,10 @@
       <trans-unit id="d790b402d79ac1a723c790313bcd679999474630" resname="Frequently Asked Questions">
         <source>Frequently Asked Questions</source>
         <target>Preguntas frecuentes</target>
+      </trans-unit>
+      <trans-unit id="55ef9e1af4d482e2f722306b14df11382a46c695" resname="Full File">
+        <source>Full File</source>
+        <target>Archivo Completo</target>
       </trans-unit>
       <trans-unit id="45c943240a0a1c114a13f6cfc12be38cf4c6191c" resname="Funding Source">
         <source>Funding Source</source>
@@ -1787,6 +1791,10 @@
         <source>Show Protocol</source>
         <target>Mostrar protocolo</target>
       </trans-unit>
+      <trans-unit id="abac76b3b0f8834c88fc499643d3bb7dfd17157c" resname="Simple File">
+        <source>Simple File</source>
+        <target>Archivo Simple</target>
+      </trans-unit>
       <trans-unit id="da581f85e0b26a16cba2c19d07dc95d9cdc81d4f" resname="Sixth step saved with success.">
         <source>Sixth step saved with success.</source>
         <target>Sixth step saved with success.</target>
@@ -2102,6 +2110,10 @@
       <trans-unit id="477bc7417793d2bd9001b1ab4e8087d6c09fc5d4" resname="Welcome to the Proethos2 platform!">
         <source>Welcome to the Proethos2 platform!</source>
         <target>¡Bienvenido a la plataforma ProEthos2!</target>
+      </trans-unit>
+      <trans-unit id="5f8dd6e104e0fe2db5d239ce75fcff9a9f9580bc" resname="Which CSV file format would you like to export?">
+        <source>Which CSV file format would you like to export?</source>
+        <target>¿Qué formato de archivo CSV desea exportar?</target>
       </trans-unit>
       <trans-unit id="145fb491e7ccb187f698e7d149384f913ed72df9" resname="Withdraw protocol">
         <source>Withdraw protocol</source>
