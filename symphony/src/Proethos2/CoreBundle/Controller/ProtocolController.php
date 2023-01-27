@@ -1809,7 +1809,8 @@ class ProtocolController extends Controller
 
         $files = array();
         foreach ($attachments as $file) {
-            $ext = end(explode(".", $file->getUri()));
+            $explode_ext = explode(".", $file->getUri());
+            $ext = end($explode_ext);
             if ( 'pdf' == $ext )
                 $files[] = ltrim($file->getUri(), '/');
         }
@@ -2096,7 +2097,8 @@ class ProtocolController extends Controller
         $comment = $protocol_comment_repository->find($comment_id);
         $root_dir = $this->get('kernel')->getRootDir();
         $filepath = $root_dir.'/..'.$comment->getUri();
-        $filename = end(explode('_', $comment->getFilename(), 2));
+        $explode_filename = explode('_', $comment->getFilename(), 2);
+        $filename = end($explode_filename);
         // $file_ext = strtolower(substr(strrchr($comment->getFilename(), '.'), 1));
 
         $response = new BinaryFileResponse($filepath);

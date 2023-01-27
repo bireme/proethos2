@@ -865,8 +865,8 @@ class NewSubmissionController extends Controller
         if ( $country_locale ) {
             $country_code   = explode('|', $country_locale[0]->getValue())[0];
             $currency_code  = explode('|', $country_locale[0]->getValue())[1];
-            $locale = CountryLocale::getLocaleByCountryCode($country_code);
-            $locale = explode(',', $locale)[0];
+            $_locale = CountryLocale::getLocaleByCountryCode($country_code);
+            $locale = explode(',', $_locale)[0];
             $symbol = Intl::getCurrencyBundle()->getCurrencySymbol($currency_code, $locale);
             $output['symbol'] = $symbol;
         } else {
@@ -1348,8 +1348,8 @@ class NewSubmissionController extends Controller
         if ( $country_locale ) {
             $country_code   = explode('|', $country_locale[0]->getValue())[0];
             $currency_code  = explode('|', $country_locale[0]->getValue())[1];
-            $locale = CountryLocale::getLocaleByCountryCode($country_code);
-            $locale = explode(',', $locale)[0];
+            $_locale = CountryLocale::getLocaleByCountryCode($country_code);
+            $locale = explode(',', $_locale)[0];
             $symbol = Intl::getCurrencyBundle()->getCurrencySymbol($currency_code, $locale);
             $output['symbol'] = $symbol;
         } else {
@@ -1894,8 +1894,8 @@ class NewSubmissionController extends Controller
         if ( $country_locale ) {
             $country_code   = explode('|', $country_locale[0]->getValue())[0];
             $currency_code  = explode('|', $country_locale[0]->getValue())[1];
-            $locale = CountryLocale::getLocaleByCountryCode($country_code);
-            $locale = explode(',', $locale)[0];
+            $_locale = CountryLocale::getLocaleByCountryCode($country_code);
+            $locale = explode(',', $_locale)[0];
             $symbol = Intl::getCurrencyBundle()->getCurrencySymbol($currency_code, $locale);
             $output['symbol'] = $symbol;
         } else {
