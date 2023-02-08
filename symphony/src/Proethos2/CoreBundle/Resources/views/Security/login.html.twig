@@ -21,7 +21,7 @@
             -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
             box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
         }
-        .card:last-child {
+        .form-card.card {
             margin: 100px -40px 0 0;
             width: 28%;
         }
@@ -50,7 +50,7 @@
 
     <div class="container-fluid">
         <div class='row'>
-            <div class="col-xs-8 card">
+            <div class="col-sm-8 card">
                 
                 <h1>
                     {% if committee_logourl %}
@@ -64,7 +64,7 @@
                 <p>{{ committee_description|nl2br }}</p>
             </div>
 
-            <div class="col-xs-4 form-card card">
+            <div class="col-sm-4 form-card card">
                 
                 {% if error %}
                     {% if auth_type == 'oauth2' %}
