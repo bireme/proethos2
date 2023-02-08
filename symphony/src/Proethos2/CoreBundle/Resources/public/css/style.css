@@ -431,3 +431,13 @@ img.logo {
         max-height: none !important;
     }
 }
+
+@media (max-width:750px){
+    .form-card.card {
+        margin: 20px auto!important;
+        width: 93%!important;
+    }
+    .logo-footer {
+        width:80%;
+    }
+}
