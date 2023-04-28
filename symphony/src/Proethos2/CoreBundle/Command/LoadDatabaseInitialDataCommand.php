@@ -51,18 +51,20 @@ class LoadDatabaseInitialDataCommand extends ContainerAwareCommand
             'list_gender',
             'list_monitoring_action',
             'list_recruitment_status',
-            'list_role',
-            'upload_type_extension',
+            'upload_type_ext',
             'upload_type',
             'upload_type_upload_type_extension',
             'help',
             'faq',
             'ext_translations',
             'config',
+            'role',
         );
 
         if($input->getOption('update') != true) {
             $tables[] = 'configuration';
+            $tables[] = 'list_role';
+            $tables[] = 'upload_type_extension';
         }
 
         $host = $database_host;

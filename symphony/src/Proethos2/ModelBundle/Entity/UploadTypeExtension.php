@@ -46,6 +46,10 @@ class UploadTypeExtension extends Base
      */
     private $status = true;
 
+    public function __toString() {
+        return $this->getExtension();
+    }
+
     /**
      * Get id
      *

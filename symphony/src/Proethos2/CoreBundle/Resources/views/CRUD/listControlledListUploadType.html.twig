@@ -23,6 +23,7 @@
                         <thead>
                             <tr>
                                 <th width="80%">{% trans %}Name{% endtrans %}</th>
+                                <th width="">{% trans %}Extensions{% endtrans %}</th>
                                 <th width="">{% trans %}Status{% endtrans %}</th>
                                 <th>{% trans %}Actions{% endtrans %}</th>
                             </tr>
@@ -33,6 +34,7 @@
                                 {% if item.slug not in ['protocol', 'opinion'] %}
                                     <tr>
                                         <td>{{ item.name }}</td>
+                                        <td>{{ item.extensions|join(' ') }}</td>
                                         <td>
                                             {% if item.status %}
                                                 <span class='label label-success'>{% trans %}active{% endtrans %}</span>
