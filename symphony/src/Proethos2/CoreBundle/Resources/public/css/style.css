@@ -401,6 +401,14 @@ img.logo {
     margin: 0 auto;
 }
 
+#cookie-bar-button {
+    text-decoration: none !important;
+}
+
+#cookie-bar-button:hover {
+    text-decoration: underline !important;
+}
+
 .form-contacts .tagify {
     --tag-bg: #2C93D9;
     --tag-hover: #CE0078;
