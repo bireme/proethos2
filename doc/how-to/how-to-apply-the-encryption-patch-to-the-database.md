@@ -1,3 +1,7 @@
+[Español](how-to-apply-the-encryption-patch-to-the-database-es.md)
+
+---
+
 How to apply the encryption patch to the database (required if ProEthos2 >= 1.6.0)
 ==================================================================================
 

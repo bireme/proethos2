@@ -18,7 +18,7 @@ Dependencias
 ### Dependencias que cada instalación en Ubuntu deben tener:
 
 ```
-$ sudo apt-get install -y openssh-server make unzip   
+$ sudo apt-get install -y openssh-server make unzip ghostscript
 ```
 
 ### Configurar Git
@@ -152,9 +152,11 @@ Recuerde que los directorios siguientes deben tener permisos de escritura de Apa
 ```
 sudo chgrp www-data -R app/logs
 sudo chgrp www-data -R app/cache
+sudo chgrp www-data -R app/sessions
 sudo chgrp www-data -R uploads
-chmod -R 0775 app/cache
 chmod -R 0775 app/logs
+chmod -R 0775 app/cache
+chmod -R 0775 app/sessions
 chmod -R 0775 uploads
 ```
 

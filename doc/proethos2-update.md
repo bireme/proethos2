@@ -17,7 +17,8 @@ Execute the following commands:
 
 To compile and update the application, execute the following command:
 
-    $ make update
+    $ composer update [see note at bottom of this page]
+    $ sudo make update
 
 To update the database, execute the following command:
 
