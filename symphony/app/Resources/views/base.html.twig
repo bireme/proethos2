@@ -39,6 +39,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js" charset="UTF-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/3.20.3/jQuery.tagify.min.js"></script>
+    {% set forceLang = app.request.locale|split('_')[0] %}
+    {% if forceLang == 'pt' %}
+        {% set forceLang = 'br' %}
+    {% endif %}
+    <script src="https://politicas.bireme.org/cookiebar/cookiebar-latest.js?forceLang={{ forceLang }}"></script>
     {% if 'en' != app.request.locale %}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/lang/summernote-{{ app.request.locale|replace({ '_': '-' }) }}.min.js"></script>
     {% endif %}
