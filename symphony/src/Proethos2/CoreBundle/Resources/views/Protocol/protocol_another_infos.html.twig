@@ -227,64 +227,66 @@
     </div>
 </div>
 
-<div class='block'>
-    <div class='row'>
-        <div class="col-md-12">
-            <h2 class='sub-header toggle-block'>
-                <small class='pull-right'>
-                    <i class='glyphicon glyphicon-minus'></i>
-                </small>
-                
-                {% if 'member-of-committee' in app.user.getRolesSlug %}
-                    {% trans %}Correspondence{% endtrans %} ({% trans %}for use by investigators only{% endtrans %})
-                {% else %}
-                    {% trans %}Correspondence{% endtrans %}
-                {% endif %}
-            </h2>
+{% if 'investigator' in app.user.getRolesSlug or 'secretary' in app.user.getRolesSlug or 'administrator' in app.user.getRolesSlug %}
+    <div class='block'>
+        <div class='row'>
+            <div class="col-md-12">
+                <h2 class='sub-header toggle-block'>
+                    <small class='pull-right'>
+                        <i class='glyphicon glyphicon-minus'></i>
+                    </small>
+                    
+                    {% if 'member-of-committee' in app.user.getRolesSlug %}
+                        {% trans %}Correspondence{% endtrans %} ({% trans %}for use by investigators only{% endtrans %})
+                    {% else %}
+                        {% trans %}Correspondence{% endtrans %}
+                    {% endif %}
+                </h2>
+            </div>
         </div>
-    </div>
 
-    <div class='row'>
-        <div class="col-md-12">
-            <table class='table table-hover table-condensed'>
-                <thead>
-                    <tr>
-                        <th width="15%">{% trans %}Date & Time{% endtrans %}</th>
-                        <th width="15%">{% trans %}Author{% endtrans %}</th>
-                        <th width="15%">{% trans %}Confidential{% endtrans %}</th>
-                        <th>{% trans %}Message{% endtrans %}</th>
-                        <th>{% trans %}Actions{% endtrans %}</th>
-                    </tr>
-                </thead>
-                 
-                <tbody>
-                    {% for comment in protocol.comment %}
-                        {% if 'member-of-committee' != comment.role %}
-                            {% if not comment.isConfidential or 'investigator' not in app.user.getRolesSlug or not protocol.mainSubmission.isOwner(app.user) %}
-                                <tr>
-                                    <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
-                                    <td>{{ comment.owner }}</td> 
-                                    <td>{% if comment.isConfidential %}<i class='glyphicon glyphicon-ok'></i>{% endif %}</td>
-                                    <td>{{ comment.message|nl2br }}</td>
-                                    <td>
-                                        {% if comment.filename %}
-                                            {% set filehash = comment.filename|split('_')[0] %}
-                                            <a href='{{ path("protocol_comment_upload", {'comment_id': comment.id }) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{{ comment.realFilename }}" target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
-                                        {% endif %}
-                                    </td>
-                                </tr>
+        <div class='row'>
+            <div class="col-md-12">
+                <table class='table table-hover table-condensed'>
+                    <thead>
+                        <tr>
+                            <th width="15%">{% trans %}Date & Time{% endtrans %}</th>
+                            <th width="15%">{% trans %}Author{% endtrans %}</th>
+                            <th width="15%">{% trans %}Confidential{% endtrans %}</th>
+                            <th>{% trans %}Message{% endtrans %}</th>
+                            <th>{% trans %}Actions{% endtrans %}</th>
+                        </tr>
+                    </thead>
+                     
+                    <tbody>
+                        {% for comment in protocol.comment %}
+                            {% if 'member-of-committee' != comment.role %}
+                                {% if not comment.isConfidential or 'investigator' not in app.user.getRolesSlug or not protocol.mainSubmission.isOwner(app.user) %}
+                                    <tr>
+                                        <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
+                                        <td>{{ comment.owner }}</td> 
+                                        <td>{% if comment.isConfidential %}<i class='glyphicon glyphicon-ok'></i>{% endif %}</td>
+                                        <td>{{ comment.message|nl2br }}</td>
+                                        <td>
+                                            {% if comment.filename %}
+                                                {% set filehash = comment.filename|split('_')[0] %}
+                                                <a href='{{ path("protocol_comment_upload", {'comment_id': comment.id }) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{{ comment.realFilename }}" target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endif %}
                             {% endif %}
-                        {% endif %}
-                    {% endfor %}
-                </tbody>
-            </table>
+                        {% endfor %}
+                    </tbody>
+                </table>
 
-            {% if 'administrator' in app.user.getRolesSlug or 'secretary' in app.user.getRolesSlug or 'investigator' in app.user.getRolesSlug %}
-                <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-comment">{% trans %}New Comment{% endtrans %}</a>
-            {% endif %}
+                {% if 'administrator' in app.user.getRolesSlug or 'secretary' in app.user.getRolesSlug or 'investigator' in app.user.getRolesSlug %}
+                    <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-new-comment">{% trans %}New Comment{% endtrans %}</a>
+                {% endif %}
+            </div>
         </div>
     </div>
-</div>
+{% endif %}
 
 {% if 'member-of-committee' in app.user.getRolesSlug or 'secretary' in app.user.getRolesSlug or 'administrator' in app.user.getRolesSlug %}
     <div class='block'>
