@@ -70,6 +70,10 @@ class GenerateDatabaseInitialDataCommand extends ContainerAwareCommand
             exec($command);
         }
 
-        exec("cd $fixtures_dir && python ../../tools/reorder-fixtures-help.py data_help.sql");
+        exec("cd $fixtures_dir && python ../../tools/reorder-fixtures-help.py data_help.sql 2> /dev/null", $output, $return);
+
+        if (!$return) {
+            exec("cd $fixtures_dir && python3 ../../tools/reorder-fixtures-help.py data_help.sql");
+        }
     }
 }
