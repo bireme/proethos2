@@ -125,11 +125,13 @@ class IndexController extends Controller
     }
 
     public function getGoogleAnalyticsCodeAction()
-    {   
+    {
         $util = new Util($this->container, $this->getDoctrine());
         $ga = $util->getConfiguration("google.analytics");
+        $ga = explode("\n", $ga);
 
         if( $ga ) {
+            $ga = implode("|", $ga);
             return new Response($ga);
         }
 
