@@ -30,15 +30,15 @@
                                 {% if configuration.key != 'protocol.checklist' %}
                                     {% if configuration.key == 'country.locale' %}
                                         <tr>
-                                            <td>{{ configuration.description }}</td>
-                                            <td>{% if not configuration.value %}<i>(empty value)</i>{% else %}{{ country_name }} | {{ currency_name }}{% endif %}</td>
-                                            <td><a href='#' data-toggle='modal' data-target='#modal-new-currency' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a></td>
+                                            <td data-label="{% trans %}Description{% endtrans %}">{{ configuration.description }}</td>
+                                            <td data-label="{% trans %}Value{% endtrans %}">{% if not configuration.value %}<i>(empty value)</i>{% else %}{{ country_name }} | {{ currency_name }}{% endif %}</td>
+                                            <td data-label="{% trans %}Actions{% endtrans %}"><a href='#' data-toggle='modal' data-target='#modal-new-currency' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a></td>
                                         </tr>
                                     {% else %}
                                         <tr>
-                                            <td>{{ configuration.description }}</td>
-                                            <td>{% if not configuration.value %}<i>(empty value)</i>{% else %}{{ configuration.value }}{% endif %}</td>
-                                            <td><a href='{{ path("crud_admin_configuration_update", {configuration_id: configuration.id}) }}?field={{ configuration.key }}' data-toggle='modal' data-target='#modal-update-configuration' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a></td>
+                                            <td data-label="{% trans %}Description{% endtrans %}">{{ configuration.description }}</td>
+                                            <td data-label="{% trans %}Value{% endtrans %}">{% if not configuration.value %}<i>(empty value)</i>{% else %}{{ configuration.value }}{% endif %}</td>
+                                            <td data-label="{% trans %}Actions{% endtrans %}"><a href='{{ path("crud_admin_configuration_update", {configuration_id: configuration.id}) }}?field={{ configuration.key }}' data-toggle='modal' data-target='#modal-update-configuration' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a></td>
                                         </tr>
                                     {% endif %}
                                 {% endif %}

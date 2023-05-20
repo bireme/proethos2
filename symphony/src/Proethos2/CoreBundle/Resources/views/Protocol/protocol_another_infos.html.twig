@@ -29,41 +29,41 @@
                 
                 <tbody>
                     <tr>
-                        <td>{{ protocol.mainSubmission.owner.name }}</td>
-                        <td><a href='{{ protocol.mainSubmission.owner.email }}'>{{ protocol.mainSubmission.owner.email }}</a></td>
-                        <td>{{ protocol.mainSubmission.owner.institution }}</td>
-                        <td>{{ protocol.mainSubmission.owner.submissionTeamRole(protocol.mainSubmission) }}</td>
-                        <td>{{ protocol.mainSubmission.owner.country }}</td>
-                        <td><label class='label label-success'>{% trans %}Yes{% endtrans %}</label></td>
-                        <!-- <td>-</td>  -->
+                        <td data-label="{% trans %}Name{% endtrans %}">{{ protocol.mainSubmission.owner.name }}</td>
+                        <td data-label="{% trans %}E-mail{% endtrans %}"><a href='{{ protocol.mainSubmission.owner.email }}'>{{ protocol.mainSubmission.owner.email }}</a></td>
+                        <td data-label="{% trans %}Institution{% endtrans %}">{{ protocol.mainSubmission.owner.institution }}</td>
+                        <td data-label="{% trans %}Role{% endtrans %}">{{ protocol.mainSubmission.owner.submissionTeamRole(protocol.mainSubmission) }}</td>
+                        <td data-label="{% trans %}Country{% endtrans %}">{{ protocol.mainSubmission.owner.country }}</td>
+                        <td data-label="{% trans %}Main?{% endtrans %}"><label class='label label-success'>{% trans %}Yes{% endtrans %}</label></td>
+                        <!-- <td data-label="{% trans %}Actions{% endtrans %}">-</td>  -->
                     </tr>
                     {% for team_user in protocol.mainSubmission.team %}
                         <tr>
-                            <td>
+                            <td data-label="{% trans %}Name{% endtrans %}">
                                 <input type='hidden' name='team_user[]' value='{{ team_user.id }}'>
                                 {{ team_user.name }}
-                            </td> 
-                            <td><a href='{{ team_user.email }}'>{{ team_user.email }}</a></td>
-                            <td>{{ team_user.institution }}</td>
-                            <td>{{ team_user.submissionTeamRole(protocol.mainSubmission) }}</td>
-                            <td>{{ team_user.country }}</td>
-                            <td><label class='label label-default'>{% trans %}No{% endtrans %}</label></td>
-                            <!-- <td><a href='#' class='btn btn-default btn-xs button-remove-team'><i class='glyphicon glyphicon-trash'></i></a></td>  -->
+                            </td>
+                            <td data-label="{% trans %}E-mail{% endtrans %}"><a href='{{ team_user.email }}'>{{ team_user.email }}</a></td>
+                            <td data-label="{% trans %}Institution{% endtrans %}">{{ team_user.institution }}</td>
+                            <td data-label="{% trans %}Role{% endtrans %}">{{ team_user.submissionTeamRole(protocol.mainSubmission) }}</td>
+                            <td data-label="{% trans %}Country{% endtrans %}">{{ team_user.country }}</td>
+                            <td data-label="{% trans %}Main?{% endtrans %}"><label class='label label-default'>{% trans %}No{% endtrans %}</label></td>
+                            <!-- <td data-label="{% trans %}Actions{% endtrans %}"><a href='#' class='btn btn-default btn-xs button-remove-team'><i class='glyphicon glyphicon-trash'></i></a></td>  -->
                         </tr>
                     {% endfor %}
                     {% for team_user in submission_team %}
                         {% set unique_id = '_' ~ random() %}
                         <tr>
-                            <td>
+                            <td data-label="{% trans %}Name{% endtrans %}">
                                 <input type='hidden' name='new_team_user[]' value='{{ unique_id }}'>
                                 {{ team_user.name }}
                             </td> 
-                            <td><a href='{{ team_user.email }}'>{{ team_user.email }}</a></td>
-                            <td>{{ team_user.institution }}</td>
-                            <td>{{ team_user.role }}</td>
-                            <td></td>
-                            <td><label class='label label-default'>{% trans %}No{% endtrans %}</label></td>
-                            <!-- <td><a href='#' class='btn btn-default btn-xs button-remove-team'><i class='glyphicon glyphicon-trash'></i></a></td>  -->
+                            <td data-label="{% trans %}E-mail{% endtrans %}"><a href='{{ team_user.email }}'>{{ team_user.email }}</a></td>
+                            <td data-label="{% trans %}Institution{% endtrans %}">{{ team_user.institution }}</td>
+                            <td data-label="{% trans %}Role{% endtrans %}">{{ team_user.role }}</td>
+                            <td data-label="{% trans %}Country{% endtrans %}"></td>
+                            <td data-label="{% trans %}Main?{% endtrans %}"><label class='label label-default'>{% trans %}No{% endtrans %}</label></td>
+                            <!-- <td data-label="{% trans %}Actions{% endtrans %}"><a href='#' class='btn btn-default btn-xs button-remove-team'><i class='glyphicon glyphicon-trash'></i></a></td>  -->
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -154,13 +154,13 @@
                         {% endif %}
 
                         <tr>
-                            <td>{{ file.uploadType }}</td>
-                            <td>{{ file.submissionNumber }}</td>
-                            <td>{{ file.user }}</td>
-                            <td>{{ file }}</td> 
-                            <td>{{ file.created|date("d/m/Y H:i") }}</td>
-                            <td class="{{ class }}"><b>{{ text|trans }}</b></td>
-                            <td>
+                            <td data-label="{% trans %}Type{% endtrans %}">{{ file.uploadType }}</td>
+                            <td data-label="{% trans %}Original Submission{% endtrans %}">{{ file.submissionNumber }}</td>
+                            <td data-label="{% trans %}Submitted by{% endtrans %}">{{ file.user }}</td>
+                            <td data-label="{% trans %}File name{% endtrans %}">{{ file }}</td> 
+                            <td data-label="{% trans %}Date & Time{% endtrans %}">{{ file.created|date("d/m/Y H:i") }}</td>
+                            <td class="{{ class }}" data-label="{% trans %}Priority{% endtrans %}"><b>{{ text|trans }}</b></td>
+                            <td data-label="{% trans %}Actions{% endtrans %}">
                                 <a href='{{ path("protocol_upload", {'upload_id': file.id }) }}' class='btn btn-default btn-xs' target="_blank">
                                     <i class='glyphicon glyphicon-eye-open'></i>
                                 </a>
@@ -181,10 +181,10 @@
             </table>
             
             {% if is_granted("ROLE_USER") and 'secretary' in app.user.rolesSlug %}
-                <a href='{{ path("protocol_new_attachment", {'protocol_id': protocol.id }) }}' class='btn btn-default' data-toggle="modal" data-target="#modal-new-file">{% trans %}New Attachment{% endtrans %}</a>
+                <a href='{{ path("protocol_new_attachment", {'protocol_id': protocol.id }) }}' class='btn btn-default mb-3' data-toggle="modal" data-target="#modal-new-file">{% trans %}New Attachment{% endtrans %}</a>
             {% endif %}
             {% if is_granted("ROLE_USER") and ('secretary' in app.user.rolesSlug or 'member-of-committee' in app.user.rolesSlug)  %}
-                <a href='{{ path("protocol_generate_report", {'protocol_id': protocol.id}) }}' class='btn btn-default' target='_blank'>{% trans %}Create Report{% endtrans %}</a>
+                <a href='{{ path("protocol_generate_report", {'protocol_id': protocol.id}) }}' class='btn btn-default mb-3' target='_blank'>{% trans %}Create Report{% endtrans %}</a>
             {% endif %}
         </div>
     </div>
@@ -217,8 +217,8 @@
                 <tbody>
                     {% for history in protocol.history %}
                         <tr>
-                           <td width="20%">{{ history.created|date("d/m/Y H:i:s") }}</td>
-                           <td>{{ history.message }}</td> 
+                           <td data-label="{% trans %}Date & Time{% endtrans %}">{{ history.created|date("d/m/Y H:i:s") }}</td>
+                           <td data-label="{% trans %}Message{% endtrans %}">{{ history.message }}</td> 
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -263,11 +263,11 @@
                             {% if 'member-of-committee' != comment.role %}
                                 {% if not comment.isConfidential or 'investigator' not in app.user.getRolesSlug or not protocol.mainSubmission.isOwner(app.user) %}
                                     <tr>
-                                        <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
-                                        <td>{{ comment.owner }}</td> 
-                                        <td>{% if comment.isConfidential %}<i class='glyphicon glyphicon-ok'></i>{% endif %}</td>
-                                        <td>{{ comment.message|nl2br }}</td>
-                                        <td>
+                                        <td data-label="{% trans %}Date & Time{% endtrans %}">{{ comment.created|date('d/m/Y H:i:s') }}</td>
+                                        <td data-label="{% trans %}Author{% endtrans %}">{{ comment.owner }}</td> 
+                                        <td data-label="{% trans %}Confidential{% endtrans %}">{% if comment.isConfidential %}<i class='glyphicon glyphicon-ok'></i>{% endif %}</td>
+                                        <td data-label="{% trans %}Message{% endtrans %}">{{ comment.message|nl2br }}</td>
+                                        <td data-label="{% trans %}Actions{% endtrans %}">
                                             {% if comment.filename %}
                                                 {% set filehash = comment.filename|split('_')[0] %}
                                                 <a href='{{ path("protocol_comment_upload", {'comment_id': comment.id }) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{{ comment.realFilename }}" target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
@@ -322,10 +322,10 @@
                         {% for comment in protocol.comment %}
                             {% if 'member-of-committee' == comment.role %}
                                 <tr>
-                                    <th>{{ comment.created|date('d/m/Y H:i:s') }}</th>
-                                    <td>{{ comment.owner }}</td> 
-                                    <td>{{ comment.message|nl2br }}</td>
-                                    <td>
+                                    <td data-label="{% trans %}Date & Time{% endtrans %}">{{ comment.created|date('d/m/Y H:i:s') }}</td>
+                                    <td data-label="{% trans %}Author{% endtrans %}">{{ comment.owner }}</td> 
+                                    <td data-label="{% trans %}Message{% endtrans %}">{{ comment.message|nl2br }}</td>
+                                    <td data-label="{% trans %}Actions{% endtrans %}">
                                         {% if comment.filename %}
                                             <a href='{{ path("protocol_comment_upload", {'comment_id': comment.id }) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{{ comment.realFilename }}" target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
                                         {% endif %}

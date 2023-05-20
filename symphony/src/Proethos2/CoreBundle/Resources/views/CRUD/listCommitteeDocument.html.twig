@@ -53,21 +53,21 @@
                         <tbody>
                             {% for document in documents %}
                                 <tr>
-                                    <td>{{ document.title }}</td>
-                                    <td>{{ document.filename }}</td>
-                                    <td>
+                                    <td data-label="{% trans %}Title{% endtrans %}">{{ document.title }}</td>
+                                    <td data-label="{% trans %}File name{% endtrans %}">{{ document.filename }}</td>
+                                    <td data-label="{% trans %}Role{% endtrans %}">
                                         {% for role in document.roles %}
                                             <span class='label label-default' data-toggle='tooltip' data-placement='top' title='{{ role.name }}'>{{ role.slug|first|upper }}</span>
                                         {% endfor %}
                                     </td>
-                                    <td>
+                                    <td data-label="{% trans %}Status{% endtrans %}">
                                         {% if document.status %}
                                             <span class='label label-success'>{% trans %}active{% endtrans %}</span>
                                         {% else %}
                                             <span class='label label-default'>{% trans %}inactive{% endtrans %}</span>
                                         {% endif %}
                                     </td>
-                                    <td>
+                                    <td data-label="{% trans %}Actions{% endtrans %}">
                                         <a href="{{ path("crud_committee_document_update", {document_id: document.id}) }}" data-toggle="modal" data-target="#modal-ajax-document" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
                                         <a href="{{ path("crud_committee_document_delete", {document_id: document.id}) }}" data-toggle="modal" data-target="#modal-ajax-document" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
                                     </td>

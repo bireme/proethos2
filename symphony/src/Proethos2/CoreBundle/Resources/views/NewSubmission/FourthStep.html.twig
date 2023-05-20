@@ -46,10 +46,10 @@
                                                 <input type='hidden' name='clinical-trial[{{ loop.index0 }}][number]' value='{{ trial.number }}'>
                                                 <input type='hidden' name='clinical-trial[{{ loop.index0 }}][date]' value='{% if trial.date %}{{ trial.date|date("Y-m-d") }}{% endif %}'>
 
-                                                <td>{{ trial.name }}</td>
-                                                <td>{{ trial.number }}</td>
-                                                <td>{% if trial.date %}{{ trial.date|date("d/m/Y") }}{% else %}-{% endif %}</td>
-                                                <td><a href='#' class='btn btn-default btn-xs button-remove-clinical-trial'><i class='glyphicon glyphicon-trash'></i></a></td>
+                                                <td data-label="{% trans %}Registry Name{% endtrans %}">{{ trial.name }}</td>
+                                                <td data-label="{% trans %}Registry Number{% endtrans %}">{{ trial.number }}</td>
+                                                <td data-label="{% trans %}Date{% endtrans %}">{% if trial.date %}{{ trial.date|date("d/m/Y") }}{% else %}-{% endif %}</td>
+                                                <td data-label="{% trans %}Actions{% endtrans %}"><a href='#' class='btn btn-default btn-xs button-remove-clinical-trial'><i class='glyphicon glyphicon-trash'></i></a></td>
                                             </tr>
                                         {% endfor %}
                                     </tbody>
@@ -98,11 +98,11 @@
                                             <input type='hidden' name='budget[{{ loop.index0 }}][quantity]' value='{{ cost.quantity }}'>
                                             <input type='hidden' name='budget[{{ loop.index0 }}][unit_cost]' value='{{ cost.unitCost }}'>
 
-                                            <td>{{ cost.description }}</td>
-                                            <td><label class='label label-default'>{{ symbol }} <span class='unit-cost'>{{ cost.unitCost }}</span></label></td>
-                                            <td><label class='label label-default'>{{ cost.quantity }}</label></td>
-                                            <td><label class='label label-primary'>{{ symbol }} <span class='total-cost'>{{ cost.quantity * cost.unitCost }}</span></label></td>
-                                            <td><a href='#' class='btn btn-default btn-xs button-remove-cost'><i class='glyphicon glyphicon-trash'></i></a></td>
+                                            <td data-label="{% trans %}Cost description{% endtrans %}">{{ cost.description }}</td>
+                                            <td data-label="{% trans %}Unit cost{% endtrans %}"><label class='label label-default'>{{ symbol }} <span class='unit-cost'>{{ cost.unitCost }}</span></label></td>
+                                            <td data-label="{% trans %}Quantity{% endtrans %}"><label class='label label-default'>{{ cost.quantity }}</label></td>
+                                            <td data-label="{% trans %}Total{% endtrans %}"><label class='label label-primary'>{{ symbol }} <span class='total-cost'>{{ cost.quantity * cost.unitCost }}</span></label></td>
+                                            <td data-label="{% trans %}Actions{% endtrans %}"><a href='#' class='btn btn-default btn-xs button-remove-cost'><i class='glyphicon glyphicon-trash'></i></a></td>
                                         </tr>
                                     {% endfor %}
                                     <tr>
@@ -184,10 +184,10 @@
                                             <input type='hidden' name='schedule[{{ loop.index0 }}][init]' value='{{ task.init|date("Y-m-d") }}'>
                                             <input type='hidden' name='schedule[{{ loop.index0 }}][end]' value='{{ task.end|date("Y-m-d") }}'>
 
-                                            <td>{{ task.description }}</td>
-                                            <td>{{ task.init|date("d/m/Y") }}</td>
-                                            <td>{{ task.end|date("d/m/Y") }}</td>
-                                            <td><a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></td>
+                                            <td data-label="{% trans %}Activity{% endtrans %}">{{ task.description }}</td>
+                                            <td data-label="{% trans %}Start{% endtrans %}">{{ task.init|date("d/m/Y") }}</td>
+                                            <td data-label="{% trans %}End{% endtrans %}">{{ task.end|date("d/m/Y") }}</td>
+                                            <td data-label="{% trans %}Actions{% endtrans %}"><a href='#' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

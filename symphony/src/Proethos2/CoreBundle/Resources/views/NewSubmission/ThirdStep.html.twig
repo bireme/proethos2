@@ -199,13 +199,13 @@
                                 <tbody>
                                     {% for activity in submission_clinical_study %}
                                         <tr>
-                                            <td>{{ activity.gender.name }}</td> 
-                                            <td>{{ activity.sampleSize }}</td> 
-                                            <td>{{ activity.minimumAge }}</td> 
-                                            <td>{{ activity.maximumAge }}</td> 
-                                            <td>{{ activity.recruitmentInitDate|date("Y-m-d") }}</td> 
-                                            <td>{{ activity.recruitmentStatus.name }}</td> 
-                                            <td>
+                                            <td data-label="{% trans %}Gender{% endtrans %}">{{ activity.gender.name }}</td> 
+                                            <td data-label="{% trans %}Target sample size{% endtrans %}">{{ activity.sampleSize }}</td> 
+                                            <td data-label="{% trans %}Minimum Age{% endtrans %}">{{ activity.minimumAge }}</td> 
+                                            <td data-label="{% trans %}Maximum Age{% endtrans %}">{{ activity.maximumAge }}</td> 
+                                            <td data-label="{% trans %}Estimated date of initial recruitment{% endtrans %}">{{ activity.recruitmentInitDate|date("Y-m-d") }}</td> 
+                                            <td data-label="{% trans %}Recruitment Status{% endtrans %}">{{ activity.recruitmentStatus.name }}</td> 
+                                            <td data-label="{% trans %}Actions{% endtrans %}">
                                                 <a href='{{ path("submission_show_activity", {activity_id: activity.id} ) }}' data-toggle='modal' data-target='#modal-show-activity' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
                                                 <a href='{{ path("submission_update_activity", {submission_id: submission.id, activity_id: activity.id} ) }}' data-toggle='modal' data-target='#modal-update-activity' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
                                                 <a href='{{ path("submission_delete_activity", {submission_id: submission.id, activity_id: activity.id} ) }}' data-toggle='modal' data-target='#modal-delete-activity' class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a>
@@ -246,9 +246,9 @@
                                             <input type='hidden' name='country[{{ loop.index0 }}][country_id]' value='{{ country.country.id }}'>
                                             <input type='hidden' name='country[{{ loop.index0 }}][participants]' value='{{ country.participants }}'>
 
-                                            <td>{{ country.country }}</td>
-                                            <td><label class='label label-default'>{{ country.participants }}</label></td>
-                                            <td><a href='#' class='btn btn-default btn-xs button-remove-country'><i class='glyphicon glyphicon-trash'></i></a></td>
+                                            <td data-label="{% trans %}Country{% endtrans %}">{{ country.country }}</td>
+                                            <td data-label="{% trans %}Total of participants{% endtrans %}"><label class='label label-default'>{{ country.participants }}</label></td>
+                                            <td data-label="{% trans %}Actions{% endtrans %}"><a href='#' class='btn btn-default btn-xs button-remove-country'><i class='glyphicon glyphicon-trash'></i></a></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>

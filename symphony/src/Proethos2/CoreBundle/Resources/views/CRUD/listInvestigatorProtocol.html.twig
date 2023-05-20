@@ -75,9 +75,9 @@
                         <tbody>
                             {% for protocol in protocols if protocols %}
                                 <tr>
-                                    <th>{% if protocol.code %}{{ protocol.code }}{% else %}-{% endif %}</th>
-                                    <td>{{ protocol.mainSubmission.publicTitle }}</td>
-                                    <td>
+                                    <td data-label="{% trans %}ID{% endtrans %}">{% if protocol.code %}{{ protocol.code }}{% else %}-{% endif %}</td>
+                                    <td data-label="{% trans %}Public Title{% endtrans %}">{{ protocol.mainSubmission.publicTitle }}</td>
+                                    <td data-label="{% trans %}Type{% endtrans %}">
                                         {% if protocol.monitoringAction %}
                                             <span class='label label-success'>{% trans %}Monitoring Action{% endtrans %}</span>
                                         {% else %}
@@ -90,9 +90,9 @@
                                             {% endif %}
                                         {% endif %}
                                     </td>
-                                    <td>{{ protocol.updatedIn|date("d/m/Y") }}</td>
-                                    <td><span class='label {% if protocol.status == 'R' %}label-danger{% else %}label-default{% endif %}'>{{ protocol.statusLabel|trans }}</span></td>
-                                    <td>
+                                    <td data-label="{% trans %}Last Update{% endtrans %}">{{ protocol.updatedIn|date("d/m/Y") }}</td>
+                                    <td data-label="{% trans %}Status{% endtrans %}"><span class='label {% if protocol.status == 'R' %}label-danger{% else %}label-default{% endif %}'>{{ protocol.statusLabel|trans }}</span></td>
+                                    <td data-label="{% trans %}Actions{% endtrans %}">
                                         <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See protocol{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
                                         <a href='{{ path("submission_new_first_created_protocol_step", {submission_id: protocol.mainSubmission.id}) }}' class='btn btn-default btn-xs {% if protocol.status not in ["R","D","C"] %}disabled{% endif %}' data-toggle="tooltip" data-placement="top" title="{% trans %}Edit submission{% endtrans %}"><i class='glyphicon glyphicon-pencil'></i></a>
                                         {% if protocol.status in ['D','A'] %}
