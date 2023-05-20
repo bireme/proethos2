@@ -64,18 +64,18 @@
                         <tbody>
                             {% for revision in protocol.revision %}
                                 <tr>
-                                    <td>{{ revision.member.name }}</td>
-                                    <td>{{ revision.member.institution }}</td>
-                                    <td><a href='{{ revision.member.email }}'>{{ revision.member.email }}</a></td>
-                                    <td>{{ revision.member.country }}</td>
-                                    <td>{{ revision.created|date("d/m/Y") }}</td>
-                                    <td>
+                                    <td data-label="{% trans %}Name{% endtrans %}">{{ revision.member.name }}</td>
+                                    <td data-label="{% trans %}Institution{% endtrans %}">{{ revision.member.institution }}</td>
+                                    <td data-label="{% trans %}E-mail{% endtrans %}"><a href='{{ revision.member.email }}'>{{ revision.member.email }}</a></td>
+                                    <td data-label="{% trans %}Country{% endtrans %}">{{ revision.member.country }}</td>
+                                    <td data-label="{% trans %}Recruitment Date{% endtrans %}">{{ revision.created|date("d/m/Y") }}</td>
+                                    <td data-label="{% trans %}Status{% endtrans %}">
                                         {% if revision.answered and not revision.isFinalRevision %}<span class='label label-primary'>{% trans %}Answered{% endtrans %}</span>{% endif %}
                                         {% if revision.isFinalRevision %}<span class='label label-success'>{% trans %}Final Revision{% endtrans %}</span>{% endif %}
                                         {% if not revision.answered %}<span class='label label-default'>{% trans %}Assigned{% endtrans %}</span>{% endif %}
 
                                     </td>
-                                    <td>
+                                    <td data-label="{% trans %}Actions{% endtrans %}">
                                         <a href='{{ path("protocol_initial_committee_review_show_review", {protocol_id: protocol.id, protocol_revision_id: revision.id }) }}' data-toggle='modal' data-target='#modal-parecer-reviewer' class='btn btn-default btn-xs {% if not revision.decision %}disabled{% endif %}'><i class='glyphicon glyphicon-eye-open'></i></a>
                                         <a href='#' class='btn btn-default btn-xs' data-toggle="modal" data-target="#modal-remove-revisor" id='remove-revisor-{{ revision.id }}'><i class='glyphicon glyphicon-trash'></i></a>
                                     </td
@@ -84,8 +84,8 @@
                         </tbody>
                     </table>
 
-                    <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-select-members-of-commitee">{% trans %}Select Members Of Committee{% endtrans %}</a>
-                    <a href='#' class='btn btn-default' data-toggle="modal" data-target="#modal-select-members-ad-hoc">{% trans %}Select Members Ad-Hoc{% endtrans %}</a>
+                    <a href='#' class='btn btn-default mb-3' data-toggle="modal" data-target="#modal-select-members-of-commitee">{% trans %}Select Members Of Committee{% endtrans %}</a>
+                    <a href='#' class='btn btn-default mb-3' data-toggle="modal" data-target="#modal-select-members-ad-hoc">{% trans %}Select Members Ad-Hoc{% endtrans %}</a>
                 </div>
             </div>
 
@@ -114,8 +114,8 @@
 
             <div class='row'>
                 <div class='submission-button-controls col-md-12'>
-                    <button type="submit" class='btn btn-primary' id='button-save-and-wait-revisions'>{% trans %}Save and wait for comments{% endtrans %}</button>
-                    <button type="button" class='btn btn-primary' id='button-save-and-send-to-meeting' {% if protocol.opinionRequired > total_final_revisions %}disabled{% endif %}>{% trans %}Save and send to meeting{% endtrans %}</button>
+                    <button type="submit" class='btn btn-primary mb-3' id='button-save-and-wait-revisions'>{% trans %}Save and wait for comments{% endtrans %}</button>
+                    <button type="button" class='btn btn-primary mb-3' id='button-save-and-send-to-meeting' {% if protocol.opinionRequired > total_final_revisions %}disabled{% endif %}>{% trans %}Save and send to meeting{% endtrans %}</button>
                 </div>
             </div>
         </form>
@@ -151,10 +151,10 @@
                                     {% if role_member_of_committee in member.proethos2Roles %}
                                         <tr>
                                             <td><input type='checkbox' name="select-members-of-committee[]" value="{{ member.id }}"></td>
-                                            <td>{{ member.name }}</td>
-                                            <td>{{ member.institution }}</td>
-                                            <td><a href='{{ member.email }}'>{{ member.email }}</a></td>
-                                            <td>{{ member.country }}</td>
+                                            <td data-label="{% trans %}Name{% endtrans %}">{{ member.name }}</td>
+                                            <td data-label="{% trans %}Institution{% endtrans %}">{{ member.institution }}</td>
+                                            <td data-label="{% trans %}E-mail{% endtrans %}"><a href='{{ member.email }}'>{{ member.email }}</a></td>
+                                            <td data-label="{% trans %}Country{% endtrans %}">{{ member.country }}</td>
                                         </tr>
                                     {% endif %}
                                 {% endfor %}
@@ -201,10 +201,10 @@
                                     {% if role_member_ad_hoc in member.proethos2Roles %}
                                         <tr>
                                             <td><input type='checkbox' name="select-members-ad-hoc[]" value="{{ member.id }}"></td>
-                                            <td>{{ member.name }}</td>
-                                            <td>{{ member.institution }}</td>
-                                            <td><a href='{{ member.email }}'>{{ member.email }}</a></td>
-                                            <td>{{ member.country }}</td>
+                                            <td data-label="{% trans %}Name{% endtrans %}">{{ member.name }}</td>
+                                            <td data-label="{% trans %}Institution{% endtrans %}">{{ member.institution }}</td>
+                                            <td data-label="{% trans %}E-mail{% endtrans %}"><a href='{{ member.email }}'>{{ member.email }}</a></td>
+                                            <td data-label="{% trans %}Country{% endtrans %}">{{ member.country }}</td>
                                         </tr>
                                     {% endif %}
                                 {% endfor %}

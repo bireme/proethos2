@@ -45,29 +45,29 @@
 
                                 <tbody>
                                     <tr>
-                                        <td>{{ submission.owner.name }}</td>
-                                        <td><a href='{{ submission.owner.email }}'>{{ submission.owner.email }}</a></td>
-                                        <td>{{ submission.owner.institution }}</td>
-                                        <td>{{ submission.owner.submissionTeamRole(submission) }}</td>
-                                        <td>{{ submission.owner.country }}</td>
-                                        <td><label class='label label-success'>{% trans %}Yes{% endtrans %}</label></td>
-                                        <td>-</td>
+                                        <td data-label="{% trans %}Name{% endtrans %}">{{ submission.owner.name }}</td>
+                                        <td data-label="{% trans %}E-mail{% endtrans %}"><a href='{{ submission.owner.email }}'>{{ submission.owner.email }}</a></td>
+                                        <td data-label="{% trans %}Institution{% endtrans %}">{{ submission.owner.institution }}</td>
+                                        <td data-label="{% trans %}Role{% endtrans %}">{{ submission.owner.submissionTeamRole(submission) }}</td>
+                                        <td data-label="{% trans %}Country{% endtrans %}">{{ submission.owner.country }}</td>
+                                        <td data-label="{% trans %}Main?{% endtrans %}"><label class='label label-success'>{% trans %}Yes{% endtrans %}</label></td>
+                                        <td data-label="{% trans %}Actions{% endtrans %}">-</td>
                                     </tr>
                                     {% for team_user in submission.team %}
                                         <tr data-id="{{ team_user.id }}">
-                                            <td>
+                                            <td data-label="{% trans %}Name{% endtrans %}">
                                                 <input type='hidden' name='team_user[]' value='{{ team_user.id }}'>
                                                 {{ team_user.name }}
                                             </td>
-                                            <td><a href='{{ team_user.email }}'>{{ team_user.email }}</a></td>
-                                            <td>{{ team_user.institution }}</td>
-                                            <td>
+                                            <td data-label="{% trans %}E-mail{% endtrans %}"><a href='{{ team_user.email }}'>{{ team_user.email }}</a></td>
+                                            <td data-label="{% trans %}Institution{% endtrans %}">{{ team_user.institution }}</td>
+                                            <td data-label="{% trans %}Role{% endtrans %}">
                                                 <input type='hidden' name='team_role[{{ team_user.id }}]' value='{{ team_user.submissionTeamRole(submission) }}'>
                                                 {{ team_user.submissionTeamRole(submission) }}
                                             </td>
-                                            <td>{{ team_user.country }}</td>
-                                            <td><label class='label label-default'>{% trans %}No{% endtrans %}</label></td>
-                                            <td>
+                                            <td data-label="{% trans %}Country{% endtrans %}">{{ team_user.country }}</td>
+                                            <td data-label="{% trans %}Main?{% endtrans %}"><label class='label label-default'>{% trans %}No{% endtrans %}</label></td>
+                                            <td data-label="{% trans %}Actions{% endtrans %}">
                                                 <a href='#' class='btn btn-default btn-xs button-make-owner' data-toggle="tooltip" data-placement="top" title="{% trans %}Make this investigator owner of this submission{% endtrans %}">
                                                     <i class='glyphicon glyphicon-star'></i>
                                                 </a>

@@ -41,10 +41,10 @@
                                 <tbody>
                                     {% for file in submission.attachments %}
                                         <tr>
-                                            <td>{{ file.uploadType }}</td>
-                                            <td>{% if file.uploadType.slug in ['protocol'] %}{{ file.filename }}{% else %}{{ file }}{% endif %}</td>
-                                            <td>{{ file.created|date("d/m/Y H:i") }}</td>
-                                            <td>
+                                            <td data-label="{% trans %}Type{% endtrans %}">{{ file.uploadType }}</td>
+                                            <td data-label="{% trans %}File name{% endtrans %}">{% if file.uploadType.slug in ['protocol'] %}{{ file.filename }}{% else %}{{ file }}{% endif %}</td>
+                                            <td data-label="{% trans %}Date & Time{% endtrans %}">{{ file.created|date("d/m/Y H:i") }}</td>
+                                            <td data-label="{% trans %}Actions{% endtrans %}">
                                                 <a href='{{ path("protocol_upload", {'upload_id': file.id }) }}' target="_blank" class='btn btn-default btn-xs' target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
                                                 <a href='#' class='btn btn-default btn-xs button-delete-attachment' data-id='{{ file.id }}' data-toggle="modal" data-target="#modal-delete-attachment">
                                                     <i class='glyphicon glyphicon-trash'></i>

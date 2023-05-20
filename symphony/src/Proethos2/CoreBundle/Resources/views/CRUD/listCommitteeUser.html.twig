@@ -68,26 +68,26 @@
                             <tbody>
                                 {% for user in users %}
                                     <tr id="user{{ user.id }}">
-                                        <td>{{ user.name }}</td>
-                                        <td>{{ user.username }}</td>
-                                        <td>{{ user.email }}</td>
+                                        <td data-label="{% trans %}Name{% endtrans %}">{{ user.name }}</td>
+                                        <td data-label="{% trans %}Username{% endtrans %}">{{ user.username }}</td>
+                                        <td data-label="{% trans %}Email{% endtrans %}">{{ user.email }}</td>
 
-                                        <td>{{ user.country }}</td>
-                                        <!-- <td>{{ user.institution }}</td> -->
+                                        <td data-label="{% trans %}Country{% endtrans %}">{{ user.country }}</td>
+                                        <!-- <td data-label="{% trans %}Institution{% endtrans %}">{{ user.institution }}</td> -->
 
-                                        <td>
+                                        <td data-label="{% trans %}Roles{% endtrans %}">
                                             {% for role in user.proethos2Roles %}
                                                 <span class='label label-default' data-toggle='tooltip' data-placement='top' title='{{ role.name }}'>{{ role.slug|first|upper }}</span>
                                             {% endfor %}
                                         </td>
-                                        <td>
+                                        <td data-label="{% trans %}Status{% endtrans %}">
                                             {% if user.isActive %}
                                                 <span class='label label-success'>{% trans %}active{% endtrans %}</span>
                                             {% else %}
                                                 <span class='label label-default'>{% trans %}inactive{% endtrans %}</span>
                                             {% endif %}
                                         </td>
-                                        <td>
+                                        <td data-label="{% trans %}Actions{% endtrans %}">
                                             <span data-toggle='tooltip' data-placement='top' title="{% trans %}Edit roles{% endtrans %}">
                                                 <a href="{{ path("crud_committee_user_role_update", {user_id: user.id}) }}" data-toggle="modal" data-target="#modal-ajax-user" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-user"></i></a>
                                             </span>

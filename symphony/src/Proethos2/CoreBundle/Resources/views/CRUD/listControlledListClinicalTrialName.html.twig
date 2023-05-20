@@ -32,16 +32,16 @@
                         <tbody>
                             {% for item in items %}
                                 <tr>
-                                    <td>{{ item.name }}</td>
-                                    <td>{{ item.code }}</td>
-                                    <td>
+                                    <td data-label="{% trans %}Name{% endtrans %}">{{ item.name }}</td>
+                                    <td data-label="{% trans %}Code{% endtrans %}">{{ item.code }}</td>
+                                    <td data-label="{% trans %}Status{% endtrans %}">
                                         {% if item.status %}
                                             <span class='label label-success'>{% trans %}active{% endtrans %}</span>
                                         {% else %}
                                             <span class='label label-default'>{% trans %}inactive{% endtrans %}</span>
                                         {% endif %}
                                     </td>
-                                    <td>
+                                    <td data-label="{% trans %}Actions{% endtrans %}">
                                         <a href="{{ path("crud_admin_controlled_list_clinical_trial_name_update", {item_id: item.id}) }}" data-toggle="modal" data-target="#modal-ajax-item" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
                                     </td>
                                 </tr>

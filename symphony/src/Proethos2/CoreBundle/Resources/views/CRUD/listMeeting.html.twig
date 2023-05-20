@@ -52,10 +52,10 @@
                         <tbody>
                             {% for meeting in meetings %}
                                 <tr>
-                                    <td>{{ meeting.date|date("d/m/Y") }}</td>
-                                    <td>{{ meeting.subject }}</td>
-                                    <td>{{ meeting.realFilename }}</td>
-                                    <td>
+                                    <td data-label="{% trans %}Date{% endtrans %}">{{ meeting.date|date("d/m/Y") }}</td>
+                                    <td data-label="{% trans %}Subject{% endtrans %}">{{ meeting.subject }}</td>
+                                    <td data-label="{% trans %}File name{% endtrans %}">{{ meeting.realFilename }}</td>
+                                    <td data-label="{% trans %}Actions{% endtrans %}">
                                         <a href='{{ path("crud_committee_meeting_show", {meeting_id: meeting.id} ) }}' data-toggle='modal' data-target='#modal-show-meeting' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
                                         <a href='{{ path("crud_committee_meeting_update", {meeting_id: meeting.id} ) }}' data-toggle='modal' data-target='#modal-update-meeting' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-pencil'></i></a>
                                         <a href='{{ path("crud_committee_meeting_delete", {meeting_id: meeting.id} ) }}' data-toggle='modal' data-target='#modal-delete-meeting' class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></a>

@@ -51,15 +51,15 @@
                         <tbody>
                             {% for question in faqs %}
                                 <tr>
-                                    <td>{{ question.question }}</td>
-                                    <td>
+                                    <td data-label="{% trans %}Question{% endtrans %}">{{ question.question }}</td>
+                                    <td data-label="{% trans %}Status{% endtrans %}">
                                         {% if question.status %}
                                             <span class='label label-success'>{% trans %}active{% endtrans %}</span>
                                         {% else %}
                                             <span class='label label-default'>{% trans %}inactive{% endtrans %}</span>
                                         {% endif %}
                                     </td>
-                                    <td>
+                                    <td data-label="{% trans %}Actions{% endtrans %}">
                                         <a href="{{ path("crud_committee_faq_update", {faq_id: question.id}) }}" data-toggle="modal" data-target="#modal-update-question" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
                                         <a href="{{ path('crud_committee_faq_delete', {faq_id: question.id} ) }}" data-toggle="modal" data-target="#modal-delete-question" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
                                     </td>

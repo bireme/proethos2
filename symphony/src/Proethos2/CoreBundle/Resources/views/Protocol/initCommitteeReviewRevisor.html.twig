@@ -38,12 +38,12 @@
                             {% for revision in protocol.revision %}
                                 {% if 'member-ad-hoc' in revision.member.getRolesSlug and revision.isFinalRevision %}
                                     <tr>
-                                        <td>{{ revision.member.name }}</td>
-                                        <td>{{ revision.member.institution }}</td>
-                                        <td><a href='{{ revision.member.email }}'>{{ revision.member.email }}</a></td>
-                                        <td>{{ revision.member.country }}</td>
-                                        <td>{{ revision.created|date("d/m/Y") }}</td>
-                                        <td>
+                                        <td data-label="{% trans %}Name{% endtrans %}">{{ revision.member.name }}</td>
+                                        <td data-label="{% trans %}Institution{% endtrans %}">{{ revision.member.institution }}</td>
+                                        <td data-label="{% trans %}E-mail{% endtrans %}"><a href='{{ revision.member.email }}'>{{ revision.member.email }}</a></td>
+                                        <td data-label="{% trans %}Country{% endtrans %}">{{ revision.member.country }}</td>
+                                        <td data-label="{% trans %}Recruitment Date{% endtrans %}">{{ revision.created|date("d/m/Y") }}</td>
+                                        <td data-label="{% trans %}Actions{% endtrans %}">
                                             <a href='{{ path("protocol_initial_committee_review_show_review", {protocol_id: protocol.id, protocol_revision_id: revision.id }) }}' data-toggle='modal' data-target='#modal-parecer-reviewer' class='btn btn-default btn-xs {% if not revision.decision %}disabled{% endif %}'><i class='glyphicon glyphicon-eye-open'></i></a>
                                         </td
                                     </tr>
