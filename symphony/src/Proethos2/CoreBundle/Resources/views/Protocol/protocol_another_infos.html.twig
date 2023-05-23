@@ -142,6 +142,8 @@
                             {% set class = 'text-warning' %}
                         {% elseif file.flag == 3 %}
                             {% set class = 'text-primary' %}
+                        {% elseif file.flag == 4 %}
+                            {% set class = 'text-success' %}
                         {% endif %}
 
                         {% set text = '' %}
@@ -151,6 +153,8 @@
                             {% set text = 'Supporting document' %}
                         {% elseif file.flag == 3 %}
                             {% set text = 'Reference only' %}
+                        {% elseif file.flag == 4 %}
+                            {% set text = 'Final version' %}
                         {% endif %}
 
                         <tr>
@@ -491,6 +495,7 @@
                             <option value="1">{% trans %}Required{% endtrans %}</option>
                             <option value="2">{% trans %}Supporting document{% endtrans %}</option>
                             <option value="3">{% trans %}Reference only{% endtrans %}</option>
+                            <option value="4">{% trans %}Final version{% endtrans %}</option>
                         </select>
                     </div>
                 </div>
