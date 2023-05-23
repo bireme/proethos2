@@ -62,7 +62,7 @@ $ sudo apt install libsodium libsodium-dev php-sodium php-libsodium
 
 ---
 
-7. Error `404 Not Found"` occurs when accessing the System Management menu
+7. Error `404 Not Found` occurs when accessing the System Management menu
 
    Remove PHP extension `intl` running the following command:
 
