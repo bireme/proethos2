@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2023-01-12T20:14:30Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2023-05-23T01:31:25Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -669,6 +669,10 @@
       <trans-unit id="a9660077b2bf17b83d5eb8b6dcc2a608c2102572" resname="Final Revision">
         <source>Final Revision</source>
         <target>Revisión final</target>
+      </trans-unit>
+      <trans-unit id="48f65d01ca75e6d31fa2bdee4f3e15762864a628" resname="Final version">
+        <source>Final version</source>
+        <target>Final version</target>
       </trans-unit>
       <trans-unit id="377536910cb49419838b25531996f213c6cf3062" resname="Find protocols">
         <source>Find protocols</source>
@@ -1878,6 +1882,10 @@
       <trans-unit id="861edba00547bc9ce7a08df78d4378766418179f" resname="Suggestions">
         <source>Suggestions</source>
         <target>Sugerencias</target>
+      </trans-unit>
+      <trans-unit id="cf5058844d650f9214b6a34551d2c2951b767b19" resname="Suject">
+        <source>Suject</source>
+        <target>Suject</target>
       </trans-unit>
       <trans-unit id="14af0b932dca8e7f3f93ef88330485f888afcc1d" resname="Supporting document">
         <source>Supporting document</source>
