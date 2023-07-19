@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2023-05-23T01:30:05Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2023-06-21T16:23:10Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -372,7 +372,7 @@
       </trans-unit>
       <trans-unit id="446ee714891ab85c5e9451271539e1f7ca59c8e3" resname="Create Report">
         <source>Create Report</source>
-        <target>Create Report</target>
+        <target>Crear reporte</target>
       </trans-unit>
       <trans-unit id="3f4f547d73646d774e8f690b36333e8c9572894b" resname="Create an account">
         <source>Create an account</source>
@@ -1604,7 +1604,7 @@
       </trans-unit>
       <trans-unit id="c9761c1fe44aef569665d67fed5af291ed610fca" resname="Save Contacts">
         <source>Save Contacts</source>
-        <target>Save Contacts</target>
+        <target>Guardar contactos</target>
       </trans-unit>
       <trans-unit id="d891b939ebd30c077be9b8947d719284d03aae02" resname="Save and finish">
         <source>Save and finish</source>
