@@ -413,62 +413,62 @@ class CRUDController extends Controller
         $output_parameter = $request->query->get('output');
         if( $output_parameter == 'csv' ) {
             $full_csv_headers = array(
-                'CODE',
-                'TYPE',
-                'STATUS',
-                'ACCEPTED IN',
-                'UPDATED IN',
-                'REVISED IN',
-                'DECISION IN',
-                'RECRUITING',
-                'OWNER',
-                'EMAIL',
-                'INSTITUTION',
-                'ROLES',
-                'COUNTRY',
+                $translator->trans('Code'),
+                $translator->trans('Type'),
+                $translator->trans('Status'),
+                $translator->trans('Accepted in'),
+                $translator->trans('Updated in'),
+                $translator->trans('Revised in'),
+                $translator->trans('Decision in'),
+                $translator->trans('Recruiting'),
+                $translator->trans('Owner'),
+                $translator->trans('Email'),
+                $translator->trans('Institution'),
+                $translator->trans('Roles'),
+                $translator->trans('Country'),
 
-                'LANGUAGE',
-                'IS THIS A SUBSTUDY?',
-                'SCIENTIFIC TITLE',
-                'PUBLIC TITLE',
-                'TITLE ACRONYM',
-                'ABSTRACT',
-                'KEYWORDS',
-                'GOALS',
-                'MORE THAN ONE ACTIVITY?',
+                $translator->trans('Language'),
+                $translator->trans('Is this a substudy?'),
+                $translator->trans('Scientific title'),
+                $translator->trans('Public title'),
+                $translator->trans('Title acronym'),
+                $translator->trans('Abstract'),
+                $translator->trans('Keywords'),
+                $translator->trans('Goals'),
+                $translator->trans('More than one activity?'),
 
-                'GENDER',
-                'TARGET SAMPLE SIZE',
-                'MINIMUM AGE',
-                'MAXIMUM AGE',
-                'RECRUITMENT COUNTRIES',
-                'INTERVENTIONS',
-                'PRIMARY OUTCOMES',
-                'PRIMARY SPONSOR',
+                $translator->trans('Gender'),
+                $translator->trans('Target sample size'),
+                $translator->trans('Minimum age'),
+                $translator->trans('Maximum age'),
+                $translator->trans('Recruitment countries'),
+                $translator->trans('Interventions'),
+                $translator->trans('Primary outcomes'),
+                $translator->trans('Primary sponsor'),
 
-                // 'REJECT REASON',
-                // 'COMMITTEE SCREENING',
-                // 'OPINIONS REQUIRED',
-                // 'MEETING',
-                // 'MONITORING ACTION',
-                // 'NEXT DATE OF MONITORING ACTION',
+                // $translator->trans('Reject reason'),
+                // $translator->trans('Committee screening'),
+                // $translator->trans('Opinions required'),
+                // $translator->trans('Meeting'),
+                // $translator->trans('Monitoring action'),
+                // $translator->trans('Next date of monitoring action'),
             );
 
             $simple_csv_headers = array(
-                'CODE',
-                'TYPE',
-                'STATUS',
-                'ACCEPTED IN',
-                'UPDATED IN',
-                'REVISED IN',
-                'DECISION IN',
-                'RECRUITING',
-                'OWNER',
-                'EMAIL',
-                'INSTITUTION',
-                'ROLES',
-                'COUNTRY',
-                'PUBLIC TITLE',
+                $translator->trans('Code'),
+                $translator->trans('Type'),
+                $translator->trans('Status'),
+                $translator->trans('Accepted in'),
+                $translator->trans('Updated in'),
+                $translator->trans('Revised in'),
+                $translator->trans('Decision in'),
+                $translator->trans('Recruiting'),
+                $translator->trans('Owner'),
+                $translator->trans('Email'),
+                $translator->trans('Institution'),
+                $translator->trans('Roles'),
+                $translator->trans('Country'),
+                $translator->trans('Public title'),
             );
 
             $export_format_parameter = $request->query->get('export-format');
@@ -549,6 +549,7 @@ class CRUDController extends Controller
                 }
             }
 
+            $csv_headers = array_map('mb_strtoupper', $csv_headers);
             $response = new CSVResponse( $csv_output, 200, $csv_headers );
             $response->setFilename( "proethos2-protocols.csv" );
             return $response;
@@ -1241,7 +1242,16 @@ class CRUDController extends Controller
         // output parameter
         $output_parameter = $request->query->get('output');
         if($output_parameter == 'csv') {
-            $csv_headers = array('USERNAME', 'ID', 'EMAIL', 'ROLES', 'ACTIVE?', 'NAME', 'COUNTRY', 'INSTITUTION');
+            $csv_headers = array(
+                $translator->trans('Username'),
+                $translator->trans('ID'),
+                $translator->trans('Email'),
+                $translator->trans('Roles'),
+                $translator->trans('Active?'),
+                $translator->trans('Name'),
+                $translator->trans('Country'),
+                $translator->trans('Institution'),
+            );
             $csv_output = array();
             foreach($users as $user) {
                 $current_line = array();
@@ -1256,6 +1266,7 @@ class CRUDController extends Controller
                 $csv_output[] = $current_line;
             }
 
+            $csv_headers = array_map('mb_strtoupper', $csv_headers);
             $response = new CSVResponse( $csv_output, 200, $csv_headers );
             $response->setFilename( "proethos2-users.csv" );
             return $response;
