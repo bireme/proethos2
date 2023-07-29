@@ -480,15 +480,15 @@ class CRUDController extends Controller
 
             $csv_output = array();
             foreach($protocols as $protocol) {
-                $type = "Research";
-                if ( $protocol->getMainSubmission()->getIsClinicalTrial() ) { $type = "Clinical Trial"; }
-                if ( $protocol->getMainSubmission()->getIsConsultation() ) { $type = "Consultation"; }
+                $type = $translator->trans('Research');
+                if ( $protocol->getMainSubmission()->getIsClinicalTrial() ) { $type = $translator->trans('Clinical Trial'); }
+                if ( $protocol->getMainSubmission()->getIsConsultation() ) { $type = $translator->trans('Consultation'); }
 
                 if ( 'full' == $export_format_parameter ) {
                     $current_line = array();
                     $current_line[] = $protocol->getCode();
                     $current_line[] = $type;
-                    $current_line[] = $protocol->getStatusLabel();
+                    $current_line[] = $translator->trans($protocol->getStatusLabel());
                     $current_line[] = $protocol->getDateInformed() ? $protocol->getDateInformed()->format("Y-m-d H:i") : "";
                     $current_line[] = $protocol->getUpdatedIn() ? $protocol->getUpdatedIn()->format("Y-m-d H:i") : "";
                     $current_line[] = $protocol->getRevisedIn() ? $protocol->getRevisedIn()->format("Y-m-d H:i") : "";
@@ -497,7 +497,7 @@ class CRUDController extends Controller
                     $current_line[] = $protocol->getOwner()->getUsername();
                     $current_line[] = $protocol->getOwner()->getEmail();
                     $current_line[] = $protocol->getOwner()->getInstitution();
-                    $current_line[] = implode(",", $protocol->getOwner()->getRolesSlug());
+                    $current_line[] = implode(",", $protocol->getOwner()->getRolesName());
                     $current_line[] = $protocol->getOwner()->getCountry() ? $protocol->getOwner()->getCountry()->getName() : '';
 
                     $current_line[] = $protocol->getMainSubmission()->getLanguageLabel();
@@ -533,7 +533,7 @@ class CRUDController extends Controller
                     $current_line = array();
                     $current_line[] = $protocol->getCode();
                     $current_line[] = $type;
-                    $current_line[] = $protocol->getStatusLabel();
+                    $current_line[] = $translator->trans($protocol->getStatusLabel());
                     $current_line[] = $protocol->getDateInformed() ? $protocol->getDateInformed()->format("Y-m-d H:i") : "";
                     $current_line[] = $protocol->getUpdatedIn() ? $protocol->getUpdatedIn()->format("Y-m-d H:i") : "";
                     $current_line[] = $protocol->getRevisedIn() ? $protocol->getRevisedIn()->format("Y-m-d H:i") : "";
@@ -542,7 +542,7 @@ class CRUDController extends Controller
                     $current_line[] = $protocol->getOwner()->getUsername();
                     $current_line[] = $protocol->getOwner()->getEmail();
                     $current_line[] = $protocol->getOwner()->getInstitution();
-                    $current_line[] = implode(",", $protocol->getOwner()->getRolesSlug());
+                    $current_line[] = implode(",", $protocol->getOwner()->getRolesName());
                     $current_line[] = $protocol->getOwner()->getCountry() ? $protocol->getOwner()->getCountry()->getName() : '';
                     $current_line[] = $protocol->getMainSubmission()->getPublicTitle();
                     $csv_output[] = $current_line;
