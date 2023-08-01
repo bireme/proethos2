@@ -50,7 +50,7 @@
                                                     <span class='label label-primary'>{% trans %}Research{% endtrans %}</span>
                                                 {% endif %}
                                             </td>
-                                            <td data-label="{% trans %}Last Update{% endtrans %}">{{ protocol.updatedDate|date("d/m/Y") }}</td>
+                                            <td data-label="{% trans %}Last Update{% endtrans %}">{{ protocol.updateDate|date("d/m/Y") }}</td>
                                             <td data-label="{% trans %}Status{% endtrans %}">{{ protocol.statusLabel|trans }}</td> 
                                             <td data-label="{% trans %}Actions{% endtrans %}">
                                                 <a href='{{ path("protocol_show_protocol", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See protocol{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
@@ -103,7 +103,7 @@
                                                     <span class='label label-primary'>{% trans %}Research{% endtrans %}</span>
                                                 {% endif %}
                                             </td>
-                                            <td data-label="{% trans %}Last Update{% endtrans %}">{{ revision.updatedDate|date("d/m/Y") }}</td>
+                                            <td data-label="{% trans %}Last Update{% endtrans %}">{{ revision.updateDate|date("d/m/Y") }}</td>
                                             <td data-label="{% trans %}Status{% endtrans %}">{{ revision.statusLabel }}</td>
                                             <td data-label="{% trans %}Actions{% endtrans %}">
                                                 <a href='{{ path("protocol_show_protocol", {protocol_id: revision.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}See protocol{% endtrans %}"><i class='glyphicon glyphicon-eye-open'></i></a>
