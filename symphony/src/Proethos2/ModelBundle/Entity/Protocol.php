@@ -802,9 +802,9 @@ class Protocol extends Base
 
     public function getUpdateDate() {
         $date = array();
-        $date[] = strtotime($this->getUpdatedIn());
-        $date[] = strtotime($this->getRevisedIn());
-        $date[] = strtotime($this->getDecisionIn());
+        $date[] = $this->getUpdatedIn();
+        $date[] = $this->getRevisedIn();
+        $date[] = $this->getDecisionIn();
         $update_date = max($date);
         return $update_date;
     }
