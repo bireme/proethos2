@@ -804,7 +804,7 @@ class Protocol extends Base
         $date = array();
         $date[] = strtotime($this->getUpdatedIn());
         $date[] = strtotime($this->getRevisedIn());
-        $date[] = strtotime($this->getDecisiondIn());
+        $date[] = strtotime($this->getDecisionIn());
         $update_date = max($date);
         return $update_date;
     }
