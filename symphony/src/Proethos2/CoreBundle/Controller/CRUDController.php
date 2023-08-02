@@ -2958,6 +2958,7 @@ class CRUDController extends Controller
                 }
             }
 
+            $item->setStatus(false);
             if(isset($post_data['status']) and $post_data['status'] == "true") {
                 $item->setStatus(true);
             }
