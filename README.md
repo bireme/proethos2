@@ -44,7 +44,7 @@ Links
 
 * [Project License](LICENSE.txt)
 * [How does ProEthos help research ethics committees?](https://www.youtube.com/watch?v=-Y6ja2zcU0g) | [¿Cómo ayuda ProEthos a los comités de ética de la investigación?](https://www.youtube.com/watch?v=PABUusmbqcM)
-* [Download :arrow_down:](https://github.com/bireme/proethos2/archive/refs/heads/pahoerc.zip)
+* [Download :arrow_down:](https://github.com/bireme/proethos2/archive/refs/heads/master.zip)
 * [How to install in Ubuntu](doc/how-to/how-to-install-proethos2-in-ubuntu.md) | [Cómo instalar en Ubuntu](doc/how-to/how-to-install-proethos2-in-ubuntu-es.md)
 * [Troubleshooting (Ubuntu)](doc/ubuntu-troubleshooting.md)
 * [How to install in Windows](doc/how-to/how-to-install-proethos2-in-windows.md)
