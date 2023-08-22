@@ -1791,8 +1791,8 @@ class NewSubmissionController extends Controller
                         }
 
                         $message = \Swift_Message::newInstance()
-                        ->setSubject("[proethos2] " . $mail_translator->trans("A new monitoring action has been submitted."))
-                        ->setFrom($util->getConfiguration('committee.email'))
+                        ->setSubject($mail_translator->trans("A new monitoring action has been submitted."))
+                        ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
                         ->setTo($secretaries_emails)
                         ->setBody(
                             $body
@@ -1824,8 +1824,8 @@ class NewSubmissionController extends Controller
                             $recipient = $protocol->getMainSubmission()->getOwner();
                             
                             $message = \Swift_Message::newInstance()
-                            ->setSubject("[proethos2] " . $mail_translator->trans("Your protocol was sent to review."))
-                            ->setFrom($util->getConfiguration('committee.email'))
+                            ->setSubject($mail_translator->trans("Your protocol was sent to review."))
+                            ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
                             ->setTo($recipient->getEmail())
                             ->setBody(
                                 $body
@@ -1854,8 +1854,8 @@ class NewSubmissionController extends Controller
                         }
 
                         $message = \Swift_Message::newInstance()
-                        ->setSubject("[proethos2] " . $mail_translator->trans("A new protocol has been submitted."))
-                        ->setFrom($util->getConfiguration('committee.email'))
+                        ->setSubject($mail_translator->trans("A new protocol has been submitted."))
+                        ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
                         ->setTo($secretaries_emails)
                         ->setBody(
                             $body

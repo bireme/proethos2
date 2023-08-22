@@ -1358,8 +1358,8 @@ class CRUDController extends Controller
             $body = $util->linkify($body);
 
             $message = \Swift_Message::newInstance()
-            ->setSubject("[proethos2] " . $translator->trans("Set your password"))
-            ->setFrom($util->getConfiguration('committee.email'))
+            ->setSubject($translator->trans("Set your password"))
+            ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
             ->setTo($post_data['email'])
             ->setBody(
                 $body
@@ -1570,8 +1570,8 @@ class CRUDController extends Controller
                 $body = $util->linkify($body);
 
                 $message = \Swift_Message::newInstance()
-                ->setSubject("[proethos2] " . $translator->trans("Confirmation of valid access to the Proethos2 platform"))
-                ->setFrom($util->getConfiguration('committee.email'))
+                ->setSubject($translator->trans("Confirmation of valid access to the Proethos2 platform"))
+                ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
                 ->setTo($user->getEmail())
                 ->setBody(
                     $body
@@ -1829,7 +1829,7 @@ class CRUDController extends Controller
             $body .= "<br /><br />";
 
             $message = \Swift_Message::newInstance()
-            ->setSubject("[proethos2] " . $translator->trans("Message from plataform."))
+            ->setSubject($translator->trans("Message from plataform."))
             ->setFrom($output['committee_email'])
             ->setTo($output['committee_email'])
             ->setBody(
