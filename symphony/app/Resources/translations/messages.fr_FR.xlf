@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2023-07-19T19:32:15Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2023-08-18T01:37:23Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -12,43 +12,47 @@
       </trans-unit>
       <trans-unit id="f7fae9b58ef582a295b2bbe3ffcf73705281cd4b" resname="12 months">
         <source>12 months</source>
-        <target>12 months</target>
+        <target>12 meses</target>
       </trans-unit>
       <trans-unit id="d2d2a163c8790997f0f1c324eaedf508d5000db7" resname="18 months">
         <source>18 months</source>
-        <target>18 months</target>
+        <target>18 meses</target>
       </trans-unit>
       <trans-unit id="b0fd8a12a07549acd38a980b609975516407a888" resname="24 months">
         <source>24 months</source>
-        <target>24 months</target>
+        <target>24 meses</target>
       </trans-unit>
       <trans-unit id="cd75b86f4ff467de8ca92dfa73154505b1a5c32e" resname="6 months">
         <source>6 months</source>
-        <target>6 months</target>
+        <target>6 meses</target>
       </trans-unit>
       <trans-unit id="fe1f2c4d494fc40392e39bec35686602dd971e3b" resname="A new monitoring action has been submitted.">
         <source>A new monitoring action has been submitted.</source>
-        <target>A new monitoring action has been submitted.</target>
+        <target xml:space="preserve">Uma nova ação de monitoramento foi enviada.
+</target>
       </trans-unit>
       <trans-unit id="c3b86b82b4c77804aa9a19fad71c2c5cf5e769c6" resname="A new protocol has been submitted.">
         <source>A new protocol has been submitted.</source>
-        <target>A new protocol has been submitted.</target>
+        <target xml:space="preserve">Um novo protocolo foi submetido.
+</target>
       </trans-unit>
       <trans-unit id="62fc7a08a7e646a4c046a04e427c1edb39e5149f" resname="A new protocol review was submitted">
         <source>A new protocol review was submitted</source>
-        <target>A new protocol review was submitted</target>
+        <target xml:space="preserve">Uma nova revisão de protocolo foi enviada
+</target>
       </trans-unit>
       <trans-unit id="dc9fddafc66c1d0c41a9e7bee52e2f2768b6e2b5" resname="About Project">
         <source>About Project</source>
-        <target>About Project</target>
+        <target xml:space="preserve">Sobre o Projeto
+</target>
       </trans-unit>
       <trans-unit id="d79da395b5d7a09c6439a5f2660d8c568186ab7e" resname="Abstract">
         <source>Abstract</source>
-        <target>Abstract</target>
+        <target>Resumo</target>
       </trans-unit>
       <trans-unit id="a2c288c09add9ba1b436a7cba3f8d678471e248d" resname="Abstract and Keywords">
         <source>Abstract and Keywords</source>
-        <target>Abstract and Keywords</target>
+        <target>resumo and Keywords</target>
       </trans-unit>
       <trans-unit id="f8305e030f96d910b8adfa5d7f1623ea1d07b001" resname="Accept Submission">
         <source>Accept Submission</source>
