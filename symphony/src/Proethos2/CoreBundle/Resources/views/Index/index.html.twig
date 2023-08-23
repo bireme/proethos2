@@ -181,7 +181,7 @@
                                 {% for meeting in past_meetings %}
                                     <tr>
                                         <td data-label="{% trans %}Date{% endtrans %}">{{ meeting.date|date("d/m/Y") }}</td>
-                                        <td data-label="{% trans %}Suject{% endtrans %}">{{ meeting.subject }}</td>
+                                        <td data-label="{% trans %}Subject{% endtrans %}">{{ meeting.subject }}</td>
                                         <td data-label="{% trans %}File name{% endtrans %}">{{ meeting.realFilename }}</td>
                                         <td data-label="{% trans %}Actions{% endtrans %}">
                                             <a href='{{ path("crud_committee_meeting_show", {meeting_id: meeting.id} ) }}' data-toggle='modal' data-target='#modalBaseAjax' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-eye-open'></i></a>
