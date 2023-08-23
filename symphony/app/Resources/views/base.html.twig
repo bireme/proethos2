@@ -36,7 +36,17 @@
     <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js" charset="UTF-8"></script>
+    {% set datepicker_lang = '' %}
+    {% if 'pt_BR' == app.request.locale %}
+        {% set datepicker_lang = 'pt-BR' %}
+    {% elseif 'es_ES' == app.request.locale %}
+        {% set datepicker_lang = 'es' %}
+    {% elseif 'fr_FR' == app.request.locale %}
+        {% set datepicker_lang = 'fr' %}
+    {% else %}
+        {% set datepicker_lang = 'en-US' %}
+    {% endif %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.{{ datepicker_lang }}.min.js" charset="UTF-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/3.20.3/jQuery.tagify.min.js"></script>
     <script src="https://politicas.bireme.org/cookiebar/cookiebar-latest.js?forceLang={{ app.request.locale|split('_')[0] }}"></script>
@@ -143,7 +153,9 @@
         $('body').on('shown.bs.modal', '.modal', function () {
             $('.datepicker').datepicker({
                 format: "yyyy-mm-dd",
-                autoclose: true
+                language: "{{ datepicker_lang }}",
+                autoclose: true,
+                todayHighlight: true,
             });
         });
 
@@ -212,7 +224,9 @@
 
             $('.datepicker').datepicker({
                 format: "yyyy-mm-dd",
-                autoclose: true
+                language: "{{ datepicker_lang }}",
+                autoclose: true,
+                todayHighlight: true,
             });
         });
     </script>
