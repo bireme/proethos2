@@ -2139,6 +2139,7 @@ class ProtocolController extends Controller
         $upload_type_id = $upload_type->getId();
         $submission_upload = $submission_upload_repository->findOneBy(array('submission' => $submission->getId(), 'upload_type' => $upload_type_id));
         $attachment = \Swift_Attachment::fromPath($submission_upload->getFilepath());
+        echo "<pre>"; print_r($attachment); echo "</pre>"; die();
 
         $mail_translator = $this->get('translator');
         $mail_translator->setLocale($submission->getLanguage());
@@ -2182,7 +2183,7 @@ class ProtocolController extends Controller
             'text/html'
         );
 
-        if(!empty($file)) {
+        if($attachment) {
             $message->attach($attachment);
         }
 
