@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2023-08-23T17:24:08Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2023-08-23T19:00:49Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -184,10 +184,6 @@
         <source>Are you sure that you want to retrieve this protocol?</source>
         <target>¿Está seguro que desea recuperar este protocolo?</target>
       </trans-unit>
-      <trans-unit id="6035d055274098c43251c97fe0535dfead675cf0" resname="Are you sure that you want to send a message to the investigators?">
-        <source>Are you sure that you want to send a message to the investigators?</source>
-        <target>Are you sure that you want to send a message to the investigators?</target>
-      </trans-unit>
       <trans-unit id="c9cfdfefe700ad0c6ce8167a78d04e7cfc305a3e" resname="Are you sure that you want to set this protocol as Exempt?">
         <source>Are you sure that you want to set this protocol as Exempt?</source>
         <target>¿Esta seguro que desea determinar este protocolo como "Exento de revisión ética?"</target>
@@ -203,6 +199,10 @@
       <trans-unit id="74292c5c3fa7f0a7edf788e12ba867ab3847a6a8" resname="Are you sure you want to remove this reviewer?">
         <source>Are you sure you want to remove this reviewer?</source>
         <target>¿Está seguro que desea remover a este revisor?</target>
+      </trans-unit>
+      <trans-unit id="557bd191dd3c0897b344c6800d44e8f778ebe262" resname="Are you sure you want to resend to investigators the message from &quot;end review&quot;?">
+        <source>Are you sure you want to resend to investigators the message from "end review"?</source>
+        <target>Are you sure you want to resend to investigators the message from "end review"?</target>
       </trans-unit>
       <trans-unit id="410bf23a3f080def9c7a976a16305bcde7943ed1" resname="Are you sure?">
         <source>Are you sure?</source>
@@ -1591,6 +1591,10 @@
         <source>Research</source>
         <target>Investigación</target>
       </trans-unit>
+      <trans-unit id="b6fc93ccb020b47bb09e86401cc82ce15b5ae1f7" resname="Resend message">
+        <source>Resend message</source>
+        <target>Resend message</target>
+      </trans-unit>
       <trans-unit id="ddc3636f480fa963a0265568f99c14aea5fc8e88" resname="Reset password URL">
         <source>Reset password URL</source>
         <target xml:space="preserve">Restablecer URL de contraseña
@@ -1799,10 +1803,6 @@
       <trans-unit id="8c86d73c34f67918b3131fa1eb594dbbeafac78e" resname="Send me instructions">
         <source>Send me instructions</source>
         <target>Enviarme instrucciones</target>
-      </trans-unit>
-      <trans-unit id="c70a890d1411098b6bbd10f59252da322a68af82" resname="Send message">
-        <source>Send message</source>
-        <target>Send message</target>
       </trans-unit>
       <trans-unit id="484ceee1920316eccd11f67ae2f6140ce196897a" resname="Send protocol revision">
         <source>Send protocol revision</source>
