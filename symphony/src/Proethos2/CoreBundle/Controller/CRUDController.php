@@ -1830,8 +1830,8 @@ class CRUDController extends Controller
 
             $message = \Swift_Message::newInstance()
             ->setSubject($translator->trans("Message from plataform."))
-            ->setFrom($output['committee_email'])
-            ->setTo($output['committee_email'])
+            ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
+            ->setTo($util->getConfiguration('committee.email'))
             ->setBody(
                 $body
                 ,
