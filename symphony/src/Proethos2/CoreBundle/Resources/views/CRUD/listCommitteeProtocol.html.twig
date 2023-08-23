@@ -110,6 +110,8 @@
                                         {% if protocol.status in ["R","C"] and 'secretary' in app.user.getRolesSlug %}<span data-toggle="tooltip" data-placement="top" title="{% trans %}Retrieve protocol{% endtrans %}"><a href='{{ path("protocol_retrieve", {protocol_id: protocol.id} ) }}' class='btn btn-default btn-xs' data-toggle='modal' data-target='#modalBaseAjax'><i class='glyphicon glyphicon-transfer'></i></a></span>{% endif %}
                                         {% if protocol.status in ["S","I","E","H"] and 'secretary' in app.user.getRolesSlug %}<span data-toggle="tooltip" data-placement="top" title="{% trans %}Withdraw protocol{% endtrans %}"><a href='{{ path("protocol_withdraw", {protocol_id: protocol.id} ) }}' class='btn btn-default btn-xs' data-toggle='modal' data-target='#modalBaseAjax'><i class='glyphicon glyphicon-stop'></i></a></span>{% endif %}
                                         {% if protocol.status in ["E","H"] and app.user in protocol.revisionUsers %}<a href='{{ path("protocol_initial_committee_review_revisor", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{% trans %}Send protocol revision{% endtrans %}"><i class='glyphicon glyphicon-list-alt'></i></a>{% endif %}
+
+                                        {% if protocol.status in ["A","N","C"] and 'secretary' in app.user.getRolesSlug %}<a href='{{ path("protocol_send_alert", {protocol_id: protocol.id}) }}' class='btn btn-default btn-xs send-alert' data-toggle="tooltip" data-placement="top" title="{% trans %}Send message{% endtrans %}"><i class='glyphicon glyphicon-send'></i></a>{% endif %}
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -143,6 +145,28 @@
         </div>
     </div>
 
+    <!-- Modal confirm if that send message -->
+    <div class="modal fade" id="modal-confirm-send-alert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+
+            <input type="hidden" name="send-alert" id='hidden-send-alert' value="" />
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{% trans %}Are you sure you want to continue?{% endtrans %}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{% trans %}Are you sure that you want to send a message to the investigators?{% endtrans %}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                    <button type="button" class="btn btn-danger" id="button-confirm-send-alert">{% trans %}go on{% endtrans %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block script %}
@@ -168,6 +192,22 @@
             $(".submit-on-change").change(function(){
                 $("#input-output").val('html');
                 $("#form-search").submit();
+            });
+
+            // send message
+            $('a.send-alert').on('keypress click', function(e){
+                e.preventDefault();
+                
+                var href = $(this).attr('href');
+                $('#hidden-send-alert').val(href);
+                $('#modal-confirm-send-alert').modal('show');
+                
+                return false;
+            });
+
+            $('#button-confirm-send-alert').on('keypress click', function(e){
+                var href = $('#hidden-send-alert').val();
+                window.location = href;
             });
         });
     </script>

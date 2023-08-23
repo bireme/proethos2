@@ -2111,4 +2111,90 @@ class ProtocolController extends Controller
         return $response;
     }
 
+    /**
+     * @Route("/protocol/{protocol_id}/send-alert", name="protocol_send_alert")
+     * @Template()
+     */
+    public function sendAlertAction($protocol_id)
+    {
+
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $util = new Util($this->container, $this->getDoctrine());
+
+        $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
+        $protocol = $protocol_repository->find($protocol_id);
+        $submission = $protocol->getMainSubmission();
+
+        $upload_type_repository = $em->getRepository('Proethos2ModelBundle:UploadType');
+        $submission_upload_repository = $em->getRepository('Proethos2ModelBundle:SubmissionUpload');
+        $upload_type = $upload_type_repository->findOneBy(array('slug' => 'opinion'));
+        $upload_type_id = $upload_type->getId();
+        $submission_upload = $submission_upload_repository->findOneBy(array('submission' => $submission->getId(), 'upload_type' => $upload_type_id));
+        $attachment = \Swift_Attachment::fromPath($submission_upload->getFilepath());
+
+        $mail_translator = $this->get('translator');
+        $mail_translator->setLocale($submission->getLanguage());
+
+        $trans_repository = $em->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
+        // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
+        // $translations = $trans_repository->findTranslations($help[0]);
+
+        $investigators = array();
+        $investigators[] = $protocol->getMainSubmission()->getOwner()->getEmail();
+        foreach($protocol->getMainSubmission()->getTeam() as $investigator) {
+            $investigators[] = $investigator->getEmail();
+        }
+
+        $contacts = $protocol->getContactsList();
+        if ($contacts) {
+            $investigators = array_values(array_unique(array_merge($investigators, $contacts)));
+        }
+
+        $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+        $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
+
+        $help = $help_repository->find(216);
+        $translations = $trans_repository->findTranslations($help);
+        $text = $translations[$submission->getLanguage()];
+        $body = ( $text ) ? $text['message'] : $help->getMessage();
+        $body = str_replace("%protocol_url%", $url, $body);
+        $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
+        $body = str_replace("\r\n", "<br />", $body);
+        $body .= "<br /><br />";
+        $body = $util->linkify($body);
+
+        $message = \Swift_Message::newInstance()
+        ->setSubject($mail_translator->trans("The protocol review was finalized!"))
+        ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
+        ->setTo($investigators)
+        ->setBody(
+            $body
+            ,
+            'text/html'
+        );
+
+        if(!empty($file)) {
+            $message->attach($attachment);
+        }
+
+        $send = $this->get('mailer')->send($message);
+
+        if ( $send ) {
+            $session->getFlashBag()->add('success', $translator->trans("The message were sent successfully!"));
+        } else {
+            $session->getFlashBag()->add('error', $translator->trans("Error sending message"));
+        }
+
+        $referer = $request->headers->get('referer');
+        return $this->redirect($referer, 301);
+    }
+
 }
