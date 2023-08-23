@@ -488,6 +488,7 @@ class CRUDController extends Controller
                     $current_line = array();
                     $current_line[] = $protocol->getCode();
                     $current_line[] = $type;
+                    /** @Ignore */
                     $current_line[] = $translator->trans($protocol->getStatusLabel());
                     $current_line[] = $protocol->getDateInformed() ? $protocol->getDateInformed()->format("Y-m-d H:i") : "";
                     $current_line[] = $protocol->getUpdatedIn() ? $protocol->getUpdatedIn()->format("Y-m-d H:i") : "";
@@ -533,6 +534,7 @@ class CRUDController extends Controller
                     $current_line = array();
                     $current_line[] = $protocol->getCode();
                     $current_line[] = $type;
+                    /** @Ignore */
                     $current_line[] = $translator->trans($protocol->getStatusLabel());
                     $current_line[] = $protocol->getDateInformed() ? $protocol->getDateInformed()->format("Y-m-d H:i") : "";
                     $current_line[] = $protocol->getUpdatedIn() ? $protocol->getUpdatedIn()->format("Y-m-d H:i") : "";
