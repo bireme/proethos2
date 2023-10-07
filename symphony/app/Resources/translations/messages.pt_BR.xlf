@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2023-09-28T21:55:40Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2023-10-07T03:30:54Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -560,6 +560,10 @@
         <source>Enter registered email</source>
         <target>Digite o e-mail cadastrado</target>
       </trans-unit>
+      <trans-unit id="c73a5968fdf09768ce842cb99ddd633740468a8d" resname="Enter the original study number">
+        <source>Enter the original study number</source>
+        <target>Inserir o número do estudo original</target>
+      </trans-unit>
       <trans-unit id="b2b29b2df8b9f7e5edfafae4df3ca918d7c141df" resname="Error sending message">
         <source>Error sending message</source>
         <target>Error sending message</target>
@@ -886,6 +890,10 @@
         <source>Is this a confidential comment?</source>
         <target>Isto é um comentário confidencial?</target>
       </trans-unit>
+      <trans-unit id="74910f750058ef4baede055d61dd51b4c8ae4be8" resname="Is this a multicenter study?">
+        <source>Is this a multicenter study?</source>
+        <target>É um estudo multicêntrico?</target>
+      </trans-unit>
       <trans-unit id="73679e6a10b448d3204beb98e97da822f5e344c4" resname="Is this a substudy of a larger project?">
         <source>Is this a substudy of a larger project?</source>
         <target>Este é um subestudo de um projeto maior?</target>
@@ -1080,6 +1088,10 @@
       <trans-unit id="64bfd700fea97ab82b10df5133ae10f8944c5146" resname="More than one activity?">
         <source>More than one activity?</source>
         <target>Mais de uma atividade?</target>
+      </trans-unit>
+      <trans-unit id="6cf474c688e774c31709b53c4f0c123db0722799" resname="Multicenter study">
+        <source>Multicenter study</source>
+        <target>Estudo multicêntrico</target>
       </trans-unit>
       <trans-unit id="08d2e98e6754af941484848930ccbaddfefe13d6" resname="N/A">
         <source>N/A</source>
