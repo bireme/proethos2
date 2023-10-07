@@ -141,6 +141,14 @@ class Submission extends Base
      */
     private $is_substudy;
 
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="multicenter_study", type="string", length=255, nullable=true)
+     */
+    private $multicenter_study;
+
     /**
      * @var boolean
      *
@@ -1888,5 +1896,29 @@ class Submission extends Base
     public function getLimitations()
     {
         return $this->limitations;
+    }
+
+    /**
+     * Set multicenterStudy
+     *
+     * @param string $multicenterStudy
+     *
+     * @return Submission
+     */
+    public function setMulticenterStudy($multicenterStudy)
+    {
+        $this->multicenter_study = $multicenterStudy;
+
+        return $this;
+    }
+
+    /**
+     * Get multicenterStudy
+     *
+     * @return string
+     */
+    public function getMulticenterStudy()
+    {
+        return $this->multicenter_study;
     }
 }

@@ -104,6 +104,9 @@
             {% endif %}
         </p>
 
+        <h2>{% trans %}Multicenter study{% endtrans %}</h2>
+        <p>{{ submission.multicenterStudy }}</p>
+
         {% if not submission.isConsultation %}
 
             <h2>{% trans %}Study Design{% endtrans %}</h2>

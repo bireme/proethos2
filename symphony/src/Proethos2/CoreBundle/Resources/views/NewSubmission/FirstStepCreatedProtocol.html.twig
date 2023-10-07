@@ -90,6 +90,18 @@
                         </fieldset>
 
                         <fieldset>
+                            <legend>{% trans %}Is this a multicenter study?{% endtrans %}</legend>
+                            <div class='row'>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="input_multicenter_study">{% trans %}Enter the original study number{% endtrans %}:</label>
+                                        <input type="text" class="form-control" name='multicenter_study' id='input_multicenter_study' value="{{ submission.multicenterStudy }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
                             <legend>{% trans %}Project Title{% endtrans %}</legend>
                             <div class='row'>
                                 <div class="col-md-12">
