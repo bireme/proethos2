@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <div class='radio'>
                                 <label for="input-reject-submission">
-                                    <input type='radio' id='input-reject-submission' name='action' value='accept' /> {% trans %}Reject Submission{% endtrans %}
+                                    <input type='radio' id='input-reject-submission' name='action' value='accept' /> {% trans %}Return Submission{% endtrans %}
                                     <a href="{{ path("crud_admin_help_show", {help_id: 127} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 </label> 
                             </div>
@@ -93,20 +93,20 @@
         </div>
     </div>
 
-    <!-- Modal Reject Submission -->
+    <!-- Modal Return Submission -->
     <div class="modal fade" id="modal-reject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{% trans %}Reject Submission?{% endtrans %}</h4>
+                    <h4 class="modal-title" id="myModalLabel">{% trans %}Return Submission?{% endtrans %}</h4>
                 </div>
                 <div class="modal-body">
-                    <p>{% trans %}Are you sure that you want to reject this submission?{% endtrans %}</p>
+                    <p>{% trans %}Are you sure that you want to return this submission?{% endtrans %}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
-                    <button type="button" class="btn btn-danger" id='notification-reject'>{% trans %}Reject{% endtrans %}</button>
+                    <button type="button" class="btn btn-danger" id='notification-reject'>{% trans %}Return{% endtrans %}</button>
                 </div>
             </div>
         </div>
