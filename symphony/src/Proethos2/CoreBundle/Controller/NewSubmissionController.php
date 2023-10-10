@@ -924,7 +924,7 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
 
             // checking required files
-            $required_fields = array('paho-unit', 'funding-source', 'primary-sponsor');
+            $required_fields = array('funding-source', 'primary-sponsor');
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
@@ -1392,14 +1392,6 @@ class NewSubmissionController extends Controller
         $item = array('text' => $text, 'status' => true);
         $revisions[] = $item;
 
-        // $text = $translator->trans('Files Submited') . " (" . count($submission->getAttachments()) . " " . $translator->trans('files(s)') . ")";
-        // $item = array('text' => $text, 'status' => true);
-        // if(count($submission->getAttachments()) == 0) {
-        //     $item = array('text' => $text, 'status' => false);
-        //     $final_status = false;
-        // }
-        // $revisions[] = $item;
-
         $text = $translator->trans('Abstract');
         $item = array('text' => $text, 'status' => true);
         if(empty($submission->getAbstract())) {
@@ -1542,14 +1534,6 @@ class NewSubmissionController extends Controller
             $text = $translator->trans('Primary Outcome');
             $item = array('text' => $text, 'status' => true);
             if(empty($submission->getPrimaryOutcome())) {
-                $item = array('text' => $text, 'status' => false);
-                $final_status = false;
-            }
-            $revisions[] = $item;
-
-            $text = $translator->trans('PAHO Department');
-            $item = array('text' => $text, 'status' => true);
-            if(empty($submission->getPahoUnit())) {
                 $item = array('text' => $text, 'status' => false);
                 $final_status = false;
             }
