@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2023-10-07T03:25:10Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2023-10-11T18:08:26Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -174,10 +174,6 @@
         <source>Are you sure that you want to go to the next step without any revisions?</source>
         <target>Are you sure that you want to go to the next step without any revisions?</target>
       </trans-unit>
-      <trans-unit id="dd6b9d135d02dd80558c1ab472b0b7ca16db0fd0" resname="Are you sure that you want to reject this submission?">
-        <source>Are you sure that you want to reject this submission?</source>
-        <target>Are you sure that you want to reject this submission?</target>
-      </trans-unit>
       <trans-unit id="129d86112d0f124b04a96f1e06036d1b66e8e4b2" resname="Are you sure that you want to remove this member?">
         <source>Are you sure that you want to remove this member?</source>
         <target>Are you sure that you want to remove this member?</target>
@@ -185,6 +181,10 @@
       <trans-unit id="c05de78ff03d6119a9bb424fe41352f61c3ba2e0" resname="Are you sure that you want to retrieve this protocol?">
         <source>Are you sure that you want to retrieve this protocol?</source>
         <target>Are you sure that you want to retrieve this protocol?</target>
+      </trans-unit>
+      <trans-unit id="9ca49764fb36ed0e575db4966620d5248f12cb5d" resname="Are you sure that you want to return this submission?">
+        <source>Are you sure that you want to return this submission?</source>
+        <target>Are you sure that you want to return this submission?</target>
       </trans-unit>
       <trans-unit id="c9cfdfefe700ad0c6ce8167a78d04e7cfc305a3e" resname="Are you sure that you want to set this protocol as Exempt?">
         <source>Are you sure that you want to set this protocol as Exempt?</source>
@@ -1567,22 +1567,6 @@
         <source>Registry Number</source>
         <target>Registry Number</target>
       </trans-unit>
-      <trans-unit id="2b03b59293b6fc7101306f5d9ae1e96327bb419a" resname="Reject">
-        <source>Reject</source>
-        <target>Reject</target>
-      </trans-unit>
-      <trans-unit id="819133f871d8e86af4cc2f170e04112a94a8799d" resname="Reject Submission">
-        <source>Reject Submission</source>
-        <target>Reject Submission</target>
-      </trans-unit>
-      <trans-unit id="90b778a9cf57418e64290c77c0ce18430305be64" resname="Reject Submission?">
-        <source>Reject Submission?</source>
-        <target>Reject Submission?</target>
-      </trans-unit>
-      <trans-unit id="27eeb7a291bfc566447d9cd928e98caf90f70ee6" resname="Rejected">
-        <source>Rejected</source>
-        <target>Rejected</target>
-      </trans-unit>
       <trans-unit id="e963907dac5cd5c017869b4c96c18021c9bd058b" resname="Remove">
         <source>Remove</source>
         <target>Remove</target>
@@ -1623,9 +1607,25 @@
         <source>Retrieve protocol</source>
         <target>Retrieve protocol</target>
       </trans-unit>
+      <trans-unit id="24f096b221f9534bcad007f2b5a32b490950b5b5" resname="Return">
+        <source>Return</source>
+        <target>Return</target>
+      </trans-unit>
+      <trans-unit id="c78e031fce2cc340702a324bee7c6fa7ac10c445" resname="Return Submission">
+        <source>Return Submission</source>
+        <target>Return Submission</target>
+      </trans-unit>
+      <trans-unit id="56d11d76b9ae753709bc4b19d646b26c0ea06735" resname="Return Submission?">
+        <source>Return Submission?</source>
+        <target>Return Submission?</target>
+      </trans-unit>
       <trans-unit id="a5c6c50c2aa87d3ca138c44ec18716e67238d29e" resname="Return reason">
         <source>Return reason</source>
         <target>Return reason</target>
+      </trans-unit>
+      <trans-unit id="870770a9de45cd1b7aa67b2d098582300b46a9c8" resname="Returned">
+        <source>Returned</source>
+        <target>Returned</target>
       </trans-unit>
       <trans-unit id="c2b90e0cf183a4d16219a17b8e74e556cc4b12c1" resname="Reviewer's evaluation">
         <source>Reviewer's evaluation</source>
