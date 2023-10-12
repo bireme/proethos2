@@ -309,6 +309,9 @@ class NewSubmissionController extends Controller
         ));
         $output['submission_team'] = $submission_team;
 
+        $users = $user_repository->findBy(array(), array('email' => 'ASC'));
+        $output['users'] = $users;
+
         if (!$submission or $submission->getCanBeEdited() == false) {
             if(!$submission or ($submission->getProtocol()->getIsMigrated() and !in_array('administrator', $user->getRolesSlug()))) {
                 throw $this->createNotFoundException($translator->trans('No submission found'));
@@ -335,9 +338,6 @@ class NewSubmissionController extends Controller
         if (!$allow_to_edit_submission) {
             throw $this->createNotFoundException($translator->trans('No submission found'));
         }
-
-        $users = $user_repository->findBy(array(), array('email' => 'ASC'));
-        $output['users'] = $users;
 
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
