@@ -39,10 +39,12 @@
                                 <option value="I" {% if app.request.get('status') == "I" %}selected{% endif %}>{% trans %}Waiting for initial evaluation{% endtrans %}</option>
                                 <option value="E" {% if app.request.get('status') == "E" %}selected{% endif %}>{% trans %}Waiting for Committee{% endtrans %}</option>
                                 <option value="H" {% if app.request.get('status') == "H" %}selected{% endif %}>{% trans %}Scheduled{% endtrans %}</option>
+                                <option value="F" {% if app.request.get('status') == "F" %}selected{% endif %}>{% trans %}Exempt{% endtrans %}</option>
                                 <option value="T" {% if app.request.get('status') == "T" %}selected{% endif %}>{% trans %}Withdrawn{% endtrans %}</option>
                                 <option value="A" {% if app.request.get('status') == "A" %}selected{% endif %}>{% trans %}Approved{% endtrans %}</option>
                                 <option value="N" {% if app.request.get('status') == "N" %}selected{% endif %}>{% trans %}Not approved{% endtrans %}</option>
                                 <option value="C" {% if app.request.get('status') == "C" %}selected{% endif %}>{% trans %}Observations to address{% endtrans %}</option>
+                                <option value="MA" {% if app.request.get('status') == "MA" %}selected{% endif %}>{% trans %}Monitoring Action{% endtrans %}</option>
                             </select>
                         </div>
                     </div>

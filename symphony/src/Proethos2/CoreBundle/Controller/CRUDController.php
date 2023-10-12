@@ -398,13 +398,22 @@ class CRUDController extends Controller
         if(!empty($status_query))
             $status_array = array($status_query);
 
-        $query = $protocol_repository->createQueryBuilder('p')
-           ->join('p.main_submission', 's')
-           ->join('s.owner', 'o')
-           ->where("(s.publicTitle LIKE :query OR p.code LIKE :query OR o.name LIKE :query) AND p.status IN (:status)")
-           ->orderBy("p.created", 'DESC')
-           ->setParameter('query', "%". $search_query ."%")
-           ->setParameter('status', $status_array);
+        if ( 'MA' == $status_query ) {
+            $query = $protocol_repository->createQueryBuilder('p')
+               ->join('p.main_submission', 's')
+               ->join('s.owner', 'o')
+               ->where("(s.publicTitle LIKE :query OR p.code LIKE :query OR o.name LIKE :query) AND p.monitoring_action IS NOT NULL")
+               ->orderBy("p.created", 'DESC')
+               ->setParameter('query', "%". $search_query ."%");
+        } else {
+            $query = $protocol_repository->createQueryBuilder('p')
+               ->join('p.main_submission', 's')
+               ->join('s.owner', 'o')
+               ->where("(s.publicTitle LIKE :query OR p.code LIKE :query OR o.name LIKE :query) AND p.status IN (:status)")
+               ->orderBy("p.created", 'DESC')
+               ->setParameter('query', "%". $search_query ."%")
+               ->setParameter('status', $status_array);
+        }
 
         $protocols = $query->getQuery()->getResult();
         $output['protocols'] = $protocols;
@@ -612,16 +621,28 @@ class CRUDController extends Controller
         if(!empty($status_query))
             $status_array = array($status_query);
 
-        $query = $protocol_repository->createQueryBuilder('p')
-           ->join('p.main_submission', 's')
-           ->join('s.owner', 'o')
-           ->leftJoin('s.team', 't')
-           ->leftJoin('p.revision', 'r')
-           ->where("(s.publicTitle LIKE :query OR p.code LIKE :query OR o.name LIKE :query) AND p.status IN (:status) AND ((s.owner = :owner OR t = :owner) OR r.member = :owner)")
-           ->orderBy("p.created", 'DESC')
-           ->setParameter('query', "%". $search_query ."%")
-           ->setParameter('status', $status_array)
-           ->setParameter('owner', $user);
+        if ( 'MA' == $status_query ) {
+            $query = $protocol_repository->createQueryBuilder('p')
+               ->join('p.main_submission', 's')
+               ->join('s.owner', 'o')
+               ->leftJoin('s.team', 't')
+               ->leftJoin('p.revision', 'r')
+               ->where("(s.publicTitle LIKE :query OR p.code LIKE :query OR o.name LIKE :query) AND p.monitoring_action IS NOT NULL AND ((s.owner = :owner OR t = :owner) OR r.member = :owner)")
+               ->orderBy("p.created", 'DESC')
+               ->setParameter('query', "%". $search_query ."%")
+               ->setParameter('owner', $user);
+        } else {
+            $query = $protocol_repository->createQueryBuilder('p')
+               ->join('p.main_submission', 's')
+               ->join('s.owner', 'o')
+               ->leftJoin('s.team', 't')
+               ->leftJoin('p.revision', 'r')
+               ->where("(s.publicTitle LIKE :query OR p.code LIKE :query OR o.name LIKE :query) AND p.status IN (:status) AND ((s.owner = :owner OR t = :owner) OR r.member = :owner)")
+               ->orderBy("p.created", 'DESC')
+               ->setParameter('query', "%". $search_query ."%")
+               ->setParameter('status', $status_array)
+               ->setParameter('owner', $user);
+        }
 
         $protocols = $query->getQuery()->getResult();
         $output['protocols'] = $protocols;
