@@ -15,7 +15,7 @@
                     <a href="{{ path("crud_admin_help_show", {help_id: 98} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                     <select class='form-control' id="select-monitoring-action" name="monitoring-action" required>
                         <option value="">{% trans %}Select an action{% endtrans %}</option>
-                        {% for action in monitoring_actions %}
+                        {% for action in monitoring_actions if 'secretary' not in app.user.rolesSlug or action.slug != 'submit-an-amendment' %}
                             <option value="{{ action.id }}">{{ action.name }}</option>
                         {% endfor %}
                     </select>

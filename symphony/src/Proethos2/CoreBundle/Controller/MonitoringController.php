@@ -114,41 +114,8 @@ class MonitoringController extends Controller
                 $protocol_history->setMessage($translator->trans("New amendment submited by") ." ". $user . ".");
                 $em->persist($protocol_history);
                 $em->flush();
-/*
-                $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
-                $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
                 
-                $recipients = array();
-                foreach($user_repository->findByIsActive(true) as $secretary) {
-                    if(in_array("secretary", $secretary->getRolesSlug())) {
-                        $recipients[] = $secretary;
-                    }
-                }
-                
-                foreach($recipients as $recipient) {
-                    $message = \Swift_Message::newInstance()
-                    ->setSubject($translator->trans("A new monitoring action has been submitted."))
-                    ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
-                    ->setTo($recipient->getEmail())
-                    ->setBody(
-                        $translator->trans("Hello!") .
-                        "<br />" .
-                        "<br />" . $translator->trans("A new monitoring action has been submitted. Access the link below for more details") . ":" .
-                        "<br />" .
-                        "<br />$url" .
-                        "<br />" .
-                        "<br />" . $translator->trans("Sincerely") . "," .
-                        "<br />" . $translator->trans("PAHOERC Secretariat") .
-                        "<br />" . $translator->trans("PAHOERC@paho.org")
-                        ,
-                        'text/html'
-                    );
-                
-                    $send = $this->get('mailer')->send($message);
-                }
-                
-                $session->getFlashBag()->add('success', $translator->trans("Amendment submitted with success!"));
-*/
+                // $session->getFlashBag()->add('success', $translator->trans("Amendment submitted with success!"));
                 return $this->redirectToRoute('submission_new_first_created_protocol_step', array('submission_id' => $new_submission->getId()), 301);
 
             } else {
@@ -194,7 +161,7 @@ class MonitoringController extends Controller
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
 
-        if(!$protocol->getMainSubmission()->isOwner($user) and !in_array('administrator', $user->getRolesSlug())) {
+        if(!$protocol->getMainSubmission()->isOwner($user) and (!in_array('administrator', $user->getRolesSlug()) and !in_array('secretary', $user->getRolesSlug()))) {
             throw $this->createNotFoundException($translator->trans('You don\'t have access to do this'));
         }
 
