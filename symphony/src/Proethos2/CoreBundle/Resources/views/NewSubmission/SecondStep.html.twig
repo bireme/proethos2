@@ -53,6 +53,7 @@
                                         <td data-label="{% trans %}Main?{% endtrans %}"><label class='label label-success'>{% trans %}Yes{% endtrans %}</label></td>
                                         <td data-label="{% trans %}Actions{% endtrans %}">-</td>
                                     </tr>
+                                    
                                     {% for team_user in submission.team %}
                                         <tr data-id="{{ team_user.id }}">
                                             <td data-label="{% trans %}Name{% endtrans %}">

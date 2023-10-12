@@ -34,6 +34,8 @@ use Proethos2\ModelBundle\Entity\SubmissionUpload;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
+use Proethos2\ModelBundle\Entity\SubmissionTeam;
+
 
 class ProtocolController extends Controller
 {
@@ -71,6 +73,9 @@ class ProtocolController extends Controller
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
         // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
         // $translations = $trans_repository->findTranslations($help[0]);
+
+        $users = $user_repository->findBy(array(), array('email' => 'ASC'));
+        $output['users'] = $users;
 
         $referer = $request->headers->get('referer');
 
@@ -464,6 +469,9 @@ class ProtocolController extends Controller
         // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
         // $translations = $trans_repository->findTranslations($help[0]);
 
+        $users = $user_repository->findBy(array(), array('email' => 'ASC'));
+        $output['users'] = $users;
+
         if (!$protocol or $protocol->getStatus() != "S") {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
         }
@@ -613,36 +621,7 @@ class ProtocolController extends Controller
                     $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
                     // $url = $baseurl . $this->generateUrl('home');
                     $url = $baseurl . $this->generateUrl('protocol_show_protocol', array("protocol_id" => $protocol->getId()));
-/*
-                    $help = $help_repository->find(210);
-                    $translations = $trans_repository->findTranslations($help);
-                    $text = $translations[$submission->getLanguage()];
-                    $body = ( $text ) ? $text['message'] : $help->getMessage();
-                    $body = str_replace("%protocol_url%", $url, $body);
-                    $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
-                    $body = str_replace("\r\n", "<br />", $body);
-                    $body .= "<br /><br />";
-                    $body = $util->linkify($body);
 
-                    foreach($user_repository->findAll() as $member) {
-                        foreach(array("secretary") as $role) {
-                            if(in_array($role, $member->getRolesSlug())) {
-
-                                $message = \Swift_Message::newInstance()
-                                ->setSubject($mail_translator->trans("A new protocol needs your analysis."))
-                                ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
-                                ->setTo($member->getEmail())
-                                ->setBody(
-                                    $body
-                                    ,
-                                    'text/html'
-                                );
-
-                                $send = $this->get('mailer')->send($message);
-                            }
-                        }
-                    }
-*/
                     $help = $help_repository->find(211);
                     $translations = $trans_repository->findTranslations($help);
                     $text = $translations[$submission->getLanguage()];
@@ -834,6 +813,9 @@ class ProtocolController extends Controller
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
         // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
         // $translations = $trans_repository->findTranslations($help[0]);
+
+        $users = $user_repository->findBy(array(), array('email' => 'ASC'));
+        $output['users'] = $users;
 
         if (!$protocol or $protocol->getStatus() != "I") {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
@@ -1057,10 +1039,6 @@ class ProtocolController extends Controller
         $output['role_member_of_committee'] = $role_member_of_committee;
         $output['role_member_ad_hoc'] = $role_member_ad_hoc;
 
-        // getting users
-        $users = $user_repository->findAll();
-        $output['users'] = $users;
-
         // gettings meetings
         $meetings = $meeting_repository->findAll();
         $output['meetings'] = $meetings;
@@ -1077,6 +1055,11 @@ class ProtocolController extends Controller
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
         // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
         // $translations = $trans_repository->findTranslations($help[0]);
+
+        // getting users
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        $users = $user_repository->findBy(array(), array('email' => 'ASC'));
+        $output['users'] = $users;
 
         if (!$protocol or !(in_array('secretary', $user->getRolesSlug()) or in_array($protocol->getStatus(), array('E', 'H')))) {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
@@ -1409,6 +1392,10 @@ class ProtocolController extends Controller
         $help_repository = $em->getRepository('Proethos2ModelBundle:Help');
         // $help = $help_repository->findBy(array("id" => {id}, "type" => "mail"));
         // $translations = $trans_repository->findTranslations($help[0]);
+
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        $users = $user_repository->findBy(array(), array('email' => 'ASC'));
+        $output['users'] = $users;
 
         if (!$protocol or $protocol->getStatus() != "H") {
             throw $this->createNotFoundException($translator->trans('No protocol found'));
@@ -2117,7 +2104,6 @@ class ProtocolController extends Controller
      */
     public function sendAlertAction($protocol_id)
     {
-
         $output = array();
         $request = $this->getRequest();
         $session = $request->getSession();
@@ -2195,6 +2181,160 @@ class ProtocolController extends Controller
 
         $referer = $request->headers->get('referer');
         return $this->redirect($referer, 301);
+    }
+
+    /**
+     * @Route("/protocol/{protocol_id}/team-member", name="protocol_new_team_member")
+     * @Template()
+     */
+    public function newTeamMember($protocol_id)
+    {
+        $output = array();
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $translator = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $user_repository = $em->getRepository('Proethos2ModelBundle:User');
+        $submission_repository = $em->getRepository('Proethos2ModelBundle:Submission');
+        $submission_team_repository = $em->getRepository('Proethos2ModelBundle:SubmissionTeam');
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $protocol_repository = $em->getRepository('Proethos2ModelBundle:Protocol');
+        $protocol = $protocol_repository->find($protocol_id);
+        $submission = $protocol->getMainSubmission();
+        $output['submission'] = $submission;
+
+        $submission_team = $submission_team_repository->findBy(array(
+            'team_member' => null,
+            'submission' => $submission,
+        ));
+        $output['submission_team'] = $submission_team;
+
+        $users = $user_repository->findBy(array(), array('email' => 'ASC'));
+        $output['users'] = $users;
+
+        if (!$submission or $submission->getCanBeEdited() == false) {
+            if(!$submission or ($submission->getProtocol()->getIsMigrated() and (!in_array('administrator', $user->getRolesSlug()) and !in_array('secretary', $user->getRolesSlug())))) {
+                throw $this->createNotFoundException($translator->trans('No submission found'));
+            }
+        }
+
+        $referer = $request->headers->get('referer');
+
+        // checking if was a post request
+        if($this->getRequest()->isMethod('POST')) {
+
+            $submittedToken = $request->request->get('token');
+
+            if (!$this->isCsrfTokenValid('add-member', $submittedToken)) {
+                throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+            }
+
+            // getting post data
+            $post_data = $request->request->all();
+
+            // sanitize WYSIWYG fields
+            array_walk($post_data, function(&$value){
+                if ( '<p><br></p>' == $value )
+                    $value = '';
+                return trim($value);
+            });
+
+            // check duplicated team members
+            $unique = array_unique($post_data['team_email']);
+            $duplicates = array_diff_assoc($post_data['team_email'], $unique);
+            if ( $duplicates ) {
+                $session->getFlashBag()->add('error', $translator->trans("Email already added to investigator team."));
+                return $output;
+            }
+            
+            // removing all team to readd
+            foreach($submission->getTeam() as $team_user) {
+                $submission->removeTeam($team_user);
+
+                $st = $submission_team_repository->findOneBy(array(
+                    'team_member' => $team_user,
+                    'submission' => $submission,
+                ));
+
+                if ( $st ) {
+                    $em->remove($st);
+                    $em->flush();
+                }           
+            }
+
+            // removing all team to readd
+            foreach($submission_team as $team_user) {
+                $em->remove($team_user);
+                $em->flush();
+            }
+
+            // readd
+            if(isset($post_data['team_user'])) {
+                foreach($post_data['team_user'] as $team_user_id) {
+                    $team_role = $post_data['team_role'][$team_user_id];
+                    $team_user = $user_repository->find($team_user_id);
+                    $submission->addTeam($team_user);
+
+                    $submission_team = new SubmissionTeam();
+                    $submission_team->setSubmission($submission);
+                    $submission_team->setTeamMember($team_user);
+                    $submission_team->setRole($team_role);
+                    $em->persist($submission_team);
+                    $em->flush();
+
+                    $team_user->addSubmissionTeam($submission_team);
+                    $em->persist($team_user);
+                    $em->flush();
+                }
+            }
+
+            // readd
+            if(isset($post_data['new_team_user'])) {
+                foreach($post_data['new_team_user'] as $team_user_id) {
+                    $team_email = $post_data['team_email'][$team_user_id];
+                    $team_name = $post_data['team_name'][$team_user_id];
+                    $team_institution = $post_data['team_institution'][$team_user_id];
+                    $team_role = $post_data['team_role'][$team_user_id];
+
+                    $submission_team = new SubmissionTeam();
+                    $submission_team->setSubmission($submission);
+                    $submission_team->setEmail($team_email);
+                    $submission_team->setName($team_name);
+                    $submission_team->setInstitution($team_institution);
+                    $submission_team->setRole($team_role);
+
+                    $em->persist($submission_team);
+                    $em->flush();
+                }
+            }
+
+            // new owner
+            if(isset($post_data['team-new-owner'])) {
+                $new_owner = $user_repository->find($post_data['team-new-owner']);
+                if($new_owner) {
+                    $old_owner = $submission->getOwner();
+                    $submission->setOwner($new_owner);
+
+                    $protocol = $submission->getProtocol();
+                    $protocol->setOwner($new_owner);
+                    $em->persist($protocol);
+                    $em->flush();
+
+                    $submission->removeTeam($new_owner);
+                    $submission->addTeam($old_owner);
+                    $em->persist($submission);
+                    $em->flush();
+                }
+            }
+
+            $session->getFlashBag()->add('success', $translator->trans("Protocol updated with success!"));
+            return $this->redirect($referer, 301);
+        }
+
+        return $output;
     }
 
 }
