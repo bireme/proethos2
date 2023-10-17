@@ -37,7 +37,7 @@ class Util {
 
             if($configuration and !empty($configuration->getValue())) {
                 $value = $configuration->getValue();
-                $committee_contact = explode("|", $value);
+                $committee_contact = explode("\n", $value);
                 
                 if( $committee_contact && count($committee_contact) == 2 ) {
                     return $committee_contact[1];
@@ -56,7 +56,7 @@ class Util {
             if($configuration and !empty($configuration->getValue())) {
                 if ( 'committee.email' == $key ) {
                     $value = $configuration->getValue();
-                    $committee_email = explode("|", $value);
+                    $committee_email = explode("\n", $value);
                     
                     if( $committee_email ) {
                         return $committee_email[0];
