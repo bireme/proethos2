@@ -55,7 +55,12 @@ class UserCheckerProvider implements UserProviderInterface
         global $kernel;
         $em = $kernel->getContainer()->get('doctrine')->getManager();
         $user_repository = $em->getRepository('Proethos2ModelBundle:User');
-        $user = $user_repository->findOneBy(array('username' => Security::encrypt($username)));
+
+        if (filter_var($username, FILTER_VALIDATE_EMAIL)) {
+            $user = $user_repository->findOneBy(array('email' => Security::encrypt($username)));
+        } else {
+            $user = $user_repository->findOneBy(array('username' => Security::encrypt($username)));
+        }
 
         if ( $user ) {
             return $user;
