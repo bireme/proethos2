@@ -42,7 +42,7 @@ INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '124', 'Communicate decision');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '125', 'Final decision');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '126', 'Message');
-INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '127', 'Reject submission');
+INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '127', 'Return submission');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '128', 'Reason why protocol is being returned');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '129', 'Accept submission');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '183', 'Decision');
@@ -132,7 +132,7 @@ Regards,
 Proethos2 Team');
 INSERT INTO `ext_translations` (`locale`, `object_class`, `field`, `foreign_key`, `content`) VALUES ('en', 'Proethos2\\ModelBundle\\Entity\\Help', 'message', '209', 'Hello!
 
-Your protocol was rejected.
+Your protocol was returned.
 
 Access the link below for more details.
 

@@ -514,7 +514,7 @@ class ProtocolController extends Controller
                 }
 
                 $message = \Swift_Message::newInstance()
-                ->setSubject($mail_translator->trans("Your protocol was rejected"))
+                ->setSubject($mail_translator->trans("Your protocol was returned"))
                 ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
                 ->setTo($recipients)
                 ->setBody(
@@ -530,7 +530,7 @@ class ProtocolController extends Controller
                     $protocol_history = new ProtocolHistory();
                     $protocol_history->setProtocol($protocol);
                     $protocol_history->setUser($user);
-                    $protocol_history->setMessage($translator->trans('Monitoring action was rejected by %user% with this justification "%justify%".',
+                    $protocol_history->setMessage($translator->trans('Monitoring action was returned by %user% with this justification "%justify%".',
                         array(
                             '%user%' => $user->getUsername(),
                             '%justify%' => $post_data['reject-reason'],
@@ -545,7 +545,7 @@ class ProtocolController extends Controller
                     $em->persist($protocol);
                     $em->flush();
 
-                    $session->getFlashBag()->add('success', $translator->trans("Protocol rejected with success!"));
+                    $session->getFlashBag()->add('success', $translator->trans("Protocol returned with success!"));
                     return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
                 }
 
@@ -569,15 +569,15 @@ class ProtocolController extends Controller
                 // setting new main submission
                 $protocol->setMainSubmission($new_submission);
 
-                // setting the Rejected status
+                // setting the Returned status
                 $protocol->setStatus("R");
 
                 // setting protocool history
                 $protocol_history = new ProtocolHistory();
                 $protocol_history->setProtocol($protocol);
                 $protocol_history->setUser($user);
-                // $protocol_history->setMessage($translator->trans("Protocol was rejected by") ." ". $user . ".");
-                $protocol_history->setMessage($translator->trans('Protocol was rejected by %user% with this justification "%justify%".',
+                // $protocol_history->setMessage($translator->trans("Protocol was returned by") ." ". $user . ".");
+                $protocol_history->setMessage($translator->trans('Protocol was returned by %user% with this justification "%justify%".',
                     array(
                         '%user%' => $user->getUsername(),
                         '%justify%' => $post_data['reject-reason'],
@@ -592,7 +592,7 @@ class ProtocolController extends Controller
                 $em->persist($protocol);
                 $em->flush();
 
-                $session->getFlashBag()->add('success', $translator->trans("Protocol rejected with success!"));
+                $session->getFlashBag()->add('success', $translator->trans("Protocol returned with success!"));
                 return $this->redirectToRoute('protocol_show_protocol', array('protocol_id' => $protocol->getId()), 301);
 
             } else {
@@ -607,7 +607,7 @@ class ProtocolController extends Controller
 
                 if($post_data['send-to'] == "comittee") {
 
-                    // setting the Rejected status
+                    // setting the Returned status
                     $protocol->setStatus("I");
 
                     // setting protocool history
@@ -661,7 +661,7 @@ class ProtocolController extends Controller
 
                 if($post_data['send-to'] == "ethical-revision") {
 
-                    // setting the Rejected status
+                    // setting the Returned status
                     $protocol->setStatus("E");
 
                     // setting protocool history
@@ -838,7 +838,7 @@ class ProtocolController extends Controller
 
             if($post_data['send-to'] == "ethical-revision") {
 
-                // setting the Rejected status
+                // setting the Returned status
                 $protocol->setStatus("E");
 
                 // setting protocool history
@@ -944,7 +944,7 @@ class ProtocolController extends Controller
                     $em->flush();
                 }
 
-                // setting the Rejected status
+                // setting the Returned status
                 $protocol->setStatus("F");
 
                 // setting protocool history

@@ -455,7 +455,7 @@ class CRUDController extends Controller
                 $translator->trans('Primary outcomes'),
                 $translator->trans('Primary sponsor'),
 
-                // $translator->trans('Reject reason'),
+                // $translator->trans('Return reason'),
                 // $translator->trans('Committee screening'),
                 // $translator->trans('Opinions required'),
                 // $translator->trans('Meeting'),

@@ -104,7 +104,7 @@ class MonitoringController extends Controller
                 // setting new main submission
                 $protocol->setMainSubmission($new_submission);
 
-                // setting the Rejected status
+                // setting the Returned status
                 $protocol->setStatus("D");
 
                 // setting protocool history
@@ -266,7 +266,7 @@ class MonitoringController extends Controller
             $em->persist($protocol);
             $em->flush();
 
-            // setting the Rejected status
+            // setting the Returned status
             $protocol->setStatus("S");
             $protocol->setUpdatedIn(new \DateTime());
 
