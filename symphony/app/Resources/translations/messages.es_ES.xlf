@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2023-10-11T18:28:21Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2023-10-17T22:22:13Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -1058,9 +1058,9 @@
         <source>Monitoring action was accepted by %user% as notification only.</source>
         <target>Acción de monitoreo aceptada por %user% solamente como notificación </target>
       </trans-unit>
-      <trans-unit id="ccdc8acca39f0528e26738b31d65065c3b7244ee" resname="Monitoring action was rejected by %user% with this justification &quot;%justify%&quot;.">
-        <source>Monitoring action was rejected by %user% with this justification "%justify%".</source>
-        <target>Acción de monitoreo rechazada por %user% con esta justificación "%justify%".</target>
+      <trans-unit id="1913d89db9c9f56641c8e91607bc2d0e95fa8017" resname="Monitoring action was returned by %user% with this justification &quot;%justify%&quot;.">
+        <source>Monitoring action was returned by %user% with this justification "%justify%".</source>
+        <target>Monitoring action was returned by %user% with this justification "%justify%".</target>
       </trans-unit>
       <trans-unit id="ba0b049ecec7e4353432ec58d78e765dd9459bd4" resname="Monitoring period">
         <source>Monitoring period</source>
@@ -1434,9 +1434,9 @@
         <source>Protocol options</source>
         <target>Opciones de protocolo</target>
       </trans-unit>
-      <trans-unit id="585ced76384ea0f630d2739a958c67ab7ab2bc10" resname="Protocol rejected with success!">
-        <source>Protocol rejected with success!</source>
-        <target>Protocolo rechazado exitosamente</target>
+      <trans-unit id="16b572ebb87299654bf6e2c0f15debb0bbbdbb15" resname="Protocol returned with success!">
+        <source>Protocol returned with success!</source>
+        <target>Protocol returned with success!</target>
       </trans-unit>
       <trans-unit id="f2addc686d3878185008574091c9964e979bef5b" resname="Protocol status has been modified.">
         <source>Protocol status has been modified.</source>
@@ -1462,13 +1462,13 @@
         <source>Protocol was finalized with success!</source>
         <target>Protocolo finalizado exitosamente.</target>
       </trans-unit>
-      <trans-unit id="e8d168bb9ad0021a44854c5ff373769ca0aa4b1b" resname="Protocol was rejected by %user% with this justification &quot;%justify%&quot;.">
-        <source>Protocol was rejected by %user% with this justification "%justify%".</source>
-        <target>Protocol was rejected by %user% with this justification "%justify%".</target>
-      </trans-unit>
       <trans-unit id="2c56fcfbf450e4083ffc685ab1babb8c8a0b5f6f" resname="Protocol was removed with success!">
         <source>Protocol was removed with success!</source>
         <target>Protocol fue quitado exitosamente!</target>
+      </trans-unit>
+      <trans-unit id="f4555b18af9ac202808cbb1a448f8700510445e8" resname="Protocol was returned by %user% with this justification &quot;%justify%&quot;.">
+        <source>Protocol was returned by %user% with this justification "%justify%".</source>
+        <target>Protocol was returned by %user% with this justification "%justify%".</target>
       </trans-unit>
       <trans-unit id="e76c7159e192d371590953e2b0d3cc660c24edfa" resname="Protocol was sent to comittee for initial analysis by %user%.">
         <source>Protocol was sent to comittee for initial analysis by %user%.</source>
@@ -1522,9 +1522,9 @@
         <source>Question updated with success.</source>
         <target>Pregunta actualizada exitosamente</target>
       </trans-unit>
-      <trans-unit id="004b64db6618e04b3adbb8f9b3829304e58aa939" resname="Reason that this protocol was rejected">
-        <source>Reason that this protocol was rejected</source>
-        <target>Razón de rechazo de este protocolo</target>
+      <trans-unit id="b9428fcf2ebaa9c096ce2213590e85da3adb83f6" resname="Reason that this protocol was returned">
+        <source>Reason that this protocol was returned</source>
+        <target>Reason that this protocol was returned</target>
       </trans-unit>
       <trans-unit id="5a76cf82e4eb916410d452e2ba307cbed8ca2707" resname="Recruiting">
         <source>Recruiting</source>
@@ -2251,9 +2251,9 @@
         <source>Your protocol was concluded as Exempt.</source>
         <target>Su protocolo ha sido determinado "Exento" de revisión ética.</target>
       </trans-unit>
-      <trans-unit id="60c9b18a70144cba44f474c1ce58d461a1c7a7e8" resname="Your protocol was rejected">
-        <source>Your protocol was rejected</source>
-        <target>Su protocolo ha sido rechazado.</target>
+      <trans-unit id="b1a43768c4b649f676b8104a515909d3c335df7b" resname="Your protocol was returned">
+        <source>Your protocol was returned</source>
+        <target>Your protocol was returned</target>
       </trans-unit>
       <trans-unit id="5cb6f0688279d13a930b1c9f2abfafb390ad2cd3" resname="Your protocol was sent to review!">
         <source>Your protocol was sent to review!</source>
