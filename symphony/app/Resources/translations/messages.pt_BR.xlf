@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2023-11-11T03:51:22Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2023-11-11T03:58:43Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -293,7 +293,7 @@
       </trans-unit>
       <trans-unit id="db54026e3143f73a662ce215822f1b17104f823a" resname="Comment removed with success.">
         <source>Comment removed with success.</source>
-        <target>Comment removed with success.</target>
+        <target>Comentário removido com sucesso.</target>
       </trans-unit>
       <trans-unit id="79b3d2121da50bcf4bb954b4c3e8b821da058fef" resname="Comment was created with success.">
         <source>Comment was created with success.</source>
