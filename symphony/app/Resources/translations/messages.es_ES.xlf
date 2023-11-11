@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2023-10-18T00:01:14Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2023-11-11T03:50:44Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -290,6 +290,10 @@
         <source>Code</source>
         <target>Código</target>
       </trans-unit>
+      <trans-unit id="db54026e3143f73a662ce215822f1b17104f823a" resname="Comment removed with success.">
+        <source>Comment removed with success.</source>
+        <target>Comment removed with success.</target>
+      </trans-unit>
       <trans-unit id="79b3d2121da50bcf4bb954b4c3e8b821da058fef" resname="Comment was created with success.">
         <source>Comment was created with success.</source>
         <target>Comment was created with success.</target>
@@ -434,6 +438,10 @@
         <source>Delete Attachment</source>
         <target>Eliminar adjunto</target>
       </trans-unit>
+      <trans-unit id="545e8ae39d3e66a4971cd764ac4abdc68a328620" resname="Delete Comment">
+        <source>Delete Comment</source>
+        <target>Eliminar comentario</target>
+      </trans-unit>
       <trans-unit id="ff420b1aaf835a138e71ff3ea0366de04bfbc587" resname="Delete Document">
         <source>Delete Document</source>
         <target>Eliminar documento</target>
@@ -465,6 +473,10 @@
       <trans-unit id="961f36de4c326fdd7cb4cc66ab04a5bd2188e0c3" resname="Do you confirm the exclusion of this attachment?">
         <source>Do you confirm the exclusion of this attachment?</source>
         <target>¿Confirma la exclusión de este adjunto?</target>
+      </trans-unit>
+      <trans-unit id="b187bf5d3bfd6554e962a3ebff288a653b8836df" resname="Do you confirm the exclusion of this comment?">
+        <source>Do you confirm the exclusion of this comment?</source>
+        <target>¿Confirma la exclusión de este comentario?</target>
       </trans-unit>
       <trans-unit id="1ba3f7b24b33d4429e8627ee88886fafbcf3a27e" resname="Document deleted with success.">
         <source>Document deleted with success.</source>
