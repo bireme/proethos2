@@ -202,14 +202,33 @@ class ProtocolController extends Controller
         // checking if was a post request
         if($this->getRequest()->isMethod('POST')) {
 
+            // getting post data
+            $post_data = $request->request->all();
+
+            if(isset($post_data['delete-comment-id']) and !empty($post_data['delete-comment-id'])) {
+
+                $submittedToken = $request->request->get('token');
+
+                if (!$this->isCsrfTokenValid('delete-comment', $submittedToken)) {
+                    throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
+                }
+
+                $protocol_comment_repository = $em->getRepository('Proethos2ModelBundle:ProtocolComment');
+                $comment = $protocol_comment_repository->find($post_data['delete-comment-id']);
+                if($comment) {
+                    $em->remove($comment);
+                    $em->flush();
+                    $session->getFlashBag()->add('success', $translator->trans("Comment removed with success."));
+                    return $this->redirect($referer, 301);
+                }
+                
+            }
+
             $submittedToken = $request->request->get('token');
 
             if (!$this->isCsrfTokenValid('add-comment', $submittedToken)) {
                 throw $this->createNotFoundException($translator->trans('CSRF token not valid'));
             }
-
-            // getting post data
-            $post_data = $request->request->all();
 
             $user = $this->get('security.token_storage')->getToken()->getUser();
 

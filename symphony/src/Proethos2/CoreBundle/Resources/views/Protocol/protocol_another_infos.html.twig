@@ -281,7 +281,7 @@
 
         <div class='row'>
             <div class="col-md-12">
-                <table class='table table-hover table-condensed'>
+                <table class='table table-hover table-condensed table-comment'>
                     <thead>
                         <tr>
                             <th width="15%">{% trans %}Date & Time{% endtrans %}</th>
@@ -305,6 +305,9 @@
                                             {% if comment.filename %}
                                                 {% set filehash = comment.filename|split('_')[0] %}
                                                 <a href='{{ path("protocol_comment_upload", {'comment_id': comment.id }) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{{ comment.realFilename }}" target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
+                                            {% endif %}
+                                            {% if is_granted("ROLE_USER") and 'secretary' in app.user.rolesSlug %}
+                                                <a href='#' class='btn btn-default btn-xs button-delete-comment' data-id='{{ comment.id }}' data-toggle="modal" data-target="#modal-delete-comment"><i class='glyphicon glyphicon-trash'></i></a>
                                             {% endif %}
                                         </td>
                                     </tr>
@@ -342,7 +345,7 @@
 
         <div class='row'>
             <div class="col-md-12">
-                <table class='table table-hover table-condensed'>
+                <table class='table table-hover table-condensed table-comment'>
                     <thead>
                         <tr>
                             <th width="15%">{% trans %}Date & Time{% endtrans %}</th>
@@ -362,6 +365,9 @@
                                     <td data-label="{% trans %}Actions{% endtrans %}">
                                         {% if comment.filename %}
                                             <a href='{{ path("protocol_comment_upload", {'comment_id': comment.id }) }}' class='btn btn-default btn-xs' data-toggle="tooltip" data-placement="top" title="{{ comment.realFilename }}" target="_blank"><i class='glyphicon glyphicon-eye-open'></i></a>
+                                        {% endif %}
+                                        {% if is_granted("ROLE_USER") and 'secretary' in app.user.rolesSlug %}
+                                            <a href='#' class='btn btn-default btn-xs button-delete-comment' data-id='{{ comment.id }}' data-toggle="modal" data-target="#modal-delete-comment"><i class='glyphicon glyphicon-trash'></i></a>
                                         {% endif %}
                                     </td> 
                                 </tr>
@@ -463,6 +469,33 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
                     <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal Confirm Delete Comment -->
+<div class="modal fade" id="modal-delete-comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form method="POST" id='form-delete-comment' action="{{ path("protocol_new_comment", {'protocol_id': protocol.id }) }}">
+
+            <input type="hidden" name="token" value="{{ csrf_token('delete-comment') }}"/>
+            <input type="hidden" name="delete-comment-id" id='hidden-delete-comment' value="" />
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{% trans %}Delete Comment{% endtrans %}</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>{% trans %}Do you confirm the exclusion of this comment?{% endtrans %}</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                    <button type="submit" class="btn btn-danger">{% trans %}Confirm{% endtrans %}</button>
                 </div>
             </div>
         </form>
@@ -656,6 +689,15 @@
             // hide all blocks on the load page
             $(".toggle-block").each(function(){
                 $(this).trigger('click');     
+            });
+
+            $(".table-comment").on("click", ".button-delete-comment", function(e){
+                var id = $(this).data('id');
+                $("#hidden-delete-comment").val(id);
+            });
+
+            $('#modal-delete-comment').on('hidden.bs.modal', function () {
+                $("#hidden-delete-comment").val("");
             });
 
             $("#table-attachment").on("click", ".button-delete-attachment", function(e){
