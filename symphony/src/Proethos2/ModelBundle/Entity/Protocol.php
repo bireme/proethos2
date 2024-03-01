@@ -294,7 +294,7 @@ class Protocol extends Base
             case 'F': return "Exempted"; break;
             case 'A': return "Approved"; break;
             case 'N': return "Not approved"; break;
-            case 'C': return "Conditional Approval"; break;
+            case 'C': return "Observations to address"; break;
             case 'X': return "Expedite Approval"; break;
             case 'T': return "Withdrawn"; break;
         }
