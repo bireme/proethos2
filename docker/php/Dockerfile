@@ -33,7 +33,7 @@ RUN sudo service mysql start
 # Configura MySQL
 #RUN sudo mysql_secure_installation <<< "y 0 y n n y" 
 
-#RUN sudo mysql -e "CREATE USER 'proethos2'@'localhost' IDENTIFIED BY 'choose_a_password!';" && \
+#RUN sudo mysql -e "CREATE USER 'proethos2'@'localhost' IDENTIFIED BY 'Proethos@2';" && \
   #  sudo mysql -e "CREATE DATABASE proethos2;" && \
    # sudo mysql -e "GRANT ALL PRIVILEGES ON proethos2.* to 'proethos2'@'localhost';"
 
@@ -45,7 +45,7 @@ RUN sudo service mysql start && \
     sudo mysql -e "DROP DATABASE IF EXISTS test;" && \
     sudo mysql -e "DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';" && \
     sudo mysql -e "FLUSH PRIVILEGES;" && \
-    sudo mysql -e "CREATE USER 'proethos2'@'localhost' IDENTIFIED BY 'choose_a_password!';" && \
+    sudo mysql -e "CREATE USER 'proethos2'@'localhost' IDENTIFIED BY 'Proethos@2';" && \
     sudo mysql -e "CREATE DATABASE proethos2;" && \
     sudo mysql -e "GRANT ALL PRIVILEGES ON proethos2.* TO 'proethos2'@'localhost';" && \
     sudo mysql -e "FLUSH PRIVILEGES;"
@@ -94,39 +94,39 @@ RUN sudo chmod o+r /var/www/html/proethos2/proethos2/symphony/
 
 #######################
 
-#COPY /var/www/html/proethos2/proethos2/symphony/composer.json /var/www/html/proethos2/proethos2/symphony/composer.json
-
-ENV COMPOSER_ALLOW_SUPERUSER = 1
 COPY composer.json /var/www/html/proethos2/proethos2/symphony/composer.json
-RUN export COMPOSER_ALLOW_SUPERUSER=1; 
 
-RUN sudo chgrp www-data -R /var/www/html/proethos2/proethos2/symphony
-RUN chmod -R 0775 /var/www/html/proethos2/proethos2/symphony
-RUN chmod -R 0775 /var/www/html/proethos2/proethos2/symphony
+#ENV COMPOSER_ALLOW_SUPERUSER = 1
+#COPY composer.json /var/www/html/proethos2/proethos2/symphony/composer.json
+#RUN export COMPOSER_ALLOW_SUPERUSER=1; 
+
+#RUN sudo chgrp www-data -R /var/www/html/proethos2/proethos2/symphony
+#RUN chmod -R 0775 /var/www/html/proethos2/proethos2/symphony
+#RUN chmod -R 0775 /var/www/html/proethos2/proethos2/symphony
 
 ##############################
 
 
-CMD bash -c "composer install"
+#CMD bash -c "composer install"
 
-RUN cd /var/www/html/proethos2/proethos2/symphony/
+#RUN cd /var/www/html/proethos2/proethos2/symphony/
 
 
-RUN set -eux; \
-    { \
-        composer install --optimize-autoloader --dev && \
-        exit 0; \
-    } || { \
-        echo "Ocorreu um erro durante a instalação das dependências do Composer."; \
-        exit 0; \
-    }
+#RUN set -eux; \
+ #   { \
+  #      composer install --optimize-autoloader --dev && \
+   #     exit 0; \
+   # } || { \
+    #    echo "Ocorreu um erro durante a instalação das dependências do Composer."; \
+     #   exit 0; \
+    #}
 
 #RUN composer install --optimize-autoloader --dev 2>/dev/null || true
 
 
 # Corrige Doctrine ORM
- CMD bash -c "cd /var/www/html/proethos2/proethos2/tools && \
-   chmod a+x fix-doctrine-orm.sh && ./fix-doctrine-orm.sh"
+ #CMD bash -c "cd /var/www/html/proethos2/proethos2/tools && \
+ #  chmod a+x fix-doctrine-orm.sh && ./fix-doctrine-orm.sh"
 
 
 
@@ -138,11 +138,26 @@ RUN set -eux; \
  CMD bash -c "sudo php vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php"
 
 
-RUN cd ../symphony && \
-composer install || true
+#RUN cd ../symphony && \
+#composer install || true
 
-CMD BASH -c "cd var/www/html/proethos2/proethos2/symphony/"
- CMD bash -c "make load_initial"
+
+
+#CMD BASH -c "cd var/www/html/proethos2/proethos2/symphony/"
+ #CMD bash -c "make load_initial"
+
+
+
+
+
+COPY parameters.yml /var/www/html/proethos2/proethos2/symphony/app/config/parameters.yml
+COPY proethos.conf /etc/apache2/sites-available/proethos2.conf
+
+
+COPY confi.sh configurar.sh
+RUN chmod +x /configurar.sh
+#ENTRYPOINT ["/entrypoint.sh"]
+
 
 
 # Exponha a porta 80

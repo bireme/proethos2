@@ -1,0 +1,16 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: proethos2
+    database_user: proethos2
+    database_password: Proethos@2
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    locale: en_US
+    auth_type: default
+    secret: ThisTokenIsNotSoSecretChangeIt
+    private_key: MxGjlVO1GKBMedbISv2dPvMVc6TRoqFcMGWlcyC2cKc=
+    index_key: gCLTkTiqIPeVXZRcAAs5Hhy9IkNXSWss
