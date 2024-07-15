@@ -48,3 +48,27 @@ framework:
 
    If you are using Xampp, this error can be solved reistalling the Xampp with the corresponding version.
 
+---
+
+6. Make sure that you fill the keys
+
+ Generate the private_key:
+
+      $ php -r 'echo base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES)) . PHP_EOL; ?>'
+
+Generate the index_key:
+   
+      $ php -r 'echo base64_encode(random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES)) . PHP_EOL; ?>'
+
+
+Copy the keys, go to symphony/app/config/parameters.yml and add/change these parameters:
+
+private_key: ??????????
+index_key: ??????????
+
+Run this command to refresh the settings:
+
+      $ make update
+
+
+
