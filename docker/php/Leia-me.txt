@@ -1,6 +1,6 @@
 #######################################################
 
-Há duas foprmas de montar o container do Proethos:
+Há duas formas de montar o container do Proethos:
 
 Primeira-----------------------------------------------
 executando os comandos, do arquivo:
@@ -28,7 +28,9 @@ Após isto execute o comando:
 
  docker exec -it ubuntuProethos bash
 
-Dentro do container então execute o seguinte comando:
+Dentro do container então execute os seguintes comandos:
+
+ perl -pi -e 's/\r\n/\n/g' ./configurar.sh
 
 ./configurar.sh
 

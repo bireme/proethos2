@@ -1,0 +1,47 @@
+
+#######################################################
+
+Hay dos formas de montar el contenedor de Proethos:
+
+Primera -----------------------------------------------
+ejecutando los comandos del archivo:
+"Configuração manual container Proethos.txt"
+
+
+---------------------------------------------------------
+
+
+Segunda -----------------------------------------------
+
+haciendo el build del archivo Dockerfile,
+que está en este directorio, para que funcione,
+es necesario que todos los archivos en este directorio
+estén también en su máquina.
+
+En el terminal, navegue hasta la carpeta docker y ejecute el siguiente comando
+para crear la imagen del contenedor:
+
+ docker build -t imagem_proethos .
+
+Después de esto, ejecute el comando:
+
+ docker run --name ubuntuProethos -itd -p 8090:80 imagem_proethos
+
+ docker exec -it ubuntuProethos bash
+
+Luego, dentro del contenedor, ejecute los siguientes comandos:
+
+ perl -pi -e 's/
+/
+/g' ./configurar.sh
+
+./configurar.sh
+
+Después de eso, solo acceda al contenedor a través del navegador: localhost:8090
+
+------------------------------------------
+
+ Idioma: Español - es_ES
+ 19/08/2023 - Gabriel Souza
+
+#######################################################
