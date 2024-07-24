@@ -7,3 +7,6 @@ How to translate
 
 
 Obs: If you see the 404 error, you will need to enable the Apache mod_rewrite module.
+
+
+Ref: https://github.com/bireme/proethos2/issues/403
