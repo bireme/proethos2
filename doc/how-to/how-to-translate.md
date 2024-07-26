@@ -9,6 +9,10 @@ How to translate
 Obs: If you see the 404 error, you will need to enable the Apache mod_rewrite module.
 
 
+
+Error 404
+=================================================================
+
 If the error persists to resolve this error, two adjustments were necessary:
 
 Include the code snippet below in the routing.yml file:
