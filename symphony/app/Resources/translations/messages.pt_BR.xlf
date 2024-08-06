@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2024-08-06T12:31:45Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2024-08-06T12:59:45Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -1830,9 +1830,9 @@
         <source>Send protocol revision</source>
         <target>Enviar a revisão do protocolo</target>
       </trans-unit>
-      <trans-unit id="f4150af6b13029b733c888779a3d9c66fd5853e8" resname="Send to Ethical Review">
-        <source>Send to Ethical Review</source>
-        <target>Enviar para revisão ética </target>
+      <trans-unit id="bec723c92a9c9fd9d2690978f809bb896eee1101" resname="Send to Ethical Revision">
+        <source>Send to Ethical Revision</source>
+        <target>Send to Ethical Revision</target>
       </trans-unit>
       <trans-unit id="d7ec62cd2e6527cce3320a981c4467ac06d66775" resname="Send to committee to decide">
         <source>Send to committee to decide</source>
