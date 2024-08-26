@@ -168,6 +168,7 @@
         <source>Are you sure that you want to end this protocol evaluation?</source>
         <target>¿Esta seguro que desea finalizar la evaluación de este protocolo?</target>
       </trans-unit>
+        <target>¿Está seguro que desea pasar al siguiente paso sin ninguna revisión?</target>
       <trans-unit id="fde333543bd946c34954067819fca0395342be11" resname="Are you sure that you want to go to the next step without any review?">
         <source>Are you sure that you want to go to the next step without any review?</source>
         <target>Are you sure that you want to go to the next step without any review?</target>
@@ -1833,6 +1834,7 @@
         <source>Send protocol revision</source>
         <target>Enviar revisión del protocolo</target>
       </trans-unit>
+        <target>Enviar a revisión ética</target>
       <trans-unit id="838cab7d481e8c322be373ff2e40ac68f29678e3" resname="Send to Ethics Review">
         <source>Send to Ethics Review</source>
         <target>Send to Ethics Review</target>
