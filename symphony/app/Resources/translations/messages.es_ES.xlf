@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2024-08-26T13:47:27Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2024-08-26T14:04:58Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -170,7 +170,7 @@
       </trans-unit>
       <trans-unit id="fde333543bd946c34954067819fca0395342be11" resname="Are you sure that you want to go to the next step without any review?">
         <source>Are you sure that you want to go to the next step without any review?</source>
-        <target>Are you sure that you want to go to the next step without any review?</target>
+        <target>¿Está seguro que desea pasar al siguiente paso sin ninguna revisión?</target>
       </trans-unit>
       <trans-unit id="129d86112d0f124b04a96f1e06036d1b66e8e4b2" resname="Are you sure that you want to remove this member?">
         <source>Are you sure that you want to remove this member?</source>
@@ -1835,7 +1835,7 @@
       </trans-unit>
       <trans-unit id="838cab7d481e8c322be373ff2e40ac68f29678e3" resname="Send to Ethics Review">
         <source>Send to Ethics Review</source>
-        <target>Send to Ethics Review</target>
+        <target>Enviar a revisión ética</target>
       </trans-unit>
       <trans-unit id="d7ec62cd2e6527cce3320a981c4467ac06d66775" resname="Send to committee to decide">
         <source>Send to committee to decide</source>
@@ -1843,7 +1843,7 @@
       </trans-unit>
       <trans-unit id="0b191b7ba51644fde3a7e9f83a4ea5b12e6f957f" resname="Send to ethics review">
         <source>Send to ethics review</source>
-        <target>Send to ethics review</target>
+        <target>Enviar a revisión ética</target>
       </trans-unit>
       <trans-unit id="b07eb00d111a743c92ecfbc78133c45b9f7d58c4" resname="Send us a message by entering the fields below, or write to us at">
         <source>Send us a message by entering the fields below, or write to us at</source>
