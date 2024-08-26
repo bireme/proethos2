@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2024-08-26T12:50:26Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+  <file date="2024-08-26T13:47:28Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -1835,9 +1835,9 @@
         <source>Send to committee to decide</source>
         <target>Send to committee to decide</target>
       </trans-unit>
-      <trans-unit id="19ffa1466728796701f5ce75fb65995ecad95697" resname="Send to ethical revision">
-        <source>Send to ethical revision</source>
-        <target>Send to ethical revision</target>
+      <trans-unit id="0b191b7ba51644fde3a7e9f83a4ea5b12e6f957f" resname="Send to ethics review">
+        <source>Send to ethics review</source>
+        <target>Send to ethics review</target>
       </trans-unit>
       <trans-unit id="b07eb00d111a743c92ecfbc78133c45b9f7d58c4" resname="Send us a message by entering the fields below, or write to us at">
         <source>Send us a message by entering the fields below, or write to us at</source>
