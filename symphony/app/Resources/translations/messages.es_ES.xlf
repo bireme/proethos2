@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2023-11-11T03:56:28Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2024-08-26T14:04:58Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -168,8 +168,8 @@
         <source>Are you sure that you want to end this protocol evaluation?</source>
         <target>¿Esta seguro que desea finalizar la evaluación de este protocolo?</target>
       </trans-unit>
-      <trans-unit id="3d0e6589cf988b9b7df265be8361e1f5ee2d4692" resname="Are you sure that you want to go to the next step without any revisions?">
-        <source>Are you sure that you want to go to the next step without any revisions?</source>
+      <trans-unit id="fde333543bd946c34954067819fca0395342be11" resname="Are you sure that you want to go to the next step without any review?">
+        <source>Are you sure that you want to go to the next step without any review?</source>
         <target>¿Está seguro que desea pasar al siguiente paso sin ninguna revisión?</target>
       </trans-unit>
       <trans-unit id="129d86112d0f124b04a96f1e06036d1b66e8e4b2" resname="Are you sure that you want to remove this member?">
@@ -1833,16 +1833,16 @@
         <source>Send protocol revision</source>
         <target>Enviar revisión del protocolo</target>
       </trans-unit>
-      <trans-unit id="f4150af6b13029b733c888779a3d9c66fd5853e8" resname="Send to Ethical Review">
-        <source>Send to Ethical Review</source>
+      <trans-unit id="838cab7d481e8c322be373ff2e40ac68f29678e3" resname="Send to Ethics Review">
+        <source>Send to Ethics Review</source>
         <target>Enviar a revisión ética</target>
       </trans-unit>
       <trans-unit id="d7ec62cd2e6527cce3320a981c4467ac06d66775" resname="Send to committee to decide">
         <source>Send to committee to decide</source>
         <target>Enviar a comité para decisión</target>
       </trans-unit>
-      <trans-unit id="19ffa1466728796701f5ce75fb65995ecad95697" resname="Send to ethical revision">
-        <source>Send to ethical revision</source>
+      <trans-unit id="0b191b7ba51644fde3a7e9f83a4ea5b12e6f957f" resname="Send to ethics review">
+        <source>Send to ethics review</source>
         <target>Enviar a revisión ética</target>
       </trans-unit>
       <trans-unit id="b07eb00d111a743c92ecfbc78133c45b9f7d58c4" resname="Send us a message by entering the fields below, or write to us at">
