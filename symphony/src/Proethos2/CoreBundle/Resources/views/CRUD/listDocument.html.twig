@@ -19,8 +19,23 @@
                 {% for role in roles %}
                     {% if role in app.user.proethos2Roles %}
                         <div class="col-md-6">
-                            <h2 class='sub-header'>{{ role.name }}</h2>
-                            <ul>
+                            <h2 class='sub-header'>
+                            {% if role.id == 1 %}
+                                <p>{% trans %}Investigator{% endtrans %}</p>
+                            {% endif %}
+                            {% if role.id == 2 %}
+                            <p>Secretary</p>
+                            {% endif %}
+                            {% if role.id == 3 %}
+                            <p>Member of Committee</p>
+                            {% endif %}
+                            {% if role.id == 4 %}
+                            <p>Member ad-hoc
+                            </p>
+                            {% endif %}    
+                            {% if role.id == 5 %}
+                            <p>Administrator</p>{% endif %}   
+                            </h2>                            <ul>
                                 {% for document in documents %}
                                     {% if role in document.roles %}
                                         <li><a href="{{ path("crud_document_upload", {'document_id': document.id }) }}" target="_blank">
