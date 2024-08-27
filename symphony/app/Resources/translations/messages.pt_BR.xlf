@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2024-08-26T14:04:14Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2024-08-27T18:49:25Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -111,6 +111,10 @@
       <trans-unit id="ecfe29ef8fcfc7c6552fb9793fd0884a7b9c0a8b" resname="Additional Information">
         <source>Additional Information</source>
         <target>Informações adicionais</target>
+      </trans-unit>
+      <trans-unit id="1eda23758be9e36e5e0d2a6a87de584aaca0193f" resname="Administrator">
+        <source>Administrator</source>
+        <target>Administrador</target>
       </trans-unit>
       <trans-unit id="6a72085653e4c5be8c7640c868ef787cbcf063d1" resname="All">
         <source>All</source>
@@ -897,6 +901,10 @@
         <source>Invalid state.</source>
         <target>Estado inválido.</target>
       </trans-unit>
+      <trans-unit id="e8b61605f059d53b9a76e3ee038cca4405750138" resname="Investigator">
+        <source>Investigator</source>
+        <target>Investigador</target>
+      </trans-unit>
       <trans-unit id="76a38180859b3024f9cb90bc039aee77b0e5e7d5" resname="Is this a confidential comment?">
         <source>Is this a confidential comment?</source>
         <target>Isto é um comentário confidencial?</target>
@@ -1031,9 +1039,17 @@
         <source>Meetings</source>
         <target>Reuniões </target>
       </trans-unit>
+      <trans-unit id="992cb89e0118beaf32b3c24344aa28d838d80eb1" resname="Member ad-hoc">
+        <source>Member ad-hoc</source>
+        <target>Membro ad-hoc</target>
+      </trans-unit>
       <trans-unit id="4014afc56173e7dda855348d627c2ccd839bf610" resname="Member has been removed with success!">
         <source>Member has been removed with success!</source>
         <target>Membro foi removido com sucesso </target>
+      </trans-unit>
+      <trans-unit id="936801ef1325d7365e4f98476528231e2e64b5d9" resname="Member of Committee">
+        <source>Member of Committee</source>
+        <target>Membro do Comitê</target>
       </trans-unit>
       <trans-unit id="abc4f304a08a21ce7477f600961a7c5e317824c5" resname="Members added with success!">
         <source>Members added with success!</source>
@@ -1776,6 +1792,10 @@
       <trans-unit id="fe7f05fb9265df45b30f197ac151e097204df19d" resname="Secondary outcomes">
         <source>Secondary outcomes</source>
         <target>Resultados secundários</target>
+      </trans-unit>
+      <trans-unit id="a7f07da18c5beac462a8d871cff6ba2a5a948628" resname="Secretary">
+        <source>Secretary</source>
+        <target>Secretaria</target>
       </trans-unit>
       <trans-unit id="455625bd5b9906064006aeacf166a16abd6249ae" resname="See Protocol">
         <source>See Protocol</source>
