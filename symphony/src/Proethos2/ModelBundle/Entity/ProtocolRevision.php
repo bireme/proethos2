@@ -106,7 +106,8 @@ class ProtocolRevision extends Base
     /**
      * @var string
      *
-     * @ORM\Column(name="suggestions", type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
+ 
      */
     private $suggestions;   
 
