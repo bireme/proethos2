@@ -8,17 +8,14 @@
    {# Script reCAPTCHA v3 oficial #}
     <script src="https://www.google.com/recaptcha/api.js?render=siteskeydye"></script>
 
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
+<script>
   grecaptcha.ready(function() {
-    // "action" é um rótulo que você escolhe para identificar o evento
-    grecaptcha.execute('siteskeydye', {action: 'homepage'}).then(function(token) {
-      // Coloca o token em um campo hidden do seu formulário, por exemplo:
-      let recaptchaTokenField = document.getElementById('recaptchaToken');
-      recaptchaTokenField.value = token;
+    grecaptcha.execute('SUA_SITE_KEY_AQUI', {action: 'homepage'}).then(function(token) {
+      // Aqui você obtém o token
+      // Por exemplo, podemos inserir esse token em um campo hidden para enviar ao backend
+      document.getElementById('g-recaptcha-token').value = token;
     });
   });
-});
 </script>
 
 {% endblock %}
@@ -144,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
                 
+                <!--
                 {% if recaptcha_secret %}
                     <div class='row'>
                         <div class='col-md-12'>
@@ -151,9 +149,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     </div>
                 {% endif %}
+-->
 
-  <!-- Campos normais do formulário... -->
-  <input type="hidden" id="recaptchaToken" name="recaptcha_token" />
+                  <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-token">
+
                 
                 <div class='row'>
                     <div class='col-md-12'>
