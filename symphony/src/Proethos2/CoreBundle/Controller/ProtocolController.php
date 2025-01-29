@@ -298,7 +298,7 @@ class ProtocolController extends Controller
                 }
 
                 $message = \Swift_Message::newInstance()
-                ->setSubject($translator->trans("New comment on Proethos2") . " Nº: " . $protocol->getCode())
+                ->setSubject($translator->trans("New comment on Proethos2") . " - Protocol Nº: " . $protocol->getCode())
                 ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
                 ->setTo($secretaries_emails)
                 ->setBody(
