@@ -273,6 +273,7 @@ class ProtocolController extends Controller
                 $text = $translations[$submission->getLanguage()];
                 $body = ( $text ) ? $text['message'] : $help->getMessage();
                 $body = str_replace("%protocol_url%", $url, $body);
+                $body = str_replace("%protocol_code%", $protocol->getCode(), $body);
                 $body = str_replace("%comment%", $post_data['new-comment-message'], $body);
                 $body = str_replace("\r\n", "<br />", $body);
                 $body .= "<br /><br />";
@@ -297,7 +298,7 @@ class ProtocolController extends Controller
                 }
 
                 $message = \Swift_Message::newInstance()
-                ->setSubject($translator->trans("New comment on Proethos2"))
+                ->setSubject($translator->trans("New comment on Proethos2") . " Nº: " . $protocol->getCode())
                 ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
                 ->setTo($secretaries_emails)
                 ->setBody(
