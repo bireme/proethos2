@@ -5,6 +5,21 @@
 {% block extrahead %}
     
     <script src='https://www.google.com/recaptcha/api.js?hl={{ hl }}'></script>
+   {# Script reCAPTCHA v3 oficial #}
+    <script src="https://www.google.com/recaptcha/api.js?render=siteskeydye"></script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+  grecaptcha.ready(function() {
+    // "action" é um rótulo que você escolhe para identificar o evento
+    grecaptcha.execute('siteskeydye', {action: 'homepage'}).then(function(token) {
+      // Coloca o token em um campo hidden do seu formulário, por exemplo:
+      let recaptchaTokenField = document.getElementById('recaptchaToken');
+      recaptchaTokenField.value = token;
+    });
+  });
+});
+</script>
 
 {% endblock %}
 
@@ -136,6 +151,9 @@
                         </div>
                     </div>
                 {% endif %}
+
+  <!-- Campos normais do formulário... -->
+  <input type="hidden" id="recaptchaToken" name="recaptcha_token" />
                 
                 <div class='row'>
                     <div class='col-md-12'>
