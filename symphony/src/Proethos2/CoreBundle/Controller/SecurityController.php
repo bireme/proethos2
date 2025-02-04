@@ -680,8 +680,11 @@ class SecurityController extends Controller
             $secret = $output['recaptcha_secret'];
             if(true) {
                 // RECAPTCHA
-
                 // params to send to recapctha api
+
+                $session->getFlashBag()->add('error', $secret);
+
+
                 $data = array(
                     "secret" => $secret,
                     "response" => $post_data['g-recaptcha-response'],
@@ -714,7 +717,7 @@ class SecurityController extends Controller
 
                 // if has problems, stop
                 if(!$response->success) {
-                    $session->getFlashBag()->add('error', $translator->trans("Have an error with captcha. Please try again." . $m . "jsinho" . $response ));
+                    $session->getFlashBag()->add('error', $translator->trans("Have an error with captcha. Please try again." . $m . "jsinho"));
                     return $output;
                 }
             }
