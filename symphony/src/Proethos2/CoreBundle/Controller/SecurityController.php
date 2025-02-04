@@ -704,11 +704,13 @@ class SecurityController extends Controller
                 
                 echo $response;
 
-                if(!isset($post_data['g-recaptcha-response'])){
-                    $post_data['g-recaptcha-response'] =' Erro';
+                if(isset($post_data['g-recaptcha-response'])){
+                    $m = $post_data['g-recaptcha-response'];
+                }else{
+                    $m = 'erro'
                 }
 
-                $m = $post_data['g-recaptcha-response'];
+                
 
                 // if has problems, stop
                 if(!$response->success) {
