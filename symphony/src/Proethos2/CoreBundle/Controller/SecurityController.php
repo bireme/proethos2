@@ -669,7 +669,7 @@ class SecurityController extends Controller
             $output['content'] = $post_data;
 
             // checking required fields
-            foreach(array('name', 'username', 'email', 'country', 'password', 'confirm-password') as $field) {   
+            foreach(array('name', 'username', 'email', 'country', 'password', 'confirm-password', 'g-recaptcha-response') as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -684,6 +684,7 @@ class SecurityController extends Controller
                 echo 'ola';
                 $session->getFlashBag()->add('error', $secret);
                 $session->getFlashBag()->add($post_data['g-recaptcha-response'], $secret);
+                return $output;
 
                 
 
