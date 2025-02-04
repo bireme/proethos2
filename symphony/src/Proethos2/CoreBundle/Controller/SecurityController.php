@@ -678,13 +678,23 @@ class SecurityController extends Controller
 
             // only check captcha if not in dev
             $secret = $output['recaptcha_secret'];
+
+            if(!isset($post_data['g-recaptcha-response']) or $post_data['g-recaptcha-response'] == ''){
+                return $output;
+            }
+
+            if(!isset($post_data['g-recaptcha-response']) or $post_data['g-recaptcha-response'] == ''){
+                return $output;
+            }
+
             if(true) {
                 // RECAPTCHA
                 // params to send to recapctha api
                 echo 'ola';
-                $session->getFlashBag()->add('error', $post_data['g-recaptcha-response']);
-                return $output;
+                //$session->getFlashBag()->add('error', $post_data['g-recaptcha-response']);
+                //return $output;
 
+                $secret = '6LeJvcwqAAAAADV0s6071CLlphBO77MZqzhCsN-e';
                 
 
                 $data = array(
@@ -722,6 +732,11 @@ class SecurityController extends Controller
                     $session->getFlashBag()->add('error', $translator->trans("Have an error with captcha. Please try again." . $m . "jsinho"));
                     return $output;
                 }
+            }
+
+            if($post_data['password'] != $post_data['confirm-password']) {
+                $session->getFlashBag()->add('error', $translator->trans("Passwords don't match."));
+                return $output;
             }
 
             if($post_data['password'] != $post_data['confirm-password']) {
