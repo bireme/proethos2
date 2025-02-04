@@ -50,7 +50,7 @@
             <h1>Pro<b>ethos</b>2</h1>
             <h2>{% trans %}Create new User{% endtrans %}</h2>
 
-            <form class="form-change-password" action="" method="post">
+            <form class="form-change-password" action="" method="post" id="meuFormulario">
 
                 <input type="hidden" name="token" value="{{ csrf_token('add-user') }}"/>
                 
@@ -137,10 +137,13 @@
                     </div>
                 {% endif %}
                 
+                  <label for="campoConta">Quanto é 2 + 2?</label>
+                  <input type="text" id="campoConta" placeholder="Digite a resposta..." />
+  
                 <div class='row'>
                     <div class='col-md-12'>
                         <div class="form-group">
-                            <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans %}Create user{% endtrans %}</button>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit" disabled>{% trans %}Create user{% endtrans %}</button>
                         </div>
                     </div>
                 </div>
@@ -177,4 +180,42 @@
                 ;
         }
     </script>
+
+    <script>
+  /**
+   * Função que verifica um campo a cada intervalo de tempo
+   * e habilita/desabilita o botão de submissão do formulário
+   * caso a resposta esteja correta ou não.
+   */
+  function observarCampo() {
+    // IDs usados no HTML
+    const FORM_ID = 'meuFormulario';
+    const INPUT_ID = 'campoConta';
+    const BUTTON_ID = 'btnSubmeter';
+
+    // Obter referências ao formulário, input e botão
+    const formulario = document.getElementById(FORM_ID);
+    const campo = document.getElementById(INPUT_ID);
+    const botao = document.getElementById(BUTTON_ID);
+
+    // Intervalo em milissegundos (por ex: 500 ms)
+    const INTERVALO = 500;
+
+    setInterval(() => {
+      const valor = campo.value.trim();
+
+      // Exemplo: verificação se "2 + 2" == 4
+      if (valor === '4') {
+        // Se a conta estiver certa, habilita o botão
+        botao.disabled = false;
+      } else {
+        // Caso contrário, desabilita o botão
+        botao.disabled = true;
+      }
+    }, INTERVALO);
+  }
+
+  // Chamar a função assim que a página carregar
+  observarCampo();
+</script>
 {% endblock %}
