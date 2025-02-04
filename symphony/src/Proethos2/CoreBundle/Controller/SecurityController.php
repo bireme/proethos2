@@ -683,7 +683,9 @@ class SecurityController extends Controller
                 // params to send to recapctha api
 
                 $session->getFlashBag()->add('error', $secret);
+                $session->getFlashBag()->add($post_data['g-recaptcha-response'], $secret);
 
+                
 
                 $data = array(
                     "secret" => $secret,
