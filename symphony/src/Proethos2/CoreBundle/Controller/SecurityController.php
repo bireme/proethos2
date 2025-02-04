@@ -48,7 +48,7 @@ class SecurityController extends Controller
             $dotenv->load($env_dir.'/.env');
         }
     }
-
+  
     /**
      * @Route("/login", name="login_route")
      * @Template()
@@ -702,6 +702,27 @@ class SecurityController extends Controller
                 $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify", false, $context);
                 $response = json_decode($response);
                 
+
+                $secretKey = "6LexocwqAAAAAAoJ23dekDPceZcguNa9aslJ0mRz";
+                $token = $_POST['g-recaptcha-response'];
+                
+                // Faz a requisição à API do Google
+                $url = 'https://www.google.com/recaptcha/api/siteverify?secret='
+                       . $secretKey . '&response=' . $token;
+                       
+                $response = file_get_contents($url);
+                $responseKeys = json_decode($response, true);
+            
+                // Verifica o resultado
+                if ($responseKeys["success"] && $responseKeys["score"] >= 0.5) {
+                    // Sucesso - usuário provavelmente não é um robô
+                    echo "Validação reCAPTCHA v3 aprovada!";
+                } else {
+                    // Falha - ação suspeita ou score muito baixo
+                    echo "Falha na validação do reCAPTCHA v3.";
+                }
+                break;
+
                 // if has problems, stop
                 if(!$response->success) {
                     $session->getFlashBag()->add('error', $translator->trans("Have an error with captcha. Please try again."));

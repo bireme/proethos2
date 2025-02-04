@@ -5,6 +5,18 @@
 {% block extrahead %}
     
     <script src='https://www.google.com/recaptcha/api.js?hl={{ hl }}'></script>
+   {# Script reCAPTCHA v3 oficial #}
+    <script src="https://www.google.com/recaptcha/api.js?render=siteskeydye"></script>
+
+<script>
+  grecaptcha.ready(function() {
+    grecaptcha.execute('6LexocwqAAAAAA5WyhQuj9ka7SE_rZT4IQS4YylJ', {action: 'homepage'}).then(function(token) {
+      // Aqui você obtém o token
+      // Por exemplo, podemos inserir esse token em um campo hidden para enviar ao backend
+      document.getElementById('g-recaptcha-token').value = token;
+    });
+  });
+</script>
 
 {% endblock %}
 
@@ -129,13 +141,18 @@
                     </div>
                 </div>
                 
+                <!--
                 {% if recaptcha_secret %}
                     <div class='row'>
                         <div class='col-md-12'>
-                            <div class="g-recaptcha" data-sitekey="{{ recaptcha_secret }}"></div>
+                            <div class="g-recaptcha" data-sitekey="6LexocwqAAAAAAoJ23dekDPceZcguNa9aslJ0mRz"></div>
                         </div>
                     </div>
                 {% endif %}
+-->
+
+                  <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-token">
+
                 
                 <div class='row'>
                     <div class='col-md-12'>
