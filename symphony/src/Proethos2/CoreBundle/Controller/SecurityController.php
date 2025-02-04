@@ -678,7 +678,7 @@ class SecurityController extends Controller
 
             // only check captcha if not in dev
             $secret = $output['recaptcha_secret'];
-            if(!empty($secret) and strpos($_SERVER['HTTP_HOST'], 'localhost') < 0) {
+            if(true) {
                 // RECAPTCHA
 
                 // params to send to recapctha api
