@@ -707,7 +707,7 @@ class SecurityController extends Controller
                 if(isset($post_data['g-recaptcha-response'])){
                     $m = $post_data['g-recaptcha-response'];
                 }else{
-                    $m = 'erro'
+                    $m = 'erro';
                 }
 
                 
