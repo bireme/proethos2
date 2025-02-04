@@ -702,9 +702,17 @@ class SecurityController extends Controller
                 $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify", false, $context);
                 $response = json_decode($response);
                 
+                echo $response
+
+                if(!isset($post_data['g-recaptcha-response'])){
+                    $post_data['g-recaptcha-response'] =' Erro';
+                }
+
+                $m = $post_data['g-recaptcha-response'];
+
                 // if has problems, stop
                 if(!$response->success) {
-                    $session->getFlashBag()->add('error', $translator->trans("Have an error with captcha. Please try again." . $post_data['g-recaptcha-response'] . "jsinho" . $response ));
+                    $session->getFlashBag()->add('error', $translator->trans("Have an error with captcha. Please try again." . $m . "jsinho" . $response ));
                     return $output;
                 }
             }
