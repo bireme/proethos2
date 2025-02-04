@@ -705,7 +705,7 @@ class SecurityController extends Controller
                 //$session->getFlashBag()->add('error', $post_data['g-recaptcha-response']);
 
 
-                // options from file_Get_contents
+                /* options from file_Get_contents
                 $options = array(
                     'http' => array(
                         'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
@@ -720,6 +720,15 @@ class SecurityController extends Controller
                 $response = json_decode($response);
                 
                 $session->getFlashBag()->add('error', $response);
+*/
+                $ch = curl_init("https://www.google.com/recaptcha/api/siteverify");
+                curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $curlResponse = curl_exec($ch);
+                curl_close($ch);
+                
+                $response = json_decode($curlResponse);
 
 
                 // if has problems, stop
