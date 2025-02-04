@@ -684,7 +684,7 @@ class SecurityController extends Controller
 
                 $session->getFlashBag()->add('error', $secret);
 
-                return false;
+
                 $data = array(
                     "secret" => $secret,
                     "response" => $post_data['g-recaptcha-response'],
