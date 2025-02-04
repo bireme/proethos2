@@ -704,7 +704,7 @@ class SecurityController extends Controller
                 
                 // if has problems, stop
                 if(!$response->success) {
-                    $session->getFlashBag()->add('error', $translator->trans("Have an error with captcha. Please try again."));
+                    $session->getFlashBag()->add('error', $translator->trans("Have an error with captcha. Please try again." . $post_data['g-recaptcha-response'] . "jsinho" . $response ));
                     return $output;
                 }
             }
