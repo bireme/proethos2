@@ -703,7 +703,7 @@ class SecurityController extends Controller
                 $response = json_decode($response);
                 
 
-                $secretKey = "SUA_SECRET_KEY_AQUI";
+                $secretKey = "6LexocwqAAAAAAoJ23dekDPceZcguNa9aslJ0mRz";
                 $token = $_POST['g-recaptcha-response'];
                 
                 // Faz a requisição à API do Google
