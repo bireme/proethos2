@@ -690,7 +690,6 @@ class SecurityController extends Controller
             if(true) {
                 // RECAPTCHA
                 // params to send to recapctha api
-                echo 'ola';
                 //$session->getFlashBag()->add('error', $post_data['g-recaptcha-response']);
                 //return $output;
 
@@ -702,6 +701,9 @@ class SecurityController extends Controller
                     "response" => $post_data['g-recaptcha-response'],
                     "remoteip" => $_SERVER['REMOTE_ADDR'],
                 );
+
+                //$session->getFlashBag()->add('error', $post_data['g-recaptcha-response']);
+
 
                 // options from file_Get_contents
                 $options = array(
@@ -717,19 +719,12 @@ class SecurityController extends Controller
                 $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify", false, $context);
                 $response = json_decode($response);
                 
-                echo $response;
+                $session->getFlashBag()->add('error', $response);
 
-                if(isset($post_data['g-recaptcha-response'])){
-                    $m = $post_data['g-recaptcha-response'];
-                }else{
-                    $m = 'erro';
-                }
-
-                
 
                 // if has problems, stop
                 if(!$response->success) {
-                    $session->getFlashBag()->add('error', $translator->trans("Have an error with captcha. Please try again." . $m . "jsinho"));
+                    $session->getFlashBag()->add('error', $translator->trans("Have an error with captcha. Please try again."));
                     return $output;
                 }
             }
