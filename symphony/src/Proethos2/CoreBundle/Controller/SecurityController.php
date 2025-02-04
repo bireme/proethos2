@@ -669,7 +669,7 @@ class SecurityController extends Controller
             $output['content'] = $post_data;
 
             // checking required fields
-            foreach(array('name', 'username', 'email', 'country', 'password', 'confirm-password') as $field) {   
+            foreach(array('name', 'username', 'email', 'country', 'password', 'confirm-password', 'g-recaptcha-response') as $field) {   
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
                     return $output;
@@ -678,17 +678,34 @@ class SecurityController extends Controller
 
             // only check captcha if not in dev
             $secret = $output['recaptcha_secret'];
+
+            if(!isset($post_data['g-recaptcha-response']) or $post_data['g-recaptcha-response'] == ''){
+                return $output;
+            }
+
+            if(!isset($post_data['g-recaptcha-response']) or $post_data['g-recaptcha-response'] == ''){
+                return $output;
+            }
+
             if(true) {
                 // RECAPTCHA
-
                 // params to send to recapctha api
+                //$session->getFlashBag()->add('error', $post_data['g-recaptcha-response']);
+                //return $output;
+
+                $secret = '6LeJvcwqAAAAADV0s6071CLlphBO77MZqzhCsN-e';
+                
+
                 $data = array(
                     "secret" => $secret,
                     "response" => $post_data['g-recaptcha-response'],
                     "remoteip" => $_SERVER['REMOTE_ADDR'],
                 );
 
-                // options from file_Get_contents
+                //$session->getFlashBag()->add('error', $post_data['g-recaptcha-response']);
+
+
+                /* options from file_Get_contents
                 $options = array(
                     'http' => array(
                         'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
@@ -702,11 +719,28 @@ class SecurityController extends Controller
                 $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify", false, $context);
                 $response = json_decode($response);
                 
+                $session->getFlashBag()->add('error', $response);
+*/
+                $ch = curl_init("https://www.google.com/recaptcha/api/siteverify");
+                curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $curlResponse = curl_exec($ch);
+                curl_close($ch);
+                
+                $response = json_decode($curlResponse);
+
+
                 // if has problems, stop
                 if(!$response->success) {
                     $session->getFlashBag()->add('error', $translator->trans("Have an error with captcha. Please try again."));
                     return $output;
                 }
+            }
+
+            if($post_data['password'] != $post_data['confirm-password']) {
+                $session->getFlashBag()->add('error', $translator->trans("Passwords don't match."));
+                return $output;
             }
 
             if($post_data['password'] != $post_data['confirm-password']) {
