@@ -733,8 +733,8 @@ class SecurityController extends Controller
 
                 // if has problems, stop
                 if(!$response->success) {
-                    $session->getFlashBag()->add('error', $translator->trans("Have an error with captcha. Please try again."));
-                    return $output;
+                   // $session->getFlashBag()->add('error', $translator->trans("Have an error with captcha. Please try again."));
+                   // return $output;
                 }
             }
 
