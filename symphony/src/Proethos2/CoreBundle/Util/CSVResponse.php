@@ -45,7 +45,7 @@ class CSVResponse extends Response
         }
 
         foreach ($data as $row) {
-            $row = limitarCampoExcel($row);
+            //$row = limitarCampoExcel($row);
             fputcsv($output, $row);
         }
 
@@ -60,6 +60,7 @@ class CSVResponse extends Response
         return $this->update();
     }
 
+    /*
     public function limitarCampoExcel($texto, $limite = 32760) {
         // Verifica se o comprimento do texto é maior que o limite
         if (strlen($texto) > $limite) {
@@ -70,6 +71,7 @@ class CSVResponse extends Response
         // Caso o texto não ultrapasse o limite, retorna o próprio texto
         return $texto;
     }
+    */
 
     public function getFilename()
     {
