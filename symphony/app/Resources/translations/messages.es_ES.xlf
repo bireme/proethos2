@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2024-08-27T18:49:48Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2025-04-09T10:09:19Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -111,10 +111,6 @@
       <trans-unit id="ecfe29ef8fcfc7c6552fb9793fd0884a7b9c0a8b" resname="Additional Information">
         <source>Additional Information</source>
         <target>Información adicional</target>
-      </trans-unit>
-      <trans-unit id="1eda23758be9e36e5e0d2a6a87de584aaca0193f" resname="Administrator">
-        <source>Administrator</source>
-        <target>Administrador</target>
       </trans-unit>
       <trans-unit id="6a72085653e4c5be8c7640c868ef787cbcf063d1" resname="All">
         <source>All</source>
@@ -787,10 +783,6 @@
         <source>Goals</source>
         <target>Objetivos</target>
       </trans-unit>
-      <trans-unit id="9d8ba69ea37ad3dd3008e8b89eb6046f51780130" resname="Have an error with captcha. Please try again.">
-        <source>Have an error with captcha. Please try again.</source>
-        <target>Hay un error con captcha. Por favor intente nuevamente</target>
-      </trans-unit>
       <trans-unit id="b1b56a8c60ba5abbdfd534adf74b6a4cb29eedd4" resname="Health Condition or Problem Studied">
         <source>Health Condition or Problem Studied</source>
         <target>Condición de salud o problema estudiado</target>
@@ -811,9 +803,14 @@
         <source>History</source>
         <target>Historial</target>
       </trans-unit>
-      <trans-unit id="80e3219fcaf6f7640e44924857fbaf55a52b8032" resname="I agree with the terms and conditions">
-        <source>I agree with the terms and conditions</source>
-        <target>Estoy de acuerdo con los términos y condiciones.</target>
+      <trans-unit id="5dd5457c81fff1fdff91229519881b41ec68d309" resname="I acknowledge that I must comply with the requirements and responsibilities as investigator or responsible PAHO personnel established in &lt;a href=&quot;https://iris.paho.org/bitstream/handle/10665.2/49076/pahoerc_eng.pdf?sequence=11&amp;isAllowed=y&quot; target=&quot;_blank&quot;&gt;PAHOERC SOPs&lt;/a&gt;,&lt;br&gt;&#10;                                         and ensure that my research is conducted ethically, in accordance with &lt;a href=&quot;https://cioms.ch/wp-content/uploads/2017/01/WEB-CIOMS-EthicalGuidelines.pdf&quot; target=&quot;_blank&quot;&gt;international ethical standards&lt;/a&gt;, and pursuant to applicable national regulations.">
+        <source><![CDATA[I acknowledge that I must comply with the requirements and responsibilities as investigator or responsible PAHO personnel established in <a href="https://iris.paho.org/bitstream/handle/10665.2/49076/pahoerc_eng.pdf?sequence=11&isAllowed=y" target="_blank">PAHOERC SOPs</a>,<br>
+                                         and ensure that my research is conducted ethically, in accordance with <a href="https://cioms.ch/wp-content/uploads/2017/01/WEB-CIOMS-EthicalGuidelines.pdf" target="_blank">international ethical standards</a>, and pursuant to applicable national regulations.]]></source>
+        <target><![CDATA[Reconozco que debo cumplir con los requisitos y responsabilidades como investigador o personal responsable de la OPS establecidos en los <a href="https://iris.paho.org/handle/10665.2/49075" target="_blank">POE de PAHOERC</a>,<br> y asegurar que la investigación se realice éticamente, en consonancia con los <a href="https://iris.paho.org/handle/10665.2/34457" target="_blank">estándares éticos internacionales</a>, y conforme a las regulaciones nacionales aplicables.]]></target>
+      </trans-unit>
+      <trans-unit id="ec93fee33c5bc1cca2ffa9028535ae532e0d8163" resname="I agree with the &lt;a href=&quot;https://github.com/bireme/proethos2/raw/master/doc/legal/Terminos-y-condiciones.pdf&quot;&gt;terms and conditions&lt;/a&gt;">
+        <source><![CDATA[I agree with the <a href="https://github.com/bireme/proethos2/raw/master/doc/legal/Terminos-y-condiciones.pdf">terms and conditions</a>]]></source>
+        <target><![CDATA[I agree with the <a href="https://github.com/bireme/proethos2/raw/master/doc/legal/Terminos-y-condiciones.pdf">terms and conditions</a>]]></target>
       </trans-unit>
       <trans-unit id="89f89c02cf47e091e726a4e07b88af0966806897" resname="ID">
         <source>ID</source>
@@ -1028,18 +1025,9 @@
         <source>Meetings</source>
         <target>Reuniones</target>
       </trans-unit>
-      <trans-unit id="992cb89e0118beaf32b3c24344aa28d838d80eb1" resname="Member ad-hoc">
-        <source>Member ad-hoc</source>
-        <target>Miembro ad-hoc</target>
-      </trans-unit>
       <trans-unit id="4014afc56173e7dda855348d627c2ccd839bf610" resname="Member has been removed with success!">
         <source>Member has been removed with success!</source>
         <target>Miembro retirado exitosamente</target>
-      </trans-unit>
-      <trans-unit id="936801ef1325d7365e4f98476528231e2e64b5d9" resname="Member of Committee">
-        <source>Member of Committee</source>
-        <target xml:space="preserve">Miembro del Comité
-</target>
       </trans-unit>
       <trans-unit id="abc4f304a08a21ce7477f600961a7c5e317824c5" resname="Members added with success!">
         <source>Members added with success!</source>
@@ -1256,6 +1244,10 @@
       <trans-unit id="976b102756d0b69ab3f9aab14745305a3db7cf72" resname="No document found">
         <source>No document found</source>
         <target>No se encontró documento</target>
+      </trans-unit>
+      <trans-unit id="8386fe15eff724df23634ab802e01fe5809e1d3c" resname="No documents">
+        <source>No documents</source>
+        <target>Sin documentos</target>
       </trans-unit>
       <trans-unit id="2065724e497f0dd0dfd5bd47f55d900c5cbc6a96" resname="No extension found">
         <source>No extension found</source>
@@ -1781,10 +1773,6 @@
       <trans-unit id="fe7f05fb9265df45b30f197ac151e097204df19d" resname="Secondary outcomes">
         <source>Secondary outcomes</source>
         <target>Resultados secundarios</target>
-      </trans-unit>
-      <trans-unit id="a7f07da18c5beac462a8d871cff6ba2a5a948628" resname="Secretary">
-        <source>Secretary</source>
-        <target>Secretaría</target>
       </trans-unit>
       <trans-unit id="455625bd5b9906064006aeacf166a16abd6249ae" resname="See Protocol">
         <source>See Protocol</source>
