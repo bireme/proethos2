@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2024-08-06T12:59:45Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2025-05-07T18:11:43Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -805,9 +805,15 @@
         <source>History</source>
         <target>História</target>
       </trans-unit>
-      <trans-unit id="80e3219fcaf6f7640e44924857fbaf55a52b8032" resname="I agree with the terms and conditions">
-        <source>I agree with the terms and conditions</source>
-        <target>Concordo com os termos condições </target>
+      <trans-unit id="67b23906e2efacf11208ed6f4659a5644b6b3a04" resname="I acknowledge that I must comply with the requirements and responsibilities as investigator or professional responsible for this proposal, as set forth in the committee's SOPs,&lt;br&gt;&#10;                                          and ensure the research is conducted ethically, in accordance with &lt;a href=&quot;https://cioms.ch/wp-content/uploads/2017/01/WEB-CIOMS-EthicalGuidelines.pdf&quot; target=&quot;_blank&quot;&gt;international ethical standards&lt;/a&gt;, and pursuant to applicable national regulations.">
+        <source><![CDATA[I acknowledge that I must comply with the requirements and responsibilities as investigator or professional responsible for this proposal, as set forth in the committee's SOPs,<br>
+                                          and ensure the research is conducted ethically, in accordance with <a href="https://cioms.ch/wp-content/uploads/2017/01/WEB-CIOMS-EthicalGuidelines.pdf" target="_blank">international ethical standards</a>, and pursuant to applicable national regulations.]]></source>
+        <target><![CDATA[I acknowledge that I must comply with the requirements and responsibilities as investigator or professional responsible for this proposal, as set forth in the committee's SOPs,<br>
+                                          and ensure the research is conducted ethically, in accordance with <a href="https://cioms.ch/wp-content/uploads/2017/01/WEB-CIOMS-EthicalGuidelines.pdf" target="_blank">international ethical standards</a>, and pursuant to applicable national regulations.]]></target>
+      </trans-unit>
+      <trans-unit id="ec93fee33c5bc1cca2ffa9028535ae532e0d8163" resname="I agree with the &lt;a href=&quot;https://github.com/bireme/proethos2/raw/master/doc/legal/Terminos-y-condiciones.pdf&quot;&gt;terms and conditions&lt;/a&gt;">
+        <source><![CDATA[I agree with the <a href="https://github.com/bireme/proethos2/raw/master/doc/legal/Terminos-y-condiciones.pdf">terms and conditions</a>]]></source>
+        <target><![CDATA[I agree with the <a href="https://github.com/bireme/proethos2/raw/master/doc/legal/Terminos-y-condiciones.pdf">terms and conditions</a>]]></target>
       </trans-unit>
       <trans-unit id="89f89c02cf47e091e726a4e07b88af0966806897" resname="ID">
         <source>ID</source>
