@@ -536,7 +536,7 @@ class ProtocolController extends Controller
                 }
 
                 $message = \Swift_Message::newInstance()
-                ->setSubject($mail_translator->trans("Your protocol was returned"))
+                ->setSubject($mail_translator->trans("Your protocol was returned") . " - Protocol Nº: " . $protocol->getCode())
                 ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
                 ->setTo($recipients)
                 ->setBody(
