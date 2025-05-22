@@ -168,6 +168,8 @@ class ProtocolController extends Controller
     /**
      * @Route("/protocol/{protocol_id}/comment", name="protocol_new_comment")
      */
+
+    ////e-mail de novo comentário
     public function newCommentProtocolAction($protocol_id)
     {
 
@@ -664,7 +666,7 @@ class ProtocolController extends Controller
                     }
 
                     $message = \Swift_Message::newInstance()
-                    ->setSubject($mail_translator->trans("Your protocol was sent to review!"))
+                    ->setSubject($mail_translator->trans("Your protocol was sent to review!") . " - Protocol Nº: " . $protocol->getCode())
                     ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
                     ->setTo($investigators)
                     ->setBody(
@@ -723,7 +725,7 @@ class ProtocolController extends Controller
                         $body = $util->linkify($body);
 
                         $message = \Swift_Message::newInstance()
-                        ->setSubject($mail_translator->trans("Your protocol was sent to review!"))
+                        ->setSubject($mail_translator->trans("Your protocol was sent to review!") . " - Protocol Nº: " . $protocol->getCode())
                         ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
                         ->setTo($investigators)
                         ->setBody(
@@ -780,7 +782,7 @@ class ProtocolController extends Controller
                     $body = $util->linkify($body);
 
                     $message = \Swift_Message::newInstance()
-                    ->setSubject($mail_translator->trans("Your protocol was sent to review!"))
+                    ->setSubject($mail_translator->trans("Your protocol was sent to review!") . " - Protocol Nº: " . $protocol->getCode())
                     ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
                     ->setTo($investigators)
                     ->setBody(
@@ -913,7 +915,7 @@ class ProtocolController extends Controller
                     }
 
                     $message = \Swift_Message::newInstance()
-                    ->setSubject($mail_translator->trans("Your protocol was sent to review!"))
+                    ->setSubject($mail_translator->trans("Your protocol was sent to review!") . " - Protocol Nº: " . $protocol->getCode())
                     ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
                     ->setTo($investigators)
                     ->setBody(
@@ -1000,7 +1002,7 @@ class ProtocolController extends Controller
                 $body = $util->linkify($body);
 
                 $message = \Swift_Message::newInstance()
-                ->setSubject($mail_translator->trans("Your protocol was concluded as Exempt."))
+                ->setSubject($mail_translator->trans("Your protocol was concluded as Exempt.") . " - Protocol Nº: " . $protocol->getCode())
                 ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
                 ->setTo($investigators)
                 ->setBody(
@@ -1151,7 +1153,7 @@ class ProtocolController extends Controller
                             $body = $util->linkify($body);
 
                             $message = \Swift_Message::newInstance()
-                            ->setSubject($mail_translator->trans("You were assigned to review a protocol"))
+                            ->setSubject($mail_translator->trans("You were assigned to review a protocol") . " - Protocol Nº: " . $protocol->getCode())
                             ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
                             ->setTo($member->getEmail())
                             ->setBody(
@@ -1321,7 +1323,7 @@ class ProtocolController extends Controller
                     }
 
                     $message = \Swift_Message::newInstance()
-                    ->setSubject($mail_translator->trans("A new protocol review was submitted"))
+                    ->setSubject($mail_translator->trans("A new protocol review was submitted") . " - Protocol Nº: " . $protocol->getCode())
                     ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
                     ->setTo($secretaries_emails)
                     ->setBody(
@@ -1551,7 +1553,7 @@ class ProtocolController extends Controller
             $body = $util->linkify($body);
 
             $message = \Swift_Message::newInstance()
-            ->setSubject($mail_translator->trans("The protocol review was finalized!"))
+            ->setSubject($mail_translator->trans("The protocol review was finalized!") . " - Protocol Nº: " . $protocol->getCode())
             ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
             ->setTo($investigators)
             ->setBody(
@@ -2179,7 +2181,7 @@ class ProtocolController extends Controller
         $body = $util->linkify($body);
 
         $message = \Swift_Message::newInstance()
-        ->setSubject($mail_translator->trans("The protocol review was finalized!"))
+        ->setSubject($mail_translator->trans("The protocol review was finalized!") . " - Protocol Nº: " . $protocol->getCode())
         ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
         ->setTo($investigators)
         ->setBody(
