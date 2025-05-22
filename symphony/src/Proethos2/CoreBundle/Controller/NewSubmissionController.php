@@ -1777,7 +1777,8 @@ class NewSubmissionController extends Controller
                         }
 
                         $message = \Swift_Message::newInstance()
-                        ->setSubject($mail_translator->trans("A new monitoring action has been submitted."))
+                        //->setSubject($mail_translator->trans("A new monitoring action has been submitted."))
+                        ->setSubject($mail_translator->trans("A new protocol has been submitted."))
                         ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
                         ->setTo($secretaries_emails)
                         ->setBody(
