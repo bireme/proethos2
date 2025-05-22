@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2025-04-09T10:09:19Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
+  <file date="2025-05-22T15:54:32Z" source-language="en" target-language="es_ES" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -32,7 +32,7 @@
       </trans-unit>
       <trans-unit id="c3b86b82b4c77804aa9a19fad71c2c5cf5e769c6" resname="A new protocol has been submitted.">
         <source>A new protocol has been submitted.</source>
-        <target>Se ha presentado una nueva acción de monitoreo.</target>
+        <target>Se ha presentado un nuevo protocolo.</target>
       </trans-unit>
       <trans-unit id="62fc7a08a7e646a4c046a04e427c1edb39e5149f" resname="A new protocol review was submitted">
         <source>A new protocol review was submitted</source>
@@ -1203,7 +1203,7 @@
       </trans-unit>
       <trans-unit id="bb960e9c73715c458a976bd2d21ad295b133a9bf" resname="New comment on Proethos2">
         <source>New comment on Proethos2</source>
-        <target>New comment on Proethos</target>
+        <target>Nuevo comentario en ProEthos2</target>
       </trans-unit>
       <trans-unit id="ef6ea36555a0cdabeb198f18ec5fff831703ed00" resname="New cost">
         <source>New cost</source>
@@ -2287,7 +2287,7 @@
       </trans-unit>
       <trans-unit id="b1a43768c4b649f676b8104a515909d3c335df7b" resname="Your protocol was returned">
         <source>Your protocol was returned</source>
-        <target>Your protocol was returned</target>
+        <target>Su protocolo ha sido devuelto</target>
       </trans-unit>
       <trans-unit id="5cb6f0688279d13a930b1c9f2abfafb390ad2cd3" resname="Your protocol was sent to review!">
         <source>Your protocol was sent to review!</source>

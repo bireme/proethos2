@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2025-04-09T10:05:09Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
+  <file date="2025-05-22T15:55:46Z" source-language="en" target-language="pt_BR" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -1215,7 +1215,7 @@
       </trans-unit>
       <trans-unit id="bb960e9c73715c458a976bd2d21ad295b133a9bf" resname="New comment on Proethos2">
         <source>New comment on Proethos2</source>
-        <target>New comment on Proethos2</target>
+        <target>Novo comentário em Proethos2</target>
       </trans-unit>
       <trans-unit id="ef6ea36555a0cdabeb198f18ec5fff831703ed00" resname="New cost">
         <source>New cost</source>
@@ -2302,7 +2302,7 @@
       </trans-unit>
       <trans-unit id="b1a43768c4b649f676b8104a515909d3c335df7b" resname="Your protocol was returned">
         <source>Your protocol was returned</source>
-        <target>Your protocol was returned</target>
+        <target>Seu protocolo foi devolvido</target>
       </trans-unit>
       <trans-unit id="5cb6f0688279d13a930b1c9f2abfafb390ad2cd3" resname="Your protocol was sent to review!">
         <source>Your protocol was sent to review!</source>
