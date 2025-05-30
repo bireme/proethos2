@@ -338,7 +338,7 @@
                     highlight_input_field('#input-paho-unit');
                     return false;
                 }
-
+                {% if not submission.isConsultation %}
                 if ( !$('#textarea-funding-source').val() ) {
                     // cancel submit
                     e.preventDefault();
@@ -354,6 +354,7 @@
                     highlight_input_field('#textarea-primary-sponsor');
                     return false;
                 }
+                {% endif %}
             });
         });
 
