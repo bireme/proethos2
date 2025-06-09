@@ -452,7 +452,7 @@ class NewSubmissionController extends Controller
             }
 
             // checking required files
-            $required_fields = array('abstract', 'keywords', 'introduction', 'justify', 'goals');
+            $required_fields = array('abstract', 'keywords', 'introduction', 'justify', 'goals','internal_protocol_number');
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
@@ -466,7 +466,7 @@ class NewSubmissionController extends Controller
             $submission->setIntroduction($post_data['introduction']);
             $submission->setJustification($post_data['justify']);
             $submission->setGoals($post_data['goals']);
-
+            $submission->setInternalProtocolNumber($post_data['internal_protocol_number']);
             $em->persist($submission);
             $em->flush();
 
