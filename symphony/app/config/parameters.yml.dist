@@ -25,3 +25,5 @@ parameters:
     # Private and Index keys to database encryptation
     private_key:        ~
     index_key:          ~
+
+    google.analytics: ""
