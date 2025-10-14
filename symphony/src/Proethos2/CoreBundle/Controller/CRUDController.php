@@ -478,6 +478,7 @@ class CRUDController extends Controller
                 $translator->trans('Roles'),
                 $translator->trans('Country'),
                 $translator->trans('Public title'),
+                $translator->trans('Recruitment countries'),
             );
 
             $export_format_parameter = $request->query->get('export-format');
@@ -556,6 +557,9 @@ class CRUDController extends Controller
                     $current_line[] = implode(",", $protocol->getOwner()->getRolesName());
                     $current_line[] = $protocol->getOwner()->getCountry() ? $protocol->getOwner()->getCountry()->getName() : '';
                     $current_line[] = $protocol->getMainSubmission()->getPublicTitle();
+                    if ( !$protocol->getMainSubmission()->getIsMultipleClinicalStudy() ) {
+                        $current_line[] = implode(",", $protocol->getMainSubmission()->getCountryList());
+                    }
                     $csv_output[] = $current_line;
                 }
             }
