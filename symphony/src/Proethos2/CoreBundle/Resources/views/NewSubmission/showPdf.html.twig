@@ -82,7 +82,8 @@
 
         <h2>{% trans %}Abstract{% endtrans %}</h2>
         <div>{{ submission.abstract|raw }}----{{ submission.fundingSource }}</div>
-
+<h2>{% trans %}PAHO Department{% endtrans %}</h2>
+            <p>{{ submission.pahoUnit }}</p>
         {{ submission.fundingSource }}
 
         <h2>{% trans %}Keywords{% endtrans %}</h2>
