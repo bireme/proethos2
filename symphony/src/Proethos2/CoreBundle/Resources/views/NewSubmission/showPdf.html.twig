@@ -81,7 +81,9 @@
         </table>
 
         <h2>{% trans %}Abstract{% endtrans %}</h2>
-        <div>{{ submission.abstract|raw }}</div>
+        <div>{{ submission.abstract|raw }}----{{ submission.fundingSource }}</div>
+
+        {{ submission.fundingSource }}
 
         <h2>{% trans %}Keywords{% endtrans %}</h2>
         <p>{{ submission.keywords }}</p>
