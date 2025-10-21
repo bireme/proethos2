@@ -128,7 +128,7 @@
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group required">
+                            <div class="form-group {{ not submission.isConsultation ? 'required' }}">
                                 <label for="textarea-funding-source">{% trans %}Funding source{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 36} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" id='textarea-funding-source' name='funding-source'>{{ submission.fundingSource }}</textarea>
@@ -138,7 +138,7 @@
 
                     <div class='row'>
                         <div class="col-md-12">
-                            <div class="form-group required">
+                            <div class="form-group {{ not submission.isConsultation ? 'required' }}">
                                 <label for="textarea-primary-sponsor">{% trans %}Primary Sponsor{% endtrans %}:</label>
                                 <a href="{{ path("crud_admin_help_show", {help_id: 37} ) }}" data-toggle="modal" data-target="#modal-help"><i class='glyphicon glyphicon-question-sign'></i></a>
                                 <textarea rows="4" class="form-control" id='textarea-primary-sponsor' name='primary-sponsor'>{{ submission.primarySponsor }}</textarea>
@@ -338,7 +338,7 @@
                     highlight_input_field('#textarea-funding-source');
                     return false;
                 }
-
+                {% if not submission.isConsultation %}
                 if ( !$('#textarea-primary-sponsor').val() ) {
                     // cancel submit
                     e.preventDefault();
@@ -346,6 +346,7 @@
                     highlight_input_field('#textarea-primary-sponsor');
                     return false;
                 }
+                {% endif %}
             });
         });
 

@@ -470,8 +470,7 @@ class NewSubmissionController extends Controller
             $em->persist($submission);
             $em->flush();
 
-            $route = ( $submission->getIsConsultation() ) ? 'submission_new_sixth_step' : 'submission_new_third_step';
-            $session->getFlashBag()->add('success', $translator->trans("Second step saved with success."));
+            $route = ( $submission->getIsConsultation() ) ? 'submission_new_fourth_step' : 'submission_new_third_step';            $session->getFlashBag()->add('success', $translator->trans("Second step saved with success."));
             return $this->redirectToRoute($route, array('submission_id' => $submission->getId()), 301);
         }
 
@@ -924,7 +923,13 @@ class NewSubmissionController extends Controller
             $post_data = $request->request->all();
 
             // checking required files
-            $required_fields = array('funding-source', 'primary-sponsor');
+            
+            if( $submission->getIsConsultation() ){
+                $required_fields = array('paho-unit');
+            }else{
+                $required_fields = array('funding-source', 'primary-sponsor', 'paho-unit');
+            }
+
             foreach($required_fields as $field) {
                 if(!isset($post_data[$field]) or empty($post_data[$field])) {
                     $session->getFlashBag()->add('error', $translator->trans("Field '%field%' is required.", array("%field%" => $field)));
@@ -1055,7 +1060,10 @@ class NewSubmissionController extends Controller
             $em->flush();
 
             $session->getFlashBag()->add('success', $translator->trans("Fourth step saved with success."));
-            return $this->redirectToRoute('submission_new_fifth_step', array('submission_id' => $submission->getId()), 301);
+            
+             $route = ( $submission->getIsConsultation() ) ? 'submission_new_sixth_step' : 'submission_new_fifth_step';
+            
+            return $this->redirectToRoute($route, array('submission_id' => $submission->getId()), 301);
         }
 
         return $output;
