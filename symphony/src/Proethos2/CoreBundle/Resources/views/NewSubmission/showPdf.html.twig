@@ -230,7 +230,7 @@
                 <p>{{ submission.clinicalTrialSecondary }}</p>
 
             {% endif %}
-
+        {% endif %}
             <h2>{% trans %}PAHO Department{% endtrans %}</h2>
             <p>{{ submission.pahoUnit }}</p>
 
@@ -278,6 +278,7 @@
                     </tr>
                 {% endfor %}
             </table>
+        {% if not submission.isConsultation %}
 
             <h2>{% trans %}Bibliography{% endtrans %}</h2>
             <div>{{ submission.bibliography|raw }}</div>
