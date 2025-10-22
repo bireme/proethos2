@@ -552,7 +552,6 @@ img.logo {
 }
 input[type="text"].form-control {
   /* suas propriedades aqui */
-  border: 2px solid #007bff;
   background-color: #f9f9f9;
   color: #333;
   height: 46px;
@@ -572,4 +571,49 @@ input[type="text"].form-control {
     .meta div[class^='col'] {
         padding-bottom: 1rem;
     }
+}
+
+
+
+
+
+
+
+input[type="text"].form-control {
+  /* suas propriedades aqui */
+  border: 1px #ddd solid;
+  background-color: #f9f9f9;
+  color: #333;
+  height: 46px;
+  letter-spacing: 0.8pt;
+}
+
+#new-submission-tab-content .form-group {
+  margin-bottom: 36px;
+}
+
+.see-submission .label{
+    font-weight: bold;
+    width: 100px;
+    font-size: 12px;
+    padding: 2px 12px;
+}
+
+.see-submission .label-info{
+    color: #bc78e5;
+}
+
+.see-submission .btn-default{
+    margin-left: 2px;
+    margin-right: 2px;
+    border: 1px solid #ddd;
+}
+
+.see-submission .btn-default:hover{
+    background-color: #0093D5;
+    color: #fff;
+}
+
+.navbar-default .nav>li>a {
+    color: #444;
 }
