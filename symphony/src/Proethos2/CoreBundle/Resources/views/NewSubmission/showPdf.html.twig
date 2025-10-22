@@ -95,6 +95,9 @@
         <h2>{% trans %}Goals{% endtrans %}</h2>
         <div>{{ submission.goals|raw }}</div>
 
+                    <h2>{% trans %}PAHO Department{% endtrans %}</h2>
+            <p>{{ submission.pahoUnit }}</p>
+
         <h2>{% trans %}Is this a substudy of a larger project?{% endtrans %}</h2>
         <p>
             {% if submission.isSubstudy %}
