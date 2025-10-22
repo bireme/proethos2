@@ -2357,6 +2357,10 @@
         <source>yes</source>
         <target>sí</target>
       </trans-unit>
+      <trans-unit id="fgh60f9c09ac8c5edb2f18be5de4e80ea4c430d0" resname="User country">
+        <source>User country</source>
+        <target>País de usuario</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
