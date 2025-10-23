@@ -618,3 +618,7 @@ input[type="text"].form-control {
 .navbar-default .nav>li>a {
     color: #444;
 }
+
+.new-submission-tab-content .form-group{
+    margin-bottom: 46px;
+}
