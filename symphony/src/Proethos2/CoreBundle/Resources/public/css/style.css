@@ -600,7 +600,8 @@ input[type="text"].form-control {
 }
 
 .see-submission .label-info{
-    color: #bc78e5;
+    background-color: #bc78e5;
+    display: block;
 }
 
 .see-submission .btn-default{
