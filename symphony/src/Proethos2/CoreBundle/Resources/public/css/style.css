@@ -571,6 +571,9 @@ input[type="text"].form-control {
     .meta div[class^='col'] {
         padding-bottom: 1rem;
     }
+    .card-login{
+        height: 400px;
+    }
 }
 
 
