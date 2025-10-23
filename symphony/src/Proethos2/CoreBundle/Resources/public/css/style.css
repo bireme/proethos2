@@ -571,9 +571,6 @@ input[type="text"].form-control {
     .meta div[class^='col'] {
         padding-bottom: 1rem;
     }
-    .card-login{
-        height: 400px;
-    }
 }
 
 
@@ -624,4 +621,10 @@ input[type="text"].form-control {
 
 .new-submission-tab-content .form-group{
     margin-bottom: 46px;
+}
+.card-login{
+        height: 400px;
+}
+.card-login-form{
+        height: 400px; padding-top: 54px;
 }
