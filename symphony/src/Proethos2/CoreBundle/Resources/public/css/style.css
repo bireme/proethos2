@@ -626,5 +626,5 @@ input[type="text"].form-control {
         height: 400px;
 }
 .card-login-form{
-        height: 400px; padding-top: 54px;
+        height: 380px; padding-top: 54px !important;
 }
