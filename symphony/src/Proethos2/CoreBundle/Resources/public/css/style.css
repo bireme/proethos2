@@ -597,11 +597,11 @@ input[type="text"].form-control {
     width: 100px;
     font-size: 12px;
     padding: 2px 12px;
+    display: block;
 }
 
 .see-submission .label-info{
     background-color: #bc78e5;
-    display: block;
 }
 
 .see-submission .btn-default{
