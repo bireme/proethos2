@@ -77,7 +77,7 @@
 
                                         <td data-label="{% trans %}Roles{% endtrans %}">
                                             {% for role in user.proethos2Roles %}
-                                                <span class='label label-default' data-toggle='tooltip' data-placement='top' title='{{ role.name }}'>{{ role.slug|first|upper }}</span>
+                                                <span class='label label-default label-role' data-toggle='tooltip' data-placement='top' title='{{ role.name }}'>{{ role.slug|first|upper }}</span>
                                             {% endfor %}
                                         </td>
                                         <td data-label="{% trans %}Status{% endtrans %}">
