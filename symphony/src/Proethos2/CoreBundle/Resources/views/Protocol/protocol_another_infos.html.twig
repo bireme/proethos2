@@ -34,7 +34,7 @@
                     <tbody>
                         <tr>
                             <td data-label="{% trans %}Name{% endtrans %}">{{ protocol.mainSubmission.owner.name }}</td>
-                            <td data-label="{% trans %}E-mail{% endtrans %}"><a href='{{ protocol.mainSubmission.owner.email }}'>{{ protocol.mainSubmission.owner.email }}</a></td>
+                            <td data-label="{% trans %}E-mail{% endtrans %}"><a href='' onclick="copiarHref(this); return false;>{{ protocol.mainSubmission.owner.email }}</a></td>
                             <td data-label="{% trans %}Institution{% endtrans %}">{{ protocol.mainSubmission.owner.institution }}</td>
                             <td data-label="{% trans %}Role{% endtrans %}">{{ protocol.mainSubmission.owner.submissionTeamRole(protocol.mainSubmission) }}</td>
                             <td data-label="{% trans %}Country{% endtrans %}">{{ protocol.mainSubmission.owner.country }}</td>
@@ -899,6 +899,17 @@
                 .replace(/_/g,'-')
                 .replace(/[^\w-]+/g,'')
                 ;
+        }
+        function copiarHref(elemento) {
+            const texto = elemento.getAttribute('href'); // pega o conteúdo do href
+            navigator.clipboard.writeText(texto) // usa a API moderna de clipboard
+                .then(() => {
+                    alert('Link copiado: ' + texto);
+                })
+                .catch(err => {
+                    console.error('Erro ao copiar:', err);
+                    alert('Não foi possível copiar o link.');
+                });
         }
     </script>
 {% endblock %}
