@@ -904,12 +904,28 @@
             const texto = elemento.getAttribute('href'); // pega o conteúdo do href
             navigator.clipboard.writeText(texto) // usa a API moderna de clipboard
                 .then(() => {
-                    alert('Link copiado: ' + texto);
+                    mostrarAlerta('gabriel@example.com');
                 })
                 .catch(err => {
                     console.error('Erro ao copiar:', err);
                     alert('Não foi possível copiar o link.');
                 });
         }
+        function mostrarAlerta(texto) {
+    const janela = window.open('', 'ProEthos', 'width=300,height=250');
+    janela.document.write(`
+        <html>
+            <head><title>ProEthos</title></head>
+            <body style="font-family: Arial; text-align: center; padding: 20px;">
+                <h3>ProEthos</h3>
+                <p>🇧🇷 E-mail copiado: ${texto}</p>
+                <p>🇪🇸 Correo copiado: ${texto}</p>
+                <p>🇺🇸 Email copied: ${texto}</p>
+                <p>🇫🇷 E-mail copié : ${texto}</p>
+                <button onclick="window.close()">OK</button>
+            </body>
+        </html>
+    `);
+}
     </script>
 {% endblock %}
