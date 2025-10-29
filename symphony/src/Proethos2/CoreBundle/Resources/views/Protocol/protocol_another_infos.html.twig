@@ -915,5 +915,10 @@
                     alert('Não foi possível copiar o link.');
                 });
         }
+        function copiarHref(texto) {
+  navigator.clipboard.writeText(texto);
+alert('ProEthos —\n\n' +
+                        'Copied ' + texto);
+}
     </script>
 {% endblock %}
