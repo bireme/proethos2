@@ -95,9 +95,6 @@
         <h2>{% trans %}Goals{% endtrans %}</h2>
         <div>{{ submission.goals|raw }}</div>
 
-                    <h2>{% trans %}PAHO Department{% endtrans %}</h2>
-            <p>{{ submission.pahoUnit }}</p>
-
         <h2>{% trans %}Is this a substudy of a larger project?{% endtrans %}</h2>
         <p>
             {% if submission.isSubstudy %}
@@ -234,17 +231,24 @@
 
             {% endif %}
         {% endif %}
+        
             <h2>{% trans %}PAHO Department{% endtrans %}</h2>
             <p>{{ submission.pahoUnit }}</p>
 
-            <h2>{% trans %}Funding source{% endtrans %}</h2>
-            <p>{{ submission.fundingSource }}</p>
+            {% if submission.fundingSource %}
+                <h2>{% trans %}Funding source{% endtrans %}</h2>
+                <p>{{ submission.fundingSource }}</p>
+            {% endif %}
 
-            <h2>{% trans %}Primary Sponsor{% endtrans %}</h2>
-            <p>{{ submission.primarySponsor }}</p>
+            {% if submission.primarySponsor %}
+                <h2>{% trans %}Primary Sponsor{% endtrans %}</h2>
+                <p>{{ submission.primarySponsor }}</p>
+            {% endif %}
 
-            <h2>{% trans %}Secondary Sponsor{% endtrans %}</h2>
-            <p>{{ submission.secondarySponsor }}</p>
+            {% if submission.secondarySponsor %}
+                <h2>{% trans %}Secondary Sponsor{% endtrans %}</h2>
+                <p>{{ submission.secondarySponsor }}</p>
+            {% endif %}
 
             <h2>{% trans %}Schedule{% endtrans %}</h2>
             <table>
