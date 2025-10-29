@@ -550,6 +550,12 @@ img.logo {
         max-height: none !important;
     }
 }
+input[type="text"].form-control {
+  /* suas propriedades aqui */
+  background-color: #f9f9f9;
+  color: #333;
+  height: 46px;
+}
 
 @media (max-width: 750px){
     .form-card.card {
@@ -565,4 +571,65 @@ img.logo {
     .meta div[class^='col'] {
         padding-bottom: 1rem;
     }
+}
+
+
+
+
+
+
+
+input[type="text"].form-control {
+  /* suas propriedades aqui */
+  border: 1px #ddd solid;
+  background-color: #f9f9f9;
+  color: #333;
+  height: 46px;
+  letter-spacing: 0.8pt;
+}
+
+#new-submission-tab-content .form-group {
+  margin-bottom: 36px;
+}
+
+.see-submission .label{
+    font-weight: bold;
+    width: 100px;
+    font-size: 12px;
+    padding: 2px 12px;
+    display: inline-block;     cursor: default;
+}
+
+.see-submission .label-info{
+    background-color: #bc78e5;
+}
+
+.see-submission .label-role{
+    width: 22px; padding: 2px 6px; background-color: #158cba;
+}
+
+
+.see-submission .btn-default{
+    margin-left: 2px;
+    margin-right: 2px;
+    border: 1px solid #ddd;
+}
+
+.see-submission .btn-default:hover{
+    background-color: #0093D5;
+    color: #fff;
+}
+
+.navbar-default .nav>li>a {
+    color: #444;
+}
+
+.new-submission-tab-content .form-group{
+    margin-bottom: 46px;
+}
+.card-login{
+        height: 380px;
+}
+.card-login-form{
+        height: 380px; padding-top: 54px !important;
 }
