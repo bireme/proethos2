@@ -2374,10 +2374,6 @@
         <source>yes</source>
         <target>Sim</target>
       </trans-unit>
-      <trans-unit id="fgh60f9c09ac8c5edb2f18be5de4e80ea4c430d0" resname="user country">
-        <source>user country</source>
-        <target>país do usuário</target>
-      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -476,7 +476,7 @@ class CRUDController extends Controller
                 $translator->trans('Email'),
                 $translator->trans('Institution'),
                 $translator->trans('Roles'),
-                $translator->trans('User country'),
+                $translator->trans('Country'),
                 $translator->trans('Public title'),
                 $translator->trans('Recruitment countries'),
             );
