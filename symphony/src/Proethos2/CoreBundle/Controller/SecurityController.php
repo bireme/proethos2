@@ -215,7 +215,7 @@ class SecurityController extends Controller
                         $translations = $trans_repository->findTranslations($help);
                         $text = $translations[$locale];
                         $body = ( $text ) ? $text['message'] : $help->getMessage();
-                        $body = str_replace("%home_url%", $baseurl, $body);
+                        $body = str_replace("%home_url%", $baseurl.'/committee/users', $body);
                         $body = str_replace("\r\n", "<br />", $body);
                         $body .= "<br /><br />";
                         $body = $util->linkify($body);
