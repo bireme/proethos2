@@ -507,46 +507,24 @@ class SecurityController extends Controller
             $message = \Swift_Message::newInstance()
     ->setSubject($translator->trans("Reset your password"))
     ->setFrom(array(
-        $util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')
+        'aval.lilacs@bireme.org' => $util->getConfiguration('committee.contact')
     ))
     ->setTo($post_data['email'])
-    ->setBody(
-        $body,
-        'text/html'
+    ->setBody($body, 'text/html');
+
+$send = $this->get('mailer')->send($message);
+
+if ($send > 0) {
+    $session->getFlashBag()->add(
+        'success',
+        $translator->trans("Instructions have been sent to your email.")
     );
-
-$mailer = $this->get('mailer');
-
-try {
-
-    $send = $mailer->send($message);
-
-
-
-} catch (\Exception $e) {
-
-    echo '<pre>';
-    echo "=== ERRO SMTP ===\n\n";
-
-    echo $e->getMessage();
-
-    echo "\n\nPOST EMAIL:\n";
-    var_dump($post_data['email']);
-
-    echo "\n\nCOMMITTEE EMAIL:\n";
-    var_dump($util->getConfiguration('committee.email'));
-
-    echo "\n\nCOMMITTEE CONTACT:\n";
-    var_dump($util->getConfiguration('committee.contact'));
-
-    echo "\n";
-    die();
+} else {
+    $session->getFlashBag()->add(
+        'error',
+        'E-mail was not sent.'
+    );
 }
-
-$session->getFlashBag()->add(
-    'success',
-    $translator->trans("Instructions have been sent to your email.")
-);
         }
 
         return $output;
