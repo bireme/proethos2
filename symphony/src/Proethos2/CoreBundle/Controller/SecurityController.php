@@ -517,48 +517,64 @@ class SecurityController extends Controller
 
 $mailer = $this->get('mailer');
 
-$logger = new \Swift_Plugins_Loggers_ArrayLogger();
-$mailer->registerPlugin(new \Swift_Plugins_LoggerPlugin($logger));
-
 try {
+
     $send = $mailer->send($message);
 
-    file_put_contents(
-        '/tmp/swiftmailer_reset.log',
-        "SEND RESULT: " . $send . PHP_EOL .
-        "FROM: " . print_r($message->getFrom(), true) . PHP_EOL .
-        "TO: " . print_r($message->getTo(), true) . PHP_EOL .
-        "SMTP LOG:" . PHP_EOL .
-        $logger->dump()
-    );
+    echo '<pre>';
+    echo "=== DEBUG EMAIL ===\n\n";
 
-    if ($send > 0) {
-        $session->getFlashBag()->add(
-            'success',
-            $translator->trans("Instructions have been sent to your email.")
-        );
-    } else {
-        $session->getFlashBag()->add(
-            'error',
-            'E-mail was not sent. Check /tmp/swiftmailer_reset.log'
-        );
-    }
+    echo "SEND RESULT:\n";
+    var_dump($send);
+
+    echo "\nFROM:\n";
+    print_r($message->getFrom());
+
+    echo "\nTO:\n";
+    print_r($message->getTo());
+
+    echo "\nSUBJECT:\n";
+    echo $message->getSubject();
+
+    echo "\n\nBODY LENGTH:\n";
+    echo strlen($body);
+
+    echo "\n\nPOST EMAIL:\n";
+    var_dump($post_data['email']);
+
+    echo "\n\nCOMMITTEE EMAIL:\n";
+    var_dump($util->getConfiguration('committee.email'));
+
+    echo "\n\nCOMMITTEE CONTACT:\n";
+    var_dump($util->getConfiguration('committee.contact'));
+
+    echo "\n";
+    die();
 
 } catch (\Exception $e) {
-    file_put_contents(
-        '/tmp/swiftmailer_reset.log',
-        "ERROR: " . $e->getMessage() . PHP_EOL .
-        "FROM: " . print_r($message->getFrom(), true) . PHP_EOL .
-        "TO: " . print_r($message->getTo(), true) . PHP_EOL .
-        "SMTP LOG:" . PHP_EOL .
-        $logger->dump()
-    );
 
-    $session->getFlashBag()->add(
-        'error',
-        'E-mail error: ' . $e->getMessage()
-    );
+    echo '<pre>';
+    echo "=== ERRO SMTP ===\n\n";
+
+    echo $e->getMessage();
+
+    echo "\n\nPOST EMAIL:\n";
+    var_dump($post_data['email']);
+
+    echo "\n\nCOMMITTEE EMAIL:\n";
+    var_dump($util->getConfiguration('committee.email'));
+
+    echo "\n\nCOMMITTEE CONTACT:\n";
+    var_dump($util->getConfiguration('committee.contact'));
+
+    echo "\n";
+    die();
 }
+
+$session->getFlashBag()->add(
+    'success',
+    $translator->trans("Instructions have been sent to your email.")
+);
         }
 
         return $output;
