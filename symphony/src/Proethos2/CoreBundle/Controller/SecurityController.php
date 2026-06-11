@@ -510,19 +510,129 @@ class SecurityController extends Controller
         'aval.lilacs@bireme.org' => $util->getConfiguration('committee.contact')
     ))
     ->setTo($post_data['email'])
-    ->setBody($body, 'text/html');
-
-$send = $this->get('mailer')->send($message);
-
-if ($send > 0) {
-    $session->getFlashBag()->add(
-        'success',
-        $translator->trans("Instructions have been sent to your email.")
+    ->setBody(
+        $body,
+        'text/html'
     );
-} else {
+
+$mailer = $this->get('mailer');
+
+$logger = new \Swift_Plugins_Loggers_ArrayLogger();
+$mailer->registerPlugin(
+    new \Swift_Plugins_LoggerPlugin($logger)
+);
+
+try {
+
+    $send = $mailer->send($message);
+
+    echo '<pre>';
+
+    echo "========================================\n";
+    echo "SWIFTMAILER DEBUG\n";
+    echo "========================================\n\n";
+
+    $transport = $mailer->getTransport();
+
+    echo "HOST:\n";
+    echo $transport->getHost() . "\n\n";
+
+    echo "PORT:\n";
+    echo $transport->getPort() . "\n\n";
+
+    echo "ENCRYPTION:\n";
+    echo $transport->getEncryption() . "\n\n";
+
+    echo "USERNAME:\n";
+    echo $transport->getUsername() . "\n\n";
+
+    echo "SEND RESULT:\n";
+    var_dump($send);
+
+    echo "\nFROM:\n";
+    print_r($message->getFrom());
+
+    echo "\nTO:\n";
+    print_r($message->getTo());
+
+    echo "\nSUBJECT:\n";
+    echo $message->getSubject();
+
+    echo "\n\nHEADERS:\n";
+    echo $message->getHeaders()->toString();
+
+    echo "\n\nSMTP LOG:\n";
+    echo $logger->dump();
+
+    echo "\n\nBODY LENGTH:\n";
+    echo strlen($body);
+
+    echo "\n\nPOST EMAIL:\n";
+    var_dump($post_data['email']);
+
+    echo "\n\nCOMMITTEE EMAIL:\n";
+    var_dump($util->getConfiguration('committee.email'));
+
+    echo "\n\nCOMMITTEE CONTACT:\n";
+    var_dump($util->getConfiguration('committee.contact'));
+
+    echo "\n\nSTATUS:\n";
+
+    if ($send > 0) {
+        echo "EMAIL ACEITO PELO SMTP\n";
+    } else {
+        echo "SWIFTMAILER RETORNOU 0\n";
+    }
+
+    echo "\n========================================\n";
+    echo '</pre>';
+
+    if ($send > 0) {
+        $session->getFlashBag()->add(
+            'success',
+            $translator->trans("Instructions have been sent to your email.")
+        );
+    } else {
+        $session->getFlashBag()->add(
+            'error',
+            'SwiftMailer retornou 0 destinatários.'
+        );
+    }
+
+} catch (\Exception $e) {
+
+    echo '<pre>';
+
+    echo "========================================\n";
+    echo "ERRO SMTP\n";
+    echo "========================================\n\n";
+
+    echo $e->getMessage();
+
+    echo "\n\nFROM:\n";
+    print_r($message->getFrom());
+
+    echo "\nTO:\n";
+    print_r($message->getTo());
+
+    echo "\nSUBJECT:\n";
+    echo $message->getSubject();
+
+    echo "\n\nCOMMITTEE EMAIL:\n";
+    var_dump($util->getConfiguration('committee.email'));
+
+    echo "\n\nCOMMITTEE CONTACT:\n";
+    var_dump($util->getConfiguration('committee.contact'));
+
+    echo "\n\nSMTP LOG:\n";
+    echo $logger->dump();
+
+    echo "\n========================================\n";
+    echo '</pre>';
+
     $session->getFlashBag()->add(
         'error',
-        'E-mail was not sent.'
+        $e->getMessage()
     );
 }
         }
