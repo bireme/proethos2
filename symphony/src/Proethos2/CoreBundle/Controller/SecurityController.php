@@ -521,35 +521,7 @@ try {
 
     $send = $mailer->send($message);
 
-    echo '<pre>';
-    echo "=== DEBUG EMAIL ===\n\n";
 
-    echo "SEND RESULT:\n";
-    var_dump($send);
-
-    echo "\nFROM:\n";
-    print_r($message->getFrom());
-
-    echo "\nTO:\n";
-    print_r($message->getTo());
-
-    echo "\nSUBJECT:\n";
-    echo $message->getSubject();
-
-    echo "\n\nBODY LENGTH:\n";
-    echo strlen($body);
-
-    echo "\n\nPOST EMAIL:\n";
-    var_dump($post_data['email']);
-
-    echo "\n\nCOMMITTEE EMAIL:\n";
-    var_dump($util->getConfiguration('committee.email'));
-
-    echo "\n\nCOMMITTEE CONTACT:\n";
-    var_dump($util->getConfiguration('committee.contact'));
-
-    echo "\n";
-    die();
 
 } catch (\Exception $e) {
 
