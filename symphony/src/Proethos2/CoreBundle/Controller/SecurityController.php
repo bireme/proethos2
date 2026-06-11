@@ -505,18 +505,60 @@ class SecurityController extends Controller
             $body = $util->linkify($body);
 
             $message = \Swift_Message::newInstance()
-            ->setSubject($translator->trans("Reset your password"))
-            ->setFrom([$util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')])
-            ->setTo($post_data['email'])
-            ->setBody(
-                $body
-                ,   
-                'text/html'
-            );
-            
-            $send = $this->get('mailer')->send($message);
+    ->setSubject($translator->trans("Reset your password"))
+    ->setFrom(array(
+        $util->getConfiguration('committee.email') => $util->getConfiguration('committee.contact')
+    ))
+    ->setTo($post_data['email'])
+    ->setBody(
+        $body,
+        'text/html'
+    );
 
-            $session->getFlashBag()->add('success', $translator->trans("Instructions have been sent to your email."));
+$mailer = $this->get('mailer');
+
+$logger = new \Swift_Plugins_Loggers_ArrayLogger();
+$mailer->registerPlugin(new \Swift_Plugins_LoggerPlugin($logger));
+
+try {
+    $send = $mailer->send($message);
+
+    file_put_contents(
+        '/tmp/swiftmailer_reset.log',
+        "SEND RESULT: " . $send . PHP_EOL .
+        "FROM: " . print_r($message->getFrom(), true) . PHP_EOL .
+        "TO: " . print_r($message->getTo(), true) . PHP_EOL .
+        "SMTP LOG:" . PHP_EOL .
+        $logger->dump()
+    );
+
+    if ($send > 0) {
+        $session->getFlashBag()->add(
+            'success',
+            $translator->trans("Instructions have been sent to your email.")
+        );
+    } else {
+        $session->getFlashBag()->add(
+            'error',
+            'E-mail was not sent. Check /tmp/swiftmailer_reset.log'
+        );
+    }
+
+} catch (\Exception $e) {
+    file_put_contents(
+        '/tmp/swiftmailer_reset.log',
+        "ERROR: " . $e->getMessage() . PHP_EOL .
+        "FROM: " . print_r($message->getFrom(), true) . PHP_EOL .
+        "TO: " . print_r($message->getTo(), true) . PHP_EOL .
+        "SMTP LOG:" . PHP_EOL .
+        $logger->dump()
+    );
+
+    $session->getFlashBag()->add(
+        'error',
+        'E-mail error: ' . $e->getMessage()
+    );
+}
         }
 
         return $output;
