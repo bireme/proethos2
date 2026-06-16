@@ -506,9 +506,10 @@ class SecurityController extends Controller
 
             $message = \Swift_Message::newInstance()
     ->setSubject($translator->trans("Reset your password"))
-    ->setFrom(array(
-        'aval.lilacs@bireme.org' => $util->getConfiguration('committee.contact')
-    ))
+->setFrom(array(
+    $util->getConfiguration('committee.email') =>
+    $util->getConfiguration('committee.contact')
+))
     ->setTo($post_data['email'])
     ->setBody(
         $body,
