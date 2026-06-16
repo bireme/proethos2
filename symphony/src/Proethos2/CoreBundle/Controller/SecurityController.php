@@ -526,7 +526,7 @@ try {
 
     $send = $mailer->send($message);
 
-    /*
+    
 
     echo '<pre>';
 
@@ -588,7 +588,7 @@ try {
 
     echo "\n========================================\n";
     echo '</pre>';
-*/
+
     if ($send > 0) {
         $session->getFlashBag()->add(
             'success',
